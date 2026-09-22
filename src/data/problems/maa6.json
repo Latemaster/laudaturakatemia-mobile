@@ -1,0 +1,1035 @@
+[
+  {
+    "id": "OSAI_T1",
+    "section": "Osa I",
+    "title": "Tehtävä 1",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Tarkastellaan kuvassa näkyvän funktion $f$ kuvaajaa $y = f(x)$."
+      },
+      {
+        "type": "image",
+        "src": "/utils/MAA6/MAA6_kuvaaja.png",
+        "alt": ""
+      },
+      {
+        "type": "text",
+        "content": "Vastaa perustellen väittämiin ja kysymyksiin sekä korjaa väärät väittämät."
+      },
+      {
+        "type": "text",
+        "content": "a) $f(-2) = 4$"
+      },
+      {
+        "type": "text",
+        "content": "b) Funktion arvo $f(0)$ on positiivinen."
+      },
+      {
+        "type": "text",
+        "content": "c) $\\lim_{x \\rightarrow -1} f(x) = 1$"
+      },
+      {
+        "type": "text",
+        "content": "d) Onko funktio jatkuva kohdassa $x = -2$? Perustele jatkuvuuden määritelmällä."
+      },
+      {
+        "type": "text",
+        "content": "e) Onko funktio jatkuva tai epäjatkuva kohdassa $x = 2$?"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a) Kuvaajasta nähdään, että funktion arvo kohdassa $x = -2$ on $f(-2) = 4$. Väite on tosi."
+      },
+      {
+        "type": "text",
+        "content": "b) Funktion arvo $f(0) = 0$. Koska nolla on pienin epänegatiivinen ja suurin epäpositiivinen luku, väite on epätosi."
+      },
+      {
+        "type": "text",
+        "content": "c) Koska $\\lim_{x \\to -1^-} f(x) = \\lim_{x \\to -1^+} f(x) = 1$, väite on tosi."
+      },
+      {
+        "type": "text",
+        "content": "d) Funktio on jatkuva kohdassa $x = a$, mikäli $\\lim_{x \\to a} f(x) = f(a)$. Koska $\\lim_{x \\to -2} f(x) = f(-2) = 4$, funktio on jatkuva kohdassa $x = -2$."
+      },
+      {
+        "type": "text",
+        "content": "e) Funktiota $f$ ei ole määritelty kohdassa $x = 2$, joten funktiota ei ole edes olemassa siinä kohdassa. Siten funktio ei ole jatkuva eikä epäjatkuva kohdassa $x = 2$."
+      }
+    ],
+    "validation": null
+  },
+  {
+    "id": "OSAI_T2",
+    "section": "Osa I",
+    "title": "Tehtävä 2",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "a) Määritä raja-arvo $\\lim_{x \\rightarrow 7} \\frac{x+9}{x+2}$"
+      },
+      {
+        "type": "text",
+        "content": "b) Määritä raja-arvo $\\lim_{x \\rightarrow -4} \\frac{x^2 - 16}{x+4}$"
+      },
+      {
+        "type": "text",
+        "content": "c) Olkoon $f(x) = $$\\begin{cases} \n  4x - 7 & , kun  x \\le \\frac{7}{4} \\\\\n  2 & , kun  x > \\frac{7}{4} \n  \\end{cases}$$. Onko funktio jatkuva kohdassa $x = \\frac{7}{4}$?"
+      },
+      {
+        "type": "text",
+        "content": "d) Tarkastellaan yhtälöä $x^3 - 4x + 2 = -x^2 + 6$. Osoita, että yhtälöllä on ainakin kaksi erisuurta juurta."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a) $\\lim_{x\\rightarrow7}\\frac{x+9}{x+2}=\\frac{7+9}{7+2}=\\frac{16}{9}$"
+      },
+      {
+        "type": "text",
+        "content": "b) Osoittajan raja-arvo on $\\lim_{x\\rightarrow-4}(x^2-16)=(-4)^2-16=0$ ja nimittäjän raja-arvo on $\\lim_{x\\rightarrow-4}(x+4)=-4+4=0$. Koska kyseessä on 0/0-tilanne, lauseketta voidaan sieventää.\n\n$$\n\\lim_{x\\rightarrow-4}\\frac{x^2-16}{x-4}=\\lim_{x\\rightarrow-4}\\frac{(x-4)(x+4)}{x-4}=\\lim_{x\\rightarrow-4}(x+4)=-4+4=0\n$$"
+      },
+      {
+        "type": "text",
+        "content": "c) Funktio on jatkuva kohdassa $x=\\frac{7}{4}$, jos $\\lim_{x\\rightarrow\\frac{7}{4}}f(x)=f\\left(\\frac{7}{4}\\right)$. Funktion lauseke vaihtuu kohdassa $x=\\frac{7}{4}$, joten on määritettävä toispuoliset raja-arvot.\n\n$$\n\\lim_{x\\rightarrow\\frac{7}{4}^-}f(x)=\\lim_{x\\rightarrow\\frac{7}{4}^-}(4x-7)=4\\cdot\\frac{7}{4}-7=7-7=0\n$$\n\n$$\n\\lim_{x\\rightarrow\\frac{7}{4}^+}f(x)=\\lim_{x\\rightarrow\\frac{7}{4}^+}(2)=2\n$$\n\n$$\nf\\left(\\frac{7}{4}\\right)=4\\cdot\\frac{7}{4}-7=7-7=0\n$$\n\nKoska pelkästään $\\lim_{x\\rightarrow\\frac{7}{4}^-}f(x)\\ne\\lim_{x\\rightarrow\\frac{7}{4}^+}f(x)$, funktiolla ei ole edes raja-arvoa kohdassa $x=\\frac{7}{4}$ ja näin ollen myöskään jatkuvuusehto $\\lim_{x\\rightarrow\\frac{7}{4}}f(x)=f\\left(\\frac{7}{4}\\right)$ ei toteudu. Funktio ei siis ole jatkuva kohdassa $\\frac{7}{4}$."
+      },
+      {
+        "type": "text",
+        "content": "d) Muokataan yhtälöä: $x^3-4x+2=-x^2+6\\ \\Leftrightarrow\\ x^3+x^2-4x-4=0$. Merkitään $f(x)=x^3+x^2-4x-4$. Funktion nollakohdat ovat samat kuin yhtälön ratkaisut. Lasketaan funktion arvoja eri kohdissa. Funktio $f$ on polynomifunktiona kaikkialla jatkuva, joten voidaan hyödyntää Bolzanon lausetta.\n\n$$\nf(-3)=-10<0,\\quad f(-1{,}5)=0{,}875>0,\\quad f(0)=-4<0,\\quad f(3)=20>0\n$$\n\nKoska funktion arvot välin $[-3,\\ -1{,}5]$ ja välin $[0,\\ 3]$ päätepisteissä ovat erimerkkiset, funktiolla on ainakin yksi nollakohta välillä $]-3,\\ -1{,}5[$ ja ainakin yksi nollakohta välillä $]0,\\ 3[$. Siten yhtälöllä on myös kaksi erisuurta juurta."
+      }
+    ],
+    "validation": null
+  },
+  {
+    "id": "OSAI_T3",
+    "section": "Osa I",
+    "title": "Tehtävä 3",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Derivoi funktiot."
+      },
+      {
+        "type": "text",
+        "content": "a) $x^{17}$"
+      },
+      {
+        "type": "text",
+        "content": "b) $x^3 - 5x^2 + 2x - 7$"
+      },
+      {
+        "type": "text",
+        "content": "c) $-7x^2(x^2 + 8x)$"
+      },
+      {
+        "type": "text",
+        "content": "d) $(x^3 - 9x)(-3x^2 + x - 4)$"
+      },
+      {
+        "type": "text",
+        "content": "e) $\\frac{5x}{x^3 - 4x^2}$"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a) $D\\ x^{17}=17x^{17-1}=17x^{16}$"
+      },
+      {
+        "type": "text",
+        "content": "b) $D(x^3-5x^2+2x-7)=3x^2-10x+2$"
+      },
+      {
+        "type": "text",
+        "content": "c) \n$$\\begin{aligned}\nD\\left(-7x^2(x^2+8x)\\right) \n&= -14x(x^2+8x) - 7x^2(2x+8) \\\\\n&= -14x^3 - 112x^2 - 14x^3 - 56x^2 \\\\\n&= -28x^3 - 168x^2\n\\end{aligned}$$"
+      },
+      {
+        "type": "text",
+        "content": "d)\n$$\\begin{aligned}\nD\\left((x^3 - 9x)(-3x^2 + x - 4)\\right) \n&= (3x^2 - 9)(-3x^2 + x - 4) + (x^3 - 9x)(-6x + 1) \\\\\n&= (-9x^4 + 3x^3 - 12x^2) + (27x^2 - 9x + 36) + (-6x^4 + x^3 + 54x^2 - 9x) \\\\\n&= -15x^4 + 4x^3 + 69x^2 - 18x + 36\n\\end{aligned}$$"
+      },
+      {
+        "type": "text",
+        "content": "e)\n$$\\begin{aligned}\nD\\left(\\frac{5x}{x^3 - 4x^2}\\right) \n&= \\frac{5(x^3 - 4x^2) - 5x(3x^2 - 8x)}{(x^3 - 4x^2)^2} \\\\\n&= \\frac{5x^3 - 20x^2 - 15x^3 + 40x^2}{(x^3 - 4x^2)^2} \\\\\n&= \\frac{-10x^3 + 20x^2}{(x^3 - 4x^2)^2}\n\\end{aligned}$$"
+      }
+    ],
+    "validation": null
+  },
+  {
+    "id": "OSAI_T4",
+    "section": "Osa I",
+    "title": "Tehtävä 4",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Olkoon $f(x) = \\frac{5}{3}x^3 - 2x^2 - 9x - 8$. Määritä"
+      },
+      {
+        "type": "text",
+        "content": "a) Funktion $f$ derivaatta $f'(x)$"
+      },
+      {
+        "type": "text",
+        "content": "b) Derivaattafunktion nollakohdat"
+      },
+      {
+        "type": "text",
+        "content": "c) Derivaattafunktion arvo kohdassa 0."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a) $$f'\\left(x\\right)=5x^2-4x-9$$"
+      },
+      {
+        "type": "text",
+        "content": "b) $$f'\\left(x\\right)=0\\ \\Leftrightarrow\\ 5x^2-4x-9=0\\ \\Leftrightarrow\\ x=\\frac{9}{5}\\ \\vee\\ x=-1$$"
+      },
+      {
+        "type": "text",
+        "content": "c) $$f'\\left(0\\right)=5\\cdot0^2-4\\cdot0-9=-9$$"
+      }
+    ],
+    "validation": null
+  },
+  {
+    "id": "OSAI_T5",
+    "section": "Osa I",
+    "title": "Tehtävä 5",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Funktiolle $f(x) = x^4 + 5x$ piirretään tangentti kohtaan $x = -4$. Määritä kohtaan piirretyn tangentin ja normaalin yhtälöt."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Funktion $f$ derivaattafunktio on $f'(x)=4x^3+5$. Funktiolle $f$ kohtaan $x=-4$ piirretyn tangentin kulmakerroin on $k=f'(-4)=4\\cdot(-4)^3+5=-251$. Tangentti piirretään kohtaan $y=f(-4)=(-4)^4+5\\cdot(-4)=236$. Tangentti kulkee pisteen $(-4,\\ 236)$ kautta, ja sen kulmakerroin on $k=-251$. Tangentin yhtälö on $y-236=-251(x-(-4))\\ \\Leftrightarrow\\ y=-251x-768$. Normaali kulkee pisteen $(-4,\\ 236)$ kautta, ja sen kulmakerroin saadaan kohtisuoruusehdosta $k\\cdot k_{\\mathrm{n}}=-1\\ \\Leftrightarrow\\ -251\\cdot k_{\\mathrm{n}}=-1\\ \\Leftrightarrow\\ k_n=\\frac{1}{251}$. Normaalin yhtälö on $y-236=\\frac{1}{251}(x-(-4))\\ \\Leftrightarrow\\ y=\\frac{1}{251}x+\\frac{59240}{251}$."
+      }
+    ],
+    "validation": null
+  },
+  {
+    "id": "OSAI_T6",
+    "section": "Osa I",
+    "title": "Tehtävä 6",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "a) Määritä funktion $f(x) = x^3 - \\frac{4}{3}x^2 + 3x - 4$ suurin ja pienin arvo välillä $[0,\\ 2]$."
+      },
+      {
+        "type": "text",
+        "content": "b) Olkoon $g(x) = \\frac{4 - 5x^2}{2x - 2}$. Millä väleillä funktio $g$ on kasvava ja millä välillä vähenevä? Mitkä ovat funktion $g$ ääriarvokohdat?"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a) Funktion $f$ derivaattafunktio on $f'(x)=3x^2-\\frac{8}{3}x+3$, ja sen nollakohdat saadaan yhtälöstä $3x^2-\\frac{8}{3}x+3=0\\ \\Leftrightarrow\\ 9x^2-8x+9=0\\ \\Leftrightarrow\\ x=\\frac{8\\pm\\sqrt{(-8)^2-4\\cdot9\\cdot9}}{2\\cdot9}$. Tällä yhtälöllä ei ole reaalilukuratkaisua, joten derivaattafunktiolla ei ole nollakohtia eikä siten selvästi välille $]0,\\ 2[$ kuuluvia nollakohtia. Funktio $f$ on polynomifunktiona jatkuva ja derivoituva. Fermat’n lauseen nojalla funktio $f$ saa välillä $[0,\\ 2]$ suurimman arvonsa välin päätepisteissä tai välille $]0,\\ 2[$ kuuluvissa derivaatan nollakohdissa. Koska välille ei kuulu derivaatan nollakohtia ja $f(0)=-4$ sekä $f(2)=\\frac{14}{3}$, niin funktion suurin arvo välillä $[0,\\ 2]$ on $\\frac{14}{3}$ ja pienin arvo $-4$."
+      },
+      {
+        "type": "text",
+        "content": "b) Funktio $g$ on määritelty, kun $2x-2\\ne0\\ \\Leftrightarrow\\ x\\ne1$. Funktion $g$ derivaattafunktio on \n$g'(x)=\\frac{-10x(2x-2)-(4-5x^2)\\cdot2}{(2x-2)^2}=\\frac{-10x^2+20x-8}{(2x-2)^2}$, missä $x\\ne1$, ja sen nollakohdat saadaan yhtälöstä $\\frac{-10x^2+20x-8}{(2x-2)^2}=0$. Rationaaliyhtälö saa arvon nolla, kun osoittaja on nolla: \n$-10x^2+20x-8=0 \\ \\Leftrightarrow\\ x=\\frac{-20\\pm\\sqrt{20^2-4\\cdot(-10)\\cdot(-8)}}{2\\cdot(-10)} \\ \\Leftrightarrow\\ x=\\frac{-20\\pm\\sqrt{80}}{-20} \\ \\Leftrightarrow\\ x=\\frac{5\\pm\\sqrt{5}}{5}$.\n\nDerivaattafunktio $g'(x)$ on määrittelyjoukossaan positiivinen, joten se ei muuta merkkiä. Näin ollen riittää tarkastella vain osoittajan merkkiä. Funktion $g$ merkit voivat vaihtua derivaatan nollakohdissa ja kohdissa, joissa derivaatta ei ole määritelty. Laaditaan funktion $g$ kulkukaavio."
+      },
+      {
+        "type": "image",
+        "src": "/utils/MAA6/kulkukaavio_I.png",
+        "alt": ""
+      },
+      {
+        "type": "text",
+        "content": "b) Kulkukaavion perusteella funktio $g$ on vähenevä välillä $x\\le\\frac{5-\\sqrt{5}}{5}$ ja välillä $x\\ge\\frac{5+\\sqrt{5}}{5}$. Funktio on kasvava välillä $\\frac{5-\\sqrt{5}}{5}\\le x<1$ ja välillä $1<x\\le\\frac{5+\\sqrt{5}}{5}$. Funktiolla on minimikohta $f\\left(\\frac{5-\\sqrt{5}}{5}\\right)=\\sqrt{5}-5$. Funktiolla ei ole maksimikohtaa."
+      }
+    ],
+    "validation": null
+  },
+  {
+    "id": "OSAI_T7",
+    "section": "Osa I",
+    "title": "Tehtävä 7",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "a) Kuvassa on funktioiden $f(x)$ ja $g(x)$ kuvaajat."
+      },
+      {
+        "type": "image",
+        "src": "/utils/MAA6/maa6_kuvaaja2.png",
+        "alt": ""
+      },
+      {
+        "type": "text",
+        "content": "Määritä kuvaajan perusteella $(f \\circ g)(1)$."
+      },
+      {
+        "type": "text",
+        "content": "b) Olkoon $u(x) = x^3$ ja $s(x) = 2x - 5$. Määritä $(u \\circ s)(5)$."
+      },
+      {
+        "type": "text",
+        "content": "c) Määritä derivaatta $(u \\circ s)'(x)$."
+      },
+      {
+        "type": "text",
+        "content": "d) Määritä funktion $5x^2(2x^2 - 8)^2$ derivaattafunktion nollakohdat."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a) Koska $\\left(f\\circ g\\right)\\left(1\\right)=f\\left(g\\left(1\\right)\\right)$ ja $g\\left(1\\right)=2$, niin $\\left(f\\circ g\\right)\\left(1\\right)=f\\left(2\\right)=4$."
+      },
+      {
+        "type": "text",
+        "content": "b) Määritetään ensin funktion $s$ arvo kohdassa $x=5$. $s\\left(5\\right)=2\\cdot5-5=5$. Tällöin $\\left(u\\circ s\\right)\\left(5\\right)=u\\left(s\\left(5\\right)\\right)=u\\left(5\\right)=5^3=125$."
+      },
+      {
+        "type": "text",
+        "content": "c)\n$$\\begin{aligned}\nu\\left(s\\left(x\\right)\\right) &= \\left(2x-5\\right)^3, \\\\\nYhdistetyn funktion derivaatta  Du\\left(s\\left(x\\right)\\right) &= u'\\left(s\\left(x\\right)\\right)\\cdot s'\\left(x\\right) \\\\\n&= 3\\left(2x-5\\right)^2\\cdot2 \\\\\n&= 6\\left(2x-5\\right)^2\n\\end{aligned}$$"
+      },
+      {
+        "type": "text",
+        "content": "d)\n$$\\begin{aligned}\nFunktion derivaatta on \\quad D\\left(5x^2\\left(2x^2-8\\right)^2\\right) &= 10x\\left(2x^2-8\\right)^2 + 5x^2\\cdot2\\left(2x^2-8\\right)\\cdot4x \\\\\n&= 10x\\left(2x^2-8\\right)^2 + 40x^3\\left(2x^2-8\\right) \\\\\n&= 40x\\left(x^2-4\\right)\\left(3x^2-4\\right)\n\\end{aligned}$$\n\nDerivaatan nollakohdat saadaan yhtälöstä\n$$\n40x\\left(x^2-4\\right)\\left(3x^2-4\\right)=0\\ .\n$$\nTulon nollasäännön nojalla $40x=0\\ \\Leftrightarrow\\ x=0\\ \\vee\\ x^2-4=0\\ \\Leftrightarrow\\ x=\\pm2\\ \\vee\\ 3x^2-4=0\\ \\Leftrightarrow\\ x=\\pm\\frac{2\\sqrt{3}}{3}$."
+      }
+    ],
+    "validation": null
+  },
+  {
+    "id": "OSAI_T8",
+    "section": "Osa I",
+    "title": "Tehtävä 8",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Tarkastellaan funktiota $ f(x) = \\sqrt[4]{9 - x^2} $."
+      },
+      {
+        "type": "text",
+        "content": "a) Määritä funktion määrittelyehto."
+      },
+      {
+        "type": "text",
+        "content": "b) Derivoi funktio."
+      },
+      {
+        "type": "text",
+        "content": "c) Laske funktion derivaatta kohdassa 2."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a) Parillinen juurifunktio on määritelty, kun juurrettava on epänegatiivinen. Siten funktion määrittelyehto on\n$$\n9 - x^2 \\ge 0 \\ \\Leftrightarrow\\ -3 \\le x \\le 3.\n$$"
+      },
+      {
+        "type": "text",
+        "content": "b) Muokataan juurilauseketta.\n$$\nf(x) = \\sqrt[4]{9 - x^2} = (9 - x^2)^{\\frac{1}{4}}.\n$$\nTässä vaiheessa määrittelyehdoksi muuttuu\n$$\n-3 < x < 3,\n$$\nsillä murtopotenssi otetaan käyttöön. Derivoidaan funktio.\n$$\nf'(x) = \\frac{1}{4}(9 - x^2)^{-\\frac{3}{4}} \\cdot (-2x) = \\frac{-2x}{4\\sqrt[4]{(9 - x^2)^3}} = \\frac{-x}{2\\sqrt[4]{(9 - x^2)^3}}.\n$$"
+      },
+      {
+        "type": "text",
+        "content": "c)\n$$\nf'(2) = \\frac{-2}{2\\sqrt[4]{(9 - 2^2)^3}} = \\frac{-2}{2\\sqrt[4]{125}} = -\\frac{1}{\\sqrt[4]{125}}.\n$$"
+      }
+    ],
+    "validation": null
+  },
+  {
+    "id": "OSAI_T9",
+    "section": "Osa I",
+    "title": "Tehtävä 9",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "a) Derivoi $ 5\\sin x $"
+      },
+      {
+        "type": "text",
+        "content": "b) Derivoi $ (3x - 8)^3 $"
+      },
+      {
+        "type": "text",
+        "content": "c) Derivoi $ \\cos(-7x) $"
+      },
+      {
+        "type": "text",
+        "content": "d) Derivoi $ \\sin^2 x $"
+      },
+      {
+        "type": "text",
+        "content": "e) Derivoi $ \\sin x^2 $"
+      },
+      {
+        "type": "text",
+        "content": "f) Mikä on funktiolle $ f(x) = 3x - \\sin 4x $ kohtaan $ x = \\pi $ piirretyn tangentin kulmakerroin?"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a) $$D\\left(5\\sin x\\right)=5\\cos x$$"
+      },
+      {
+        "type": "text",
+        "content": "b) $$D\\left(\\left(3x-8\\right)^3\\right)=3\\left(3x-8\\right)^2\\cdot3=9\\left(3x-8\\right)^2$$"
+      },
+      {
+        "type": "text",
+        "content": "c) $$D\\left(\\cos\\left(-7x\\right)\\right)=D\\left(\\cos\\left(7x\\right)\\right)=-\\sin\\left(7x\\right)\\cdot7=-7\\sin 7x$$"
+      },
+      {
+        "type": "text",
+        "content": "d) $$D\\left(\\sin^2x\\right)=D\\left(\\left(\\sin x\\right)^2\\right)=2\\sin x\\cdot\\cos x=2\\sin x\\cos x$$"
+      },
+      {
+        "type": "text",
+        "content": "e) $$D\\left(\\sin x^2\\right)=\\cos\\left(x^2\\right)\\cdot2x=2x\\cos\\left(x^2\\right)$$"
+      },
+      {
+        "type": "text",
+        "content": "f) Funktion $f$ derivaatta $f'(x) = 3 - 4\\cos 4x$ ja kohtaan $x = \\pi$ piirretyn tangentin kulmakerroin $k = f'(\\pi) = 3 - 4\\cdot \\cos(4\\pi) = -1$."
+      }
+    ],
+    "validation": null
+  },
+  {
+    "id": "OSAI_T10",
+    "section": "Osa I",
+    "title": "Tehtävä 10",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "a) Derivoi funktio $ e^{3x^2} $"
+      },
+      {
+        "type": "text",
+        "content": "b) Derivoi funktio $ 7^x $. Ilmaise kantaluku Neperin luvun $ e $ potenssina ja derivoi funktio yhdistetyn funktion derivointisäännöllä."
+      },
+      {
+        "type": "text",
+        "content": "c) Derivoi funktio $ 5^{-4x} $"
+      },
+      {
+        "type": "text",
+        "content": "d) Derivoi funktio $ \\log_4 x $"
+      },
+      {
+        "type": "text",
+        "content": "e) Olkoon $ f(x) = \\ln(x^2 - 4x + 2) $. Määritä funktion $ f $ derivaattafunktio ja derivaattafunktion nollakohdat."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a) $$D\\left(e^{3x^2}\\right) = e^{3x^2} \\cdot 6x = 6xe^{3x^2}$$"
+      },
+      {
+        "type": "text",
+        "content": "b) Koska $7^x = \\left(e^{\\ln 7}\\right)^x = e^{x\\ln 7}$, niin $$D\\left(7^x\\right) = D\\left(e^{x\\ln 7}\\right) = e^{x\\ln 7} \\cdot \\ln 7 = 7^x \\ln 7.$$"
+      },
+      {
+        "type": "text",
+        "content": "c) $$D\\left(5^{-4x}\\right) = 5^{-4x} \\cdot \\ln 5 \\cdot (-4) = -5^{-4x} \\cdot 4\\ln 5$$"
+      },
+      {
+        "type": "text",
+        "content": "d) Funktio on määritelty, kun $x > 0$. $$D\\left(\\log_4 x\\right) = \\frac{1}{x \\cdot \\ln 4}$$"
+      },
+      {
+        "type": "text",
+        "content": "e) Funktio on määritelty, kun $x^2 - 4x + 2 \\ne 0 \\ \\Leftrightarrow \\ x \\ne \\frac{4 \\pm \\sqrt{(-4)^2 - 4 \\cdot 1 \\cdot 2}}{2 \\cdot 1} \\ \\Leftrightarrow \\ x \\ne \\sqrt{2} + 2 \\ \\vee \\ x \\ne 2 - \\sqrt{2}$. Derivoidaan funktio.\n$$f'(x) = \\frac{1}{x^2 - 4x + 2} \\cdot (2x - 4) = \\frac{2x - 4}{x^2 - 4x + 2}$$\nDerivaatta saa arvon nolla, kun osoittaja on nolla. Siis $$2x - 4 = 0 \\ \\Leftrightarrow \\ x = 2.$$"
+      }
+    ],
+    "validation": null
+  },
+  {
+    "id": "OSAII_T1",
+    "section": "Osa II",
+    "title": "Tehtävä 1",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Tarkastellaan kuvassa näkyvän rationaalifunktion $ f(x) = \\frac{ax^2 + bx + c}{x - d} $ kuvaajaa."
+      },
+      {
+        "type": "image",
+        "src": "/utils/MAA6/maa6_vakiot.png",
+        "alt": ""
+      },
+      {
+        "type": "text",
+        "content": "Määritä vakioiden $ a $, $ b $, $ c $ ja $ d $ arvot."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Kuvaajasta nähdään, että $f(0)=1$, $f(1)=1$ ja $f(3)=-11$. Huomataan myös, että kohdassa $x=2$ kulkee funktion asymptoottilinja. Tällöin nimittäjä saa arvon nolla. Saadaan yhtälö $x-d=0 \\Leftrightarrow 2-d=0 \\Leftrightarrow d=2$. Vakioiden, $a$, $b$ ja $c$ arvot saadaan yhtälöryhmästä\n$$\\begin{cases}\nf(0)=1 \\\\\nf(1)=1 \\\\\nf(3)=-11\n\\end{cases}$$. Ratkaistaan yhtälöryhmä.\n\n$$\\begin{cases}\nf(0)=1 \\\\\nf(1)=1 \\\\\nf(3)=-11\n\\end{cases}$$\n\\Leftrightarrow\n$$\\begin{cases}\n\\frac{c}{0-2}=1 \\\\\n\\frac{a+b+c}{1-2}=1 \\\\\n\\frac{9a+3b+c}{3-2}=-11\n\\end{cases}$$\n\nYlimmästä yhtälöstä saadaan $\\frac{c}{-2}=1 \\Leftrightarrow c=-2$. Sijoitetaan tämä kahteen alempaan yhtälöön ja muodostetaan yhtälöpari.\n$$\\begin{cases}\n\\frac{a+b-2}{-1}=1 \\\\\n9a+3b-2=-11\n\\end{cases}$$.\n\nRatkaistaan ylemmästä yhtälöstä $b$. $a+b-2=-1 \\Leftrightarrow b=1-a$.\n\nSijoitetaan $b$ alempaan yhtälöön. $9a+3(1-a)-2=-11 \\Leftrightarrow 6a+1=-11 \\Leftrightarrow 6a=-12 \\Leftrightarrow a=-2$.\n\nSijoitetaan $a$ ylempään yhtälöön ja ratkaistaan $b$. $b=1-a \\Leftrightarrow b=1-(-2) \\Leftrightarrow b=3$.\n\nFunktion lauseke on näin ollen $f(x)=\\frac{-2x^2+3x-2}{x-2}$."
+      }
+    ],
+    "validation": null
+  },
+  {
+    "id": "OSAII_T2",
+    "section": "Osa II",
+    "title": "Tehtävä 2",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "a) Määritä vakio $ a $ siten, että raja-arvo on olemassa. Määritä tämä raja-arvo.  \n  $$\n  \\lim_{x \\rightarrow -3} \\frac{x^2 + 9x + 2a}{x + 3}\n  $$"
+      },
+      {
+        "type": "text",
+        "content": "b) Olkoon $ f(x) = \\frac{2x^2 - 7x + 5}{1 - x^2} $. Määritä $ f $ määrittelyjoukko $ M_f $ ja supista funktion lauseke."
+      },
+      {
+        "type": "text",
+        "content": "c) Määritä funktion $ f $ raja-arvo $ \\lim_{x \\rightarrow 1} f(x) $."
+      },
+      {
+        "type": "text",
+        "content": "d) Määrittele funktio $ f $ paloittain siten, että se on jatkuva, kun $ x \\ne -1 $."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a) Raja-arvo voidaan määrittää, mikäli lauseketta voidaan supistaa. Lauseketta voidaan supistaa, jos ja vain jos nimittäjällä on sama nollakohta kuin osoittajalla. Nimittäjä saa arvon nolla, kun $x=-3$. Tämä on oltava myös osoittajan nollakohta. Saadaan yhtälö $(-3)^2 + 9\\cdot(-3) + 2a = 0 \\Leftrightarrow 9 - 27 + 2a = 0 \\Leftrightarrow a = 9$. Määritetään raja-arvo: $\\lim_{x \\rightarrow -3} \\frac{x^2 + 9x + 18}{x + 3} = \\lim_{x \\rightarrow -3} \\frac{(x + 3)(x + 6)}{x + 3} = \\lim_{x \\rightarrow -3} (x + 6) = -3 + 6 = 3$. Raja-arvo on $3$."
+      },
+      {
+        "type": "text",
+        "content": "b) Funktiota ei ole määritelty nimittäjän nollakohdassa. Nimittäjän nollakohdat saadaan yhtälöstä $1 - x^2 = 0 \\Leftrightarrow x^2 = 1 \\Leftrightarrow x = -1 \\vee x = 1$. Funktion $f$ määrittelyjoukko on $M_f = \\mathbb{R} \\setminus \\{-1,\\ 1\\}$. Funktion lauseke on $f(x) = \\frac{2x^2 - 7x + 5}{1 - x^2} = \\frac{(2x + 5)(x - 1)}{-((x - 1)(x + 1))} = \\frac{2x + 5}{-x - 1}$."
+      },
+      {
+        "type": "text",
+        "content": "c) $\\lim_{x \\rightarrow 1} \\frac{2x - 5}{-x - 1} = \\frac{2 \\cdot 1 - 5}{-1 - 1} = \\frac{-3}{-2} = \\frac{3}{2}$."
+      },
+      {
+        "type": "text",
+        "content": "d) Koska funktio on määritelty, kun $x \\ne \\pm 1$ ja nyt tarkastellaan tilannetta $x \\ne -1$, ainoa mahdollinen epäjatkuvuuskohta on $x = 1$. Funktion raja-arvo määritettiin kohdassa c) ja se oli $\\frac{3}{2}$. Jotta funktio olisi jatkuva tässä kohdassa, on oltava $\\lim_{x \\rightarrow 1} f(x) = f(1) = \\frac{3}{2}$. Funktion arvon kohdassa $x = 1$ on oltava $f(1) = \\frac{3}{2}$. Funktio voidaan siten määritellä paloittain seuraavasti $f(x) = $$\\begin{cases} \\frac{2x^2 - 7x + 5}{1 - x^2} & , kun  x \\ne -1 \\\\ \\frac{3}{2} & , kun  x = 1 \\end{cases}$$. Tällöin funktio on jatkuva, kun $x \\ne -1$."
+      }
+    ],
+    "validation": null
+  },
+  {
+    "id": "OSAII_T3",
+    "section": "Osa II",
+    "title": "Tehtävä 3",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Määritä funktion $ f(x) = 4x^2 + 2 $ derivaatta kohdassa $ x = 1 $. Käytä derivaatan määritelmää."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Muodostetaan ja lasketaan erotusosamäärän raja-arvo kohdassa $ x = 1 $.\n$$\\begin{aligned}\n\\lim_{x \\rightarrow 1} \\frac{f(x) - f(1)}{x - 1} \n&= \\lim_{x \\rightarrow 1} \\frac{4x^2 + 2 - (4 \\cdot 1^2 + 2)}{x - 1} \\\\\n&= \\lim_{x \\rightarrow 1} \\frac{4x^2 + 2 - 6}{x - 1} \\\\\n&= \\lim_{x \\rightarrow 1} \\frac{4x^2 - 4}{x - 1} \\\\\n&= \\lim_{x \\rightarrow 1} \\frac{4(x^2 - 1)}{x - 1} \\\\\n&= \\lim_{x \\rightarrow 1} \\frac{4(x - 1)(x + 1)}{x - 1} \\\\\n&= \\lim_{x \\rightarrow 1} 4(x + 1) \\\\\n&= 4 \\cdot (1 + 1) = 4 \\cdot 2 = 8\n\\end{aligned}$$"
+      }
+    ],
+    "validation": null
+  },
+  {
+    "id": "OSAII_T4",
+    "section": "Osa II",
+    "title": "Tehtävä 4",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Määritä käyrän $ y = 2x^2 + 4x $ ne tangentit, jotka kulkevat pisteen $ (1,\\ 4) $ kautta."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "\\\\\nOlkoon $f(x) = 2x^2 + 4x$. Kulkekoot tangentit pisteen $x = a$ kautta. Tällöin y-koordinaatti on $f(a) = 2a^2 + 4a$. Tangentin kulmakerroin $k_t = \\frac{4 - 2a^2 - 4a}{1 - a}$. Toisaalta kohtaan $x = a$ piirretyn tangentin kulmakerroin on $k = f'(a) = 4a + 4$. Saadaan yhtälö $\\frac{4 - 2a^2 - 4a}{1 - a} = 4a + 4\\ \\parallel \\cdot (1 - a) \\ne 0\\ \\Leftrightarrow\\ -2a^2 - 4a + 4 = (4a + 4)(1 - a)$, \\\\\n$\\Leftrightarrow\\ -2a^2 - 4a + 4 = -4a^2 + 4$, \\\\\n$\\Leftrightarrow\\ 2a^2 - 4a = 0$, \\\\\n$\\Leftrightarrow\\ 2a(a - 2) = 0\\ \\Leftrightarrow\\ a = 0\\ \\vee\\ a - 2 = 0\\ \\Leftrightarrow\\ a = 2$. \\\\\nKumpikin ratkaisuista käy, sillä määrittelyehto $1 - a \\ne 0\\ \\Leftrightarrow\\ a \\ne 1$ toteutuu. Kun $a = 0$, tangentti kulkee pisteen $(0,\\ 0)$ kautta. Tällöin tangentin kulmakerroin on $\\frac{4 - 0}{1 - 0} = 4$. Tangentin yhtälö on $y - 4 = 4(x - 1)\\ \\Leftrightarrow\\ y = 4x$. Kun $a = x = 2$, $y = 2 \\cdot 2^2 + 4 \\cdot 2 = 16$. Tällöin tangentin kulmakerroin on $\\frac{16 - 4}{2 - 1} = 12$. Tangentin yhtälö on $y - 4 = 12(x - 1)\\ \\Leftrightarrow\\ y = 12x - 8$. Tangenttien yhtälöt ovat $y = 4x$ ja $y = 12x - 8$."
+      }
+    ],
+    "validation": null
+  },
+  {
+    "id": "OSAII_T5",
+    "section": "Osa II",
+    "title": "Tehtävä 5",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Määritä funktion $ f(x) = \\sin x - \\cos x $ suurin ja pienin arvo."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "\\\\\nFunktion $f$ perusjakso on $2\\pi$, joten riittää tarkastella väliä $[0,\\ 2\\pi]$. Funktio on jatkuva ja derivoituva tällä välillä. Derivaattafunktio $f'(x) = \\cos x + \\sin x$. Ratkaistaan derivaatan nollakohdat. $\\cos x + \\sin x = 0$, $\\sin x = -\\cos x$, $\\frac{\\sin x}{\\cos x} = -1$, $\\tan x = -1$, $x = \\frac{3\\pi}{4} + n\\cdot\\pi\\ \\vee\\ x = \\frac{7\\pi}{4} + n\\cdot\\pi$, missä $n \\in \\mathbb{Z}$. \\\\\nRatkaisuista välille $]0,\\ 2\\pi[$ kuuluvat vain $x = \\frac{3\\pi}{4}$ ja $x = \\frac{7\\pi}{4}$. Jatkuva ja derivoituva funktio $f$ saa Fermat’n lauseen nojalla suurimman ja pienimmän arvonsa välillä $[0,\\ 2\\pi]$ välin päätepisteissä tai välille $]0,\\ 2\\pi[$ kuuluvissa derivaatan nollakohdissa. $f(0) = -1$, $f\\left(\\frac{3\\pi}{4}\\right) = \\sqrt{2}$ (suurin), $f\\left(\\frac{7\\pi}{4}\\right) = -\\sqrt{2}$ (pienin), $f(2\\pi) = -1$. \\\\\nFunktion $f$ suurin arvo on $\\sqrt{2}$ ja pienin arvo $-\\sqrt{2}$."
+      }
+    ],
+    "validation": null
+  },
+  {
+    "id": "OSAII_T6",
+    "section": "Osa II",
+    "title": "Tehtävä 6",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Osoita, että funktio $ g(x) = 6x - \\cos 6x $ on aidosti kasvava."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "\\\\\nFunktion kulkua tutkitaan derivaatalla. Funktio $g$ on jatkuva ja derivoituva. Funktion $g$ perusjakso on $\\frac{\\pi}{3}$, joten riittää tarkastella väliä $[0,\\ \\frac{\\pi}{3}]$. Funktion $g$ derivaattafunktio $g'\\left(x\\right)=6+6\\sin6x$. Ratkaistaan derivaatan nollakohdat. $6+6\\sin6x=0\\ \\Leftrightarrow\\ \\sin6x=-1\\ \\Leftrightarrow\\ 6x=\\frac{3\\pi}{2}+n\\cdot2\\pi\\ \\Leftrightarrow\\ x=\\frac{\\pi}{4}+n\\cdot\\frac{\\pi}{3}$, missä $n\\in\\mathbb{Z}$. Nollakohdista välille $]0,\\ \\frac{\\pi}{3}[$ kuuluu vain $x=\\frac{\\pi}{4}$. Laaditaan funktion $g$ kulkukaavio. Koska kulkukaavion perusteella (piirrä!) $g'\\left(x\\right)\\ge0$ ja $g'\\left(x\\right)=0$ vain yksittäisissä kohdissa, funktio $g$ on aidosti kasvava, mikä piti osoittaa."
+      }
+    ],
+    "validation": null
+  },
+  {
+    "id": "OSAII_T7",
+    "section": "Osa II",
+    "title": "Tehtävä 7",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Käyrälle $ y = (x - 2x)^4 - 2 $ piirretään vaakasuora tangentti. Mihin pisteeseen tangentti piirretään?"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "\\\\\nVaakasuora tangentti on x-akselin suuntainen suora, jonka kulmakerroin on nolla. Tällöin kyseiseen kohtaan piirretty derivaatta on nolla. Funktio $y=f\\left(x\\right)=\\left(x-2x\\right)^4-2$ on kaikkialla jatkuva ja derivoituva. Funktion $f$ derivaattafunktio $f'\\left(x\\right)=4\\left(x-2x\\right)^3\\cdot\\left(-1\\right)=-4\\left(x-2x\\right)^3$. Ratkaistaan, milloin derivaatta on nolla. $-4\\left(x-2x\\right)^3=0\\ \\Leftrightarrow\\ x-2x=0\\ \\Leftrightarrow\\ x=0$. Tällöin $y=f\\left(0\\right)=-2$. Tangentti piirretään pisteeseen $\\left(0,\\ -2\\right)$."
+      }
+    ],
+    "validation": null
+  },
+  {
+    "id": "OSAII_T8",
+    "section": "Osa II",
+    "title": "Tehtävä 8",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Ratkaise funktion $ h(x) = \\frac{e^x}{6} - 3x $ derivaattafunktion nollakohdat."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "\\\\\nFunktio on jatkuva ja derivoituva kaikilla $x$. Funktion $h$ derivaattafunktio $h'\\left(x\\right)=\\frac{1}{6}e^x-3$. Derivaattafunktion nollakohdille saadaan yhtälö $\\frac{1}{6}e^x-3=0\\ \\Leftrightarrow\\ e^x=18\\ \\Leftrightarrow\\ x=\\ln18$. Nollakohta on $x=\\ln18$."
+      }
+    ],
+    "validation": null
+  },
+  {
+    "id": "OSAII_T9",
+    "section": "Osa II",
+    "title": "Tehtävä 9",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Osoita, että funktio $ g(x) = \\ln(e^{-3x} + 7) $ on aidosti vähenevä."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "\\\\\nFunktion kulkua tutkitaan derivaatan avulla. Funktio $g$ on kaikkialla jatkuva ja derivoituva. Funktion $g$ derivaattafunktio $g'\\left(x\\right)=\\frac{1}{e^{-3x}+7}\\cdot (-3e^{-3x})=\\frac{-3e^{-3x}}{e^{-3x}+7}$. Koska $-3e^{-3x}<0$ ja $e^{-3x}+7>0$ kaikilla $x$, niin osamäärä $\\frac{-3e^{-3x}}{e^{-3x}+7}<0$ kaikilla $x\\in\\mathbb{R}$. Koska derivaattafunktio $g'\\left(x\\right)<0$ kaikilla $x$, funktio $g$ on aidosti vähenevä, mikä piti osoittaa."
+      }
+    ],
+    "validation": null
+  },
+  {
+    "id": "OSAII_T10",
+    "section": "Osa II",
+    "title": "Tehtävä 10",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Matti määritti funktion $ f(x) = \\ln x - 4x^2 + \\frac{x}{3} $ suurimman arvon välillä $ [a,\\ b] $ puutteellisesti:\n\n$$\nf'(x) = \\frac{1}{x} - 8x + \\frac{1}{3}\n$$\n\n$$\nx = \\frac{-1}{3} \\ \\vee\\ x = \\frac{3}{8}\n$$\n\n$$\nf\\left(\\frac{1}{4}\\right) \\approx -1{,}55,\\quad f\\left(\\frac{3}{8}\\right) \\approx -1{,}42,\\quad f(1) \\approx -3{,}67\n$$\n\nKerro, mikä oli suljettu väli $ [a,\\ b] $ ja lisää ratkaisuun välivaiheet siten, että se sisältää tarvittavat perustelut."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "\\\\\nSuljettu väli oli $[\\frac{1}{4},\\ 1]$ laskettujen funktion arvojen perusteella. Funktio $f$ on määritelty, kun $x>0$. Funktio $f$ on tällä välillä jatkuva ja derivoituva. Funktion $f$ derivaattafunktio $f'\\left(x\\right)=\\frac{1}{x}-8x+\\frac{1}{3}$. Derivaatan nollakohdat saadaan yhtälöstä $\\frac{1}{x}-8x+\\frac{1}{3}=0$, josta ratkaistuna $x=-\\frac{1}{3}$ tai $x=\\frac{3}{8}$. Ratkaisuista vain $x=\\frac{3}{8}$ kuuluu välille $]\\frac{1}{4},\\ 1[$. Fermat'n lauseen nojalla jatkuva ja derivoituva funktio $f$ saa suurimman arvonsa välillä $[\\frac{1}{4},\\ 1]$ välin päätepisteissä tai välille $]\\frac{1}{4},\\ 1[$ kuuluvissa derivaatan nollakohdissa. $f\\left(\\frac{1}{4}\\right)=-2\\ln2-\\frac{1}{6}\\approx-1{,}55$, $f\\left(\\frac{3}{8}\\right)=\\ln\\left(\\frac{3}{8}\\right)-\\frac{7}{16}\\approx-1{,}41$, $f\\left(1\\right)=-\\frac{11}{3}\\approx-3{,}67$. Funktion $f$ suurin arvo välillä $[\\frac{1}{4},\\ 1]$ on $\\ln\\left(\\frac{3}{8}\\right)-\\frac{7}{16}\\approx-1{,}41$."
+      }
+    ],
+    "validation": null
+  },
+  {
+    "id": "OSAIII_T1",
+    "section": "Osa III",
+    "title": "Tehtävä 1",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Järven rantaan rakennetaan suorakulmion muotoinen aitaus siten, että järven suuntaiselle sivulle ei laiteta aitaa lainkaan. Mikä on aitauksen suurin mahdollinen pinta-ala, kun aitaa on käytettävissä 220 m?"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "\\\\\nMerkitään aitauksen kantaa kirjaimella $y$ ja korkeutta kirjaimella $x$. Tällöin $y+2x=200\\ \\Leftrightarrow\\ y=200-2x$. Aitauksen pinta-alafunktio $A\\left(x\\right)=x\\left(200-2x\\right)$. Koska muuttuja $x$ ilmaisee korkeuden, on oltava $x>0$ ja koska toisaalta $200-2x=0\\ \\Leftrightarrow\\ x=100$, muuttuja $x$ on välillä $]0,\\ 100[$. Pinta-alafunktio on jatkuva ja derivoituva tällä välillä. Derivaattafunktio $A'\\left(x\\right)=200-4x$ ja sen nollakohta on $x=50$. Derivaatan merkki voi vaihtua vain nollakohdassa."
+      },
+      {
+        "type": "image",
+        "src": "/utils/MAA6/kulkukaavio_T2.png",
+        "alt": ""
+      },
+      {
+        "type": "text",
+        "content": "Aitauksen suurin mahdollinen pinta-ala saadaan kohdassa $x=50$, jossa $A\\left(50\\right)=5000\\ \\mathrm{m^2}$."
+      }
+    ],
+    "validation": null
+  },
+  {
+    "id": "OSAIII_T2",
+    "section": "Osa III",
+    "title": "Tehtävä 2",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Määritä tilavuudeltaan 10 litran suoran ympyrälieriön muotoisen astian mitat siten, että sen valmistamiseen kuluu mahdollisimman vähän rahaa. Anna vastaus senttimetreinä yhden desimaalin tarkkuudella."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Astian valmistamiseen kuluu mahdollisimman vähän rahaa, kun sen kokonaispinta-ala on mahdollisimman pieni. Suoran ympyrälieriön tilavuus $V=\\pi r^2h$. Toisaalta $V=10\\ \\mathrm{l}$. Saadaan yhtälö $10=\\pi r^2h\\ \\parallel:\\pi r^2\\ (r\\ne0)\\ \\Leftrightarrow\\ h=\\frac{10}{\\pi r^2}$.\n\nSuoran ympyrälieriön kokonaispinta-ala $A_{\\mathrm{kok}}=2\\pi rh+2\\pi r^2=2\\pi r\\cdot\\frac{10}{\\pi r^2}+2\\pi r^2=\\frac{20}{r}+2\\pi r^2$. Astian kokonaisalalle saadaan pinta-alafunktio $A(r)=\\frac{20}{r}+2\\pi r^2$.\n\nFunktion kulku päätellään derivaattafunktion merkeistä. Funktion $A$ derivaattafunktio on $A'(r)=4\\pi r-\\frac{20}{r^2}$. Ratkaistaan derivaatan nollakohdat:\n\n$A'(r)=0\\ \\Leftrightarrow\\ 4\\pi r-\\frac{20}{r^2}=0\\ \\Leftrightarrow\\ 4\\pi r=\\frac{20}{r^2}\\ \\Leftrightarrow\\ 4\\pi r^3=20\\ \\Leftrightarrow\\ r^3=\\frac{20}{4\\pi}\\ \\Leftrightarrow\\ r=\\sqrt[3]{\\frac{20}{4\\pi}}\\approx1{,}17\\ \\mathrm{dm}=11{,}7\\ \\mathrm{cm}$.\n\nDerivaattafunktio on määrittelyjoukossaan jatkuva rationaalifunktio, jonka merkki voi vaihtua vain nollakohdassa. Päätellään derivaattafunktion merkit testaamalla:\n\n$A'(1)=-7{,}433\\ldots <0$, $A'(2)=20{,}13\\ldots >0$.\n\nMuodostetaan kulkukaavio."
+      },
+      {
+        "type": "image",
+        "src": "/utils/MAA6/kulkukaavio_T3.png",
+        "alt": ""
+      },
+      {
+        "type": "text",
+        "content": "Kulkukaavion perusteella ala on pienin, kun $r=1{,}17$. Tällöin $h=\\frac{10}{\\pi r^2}=\\frac{10}{\\pi\\cdot\\left(\\sqrt[3]{\\frac{20}{4\\pi}}\\right)^2}=2{,}335\\ldots\\ \\mathrm{dm}\\approx2{,}34\\ \\mathrm{dm}=23{,}4\\ \\mathrm{cm}$.\n\nAstian valmistamiseen kuluu mahdollisimman vähän rahaa, kun astian säde on 11,7 cm ja korkeus 23,4 cm."
+      }
+    ],
+    "validation": null
+  },
+  {
+    "id": "OSAIII_T3",
+    "section": "Osa III",
+    "title": "Tehtävä 3",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Osoita derivaatan määritelmän avulla, että funktion $f\\left(x\\right)=\\frac{1}{x}$ derivaatta pisteessä $x=3$ on $f'\\left(3\\right)=-\\frac{1}{9}$."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Muodostetaan funktion $f(x)=\\frac{1}{x}$ erotusosamäärä pisteessä $x=3$.\n$$\\begin{aligned}\n\\frac{f(x)-f(3)}{x-3} &= \\frac{\\frac{1}{x}-\\frac{1}{3}}{x-3} \\\\\n&= \\frac{\\frac{3}{3x}-\\frac{x}{3x}}{x-3} \\\\\n&= \\frac{\\frac{3-x}{3x}}{x-3} \\\\\n&= \\frac{3-x}{3x(x-3)} \\\\\n&= \\frac{-1(x-3)}{3x(x-3)} \\\\\n&= \\frac{-1}{3x}\n\\end{aligned}$$\n\nLasketaan erotusosamäärän raja-arvo pisteessä $x=3$.\n$$\n\\lim_{x\\rightarrow 3} \\frac{-1}{3x} = -\\frac{1}{3\\cdot3} = -\\frac{1}{9}\n$$\n\nOn osoitettu derivaatan määritelmällä, että funktion $f(x)=\\frac{1}{x}$ derivaatta pisteessä $x=3$ on $f'(3)=-\\frac{1}{9}$."
+      }
+    ],
+    "validation": null
+  },
+  {
+    "id": "OSAIII_T4",
+    "section": "Osa III",
+    "title": "Tehtävä 4",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Eräässä kaupungissa lämpötilaa päivän aikana celsiusasteina kuvaa likimain funktio \n$$\nf(t) = 8{,}7 \\sin(0{,}452 t - 1{,}463) + 30{,}5,\n$$\njossa $t$ on keskiyöstä kulunut aika tunteina. Ratkaise, millä nopeudella lämpötila muuttui klo 11.30. Mikä oli lämpötilan suurin muutosnopeus?"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Funktio $f$ on jatkuva ja derivoituva välillä $[0,\\ 24]$. Funktion $f$ derivaattafunktio $f'(t) = 3{,}9324\\cos(0{,}452t - 1{,}463)$. Lämpötila muuttui klo 11.30 nopeudella $f'(11{,}5) = -3{,}260...\\ \\left(°\\mathrm{\\frac{C}{h}}\\right) \\approx -3{,}3\\ \\mathrm{\\frac{°C}{h}}$. Koska merkki on negatiivinen, lämpötila laski nopeudella 3,3 °C/h klo 11.30.\n\nLämpötilan suurin muutosnopeus saadaan toisen kertaluvun derivaatasta. Derivaatan derivaattafunktio $f''(t) = -1{,}7774448\\sin(0{,}452t - 1{,}463)$. Suurin muutosnopeus välillä $[0,\\ 24]$ saadaan välin päätepisteissä tai välille $]0,\\ 24[$ kuuluvissa derivaatan nollakohdissa. Toisen kertaluvun derivaatan nollakohdat saadaan yhtälöstä\n$$\n-1{,}7774448\\sin(0{,}452t - 1{,}463) = 0 \\ \\Leftrightarrow\\ t = 3{,}23... \\ \\vee\\ t = 10{,}1... \\ \\vee\\ t = 17{,}1...\n$$\n\n$$\nf'(0) = 0{,}423...\\ \\mathrm{\\frac{°C}{h}} \\approx 0{,}42\\ \\mathrm{\\frac{°C}{h}}\n$$\n$$\nf'(3{,}23...) = 3{,}93...\\ \\mathrm{\\frac{°C}{h}} \\approx 3{,}9\\ \\mathrm{\\frac{°C}{h}}\n$$\n$$\nf'(10{,}1...) = -3{,}93...\\ \\mathrm{\\frac{°C}{h}} \\approx -3{,}9\\ \\mathrm{\\frac{°C}{h}}\n$$\n$$\nf'(17{,}1...) = -3{,}93...\\ \\mathrm{\\frac{°C}{h}} \\approx -3{,}9\\ \\mathrm{\\frac{°C}{h}}\n$$\n$$\nf'(24) = -3{,}92...\\ \\mathrm{\\frac{°C}{h}} \\approx -3{,}9\\ \\mathrm{\\frac{°C}{h}}\n$$\n\nLämpötilan suurin muutosnopeus oli $\\Delta v = 3{,}9\\ \\mathrm{\\frac{°C}{h}}$. Tällöin lämpötila joko laski tai nousi 3,9 °C/h."
+      }
+    ],
+    "validation": null
+  },
+  {
+    "id": "OSAIII_T5",
+    "section": "Osa III",
+    "title": "Tehtävä 5",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Osoita, että $ D\\log_a x = \\frac{1}{x\\ln a} $."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Olkoon $a > 0$, $a \\ne 1$ ja $x > 0$, jolloin $\\log_a x$ voidaan esittää kantalukua vaihtamalla myös muodossa $\\log_a x = \\frac{\\ln x}{\\ln a}$. Derivoidaan funktio $f(x) = \\log_a x$.\n\n$$\nf'(x) = D\\frac{\\ln x}{\\ln a} = \\frac{1}{\\ln a} \\cdot D\\ln x = \\frac{1}{\\ln a} \\cdot \\frac{1}{x} = \\frac{1}{x\\ln a}\n$$\n\nmikä on todistettu."
+      }
+    ],
+    "validation": null
+  },
+  {
+    "id": "OSAIII_T6",
+    "section": "Osa III",
+    "title": "Tehtävä 6",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Tarkastellaan funktiota $ h(x) = \\sqrt{4 - 2x} $. Määritä sellaisen suorakulmion suurin mahdollinen pinta-ala, jonka yksi kärki on origossa, kaksi sivua positiivisilla koordinaattiakseleilla ja yksi kärki funktion $ f $ kuvaajalla."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Määritetään suorakulmion määrittelyjoukko ratkaisemalla funktion $h$ nollakohdat.\n$$\n\\sqrt{4-2x}=0\\ \\Leftrightarrow\\ 4-2x=0\\ \\Leftrightarrow\\ x=2\n$$\nKoska kaksi sivua ovat positiivisilla koordinaattiakseleilla, on muuttuja $x$ avoimella välillä $]0,\\ 2[$. Funktio\n\nSuorakulmion kannan ilmaisee muuttuja $x$ ja korkeuden $y=h(x)=\\sqrt{4-2x}$. Pinta-alafunktio $A(x)=x\\cdot\\sqrt{4-2x}$ on jatkuva ja derivoituva tarkasteluvälillä ja sen derivaattafunktio\n$$\nA'(x)=\\sqrt{4-2x}-\\frac{x}{\\sqrt{4-2x}}\n$$\nDerivaatan nollakohdat saadaan yhtälöstä\n$$\n\\sqrt{4-2x}-\\frac{x}{\\sqrt{4-2x}}=0,\n$$\njosta\n$$\nx=\\frac{4}{3}\n$$\njoka kuuluu määrittelyvälille. Laaditaan funktion $A$ kulkukaavio. Derivaatan merkki voi vaihtua vain nollakohdassa."
+      },
+      {
+        "type": "image",
+        "src": "/utils/MAA6/kulkukaavio_T6.png",
+        "alt": ""
+      },
+      {
+        "type": "text",
+        "content": "Funktio saa suurimman arvonsa kohdassa $x=\\frac{4}{3}$. Tällöin suurin mahdollinen pinta-ala\n$$\nA\\left(\\frac{4}{3}\\right)=\\frac{8\\sqrt{3}}{9}.\n$$"
+      }
+    ],
+    "validation": null
+  },
+  {
+    "id": "OSAIII_T7",
+    "section": "Osa III",
+    "title": "Tehtävä 7",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Käyrien $ y = \\ln 3x $ ja $ y = x - \\ln x $ väliin jäävään alueeseen asetetaan y-akselin suuntainen jana. Mikä on janan suurin mahdollinen pituus? Anna vastauksesi kaksidesimaalisena likiarvona sekä tarkkana arvona."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Piirretään geometriaohjelmalla käyrät ja hahmottelukuva tilanteesta."
+      },
+      {
+        "type": "image",
+        "src": "/utils/MAA6/Jana_1.png",
+        "alt": ""
+      },
+      {
+        "type": "text",
+        "content": "Kysytty jana asetetaan käyrien väliin alla olevan kuvan mukaisesti."
+      },
+      {
+        "type": "image",
+        "src": "/utils/MAA6/Jana_2.png",
+        "alt": ""
+      },
+      {
+        "type": "text",
+        "content": "Ratkaistaan ensin tarkasteluväli, joka saadaan käyrien leikkauspisteistä. Käyrien leikkauspisteet toteuttavat yhtälöparin\n$$\n$$\\begin{cases}\ny = \\ln 3x \\\\\ny = x - \\ln x\n\\end{cases}$$\n$$\nYhtälöparin ratkaisuna saadaan $x = 0{,}91\\ldots$ ja $y = 1{,}00\\ldots$ tai $x = 3{,}73\\ldots$ ja $y = 2{,}41\\ldots$. Tarkastelu voidaan siis rajata välille $[0{,}91,\\ 3{,}73]$.\n\nKoska välillä $[0{,}91,\\ 3{,}73]$ pätee $f(x) = \\ln 3x > x - \\ln x = g(x)$, niin kysytyn janan pituusfunktio on y-koordinaattien erotusfunktio\n$$\nl(x) = \\ln 3x - (x - \\ln x) = \\ln 3x + \\ln x - x,\n$$\njoka on maksimoitava. Funktio on määritelty, kun $x > 0$. Funktio $l$ on määrittelyjoukossaan jatkuva ja derivoituva funktio.\n\nFermat'n lauseen nojalla se saa suurimman arvonsa välillä $[0{,}91,\\ 3{,}73]$ välin päätepisteissä tai välille $]0{,}91,\\ 3{,}73[$ kuuluvissa derivaatan nollakohdissa. Koska välin päätepisteissä janan pituus on selvästi nolla, riittää tarkastella vain välille kuuluvia derivaatan nollakohtia.\n\nFunktion $l$ derivaattafunktio on\n$$\nl'(x) = \\frac{2}{x} - 1.\n$$\nRatkaistaan derivaatan nollakohdat.\n$$\n\\frac{2}{x} - 1 = 0 \\ \\Leftrightarrow\\ x = 2,\n$$\njoka kuuluu suljetulle välille $]0{,}91,\\ 3{,}73[$. Tällöin janan pituus\n$$\nl(2) = \\ln 6 + \\ln 2 - 2 = \\ln(12) - 2 \\approx 0{,}48,\n$$\njoka on suurin mahdollinen pituus."
+      }
+    ],
+    "validation": null
+  },
+  {
+    "id": "OSAIII_T8",
+    "section": "Osa III",
+    "title": "Tehtävä 8",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Eräällä saarella voimakkaasti kasvavan sirkkapopulaation yksilöiden määrää kuvaa likimain funktio $ f(t) = \\frac{170}{1 + 127e^{-0{,}4t}} $, missä $ t $ kuvaa vuosia siitä hetkestä, kun tutkijat aloittivat populaation yksilöiden määrän vuosittaisen otannan. Milloin sirkkojen määrän kasvu oli suurimmillaan? Anna vastauksesi vuoden tarkkuudella."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Funktio on määritelty kaikilla $t \\in \\mathbb{R}$. Funktio on kaikkialla jatkuva ja derivoituva. Sirkkojen määrän kasvunopeuden huippua tarkastellaan derivaatan derivaatalla.\n\nFunktion $f$ derivaattafunktio on\n$$\nf'(t) = \\frac{8636 \\cdot \\left(1{,}491824698\\right)^t}{\\left(\\left(1{,}491824698\\right)^t + 127\\right)^2}.\n$$\n\nRatkaistaan toisen kertaluvun derivaatan nollakohdat differentiaaliyhtälöstä\n$$\n\\frac{d}{dt}\\left(\\frac{8636 \\cdot \\left(1{,}491824698\\right)^t}{\\left(\\left(1{,}491824698\\right)^t + 127\\right)^2}\\right) = 0,\n$$\njosta saadaan $t = 12{,}110\\ldots \\approx 12$.\n\nKoska $f'(t) > 0$ kaikilla $t$, funktio $f$ on aidosti kasvava, ja näin ollen suurin kasvunopeus saadaan toisen derivaatan nollakohdassa.\n\nSirkkojen kasvu on siis suurinta 12 vuoden päästä vuosittaisen otannan aloittamisesta."
+      }
+    ],
+    "validation": null
+  },
+  {
+    "id": "OSAIII_T9",
+    "section": "Osa III",
+    "title": "Tehtävä 9",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Osoita funktion kulkua tutkimalla, että funktio $ f(x) = 2x^4 - 2x^3 $ ei saa arvoa $ -1 $ millään $ x \\in \\mathbb{R} $."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Koska funktio $f(x) = 2x^4 - 2x^3$ on polynomifunktiona kaikkialla jatkuva, on osoitettava, että joko $f(x) > -1$ tai $f(x) < -1$ kaikilla $x \\in \\mathbb{R}$. Koska selvästi jälkimmäinen tapauksista on epätosi, sillä esimerkiksi $f(0) = 0 > -1$, riittää tarkastella vain ensimmäistä tapausta.\n\nFunktio $f$ on derivoituva kaikkialla. Funktion derivaattafunktio on\n$$\nf'(x) = 8x^3 - 6x^2.\n$$\n\nDerivaattafunktion nollakohdat saadaan yhtälöstä\n$$\n8x^3 - 6x^2 = 0 \\ \\Leftrightarrow\\ 2x^2(4x - 3) = 0 \\ \\Leftrightarrow\\ x = 0 \\ \\vee\\ x = \\frac{3}{4}.\n$$\n\nTutkitaan funktion kulkua kulkukaaviolla."
+      },
+      {
+        "type": "image",
+        "src": "/utils/MAA6/kulkukaavio_OSA3.png",
+        "alt": ""
+      },
+      {
+        "type": "text",
+        "content": "Kulkukaaviosta nähdään, että funktio $f$ on aidosti vähenevä välillä $x \\le \\frac{3}{4}$ ja aidosti kasvava välillä $x \\ge \\frac{3}{4}$. Funktio saa siten pienimmän arvonsa kohdassa $x = \\frac{3}{4}$.\n\nKoska pienin arvo\n$$\nf\\left(\\frac{3}{4}\\right) = 2\\left(\\frac{3}{4}\\right)^4 - 2\\left(\\frac{3}{4}\\right)^3 = \\frac{162}{256} - \\frac{216}{256} = -\\frac{54}{256} = -\\frac{27}{128} > -1,\n$$\non $f(x) > -1$ kaikilla $x \\in \\mathbb{R}$."
+      }
+    ],
+    "validation": null
+  },
+  {
+    "id": "OSAIII_T10",
+    "section": "Osa III",
+    "title": "Tehtävä 10",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Jalkapallo-ottelun tapahtumajärjestäjien mukaan pääsylipun ollessa 15 euroa paikalle saapuu 970 kannattajaa. Tämän lisäksi järjestäjät arvioivat kokemuksensa perusteella, että jokainen 50 sentin hinnanalennus lisää kannattajien määrää 40 hengellä. Kuinka monta henkilöä otteluun saapuu, kun lippujen hinnaksi asetetaan tulot maksimoiva summa? Kuinka suuret lipputulot ovat tällöin?"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Merkitään jokaista 50 sentin hinnanalennusta $x$. Tällöin kannattajien määrä on $970 + 40x$ ja järjestäjien tulot per lippu $15 - 0{,}50x$. Pääsylipputulofunktio on\n$$\nP(x) = (970 + 40x)(15 - 0{,}50x),\n$$\njonka määrittelyjoukko on $[0,\\ 30]$, koska muuttuja $x$ ilmaisee hinnanalennuksen määrän (euroina), ja hintaa ei voida alentaa alle nollan eikä nostaa alkuperäisestä 15 eurosta.\n\nFunktio $P$ on määrittelyjoukossaan jatkuva ja derivoituva. Suljetulla välillä jatkuva ja derivoituva funktio saavuttaa suurimman arvonsa välin $[0,\\ 30]$ päätepisteissä tai välille $]0,\\ 30[$ kuuluvissa derivaatan nollakohdissa.\n\nDerivaattafunktio on\n$$\nP'(x) = 115 - 40x.\n$$\n\nRatkaistaan derivaatan nollakohta:\n$$\n115 - 40x = 0 \\ \\Leftrightarrow\\ x = \\frac{23}{8} = 2{,}875,\n$$\njoka kuuluu avoimeen väliin $]0,\\ 30[$.\n\nLasketaan funktion arvot:\n$$\nP(0) = 970 \\cdot 15 = 14550,\n$$\n$$\nP\\left(\\frac{23}{8}\\right) = (970 + 40 \\cdot \\frac{23}{8})(15 - 0{,}50 \\cdot \\frac{23}{8}) = 1085 \\cdot 13{,}5625 = 14715{,}3125 \\approx 14715,\n$$\n$$\nP(30) = (970 + 40 \\cdot 30)(15 - 0{,}50 \\cdot 30) = 2170 \\cdot 0 = 0.\n$$\n\nSuurimmat lipputulot, eli noin 14715 euroa, saadaan, kun 50 sentin hinnanalennuksia tehdään\n$$\nx = \\frac{23}{8} = 2{,}875 \\ kertaa.\n$$\nTällöin yleisöä saapuu\n$$\n970 + 40 \\cdot 2{,}875 = 1085 \\ henkilöä.\n$$"
+      }
+    ],
+    "validation": null
+  },
+  {
+    "id": "OSAIV_T1",
+    "section": "Osa IV",
+    "title": "Tehtävä 1",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Olkoon $ f(x) = e^x + e^{-x} $ ja $ g(x) = x^2 - 1 $. Osoita, että $ f(x) > g(x) $ kaikilla $ x \\in \\mathbb{R} $. Muista perustella päätelmäsi ja esittää ratkaisussasi tarvittavat välivaiheet."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "\\\\\n$f(x) > g(x) \\ \\Leftrightarrow\\ f(x) - g(x) > 0 \\ \\Leftrightarrow\\ e^x + e^{-x} - x^2 + 1 > 0$. \\\\\nMerkitään $h(x) = f(x) - g(x) = 2e^x + e^{-x} - x^2 + 1$. Funktio $h$ on jatkuva ja derivoituva. Derivaattafunktio $h'(x) = 2\\sinh(x) - 2x$ on hyperbolinen funktio, jonka nollakohtia ei voida ratkaista lukio-oppimäärään kuuluvilla tiedoilla. Tutkitaan toisen kertaluvun derivaattaa. \\\\\n$h''(x) = e^{-x}(e^{2x} - 2e^x + 1)$. \\\\\nKoska $e^{-x} > 0$ kaikilla $x \\in \\mathbb{R}$ ja $e^{2x} - 2e^x + 1 = (e^x - 1)^2 \\ge 0$ kaikilla $x \\in \\mathbb{R}$ ja vain yksittäisessä kohdassa $0$, derivaattafunktio $h''(x)$ on aidosti kasvava kaikilla $x$. Lisäksi $h'(0) = 0$ eli $h'(x) < 0$, kun $x < 0$ ja $h'(x) \\ge 0$, kun $x \\ge 0$ sekä funktion $h$ pienin arvo $h(0) = 3$. Koska funktion $h$ pienin arvo $h(0) = 3 > 0$, on oltava $h(x) > 0$ eli $f(x) - g(x) > 0$ ja edelleen $f(x) > g(x)$ kaikilla $x \\in \\mathbb{R}$, mikä oli todistettava."
+      }
+    ],
+    "validation": null
+  },
+  {
+    "id": "OSAIV_T2",
+    "section": "Osa IV",
+    "title": "Tehtävä 2",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Pakkausyritys valmistaa suorakulmaisen särmiön muotoista neliöpohjaista astiaa, jonka tilavuus on 55 litraa. Yritys on huomannut, että pohjan valmistaminen on 35\\% halvempaa kuin sivutahkojen valmistaminen. Astiaan ei tule kantta."
+      },
+      {
+        "type": "text",
+        "content": "a) Muodosta astian kustannusfunktio $ K(x) $"
+      },
+      {
+        "type": "text",
+        "content": "b) Määritä kustannuksiltaan halvimman mahdollisen astian korkeuden ja pituuksien suhde. Anna suhde desimaalilukuna."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a) Olkoon pohjan sivujen pituudet $x$ ja särmiön korkeus $y$. Astian tilavuudesta saadaan yhtälö\n  $$\n  x^2 \\cdot y = 55\\ \\Leftrightarrow\\ y = \\frac{55}{x^2}.\n  $$\n  Materiaalikustannukset sivutahkoille on $h$. Tällöin pohjan kustannukset ovat $0{,}65h$. Kustannusfunktio on\n  $$\n  K(x) = 0{,}65x^2 + 4x \\cdot \\frac{55}{x^2} \\cdot h = 0{,}65x^2 + \\frac{220}{x}h.\n  $$"
+      },
+      {
+        "type": "text",
+        "content": "b) Funktio on määritelty, kun $x \\ne 0$. Funktio $K$ on jatkuva ja derivoituva määrittelyjoukossaan. Derivaattafunktio on\n  $$\n  K'(x) = 1{,}3x - \\frac{220h}{x^2}.\n  $$\n  Derivaatan nollakohdat saadaan yhtälöstä\n  $$\n  1{,}3x - \\frac{220h}{x^2} = 0\\ \\Leftrightarrow\\ \\frac{1{,}3x^3 - 220}{x^2}h = 0.\n  $$\n  Derivaatan nollakohdat ovat samat kuin osoittajan nollakohdat, sillä  sivutahkojen kustannukset eivät voi olla nolla.\n  $$\n  1{,}3x^3 - 220 = 0\\ \\Leftrightarrow\\ x = 5{,}531\\ldots\n  $$\n  Laaditaan kulkukaavio."
+      },
+      {
+        "type": "image",
+        "src": "/utils/MAA6/astia_kulku.png",
+        "alt": ""
+      },
+      {
+        "type": "text",
+        "content": "Halvin astia saadaan kohdassa $x = 5{,}531\\ldots$, jolloin\n  $$\n  y = \\frac{55}{x^2} = \\frac{55}{(5{,}531\\ldots)^2}\n  $$\n  ja suhde on tällöin\n  $$\n  y : x = \\frac{55}{(5{,}531\\ldots)^2} : 5{,}531 = \\frac{55}{(5{,}531\\ldots)^3} \\approx 0{,}325.\n  $$"
+      }
+    ],
+    "validation": null
+  },
+  {
+    "id": "OSAIV_T3",
+    "section": "Osa IV",
+    "title": "Tehtävä 3",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Kerrostalon vieressä 4{,}5 metrin päässä sijaitsee 1{,}75 metriä korkea orapihlaja-aita. Aava haluaa rakentaa tikkaat kuvan mukaisesti siten, että ne ylettyvät juuri ja juuri nojaamaan kerrostalon seinään. Kuinka pitkät tikkaat Aavan on rakennettava?"
+      },
+      {
+        "type": "image",
+        "src": "/utils/MAA6/tikkaat.png",
+        "alt": ""
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "image",
+        "src": "/utils/MAA6/osa4_tikkaat.png",
+        "alt": ""
+      },
+      {
+        "type": "text",
+        "content": "Kolmiot $ABC$ ja $CDE$ ovat yhdenmuotoiset (kk). Kuvan suorakulmaisista kolmioista saadaan yhtälöt\n$$\n\\sin x = \\frac{1{,}75}{y} \\ \\Leftrightarrow\\ y = \\frac{1{,}75}{\\sin x} \\quad ja \\quad \\cos x = \\frac{4{,}5}{z} \\ \\Leftrightarrow\\ z = \\frac{4{,}5}{\\cos x}.\n$$\n\nTikkaiden pituusfunktio on\n$$\nL(x) = y + z = \\frac{1{,}75}{\\sin x} + \\frac{4{,}5}{\\cos x}, \\quad 0 < x < \\frac{\\pi}{2}.\n$$\n\nMinimoidaan tämä funktio. Funktio on jatkuva ja derivoituva välillä $]0,\\ \\frac{\\pi}{2}[$.\n\nDerivaattafunktio on\n$$\nL'(x) = \\frac{18 \\cdot \\left( \\sin x \\right)^3 - 7 \\cdot \\left( \\cos x \\right)^3}{4 \\cdot \\left( \\sin x \\right)^2 \\cdot \\left( \\cos x \\right)^2}.\n$$\n\nRatkaistaan tutkittavalle välille kuuluvat derivaatan nollakohdat ja laaditaan kulkukaavio."
+      },
+      {
+        "type": "image",
+        "src": "/utils/MAA6/tikkaat_kulku.png",
+        "alt": ""
+      },
+      {
+        "type": "text",
+        "content": "$$\n\\frac{18 \\cdot (\\sin x)^3 - 7 \\cdot (\\cos x)^3}{4 \\cdot (\\sin x)^2 \\cdot (\\cos x)^2} = 0 \\ \\Leftrightarrow\\ x = 0{,}6305\\ldots\n$$\n\nTikkaiden pituus on tällöin\n$$\nL(0{,}6305\\ldots) = 8{,}539\\ldots \\ \\mathrm{m} \\approx 8{,}5\\ \\mathrm{m}.\n$$"
+      }
+    ],
+    "validation": null
+  },
+  {
+    "id": "OSAIV_T4",
+    "section": "Osa IV",
+    "title": "Tehtävä 4",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Tarkastellaan funktiota $f(x) = 7 - 3x^2$. Mihin funktion $f$ pisteeseen piirretty tangentti rajaa koordinaattiakselien kanssa pinta-alaltaan pienimmän mahdollisen kolmion? Mikä on tällöin kolmion ala?"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Tangentti piirretään kohtaan $x = a$. Tällöin $y = f(a) = 7 - 3a^2$. Tangentin kulmakerroin on $f'(a) = -6a$ \n\nPisteeseen $\\left(a,\\ f(a)\\right)$ piirretyn tangentin yhtälö on\n$$\ny - (7 - 3a^2) = -6a(x - a)\n$$\n\nKolmion korkeus saadaan kohdassa, jossa tangentti leikkaa y-akselin eli kun $x = 0$.\n$$\ny - 7 + 3a^2 = 6a^2 \\ \\Leftrightarrow\\ y = 3a^2 + 7\n$$\nSiis kolmion korkeus on $3a^2 + 7$.\n\nKolmion kanta saadaan kohdasta, jossa tangentti leikkaa x-akselin eli kohdassa $y = 0$.\n$$\n-7 + 3a^2 = -6a x + 6a^2 \\ \\Leftrightarrow\\ x = \\frac{3a^2 + 7}{6a}.\n$$\n\nKolmion ala saadaan funktiona\n$$\ng(a) = \\frac{1}{2} \\cdot (3a^2 + 7) \\cdot \\left(\\frac{3a^2 + 7}{6a}\\right).\n$$\n\nFunktio $g$ on määritelty, kun $a \\ne 0$, ja se on jatkuva ja derivoituva määrittelyjoukossaan.\n\nDerivaattafunktio on\n$$\ng'(a) = \\frac{(3a^2 + 7)(9a^2 - 7)}{12a^2}.\n$$\n\nRatkaistaan derivaatan nollakohdat\n$$\n\\frac{(3a^2 + 7)(9a^2 - 7)}{12a^2} = 0 \\ \\Leftrightarrow\\ a = -\\frac{\\sqrt{7}}{3} \\quad tai \\quad a = \\frac{\\sqrt{7}}{3}.\n$$\n\nLaaditaan kulkukaavio. Derivaattafunktio $g'(a)$ on rationaalifunktiona jatkuva, ja sen merkki voi vaihtua vain nollakohdissa."
+      },
+      {
+        "type": "image",
+        "src": "/utils/MAA6/kolmio_kulku.png",
+        "alt": ""
+      },
+      {
+        "type": "text",
+        "content": "Kulkukaavion perusteella kolmion alan pienin arvo saavutetaan kohdassa $x = a = \\frac{\\sqrt{7}}{3}$.\n\nTällöin y-koordinaatti on\n$$\nf\\left(\\frac{\\sqrt{7}}{3}\\right) = 7 - 3\\cdot\\left(\\frac{\\sqrt{7}}{3}\\right)^2 = \\frac{14}{3}.\n$$\n\nTangentti piirretään siis pisteeseen $\\left(\\frac{\\sqrt{7}}{3},\\ \\frac{14}{3}\\right)$.\n\nKolmion ala on\n$$\nA_k = \\frac{1}{2} \\cdot \\left(3 \\cdot \\left(\\frac{\\sqrt{7}}{3}\\right)^2 + 7\\right) \\cdot \\left(\\frac{3 \\cdot \\left(\\frac{\\sqrt{7}}{3}\\right)^2 + 7}{6 \\cdot \\frac{\\sqrt{7}}{3}}\\right) = \\frac{28\\sqrt{7}}{9}.\n$$"
+      }
+    ],
+    "validation": null
+  },
+  {
+    "id": "OSAIV_T5",
+    "section": "Osa IV",
+    "title": "Tehtävä 5",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Todista, että jos funktio on derivoituva, se on myös jatkuva."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Jos funktio on derivoituva kohdassa $x_0$, on olemassa erotusosamäärän raja-arvo\n$$\nf'\\left(x_0\\right) = \\lim_{x \\rightarrow x_0} \\frac{f(x) - f(x_0)}{x - x_0}.\n$$\n\nOn osoitettava, että tästä seuraa jatkuvuusehto\n$$\n\\lim_{x \\rightarrow x_0} f(x) = f(x_0).\n$$\n\nOlkoon $x \\ne x_0$. Tällöin\n$$\nf(x) - f(x_0) = \\frac{f(x) - f(x_0)}{x - x_0} \\cdot (x - x_0) \\ \\Leftrightarrow\\ f(x) = \\frac{f(x) - f(x_0)}{x - x_0} \\cdot (x - x_0) + f(x_0).\n$$\n\nLasketaan funktion raja-arvo kohdassa $x_0$. Saadaan\n$$\n\\lim_{x \\rightarrow x_0} f(x) = \\lim_{x \\rightarrow x_0} \\left( \\frac{f(x) - f(x_0)}{x - x_0} \\cdot (x - x_0) + f(x_0) \\right)\n$$\n$$\n\\Leftrightarrow\\ \\lim_{x \\rightarrow x_0} f(x) = f'(x_0) \\cdot (x_0 - x_0) + f(x_0)\n$$\n$$\n\\Leftrightarrow\\ \\lim_{x \\rightarrow x_0} f(x) = f(x_0),\n$$\nmikä piti todistaa.\n\nOn siis osoitettu, että jos funktio on derivoituva, se on myös jatkuva."
+      }
+    ],
+    "validation": null
+  }
+]

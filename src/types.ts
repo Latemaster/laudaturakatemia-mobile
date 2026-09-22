@@ -29,4 +29,30 @@ export interface ExerciseCard extends BaseCard {
   explanation: string
 }
 
-export type Card = LessonCard | ExerciseCard
+export interface ProblemTextBlock {
+  type: 'text'
+  content: string
+}
+
+export interface ProblemImageBlock {
+  type: 'image'
+  src: string
+  alt: string
+}
+
+export type ProblemBlock = ProblemTextBlock | ProblemImageBlock
+
+export interface Problem {
+  id: string
+  section: string
+  title: string
+  promptBlocks: ProblemBlock[]
+  answerBlocks: ProblemBlock[]
+}
+
+export interface TaskCard extends BaseCard {
+  type: 'task'
+  problem: Problem
+}
+
+export type Card = LessonCard | ExerciseCard | TaskCard

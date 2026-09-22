@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import type { Card } from '../types'
 import LessonCardView from './LessonCardView'
 import ExerciseCardView from './ExerciseCardView'
+import TaskCardView from './TaskCardView'
 import ProgressDots from './ProgressDots'
 
 interface FeedProps {
@@ -41,8 +42,10 @@ export default function Feed({ cards }: FeedProps) {
           <div key={card.id} ref={(el) => (cardRefs.current[index] = el)}>
             {card.type === 'lesson' ? (
               <LessonCardView card={card} showSwipeHint={index === 0} />
-            ) : (
+            ) : card.type === 'exercise' ? (
               <ExerciseCardView card={card} />
+            ) : (
+              <TaskCardView card={card} />
             )}
           </div>
         ))}

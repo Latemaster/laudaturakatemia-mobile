@@ -1,10 +1,13 @@
-import type { Card, Topic } from '../types'
+import type { Card, Problem, Topic } from '../types'
+import maa6Problems from './problems/maa6.json'
 
 const TOPICS: Record<string, Topic> = {
   derivaatta: { code: 'MAA6', name: 'Derivaatta' },
   trigonometria: { code: 'MAA5', name: 'Trigonometria' },
   integraalit: { code: 'MAA7', name: 'Integraalilaskenta' },
 }
+
+const maa6: Problem[] = maa6Problems as Problem[]
 
 export const cards: Card[] = [
   // --- MAA6: Derivaatta ---
@@ -18,48 +21,14 @@ export const cards: Card[] = [
       'Tulon derivaatta: (f·g)′ = f′·g + f·g′.\n\n' +
       'Esimerkki: kun f(x) = x³, niin f′(x) = 3x².',
   },
-  {
-    id: 'der-ex-1',
-    type: 'exercise',
-    topic: TOPICS.derivaatta,
-    question: 'Mikä on funktion f(x) = x³ − 2x² + 5 derivaatta?',
-    options: [
-      { id: 'a', text: '3x² − 4x', correct: true },
-      { id: 'b', text: '3x² − 2x', correct: false },
-      { id: 'c', text: 'x² − 4x + 5', correct: false },
-      { id: 'd', text: '3x² − 4x + 5', correct: false },
-    ],
-    explanation:
-      'Derivoidaan termeittäin: (x³)′ = 3x², (−2x²)′ = −4x ja vakion 5 derivaatta on 0. Vastaus: 3x² − 4x.',
-  },
-  {
-    id: 'der-ex-2',
-    type: 'exercise',
-    topic: TOPICS.derivaatta,
-    question: 'Derivoi tulon avulla: f(x) = x·sin(x)',
-    options: [
-      { id: 'a', text: 'cos(x)', correct: false },
-      { id: 'b', text: 'sin(x) + x·cos(x)', correct: true },
-      { id: 'c', text: 'x·cos(x)', correct: false },
-      { id: 'd', text: 'sin(x) − x·cos(x)', correct: false },
-    ],
-    explanation:
-      'Tulon derivaattasäännöllä (f·g)′ = f′·g + f·g′, kun f(x) = x ja g(x) = sin(x): 1·sin(x) + x·cos(x).',
-  },
-  {
-    id: 'der-ex-3',
-    type: 'exercise',
-    topic: TOPICS.derivaatta,
-    question: 'Mikä on funktion f(x) = e^(2x) derivaatta?',
-    options: [
-      { id: 'a', text: 'e^(2x)', correct: false },
-      { id: 'b', text: '2x·e^(2x)', correct: false },
-      { id: 'c', text: '2e^(2x)', correct: true },
-      { id: 'd', text: 'e²ˣ / 2', correct: false },
-    ],
-    explanation:
-      'Ketjusäännöllä: sisäfunktion 2x derivaatta on 2, joten (e^(2x))′ = 2·e^(2x).',
-  },
+  ...maa6.map(
+    (problem): Card => ({
+      id: `der-task-${problem.id}`,
+      type: 'task',
+      topic: TOPICS.derivaatta,
+      problem,
+    }),
+  ),
 
   // --- MAA5: Trigonometria ---
   {
