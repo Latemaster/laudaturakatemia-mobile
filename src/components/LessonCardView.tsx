@@ -1,6 +1,9 @@
 import { motion } from 'framer-motion'
 import type { LessonCard } from '../types'
 import CardShell from './CardShell'
+import KindLabel from './KindLabel'
+import MathText from './MathText'
+import { BookIcon } from './icons'
 
 interface LessonCardViewProps {
   card: LessonCard
@@ -10,6 +13,7 @@ interface LessonCardViewProps {
 export default function LessonCardView({ card, showSwipeHint }: LessonCardViewProps) {
   return (
     <CardShell topic={card.topic}>
+      <KindLabel icon={<BookIcon />} label="Oppitunti" />
       <motion.h1
         initial={{ opacity: 0, y: 12 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -19,9 +23,9 @@ export default function LessonCardView({ card, showSwipeHint }: LessonCardViewPr
       >
         {card.title}
       </motion.h1>
-      <p className="whitespace-pre-line text-lg leading-relaxed text-ink-dim">
-        {card.body}
-      </p>
+      <div className="text-lg leading-relaxed text-ink-dim">
+        <MathText content={card.body} />
+      </div>
 
       {showSwipeHint && (
         <motion.div

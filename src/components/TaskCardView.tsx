@@ -1,7 +1,9 @@
 import { useState } from 'react'
 import type { ProblemBlock, TaskCard } from '../types'
 import CardShell from './CardShell'
+import KindLabel from './KindLabel'
 import MathText from './MathText'
+import { PencilIcon } from './icons'
 
 interface TaskCardViewProps {
   card: TaskCard
@@ -29,6 +31,7 @@ export default function TaskCardView({ card }: TaskCardViewProps) {
 
   return (
     <CardShell topic={card.topic}>
+      <KindLabel icon={<PencilIcon />} label="Tehtävä" />
       <h2 className="mb-3 text-lg font-semibold text-ink">
         {problem.section} · {problem.title}
       </h2>
