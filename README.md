@@ -1,0 +1,1 @@
+# laudaturakatemia-mobile
