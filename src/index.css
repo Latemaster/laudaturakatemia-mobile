@@ -15,14 +15,16 @@ body,
 }
 
 body {
-  background-color: #0b0b12;
-  color: white;
-  font-family:
-    system-ui,
-    -apple-system,
-    'Segoe UI',
-    Roboto,
-    sans-serif;
+  background-color: #cce2ff;
+  color: #344a57;
+  font-family: 'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+}
+
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(52, 74, 87, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(52, 74, 87, 0.08) 1px, transparent 1px);
+  background-size: 32px 32px;
 }
 
 .snap-feed {

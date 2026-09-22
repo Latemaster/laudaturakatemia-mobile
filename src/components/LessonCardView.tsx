@@ -15,11 +15,11 @@ export default function LessonCardView({ card, showSwipeHint }: LessonCardViewPr
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: false, amount: 0.6 }}
         transition={{ duration: 0.4 }}
-        className="mb-4 text-3xl font-bold leading-tight"
+        className="mb-4 text-3xl font-bold leading-tight text-ink"
       >
         {card.title}
       </motion.h1>
-      <p className="whitespace-pre-line text-lg leading-relaxed text-white/80">
+      <p className="whitespace-pre-line text-lg leading-relaxed text-ink-dim">
         {card.body}
       </p>
 
@@ -28,7 +28,7 @@ export default function LessonCardView({ card, showSwipeHint }: LessonCardViewPr
           initial={{ opacity: 0 }}
           animate={{ opacity: 1, y: [0, -8, 0] }}
           transition={{ delay: 0.8, duration: 1.6, repeat: Infinity }}
-          className="mt-10 flex flex-col items-center gap-1 text-sm text-white/50"
+          className="mt-10 flex flex-col items-center gap-1 text-sm text-ink-dim"
         >
           <span>Pyyhkäise ylös jatkaaksesi</span>
           <span aria-hidden>↑</span>

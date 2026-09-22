@@ -1,4 +1,9 @@
-export type Topic = 'Derivaatta' | 'Trigonometria' | 'Integraalit' | 'Sarjat'
+export type TopicCode = 'MAA5' | 'MAA6' | 'MAA7'
+
+export interface Topic {
+  code: TopicCode
+  name: string
+}
 
 interface BaseCard {
   id: string

@@ -1,4 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" rx="14" fill="#7c5cff"/>
-  <text x="32" y="43" font-family="system-ui, sans-serif" font-size="30" font-weight="700" fill="white" text-anchor="middle">∑</text>
+  <rect width="64" height="64" rx="14" fill="#cce2ff"/>
+  <path d="M32 8v48M8 32h48" stroke="#8fb4e0" stroke-width="2"/>
+  <text x="32" y="43" font-family="system-ui, sans-serif" font-size="28" font-weight="700" fill="#344a57" text-anchor="middle">∑</text>
 </svg>

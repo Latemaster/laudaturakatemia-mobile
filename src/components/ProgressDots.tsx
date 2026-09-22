@@ -10,7 +10,7 @@ export default function ProgressDots({ total, current }: ProgressDotsProps) {
         <div
           key={i}
           className={`h-1 flex-1 rounded-full transition-colors duration-300 ${
-            i <= current ? 'bg-white' : 'bg-white/20'
+            i <= current ? 'bg-accent' : 'bg-ink/15'
           }`}
         />
       ))}
