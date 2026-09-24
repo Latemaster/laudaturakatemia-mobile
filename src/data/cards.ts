@@ -17,9 +17,9 @@ export const cards: Card[] = [
     topic: TOPICS.derivaatta,
     title: 'Derivaatan perussäännöt',
     body:
-      'Derivaatta kertoo funktion muutosnopeuden. Potenssisääntö: (xⁿ)′ = n·xⁿ⁻¹.\n\n' +
-      'Tulon derivaatta: (f·g)′ = f′·g + f·g′.\n\n' +
-      'Esimerkki: kun f(x) = x³, niin f′(x) = 3x².',
+      'Derivaatta kertoo funktion muutosnopeuden. Potenssisääntö: $(x^n)\' = n \\cdot x^{n-1}$.\n\n' +
+      'Tulon derivaatta: $(f \\cdot g)\' = f\' \\cdot g + f \\cdot g\'$.\n\n' +
+      'Esimerkki: kun $f(x) = x^3$, niin $f\'(x) = 3x^2$.',
   },
   ...maa6.map(
     (problem): Card => ({
@@ -37,9 +37,9 @@ export const cards: Card[] = [
     topic: TOPICS.trigonometria,
     title: 'Yksikköympyrä ja peruskaavat',
     body:
-      'Yksikköympyrällä pisteen koordinaatit kulman α kohdalla ovat (cos α, sin α).\n\n' +
-      'Peruskaava: sin²α + cos²α = 1.\n\n' +
-      'Kaksinkertaisen kulman kaava: sin(2α) = 2·sin α·cos α.',
+      'Yksikköympyrällä pisteen koordinaatit kulman $\\alpha$ kohdalla ovat $(\\cos \\alpha, \\sin \\alpha)$.\n\n' +
+      'Peruskaava: $\\sin^2\\alpha + \\cos^2\\alpha = 1$.\n\n' +
+      'Kaksinkertaisen kulman kaava: $\\sin(2\\alpha) = 2 \\sin \\alpha \\cos \\alpha$.',
   },
   {
     id: 'trig-ex-1',
@@ -92,7 +92,7 @@ export const cards: Card[] = [
     title: 'Integraalifunktio',
     body:
       'Integrointi on derivoinnin käänteisoperaatio. Potenssisääntö integroinnille:\n\n' +
-      '∫xⁿ dx = xⁿ⁺¹ / (n+1) + C, kun n ≠ −1.\n\n' +
+      '$$\\int x^n \\, dx = \\dfrac{x^{n+1}}{n+1} + C$$, kun $n \\neq -1$.\n\n' +
       'Määrätyssä integraalissa lasketaan integraalifunktion arvojen erotus rajoilla.',
   },
   {
