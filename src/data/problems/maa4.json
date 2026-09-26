@@ -1,0 +1,867 @@
+[
+  {
+    "id": "OSAI_T1",
+    "section": "Osa I",
+    "title": "Tehtävä 1",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Määritä luvun itseisarvo."
+      },
+      {
+        "type": "text",
+        "content": "a) $-5$"
+      },
+      {
+        "type": "text",
+        "content": "b) $3 - \\sqrt{7}$"
+      },
+      {
+        "type": "text",
+        "content": "c) $2 - \\sqrt{5}$"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a) \n$$\n\\left| -5 \\right| = 5\n$$"
+      },
+      {
+        "type": "text",
+        "content": "b) Koska $ 3 = \\sqrt{9} $ ja $ \\sqrt{9} - \\sqrt{7} > 0 $, niin\n$$\n\\left| 3 - \\sqrt{7} \\right| = 3 - \\sqrt{7}\n$$"
+      },
+      {
+        "type": "text",
+        "content": "c) Koska $ 2 = \\sqrt{4} $ ja $ \\sqrt{4} - \\sqrt{5} < 0 $, niin\n$$\n\\left| 2 - \\sqrt{5} \\right| = -\\left(2 - \\sqrt{5}\\right) = \\sqrt{5} - 2\n$$"
+      }
+    ]
+  },
+  {
+    "id": "OSAI_T2",
+    "section": "Osa I",
+    "title": "Tehtävä 2",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Ratkaise yhtälöt."
+      },
+      {
+        "type": "text",
+        "content": "a) $\\left|3x\\right| = 7$"
+      },
+      {
+        "type": "text",
+        "content": "b) $\\left|2x - 5\\right| = 16$"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a) \n$$\n\\left|3x\\right| = 7 \\ \\Leftrightarrow\\ 3x = 7 \\ \\vee\\ 3x = -7 \\ \\Leftrightarrow\\ x = \\frac{7}{3} \\ \\vee\\ x = -\\frac{7}{3}\n$$"
+      },
+      {
+        "type": "text",
+        "content": "b) \n$$\n\\left|2x - 5\\right| = 16 \\ \\Leftrightarrow\\ 2x - 5 = 16 \\ \\vee\\ 2x - 5 = -16 \\ \\Leftrightarrow\\ x = \\frac{21}{2} \\ \\vee\\ x = -\\frac{11}{2}\n$$"
+      }
+    ]
+  },
+  {
+    "id": "OSAI_T3",
+    "section": "Osa I",
+    "title": "Tehtävä 3",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Määritä pisteitä $(6,\\ -3)$ ja $(-2,\\ 8)$ yhdistävän janan keskipiste."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "\\\\\n\n\nPisteitä yhdistävän janan keskipiste on  \n$$M=\\left(\\frac{\\left(6+\\left(-2\\right)\\right)}{2}{,}\\ \\frac{-3+8}{2}\\right)=\\left(2{,}\\ \\frac{5}{2}\\right)$$"
+      }
+    ]
+  },
+  {
+    "id": "OSAI_T4",
+    "section": "Osa I",
+    "title": "Tehtävä 4",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Pistejoukko muodostuu niistä koordinaatiston pisteistä, joiden y-koordinaatin ja x-koordinaatin etäisyys toisistaan on 2."
+      },
+      {
+        "type": "text",
+        "content": "a) Mikä on pistejoukon yhtälö?"
+      },
+      {
+        "type": "text",
+        "content": "b) Kumpi alla olevista kuvista esittää pistejoukkoa?"
+      },
+      {
+        "type": "text",
+        "content": "**Kuva A:**"
+      },
+      {
+        "type": "image",
+        "src": "/utils/MAA4/MAA4_O1_T4_K1.png",
+        "alt": ""
+      },
+      {
+        "type": "text",
+        "content": "**Kuva B:**"
+      },
+      {
+        "type": "image",
+        "src": "/utils/MAA4/MAA4_O1_T4_K2.png",
+        "alt": ""
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a) Pistejoukon ehdosta saadaan yhtälö\n$$\n\\left|y - x\\right| = 2.\n$$\nTarkastelu voidaan jakaa kahteen osaan riippuen siitä, onko\n$$\ny - x = 2 \\ \\Leftrightarrow\\ y = x + 2 \\quad vai \\quad y - x = -2 \\ \\Leftrightarrow\\ y = x - 2.\n$$\nPistejoukkoa esittävät siis suorat $ y = x + 2 $ ja $ y = x - 2 $."
+      },
+      {
+        "type": "text",
+        "content": "b) Kuvista alempi kuvaa sellaista pistejoukkoa, jonka etäisyys origosta on 2. Kyseessä on siis 2-säteinen ympyrä, jota ei tule sekoittaa tehtävässä kysyttyyn pistejoukkoon. Kuvista ylempi kuvaa sekä suoraa $ y = x + 2 $ että $ y = x - 2 $. Kuvista ylempi kuvaa kysyttyä pistejoukkoa."
+      }
+    ]
+  },
+  {
+    "id": "OSAI_T5",
+    "section": "Osa I",
+    "title": "Tehtävä 5",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Määritä kuvassa näkyvien suorien yhtälöt."
+      },
+      {
+        "type": "image",
+        "src": "/utils/MAA4/MAA4_OSAI_5.png",
+        "alt": ""
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "\\\\\n\nMääritetään kultakin suoralta kaksi pistettä, joiden avulla voidaan laskea kulmakerroin.  \nSuoran $ k $ kulmakerroin on selvästi yksi eli  \n$$\nk_k = 1\n$$  \nSuoran $ s $ kulmakerroin  \n$$\nk_s = \\frac{5 - 3}{1 - 0} = \\frac{2}{1} = 2\n$$  \nja suoran $ t $ kulmakerroin  \n$$\nk_t = \\frac{2 - (-2)}{-1 - 0} = \\frac{4}{-1} = -4\n$$  \n\nSuora $ k $ leikkaa y-akselin origossa. Siten suoran $ k $ yhtälö on  \n$$\ny = x\n$$  \n\nSuora $ s $ leikkaa y-akselin pisteessä $ (0,\\ 3) $. Siten suoran yhtälö on  \n$$\ny = 2x + 3\n$$  \n\nSuora $ t $ leikkaa y-akselin pisteessä $ (0,\\ -2) $. Suoran yhtälö on  \n$$\ny = -4x - 2\n$$"
+      }
+    ]
+  },
+  {
+    "id": "OSAI_T6",
+    "section": "Osa I",
+    "title": "Tehtävä 6",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Muodosta"
+      },
+      {
+        "type": "text",
+        "content": "a) sellaisen suoran yhtälö, jonka kulmakerroin on $5$ ja joka kulkee pisteen $(-2,\\ 2)$ kautta."
+      },
+      {
+        "type": "text",
+        "content": "b) sellaisen suoran yhtälö, joka kulkee pisteiden $(-1,\\ 8)$ ja $(9,\\ 7)$ kautta."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a)  \n$$\ny - y_0 = k\\left(x - x_0\\right)\n$$  \nSijoitetaan $ k = 5,\\ x_0 = -2,\\ y_0 = 2 $  \n$$\ny - 2 = 5\\left(x - (-2)\\right) \\ \\Leftrightarrow\\ y = 5x + 12\n$$"
+      },
+      {
+        "type": "text",
+        "content": "b)  \nSuoran kulmakerroin on  \n$$\nk = \\frac{7 - 8}{9 - (-1)} = -\\frac{1}{10}\n$$  \nSuora kulkee pisteen $ (-1,\\ 8) $ kautta. Suoran yhtälö on  \n$$\ny - 8 = -\\frac{1}{10}\\left(x - (-1)\\right) \\ \\Leftrightarrow\\ y = -\\frac{1}{10}x + \\frac{79}{10}\n$$"
+      }
+    ]
+  },
+  {
+    "id": "OSAI_T7",
+    "section": "Osa I",
+    "title": "Tehtävä 7",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Ratkaise yhtälöpari\n$$\\begin{cases}\nx - y = 7 \\\\\n4y + 3x = 7\n\\end{cases}$$"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "\\\\\n\nRatkaistaan ylemmästä yhtälöstä $ x $. Saadaan  \n$$\nx = y + 7\n$$  \nSijoitetaan tämä alempaan yhtälöön:  \n$$\n4y + 3(y + 7) = 7 \\ \\Leftrightarrow\\ 7y + 21 = 7 \\ \\Leftrightarrow\\ 7y = -14 \\ \\Leftrightarrow\\ y = -2\n$$  \nYlempään yhtälöön sijoitettuna  \n$$\nx - (-2) = 7 \\ \\Leftrightarrow\\ x + 2 = 7 \\ \\Leftrightarrow\\ x = 5\n$$  \nSiis  \n$$\nx = 5 \n$$\ny = -2\n$$"
+      }
+    ]
+  },
+  {
+    "id": "OSAI_T8",
+    "section": "Osa I",
+    "title": "Tehtävä 8",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Määritä pisteiden $(1,\\ 3)$ ja $(-4,\\ 5)$ välisen vektorin pituus."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "\\\\\n\nPisteiden $ A = (1,\\ 3) $ ja $ B = (-4,\\ 5) $ välinen vektori on  \n$$\n\\overline{AB} = (-4 - 1)\\,\\overline{i} + (5 - 3)\\,\\overline{j} = -5\\,\\overline{i} + 2\\,\\overline{j}\n$$  \nja pituus  \n$$\n\\left| \\overline{AB} \\right| = \\sqrt{(-5)^2 + 2^2} = \\sqrt{29}\n$$"
+      }
+    ]
+  },
+  {
+    "id": "OSAI_T9",
+    "section": "Osa I",
+    "title": "Tehtävä 9",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Olkoon\n$$\n\\overline{a} = 2\\overline{i} - 3\\overline{j} \\quad ja \\quad \\overline{b} = -4\\overline{i} + 9\\overline{j}.\n$$\nMääritä"
+      },
+      {
+        "type": "text",
+        "content": "a) $\\overline{a} + \\overline{b}$"
+      },
+      {
+        "type": "text",
+        "content": "b) $\\overline{a} - \\overline{b}$"
+      },
+      {
+        "type": "text",
+        "content": "c) $\\overline{a} \\cdot \\overline{b}$"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a)  \n$$\n\\overline{a} + \\overline{b} = (2\\overline{i} - 3\\overline{j}) + (-4\\overline{i} + 9\\overline{j}) = -2\\overline{i} + 6\\overline{j}\n$$"
+      },
+      {
+        "type": "text",
+        "content": "b)  \n$$\n\\overline{a} - \\overline{b} = (2\\overline{i} - 3\\overline{j}) - (-4\\overline{i} + 9\\overline{j}) = 6\\overline{i} - 12\\overline{j}\n$$"
+      },
+      {
+        "type": "text",
+        "content": "c)  \n$$\n\\overline{a} \\cdot \\overline{b} = 2 \\cdot (-4) + (-3) \\cdot 9 = -8 - 27 = -35\n$$"
+      }
+    ]
+  },
+  {
+    "id": "OSAI_T10",
+    "section": "Osa I",
+    "title": "Tehtävä 10",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Määritä vektorien\n$$\n\\overline{c} = 3\\overline{i} - 2\\overline{k} \\quad ja \\quad \\overline{d} = 4\\overline{i} + 4\\overline{k}\n$$\nvälinen kulma asteen kymmenesosan tarkkuudella."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "\\\\\n\nVektoreiden pituudet ovat  \n$$\n\\left|\\overline{c}\\right| = \\sqrt{3^2 + (-2)^2} = \\sqrt{13}\n\\quad ja \\quad\n\\left|\\overline{d}\\right| = \\sqrt{4^2 + 4^2} = \\sqrt{32} = 4\\sqrt{2}\n$$  \nsekä näiden välinen pistetulo  \n$$\n\\overline{c} \\cdot \\overline{d} = 3 \\cdot 4 - 2 \\cdot 4 = 4\n$$  \nVektoreiden välinen kulma $ \\alpha $ saadaan yhtälöstä  \n$$\n\\cos\\alpha = \\frac{\\overline{c} \\cdot \\overline{d}}{|\\overline{c}|\\,|\\overline{d}|}\n\\ \\Leftrightarrow\\ \n\\cos\\alpha = \\frac{4}{\\sqrt{13} \\cdot 4\\sqrt{2}}\n\\ \\Leftrightarrow\\ \n\\alpha = \\cos^{-1}\\left(\\frac{4}{\\sqrt{13} \\cdot 4\\sqrt{2}}\\right) \\approx 78.7^\\circ\n$$"
+      }
+    ]
+  },
+  {
+    "id": "OSAII_T1",
+    "section": "Osa II",
+    "title": "Tehtävä 1",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Ratkaise yhtälö ja epäyhtälöt."
+      },
+      {
+        "type": "text",
+        "content": "a) $ 3\\left|5x - 2\\right| - 4 = 8 $"
+      },
+      {
+        "type": "text",
+        "content": "b) $ \\left|3x - 2\\right| \\le 4 $"
+      },
+      {
+        "type": "text",
+        "content": "c) $ \\left|5x - 7\\right| < 0 $"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a) Jaetaan yhtälön \n$$3\\left|5x - 2\\right| - 4 = 8$$ \ntarkastelu tapauksiin sen mukaan, onko \n$$5x - 2 < 0$$ vai \n$$5x - 2 \\ge 0.$$ \n\nEnsimmäisessä tapauksessa yhtälö muuttuu muotoon  \n$$3(-5x + 2) - 4 = 8 \\ \\Leftrightarrow\\ -5x + 2 = 4 \\ \\Leftrightarrow\\ x = -\\frac{2}{5}.$$  \n\nJälkimmäisessä tapauksessa yhtälö muuttuu muotoon  \n$$3(5x - 2) - 4 = 8 \\ \\Leftrightarrow\\ 5x - 2 = 4 \\ \\Leftrightarrow\\ x = \\frac{6}{5}.$$"
+      },
+      {
+        "type": "text",
+        "content": "b)  \n$$3x - 2 \\le 4 \\ \\Leftrightarrow\\ -4 \\le 3x - 2 \\le 4 \\ \\Leftrightarrow\\ -2 \\le 3x \\le 6 \\ \\Leftrightarrow\\ -\\frac{2}{3} \\le x \\le 2$$"
+      },
+      {
+        "type": "text",
+        "content": "c) Koska \n$$\\left|5x - 7\\right| \\ge 0$$ kaikilla $x$, yhtälöllä ei ole ratkaisua."
+      }
+    ]
+  },
+  {
+    "id": "OSAII_T2",
+    "section": "Osa II",
+    "title": "Tehtävä 2",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Olkoon piste $ A = \\left(3,\\ t^2\\right) $, $ B = \\left(2,\\ 5\\right) $ ja $ C = \\left(1,\\ t\\right) $. Määritä vakio $ t \\in \\mathbb{R} $ siten, että piste $ A $ on samalla suoralla pisteiden $ B $ ja $ C $ kanssa."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Suoran $AB$ kulmakerroin  \n$$k_{AB} = \\frac{5 - t^2}{2 - 3} = \\frac{5 - t^2}{-1} = t^2 - 5$$\n\nSuoran $AC$ kulmakerroin  \n$$k_{AC} = \\frac{t - t^2}{1 - 3} = \\frac{t - t^2}{-2}$$\n\nKulmakertoimet ovat yhtä suuret:  \n$$t^2 - 5 = \\frac{t - t^2}{-2}$$\\Leftrightarrow -2(t^2 - 5) = t - t^2$$\\Leftrightarrow -2t^2 + 10 = t - t^2$$\\Leftrightarrow -t^2 - t + 10 = 0$$\\Leftrightarrow t^2 + t - 10 = 0$$\n\nRatkaistaan toisen asteen yhtälö:  \n$$t = \\frac{-1 \\pm \\sqrt{1^2 - 4 \\cdot 1 \\cdot (-10)}}{2 \\cdot 1}$$\\Leftrightarrow t = \\frac{-1 \\pm \\sqrt{41}}{2} \\ \\Leftrightarrow\\ t = \\frac{-1 - \\sqrt{41}}{2} \\ \\vee\\ t = \\frac{\\sqrt{41} - 1}{2}$$\n\nTässä tehtävässä riittää vertailla suorien kulmakertoimia, koska tarkastellaan kolmen pisteen sijoittumista samalle suoralle.  \nVaikka kahdella suoralla voi olla sama kulmakerroin (eli ne ovat yhdensuuntaisia), ne eivät silti ole välttämättä samoja suoria, elleivät ne kulje saman pisteen kautta. Tässä tapauksessa kuitenkin verrataan **kahden eri pisteen kautta kulkevan suoran kulmakerrointa kolmanteen pisteeseen**, joten kulmakertoimien yhtäsuuruus varmistaa tehtävänannon ehdon.  \n\nVrt. $y = 2x + 1$ ja $y = 2x - 1$."
+      }
+    ]
+  },
+  {
+    "id": "OSAII_T3",
+    "section": "Osa II",
+    "title": "Tehtävä 3",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "a) Muodosta sellaisen ympyrän yhtälö, jonka keskipiste on $ \\left(2,\\ -3\\right) $ ja jonka säde on 6."
+      },
+      {
+        "type": "text",
+        "content": "b) Onko piste $ \\left(2,\\ 4\\right) $ ympyrällä?"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a) Ympyrän, jonka keskipiste on $ (x_0,\\ y_0) $ ja säde $ r $, yhtälö on $ (x - x_0)^2 + (y - y_0)^2 = r^2 $. Sijoitetaan $ x_0 = 2 $, $ y_0 = -3 $ ja $ r = 6 $. Saadaan $ (x - 2)^2 + (y + 3)^2 = 36 $."
+      },
+      {
+        "type": "text",
+        "content": "b) Piste $ (2,\\ 4) $ on ympyrällä, jos se toteuttaa ympyrän yhtälön.  \n$ (2 - 2)^2 + (4 + 3)^2 = 0^2 + 7^2 = 49 \\neq 36 $, joka on epätosi. Piste $ (2,\\ 4) $ ei ole ympyrällä."
+      }
+    ]
+  },
+  {
+    "id": "OSAII_T4",
+    "section": "Osa II",
+    "title": "Tehtävä 4",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Määritä yhtälö pisteen $ \\left(-9,\\ 11\\right) $ kautta kulkevan suoran $ 7x - 4y + 2 = 0 $ normaalille."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Suoran $ 7x - 4y + 2 = 0 \\ \\Leftrightarrow\\ y = \\frac{7}{4}x + \\frac{1}{2} $ kulmakerroin on $ k = \\frac{7}{4} $. Normaali on kohtisuorassa suoraa vastaan ja kohtisuoruusehdosta $ k_n \\cdot \\frac{7}{4} = -1 $ saadaan $ k_n = -\\frac{4}{7} $. Normaali kulkee pisteen $ (-9,\\ 11) $ kautta. Sen yhtälö on $ y - 11 = -\\frac{4}{7}(x - (-9)) $, eli $ y = -\\frac{4}{7}x + \\frac{41}{7} $."
+      }
+    ]
+  },
+  {
+    "id": "OSAII_T5",
+    "section": "Osa II",
+    "title": "Tehtävä 5",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Määritä vakio $ a $ siten, että pisteen $ \\left(a,\\ -3\\right) $ etäisyys suorasta $ x + y + a = 0 $ on yhtä suuri kuin etäisyys suorasta $ y = 2x - 1 $."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "\\\\\n\nPisteen etäisyys suorasta $ x + y + a = 0 $ on\n$$\\begin{aligned}\nd_1 &= \\frac{\\left|1\\cdot a + 1\\cdot(-3) + a\\right|}{\\sqrt{1^2 + 1^2}} \n= \\frac{\\left|-3 + 2a\\right|}{\\sqrt{2}}\n\\end{aligned}$$\n\nPisteen etäisyys suorasta $ 2x - y - 1 = 0 $ on\n$$\\begin{aligned}\nd_2 &= \\frac{\\left|2\\cdot a - 1\\cdot(-3) - 1\\right|}{\\sqrt{2^2 + (-1)^2}} \n= \\frac{\\left|2a + 2\\right|}{\\sqrt{5}}\n\\end{aligned}$$\n\nEtäisyydet ovat yhtä suuret.\n$$\\begin{aligned}\n\\frac{\\left|-3 + 2a\\right|}{\\sqrt{2}} &= \\frac{\\left|2a + 2\\right|}{\\sqrt{5}} \\\\\n\\Leftrightarrow\\ \\sqrt{5}\\left|-3 + 2a\\right| &= \\sqrt{2}\\left|2a + 2\\right|\n\\end{aligned}$$\n\nKoska molemmat puolet ovat epänegatiivisia, voidaan korottaa puolittain neliöön:\n$$\\begin{aligned}\n5(-3 + 2a)^2 &= 2(2a + 2)^2 \\\\\n5(4a^2 - 12a + 9) &= 2(4a^2 + 8a + 4) \\\\\n20a^2 - 60a + 45 &= 8a^2 + 16a + 8 \\\\\n12a^2 - 76a + 37 &= 0\n\\end{aligned}$$\n\nRatkaistaan toisen asteen yhtälö.\n$$\\begin{aligned}\na &= \\frac{-(-76) \\pm \\sqrt{(-76)^2 - 4 \\cdot 12 \\cdot 37}}{2 \\cdot 12} \\\\\n&= \\frac{76 \\pm \\sqrt{5776 - 1776}}{24} \\\\\n&= \\frac{76 \\pm \\sqrt{4000}}{24} \\\\\n&= \\frac{76 \\pm 20\\sqrt{10}}{24} \\\\\n&= \\frac{19 \\pm 5\\sqrt{10}}{6}\n\\end{aligned}$$\n\nSiis\n$$\na = \\frac{19 + 5\\sqrt{10}}{6} \\quad tai \\quad a = \\frac{19 - 5\\sqrt{10}}{6}\n$$"
+      }
+    ]
+  },
+  {
+    "id": "OSAII_T6",
+    "section": "Osa II",
+    "title": "Tehtävä 6",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Ympyrälle $ \\left(x - 2\\right)^2 + \\left(y - 2\\right)^2 = 40 $ piirretään tangentti, joka kulkee pisteen $ \\left(8,\\ 4\\right) $ kautta. Mikä on tangentin yhtälö?"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "\\\\\n\nKoska $(8-2)^2 + (4-2)^2 = 40  \\ \\Leftrightarrow \\ 40 = 40$, piste on ympyrällä. Ympyrälle voidaan piirtää yksi tangentti pisteen kautta. Ympyrän keskipiste on $(2, 2)$, joten ympyrän keskipisteen ja tangentin sekä ympyrän leikkauspisteen kautta kulkevan suoran kulmakerroin on $k_s = \\frac{4-2}{8-2} = \\frac{2}{6} = \\frac{1}{3}$. Tangentti on kohtisuorassa tätä suoraa vastaan. Kohtisuoruusehdon mukaan $k_t \\cdot \\frac{1}{3} = -1$, joten $k_t = -3$. Tangentin yhtälö on\n\n$$\ny - 4 = -3(x - 8) \\ \\Leftrightarrow \\ y = -3x + 28.\n$$"
+      }
+    ]
+  },
+  {
+    "id": "OSAII_T7",
+    "section": "Osa II",
+    "title": "Tehtävä 7",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Paraabelin johtosuora on $ y = -3 $ ja polttopiste $ \\left(4,\\ 2\\right) $. Määritä paraabelin yhtälö. Minkä akselin suuntainen paraabeli on? Mihin suuntaan paraabeli aukeaa?"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Olkoot paraabelin pisteet muotoa $ (x, y) $. Pisteen etäisyys johtosuorasta on $ d_1 = |y + 3| $.  \nPisteen etäisyys polttopisteestä on $ d_2 = \\sqrt{(x - 4)^2 + (y - 2)^2} $. Etäisyydet ovat yhtä suuret.\n\n$$\\begin{aligned}\n|y + 3| &= \\sqrt{(x - 4)^2 + (y - 2)^2} \\\\\n(y + 3)^2 &= (x - 4)^2 + (y - 2)^2 \\\\\ny^2 + 6y + 9 &= x^2 - 8x + 16 + y^2 - 4y + 4 \\\\\n6y + 9 &= x^2 - 8x + 16 - 4y + 4 \\\\\n10y &= x^2 - 8x + 11 \\\\\ny &= \\frac{1}{10}x^2 - \\frac{4}{5}x + \\frac{11}{10}\n\\end{aligned}$$\n\nKoska paraabeli on muotoa $ f(x) = ax^2 + bx + c $, paraabelin akseli on y-akselin suuntainen.  \nKoska lisäksi $ a = \\frac{1}{10} > 0 $, paraabeli aukeaa ylöspäin."
+      }
+    ]
+  },
+  {
+    "id": "OSAII_T8",
+    "section": "Osa II",
+    "title": "Tehtävä 8",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Tutki, ovatko vektorit $ \\overline{a} = -2\\overline{i} - 8\\overline{j} + 6\\overline{k} $ ja $ \\overline{b} = 5\\overline{i} + 20\\overline{j} - 15\\overline{k} $ yhdensuuntaiset. Ovatko vektorit tällöin samansuuntaiset vai erisuuntaiset?"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Vektorit $ \\overline{a} $ ja $ \\overline{b} $ ovat yhdensuuntaiset, jos on olemassa sellainen $ t \\in \\mathbb{R} $, joka toteuttaa yhtälön $ \\overline{a} = t\\overline{b},\\ t \\ne 0 $. Vektorit ovat samansuuntaiset, jos $ t > 0 $ ja erisuuntaiset, jos $ t < 0 $. Saadaan yhtälö\n\n$$\\begin{aligned}\n\\overline{a} &= t\\overline{b} \\\\\n\\Leftrightarrow\\ -2\\overline{i} - 8\\overline{j} + 6\\overline{k} &= t\\left(5\\overline{i} + 20\\overline{j} - 15\\overline{k}\\right) \\\\\n\\Leftrightarrow\\ -2\\overline{i} - 8\\overline{j} + 6\\overline{k} &= 5t\\overline{i} + 20t\\overline{j} - 15t\\overline{k}\n\\end{aligned}$$\n\nKoska komponenttiesitys on yksikäsitteinen, saadaan yhtälöryhmä.\n\n$$\\begin{cases}\n\\begin{aligned}\n-2 &= 5t &&\\Rightarrow\\ t = -\\dfrac{2}{5} \\\\\n-8 &= 20t &&\\Rightarrow\\ t = -\\dfrac{2}{5} \\\\\n6 &= -15t &&\\Rightarrow\\ t = -\\dfrac{2}{5}\n\\end{aligned}\n\\end{cases}$$\n\n\nKoska saatiin yksikäsitteinen ratkaisu $ t = -\\dfrac{2}{5} $, vektorit $ \\overline{a} $ ja $ \\overline{b} $ ovat yhdensuuntaiset. Koska $ t < 0 $, vektorit ovat erisuuntaiset."
+      }
+    ]
+  },
+  {
+    "id": "OSAII_T9",
+    "section": "Osa II",
+    "title": "Tehtävä 9",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Tutki, onko mahdollista jakaa vektori $ \\overline{d} = 2\\overline{i} - 2\\overline{j} + 2\\overline{k} $ vektorien $ \\overline{a} = \\overline{i} - \\overline{j} $, $ \\overline{b} = \\overline{i} + \\overline{k} $ ja $ \\overline{c} = \\overline{j} $ suuntaisiin komponentteihin."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "On etsittävä sellaiset nollasta eroavat reaaliluvut $ r $, $ s $ ja $ t $, että $ \\overline{d} = r\\overline{a} + s\\overline{b} + t\\overline{c} $.\n\n$$\\begin{aligned}\n2\\overline{i} - 2\\overline{j} + 2\\overline{k} &= r\\left( \\overline{i} - \\overline{j} \\right) + s\\left( \\overline{i} + \\overline{k} \\right) + t\\overline{j} \\\\\n2\\overline{i} - 2\\overline{j} + 2\\overline{k} &= r\\overline{i} - r\\overline{j} + s\\overline{i} + s\\overline{k} + t\\overline{j} \\\\\n2\\overline{i} - 2\\overline{j} + 2\\overline{k} &= (r + s)\\overline{i} + (t - r)\\overline{j} + s\\overline{k}\n\\end{aligned}$$\n\nKomponenttiesitys on yksikäsitteinen, joten saadaan yhtälöryhmä.\n\n$$\\begin{cases}\n2 = r + s \\\\\n-2 = t - r \\\\\n2 = s\n\\end{cases}$$\n\nKoska $ s = 2 $, niin $ 2 = r + 2 \\ \\Leftrightarrow\\ r = 0 $, ja siten $ t = -2 $.  \nKoska $ r = 0 $, ei vektoria $ \\overline{d} = 2\\overline{i} - 2\\overline{j} + 2\\overline{k} $ voida jakaa vektorien $ \\overline{a} = \\overline{i} - \\overline{j} $, $ \\overline{b} = \\overline{i} + \\overline{k} $ ja $ \\overline{c} = \\overline{j} $ suuntaisiin komponentteihin."
+      }
+    ]
+  },
+  {
+    "id": "OSAII_T10",
+    "section": "Osa II",
+    "title": "Tehtävä 10",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Suora kulkee pisteen $ \\left(2,\\ 4,\\ 6\\right) $ kautta ja sen suoran suuntavektori on $ \\overline{a} = 2\\overline{i} - \\overline{j} + 3\\overline{k} $. Muodosta vektoriyhtälö ja suoran parametriesitys."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Olkoon $ A = \\left(2,\\ 4,\\ 6\\right) $. Vektoriyhtälö on tällöin muotoa $ \\overline{OP} = \\overline{OA} + t\\overline{a} = 2\\overline{i} + 4\\overline{j} + 6\\overline{k} + t\\left(2\\overline{i} - \\overline{j} + 3\\overline{k}\\right) $, missä $ t \\in \\mathbb{R} $. Muodostetaan suoran parametriesitys.\n\n$$\\begin{aligned}\n\\overline{OP} &= 2\\overline{i} + 4\\overline{j} + 6\\overline{k} + t\\left(2\\overline{i} - \\overline{j} + 3\\overline{k}\\right) \\\\\nx\\overline{i} + y\\overline{j} + z\\overline{k} &= 2\\overline{i} + 4\\overline{j} + 6\\overline{k} + 2t\\overline{i} - t\\overline{j} + 3t\\overline{k} \\\\\nx\\overline{i} + y\\overline{j} + z\\overline{k} &= \\left(2 + 2t\\right)\\overline{i} + \\left(4 - t\\right)\\overline{j} + \\left(6 + 3t\\right)\\overline{k}\n\\end{aligned}$$\n\nKomponenttiesityksen yksikäsitteisyyden nojalla saadaan parametriesitys\n\n$$\\begin{cases}\nx = 2 + 2t \\\\\ny = 4 - t \\\\\nz = 6 + 3t\n\\end{cases}$$, \\quad t \\in \\mathbb{R}\n$$"
+      }
+    ]
+  },
+  {
+    "id": "OSAIII_T1",
+    "section": "Osa III",
+    "title": "Tehtävä 1",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Määritä suorien $ 4x - 3y - 7 = 0 $ ja $ y = -1 $ kulmanpuolittajien yhtälöt. Piirrä kuva, joka havainnollistaa geometrisesti muodostettuja kulmanpuolittajia."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Olkoon kulmanpuolittajan jokainen piste $ \\left( x,\\ y \\right) $. Kulmanpuolittaja on jokaisessa pisteessä yhtä kaukana molemmista suorista. \nPisteen etäisyys suorasta $ 4x - 3y - 7 = 0 $ on\n$$\nd_1 = \\frac{ \\left| 4x - 3y - 7 \\right| }{ \\sqrt{4^2 + (-3)^2} } = \\frac{ \\left| 4x - 3y - 7 \\right| }{5 }\n$$\n\nPisteen etäisyys suorasta $ y = -1 $ on\n$$\nd_2 = \\frac{ \\left| 0 \\cdot x + 1 \\cdot y + 1 \\right| }{ \\sqrt{0^2 + 1^2} } = \\left| y + 1 \\right|\n$$\n\nEtäisyyksien tulee olla yhtä suuret.\n\n$$\nd_1 = d_2\n$$\n\\frac{ \\left| 4x - 3y - 7 \\right| }{5} = \\left| y + 1 \\right|\n$$\n\\left| 4x - 3y - 7 \\right| = 5 \\left| y + 1 \\right|\n$$\n4x - 3y - 7 = 5(y + 1) \\quad \\vee \\quad 4x - 3y - 7 = -5(y + 1)\n$$\n4x - 3y - 7 = 5y + 5 \\quad \\vee \\quad 4x - 3y - 7 = -5y - 5\n$$\n4x - 8y - 12 = 0 \\quad \\vee \\quad 4x + 2y - 2 = 0\n$$\nx - 2y - 3 = 0 \\quad \\vee \\quad 2x + y - 1 = 0\n$$\n\nKulmanpuolittajien yhtälöt ovat $ x - 2y - 3 = 0 $ ja $ 2x + y - 1 = 0 $."
+      },
+      {
+        "type": "image",
+        "src": "/utils/MAA4/Kulmanpuolittajat.png",
+        "alt": ""
+      }
+    ]
+  },
+  {
+    "id": "OSAIII_T2",
+    "section": "Osa III",
+    "title": "Tehtävä 2",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Millä vakion $ a $ arvoilla yhtälö $ x^2 + y^2 - 4ax + 2ay + 6a^2 - 5a = 0 $ esittää ympyrän yhtälöä? Mikä on tällöin ympyrän suurin ala?"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Muokataan ympyrän yhtälö keskipistemuotoon.\n$$\nx^2+y^2-4ax+2ay+6a^2-5a=0\n$$\nx^2+y^2-4ax+2ay=-6a^2+5a\n$$\nx^2-2\\cdot2\\cdot a\\cdot x+y^2+2\\cdot a\\cdot y=-6a^2+5a\n$$\n\\left(x-2a\\right)^2+\\left(y+a\\right)^2=-6a^2+5a+4a^2+a^2\\ \n$$\n\\left(x-2a\\right)^2+\\left(y+a\\right)^2=5a-a^2\n$$\n\nTarkastellaan siis ympyrää, jonka keskipiste on $ \\left(2a,\\ a\\right) $ ja jonka säde on $ r=\\sqrt{5a-a^2} $. Ympyrä syntyy, kun säde on positiivinen.\n$$\n\\sqrt{5a-a^2}>0\n$$\n5a-a^2>0\n$$\n\nNollakohdat:\n$$\n5a-a^2=0 \\ \\Leftrightarrow\\ a\\left(5-a\\right)=0 \\ \\Leftrightarrow\\ a=0 \\ \\vee\\ a=5\n$$\n\nKoska $ f\\left(a\\right)=5a-a^2 $ on alaspäin aukeava paraabeli, ympyrä syntyy, kun $ 0<a<5 $.\n\nTutkitaan, millä a:n arvoilla ympyrän suurin mahdollinen ala saadaan. Ympyrän ala $ A=\\pi r^2 $, missä $ \\pi $ on vakio. Siten vain säde $ r $ vaikuttaa ympyrän alaan. Säteen neliön suurin arvo on selvästi paraabelin huippukohdassa, joka on myös derivaatan nollakohta:\n$$\nf'\\left(a\\right)=0 \\ \\Leftrightarrow\\ 5-2a=0 \\ \\Leftrightarrow\\ a=\\frac{5}{2}\n$$\n\nTällöin\n$$\nf\\left( \\frac{5}{2} \\right) = 5 \\cdot \\frac{5}{2} - \\left( \\frac{5}{2} \\right)^2 = \\frac{25}{4}\n$$\n\nTällöin ympyrän suurin ala on\n$$\nA = \\pi \\cdot \\frac{25}{4} = \\frac{25\\pi}{4}.\n$$"
+      }
+    ]
+  },
+  {
+    "id": "OSAIII_T3",
+    "section": "Osa III",
+    "title": "Tehtävä 3",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Määritä kaikkien sellaisten suorien yhtälöt, jotka ovat suoran $ 5x - 3y + 4 = 0 $ suuntaiset ja joiden etäisyys suorasta on 7. Piirrä kuva, joka havainnollistaa tilannetta geometrisesti."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Olkoon kaikki suorien pisteet, jotka ovat suoran $ 5x-3y+4=0 $ suuntaisia ja joiden etäisyys suorasta on 7, muotoa $ (x, y) $. Pisteen etäisyys suorasta $ 5x-3y+4=0 $ on\n\n$$\nd = \\frac{ \\left| 5x - 3y + 4 \\right| }{ \\sqrt{5^2 + (-3)^2} }\n$$\n\nToisaalta etäisyys suorasta on 7. Saadaan yhtälö\n\n$$\n\\frac{ \\left| 5x - 3y + 4 \\right| }{ \\sqrt{5^2 + (-3)^2} } = 7\n$$\n\\Leftrightarrow \\ \\frac{ \\left| 5x - 3y + 4 \\right| }{5} = 7\n$$\n\\Leftrightarrow \\ \\left| 5x - 3y + 4 \\right| = 35\n$$\n\\Leftrightarrow \\ 5x - 3y + 4 = 35 \\ \\vee\\ 5x - 3y + 4 = -35\n$$\n\\Leftrightarrow \\ 5x - 3y - 31 = 0 \\ \\vee\\ 5x - 3y + 39 = 0\n$$\n\nKysytyt suorat ovat $ 5x - 3y - 31 = 0 $ ja $ 5x - 3y + 39 = 0 $."
+      },
+      {
+        "type": "image",
+        "src": "/utils/MAA4/Suorat_etaisyys.png",
+        "alt": ""
+      }
+    ]
+  },
+  {
+    "id": "OSAIII_T4",
+    "section": "Osa III",
+    "title": "Tehtävä 4",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Tarkastellaan suoraa, joka kulkee pisteen $ \\left(1,\\ 0,\\ 3\\right) $ kautta ja jonka suuntavektori on $ \\overline{v} = -2\\overline{i} + \\overline{j} - 6\\overline{k} $."
+      },
+      {
+        "type": "text",
+        "content": "a) Osoita, että suora leikkaa y-akselin."
+      },
+      {
+        "type": "text",
+        "content": "b) Määritä suoran ja y-akselin välinen leikkauskulma."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a)\n\nSuoran parametriesitys on\n$$\\begin{cases}\nx = 1 - 2s \\\\\ny = s \\\\\nz = 3 - 6s\n\\end{cases}$$, \\quad s \\in \\mathbb{R}\n$$\nKun suora leikkaa y-akselin, leikkauspisteen x- ja z-koordinaatti on nolla. Parametriesitys saa muodon\n$$\\begin{cases}\n0 = 1 - 2s \\\\\ny = s \\\\\n0 = 3 - 6s\n\\end{cases}$$\nYlimmästä yhtälöstä saadaan\n$$\n0 = 1 - 2s \\ \\Leftrightarrow \\ s = \\frac{1}{2}\n$$\nja alimmasta\n$$\n0 = 3 - 6s \\ \\Leftrightarrow \\ s = \\frac{1}{2}\n$$\njoten suora leikkaa y-akselin kohdassa $ y = \\frac{1}{2} $, mikä on osoitettu."
+      },
+      {
+        "type": "text",
+        "content": "b)\n\nSuoran ja y-akselin välinen kulma lasketaan kaavalla\n$$\n\\cos \\alpha = \\frac{ \\overline{v} \\cdot \\overline{a} }{ \\left| \\overline{v} \\right| \\cdot \\left| \\overline{a} \\right| },\n$$\nmissä $ \\overline{a} $ on y-akselin suuntavektori. Koska suuntavektori määrittää suoran suunnan, mutta sen pituus ei vaikuta suoran ja y-akselin väliseen kulmaan, saa y-akselin suuntavektori muodon $ \\overline{a} = \\overline{j} $.\n\nKoska $ \\overline{v} \\cdot \\overline{a} = s $, $ \\left| \\overline{v} \\right| = \\sqrt{41} \\left| s \\right| $ ja $ \\left| \\overline{a} \\right| = 1 $, saadaan\n$$\n\\cos \\alpha = \\frac{s}{\\sqrt{41} \\left| s \\right| } = \\frac{ \\left| s \\right| }{ \\sqrt{41} \\left| s \\right| },\n$$\njosta $ \\alpha \\approx 83^\\circ $. Suoran ja y-akselin välinen leikkauskulma on $ 83^\\circ $."
+      }
+    ]
+  },
+  {
+    "id": "OSAIII_T5",
+    "section": "Osa III",
+    "title": "Tehtävä 5",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "a) Suora kulkee pisteiden $ \\left(4,\\ -6,\\ 7\\right) $ ja $ \\left(8,\\ 1,\\ -2\\right) $ kautta. Mikä on pisteen $ \\left(1,\\ 2,\\ 3\\right) $ etäisyys suorasta?"
+      },
+      {
+        "type": "text",
+        "content": "b) Ratkaise tehtävä geometrisesti piirtämällä."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a) Hahmotellaan tilannetta piirtämällä kuva.\n\nKysytty etäisyys on suoran ja pisteen $ P $ kohtisuora etäisyys eli vektorin $ \\overline{PQ} $ pituus. Suuntavektori\n$$\n\\overline{AB} = (8-4)\\overline{i} + \\left(1-(-6)\\right)\\overline{j} + (-2 - 7)\\overline{k} = 4\\overline{i} + 7\\overline{j} - 9\\overline{k}.\n$$\nVektori kulkee pisteen $ (4,\\ -6,\\ 7) $ kautta. Suoran parametriesitys on\n$$\\begin{cases}\nx = 4 + 4t \\\\\ny = -6 + 7t \\\\\nz = 7 - 9t\n\\end{cases}$$, \\quad t \\in \\mathbb{R}.\n$$\n\nMyös piste $ Q $ on suoralla, joten se toteuttaa suoran parametriesityksen. Pisteen $ Q $ koordinaatit ovat siten $ (4+4t,\\ -6+7t,\\ 7-9t) $.\n\nVektori\n$$\n\\overline{PQ} = (3 + 4t)\\overline{i} + (-8 + 7t)\\overline{j} + (4 - 9t)\\overline{k}.\n$$\nVektori $ \\overline{PQ} $ on kohtisuorassa vektoria $ \\overline{AB} $ vastaan. Vektoreiden välinen pistetulo on nolla. Saadaan yhtälö\n$$\n\\overline{PQ} \\cdot \\overline{AB} = 0\n$$\n(3+4t)\\cdot 4 + (-8+7t)\\cdot 7 + (4-9t)\\cdot (-9) = 0 \\ \\Leftrightarrow\\ t = \\frac{40}{73}.\n$$\nVektori\n$$\n\\overline{PQ} = \\frac{379}{73} \\overline{i} - \\frac{304}{73} \\overline{j} - \\frac{68}{73} \\overline{k}\n$$\nja pituus\n$$\n\\left| \\overline{PQ} \\right| = \\sqrt{ \\left( \\frac{379}{73} \\right)^2 + \\left( -\\frac{304}{73} \\right)^2 + \\left( -\\frac{68}{73} \\right)^2 } = \\frac{ \\sqrt{240681} }{73} \\approx 6{,}72.\n$$"
+      },
+      {
+        "type": "image",
+        "src": "/utils/MAA4/Pisteen etaisyys suorasta.png",
+        "alt": ""
+      },
+      {
+        "type": "text",
+        "content": "b) Kysytty etäisyys on pisteen $ C = (1,\\ 2,\\ 3) $ kautta kulkevan suoran $ AB $ normaalin ja suoran $ AB $ leikkauspisteen ja pisteen $ C $ välinen etäisyys.\n\nAlla oleva kuva esittää tilannetta geometrisesti."
+      },
+      {
+        "type": "image",
+        "src": "/utils/MAA4/Piste_geometrinen.png",
+        "alt": ""
+      }
+    ]
+  },
+  {
+    "id": "OSAIII_T6",
+    "section": "Osa III",
+    "title": "Tehtävä 6",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Tiedetään, että $ \\left|\\overline{a}\\right| = 8 $, $ \\left|\\overline{c}\\right| = 3 $ sekä $ \\overline{a} \\cdot \\overline{c} = 19 $."
+      },
+      {
+        "type": "text",
+        "content": "a) Määritä vektoreiden $ \\overline{a} $ ja $ \\overline{c} $ välinen kulma."
+      },
+      {
+        "type": "text",
+        "content": "b) Mikä on vektorin $ \\overline{a} + \\overline{c} $ pituus?"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a) Vektoreiden $ \\overline{a} $ ja $ \\overline{c} $ välinen kulma $ \\alpha $ saadaan yhtälöstä\n$$\n\\cos(\\alpha) = \\frac{ \\overline{a} \\cdot \\overline{c} }{ |\\overline{a}| \\, |\\overline{c}| } = \\frac{19}{8 \\cdot 3} \\Leftrightarrow \\cos \\alpha = \\frac{19}{24} \\Leftrightarrow \\alpha = \\cos^{-1}\\left( \\frac{19}{24} \\right) \\approx 37{,}7^\\circ\n$$"
+      },
+      {
+        "type": "text",
+        "content": "b) Vektorin $ \\overline{a} + \\overline{c} $ pituutta ei voida annetuilla tiedoilla laskea suoraan. Lasketaan pituuden neliö $ |\\overline{a} + \\overline{c}|^2 $:\n\n$$\\begin{aligned}\n|\\overline{a} + \\overline{c}|^2 &= (\\overline{a} + \\overline{c}) \\cdot (\\overline{a} + \\overline{c}) \\\\\n&= \\overline{a}^2 + 2 \\cdot \\overline{a} \\cdot \\overline{c} + \\overline{c}^2 \\\\\n&= |\\overline{a}|^2 + 2 \\cdot \\overline{a} \\cdot \\overline{c} + |\\overline{c}|^2 \\\\\n&= 8^2 + 2 \\cdot 19 + 3^2 \\\\\n&= 64 + 38 + 9 \\\\\n&= 111\n\\end{aligned}$$\n\nKoska laskettu luku on pituuden neliö, kysytty pituus on\n$$\n|\\overline{a} + \\overline{c}| = \\sqrt{111}\n$$"
+      }
+    ]
+  },
+  {
+    "id": "OSAIII_T7",
+    "section": "Osa III",
+    "title": "Tehtävä 7",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Olkoon pisteet $ F = \\left(4,\\ -5,\\ 9\\right) $, $ G = \\left(2,\\ 4,\\ 6\\right) $ ja $ H = \\left(-1,\\ 5,\\ -2\\right) $ samassa tasossa sijaitsevia tason pisteitä. Määritä tason etäisyys origosta algebrallisesti. Anna vastauksesi tarkkana arvona."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Olkoon piste $ P $ sellainen tason piste, joka on lähimpänä origoa. Tasolla on suuntavektorit \n$$ \\overline{FG} = -2\\overline{i} + 9\\overline{j} - 3\\overline{k} \\quad ja \\quad \\overline{FH} = -5\\overline{i} + 10\\overline{j} - 11\\overline{k}. $$\nKoska piste $ P $ on lähimpänä origoa, paikkavektori \n$$ \\overline{OP} = \\overline{OF} + s \\overline{FG} + t \\overline{FH}, \\quad s, t \\in \\mathbb{R}. $$\n\nSaadaan siis\n$$ \n\\overline{OP} = (4 - 2s - 5t)\\overline{i} + (-5 + 9s + 10t)\\overline{j} + (9 - 3s - 11t)\\overline{k}. \n$$\n\nVektori $ \\overline{OP} $ on kohtisuorassa vektoreita $ \\overline{FG} $ ja $ \\overline{FH} $ vastaan. Pistetulon laskusääntöjen nojalla saadaan yhtälöpari:\n\n$$\\begin{cases} \n\\overline{OP} \\cdot \\overline{FG} = 0 \\\\\n\\overline{OP} \\cdot \\overline{FH} = 0 \n\\end{cases}$$\\begin{aligned}\n\\left(4 - 2s - 5t\\right)(-2) &+ \\left(-5 + 9s + 10t\\right)9 + \\left(9 - 3s - 11t\\right)(-3) = 0 \\\\\n\\left(4 - 2s - 5t\\right)(-5) &+ \\left(-5 + 9s + 10t\\right)10 + \\left(9 - 3s - 11t\\right)(-11) = 0\n\\end{aligned}$$\n\njosta laskimella\n\n$$\ns = -\\frac{2797}{5435} \\quad ja \\quad t = \\frac{5246}{5435}.\n$$\n\nNäin ollen vektori\n$$\n\\overline{OP} = \\frac{1104}{5435} \\overline{i} + \\frac{112}{5435} \\overline{j} - \\frac{80}{1087} \\overline{k}\n$$\n\nja kysytty etäisyys\n$$\n|\\overline{OP}| = \\sqrt{ \\left( \\frac{1104}{5435} \\right)^2 + \\left( \\frac{112}{5435} \\right)^2 + \\left( -\\frac{80}{1087} \\right)^2 } = \\frac{16 \\sqrt{5435}}{5435}.\n$$"
+      }
+    ]
+  },
+  {
+    "id": "OSAIII_T8",
+    "section": "Osa III",
+    "title": "Tehtävä 8",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Määritä sellainen vakio $ a $, että pisteen $ A = \\left(4,\\ a\\right) $ etäisyys suorasta $ x + 2y + 1 = 0 $ on yhtä suuri kuin etäisyys suorasta $ -3x + y - a = 0 $. Määritä tällöin piste $ A $ sekä suoran yhtälö normaalimuodossa. Piirrä lisäksi kuva, joka havainnollistaa tilannetta geometrisesti."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Pisteen etäisyys suorasta $ x + 2y + 1 = 0 $ on\n$$\nd_1 = \\frac{ \\left| 1 \\cdot 4 + 2 \\cdot a + 1 \\right| }{ \\sqrt{1^2 + 2^2} } = \\frac{ \\left| 5 + 2a \\right| }{ \\sqrt{5} }.\n$$\n\nPisteen etäisyys suorasta $ -3x + y - a = 0 $ on\n$$\nd_2 = \\frac{ \\left| -3 \\cdot 4 + 1 \\cdot a - a \\right| }{ \\sqrt{ (-3)^2 + 1^2 } } = \\frac{ \\left| -12 \\right| }{ \\sqrt{10} } = \\frac{12}{\\sqrt{10}} = \\frac{6 \\sqrt{10}}{5}.\n$$\n\nEtäisyyksien on oltava yhtä suuret.\n\n$$\\begin{aligned}\n\\frac{ \\left| 5 + 2a \\right| }{ \\sqrt{5} } &= \\frac{6 \\sqrt{10}}{5}, \\\\\n\\end{aligned}$$josta laskimella\n$$\na = \\frac{ -6 \\sqrt{2} - 5 }{2} \\quad tai \\quad a = \\frac{ 6 \\sqrt{2} - 5 }{2}.\n$$\n\nKun $ A = \\left( 4,\\ \\frac{ -6 \\sqrt{2} - 5 }{2} \\right) $, niin suoran yhtälö on\n$$\n-3x + y + \\frac{6 \\sqrt{2} + 5}{2} = 0.\n$$\n\nKun $ A = \\left( 4,\\ \\frac{ 6 \\sqrt{2} - 5 }{2} \\right) $, niin suoran yhtälö on\n$$\n-3x + y - \\frac{6 \\sqrt{2} - 5}{2} = 0.\n$$\nGeometrisesti kyse on pisteen A kautta kulkevien normaalien ja suorien leikkauspisteiden välisestä etäisyydestä. Ensimmäisessä kuvassa on näkyvissä komennot, joilla kyseinen etäisyys laskettiin. Näin kannattaa toimia myös ylioppilaskirjoituksissa, jotta välttyy turhilta pistemenetyksiltä."
+      },
+      {
+        "type": "image",
+        "src": "/utils/MAA4/Normaali_1.png",
+        "alt": ""
+      },
+      {
+        "type": "image",
+        "src": "/utils/MAA4/Normaali_2.png",
+        "alt": ""
+      }
+    ]
+  },
+  {
+    "id": "OSAIII_T9",
+    "section": "Osa III",
+    "title": "Tehtävä 9",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Kalle heitti pesäpallon siten, että se irtosi kädestä maanpinnalla, osui 24 metrin päässä 6{,}7 metrin korkeudessa olevaan talon antenniin ja palasi maan pinnalle 32{,}4 metrin päässä heittopaikasta. Oletetaan, ettei osuma antenniin muuta merkittävästi pallon lentorataa. Kuvaa Kallen heittämän pesäpallon lentorataa paraabelin yhtälönä."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Mallinnetaan paraabelia funktiolla, joka kuvaa pallon korkeutta heittopaikan etäisyyden funktiona. Koska kyseessä on paraabeli, sitä kuvaa toisen asteen funktio\n$$\nf(x) = ax^2 + bx + c.\n$$\nTehtävänannon perusteella $ f(24) = 6{,}7 $, $ f(32{,}4) = 0 $ ja $ f(0) = 0 $. Saadaan yhtälöryhmä, josta laskimella ratkaistuna saadaan vakioiden arvoiksi likimain $ a = -0{,}033 $, $ b = 1{,}08 $ ja $ c = 0 $.\n\nParaabelin yhtälö on tällöin\n$$\nf(x) = -0{,}033x^2 + 1{,}08x.\n$$\n\nKuvasta (piirrä!) nähdään, että funktio kuvaa kyseisillä likiarvoilla riittävän hyvin annettua tilannetta."
+      }
+    ]
+  },
+  {
+    "id": "OSAIII_T10",
+    "section": "Osa III",
+    "title": "Tehtävä 10",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "a) Ympyrälle $ x^2 + y^2 - 4x - 4y + 8 - 40 = 0 $ piirretään tangentti pisteen $ \\left(-6,\\ -2\\right) $ kautta. Määritä tangentin yhtälö. Ratkaise tehtävä algebrallisesti."
+      },
+      {
+        "type": "text",
+        "content": "b) Ratkaise tehtävä geometrisesti."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a)\n\nMuokataan ympyrän yhtälöä.\n$$\nx^2 + y^2 - 4x - 4y + 8 = 40\n$$\n\\left(x-2\\right)^2 + \\left(y-2\\right)^2 = 40\n$$\n\nKyseessä on ympyrä, jonka keskipiste on $ \\left(2,\\,2\\right) $ ja säde $ r = \\sqrt{40} = 2\\sqrt{10} $.\n\nTutkitaan, onko piste $ \\left(-6,\\, -2\\right) $ ympyrällä. Koska yhtälö\n$$\n\\left(-6-2\\right)^2 + \\left(-2-2\\right)^2 = 40\n$$\n\\Leftrightarrow\\ 80 = 40\n$$\non epätosi ja $ 80 > 40 $, piste $ \\left(-6,\\ -2\\right) $ on ympyrän ulkopuolella.\n\nMuodostetaan tangentin yhtälö, kun tiedetään, että tangentti kulkee pisteen $ \\left(-6,\\, -2\\right) $ kautta.\n$$\ny - (-2) = k\\left( x - (-6) \\right)\n$$\ny = kx + 6k - 2\n$$\nkx - y + 6k - 2 = 0\n$$\n\nMuodostetaan lauseke ympyrän keskipisteen etäisyydelle tangentista.\n$$\nd = \\frac{ \\left| k\\cdot 2 - 1\\cdot 2 + 6k - 2 \\right| }{ \\sqrt{ k^2 + (-1)^2 } }\n$$\n= \\frac{ \\left| 8k - 4 \\right| }{ \\sqrt{ k^2 + 1 } }\n$$\n\nYmpyrän keskipisteen etäisyys tangentista on yhtä suuri kuin ympyrän säde.\n$$\n\\frac{ \\left| 8k - 4 \\right| }{ \\sqrt{ k^2 + 1 } } = 2\\sqrt{10}\n$$\n\njosta laskimella ratkaistuna $ k = -\\frac{1}{3} $ tai $ k = 3 $.\n\n\n\nKun $ k = -\\frac{1}{3} $, saadaan tangentin yhtälöksi\n$$\n-\\frac{1}{3}x - y + 6\\cdot \\left( -\\frac{1}{3} \\right) - 2 = 0\n$$\n\\Leftrightarrow\\ x + 3y + 12 = 0\n$$\n\n\n\nKun $ k = 3 $, saadaan tangentin yhtälöksi\n$$\n3x - y + 6 \\cdot 3 - 2 = 0\n$$\n\\Leftrightarrow\\ 3x - y + 16 = 0\n$$\n\nb)\nKun tehtävä pyydetään ratkaisemaan geometrisesti, ratkaisu johon on ainoastaan kirjoitettu laskemalla saadut yhtälöt ei riitä täysiin pisteisiin. Tällöin täysiin pisteisiin vaaditaan nimenomaan geometriaohjelmalla ohjelman toiminnoilla laadittu ratkaisu. Tulee siis tehdä näin"
+      },
+      {
+        "type": "image",
+        "src": "/utils/MAA4/Tangentti.png",
+        "alt": ""
+      },
+      {
+        "type": "text",
+        "content": "\\sout{eikä näin}"
+      },
+      {
+        "type": "image",
+        "src": "/utils/MAA4/Tangentti_väärä.png",
+        "alt": ""
+      }
+    ]
+  },
+  {
+    "id": "OSAIV_T1",
+    "section": "Osa IV",
+    "title": "Tehtävä 1",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Aurinkopaneeli on sen tason suuntainen, jonka normaalivektori on $ \\bar{n} = \\bar{i} + \\bar{j} + \\bar{k} $. Valonsäteen suuntaa ajanhetkellä $ t \\in [0, 2\\pi] $ kuvaa vektori $ \\bar{v} = \\cos(t)\\bar{i} + \\sin(t)\\bar{j} $. Valonsäde osuu paneelin etupintaan, jos vektoreiden $ \\bar{n} $ ja $ \\bar{v} $ välinen kulma on välillä $ \\left( \\frac{\\pi}{2}, \\pi \\right] $."
+      },
+      {
+        "type": "text",
+        "content": "a) Mikä on vektoreiden $ \\bar{n} $ ja $ \\bar{v} $ välinen kulma ajanhetkellä $ t = \\frac{\\pi}{4} $? Osuuko säde paneelin pintaan?"
+      },
+      {
+        "type": "text",
+        "content": "b) Millä ajanhetkillä valonsäde on kohtisuorassa paneeliin nähden?"
+      },
+      {
+        "type": "text",
+        "content": "c) Millä ajanhetkillä valonsäde on paneelin suuntainen?"
+      },
+      {
+        "type": "text",
+        "content": "."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a) Tulee siis ratkaista yhtälö\n$$\n\\cos(\\theta) = \\frac{\\overline{n} \\cdot \\overline{v}}{|\\overline{n}|\\, |\\overline{v}|}\n= \\frac{(1,\\, 1,\\, 1) \\cdot \\left(\\cos\\left(\\frac{\\pi}{4}\\right),\\, \\sin\\left(\\frac{\\pi}{4}\\right),\\, 0 \\right)}{\\sqrt{1^2 + 1^2 + 1^2} \\sqrt{\\cos^2\\left(\\frac{\\pi}{4}\\right) + \\sin^2\\left(\\frac{\\pi}{4}\\right)}}\n= \\frac{\\cos\\left(\\frac{\\pi}{4}\\right) + \\sin\\left(\\frac{\\pi}{4}\\right)}{\\sqrt{3}}\n= \\frac{\\frac{1}{\\sqrt{2}} + \\frac{1}{\\sqrt{2}}}{\\sqrt{3}} = \\sqrt{\\frac{2}{3}}.\n$$\nTästä saadaan\n$$\n\\theta = \\cos^{-1}\\left(\\sqrt{\\frac{2}{3}}\\right) \\approx 0{,}62 \\notin \\left(\\frac{\\pi}{2},\\, \\pi \\right],\n$$\njoten valonsäteet eivät osu paneelin etupintaan kyseisellä ajanhetkellä."
+      },
+      {
+        "type": "text",
+        "content": "b) Jotta valonsäde olisi kohtisuorassa paneeliin nähden, sen tulee olla yhdensuuntainen paneelin normaalivektorin kanssa. Tulee siten päteä\n$$\n\\overline{v} = a \\cdot \\overline{n}, \\quad a \\neq 0.\n$$\nTäten saadaan yhtälöryhmä\n$$\\begin{cases}\na = \\cos(t) \\\\\na = \\sin(t) \\\\\na = 0\n\\end{cases}$$,\n$$\njolla ei selvästi ole ratkaisua, sillä ehdosta $a=0$ seuraisi $\\overline{v} = \\overline{0}$, mikä on mahdotonta. Toisaalta yhdensuuntaisuusehtokaan ei tällöin toteutuisi."
+      },
+      {
+        "type": "text",
+        "content": "c) Valonsäde on paneelin suuntainen silloin, kun se on kohtisuorassa normaaliin nähden. Täten saadaan yhtälö\n$$\n(1,\\, 1,\\, 1) \\cdot (\\cos(t),\\, \\sin(t),\\, 0) = 0\n\\quad \\Rightarrow \\quad \\cos(t) + \\sin(t) = 0\n\\quad \\Rightarrow \\quad \\cos(t) = -\\sin(t).\n$$\nYksikköympyrästä nähdään, että\n$$\nt = \\frac{3\\pi}{4} \\quad ja \\quad t = \\frac{7\\pi}{4}\n$$\nkuuluvat välille $t \\in [0,\\, 2\\pi]$."
+      }
+    ]
+  },
+  {
+    "id": "OSAIV_T2",
+    "section": "Osa IV",
+    "title": "Tehtävä 2",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Olkoon ympyrä $ O $ sellainen ympyrä, jonka keskipiste on origossa ja jonka säde on $ r $. Suora $ ax + by + c = 0 $ kulkee origon läpi. Muodosta yhtälö, josta voidaan ratkaista suoran ja ympyrän leikkauspisteiden koordinaatit."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Koska suora $ ax + by + c = 0 $ kulkee origon läpi, voidaan se kirjoittaa muodossa $ y = kx $, missä $ k $ on suoran kulmakerroin. Sijoittamalla tämä suoran yhtälöön saadaan  \n$$\nax + b \\cdot kx + c = 0 \\quad \\Leftrightarrow \\quad (a + bk) x + c = 0.\n$$\nJos $ a + bk \\neq 0 $, saadaan  \n$$\nx = -\\frac{c}{a + bk}.\n$$\nTällöin y-koordinaatti saadaan yhtälöstä  \n$$\ny = k \\cdot \\left(-\\frac{c}{a + bk}\\right) = -\\frac{kc}{a + bk}.\n$$\n\nYmpyrän, jonka keskipiste on $ (0, 0) $ ja säde $ r $, yhtälö on  \n$$\nx^2 + y^2 = r^2.\n$$\nSijoitetaan suoran yhtälöstä ratkaistu $ y = kx $ ja $ x = -\\frac{c}{a + bk} $ ympyrän yhtälöön leikkauspisteiden ratkaisemiseksi:  \n$$\n\\left(-\\frac{c}{a + bk}\\right)^2 + \\left(-\\frac{kc}{a + bk}\\right)^2 = r^2.\n$$\n\nYllä olevasta yhtälöstä voidaan ratkaista suoran ja ympyrän leikkauspisteiden $ x $-koordinaatti. Vastaava $ y $-koordinaatti saadaan sijoittamalla saatu $ x $ suoran yhtälöön $ y = kx $."
+      }
+    ]
+  },
+  {
+    "id": "OSAIV_T3",
+    "section": "Osa IV",
+    "title": "Tehtävä 3",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Osoita, että tason normaalimuotoinen yhtälö on $ ax + by + cz + d = 0 $."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Olkoon $ A = (x_0,\\ y_0,\\ z_0) $, $ P = (x,\\ y,\\ z) $ ja normaalivektori $ \\overline{n} = a\\overline{i} + b\\overline{j} + c\\overline{k} $ sellainen vektori, että $ \\overline{AP} \\perp \\overline{n} $. Pistetulon laskusääntöjen nojalla saadaan yhtälö\n$$\\begin{aligned}\n\\overline{AP} \\cdot \\overline{n} &= 0 \\\\\n\\Leftrightarrow \\left((x - x_0)\\overline{i} + (y - y_0)\\overline{j} + (z - z_0)\\overline{k}\\right) \\cdot \\left(a\\overline{i} + b\\overline{j} + c\\overline{k}\\right) &= 0 \\\\\n\\Leftrightarrow a(x - x_0) + b(y - y_0) + c(z - z_0) &= 0 \\\\\n\\Leftrightarrow ax - ax_0 + by - by_0 + cz - cz_0 &= 0 \\\\\n\\Leftrightarrow ax + by + cz - ax_0 - by_0 - cz_0 &= 0\n\\intertext{Merkitään $ d = -ax_0 - by_0 - cz_0 $, jolloin saadaan}\nax + by + cz + d &= 0\n\\end{aligned}$$\nOn osoitettu, että tason normaalimuotoinen yhtälö on $ ax + by + cz + d = 0 $."
+      }
+    ]
+  },
+  {
+    "id": "OSAIV_T4",
+    "section": "Osa IV",
+    "title": "Tehtävä 4",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Fyysikko Isaac Newton tutki 1600-luvulla klassista mekaniikkaa ja tuli tunnetuksi etenkin mekaniikan peruslakiensa ansiosta. Newtonin toisen lain mukaan kappaleeseen vaikuttava kokonaisvoima aiheuttaa kiihtyvyyden $ \\Sigma\\overline{F} = m\\overline{a} $. Jos kappaleeseen vaikuttava kokonaisvoima on nolla, kappale jatkaa tasaista suoraviivaista liikettään.\n\nTarkastellaan kaltevalla tasolla tasaisella nopeudella liukuvaa laatikkoa. Laatikkoon vaikuttavat voimat ovat paino $ \\overline{G} $, pinnan tukivoima $ \\overline{N} $ ja liukukitka $ \\overline{F}_{\\mu} $. Alla oleva kuva esittää laatikon voimakuviota."
+      },
+      {
+        "type": "image",
+        "src": "/utils/MAA4/Newton.png",
+        "alt": ""
+      },
+      {
+        "type": "text",
+        "content": "a) Muodosta summavektori Muodosta summavektori $ \\overline{G} + \\overline{F}_{\\mu}  + \\overline{N} $ geometrisesti."
+      },
+      {
+        "type": "text",
+        "content": "b) Tiedetään, että laatikon paino on 10 N. Mitkä ovat pinnan tukivoiman ja liukukitkan suuruudet?"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a)"
+      },
+      {
+        "type": "image",
+        "src": "/utils/MAA4/Voimakuvio.png",
+        "alt": ""
+      },
+      {
+        "type": "text",
+        "content": "b)\n\n\nSuorakulmaisen trigonometrian perusteella\n$$\\begin{aligned}\n\\cos 32^\\circ &= \\frac{\\overline{N}}{\\overline{G}} \\quad \\Rightarrow \\quad \\overline{N} = \\overline{G} \\cdot \\cos 32^\\circ = 10\\ \\mathrm{N} \\cdot \\cos 32^\\circ \\approx 9\\ \\mathrm{N}, \\\\\n\\sin 32^\\circ &= \\frac{\\overline{F}_\\mu}{\\overline{G}} \\quad \\Rightarrow \\quad \\overline{F}_\\mu = \\overline{G} \\cdot \\sin 32^\\circ = 10\\ \\mathrm{N} \\cdot \\sin 32^\\circ \\approx 5\\ \\mathrm{N}.\n\\end{aligned}$$"
+      }
+    ]
+  },
+  {
+    "id": "OSAIV_T5",
+    "section": "Osa IV",
+    "title": "Tehtävä 5",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Esittäköön yhtälö $ x^2 + y^2 - 96x - 70y + 1250 = 0 $ saarta, jossa Tupu ja Hupu ovat viettämässä juhannustaan. Tupun mökki sijaitsee pisteessä $ \\left(62,\\ 44\\right) $ ja Hupun mökki pisteessä $ \\left(42,\\ 24\\right) $. Tupu ja Hupu haluavat tavata toisensa rannalla klo 19:00 pisteessä, joka on mahdollisimman lähellä molempien mökkejä mutta yhtä kaukana molempien mökeistä. Tupu kävelee vauhdilla 2 m/s, mutta Hupun jalassa on rasitusvamma, minkä takia hän kävelee vauhdilla 1 m/s. Koordinaatiston yksikkönä on 10 m."
+      },
+      {
+        "type": "text",
+        "content": "a) Mikä on piste, jossa Tupu ja Hupu tapaavat toisensa? Milloin Tupun ja Hupun on lähdettävä kävelemään, jotta he ehtivät haluttuun aikaan tapaamispisteeseen? Ratkaise tehtävä algebrallisesti ja anna vastauksesi ajasta minuutin tarkkuudella."
+      },
+      {
+        "type": "text",
+        "content": "b) Ratkaise Tupun ja Hupun tapaamispiste geometrisesti."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a) Kun ymmärtää, mistä tehtävässä on geometrisesti kyse, varsin suoraviivaisesti voi päätellä, että kysytty tapaamispiste sijaitsee pisteiden $ (62,\\ 44) $ ja $ (42,\\ 24) $ kautta kulkevan janan suuntaisen suoran keskinormaalin ja ympyrän leikkauspisteessä. Tätä on havainnollistettu b)-kohdassa. Mökkien kautta kulkeavan janan keskipiste on  \n$ M = \\left(\\frac{62+42}{2},\\ \\frac{44+24}{2}\\right) = (52,\\ 34) $.  \nMääritetään janan suuntaisen suoran kulmakerroin:  \n$ k_{\\mathrm{jana}} = \\frac{44 - 24}{62 - 42} = 1 $.  \nKeskinormaalin kulmakerroin saadaan kohtisuoruusehdosta:  \n$ k_{\\mathrm{jana}} \\cdot k_{\\mathrm{keskinormaali}} = -1 \\Leftrightarrow 1 \\cdot k_{\\mathrm{keskinormaali}} = -1 \\Leftrightarrow k_{\\mathrm{keskinormaali}} = -1 $.  \nKeskinormaali kulkee pisteen $ (52,\\ 34) $ kautta ja sen kulmakerroin on $-1$. Suoran yhtälö on  \n$ y - 34 = -1(x - 52) \\Leftrightarrow y = -x + 86 $.  \nTapaamispiste saadaan keskinormaalin ja ympyrän leikkauspisteestä. Leikkauspiste toteuttaa yhtälöparin  \n$$\\begin{cases}\nx^2 + y^2 - 96x - 70y + 1250 = 0 \\\\\ny = -x + 86\n\\end{cases}$$,\njosta laskimella saadaan  \n$ x_1 = \\frac{-\\sqrt{4549} + 99}{2} $ ja $ y_1 = \\frac{\\sqrt{4549} + 73}{2} $  \ntai  \n$ x_2 = \\frac{\\sqrt{4549} + 99}{2} $ ja $ y_2 = \\frac{-\\sqrt{4549} + 73}{2} $.  \nKoska saatiin kaksi ratkaisua, on tutkittava, kumpi pisteistä on lähempänä pistettä $ (52,\\ 34) $.  \nKoska  \n$ d_2 = \\sqrt{\\left(52 - \\frac{\\sqrt{4549} + 99}{2}\\right)^2 + \\left(34 - \\frac{-\\sqrt{4549} + 73}{2}\\right)^2} \\approx 44 $  \nja  \n$ d_1 = \\sqrt{\\left(52 - \\frac{-\\sqrt{4549} + 99}{2}\\right)^2 + \\left(34 - \\frac{\\sqrt{4549} + 73}{2}\\right)^2} \\approx 47 $,  \neli $ d_2 < d_1 $, on piste  \n$ \\left(\\frac{\\sqrt{4549} + 99}{2},\\ \\frac{-\\sqrt{4549} + 73}{2}\\right) $  \nlähempänä pistettä $ (52,\\ 34) $.  \nSiis piste, jossa Tupu ja Hupu tapaavat toisensa, on  \n$ \\left(\\frac{\\sqrt{4549} + 99}{2},\\ \\frac{-\\sqrt{4549} + 73}{2}\\right) $.\n\nRatkaistaan seuraavaksi, milloin heidän on lähdettävä kävelemään. Sekä Tupu että Hupu kulkevat saman matkan mutta eri vauhdilla. Riittää siis laskea kokonaismatka vain toisesta pisteestä. Otetaan esimerkiksi Hupun mökki eli piste $ (42,\\ 24) $ alkupisteeksi. Tällöin matka mökkien välisen janan keskipisteeseen eli pisteeseen $ (52,\\ 34) $ on  \n$ d_3 = \\sqrt{(42 - 52)^2 + (24 - 34)^2} = 10\\sqrt{2} $.  \nKokonaismatkaksi tulee näin ollen  \n$ d_3 + d_2 = 58{,}2983\\ldots $  \nja koska koordinaatiston yksikkönä on 10 m, saadaan matkaksi sadan metrin tarkkuudella  \n$ (d_3 + d_2) \\cdot 10\\ \\mathrm{m} = 582{,}983\\ldots\\ \\mathrm{m} \\approx 600\\ \\mathrm{m} $.\n\nRatkaistaan vielä, kuinka pitkä matka ankoilla menee matkan kulkemiseen. Aika saadaan nopeuden yhtälöstä  \n$ v = \\frac{s}{t} $,  \njosta  \n$ t = \\frac{s}{v} $.  \nTupun matkaan käyttämä aika on  \n$ t_{\\mathrm{Tupu}} = \\frac{s}{v_{\\mathrm{Tupu}}} = \\frac{582{,}983\\ \\mathrm{m}}{2\\ \\mathrm{m/s}} \\approx 291\\ \\mathrm{s} = 4{,}85\\ \\mathrm{min} $.  \nJotta Tupu ehtii klo 19:00 tapaamispisteeseen, on hänen lähdettävä 18:55.  \nHupun matkaan käyttämä aika on  \n$ t_{\\mathrm{Hupu}} = \\frac{s}{v_{\\mathrm{Hupu}}} = \\frac{582{,}983\\ \\mathrm{m}}{1\\ \\mathrm{m/s}} \\approx 583\\ \\mathrm{s} = 9{,}71666\\ldots\\ \\mathrm{min} $.  \nJotta Hupu ehtii klo 19:00 tapaamispisteeseen, on hänen lähdettävä 18:50."
+      },
+      {
+        "type": "text",
+        "content": "b) Olkoon Tupun mökki pisteessä $ A $ ja Hupun mökki pisteessä $ B $. Merkitään mökkien välistä janaa kirjaimella $ f $ ja janan keskipistettä kirjaimella $ C $. Olkoon pisteeseen $ C $ mökkien välisen janan suuntaiselle suoralle $ h $ piirretyn keskinormaalin nimeltään $ g $. Merkitään lisäksi ympyrän ja keskinormaalin leikkauspisteitä kirjaimilla $ D $ ja $ E $, joista $ D $ on Tupun ja Hupun tapaamispaikka."
+      },
+      {
+        "type": "image",
+        "src": "/utils/MAA4/Tupu_Lupu.png",
+        "alt": ""
+      }
+    ]
+  }
+]

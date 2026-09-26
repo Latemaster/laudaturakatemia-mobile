@@ -1,4 +1,14 @@
-export type TopicCode = 'MAA5' | 'MAA6' | 'MAA7'
+export type TopicCode =
+  | 'MAA2'
+  | 'MAA3'
+  | 'MAA4'
+  | 'MAA5'
+  | 'MAA6'
+  | 'MAA7'
+  | 'MAA9'
+  | 'MAA10'
+  | 'MAA11'
+  | 'MAA12'
 
 export interface Topic {
   code: TopicCode

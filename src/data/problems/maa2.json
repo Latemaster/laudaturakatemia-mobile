@@ -1,0 +1,798 @@
+[
+  {
+    "id": "OSAI_T1",
+    "section": "Osa I",
+    "title": "Tehtävä 1",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Tarkastellaan funktiota $f(x)=2x^2+4x+7$. Määritä funktion"
+      },
+      {
+        "type": "text",
+        "content": "a) asteluku"
+      },
+      {
+        "type": "text",
+        "content": "b) vakiotermi"
+      },
+      {
+        "type": "text",
+        "content": "c) toisen asteen termi"
+      },
+      {
+        "type": "text",
+        "content": "d) ensimmäisen asteen termin kerroin"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a) 2 b) 7 c) $2x^2$ d) 4"
+      }
+    ]
+  },
+  {
+    "id": "OSAI_T2",
+    "section": "Osa I",
+    "title": "Tehtävä 2",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Laske"
+      },
+      {
+        "type": "text",
+        "content": "a) $(3x+4)+(-5x-7)$"
+      },
+      {
+        "type": "text",
+        "content": "b) $-3(2x-4)-(-3x+6)$"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a)\n\n$(3x+4)+(-5x-7) = 3x+4-5x-7 = -2x-3$"
+      },
+      {
+        "type": "text",
+        "content": "b)\n\n$-3(2x-4)-(-3x+6) = -6x+12+3x-6 = -3x+6$"
+      }
+    ]
+  },
+  {
+    "id": "OSAI_T3",
+    "section": "Osa I",
+    "title": "Tehtävä 3",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "a) Laske $(4x+3)^2$"
+      },
+      {
+        "type": "text",
+        "content": "b) Jaa tekijöihin $x^2+10x+25$"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a)\n\n$(4x+3)^2 = (4x)^2+2 \\cdot 4x \\cdot 3+3^2 = 16x^2+24x+9$"
+      },
+      {
+        "type": "text",
+        "content": "b)\n\n$x^2+10x+25 = x^2+2 \\cdot 5x+5^2 = (x+5)^2$"
+      }
+    ]
+  },
+  {
+    "id": "OSAI_T4",
+    "section": "Osa I",
+    "title": "Tehtävä 4",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "a) Laske $\\sqrt{2} \\cdot \\sqrt{8}$"
+      },
+      {
+        "type": "text",
+        "content": "b) Sievennä $\\frac{\\sqrt{12}+\\sqrt{75}}{7}$"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a)\n\n$\\sqrt{2} \\cdot \\sqrt{8} = \\sqrt{2 \\cdot 8} = \\sqrt{16} = 4$"
+      },
+      {
+        "type": "text",
+        "content": "b)\n\n$$\\frac{\\sqrt{12}+\\sqrt{75}}{7} = \\frac{\\sqrt{4 \\cdot 3}+\\sqrt{3 \\cdot 25}}{7} = \\frac{2\\sqrt{3}+5\\sqrt{3}}{7} = \\frac{7\\sqrt{3}}{7} = \\sqrt{3}$$"
+      }
+    ]
+  },
+  {
+    "id": "OSAI_T5",
+    "section": "Osa I",
+    "title": "Tehtävä 5",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Ratkaise yhtälöt"
+      },
+      {
+        "type": "text",
+        "content": "a) $x^2-16=0$"
+      },
+      {
+        "type": "text",
+        "content": "b) $x^3=8$"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a)\n\n$$x^2-16=0$$x^2=16$$x=\\pm\\sqrt{16}$$x=\\pm 4$$"
+      },
+      {
+        "type": "text",
+        "content": "b)\n\n$$x^3=8$$x=\\sqrt[3]{8}$$x=2$$"
+      },
+      {
+        "type": "text",
+        "content": "c)\n\n$$x^2+16=0$$x^2=-16$$\n\nKoska $x^2 \\ge 0$ kaikilla $x \\in \\mathbb{R}$, yhtälöllä ei ole ratkaisua."
+      }
+    ]
+  },
+  {
+    "id": "OSAI_T6",
+    "section": "Osa I",
+    "title": "Tehtävä 6",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Kuvassa on funktion $f(x) = -3x + 6$ kuvaaja."
+      },
+      {
+        "type": "image",
+        "src": "/utils/MAA2/MAA2_osaI_t6_graph.png",
+        "alt": "Suoran f(x) = -3x + 6 kuvaaja"
+      },
+      {
+        "type": "text",
+        "content": "a) Millä $x$:n arvoilla $f(x)<0$?"
+      },
+      {
+        "type": "text",
+        "content": "b) Ratkaise $f(x) \\ge 0$"
+      },
+      {
+        "type": "text",
+        "content": "c) Ratkaise kohta b) algebrallisesti."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a) Kuvaajan perusteella $f(x) < 0$, kun $x > 2$"
+      },
+      {
+        "type": "text",
+        "content": "b) Kuvaajasta nähdään, että funktion arvot ovat epänegatiivisia, kun $x \\le 2$. Siten\n\n$$f(x) \\ge 0 \\Leftrightarrow x \\le 2$$"
+      },
+      {
+        "type": "text",
+        "content": "c)\n\n$$f(x) \\ge 0$$-3x+6 \\ge 0$$-3x \\ge -6 \\quad \\|:(-3)<0$$x \\le 2$$"
+      }
+    ]
+  },
+  {
+    "id": "OSAI_T7",
+    "section": "Osa I",
+    "title": "Tehtävä 7",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Ratkaise yhtälöt"
+      },
+      {
+        "type": "text",
+        "content": "a) $x^2+7x-5=0$"
+      },
+      {
+        "type": "text",
+        "content": "b) $4x^2+8x+16=0$"
+      },
+      {
+        "type": "text",
+        "content": "c) $(x-1)(x+5)=0$"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a)\n\n$$x^2+7x-5=0 \\Leftrightarrow x = \\frac{-7 \\pm \\sqrt{7^2-4 \\cdot 1 \\cdot (-5)}}{2 \\cdot 1} \\Leftrightarrow x = \\frac{-7 \\pm \\sqrt{69}}{2}$$"
+      },
+      {
+        "type": "text",
+        "content": "b)\n\n$4x^2+8x+16=0 \\Leftrightarrow x^2+2x+4=0$\n\nHuomataan, että funktion $f(x)=x^2+2x+4$ diskriminantti\n\n$$D = 2^2-4 \\cdot 1 \\cdot 4 = -12 < 0$$\n\nSiten yhtälöllä ei ole ratkaisuja $x \\in \\mathbb{R}$"
+      },
+      {
+        "type": "text",
+        "content": "c)\n\n$(x-1)(x+5)=0 \\Leftrightarrow x-1=0 \\lor x+5=0 \\Leftrightarrow x=1 \\lor x=-5$"
+      }
+    ]
+  },
+  {
+    "id": "OSAI_T8",
+    "section": "Osa I",
+    "title": "Tehtävä 8",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Ratkaise epäyhtälö $x^4+2x^3-3x^2>0$"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Olkoon $f(x) = x^4+2x^3-3x^2$. Ratkaistaan funktion nollakohdat.\n\n$$f(x) = 0$$\\Leftrightarrow x^4+2x^3-3x^2=0$$\\Leftrightarrow x^2(x^2+2x-3)=0$$\n\n$x^2=0 \\Leftrightarrow x=0$\n\ntai\n\n$$x^2+2x-3=0 \\Leftrightarrow (x-1)(x+3)=0 \\Leftrightarrow x=1 \\lor x=-3$$\n\nFunktiolla on siis kolme nollakohtaa. Tutkitaan epäyhtälön $f(x)>0$ ratkaisuja merkkikaaviolla, joka laaditaan testipisteiden avulla.\n\n$$f(-4) = (-4)^4+2 \\cdot (-4)^3-3 \\cdot (-4)^2 = 80 > 0$$f(-1) = -4 < 0$$f(0{,}5) = -0{,}4375 < 0$$f(2) = 20 > 0$$\n\nMerkkikaavion nojalla $f(x)>0$, kun $x<-3$ tai $x>1$. Siis\n\n$$x^4+2x^3-3x^2>0$$\n\n, kun $x<-3$ tai $x>1$."
+      }
+    ]
+  },
+  {
+    "id": "OSAI_T9",
+    "section": "Osa I",
+    "title": "Tehtävä 9",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Olkoon $f(x)=\\frac{x^2-4}{2x+4}$"
+      },
+      {
+        "type": "text",
+        "content": "a) Mikä on funktion määrittelyjoukko?"
+      },
+      {
+        "type": "text",
+        "content": "b) Sievennä funktion lauseke"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a) Funktion f arvoa ei voida laskea niillä muuttujan x arvoilla, joilla nimittäjän arvoksi tulee nolla. Funktio on määritelty kaikilla muilla muuttujan x arvoilla. Ratkaistaan nimittäjän nollakohdat.\n\n$$2x+4=0 \\Leftrightarrow 2x=-4 \\Leftrightarrow x=-2$$\n\nFunktion f määrittelyehto on $x \\neq -2$. Funktion f määrittelyjoukko $M_f$ on $\\mathbb{R} \\setminus \\{-2\\}$"
+      },
+      {
+        "type": "text",
+        "content": "b)\n\n$$\\frac{x^2-4}{2x+4} = \\frac{(x-2)(x+2)}{2(x+2)} = \\frac{x-2}{2}$$\n\n, kun $x \\neq -2$"
+      }
+    ]
+  },
+  {
+    "id": "OSAI_T10",
+    "section": "Osa I",
+    "title": "Tehtävä 10",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Tarkastellaan funktiota $h(x)=\\frac{\\sqrt[4]{x}}{\\sqrt[3]{\\sqrt{x}}}$"
+      },
+      {
+        "type": "text",
+        "content": "a) Mikä on funktion määrittelyehto?"
+      },
+      {
+        "type": "text",
+        "content": "b) Sievennä lauseke"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a) Funktiossa h esiintyy parillisia ja parittomia juuria. Parillisen juurifunktion $f(x) = \\sqrt[n]{x}$, missä $n = 2, 4, 6, ...$, määrittelyjoukko on puoliavoin väli $[0, \\infty[$. Sen sijaan parittoman juurifunktion $h(x) = \\sqrt[m]{x}$, missä $m = 1, 3, 5, ...$, määrittelyjoukko on $\\mathbb{R}$. Tällöin funktion määrittelyehto määräytyisi parittomien juurilausekkeiden mukaan, joiden määrittelyehto olisi $x \\ge 0$. Funktio h on kuitenkin rationaalifunktio, jonka nimittäjä ei voi saada arvoa nolla. Siten tapaus $x = 0$ on hylättävä. Näin ollen funktion määrittelyehdoksi saadaan $x > 0$."
+      },
+      {
+        "type": "text",
+        "content": "b)\n\n$$\\frac{\\sqrt[4]{x}}{\\sqrt[3]{\\sqrt{x}}} = \\frac{x^{\\frac{1}{4}}}{\\left(x^{\\frac{1}{2}}\\right)^{\\frac{1}{3}}} = \\frac{x^{\\frac{1}{4}}}{x^{\\frac{1}{6}}} = x^{\\frac{1}{4}-\\frac{1}{6}} = x^{\\frac{6}{24}-\\frac{4}{24}} = x^{\\frac{2}{24}} = x^{\\frac{1}{12}}$$"
+      }
+    ]
+  },
+  {
+    "id": "OSAII_T1",
+    "section": "Osa II",
+    "title": "Tehtävä 1",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Laske $(2x^3+4x^2-3)-(3x^2+4x-2)$"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "$(2x^3+4x^2-3)-(3x^2+4x-2) = 2x^3+4x^2-3-3x^2-4x+2 = 2x^3+x^2-4x-1$"
+      }
+    ]
+  },
+  {
+    "id": "OSAII_T2",
+    "section": "Osa II",
+    "title": "Tehtävä 2",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Olkoon $f(x)=\\frac{x^2-16}{x^2+8x+16}$. Määritä funktion f määrittelyehto ja supista funktion lauseke."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Funktio f ei ole määritelty nimittäjän nollakohdassa. Ratkaistaan nimittäjän nollakohta.\n\n$$x^2+8x+16=0 \\Leftrightarrow (x+4)^2=0 \\Leftrightarrow x=-4$$\n\nFunktion määrittelyehto on $x \\neq -4$. Supistetaan funktion lauseke.\n\n$$f(x) = \\frac{x^2-16}{x^2+8x+16} = \\frac{(x-4)(x+4)}{(x+4)^2} = \\frac{x-4}{x+4}$$\n\n, kun $x \\neq -4$"
+      }
+    ]
+  },
+  {
+    "id": "OSAII_T3",
+    "section": "Osa II",
+    "title": "Tehtävä 3",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Tutki, kumpi pojista on oikeassa: $\\sqrt{50}+\\sqrt{63}-\\sqrt{196}=?$"
+      },
+      {
+        "type": "text",
+        "content": "• Eetu: $5\\sqrt{2}+3\\sqrt{7}-14$"
+      },
+      {
+        "type": "text",
+        "content": "• Peetu: $7\\sqrt{3}+9\\sqrt{2}-12$"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Sievennetään lauseketta.\n\n$$\\sqrt{50}+\\sqrt{63}-\\sqrt{196} = \\sqrt{2 \\cdot 25}+\\sqrt{7 \\cdot 9}-14 = 5\\sqrt{2}+3\\sqrt{7}-14$$\n\nSaatu lauseke on sama kuin Eetulla. Eetu on siis sieventänyt lausekkeen oikein."
+      }
+    ]
+  },
+  {
+    "id": "OSAII_T4",
+    "section": "Osa II",
+    "title": "Tehtävä 4",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Ratkaise yhtälö $x+2=\\frac{3}{\\sqrt{x+6}}$"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Ratkaistaan yhtälön määrittelyehto. Koska nimittäjässä on parillinen juuri, on nimittäjän oltava positiivinen. Siis\n\n$$x+6>0 \\Leftrightarrow x>-6$$\n\nYhtälö on siis määritelty, kun $x>-6$. Ratkaistaan yhtälö.\n\n$$x+2 = \\frac{3}{\\sqrt{x+6}} \\Leftrightarrow (x+2)\\sqrt{x+6}=3 \\quad \\|: (x+2)\\neq 0 \\Leftrightarrow x \\neq -2$$\n\nKoska yhtälö korotetaan puolittain neliöön, on varmistuttava, että molemmat puolet ovat epänegatiivisia. Juuren epänegatiivisuus määriteltiin jo aiemmin: $x>-6$. Tutkitaan, milloin oikea puoli on epänegatiivinen:\n\n$$\\frac{3}{x+2} \\ge 0 \\Leftrightarrow x+2>0 \\Leftrightarrow x>-2$$\n\nNäin ollen ratkaisuväli on $-2 < x \\le 1$.\n\n$$\\sqrt{x+6} = \\frac{3}{x+2} \\quad \\| ()^2$$x+6 = \\frac{9}{(x+2)^2}$$\\Leftrightarrow (x+6)(x^2+4x+4)=9$$\\Leftrightarrow x^3+10x^2+28x+15=0$$\\Leftrightarrow x^2(x+5)+5x(x+5)+3(x+5)=0$$\\Leftrightarrow (x+5)(x^2+5x+3)=0$$x+5=0 \\lor x^2+5x+3=0$$x=-5 \\quad \\text{tai} \\quad x=\\frac{-5\\pm\\sqrt{5^2-4 \\cdot 1 \\cdot 3}}{2 \\cdot 1} = \\frac{-5\\pm\\sqrt{13}}{2}$$x_2=\\frac{-5+\\sqrt{13}}{2}\\approx -0{,}6972, \\quad x_3=\\frac{-5-\\sqrt{13}}{2}\\approx -4{,}3027$$\n\nRatkaisuista vain $x = \\dfrac{-5+\\sqrt{13}}{2}$ toteuttaa määrittelyehdon $-2 < x \\le 1$."
+      }
+    ]
+  },
+  {
+    "id": "OSAII_T5",
+    "section": "Osa II",
+    "title": "Tehtävä 5",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Tutki nollakohtien määrä funktiolle $f(x)=101x^2+51x+78$ diskriminanttia käyttäen"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Funktion $h(x) = ax^2+bx+c$ diskriminantti $D = b^2-4ac$.\n\n- Jos $D>0$, niin funktiolla on kaksi erisuurta reaalista nollakohtaa.\n- Jos $D=0$, niin funktiolla on yksi reaalinen nollakohta.\n- Jos $D<0$, niin funktiolla ei ole reaalista nollakohtaa, vaan nollakohdat ovat imaginaarisia liittolukuja.\n\nFunktion f diskriminantti\n\n$$D = 51^2-4 \\cdot 101 \\cdot 78 = -28911 < 0$$\n\nFunktiolla ei ole yhtään reaalista nollakohtaa."
+      }
+    ]
+  },
+  {
+    "id": "OSAII_T6",
+    "section": "Osa II",
+    "title": "Tehtävä 6",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Tarkastellaan funktiota $f(x)=8x^2+bx+4$. Millä vakion $b$:n arvoilla funktiolla on täsmälleen yksi nollakohta?"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Toisen asteen funktion nollakohtien määrää tutkitaan diskriminantin avulla. Funktiolla f on täsmälleen yksi nollakohta, kun sen diskriminantti $D=0$. Muodostetaan ja ratkaistaan yhtälö.\n\n$$b^2-4 \\cdot 8 \\cdot 4 = 0$$\\Leftrightarrow b^2-128=0$$\\Leftrightarrow b^2=128 \\quad \\| \\sqrt{}$$\\Leftrightarrow \\sqrt{b^2}=\\sqrt{128}$$\\Leftrightarrow |b|=\\sqrt{2 \\cdot 64}$$\\Leftrightarrow |b|=8\\sqrt{2}$$\\Leftrightarrow b=-8\\sqrt{2} \\lor b=8\\sqrt{2}$$\n\nFunktioiden lausekkeet ovat $f_1(x)=8x^2+8\\sqrt{2}x+4$ ja $f_2(x)=8x^2-8\\sqrt{2}x+4$."
+      }
+    ]
+  },
+  {
+    "id": "OSAII_T7",
+    "section": "Osa II",
+    "title": "Tehtävä 7",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Ratkaise yhtälö $x^4+x^2-2=0$"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Kyseessä oleva yhtälö on bikvadraattinen yhtälö. Bikvadraattinen yhtälö on neljännen asteen polynomiyhtälö, jonka parittoman asteen termit puuttuvat ja joka on muotoa $ax^4+bx^2+c=0$. Bikvadraattisen yhtälön ratkaisutapa perustuu $x^2=t$ sijoitukseen. Ratkaistaan yhtälö.\n\n$$x^4+x^2-2=0$$\n\nSijoitetaan $x^2=t$\n\n$$\\Leftrightarrow t^2+t-2=0$$\\Leftrightarrow (t-1)(t+2)=0$$\\Leftrightarrow t_1=1 \\lor t_2=-2$$\n\nRatkaistaan seuraavaksi yhtälöt $x^2=t$.\n\n$$x^2=t_1 \\Leftrightarrow x^2=1 \\Leftrightarrow x=\\pm 1$$x^2=t_2 \\Leftrightarrow x^2=-2$$\n\nTällä yhtälöllä ei ole reaalisia ratkaisuja. Näin ollen yhtälön ratkaisut ovat $x=1$ tai $x=-1$."
+      }
+    ]
+  },
+  {
+    "id": "OSAII_T8",
+    "section": "Osa II",
+    "title": "Tehtävä 8",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Muodosta kolmannen asteen polynomi, jonka nollakohdat ovat $-4$, $1$, $3$ ja jonka arvo kohdassa $2$ on $5$"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Olkoon kysytty polynomifunktio $f(x)=a(x-x_1)(x-x_2)(x-x_3)$, missä $x_1, x_2$ ja $x_3$ ovat funktion nollakohtia. Funktiolla on nollakohdat $-4$, $1$ ja $3$. Tekijälauseen nojalla funktio saadaan muotoon\n\n$$f(x) = a(x-(-4))(x-1)(x-3) = a(x+4)(x-1)(x-3)$$\n\nKolmannen asteen termin kerroin $a$ saadaan ratkaistua hyödyntämällä tietoa siitä, että funktion arvo kohdassa $2$ on $5$. Muodostetaan ja ratkaistaan yhtälö.\n\n$$f(2) = 5$$\\Leftrightarrow a(2+4)(2-1)(2-3) = 5$$\\Leftrightarrow a \\cdot 6 \\cdot 1 \\cdot (-1) = 5$$\\Leftrightarrow -6a = 5$$\\Leftrightarrow a = -\\frac{5}{6}$$\n\nKysytty funktio on $f(x) = -\\dfrac{5}{6}(x+4)(x-1)(x-3)$."
+      }
+    ]
+  },
+  {
+    "id": "OSAII_T9",
+    "section": "Osa II",
+    "title": "Tehtävä 9",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Ratkaise yhtälö $\\sqrt{3-x}+7=4x$"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Neliönkorotuslauseen mukaan $a=b \\Leftrightarrow a^2=b^2$, jos ja vain jos $a \\ge 0$ ja $b \\ge 0$. Muokataan yhtälö muotoon, jossa toisella puolella esiintyy ainoastaan neliöjuurilauseke.\n\n$$\\sqrt{3-x}+7=4x \\Leftrightarrow \\sqrt{3-x}=4x-7$$\n\nSelvitetään neliöjuuren määrittelyehto ja yhtälön neliöönkorotusehto.\n\n**Neliöjuuren määrittelyehto:**\n$$3-x \\ge 0 \\Leftrightarrow -x \\ge -3 \\Leftrightarrow x \\le 3$$\n\n**Yhtälön neliöönkorotusehto:**\n$$4x-7 \\ge 0 \\Leftrightarrow 4x \\ge 7 \\Leftrightarrow x \\ge \\frac{7}{4}$$\n\nEhdot yhdistämällä saadaan $\\dfrac{7}{4} \\le x \\le 3$. Ratkaistaan yhtälö.\n\n$$\\sqrt{3-x} = 4x-7 \\quad \\| ()^2$$\\Leftrightarrow 3-x = (4x-7)^2$$\\Leftrightarrow 3-x = 16x^2-56x+49$$\\Leftrightarrow 16x^2-55x+46 = 0$$\\Leftrightarrow x = \\frac{-(-55) \\pm \\sqrt{(-55)^2-4 \\cdot 16 \\cdot 46}}{2 \\cdot 16} = \\frac{55 \\pm \\sqrt{81}}{32} = \\frac{55 \\pm 9}{32}$$\\Leftrightarrow x=2 \\lor x=\\frac{46}{32}=\\frac{23}{16} \\approx 1{,}44$$\n\nKoska $\\dfrac{7}{4}=1{,}75>1{,}44$, ratkaisuista $x=\\dfrac{46}{32}$ ei kuulu määrittelyvälille $\\dfrac{7}{4} \\le x \\le 3$. Siten yhtälön ratkaisu on $x=2$."
+      }
+    ]
+  },
+  {
+    "id": "OSAII_T10",
+    "section": "Osa II",
+    "title": "Tehtävä 10",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Aku Ankka haluaa rakentaa itselleen olympiauima-altaan. Kansainvälisen uintiliiton FINAn standardien mukaan altaan pituuden on oltava 50 metriä ja leveyden 25 metriä. Aku haluaa ympäröidä altaansa tasalevyisellä laatoituksella. Akulla on laattaa käytettävissään 1500 m$^2$. Ratkaise, kuinka leveä laatoituksesta tulee ja anna vastauksesi kahden desimaalin tarkkuudella. Oleta, että laatoista ei kulu hukkaan yhtään neliömetriä."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Merkitään laatoituksen leveyttä kirjaimella $x$. Tällöin laatoituksen ulkoreuna rajaa alueen, joka on suorakulmion muotoinen ja jonka leveys on $25+2x$ ja pituus $50+2x$. Laatoituksen ala on $1500 \\ \\text{m}^2$. Kuvan perusteella saadaan yhtälö\n\n$$(25+2x)(50+2x) = 1500$$\n\nLaskimella ratkaistuna saadaan\n\n$$x = -39{,}0985\\ldots \\ (\\text{m}) \\quad \\text{tai} \\quad x = 1{,}5985\\ldots \\ (\\text{m}) \\approx 1{,}60 \\ (\\text{m})$$\n\nKoska negatiivinen ratkaisu ei käy laatoituksen leveydeksi, Akun laatoituksesta tulee $1{,}60$ metriä leveä."
+      }
+    ]
+  },
+  {
+    "id": "OSAIII_T1",
+    "section": "Osa III",
+    "title": "Tehtävä 1",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Kalle heittää pallon kaaressa kaverilleen Lasselle. Pallon korkeutta t sekunnin kuluttua kuvaa funktio $f(t)=25t-5,8t^2$"
+      },
+      {
+        "type": "text",
+        "content": "a) Kuinka kauan pallo on vähintään 10 metrin korkeudella? Anna vastaus 0,1 sekunnin tarkkuudella."
+      },
+      {
+        "type": "text",
+        "content": "b) Millä ajanhetkellä pallo osuu maahan?"
+      },
+      {
+        "type": "text",
+        "content": "c) Piirrä funktion kuvaaja."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a) Koska funktio $f$ on alaspäin aukeava paraabeli, on ratkaistava aikaväli kymmenen metrin ylityksestä aina siihen asti, kunnes funktio saa uudelleen arvoksi $10$ (metriä). Olkoon $t_1$ ajanhetki, jolloin pallon korkeus on ensimmäisen kerran $10$ metriä ja $t_2$ ajanhetki, jolloin pallo saavuttaa putoamisensa aikana uudelleen $10$ metrin. Kysytty aikaväli on näiden erotus $t_{\\text{pallo vh. 10 m}} = t_2-t_1$.\n\n$$f(t) = 25t-5{,}8t^2 = 10$$t_1 = 0{,}446\\ldots \\ \\text{s} \\quad \\text{tai} \\quad t_2 = 3{,}864\\ldots \\ \\text{s}$$t_{\\text{pallo vh. 10 m}} = t_2-t_1 = 3{,}864\\ldots-0{,}446\\ldots = 3{,}417\\ldots \\approx 3{,}4 \\ \\text{s}$$"
+      },
+      {
+        "type": "text",
+        "content": "b) Koska paraabeli on alaspäin aukeava, ensimmäinen nollakohta kuvaa hetkeä, jolloin pallo heitetään ilmaan. Jälkimmäinen nollakohta kuvaa hetkeä, kun pallo osuu maahan. Ratkaistaan milloin $f(t)=0$.\n\n$$f(t) = 25t-5{,}8t^2 = 0$$t = 0 \\quad \\lor \\quad t = 4{,}3103\\ldots \\ \\text{s} \\approx 4{,}3 \\ \\text{s}$$\n\nPallo osuu maahan $4{,}3$ sekunnin kuluttua heittohetkestä."
+      },
+      {
+        "type": "text",
+        "content": "c) Alla on kuvaaja funktiosta $f(t) = 25t-5{,}8t^2$. Paraabeli aukeaa alaspäin, saavuttaa huippunsa noin kohdassa $t \\approx 2{,}16$ ja leikkaa $t$-akselin kohdissa $t=0$ ja $t \\approx 4{,}3$."
+      }
+    ]
+  },
+  {
+    "id": "OSAIII_T2",
+    "section": "Osa III",
+    "title": "Tehtävä 2",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Sirkuskoulu Estradi myy vuosittaisessa kevätnäytöksessä mokkapaloja 300 kappaletta, kun mokkapalan hinta on 2,00 €. Jokaisen 30 sentin hinnankorotuksen tiedetään vähentävän myyntiä 60 mokkapalalla ja jokaisen 30 sentin hinnanalennuksen lisäävän myyntiä 60 mokkapalalla. Sirkuskoululle aiheutuu 1,10 € myyntikulut jokaisesta myydystä mokkapalasta. Mikä tulisi olla mokkapalan myyntihinnan, jotta sirkuskoulun myynti olisi voitollista?"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Merkitään jokaista 30 sentin hinnankorotusta kirjaimella $x$. Tällöin mokkapalan hinta on $2{,}00+0{,}30x$. Samalla mokkapalojen myyntimäärä on $300-60x$. Myyntitulo on tällöin\n\n$$(2{,}00+0{,}30x)(300-60x)$$\n\nMyyntikustannukset ovat tällöin\n\n$$1{,}10 \\cdot (300-60x)$$\n\nSirkuskoulun myynti on voitollista, kun myyntitulot ovat suuremmat kuin myyntikustannukset. Saadaan epäyhtälö\n\n$$(2{,}00+0{,}30x)(300-60x) > 1{,}10 \\cdot (300-60x)$$\n\njosta laskimella ratkaistuna $-3 < x < 5$.\n\nKun $x > -3$, myyntihinta on suurempi kuin $2{,}00+0{,}30 \\cdot (-3) = 1{,}10$ euroa.\n\nKun $x < 5$, myyntihinta on pienempi kuin $2{,}00+0{,}30 \\cdot 5 = 3{,}5$ euroa.\n\nMokkapalan hinnan on näin ollen oltava suurempi kuin $1{,}10$ € mutta pienempi kuin $3{,}5$ €, jotta toiminta on sirkuskoululle tuotollista."
+      }
+    ]
+  },
+  {
+    "id": "OSAIII_T3",
+    "section": "Osa III",
+    "title": "Tehtävä 3",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Millä  vakion $a$ arvoilla yhtälöllä $\\left(a+\\frac{9}{4}\\right)x^2+(a+1)x=-1$ on tasan yksi ratkaisu?"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Muokataan yhtälöä.\n\n$$\\left(a+\\frac{9}{4}\\right)x^2+(a+1)x = -1$$\\Leftrightarrow \\left(a+\\frac{9}{4}\\right)x^2+(a+1)x+1 = 0$$\n\nToisen asteen yhtälöllä on tasan yksi ratkaisu täsmälleen silloin kun diskriminantti $D=0$. Siis\n\n$$D = 0$$\\Leftrightarrow (a+1)^2-4 \\cdot \\left(a+\\frac{9}{4}\\right) \\cdot 1 = 0$$\n\nLaskimella saadaan $a=-2 \\lor a=4$. Yhtälöllä on tasan yksi ratkaisu, kun $a=-2$ tai $a=4$."
+      }
+    ]
+  },
+  {
+    "id": "OSAIII_T4",
+    "section": "Osa III",
+    "title": "Tehtävä 4",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Maan alla kulkevan tunnelin poikkileikkaus noudattaa funktiota $f(x)=7-\\frac{1}{2}x^2$. Tunnelissa kulkee kaksikaistainen autotie, jonka keskiviiva kulkee kohdassa $x=0$."
+      },
+      {
+        "type": "text",
+        "content": "a) Mikä on tunnelin korkein kohta?"
+      },
+      {
+        "type": "text",
+        "content": "b) Mikä on tunnelin leveys?"
+      },
+      {
+        "type": "text",
+        "content": "c) Mahtuuko 3,1 metriä korkea ja 3,0 metriä korkea auto kulkemaan tunnelin läpi? Oleta, että auto pysyy omalla kaistallaan."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a) Koska $\\frac{1}{2}x^2 \\ge 0$ kaikilla $x \\in \\mathbb{R}$ ja funktio $f$ on alaspäin aukeava paraabeli, tunnelin suurin korkeus saavutetaan kohdassa $x=0$. Tunnelin suurin korkeus\n\n$$f(0) = 7-\\frac{1}{2} \\cdot 0^2 = 7 \\ \\text{metriä}$$"
+      },
+      {
+        "type": "text",
+        "content": "b) Tunneli on $y$-akselin suhteen symmetrinen alaspäin aukeava paraabeli. Tunnelin leveys saadaan $x$-akselin leikkauspisteiden erotuksen itseisarvona. Ratkaistaan, missä kohdissa funktio leikkaa $x$-akselin.\n\n$$f(x)=0 \\Leftrightarrow 7-\\frac{1}{2}x^2=0 \\Leftrightarrow x=\\pm\\sqrt{14}$$\n\nTunnelin leveys on\n\n$$|\\sqrt{14}-(-\\sqrt{14})| = |\\sqrt{14}+\\sqrt{14}| = 2\\sqrt{14} \\approx 7{,}5 \\ (\\text{m})$$"
+      },
+      {
+        "type": "text",
+        "content": "c) Auto mahtuu todennäköisimmin tunnelin läpi, kun kuskin puoleinen rengas kulkee kohdassa $x=0$. Tässä kohdassa korkeus on $7>3$ metriä, joten ainakin kuskin kohdalta auto mahtuu kulkemaan tunneliin. Kun kuskin puoleinen rengas kulkee kohdassa $x=0$, apukuskin puoleinen rengas kulkee kohdassa $x=3{,}1$. Tällöin tunnelin korkeus\n\n$$f(3{,}1) = 7-\\frac{1}{2} \\cdot (3{,}1)^2 = 2{,}195 < 3$$\n\nKoska tunnelin korkeus tässä kohdassa on auton korkeutta pienempi, auto ei mahdu kulkemaan tunnelin läpi."
+      }
+    ]
+  },
+  {
+    "id": "OSAIII_T5",
+    "section": "Osa III",
+    "title": "Tehtävä 5",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Olkoon $f(x)=\\frac{x^3-3x^2+bx+24}{x^2-8x+16}$. Määritä vakio b niin, että funktion f lauseke voidaan supistaa. Mikä on supistettu murtolauseke. Millä muuttujan x arvoilla funktio f on määritelty?"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Jotta funktion $f$ lauseke voidaan supistaa, nimittäjän nollakohta on oltava myös osoittajan nollakohta. Nimittäjän nollakohta saadaan yhtälöstä\n\n$$x^2-8x+16=0 \\Leftrightarrow (x-4)^2=0 \\Leftrightarrow x=4$$\n\nJotta lauseke voidaan supistaa, on myös osoittajan saatava arvoksi nolla kohdassa $x=4$. Saadaan yhtälö\n\n$$4^3-3 \\cdot 4^2+b \\cdot 4+24=0 \\Leftrightarrow 64-48+4b+24=0 \\Leftrightarrow 4b=-40 \\Leftrightarrow b=-10$$\n\nSupistettu murtolauseke on\n\n$$f(x) = \\frac{x^3-3x^2-10x+24}{x^2-8x+16} = \\frac{(x-4)(x+3)(x-2)}{(x-4)^2} = \\frac{(x+3)(x-2)}{x-4}$$\n\nFunktio on määritelty kaikkialla muualla kuin nimittäjän nollakohdassa. Nimittäjä saa arvon nolla, kun $x=4$. Funktio on siten määritelty, kun $x \\neq 4$."
+      }
+    ]
+  },
+  {
+    "id": "OSAIII_T6",
+    "section": "Osa III",
+    "title": "Tehtävä 6",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Piha-alueelle rakennetaan talo, jonka pohja on suorakulmainen. Talon pidempi sivu on pituudeltaan kaksinkertainen lyhyempään sivuun nähden. Talosta halutaan 240 m² suuruinen. Määritä talon mitat siten, että ehdot toteutuvat."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Olkoon talon lyhyemmän sivun pituus $x$ (metriä). Tällöin pidemmän sivun pituus on $x+20$ (m). Koska talon piiri on $240$ metriä ja talo on muodoltaan suorakulmainen, saadaan yhtälö\n\n$$2 \\cdot (x+20)+2 \\cdot x = 240$$\\Leftrightarrow 2x+40+2x = 240$$\\Leftrightarrow 4x+40 = 240$$\\Leftrightarrow 4x = 200$$\\Leftrightarrow x = 50$$\n\nLyhyemmän sivun pituus on siis $50$ metriä ja pidemmän sivun pituus näin ollen $50+20=70$ metriä."
+      }
+    ]
+  },
+  {
+    "id": "OSAIII_T7",
+    "section": "Osa III",
+    "title": "Tehtävä 7",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Määritä ne kolme peräkkäistä kokonaislukuja, joiden neliöiden summa on 1202."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Olkoon keskimmäinen kolmesta peräkkäisestä kokonaisluvusta $y$. Tällöin kaikki kokonaisluvut ovat $y-1$, $y$ ja $y+1$. Näiden neliöiden summa on\n\n$$(y-1)^2+y^2+(y+1)^2$$\n\nKoska neliöiden summa on $1202$, saadaan yhtälö\n\n$$(y-1)^2+y^2+(y+1)^2 = 1202$$\n\njosta laskimella ratkaistuna $y=-20 \\lor y=20$. Näistä vain $y=20$ toteuttaa määrittelyehdon $y>0$. Näin ollen kolme peräkkäistä kokonaislukua ovat $19$, $20$ ja $21$."
+      }
+    ]
+  },
+  {
+    "id": "OSAIII_T8",
+    "section": "Osa III",
+    "title": "Tehtävä 8",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Tutki perustellen, päteekö$\\sqrt{4-\\sqrt{17}} = 33-8\\sqrt{17}$."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Vaikka yhtälö\n\n$$(4-\\sqrt{17})^2 = 33-8\\sqrt{17}$$\n\npätee, ei väite\n\n$$\\sqrt{4-\\sqrt{17}} = 33-8\\sqrt{17}$$\n\nole totta. Neliöjuuri luvusta $a$ on sellainen ei-negatiivinen luku, jonka neliö on $a$. Koska\n\n$$4-\\sqrt{17} < 0$$\n\nväite on epätosi."
+      }
+    ]
+  },
+  {
+    "id": "OSAIII_T9",
+    "section": "Osa III",
+    "title": "Tehtävä 9",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Osoita, että luku $n^8-1$ on jaollinen luvulla $n-1$ ja $n+1$, $n\\in\\mathbb{Z}_+$"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Väite: Luku $n^8-1$ on jaollinen luvulla $n-1$ ja $n+1$.\n\nTodistus:\n\nKoska\n\n$$n^8-1 = (n^4)^2-(1^4)^2 = (n^4-1^4)(n^4+1^4) = (n-1)(n+1)(n^2+1)(n^4+1),$$\n\nluku $n^8-1$ on jaollinen luvulla $n-1$ ja $n+1$, mikä on todistettu."
+      }
+    ]
+  },
+  {
+    "id": "OSAIII_T10",
+    "section": "Osa III",
+    "title": "Tehtävä 10",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Nollasta eroava uku x ja sen vastaluvun käänteisluvun neliö ovat yhtä suuret.  Määritä luku x."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Luvun $x$ vastaluku on $-x$, jonka käänteisluku on $\\dfrac{1}{-x}$ ja edelleen tämän neliö $\\left(\\dfrac{1}{-x}\\right)^2$.\n\nSaadaan yhtälö\n\n$$x = \\left(\\frac{1}{-x}\\right)^2 \\Leftrightarrow x = \\frac{1}{x^2} \\Leftrightarrow x^3 = 1 \\Leftrightarrow x = 1.$$\n\nLuku $x$ on siis $1$."
+      }
+    ]
+  },
+  {
+    "id": "OSAIV_T1",
+    "section": "Osa IV",
+    "title": "Tehtävä 1",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Todista toisen asteen yhtälön ratkaisukaava: $ax^2+bx+c=0 \\Rightarrow x=\\frac{-b\\pm\\sqrt{b^2-4ac}}{2a}$"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "$$ax^2+bx+c=0$$\\Leftrightarrow ax^2+bx=-c \\quad \\text{(Oletus: } a \\neq 0\\text{)}$$\\Leftrightarrow x^2+\\left(\\frac{b}{a}\\right)x = -\\frac{c}{a}$$\\Leftrightarrow x^2+\\left(\\frac{b}{a}\\right)x+\\left(\\frac{b}{2a}\\right)^2 = -\\frac{c}{a}+\\left(\\frac{b}{2a}\\right)^2 \\quad \\text{(Täydennetään neliöön)}$$\\Leftrightarrow \\left(x+\\frac{b}{2a}\\right)^2 = \\frac{b^2}{4a^2}-\\frac{c}{a}$$\\Leftrightarrow \\left(x+\\frac{b}{2a}\\right)^2 = \\frac{b^2}{4a^2}-\\frac{4ac}{4a^2}$$\\Leftrightarrow \\left(x+\\frac{b}{2a}\\right)^2 = \\frac{b^2-4ac}{4a^2}$$\\Leftrightarrow \\sqrt{\\left(x+\\frac{b}{2a}\\right)^2} = \\sqrt{\\frac{b^2-4ac}{4a^2}}$$\\Leftrightarrow x+\\frac{b}{2a} = \\pm\\frac{\\sqrt{b^2-4ac}}{2a}$$\\Leftrightarrow x = \\frac{-b\\pm\\sqrt{b^2-4ac}}{2a}$$\n\nEdellä oletettiin, että $a \\neq 0$. Perustellaan vielä, miksi näin voitiin tehdä (ja miksi tässä tehtävässä näin on itse asiassa pakko toimia). Jos $a=0$, toisen asteen yhtälö $ax^2+bx+c=0$ saataisiin muotoon $bx+c=0$, jolloin kyseessä olisi ensimmäisen asteen yhtälö. Näin ollen oletus voitiin tehdä.\n\nOn osoitettu, että toisen asteen yhtälön $ax^2+bx+c=0$ ratkaisu on\n\n$$x = \\frac{-b\\pm\\sqrt{b^2-4ac}}{2a}.$$"
+      }
+    ]
+  },
+  {
+    "id": "OSAIV_T2",
+    "section": "Osa IV",
+    "title": "Tehtävä 2",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "a) Funktiota kutsutaan injektioksi, mikäli se saa jokaisen arvonsa ainoastaan yhdessä määrittelyjoukkonsa kohdassa. Injektiossa lähtöjoukon eri alkiot kuvautuvat maalijoukon eri alkioille. Funktio on toisin sanoen injektio, jos ehdosta"
+      },
+      {
+        "type": "text",
+        "content": "$f\\left(x_1\\right)=f\\left(x_2\\right)$"
+      },
+      {
+        "type": "text",
+        "content": "seuraa, että"
+      },
+      {
+        "type": "text",
+        "content": "$x_1 = x_2.$"
+      },
+      {
+        "type": "text",
+        "content": "Olkoon funktio $ f\\colon \\mathbb{R} \\rightarrow \\mathbb{R},\\ f(x) = 2x - 1 $. Tutki perustellen, onko funktio $ f $ injektio."
+      },
+      {
+        "type": "text",
+        "content": "b) Onko $f(x)=\\sqrt{\\frac{2x+1}{2x}}$ injektio?"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a) Tehdään oletus, että $f(x) = f(y)$. Tällöin\n\n$$2x-1 = 2y-1 \\quad \\|+1$$2x = 2y \\quad \\|:2$$x = y$$\n\nSiis ehdosta $f(x)=f(y)$ seuraa, että $x=y$. On osoitettu, että funktio $f$ on injektio."
+      },
+      {
+        "type": "text",
+        "content": "b) Funktio $f$ on injektio. Funktio on määritelty, kun $x \\leq -1$ tai $x > 0$.\n\nKun $x \\leq -1$, muuttujan $x$ arvon kasvaessa funktion $f$ arvo kasvaa.\nKun $x > 0$, muuttujan $x$ arvon kasvaessa funktion arvo pienenee.\n\nFunktio on siis aidosti vähenevä välillä $]-\\infty,-1]$ ja välillä $]0,\\infty[$.\n\nLisäksi:\n- Kun $x \\leq -1$, niin $f(x) \\leq 1$\n- Kun $x > 0$, niin $f(x) \\geq 1$\n\nSiten funktiolle $f$ pätee $f(x_1)=f(x_2) \\Rightarrow x_1=x_2$, eli funktio on injektio."
+      }
+    ]
+  },
+  {
+    "id": "OSAIV_T3",
+    "section": "Osa IV",
+    "title": "Tehtävä 3",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Ilmasta otettu dronekuva kuvaa uudelle asuinalueelle tehtävien talojen tontteja. Tonttien väliin tehdään asfalttipäällysteinen tie, joka rajaa tontteja ylhäältä katsottuna siten, että ne rajaavat asuinalueen 2×3-ruudukoksi. Asfalttifirmalla on käytössään 800 m² asfalttia. Kuinka leveät käytävät saavat enintään olla? Asuinalueen mitat ovat 120 m x 60 m. Anna vastauksesi 0,1 metrin tarkkuudella."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Merkitään käytävän leveyttä kirjaimella $x$. Kuvasta (piirrä) nähdään, että vaakasuoran tienpätkän tarvittava asfalttiala on $x \\cdot 120 \\ \\text{m}^2$, ja pystysuoriin $2 \\cdot 60 \\cdot x = 120 \\cdot x \\ \\text{m}^2$.\n\nRisteyksiin jäävien neliöiden ala on $x^2 \\ \\text{m}^2$.\n\nNäin ollen kokonaisala on\n\n$$A(x) = 120x+120x-2x^2 = -2x^2+240x.$$\n\nKoska asfalttia on käytössä yhteensä $800 \\ \\text{m}^2$, saadaan yhtälö\n\n$$A(x) = 800$$-2x^2+240x = 800$$-2x^2+240x-800 = 0.$$\n\nLaskimella saadaan $x = 3{,}431\\ldots \\ \\text{m} \\approx 3{,}4 \\ \\text{m}$, tai $x = 116{,}5\\ldots \\ \\text{m}$, joista jälkimmäinen ei käy, koska tällöin käytävä menisi yli alueen. Näin ollen käytävät saavat enintään $3{,}4$ m leveät."
+      }
+    ]
+  },
+  {
+    "id": "OSAIV_T4",
+    "section": "Osa IV",
+    "title": "Tehtävä 4",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Todista, että viiden peräkkäisen kokonaisluvun tulo on jaollinen viidellä"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Oletus: $a, a+1, a+2, a+3$ ja $a+4$ ovat peräkkäisiä kokonaislukuja.\n\nVäite: Viiden peräkkäisen kokonaisluvun tulo on viidellä jaollinen.\n\nTodistus:\n\nMuodostetaan lukujen tulo:\n\n$$a \\cdot (a+1) \\cdot (a+2) \\cdot (a+3) \\cdot (a+4).$$\n\nKoska kyseessä olevat viisi lukua ovat oletuksen nojalla peräkkäisiä kokonaislukuja, on yhden niistä oltava viidellä jaollinen. Näin ollen on osoitettu, että viiden peräkkäisen kokonaisluvun tulo on viidellä jaollinen."
+      }
+    ]
+  },
+  {
+    "id": "OSAIV_T5",
+    "section": "Osa IV",
+    "title": "Tehtävä 5",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Osoita, että $\\sqrt{a}\\sqrt{b}=\\sqrt{ab}$"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Koska sekä $\\sqrt{a} \\geq 0$ että $\\sqrt{b} \\geq 0$, on myös tulo $\\sqrt{a}\\sqrt{b} \\geq 0$.\n\nNeliöjuuren määritelmän mukaan neliöjuuri on sellainen ei-negatiivinen luku, joka korotettuna neliöön palauttaa alkuperäisen luvun. Korotetaan luku $\\sqrt{a}\\sqrt{b}$ neliöön:\n\n$$\\left(\\sqrt{a}\\sqrt{b}\\right)^2 = \\left(\\sqrt{a}\\right)^2 \\cdot \\left(\\sqrt{b}\\right)^2 = ab.$$\n\nLuku $\\sqrt{a}\\sqrt{b}$ toteuttaa molemmat neliöjuuren ehdot. On osoitettu, että\n\n$$\\sqrt{a}\\sqrt{b} = \\sqrt{ab}.$$"
+      }
+    ]
+  }
+]

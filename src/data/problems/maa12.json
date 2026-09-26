@@ -1,0 +1,985 @@
+[
+  {
+    "id": "OSAI_T1",
+    "section": "Osio I",
+    "title": "Tehtävä 1",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Tutki, mitkä ovat funktion $f$ määrittely- ja arvojoukot. Vastausta ei tarvitse perustella."
+      },
+      {
+        "type": "text",
+        "content": "a) $f(x) = \\dfrac{1}{x+1}$"
+      },
+      {
+        "type": "text",
+        "content": "b) $f(x) = x^2$"
+      },
+      {
+        "type": "text",
+        "content": "c) $f(x) = 3\\sin(x)$"
+      },
+      {
+        "type": "text",
+        "content": "d) $f(x) = \\sqrt{x^2 - 3}$"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Vastaukset on esitetty muodossa $f: A \\to B$, missä $A$ on määrittelyjoukko ja $B$ arvojoukko.\n\na) $f: \\mathbb{R}\\setminus\\{-1\\} \\to \\mathbb{R}$\n\nb) $f: \\mathbb{R} \\to \\mathbb{R}_+$\n\nc) $f: \\mathbb{R} \\to [-3, 3]$\n\nd) $f: \\left]-\\infty, -\\sqrt{3}\\right] \\cup \\left[\\sqrt{3}, \\infty\\right[ \\to \\mathbb{R}_+$"
+      }
+    ]
+  },
+  {
+    "id": "OSAI_T2",
+    "section": "Osio I",
+    "title": "Tehtävä 2",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Tutki, onko funktio jatkuva kohdassa $x = 0$."
+      },
+      {
+        "type": "text",
+        "content": "a) $f(x) = 3x^2$"
+      },
+      {
+        "type": "text",
+        "content": "b) $g(x) = \\dfrac{1}{x}$"
+      },
+      {
+        "type": "text",
+        "content": "c) $h(x) = \\sqrt{x-1}$"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a) On. Huomataan helposti, sillä $\\lim_{x \\to 0} f(x) = f(0) = 0$."
+      },
+      {
+        "type": "text",
+        "content": "b) Ei ole. Funktiolla ei ole raja-arvoa kohdassa $x = 0$, sillä $\\lim_{x \\to 0^-} g(x) \\neq \\lim_{x \\to 0^+} g(x)$. Näin ollen funktio ei jatku kohdassa $x = 0$."
+      },
+      {
+        "type": "text",
+        "content": "c) Ei ole. Funktion määrittelyjoukko on $[1, \\infty[$, joten funktio ei ole jatkuva kohdassa $x = 0$."
+      }
+    ]
+  },
+  {
+    "id": "OSAI_T3",
+    "section": "Osio I",
+    "title": "Tehtävä 3",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Osoita, että funktio $f(x) = \\begin{cases} x^3 - 2, & x < 0 \\\\ x^2 - 5x - 2, & x \\geq 0 \\end{cases}$ on jatkuva pisteessä $x = 0$."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Funktio saa arvon $f(0) = 0^2 - 5 \\cdot 0 - 2 = -2$.\n\nToisaalta vasen raja-arvo on\n$$\\lim_{x \\to 0^-} f(x) = \\lim_{x \\to 0^-}(x^3 - 2) = -2,$$\nja oikeanpuolinen raja-arvo on\n$$\\lim_{x \\to 0^+} f(x) = \\lim_{x \\to 0^+}(x^2 - 5x - 2) = -2.$$\n\nKoska toispuoliset raja-arvot ovat yhtä suuret, niin funktio on jatkuva pisteessä $x = 0$."
+      }
+    ]
+  },
+  {
+    "id": "OSAI_T4",
+    "section": "Osio I",
+    "title": "Tehtävä 4",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Tutki onko seuraavilla funktiolla käänteisfunktio."
+      },
+      {
+        "type": "text",
+        "content": "a) $f: \\mathbb{R} \\to \\mathbb{R},\\ f(x) = x^2$"
+      },
+      {
+        "type": "text",
+        "content": "b) $g: \\mathbb{R} \\to \\mathbb{R},\\ g(x) = x^3$"
+      },
+      {
+        "type": "text",
+        "content": "c) $h: \\mathbb{R} \\to \\mathbb{R},\\ h(x) = e^x + a,\\ a \\in \\mathbb{R}$"
+      },
+      {
+        "type": "text",
+        "content": "d) $p: [0, \\pi] \\to [-1, 1],\\ p(x) = \\cos(x)$"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Määritelmän mukaan, jotta funktio $f: A \\to B$ on käänteisfunktio, niin täytyy sen olla monotoninen, ja tällöin $f^{-1}: B \\to A$.\n\na) Ei ole. Koska funktio $f$ ei ole monotoninen (esim. $f(-1) = f(1) = 1$), joten sillä ei ole käänteisfunktiota.\n\nb) On. Käänteisfunktio on $g^{-1}(x) = \\sqrt[3]{x}$.\n\nc) On. Käänteisfunktio on $h^{-1}(x) = \\ln(x - a)$.\n\nd) On. Käänteisfunktio on $p^{-1}(x) = \\arccos(x)$."
+      }
+    ]
+  },
+  {
+    "id": "OSAI_T5",
+    "section": "Osio I",
+    "title": "Tehtävä 5",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Tutki, onko funktio derivoituva kohdassa $x = 0$."
+      },
+      {
+        "type": "text",
+        "content": "a) $f(x) = 5x$"
+      },
+      {
+        "type": "text",
+        "content": "b) $g(x) = \\dfrac{1}{x}$"
+      },
+      {
+        "type": "text",
+        "content": "c) $h(x) = |x|$"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a) On. Huomataan helposti, että funktio on jatkuva pisteessä $x = 0$. Määritelmän mukaan\n$$f'(0) = \\lim_{h \\to 0} \\frac{f(0+h) - f(0)}{h} = \\lim_{h \\to 0} \\frac{5h}{h} = 5.$$\nEli funktio on derivoituva kohdassa $x = 0$ ja sen derivaatta on $5$."
+      },
+      {
+        "type": "text",
+        "content": "b) Ei ole. Funktiolla $g$ ei ole raja-arvoa kohdassa $x = 0$, joten funktio ei ole derivoituva kohdassa $x = 0$."
+      },
+      {
+        "type": "text",
+        "content": "c) Ei ole. Tarkastellaan toispuolisia derivaattoja. Saadaan, että\n$$h'_-(0) = \\lim_{h \\to 0^-} \\frac{-h - 0}{h} = \\lim_{h \\to 0^-} \\frac{-h}{h} = -1$$\nja\n$$h'_+(0) = \\lim_{h \\to 0^+} \\frac{h - 0}{h} = \\lim_{h \\to 0^+} \\frac{h}{h} = 1.$$\nKoska toispuoliset derivaatat ovat erisuuret, niin funktio ei ole derivoituva kohdassa $x = 0$."
+      }
+    ]
+  },
+  {
+    "id": "OSAI_T6",
+    "section": "Osio I",
+    "title": "Tehtävä 6",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Tutki perustellen, onko funktio $f(x) = \\begin{cases} x^2 + 3, & x < 2 \\\\ -\\dfrac{1}{2}x + 8, & x \\geq 2 \\end{cases}$ derivoituva kohdassa"
+      },
+      {
+        "type": "text",
+        "content": "a) $x = 0$"
+      },
+      {
+        "type": "text",
+        "content": "b) $x = 2$"
+      },
+      {
+        "type": "text",
+        "content": "c) $x = 3$"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a) On. Huomataan helposti, että funktio on jatkuva pisteessä $x = 0$. Näin ollen\n$$\\lim_{x \\to 0} \\frac{x^2 + 3 - 3}{x} = \\lim_{x \\to 0} \\frac{x^2}{x} = 0.$$"
+      },
+      {
+        "type": "text",
+        "content": "b) Ei ole. Tarkastellaan toispuolisia raja-arvoja.\n$$f'_-(2) = \\lim_{x \\to 2^-} \\frac{x^2 + 3 - 7}{x - 2} = \\lim_{x \\to 2^-} \\frac{x^2 - 4}{x - 2} = \\lim_{x \\to 2^-} x + 2 = 4$$\nja\n$$f'_+(2) = \\lim_{x \\to 2^+} \\frac{-\\frac{1}{2}x + 8 - 7}{x - 2} = \\lim_{x \\to 2^+} \\frac{-\\frac{1}{2}x + 1}{x - 2} = \\lim_{x \\to 2^+} \\frac{-(x-2)}{2(x-2)} = -\\frac{1}{2}.$$\nKoska toispuoliset derivaatat ovat erisuuret, ei funktio ole derivoituva kohdassa $x = 2$."
+      },
+      {
+        "type": "text",
+        "content": "c) On. b-kohdan perustella funktion derivaatta on $-\\dfrac{1}{2}$ välillä $[2, \\infty[$."
+      }
+    ]
+  },
+  {
+    "id": "OSAI_T7",
+    "section": "Osio I",
+    "title": "Tehtävä 7",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Määritä se vakion $a$ arvo millä funktio $f(x) = \\begin{cases} 2x^2 + 4, & x < 1 \\\\ 4x + a, & x \\geq 1 \\end{cases}$ on derivoituva kaikkialla."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Huomataan helposti, että funktio on jatkuva sekä derivoituva kaikissa muissa pisteissä paitsi $x = 1$. Täytyy päteä, että funktio on jatkuva kyseisessä pisteessä. Tarkastellaan funktion toispuolisia raja-arvoja.\n$$\\lim_{x \\to 1^-} f(x) = \\lim_{x \\to 1^-} 2x^2 + 4 = 6$$\nja\n$$\\lim_{x \\to 1^+} f(x) = \\lim_{x \\to 1^+} 4x + a = 4 + a.$$\nToisaalta $f(1) = 4 + a$. Näin ollen funktio on jatkuva, kun $6 = 4 + a \\Leftrightarrow a = 2$.\n\nTutkitaan vielä, että funktion toispuoliset derivaatat ovat yhtä suuret.\n$$f'_-(1) = \\lim_{x \\to 1^-} \\frac{f(x) - f(1)}{x - 1} = 4$$\nja\n$$f'_+(1) = \\lim_{x \\to 1^+} \\frac{f(x) - f(1)}{x - 1} = 4.$$\nNäin ollen funktio on derivoituva koko määrittelyjoukossa kun $a = 2$."
+      }
+    ]
+  },
+  {
+    "id": "OSAI_T8",
+    "section": "Osio I",
+    "title": "Tehtävä 8",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Laske raja-arvo."
+      },
+      {
+        "type": "text",
+        "content": "a) $\\displaystyle\\lim_{x \\to \\infty} 4 - \\frac{2}{x}$"
+      },
+      {
+        "type": "text",
+        "content": "b) $\\displaystyle\\lim_{x \\to -\\infty} \\frac{7^x}{2^x}$"
+      },
+      {
+        "type": "text",
+        "content": "c) $\\displaystyle\\lim_{x \\to \\infty} \\frac{3e^x + 1}{e^x}$"
+      },
+      {
+        "type": "text",
+        "content": "d) $\\displaystyle\\lim_{x \\to 0^+} \\frac{\\sqrt{x^2 + \\frac{1}{x}}}{|x|}$"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a) $\\displaystyle\\lim_{x \\to \\infty} 4 - \\frac{2}{x} = 4 - 0 = 4$"
+      },
+      {
+        "type": "text",
+        "content": "b) $\\displaystyle\\lim_{x \\to -\\infty} \\frac{7^x}{2^x} = \\lim_{x \\to -\\infty} \\left(\\frac{7}{2}\\right)^x = \\lim_{x \\to \\infty} \\left(\\frac{2}{7}\\right)^x = 0$"
+      },
+      {
+        "type": "text",
+        "content": "c) $\\displaystyle\\lim_{x \\to \\infty} \\frac{3e^x + 1}{e^x} = \\lim_{x \\to \\infty} 3 + \\frac{1}{e^x} = \\frac{3 + 0}{1} = 3$"
+      },
+      {
+        "type": "text",
+        "content": "d) $\\displaystyle\\lim_{x \\to 0^+} \\frac{\\sqrt{x^2 + \\frac{1}{x}}}{|x|} = \\lim_{x \\to 0^+} \\frac{|x|\\sqrt{1 + \\frac{1}{x^3}}}{|x|} = \\lim_{x \\to 0^+} \\sqrt{1 + \\frac{1}{x^3}} = \\infty.$"
+      }
+    ]
+  },
+  {
+    "id": "OSAI_T9",
+    "section": "Osio I",
+    "title": "Tehtävä 9",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Laske epäoleellinen integraali."
+      },
+      {
+        "type": "text",
+        "content": "a) $\\displaystyle\\int_3^\\infty \\frac{1}{x-2}\\,dx$"
+      },
+      {
+        "type": "text",
+        "content": "b) $\\displaystyle\\int_{-\\infty}^0 \\frac{1}{(x-3)^2}\\,dx$"
+      },
+      {
+        "type": "text",
+        "content": "c) $\\displaystyle\\int_0^\\infty x e^{-x^2}\\,dx$"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a)\n$$\\int_3^\\infty \\frac{dx}{x-2} = \\lim_{t \\to \\infty} \\int_3^t \\frac{dx}{x-2} = \\lim_{t \\to \\infty} \\Big[\\ln|x-2|\\Big]_3^t = \\lim_{t \\to \\infty} \\ln|t-2| = \\infty$$"
+      },
+      {
+        "type": "text",
+        "content": "b)\n$$\\int_{-\\infty}^0 \\frac{1}{(x-3)^2}\\,dx = \\lim_{t \\to -\\infty} \\int_t^0 (x-3)^{-2}\\,dx = \\lim_{t \\to -\\infty} \\left[-\\frac{1}{x-3}\\right]_t^0 = \\lim_{t \\to -\\infty}\\left(-\\frac{1}{-3} + \\frac{1}{t-3}\\right) = \\frac{1}{3}$$"
+      },
+      {
+        "type": "text",
+        "content": "c)\n$$\\int_0^\\infty x e^{-x^2}\\,dx = \\lim_{t \\to \\infty} \\left(-\\frac{1}{2}\\right)\\int_0^t -2x e^{-x^2}\\,dx = \\lim_{t \\to \\infty} \\left[-\\frac{1}{2}e^{-x^2}\\right]_0^t = \\lim_{t \\to \\infty}\\left(-\\frac{1}{2}e^{-t^2} + \\frac{1}{2}\\right) = \\frac{1}{2}$$"
+      }
+    ]
+  },
+  {
+    "id": "OSAI_T10",
+    "section": "Osio I",
+    "title": "Tehtävä 10",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Määritä vakion $a$ siten, että funktion $f(x) = \\dfrac{1}{\\sqrt{x+2}}$ kuvaajan ja $x$-akselin välin $[-2, a]$ rajaaman pinta-alan suuruus on 4."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Määritetään epäoleellinen integraali ja muodostetaan yhtälö.\n$$\\int_{-2}^a \\frac{1}{\\sqrt{x+2}}\\,dx = \\Big[2\\sqrt{x+2}\\Big]_{-2}^a = 2\\sqrt{a+2} = 4$$\nEli saadaan yhtälö\n$$2\\sqrt{a+2} = 4 \\Leftrightarrow \\sqrt{a+2} = 2 \\Leftrightarrow a + 2 = 4 \\Leftrightarrow a = 2.$$\nEpäoleellinen integraali täytyy siis laskea väliltä $[-2, 2]$."
+      }
+    ]
+  },
+  {
+    "id": "OSAII_T1",
+    "section": "Osio II",
+    "title": "Tehtävä 11",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Tutki ja osoita, onko funktio $f(x) = \\dfrac{|x|}{x+1}$ derivoituva kohdassa"
+      },
+      {
+        "type": "text",
+        "content": "a) $x = 0$"
+      },
+      {
+        "type": "text",
+        "content": "b) $x = 1$"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a) Tutkitaan toispuolisia raja-arvoja.\n$$f'_-(0) = \\lim_{x \\to 0^-} \\frac{\\frac{-x}{x+1} - 0}{x - 0} = \\lim_{x \\to 0^-} \\frac{-x}{x(x+1)} = \\lim_{x \\to 0^-} \\frac{-1}{x+1} = -1$$\nja\n$$f'_+(0) = \\lim_{x \\to 0^+} \\frac{\\frac{x}{x+1} - 0}{x - 0} = \\lim_{x \\to 0^+} \\frac{1}{x+1} = 1.$$\nKoska toispuoliset derivaatat ovat erisuuret, niin funktio ei ole derivoituva kohdassa $x = 0$."
+      },
+      {
+        "type": "text",
+        "content": "b) Kun $x = 1$, funktio saa arvon $f(1) = \\dfrac{1}{2}$. Nyt\n$$f'(1) = \\lim_{x \\to 1} \\frac{\\frac{x}{x+1} - \\frac{1}{2}}{x - 1} = \\lim_{x \\to 1} \\frac{2x - (x+1)}{2(x+1)(x-1)} = \\lim_{x \\to 1} \\frac{x-1}{2(x+1)(x-1)} = \\lim_{x \\to 1} \\frac{1}{2(x+1)} = \\frac{1}{4}.$$\nNäin ollen funktio on derivoituva kohdassa $x = 1$ ja sen derivaatta on $\\dfrac{1}{4}$."
+      }
+    ]
+  },
+  {
+    "id": "OSAII_T2",
+    "section": "Osio II",
+    "title": "Tehtävä 12",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Tarkastellaan funktiota $f(x) = \\dfrac{1}{5}x^5 - \\dfrac{1}{3}x^3 + \\dfrac{5}{4}x$."
+      },
+      {
+        "type": "text",
+        "content": "a) Osoita, että funktiolla $f$ on käänteisfunktio."
+      },
+      {
+        "type": "text",
+        "content": "b) Määritä käänteisfunktion $f^{-1}$ derivaatta kohdassa $x = 0$."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a) Derivoidaan funktiota $f$ ja saadaan\n$$f'(x) = x^4 - x^2 + \\frac{5}{4} = \\left(x^2 - \\frac{1}{2}\\right)^2 + 1 \\geq 1 > 0,$$\nkaikilla $x \\in \\mathbb{R}$. Koska $f'(x) > 0$ kaikkialla, niin funktio $f$ on aidosti kasvava, joten sillä on käänteisfunktio."
+      },
+      {
+        "type": "text",
+        "content": "b) Huomataan helposti, että $f(0) = 0$. Tällöin $f'(0) = 0^4 - 0^2 + \\dfrac{5}{4} = \\dfrac{5}{4}$. Siten käänteisfunktion $f^{-1}$ derivaatta kohdassa $x = 0$ saadaan kaavalla\n$$(f^{-1})'(0) = \\frac{1}{f'(f^{-1}(0))} = \\frac{1}{f'(0)} = \\frac{4}{5}.$$"
+      }
+    ]
+  },
+  {
+    "id": "OSAII_T3",
+    "section": "Osio II",
+    "title": "Tehtävä 13",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Olkoon $f(x) = ae^{-ax^2}$, missä $a > 0$. Osoita, että funktiolla on suurin arvo."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Koska oletuksena on, että $a > 0$, niin $\\lim_{x \\to \\pm\\infty} f(x) = \\lim_{x \\to \\pm\\infty} ae^{-ax^2} = 0$. Toisaalta funktio on derivoituva koko reaaliluvuilla. Funktion $f$ derivaattafunktio saadaan\n$$f'(x) = -2a^2 x e^{-ax^2}.$$\nNäin ollen pätee, että $f'(x) = 0 \\Leftrightarrow x = 0$, kaikilla $a > 0$.\n\n$$\\begin{array}{|c|c|c|c|}\\hline x & (-\\infty, 0) & 0 & (0, \\infty) \\\\ \\hline f'(x) & + & 0 & - \\\\ \\hline f(x) & \\nearrow & \\text{max} & \\searrow \\\\ \\hline \\end{array}$$\n\nKukkavaavion perusteella huomataan, että funktiolla on suurin arvo pisteessä $x = 0$, missä suurin arvo on $f(0) = a$."
+      }
+    ]
+  },
+  {
+    "id": "OSAII_T4",
+    "section": "Osio II",
+    "title": "Tehtävä 14",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Laske raja-arvo."
+      },
+      {
+        "type": "text",
+        "content": "a) $\\displaystyle\\lim_{x \\to \\infty} (\\sin(x) + 2^x)$"
+      },
+      {
+        "type": "text",
+        "content": "b) $\\displaystyle\\lim_{x \\to \\infty} e^{-x}\\cos(x)$"
+      },
+      {
+        "type": "text",
+        "content": "c) $\\displaystyle\\lim_{x \\to -\\infty} \\left|\\frac{x-5}{3-x}\\right|$"
+      },
+      {
+        "type": "text",
+        "content": "d) $\\displaystyle\\lim_{x \\to -\\infty} \\ln\\!\\left(\\frac{1}{x^2+1}\\right)$"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a) $\\displaystyle\\lim_{x \\to \\infty}(\\sin(x) + 2^x) = \\lim_{x \\to \\infty}\\sin(x) + \\lim_{x \\to \\infty} 2^x = \\lim_{x \\to \\infty}\\sin(x) + \\infty$.\nNyt funktio $\\sin(x)$ on rajoitettu välille $[-1, 1]$, joten $\\lim_{x \\to \\infty}(\\sin(x) + 2^x) = \\infty$."
+      },
+      {
+        "type": "text",
+        "content": "b) $\\displaystyle\\lim_{x \\to \\infty} e^{-x}\\cos(x) = \\lim_{x \\to \\infty} e^{-x} \\cdot \\lim_{x \\to \\infty}\\cos(x) = 0 \\cdot \\lim_{x \\to \\infty}\\cos(x) = 0$"
+      },
+      {
+        "type": "text",
+        "content": "c) $\\displaystyle\\lim_{x \\to -\\infty} \\left|\\frac{x-5}{3-x}\\right| = \\lim_{x \\to -\\infty} \\frac{x-5}{x-3} = \\lim_{x \\to -\\infty} 1 - \\frac{2}{x-3} = 1 - 0 = 1$"
+      },
+      {
+        "type": "text",
+        "content": "d) $\\displaystyle\\lim_{x \\to -\\infty} \\ln\\!\\left(\\frac{1}{x^2+1}\\right) = \\lim_{x \\to -\\infty} -\\ln(x^2+1) = -\\infty$"
+      }
+    ]
+  },
+  {
+    "id": "OSAII_T5",
+    "section": "Osio II",
+    "title": "Tehtävä 15",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Mitä arvoja funktio $f(x) = \\dfrac{5\\sqrt{|x|}+2}{x}$ saa väliltä $x \\in [-a, a]$, missä $a > 0$?"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Tarkastellaan toispuolisia raja-arvoja kohdassa $x = 0$. Nyt\n$$\\lim_{x \\to 0^-} f(x) = \\lim_{x \\to 0^-} \\frac{5\\sqrt{-x}}{x} + \\frac{2}{x} = \\lim_{x \\to 0^-} -\\frac{5}{\\sqrt{-x}} + \\frac{2}{x} = -\\infty$$\nja\n$$\\lim_{x \\to 0^+} f(x) = \\lim_{x \\to 0^+} \\frac{5\\sqrt{x}}{x} + \\frac{2}{x} = \\lim_{x \\to 0^+} \\frac{5}{\\sqrt{x}} + \\frac{2}{x} = \\infty.$$\n\nToisaalta pisteessä $x = a$ funktio saa arvon $f(a) = \\dfrac{5\\sqrt{a}+2}{a}$ ja vastaavasti pisteessä $x = -a$ funktio saa arvon $f(-a) = -\\dfrac{5\\sqrt{a}+2}{a}$.\n\nNäin ollen funktion arvojoukko on $\\left]-\\infty,\\, -\\dfrac{5\\sqrt{a}+2}{a}\\right] \\cup \\left[\\dfrac{5\\sqrt{a}+2}{a},\\, \\infty\\right[$."
+      }
+    ]
+  },
+  {
+    "id": "OSAII_T6",
+    "section": "Osio II",
+    "title": "Tehtävä 16",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Gabrielin torvi on pyörähdyskappale funktiolle $f(x) = \\dfrac{1}{x}$ välillä $[1, \\infty[$. Osoita, että pyörähdyskappaleen"
+      },
+      {
+        "type": "text",
+        "content": "a) tilavuus on $\\pi$"
+      },
+      {
+        "type": "text",
+        "content": "b) pinta-ala on ääretön"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a) Lasketaan pyörähdyskappaleen tilavuus. Kaavan perusteella saadaan, että\n$$V = \\pi \\int_1^\\infty f(x)^2\\,dx = \\lim_{t \\to \\infty} \\pi \\int_1^t x^{-2}\\,dx = \\pi\\lim_{t \\to \\infty}\\left[-\\frac{1}{x}\\right]_1^t = \\pi\\lim_{t \\to \\infty}\\!\\left(-\\frac{1}{t} + 1\\right) = \\pi.$$"
+      },
+      {
+        "type": "text",
+        "content": "b) Osoitetaan, että pinta-ala on ääretön. Pyörähdyskappaleen vaipan ala saadaan kaavalla\n$$A = 2\\pi \\int_a^b |f(x)|\\sqrt{1 + f'(x)^2}\\,dx.$$\nSijoitetaan kaavaan ja saadaan $A = 2\\pi \\displaystyle\\int_1^\\infty \\dfrac{1}{x}\\sqrt{1 + \\dfrac{1}{x^2}}\\,dx$.\n\nKoska $\\sqrt{1 + \\dfrac{1}{x^2}} > 1$, niin saadaan näin ollen pätee, että\n$$A = 2\\pi \\int_1^\\infty \\frac{1}{x}\\sqrt{1 + \\frac{1}{x^2}}\\,dx > 2\\pi \\int_1^\\infty \\frac{1}{x}\\,dx = 2\\pi\\lim_{t \\to \\infty}\\int_1^t \\frac{1}{x}\\,dx = 2\\pi\\lim_{t \\to \\infty}(\\ln t - 0) = \\infty.$$\nTäten Gabrielin torven vaipan ala on äärettömän suuri."
+      }
+    ]
+  },
+  {
+    "id": "OSAII_T7",
+    "section": "Osio II",
+    "title": "Tehtävä 17",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Millä vakion $a$ arvolla funktion $f(x) = e^{ax}$ kuvaajan ja positiivisen $x$-akselin rajaama pinta-ala on äärellinen? Määritä pinta-ala."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "1) Jos $a > 0$, niin $\\lim_{x \\to \\infty} e^{ax} = \\infty$, jolloin $\\int_0^\\infty e^{ax}\\,dx = \\infty$.\n\n2) Jos $a = 0$, niin $\\lim_{x \\to \\infty} e^{ax} = \\lim_{x \\to \\infty} 1 = \\infty$, jolloin $\\int_0^\\infty 1\\,dx = \\infty$.\n\n3) Tarkastellaan tilannetta kun $a < 0$. Merkitään $a = -b$. Tällöin $\\lim_{x \\to \\infty} e^{ax} = \\lim_{x \\to \\infty} e^{-bx} = \\lim_{x \\to \\infty} \\dfrac{1}{e^{bx}} = 0$, jolloin myös integraali suppenee. Määritetään integraali.\n$$A = \\int_0^\\infty e^{ax}\\,dx = \\lim_{t \\to \\infty} \\frac{1}{a}\\int_0^t ae^{ax}\\,dx = \\lim_{t \\to \\infty} \\frac{1}{a}\\Big[e^{ax}\\Big]_0^t = \\frac{1}{a}\\lim_{t \\to \\infty}(e^{at} - 1) = -\\frac{1}{a} = \\frac{1}{b}.$$"
+      }
+    ]
+  },
+  {
+    "id": "OSAII_T8",
+    "section": "Osio II",
+    "title": "Tehtävä 18",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Määritä se vakion $r$ jolle pätee, että $\\displaystyle\\int_1^\\infty \\frac{1}{x^r}\\,dx = 1$."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Tehtävän 16 perustella epäoleellinen integraali hajaantuu, jos $r = 1$. Myös ilmeistä jos $r < 1$, niin integraali hajaantuu. Täytyy siis olla, että $r > 1$. Määritetään epäoleellinen integraali.\n$$\\int_1^\\infty x^{-r}\\,dx = \\lim_{t \\to \\infty} \\int_1^t x^{-r}\\,dx = \\lim_{t \\to \\infty} \\left[\\frac{x^{1-r}}{1-r}\\right]_1^t = \\lim_{t \\to \\infty}\\left(\\frac{t^{1-r}}{1-r} - \\frac{1}{1-r}\\right) = -\\frac{1}{1-r}$$\nEli saadaan yhtälö\n$$-\\frac{1}{1-r} = 1 \\Leftrightarrow -1 = 1 - r \\Leftrightarrow r = 2.$$\nNäin ollen siis $\\displaystyle\\int_1^\\infty \\frac{1}{x^2}\\,dx = 1$."
+      }
+    ]
+  },
+  {
+    "id": "OSAII_T9",
+    "section": "Osio II",
+    "title": "Tehtävä 19",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Satunnaismuuttujan tiheysfunktio on $f(x) = \\begin{cases} 0, & x < 1 \\\\ \\dfrac{2}{ax^4}, & x \\geq 1 \\end{cases}$."
+      },
+      {
+        "type": "text",
+        "content": "a) Määritä vakio $a$."
+      },
+      {
+        "type": "text",
+        "content": "b) Määritä se $X_0$, kun tapahtuman todennäköisyys on 50 %."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a) Tiheysfunktiolle täytyy päteä, että $\\displaystyle\\int_{-\\infty}^\\infty f(x)\\,dx = 1$, joten $\\displaystyle\\int_1^\\infty \\frac{2}{ax^4}\\,dx = 1$. Saadaan, että\n$$\\frac{2}{a}\\int_1^\\infty x^{-4}\\,dx = \\frac{2}{a}\\lim_{t \\to \\infty}\\int_1^t x^{-4}\\,dx = -\\frac{2}{3a}\\lim_{t \\to \\infty}\\left[\\frac{1}{x^3}\\right]_1^t = -\\frac{2}{3a}\\lim_{t \\to \\infty}\\!\\left(\\frac{1}{t^3} - 1\\right) = \\frac{2}{3a}.$$\nTäytyy siis olla $\\dfrac{2}{3a} = 1 \\Leftrightarrow a = \\dfrac{2}{3}$.\n\nEli tiheysfunktio on muotoa $f(x) = \\begin{cases} 0, & x < 1 \\\\ \\dfrac{3}{x^4}, & x \\geq 1 \\end{cases}$."
+      },
+      {
+        "type": "text",
+        "content": "b) Muodostetaan yhtälö ja ratkaistaan se.\n$$\\int_1^{X_0} \\frac{3}{x^4}\\,dx = \\frac{1}{2}$$\na-kohdan perustella saadaan\n$$P(1 < X < X_0) = \\left[-\\frac{1}{x^3}\\right]_1^{X_0} = 1 - \\frac{1}{X_0^3} = \\frac{1}{2} \\Leftrightarrow X_0 = \\sqrt[3]{2}.$$\nEli $P\\!\\left(1 < X < \\sqrt[3]{2}\\right) = \\dfrac{1}{2}$."
+      }
+    ]
+  },
+  {
+    "id": "OSAII_T10",
+    "section": "Osio II",
+    "title": "Tehtävä 20",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Satunnaismuuttujan tiheysfunktio on $f(x) = \\begin{cases} 0 & x < 0 \\\\ a, & 0 \\leq x \\leq \\pi \\\\ 0 & x > \\pi \\end{cases}$."
+      },
+      {
+        "type": "text",
+        "content": "Määritä\n\na) vakio $a$\n\nb) satunnaismuuttujan $X$ odotusarvo sekä keskihajonta\n\nc) tapahtumien $0 < X < 1$ ja $X > 5$ todennäköisyys"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a) $\\displaystyle\\int_0^\\pi a\\,dx = a\\pi = 1 \\Leftrightarrow a = \\dfrac{1}{\\pi}$."
+      },
+      {
+        "type": "text",
+        "content": "b) Odotusarvo:\n$$E(X) = \\int_{-\\infty}^\\infty xf(x)\\,dx = \\frac{1}{\\pi}\\int_0^\\pi x\\,dx = \\frac{1}{\\pi}\\left[\\frac{x^2}{2}\\right]_0^\\pi = \\frac{\\pi}{2}.$$\n\nKeskihajonta:\n$$D(X) = \\sqrt{\\int_{-\\infty}^\\infty (x - \\mu)^2 f(x)\\,dx} = \\sqrt{\\frac{1}{\\pi}\\int_0^\\pi \\left(x - \\frac{\\pi}{2}\\right)^2 dx} = \\frac{\\pi}{2\\sqrt{3}}.$$"
+      },
+      {
+        "type": "text",
+        "content": "c) $P(0 < X < 1) = \\dfrac{1}{\\pi}\\cdot 1 = \\dfrac{1}{\\pi} \\approx 0{,}32$.\n\n$P(X > 5) = \\displaystyle\\int_5^\\infty f(x)\\,dx = 0$, sillä $X$ saa arvoja vain välillä $[0, \\pi]$ ja $5 > \\pi$."
+      }
+    ]
+  },
+  {
+    "id": "OSAIII_T1",
+    "section": "Osio III",
+    "title": "Tehtävä 21",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Tutki perustellen onko funktio $f$ jatkuva kohdassa $x = 0$."
+      },
+      {
+        "type": "text",
+        "content": "a) $f(x) = \\cos\\!\\left(\\dfrac{1}{x}\\right)$"
+      },
+      {
+        "type": "text",
+        "content": "b) $f(x) = \\begin{cases} x^2\\sin\\!\\left(\\dfrac{1}{x}\\right), & x \\neq 0 \\\\ 0, & x = 0 \\end{cases}$"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a) Ei ole. Funktio $\\cos\\!\\left(\\dfrac{1}{x}\\right)$ ei lähenesty minkäänlaista arvoa, kun $x \\to 0$, sillä se värähtelee yhä tiheämmin välillä $[-1, 1]$. Näin ollen raja-arvo ei ole olemassa ja funktio ei ole jatkuva kohdassa $x = 0$."
+      },
+      {
+        "type": "text",
+        "content": "b) On. Funktion määrittelyn mukaan pätee, että $f(0) = 0$. Tarkastellaan raja-arvoa kohdassa $x = 0$. Koska $|\\sin(1/x)| \\leq 1$, niin\n$$\\left|x^2 \\sin\\!\\left(\\frac{1}{x}\\right)\\right| \\leq x^2 \\to 0, \\quad x \\to 0.$$\nNäin ollen $\\displaystyle\\lim_{x \\to 0} f(x) = 0 = f(0)$, joten funktio on jatkuva kohdassa $x = 0$."
+      }
+    ]
+  },
+  {
+    "id": "OSAIII_T2",
+    "section": "Osio III",
+    "title": "Tehtävä 22",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Määritä vakiot $a$ ja $b$ niin, että funktio $f: \\mathbb{R} \\to \\mathbb{R}$,\n$$f(x) = \\begin{cases} b, & x \\leq -1 \\\\ ax^2 - b, & -1 < x < 1 \\\\ \\ln(x+2) + a, & x \\geq 1 \\end{cases}$$\non jatkuva määrittelyjoukossaan. Onko funktio tällöin derivoituva?"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Muodostetaan yhtälöt toispuolisille raja-arvoille pisteissä $x = -1$ ja $x = 1$. Täytyy olla siis\n$$f(-1) = \\lim_{x \\to -1^+}(ax^2 - b) = a - b = b \\implies 2b = a \\quad (*)$$\nja\n$$\\lim_{x \\to 1^-}(ax^2 - b) = a - b = \\lim_{x \\to 1^+}(\\ln(x+2) + a) = \\ln(3) + a \\implies -b = \\ln(3) \\implies b = -\\ln(3).$$\nEli täten\n$$\\begin{cases} 2b = a \\\\ b = -\\ln(3) \\end{cases} \\implies \\begin{cases} a = -2\\ln(3) \\\\ b = -\\ln(3) \\end{cases}.$$\n\nFunktio ei ole derivoituva koko määrittelyjoukossaan, sillä esim. pisteessä $x = -1$ toispuoliset derivaatat ovat erisuuret."
+      }
+    ]
+  },
+  {
+    "id": "OSAIII_T3",
+    "section": "Osio III",
+    "title": "Tehtävä 23",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Hyperbolinen sini voidaan määritellä eksponenttien avulla siten, että $\\sinh(x) = \\dfrac{e^x - e^{-x}}{2}$. Määritä käänteisfunktio $\\sinh^{-1}(x)$, mikäli mahdollista."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Tutkitaan ensin, onko funktio monotoninen. Koska $f'(x) = \\dfrac{e^x + e^{-x}}{2} > 0$, kaikilla $x \\in \\mathbb{R}$, niin funktio on aidosti kasvava, joten sillä on käänteisfunktio.\n\nMerkitään $e^x = t$ ja ratkaistaan.\n$$y = \\frac{e^x - e^{-x}}{2} \\implies 2y = t - \\frac{1}{t} \\implies 2yt = t^2 - 1 \\implies t^2 - 2yt - 1 = 0.$$\nKäytetään toisen asteen ratkaisukaavaa.\n$$t = \\frac{2y \\pm \\sqrt{4y^2 + 4}}{2} = y \\pm \\sqrt{y^2 + 1}.$$\nSijoitetaan takaisin $t = e^x$:\n$$e^x = y \\pm \\sqrt{y^2 + 1} \\implies x = \\ln\\!\\left(y \\pm \\sqrt{y^2 + 1}\\right).$$\nVaihdetaan muuttujien paikkaa ja saadaan $y = \\ln\\!\\left(x \\pm \\sqrt{x^2 + 1}\\right)$.\n\nNyt koska $x < \\sqrt{x^2 + 1}$, kaikilla $x \\in \\mathbb{R}$, täytyy olla\n$$y = \\ln\\!\\left(x + \\sqrt{x^2 + 1}\\right).$$\nFunktion $\\sinh(x)$ käänteisfunktio on siis $\\sinh^{-1}(x) = \\ln\\!\\left(x + \\sqrt{x^2 + 1}\\right)$."
+      }
+    ]
+  },
+  {
+    "id": "OSAIII_T4",
+    "section": "Osio III",
+    "title": "Tehtävä 24",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Osoita, että jos funktio on derivoituva kohdassa $x_0$, niin se on jatkuva kohdassa $x_0$."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Todistus. Nyt siis oletuksena, että funktio on derivoituva pisteessä $x_0$. Lisäksi voidaan olettaa, että $x \\neq x_0$. Nyt\n$$f(x) - f(x_0) = \\frac{f(x) - f(x_0)}{x - x_0}\\,(x - x_0),$$\njoten\n$$\\lim_{x \\to x_0} f(x) - f(x_0) = \\lim_{x \\to x_0}\\left(\\frac{f(x) - f(x_0)}{x - x_0}\\right)(x - x_0) = f'(x_0) \\cdot 0 = 0. \\tag{1}$$\nTällöin\n$$\\lim_{x \\to x_0} f(x) = \\lim_{x \\to x_0}(f(x) - f(x_0) + f(x_0)) = \\lim_{x \\to x_0} f(x_0) = f(x_0). \\quad \\square$$"
+      }
+    ]
+  },
+  {
+    "id": "OSAIII_T5",
+    "section": "Osio III",
+    "title": "Tehtävä 25",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Määritelmän mukaan funktio $f: \\mathbb{R} \\to \\mathbb{R}$ on lineaarikuvaus, jos se toteuttaa ehdot\n\n1. $f(x + y) = f(x) + f(y)$\n2. $f(\\alpha x) = \\alpha f(x),\\ \\alpha \\in \\mathbb{R}$.\n\nOsoita, että lineaarikuvaus on derivoituva ja määritä sen derivaatta."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Osoitus. Käytetään derivaatan määritelmää.\n$$\\lim_{h \\to 0} \\frac{f(x+h) - f(x)}{h} = \\lim_{h \\to 0} \\frac{f(x) + f(h) - f(x)}{h} = \\lim_{h \\to 0} \\frac{f(h)}{h} = \\lim_{h \\to 0} \\frac{hf(1)}{h} = \\lim_{h \\to 0} f(1) = f(1).$$\nLineaarikuvaus on siis derivoituva ja sen derivaatta on $f'(x) = f(1)$, kaikilla $x \\in \\mathbb{R}$."
+      }
+    ]
+  },
+  {
+    "id": "OSAIII_T6",
+    "section": "Osio III",
+    "title": "Tehtävä 26",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Olkoon funktio $f: \\mathbb{R} \\to \\mathbb{R}$ derivoituva koko määrittelyjoukossaan. Osoita, että"
+      },
+      {
+        "type": "text",
+        "content": "a) $g(x) = \\alpha f(x),\\ \\alpha \\in \\mathbb{R}$"
+      },
+      {
+        "type": "text",
+        "content": "b) $h(x) = x^2 f(x)$\n\non derivoituva määrittelyjoukossa."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a) Käytetään derivaatan määritelmää. Täten saadaan, että\n$$\\lim_{h \\to 0} \\frac{g(x+h) - g(x)}{h} = \\lim_{h \\to 0} \\frac{\\alpha f(x+h) - \\alpha f(x)}{h} = \\lim_{h \\to 0} \\alpha \\cdot \\frac{f(x+h) - f(x)}{h} = \\alpha f'(x).$$"
+      },
+      {
+        "type": "text",
+        "content": "b) Tiedetään, että funktio $p(x) = x^2$ on derivoituva koko reaaliluvuissa. Saadaan, että\n$$\\lim_{h \\to 0} \\frac{(x+h)^2 f(x+h) - x^2 f(x)}{h}$$= \\lim_{h \\to 0}\\left(f(x+h) \\cdot \\frac{(x+h)^2 - x^2}{h} + x^2 \\cdot \\frac{f(x+h) - f(x)}{h}\\right)$$= 2xf(x) + x^2 f'(x).$$"
+      }
+    ]
+  },
+  {
+    "id": "OSAIII_T7",
+    "section": "Osio III",
+    "title": "Tehtävä 27",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Määritä epäoleellinen integraali käyttäen tietoa, että $\\displaystyle\\lim_{x \\to \\infty} \\arctan(x) = \\dfrac{\\pi}{2}$."
+      },
+      {
+        "type": "text",
+        "content": "a) $\\displaystyle\\int_{-\\infty}^\\infty \\frac{dx}{x^2+1}$"
+      },
+      {
+        "type": "text",
+        "content": "b) $\\displaystyle\\int_0^\\infty \\frac{dx}{x^2+2x+2}$"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a) Funktio on parillinen sillä $f(x) = \\dfrac{1}{x^2+1} = \\dfrac{1}{(-x)^2+1} = f(-x)$. Toisaalta taulukkokirjan perusteella pätee, että $\\displaystyle\\int \\frac{dx}{x^2+1} = \\arctan(x) + C$. Näin ollen saadaan, että\n$$\\int_{-\\infty}^\\infty \\frac{dx}{x^2+1} = 2\\int_0^\\infty \\frac{dx}{x^2+1} = \\lim_{t \\to \\infty} 2\\int_0^t \\frac{dx}{x^2+1} = 2\\lim_{t \\to \\infty}\\Big[\\arctan(x)\\Big]_0^t = 2 \\cdot \\frac{\\pi}{2} = \\pi.$$"
+      },
+      {
+        "type": "text",
+        "content": "b) Muutetaan ensin polynomia $x^2 + 2x + 2$.\n$$\\int_0^\\infty \\frac{dx}{x^2+2x+2} = \\int_0^\\infty \\frac{dx}{(x+1)^2+1} = \\lim_{t \\to \\infty}\\int_0^t \\frac{dx}{(x+1)^2+1} = \\lim_{t \\to \\infty}\\Big[\\arctan(x+1)\\Big]_0^t$$= \\lim_{t \\to \\infty}(\\arctan(t+1) - \\arctan(1)) = \\frac{\\pi}{2} - \\frac{\\pi}{4} = \\frac{\\pi}{4}.$$"
+      }
+    ]
+  },
+  {
+    "id": "OSAIII_T8",
+    "section": "Osio III",
+    "title": "Tehtävä 28",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Määritä seuraavat integraalit."
+      },
+      {
+        "type": "text",
+        "content": "a) $\\displaystyle\\int_0^1 \\frac{1}{x}\\,dx$"
+      },
+      {
+        "type": "text",
+        "content": "b) $\\displaystyle\\int_0^\\infty \\frac{a^x}{(a^x+a)^2}\\,dx$"
+      },
+      {
+        "type": "text",
+        "content": "c) $\\displaystyle\\int_0^\\infty (|\\sin(x)| + a)\\,dx$, missä $a > 1$."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a)\n$$\\int_0^1 \\frac{1}{x}\\,dx = \\lim_{t \\to 0^+}\\int_t^1 \\frac{1}{x}\\,dx = \\lim_{t \\to 0^+}\\Big[\\ln|x|\\Big]_t^1 = \\lim_{t \\to 0^+}(\\ln 1 - \\ln t) = -(-\\infty) = \\infty$$"
+      },
+      {
+        "type": "text",
+        "content": "b)\n$$\\int_0^\\infty \\frac{a^x}{(a^x+a)^2}\\,dx = \\frac{1}{\\ln a}\\lim_{t \\to \\infty}\\int_0^t a^x \\ln(a)\\,(a^x+a)^{-2}\\,dx$$= -\\frac{1}{\\ln a}\\lim_{t \\to \\infty}\\left[\\frac{1}{a^x+a}\\right]_0^t = -\\frac{1}{\\ln a}\\lim_{t \\to \\infty}\\!\\left(\\frac{1}{a^t+a} - \\frac{1}{1+a}\\right) = \\frac{1}{\\ln(a)(1+a)}$$"
+      },
+      {
+        "type": "text",
+        "content": "c)\n$$\\int_0^\\infty (|\\sin(x)| + a)\\,dx = \\int_0^\\infty |\\sin(x)|\\,dx + \\int_0^\\infty a\\,dx > \\int_0^\\infty a\\,dx = \\lim_{t \\to \\infty}\\int_0^t a\\,dx = \\lim_{t \\to \\infty}\\Big[ax\\Big]_0^t = \\infty$$\nNäin ollen siis $\\displaystyle\\int_0^\\infty (|\\sin(x)| + a)\\,dx = \\infty$."
+      }
+    ]
+  },
+  {
+    "id": "OSAIII_T9",
+    "section": "Osio III",
+    "title": "Tehtävä 29",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Satunnaismuuttujan $X$ tiheysfunktio on $f(x) = \\begin{cases} ae^{bx}, & x \\leq 0 \\\\ 0, & x > 0 \\end{cases}$, missä $a, b > 0$."
+      },
+      {
+        "type": "text",
+        "content": "a) Määritä vakiot $a$ ja $b$."
+      },
+      {
+        "type": "text",
+        "content": "b) Määritä satunnaismuuttujan $X$ kertymäfunktio $F$."
+      },
+      {
+        "type": "text",
+        "content": "c) Hyödyntäen kertymäfunktiota, määritä tapahtuman $-2 < X < -1$ todennäköisyys."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a) Täytyy siis päteä, että $\\displaystyle\\int_{-\\infty}^0 ae^{bx}\\,dx = 1$. Määritetään epäoleellinen integraali.\n$$\\int_{-\\infty}^0 ae^{bx}\\,dx = \\frac{a}{b}\\lim_{t \\to -\\infty}\\int_t^0 be^{bx}\\,dx = \\frac{a}{b}\\lim_{t \\to -\\infty}\\Big[e^{bx}\\Big]_t^0 = \\frac{a}{b}\\lim_{t \\to -\\infty}(e^0 - e^{bt}) = \\frac{a}{b}.$$\nTäytyy siis olla $\\dfrac{a}{b} = 1 \\Leftrightarrow a = b$.\n\nNäin ollen tiheysfunktio voidaan esittää muodossa $f(x) = \\begin{cases} ae^{ax}, & x \\leq 0 \\\\ 0, & x > 0 \\end{cases}$, missä $a > 0$."
+      },
+      {
+        "type": "text",
+        "content": "b) Määritelmän mukaan kertymäfunktion arvo kohdassa $t$ on $F(t) = P(X \\leq t) = \\displaystyle\\int_{-\\infty}^t f(x)\\,dx$.\n\nTarkastellaan tilannetta kun $t \\leq 0$.\n$$F(t) = \\int_{-\\infty}^t ae^{ax}\\,dx = e^{at}.$$\nVastaavasti kun $t > 0$, niin\n$$F(t) = \\int_{-\\infty}^0 ae^{ax}\\,dx + \\int_0^t 0\\,dx = 1.$$\nEli näin ollen kertymäfunktio on\n$$F(x) = \\begin{cases} e^{ax}, & x \\leq 0 \\\\ 1, & x > 0 \\end{cases}.$$"
+      },
+      {
+        "type": "text",
+        "content": "c) $P(-2 < X < -1) = F(-1) - F(-2) = e^{a \\cdot (-1)} - e^{a \\cdot (-2)} = e^{-a} - e^{-2a}$."
+      }
+    ]
+  },
+  {
+    "id": "OSAIII_T10",
+    "section": "Osio III",
+    "title": "Tehtävä 30",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Tarkastellaan satunnaismuuttujan $X$ tiheysfunktiota\n$$f(x) = \\begin{cases} 0 & x < 0 \\\\ \\dfrac{1}{10}\\,\\mathrm{sgn}(\\sin(\\pi x)) + \\dfrac{1}{10}, & 0 \\leq x \\leq 9 \\\\ 0 & x > 9 \\end{cases}$$\nmissä funktio $\\mathrm{sgn}(x)$ on määritelty siten, että $\\mathrm{sgn}(x) = \\begin{cases} -1 & x < 0 \\\\ 0, & x = 0 \\\\ 1 & x > 0 \\end{cases}$. Tehtävän voi perustella graafisesti tai laskimella."
+      },
+      {
+        "type": "text",
+        "content": "a) Osoita, että funktio $f$ on satunnaismuuttujan $X$ tiheysfunktio."
+      },
+      {
+        "type": "text",
+        "content": "b) Laske tapahtumien \"$0 < X < 1{,}5$\", \"$3 < X < 4$\" ja \"$8 < X < 10$\" todennäköisyydet. Vastausta ei tarvitse perustella."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a) Käydään määritelmän kaikki 3 kohtaa läpi.\n\n1) Huomataan, että funktion arvojoukko $A_f = \\{0,\\, \\tfrac{1}{5}\\}$. Näin ollen pätee, että $f(x) \\geq 0$, kaikilla $x \\in \\mathbb{R}$.\n\n2) $\\displaystyle\\int_{-\\infty}^\\infty f(x)\\,dx = \\int_{-\\infty}^0 0\\,dx + \\int_0^9 f(x)\\,dx + \\int_9^\\infty 0\\,dx = 5 \\cdot \\frac{1}{5} \\cdot 1 = 1$.\n\n3) $P(a \\leq x \\leq b) = \\displaystyle\\int_a^b f(x)\\,dx$. Triviaali. Huomataan helposti, että funktio on integroituva, jolloin analyysin peruslauseen nojalla väite on tosi."
+      },
+      {
+        "type": "text",
+        "content": "b) $P(0 < X < 1{,}5) = \\dfrac{1}{5}$, $P(3 < X < 4) = 0$ ja $P(8 < X < 10) = \\dfrac{1}{5}$."
+      }
+    ]
+  },
+  {
+    "id": "OSAIV_T1",
+    "section": "Osio IV",
+    "title": "Tehtävä 31",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Neperin luku on irrationaaliluku, joka voidaan määritellä epäoleellisen raja-arvon avulla siten, että $\\displaystyle\\lim_{n \\to \\infty}\\left(1 + \\frac{1}{n}\\right)^n = e$. Hyödyntäen tätä tietoa, määritä seuraavat raja-arvot."
+      },
+      {
+        "type": "text",
+        "content": "a) $\\displaystyle\\lim_{n \\to 0}(1 + n)^{\\frac{1}{n}}$"
+      },
+      {
+        "type": "text",
+        "content": "b) $\\displaystyle\\lim_{n \\to \\infty} n \\cdot \\left(1 + \\frac{1}{n}\\right)^n$"
+      },
+      {
+        "type": "text",
+        "content": "c) $\\displaystyle\\lim_{n \\to \\infty} \\left(1 + \\frac{1}{n}\\right)^{an}$"
+      },
+      {
+        "type": "text",
+        "content": "d) $\\displaystyle\\lim_{n \\to \\infty} \\left(1 + \\frac{1}{n}\\right)^{n+a}$, missä $\\alpha \\in \\mathbb{R}$."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a) Käytetään sijoitusta $t = \\dfrac{1}{n}$. Tällöin $\\lim t = \\lim_{n \\to 0} \\dfrac{1}{n} = \\infty$ (kun $n > 0$). Näin ollen\n$$\\lim_{n \\to 0}(1+n)^{1/n} = \\lim_{t \\to \\infty}\\left(1 + \\frac{1}{t}\\right)^t = e.$$"
+      },
+      {
+        "type": "text",
+        "content": "b) $\\displaystyle\\lim_{n \\to \\infty} n \\cdot \\left(1 + \\frac{1}{n}\\right)^n = \\lim_{n \\to \\infty} n \\cdot \\lim_{n \\to \\infty}\\left(1 + \\frac{1}{n}\\right)^n = \\lim_{n \\to \\infty} n \\cdot e = \\infty \\cdot e = \\infty$"
+      },
+      {
+        "type": "text",
+        "content": "c) $\\displaystyle\\lim_{n \\to \\infty}\\left(1 + \\frac{1}{n}\\right)^{an} = \\left(\\lim_{n \\to \\infty}\\left(1 + \\frac{1}{n}\\right)^n\\right)^a = e^a$"
+      },
+      {
+        "type": "text",
+        "content": "d) $\\displaystyle\\lim_{n \\to \\infty}\\left(1 + \\frac{1}{n}\\right)^{n+a} = \\lim_{n \\to \\infty}\\left(1 + \\frac{1}{n}\\right)^n \\cdot \\lim_{n \\to \\infty}\\left(1 + \\frac{1}{n}\\right)^a = \\lim_{n \\to \\infty}\\left(1 + \\frac{1}{n}\\right)^n \\cdot 1 = e$"
+      }
+    ]
+  },
+  {
+    "id": "OSAIV_T2",
+    "section": "Osio IV",
+    "title": "Tehtävä 32",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Raja-arvon määrittelyssä voidaan käyttää \"delta-epsilon-määritelmää\". Määritelmän mukaan pätee $\\displaystyle\\lim_{x \\to x_0} f(x) = a$, jos jokaista $\\varepsilon > 0$ vastaa sellainen $\\delta > 0$, että\n$$0 < |x - x_0| < \\delta \\Rightarrow |f(x) - a| < \\varepsilon.$$\nOsoita delta-epsilon-määritelmän avulla, että"
+      },
+      {
+        "type": "text",
+        "content": "a) $\\displaystyle\\lim_{x \\to 2} \\frac{x^2-4}{x-2} = 4$"
+      },
+      {
+        "type": "text",
+        "content": "b) $\\displaystyle\\lim_{x \\to 2} 2x + 4 = 8$"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a) Nyt\n$$|f(x) - 4| = \\left|\\frac{x^2-4}{x-2} - 4\\right| = |x - 2|.$$\nJos valitaan, että $\\delta = \\varepsilon$, niin\n$$|x - 2| < \\delta \\Rightarrow |f(x) - 4| < \\varepsilon.$$"
+      },
+      {
+        "type": "text",
+        "content": "b) Nyt\n$$|f(x) - 8| = |2x + 4 - 8| = |2x - 4| = 2|x - 2|.$$\nJos valitaan, että $\\delta = \\dfrac{\\varepsilon}{2}$, niin\n$$|x - 2| < \\delta \\Rightarrow |f(x) - 8| = 2|x-2| < 2\\delta = 2 \\cdot \\frac{\\varepsilon}{2} = \\varepsilon.$$"
+      }
+    ]
+  },
+  {
+    "id": "OSAIV_T3",
+    "section": "Osio IV",
+    "title": "Tehtävä 33",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Differentiaalilaskennan väliarvolauseen mukaan, jos funktiolle $f$ pätee, että\n\n1) $f$ on jatkuva välillä $[a, b]$\n2) derivaatta $f'$ on olemassa välillä $]a, b[$,\n\nniin tällöin on olemassa ainakin yksi sellainen piste $c \\in {]a, b[}$, jolle\n$$f(a) - f(b) = f'(c)(b - a).$$\n\nKäyttäen väliarvolausetta osoita, että"
+      },
+      {
+        "type": "text",
+        "content": "a) jos funktio $f$ on jatkuva välillä $[a, b]$ ja derivoituva välillä $]a, b[$, sekä lisäksi pätee, että $f(a) = f(b)$, niin on olemassa piste, jossa funktion $f$ derivaatta on nolla."
+      },
+      {
+        "type": "text",
+        "content": "b) $\\dfrac{x-1}{x} < \\ln(x) < x - 1$, kun $x > 1$."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a) Väliarvolauseen ehdot toteutuvat, joten voidaan soveltaa sitä. Saadaan, että\n$$f(a) - f(b) = f'(c)(b-a) \\Leftrightarrow f'(c) = \\frac{f(a) - f(b)}{b-a} = \\frac{0}{b-a} = 0.$$\nNäin ollen on siis olemassa sellainen piste $c \\in {]a, b[}$, jolle pätee $f'(c) = 0$. $\\square$"
+      },
+      {
+        "type": "text",
+        "content": "b) Tarkastellaan funktiota $f(x) = \\ln(x)$. Funktio $f$ on jatkuva ja derivoituva välillä $[1, \\infty[$, joten voidaan soveltaa väliarvolausetta. Tarkastellaan väliä $[1, x]$, jolloin VAL:n nojalla\n$$\\ln(x) - \\ln(1) = f'(c)(x-1) \\Rightarrow \\ln(x) = \\frac{x-1}{c},\\ \\text{missä}\\ 1 < c < x.$$\nTästä seuraa, että\n$$\\frac{x-1}{x} < \\ln(x) < x - 1,\\ \\text{kaikilla}\\ x > 1. \\quad \\square$$"
+      }
+    ]
+  },
+  {
+    "id": "OSAIV_T4",
+    "section": "Osio IV",
+    "title": "Tehtävä 34",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "L'Hôpitalin sääntö on matematiikassa käytetty teoreema, jonka avulla voidaan ratkaista raja-arvo, hyödyntäen derivaattaa. Teoreemaa käytettäessä seuraavat kohdat täytyy toteutua,\n\n1) $f$ ja $g$ ovat jatkuvia välillä $]a, b[$,\n2) $f$ ja $g$ ovat derivoituvia joukossa $]a, b[ \\setminus \\{x_0\\}$,\n3) $f(x_0) = g(x_0) = 0$ missä $x_0 \\in {]a, b[}$,\n4) $g'(x_0) \\neq 0$, kun $x \\in {]a, b[ \\setminus \\{x_0\\}}$,\n5) raja-arvo $\\displaystyle\\lim_{x \\to x_0} \\dfrac{f'(x)}{g'(x)}$ on olemassa.\n\nTällöin $\\displaystyle\\lim_{x \\to x_0} \\frac{f(x)}{g(x)} = \\lim_{x \\to x_0} \\frac{f'(x)}{g'(x)}$.\n\nSääntöä voidaan hyödyntää myös tilanteessa kun $f(x_0) = g(x_0) = \\infty$, jolloin\n$$\\lim_{x \\to \\infty} \\frac{f(x)}{g(x)} = \\lim_{x \\to \\infty} \\frac{f'(x)}{g'(x)}.$$"
+      },
+      {
+        "type": "text",
+        "content": "a) Osoita, että sääntöä voidaan käyttää epäoleellisen raja-arvon määrittämisessä. Käytä sijoitusta $x = \\dfrac{1}{t}$."
+      },
+      {
+        "type": "text",
+        "content": "Määritä\n\nb) $\\displaystyle\\lim_{x \\to \\infty} \\frac{\\ln(x)}{x}$\n\nc) $\\displaystyle\\lim_{x \\to \\infty} \\frac{e^x}{x^2}$\n\nd) $\\displaystyle\\lim_{x \\to \\infty} \\frac{\\sqrt{x}}{\\ln(x)}$"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a) Kun käytetään sijoitusta $x = \\dfrac{1}{t}$, niin $\\lim_{t \\to \\infty} \\dfrac{1}{x} = 0$. Siten\n$$\\lim_{x \\to \\infty} \\frac{f(x)}{g(x)} = \\lim_{x \\to \\infty} \\frac{f\\!\\left(\\frac{1}{t}\\right)}{g\\!\\left(\\frac{1}{t}\\right)} = \\lim_{t \\to 0} \\frac{f\\!\\left(\\frac{1}{t}\\right)}{g\\!\\left(\\frac{1}{t}\\right)} = \\lim_{t \\to 0} \\frac{f'\\!\\left(\\frac{1}{t}\\right) \\cdot \\left(-\\frac{1}{t^2}\\right)}{g'\\!\\left(\\frac{1}{t}\\right) \\cdot \\left(-\\frac{1}{t^2}\\right)} = \\lim_{x \\to \\infty} \\frac{f'(x)}{g'(x)}.$$\nKaikki b)–d)-kohdat ovat $\\dfrac{\\infty}{\\infty}$-tilanteita, joten sääntöä voidaan soveltaa."
+      },
+      {
+        "type": "text",
+        "content": "b) $\\displaystyle\\lim_{x \\to \\infty} \\frac{\\ln(x)}{x} = \\lim_{x \\to \\infty} \\frac{\\frac{1}{x}}{1} = \\lim_{x \\to \\infty} \\frac{1}{x} = 0$"
+      },
+      {
+        "type": "text",
+        "content": "c) $\\displaystyle\\lim_{x \\to \\infty} \\frac{e^x}{x^2} = \\lim_{x \\to \\infty} \\frac{e^x}{2x}$. Koska kyseessä on edelleen $\\dfrac{\\infty}{\\infty}$-tilanne, voidaan sääntöä soveltaa edelleen. Eli\n$$\\lim_{x \\to \\infty} \\frac{e^x}{x^2} = \\lim_{x \\to \\infty} \\frac{e^x}{2x} = \\lim_{x \\to \\infty} \\frac{e^x}{2} = \\infty.$$"
+      },
+      {
+        "type": "text",
+        "content": "d) $\\displaystyle\\lim_{x \\to \\infty} \\frac{\\sqrt{x}}{\\ln(x)} = \\lim_{x \\to \\infty} \\frac{\\frac{1}{2\\sqrt{x}}}{\\frac{1}{x}} = \\lim_{x \\to \\infty} \\frac{\\sqrt{x}}{2} = \\infty$"
+      }
+    ]
+  },
+  {
+    "id": "OSAIV_T5",
+    "section": "Osio IV",
+    "title": "Tehtävä 35",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Tarkastellaan epäoleellista integraalia $I = \\displaystyle\\int_{-\\infty}^{\\infty} e^{-x^2}\\,dx$. Korottamalla yhtälö neliöön ja muuntamalla koordinaatistoesitys niin kutsuttuun napakoordinaatistoon, voidaan yhtälö esittää muodossa\n$$I^2 = \\int_0^\\infty\\int_0^{2\\pi} e^{-(\\rho^2\\cos^2\\theta + \\rho^2\\sin^2\\theta)}\\,\\rho\\,d\\theta\\,d\\rho.$$\nMääritä epäoleellinen integraali $I$."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Määritetään epäoleellinen integraali.\n$$I^2 = \\int_0^\\infty\\int_0^{2\\pi} e^{-(\\rho^2\\cos^2\\theta + \\rho^2\\sin^2\\theta)}\\,\\rho\\,d\\theta\\,d\\rho$$= \\int_0^\\infty\\int_0^{2\\pi} \\rho e^{-\\rho^2}\\,d\\theta\\,d\\rho$$= 2\\pi\\int_0^\\infty \\rho e^{-\\rho^2}\\,d\\rho$$= 2\\pi \\cdot \\left(-\\frac{1}{2}\\right)\\int_0^\\infty -2\\rho e^{-\\rho^2}\\,d\\rho$$= -\\pi\\lim_{t \\to \\infty}\\int_0^t -2\\rho e^{-\\rho^2}\\,d\\rho$$= -\\pi\\lim_{t \\to \\infty}\\Big[e^{-\\rho^2}\\Big]_0^t$$= -\\pi\\lim_{t \\to \\infty}(e^{-t^2} - 1)$$= \\pi.$$\nEli $I^2 = \\pi$, joten $I = \\sqrt{\\pi}$."
+      }
+    ]
+  }
+]

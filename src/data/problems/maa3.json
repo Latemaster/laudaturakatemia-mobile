@@ -1,0 +1,808 @@
+[
+  {
+    "id": "OSAI_T1",
+    "section": "Osa I",
+    "title": "Tehtävä 1",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Muunna suluissa olevaan yksikköön."
+      },
+      {
+        "type": "text",
+        "content": "a) 10 km (mm)"
+      },
+      {
+        "type": "text",
+        "content": "b) 450 l (dm³)"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a) $ 10\\ \\mathrm{km} = 10\\ 000\\ \\mathrm{m} = 1\\ 000\\ 000\\ \\mathrm{cm} = 10\\ 000\\ 000\\ \\mathrm{mm} = 10^7\\ \\mathrm{mm} $"
+      },
+      {
+        "type": "text",
+        "content": "b) Koska $ 1\\ \\mathrm{l} = 1\\ \\mathrm{dm^3} $, niin $ 450\\ \\mathrm{l} = 450\\ \\mathrm{dm^3} $"
+      }
+    ]
+  },
+  {
+    "id": "OSAI_T2",
+    "section": "Osa I",
+    "title": "Tehtävä 2",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Tarkastellaan kuvassa näkyvää suorakulmaista kolmiota."
+      },
+      {
+        "type": "image",
+        "src": "/utils/MAA3/MAA3_O1_2.png"
+      },
+      {
+        "type": "text",
+        "content": "Määritä kuvasta"
+      },
+      {
+        "type": "text",
+        "content": "a) $\\sin\\alpha$"
+      },
+      {
+        "type": "text",
+        "content": "b) $\\cos\\alpha$"
+      },
+      {
+        "type": "text",
+        "content": "c) $\\tan\\alpha$"
+      },
+      {
+        "type": "text",
+        "content": "d) Kulma $\\sphericalangle ABC$"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a) Tehtävänannossa kerrotaan, että kyseessä on kolmio. Kuvasta kuitenkin nähdään, että kyseessä oleva kolmio on suorakulmainen. Näin ollen $ \\sin\\alpha = \\frac{a}{b} $."
+      },
+      {
+        "type": "text",
+        "content": "b) $ \\cos\\alpha = \\frac{c}{b} $"
+      },
+      {
+        "type": "text",
+        "content": "c) $ \\tan\\alpha = \\frac{a}{c} $"
+      },
+      {
+        "type": "text",
+        "content": "d) Koska kolmion kulmien summa on 180° ja kolmiossa on yksi suora kulma, kysytty kulma $ \\sphericalangle ABC = 180^\\circ - 90^\\circ - \\alpha = 90^\\circ - \\alpha $."
+      }
+    ]
+  },
+  {
+    "id": "OSAI_T3",
+    "section": "Osa I",
+    "title": "Tehtävä 3",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Suorakulmaisen kolmion kateettien pituudet ovat 6 ja 13. Määritä hypotenuusan pituus."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "\\\\\n\nPythagoraan lausetta käyttämällä saadaan yhtälö \\\\\n$$ 6^2 + 13^2 = c^2\\ \\Leftrightarrow\\ c^2 = 205\\ \\Leftrightarrow\\ c = \\pm\\sqrt{205} $$\n\nKoska pituus ei ole negatiivinen, hypotenuusan pituus on $ \\sqrt{205} $."
+      }
+    ]
+  },
+  {
+    "id": "OSAI_T4",
+    "section": "Osa I",
+    "title": "Tehtävä 4",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Pahkajärven kartan mittakaava on 1:25000. Kartalla Pahkajärven ja Vekaranjärven varuskunnan etäisyys on 3 cm. Määritä etäisyys luonnossa."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "\\\\\n\nKartan pituudet ja luonnossa olevat pituudet ovat suoraan verrannollisia. Kun merkitään etäisyyttä luonnossa kirjaimella $ x $, saadaan yhtälö\n$$\n\\frac{1}{25000} = \\frac{3\\ \\mathrm{cm}}{x} \\ \\Leftrightarrow\\ x = 25000 \\cdot 3\\ \\mathrm{cm} = 75\\ 000\\ \\mathrm{cm} = 750\\ \\mathrm{m} = 0{,}75\\ \\mathrm{km} \\approx 1\\ \\mathrm{km}\n$$\nEtäisyys luonnossa on siis 1  km."
+      }
+    ]
+  },
+  {
+    "id": "OSAI_T5",
+    "section": "Osa I",
+    "title": "Tehtävä 5",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Laske alla olevasta suorakulmaisesta kolmiosta kulman $ \\theta $ suuruus. Onko se suurempi kuin kulma $ \\alpha $? Anna vastauksesi 0.1 asteen tarkkuudella."
+      },
+      {
+        "type": "image",
+        "src": "/utils/MAA3/MAA3_O1_T5.png"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "\\\\\n\nSuorakulmaisen kolmion trigonometrian nojalla saadaan yhtälö \n$$\n\\sin\\theta = \\frac{5}{7} \\ \\parallel\\ \\sin^{-1}\n$$\n\\theta = \\sin^{-1}\\left(\\frac{5}{7}\\right)\n$$\n\\theta = 45{,}58\\ldots^\\circ \\approx 45{,}6^\\circ\n$$\n\nKoska kolmion kulmien summa on 180°, on \n$$\n\\alpha = 180^\\circ - 90^\\circ - 45{,}6^\\circ = 44{,}4^\\circ < 45{,}6^\\circ\n$$\nSiis kulma $ \\theta $ on suurempi kuin kulma $ \\alpha $."
+      }
+    ]
+  },
+  {
+    "id": "OSAI_T6",
+    "section": "Osa I",
+    "title": "Tehtävä 6",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Määritä janan $x$ pituus."
+      },
+      {
+        "type": "image",
+        "src": "/utils/MAA3/MAA3_OSAI_T6.png",
+        "alt": ""
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "\\\\\n\nKolmiot ovat yhdenmuotoiset (kk). Vastinjanojen pituuksista saadaan yhtälö\n\n$$\n\\frac{x}{5} = \\frac{2}{7} \\ \\Leftrightarrow\\ 7x = 10 \\ \\Leftrightarrow\\ x = \\frac{10}{7}\n$$"
+      }
+    ]
+  },
+  {
+    "id": "OSAI_T7",
+    "section": "Osa I",
+    "title": "Tehtävä 7",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Tiedetään, että puolisuunnikkaan korkeus on 8, ala 32 ja yhdensuuntaisten sivujen erotus 5. Mitkä ovat yhdensuuntaisten sivujen pituudet?"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "\\\\\n\nPuolisuunnikkaan ala $ A = \\frac{a + b}{2} \\cdot h $, missä $ a $ ja $ b $ ovat yhdensuuntaisten sivujen pituudet. Olkoon $ a $ puolisuunnikkaan pidempi sivu. Tällöin $ b = a - 5 $. Saadaan yhtälö\n\n$$\\begin{aligned}\n32 &= \\frac{a + a - 5}{2} \\cdot 8 \\\\\n4 &= \\frac{2a - 5}{2} \\\\\n8 &= 2a - 5 \\\\\n2a &= 13 \\\\\na &= \\frac{13}{2}\n\\end{aligned}$$\n\nPidemmän sivun pituus $ a = \\frac{13}{2} $ ja lyhyemmän $ b = \\frac{13}{2} - 5 = \\frac{3}{2} $."
+      }
+    ]
+  },
+  {
+    "id": "OSAI_T8",
+    "section": "Osa I",
+    "title": "Tehtävä 8",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Ratkaise sivun $x$ pituus yhden desimaalin tarkkuudella."
+      },
+      {
+        "type": "image",
+        "src": "/utils/MAA3/MAA3_OSAI_T8.png",
+        "alt": ""
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "\\\\\n\nSinilausetta hyödyntäen saadaan yhtälö\n$$\n\\frac{5}{\\sin\\left(27{,}3^\\circ\\right)} = \\frac{x}{\\sin\\left(32{,}9^\\circ\\right)} \n\\ \\Leftrightarrow\\ \nx \\cdot \\sin\\left(27{,}3^\\circ\\right) = 5 \\cdot \\sin\\left(32{,}9^\\circ\\right) \n\\ \\Leftrightarrow\\ \nx = \\frac{5 \\cdot \\sin\\left(32{,}9^\\circ\\right)}{\\sin\\left(27{,}3^\\circ\\right)} = 5{,}921\\ldots \\approx 5{,}9\n$$\n\nSivun pituus on 5,9."
+      }
+    ]
+  },
+  {
+    "id": "OSAI_T9",
+    "section": "Osa I",
+    "title": "Tehtävä 9",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Ympyrän ala on 16. Määritä ympyrän säde ja piiri."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "\\\\\n\nYmpyrän ala $ A = \\pi r^2 $. Saadaan yhtälö\n$$\\begin{aligned}\n16 &= \\pi r^2 \\ \\Leftrightarrow\\ r^2 = \\frac{16}{\\pi} \\ \\Leftrightarrow\\ r = \\pm\\sqrt{\\frac{16}{\\pi}} = \\pm\\frac{4}{\\sqrt{\\pi}}\n\\end{aligned}$$\n\nKoska säde ei voi olla negatiivinen, $ r = \\frac{4}{\\sqrt{\\pi}} $. \\\\\n\nYmpyrän piiri\n$$\np = 2\\pi r = 2\\pi \\cdot \\frac{4}{\\sqrt{\\pi}} = \\frac{8\\pi}{\\sqrt{\\pi}} = 8\\sqrt{\\pi}\n$$"
+      }
+    ]
+  },
+  {
+    "id": "OSAI_T10",
+    "section": "Osa I",
+    "title": "Tehtävä 10",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Pöydällä on kaksi  yhdenmuotoista maitotölkkiä. Suuremman maitotölkin tilavuus on 3 litraa ja pienemmän 1 litra. Pienemmän maitotölkin korkeus on 22 cm. Määritä suuremman maitotölkin korkeus."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "\\\\\n\nYhdenmuotoisten kappaleiden tilavuuksien suhde on mittakaavan kuutio. Olkoon suuremman maitotölkin korkeus $ h $. Saadaan yhtälö\n$$\\begin{aligned}\n\\frac{1}{3} &= \\left( \\frac{22\\ \\mathrm{cm}}{h} \\right)^3 \\\\\n\\frac{1}{3} &= \\frac{10648\\ \\mathrm{cm^3}}{h^3} \\\\\nh^3 &= 31944\\ \\mathrm{cm^3} \\\\\nh &= \\sqrt[3]{31944\\ \\mathrm{cm^3}} = 31{,}729\\ldots\\ \\mathrm{cm} \\approx 32\\ \\mathrm{cm}\n\\end{aligned}$$\n\nSuuremman maitotölkin korkeus on 32 cm."
+      }
+    ]
+  },
+  {
+    "id": "OSAII_T1",
+    "section": "Osa II",
+    "title": "Tehtävä 1",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Määritä kulmien $\\alpha$ ja $\\beta$ suuruudet. Perustele vastauksesi."
+      },
+      {
+        "type": "image",
+        "src": "/utils/MAA3/Kehakulma.png",
+        "alt": ""
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "\\\\"
+      },
+      {
+        "type": "image",
+        "src": "/utils/MAA3/Kehakulmaratk.png",
+        "alt": ""
+      },
+      {
+        "type": "text",
+        "content": "130° asteen kulmaa vastaava keskuskulma $\\theta$ muodostuu punaisella värillä merkittyyn kohtaan. Kehäkulma on puolet vastaavasta keskuskulmasta. Näin ollen keskuskulma on kaksinkertainen kehäkulmaan verrattuna. Siis \n$$\\theta=2\\cdot130°=260°.$$\nSiten \n$$\\beta=360°-260°=100°.$$\nVastaavasti kulmaa $\\alpha$ vastaava keskuskulma on kulma $\\beta$. Siten \n$$\\alpha=\\frac{130°}{2}=65°.$$"
+      }
+    ]
+  },
+  {
+    "id": "OSAII_T2",
+    "section": "Osa II",
+    "title": "Tehtävä 2",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Suorakulmaisen kolmion sivujen pituudet ovat 7 ja 12. Ratkaise kolmannen sivun pituus."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "\\\\\n\n\nKolmas sivu voi olla joko hypotenuusa tai kateetti. Molemmat tapaukset voidaan ratkaista Pythagoraan lauseella. Olkoon kolmannen sivun pituus $x$. Sivun pituus ei voi olla negatiivinen, joten sivun pituudelle saadaan määrittelyehto $x > 0$.\n\n**Tapaus 1:** Kolmas sivu on hypotenuusa. \n$$7^2 + 12^2 = x^2\\ \\Leftrightarrow\\ x^2 = 193\\ \\Leftrightarrow\\ x = \\sqrt{193}$$\n\n**Tapaus 2:** Kolmas sivu on kateetti. Tällöin hypotenuusa on pituudeltaan 12 oleva sivu.\n$$x^2 + 7^2 = 12^2\\ \\Leftrightarrow\\ x^2 = 95\\ \\Leftrightarrow\\ x = \\sqrt{95}$$\n\nKolmannen sivun pituus on  $\\sqrt{193}$ tai $\\sqrt{95}$."
+      }
+    ]
+  },
+  {
+    "id": "OSAII_T3",
+    "section": "Osa II",
+    "title": "Tehtävä 3",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Tiedetään, että $ DE \\parallel FG $ ja että $ \\sphericalangle CAB = 78^\\circ $. Määritä kuvassa olevasta kolmiosta janojen $ BC $ ja $ AC $ pituudet."
+      },
+      {
+        "type": "image",
+        "src": "/utils/MAA3/MAA3_OSAII_T3.png",
+        "alt": ""
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "\\\\\n\n\nJanat DE ja FG ovat yhdensuuntaiset. Siten kolmiot ABC ja DEC ovat yhdenmuotoiset. Vastinsivujen pituuksista saadaan verrantoyhtälö \n$$\\frac{7}{2+4+\\left|EG\\right|}=\\frac{5}{4+\\left|EG\\right|}\\ \\Leftrightarrow\\ \\left|EG\\right|=1$$\nja siten \n$$\\left|BC\\right|=7.$$\n\nJanan AC pituus saadaan kosinilauseesta. On oltava \n$$\\left|AC\\right| > 0.$$\\left|AC\\right|^2 = 7^2 + 7^2 - 2 \\cdot 7 \\cdot 7 \\cdot \\cos\\left(78^\\circ\\right)\\ ...  \\Leftrightarrow\\ \\left|AC\\right| = 8{,}810 \\approx 9$$\n\nSiis $\\left|BC\\right| = 7$ ja $\\left|AC\\right| = 9.$"
+      }
+    ]
+  },
+  {
+    "id": "OSAII_T4",
+    "section": "Osa II",
+    "title": "Tehtävä 4",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Tarkastellaan suorakulmaista kolmiota, jolle pätee $ \\sin(31^\\circ) = \\frac{3}{c} $ ja $ \\tan(31^\\circ) = \\frac{3}{a} $. Määritä kolmion kaikki kulmat ja sivujen pituudet."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "\\\\\n\nTehtävänannosta saadaan suoraan \n$$\\tan\\left(31^\\circ\\right) = \\frac{3}{a} \\ \\Leftrightarrow\\ a = 4{,}9928 \\approx 5{,}0.$$\n\nSivun $c$ ($c > 0$) pituus saadaan Pythagoraan lauseesta:\n$$a^2 + 3^2 = c^2 \\ \\Leftrightarrow\\ c^2 = \\left(\\frac{3}{\\tan\\left(31^\\circ\\right)}\\right)^2 + 9 \\ \\Leftrightarrow\\ c = 5{,}8248 \\approx 5{,}8.$$\n\nKoska kolmion kulmien summa on 180°, on \n$$\\alpha = 180^\\circ - 90^\\circ - 31^\\circ = 59^\\circ.$$\n\nSivujen pituudet ovat 3, 5{,}0 ja 5{,}8. Kolmion kulmat ovat 90°, 59° ja 31°."
+      }
+    ]
+  },
+  {
+    "id": "OSAII_T5",
+    "section": "Osa II",
+    "title": "Tehtävä 5",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Tasaisella maanpinnalla olevan Eiffel-tornin huippu näkyy eräästä kohdasta 4,0° asteen kulmassa maanpintaan suhteen. Liikuttaessa 1,5 kilometriä kauemmas tornista kulma on 1,5°. Määritä tornin korkeus. Miltä etäisyyksiltä tornia katsottiin?"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "\\\\\n\nPiirretään kuva tilanteesta."
+      },
+      {
+        "type": "image",
+        "src": "/utils/MAA3/Eifelratk.png",
+        "alt": ""
+      },
+      {
+        "type": "text",
+        "content": "Kun merkitään tornin korkeutta kirjaimella $h$ ja katseluetäisyyksiä $x$ ja $x + 1{,}5$, saadaan suorakulmaisista kolmioista yhtälöt\n$$\\begin{aligned}\n\\tan 4{,}0^\\circ &= \\frac{h}{x} \\ \\Leftrightarrow\\ h = x \\cdot \\tan 4{,}0^\\circ \\\\\n\\tan 1{,}5^\\circ &= \\frac{h}{x + 1{,}5} \\ \\Leftrightarrow\\ h = \\tan 1{,}5^\\circ \\cdot (x + 1{,}5)\n\\end{aligned}$$\n\nSiten\n$$\\begin{aligned}\nx \\cdot \\tan 4{,}0^\\circ &= \\tan 1{,}5^\\circ \\cdot (x + 1{,}5) \\\\\nx \\cdot \\tan 4{,}0^\\circ &= x \\cdot \\tan 1{,}5^\\circ + 1{,}5 \\cdot \\tan 1{,}5^\\circ \\\\\nx \\cdot (\\tan 4{,}0^\\circ - \\tan 1{,}5^\\circ) &= 1{,}5 \\cdot \\tan 1{,}5^\\circ \\\\\nx &= \\frac{1{,}5 \\cdot \\tan 1{,}5^\\circ}{\\tan 4{,}0^\\circ - \\tan 1{,}5^\\circ} \\approx 0{,}90\\ km = 900\\ m\n\\end{aligned}$$\n\nKatseluetäisyydet olivat 0{,}90 km ja 2{,}4 km.\n\nTornin korkeus:\n$$\\begin{aligned}\nh &= x \\cdot \\tan 4{,}0^\\circ \\approx 0{,}63\\ km = 630\\ m\n\\end{aligned}$$"
+      }
+    ]
+  },
+  {
+    "id": "OSAII_T6",
+    "section": "Osa II",
+    "title": "Tehtävä 6",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Astronautti näkee avaruudessa maapallon 3° asteen kulmassa. Laske, kuinka kaukana astronautti on maan pinnasta. Maapallon säde on 6370 km. Anna vastauksesi yhden desimaalin tarkkuudella kilometreinä."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "\\\\\nHahmotellaan tilannetta piirtämällä kuva."
+      },
+      {
+        "type": "image",
+        "src": "/utils/MAA3/Astronauttiratk.png",
+        "alt": ""
+      },
+      {
+        "type": "text",
+        "content": "Merkitään astronautin etäisyyttä maasta kirjaimella $d$. Suorakulmaisesta kolmiosta saadaan yhtälö\n$$\\begin{aligned}\n\\sin\\left(1{,}5^\\circ\\right) &= \\frac{6370}{6370 + d} \\\\\n(6370 + d) \\cdot \\sin\\left(1{,}5^\\circ\\right) &= 6370 \\\\\n6370 + d &= \\frac{6370}{\\sin\\left(1{,}5^\\circ\\right)} \\\\\nd &= \\frac{6370}{\\sin\\left(1{,}5^\\circ\\right)} - 6370 \\approx 236973{,}9\\ \\mathrm{km}\n\\end{aligned}$$\n\nAstronautti on 236973{,}9 km päässä Maan pinnasta."
+      }
+    ]
+  },
+  {
+    "id": "OSAII_T7",
+    "section": "Osa II",
+    "title": "Tehtävä 7",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Pyramidin pohjan ja sivutahkon välinen kulma on 47°.  Sivutahkon korkeusjana on 34 cm. Määritä pyramidin korkeus."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "\\\\\n\nKun ymmärtää, mistä tehtävässä on kyse geometrisesti, saadaan suoraan yhtälö\n$$\\begin{aligned}\n\\sin 47^\\circ &= \\frac{h}{34} \\ \\Leftrightarrow\\ h = 34 \\cdot \\sin 47^\\circ \\approx 25\\ \\mathrm{cm}\n\\end{aligned}$$\n\nPyramidin korkeus on 25 cm."
+      }
+    ]
+  },
+  {
+    "id": "OSAII_T8",
+    "section": "Osa II",
+    "title": "Tehtävä 8",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Tiedetään, että kuvassa näkyvän neliön lävistäjän pituus on $2\\sqrt{3}$ ja että puoliympyrän säde on 1. Ratkaise puoliympyrän ja neliön alojen suhteen tarkka arvo."
+      },
+      {
+        "type": "image",
+        "src": "/utils/MAA3/MAA3_OSAII_T8.png",
+        "alt": ""
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "\\\\\n\nKun merkitään neliön sivun pituutta kirjaimella $x$, saadaan Pythagoraan lauseesta yhtälö\n$$\\begin{aligned}\n2x^2 &= \\left(2\\sqrt{3}\\right)^2 \\ \\Leftrightarrow\\ 2x^2 = 12 \\ \\Leftrightarrow\\ x^2 = 6 \\ \\Leftrightarrow\\ x = \\pm\\sqrt{6}\n\\end{aligned}$$\n\nKoska kyseessä on pituus, on $x > 0$. Näin ollen koko neliön ala on\n$$\\begin{aligned}\nA_{neliö} = \\left(\\sqrt{6}\\right)^2 = 6\n\\end{aligned}$$\n\nPuoliympyrän ala:\n$$\\begin{aligned}\nA_{puoliympyrä} = \\frac{\\pi \\cdot 1^2}{2} = \\frac{\\pi}{2}\n\\end{aligned}$$\n\nAlojen suhde:\n$$\\begin{aligned}\n\\frac{A_{puoliympyrä}}{A_{neliö}} = \\frac{\\frac{\\pi}{2}}{6} = \\frac{\\pi}{12}\n\\end{aligned}$$"
+      }
+    ]
+  },
+  {
+    "id": "OSAII_T9",
+    "section": "Osa II",
+    "title": "Tehtävä 9",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "a) Terhi päättää aloittaa suunnistuksen ja menee iltarasteille. Tunnin suunnistamisen jälkeen hän huomaa kuitenkin olevansa eksyksissä. Muutaman minuutin pohdiskelun jälkeen hän kuitenkin uskoo tietävänsä senhetkisen sijaintinsa. Terhi arvioi, että lähimmälle huoltoasemalle on kartalla 5 cm. Kuinka pitkä matka huoltoasemalle todellisuudessa on? Ilmoita vastauksesi kilometreinä. Kartan mittakaava on 1:30 000."
+      },
+      {
+        "type": "text",
+        "content": "b) Terhi tietää, että lähellä olevan suon ala on 1,5 hehtaaria. Kuinka suuren alueen se peittää kartasta? Ilmoita vastauksesi neliösenttimetreinä"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a) Merkitään huoltoasemalle todellisuudessa olevaa matkaa kirjaimella $x$. Koska kartan ja luonnon pituudet ovat suoraan verrannollisia, saadaan yhtälö\n$$\\begin{aligned}\n\\frac{5\\ \\mathrm{cm}}{x} &= \\frac{1}{30000} \\ \\Leftrightarrow\\ x = 150000\\ \\mathrm{cm} = 1{,}5\\ \\mathrm{km}\n\\end{aligned}$$"
+      },
+      {
+        "type": "text",
+        "content": "b) Muutetaan ensin hehtaarit neliösenttimetreiksi. Koska\n$$\\begin{aligned}\n1\\ \\mathrm{ha} &= 10\\ 000\\ \\mathrm{m^2} = 100\\ 000\\ 000\\ \\mathrm{cm^2}, \\\\ \n1{,}5\\ \\mathrm{ha} &= 150\\ 000\\ 000\\ \\mathrm{cm^2}\n\\end{aligned}$$\n\nPinta-alojen suhde on mittakaavan neliö. Saadaan yhtälö\n$$\\begin{aligned}\n\\frac{A}{150\\ 000\\ 000\\ \\mathrm{cm^2}} &= \\left(\\frac{1}{30000}\\right)^2 \\\\\n\\frac{A}{150\\ 000\\ 000\\ \\mathrm{cm^2}} &= \\frac{1}{900000000} \\\\\nA &= \\frac{150\\ 000\\ 000\\ \\mathrm{cm^2}}{900000000} \\\\\nA &\\approx 0{,}17\\ \\mathrm{cm^2}\n\\end{aligned}$$\n\nSuo peittää $0{,}17\\ \\mathrm{cm^2}$ kartasta."
+      }
+    ]
+  },
+  {
+    "id": "OSAII_T10",
+    "section": "Osa II",
+    "title": "Tehtävä 10",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Ratkaise kolmion $ABC$ alan tarkka arvo."
+      },
+      {
+        "type": "image",
+        "src": "/utils/MAA3/MAA3_OSAII_T10.png",
+        "alt": ""
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "\\\\\n\nKolmioilla on kaksi (ja täten kolme) yhtä suurta kulmaa. Siten kolmiot ovat yhdenmuotoiset (kk). Vastinjanojen pituuksista saadaan verranto\n$$\\begin{aligned}\n\\frac{\\left|AB\\right|}{6} &= \\frac{7}{5} \\\\\n\\left|AB\\right| &= \\frac{42}{5}\n\\end{aligned}$$\n\nKolmion $ABC$ ala voidaan laskea kaavalla:\n$$\\begin{aligned}\nA &= \\frac{ah}{2} \\\\\n  &= \\frac{7 \\cdot \\frac{42}{5}}{2} \\\\\n  &= \\frac{147}{5}\n\\end{aligned}$$"
+      }
+    ]
+  },
+  {
+    "id": "OSAIII_T1",
+    "section": "Osa III",
+    "title": "Tehtävä 1",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Kolmion sivujen pituudet ovat $ a - 1 $, $ a $ ja $ a + 1 $. Määritä vakio $ a > 0 $ niin, että kolmio ei ole suorakulmainen."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "\\\\\n\nKolmio on suorakulmainen, jos sivujen pituudet toteuttavat Pythagoraan lauseen. Tällöin\n$$\\begin{aligned}\n\\left(a - 1\\right)^2 + a^2 &= \\left(a + 1\\right)^2 \\\\\na &= 0 \\ \\vee\\ a = 4\n\\end{aligned}$$\n\nRatkaisuista vain $a = 4$ toteuttaa määrittelyehdon. Siten on oltava $0 < a < 4$ tai $a > 4$, jotta kolmio ei ole suorakulmainen."
+      }
+    ]
+  },
+  {
+    "id": "OSAIII_T2",
+    "section": "Osa III",
+    "title": "Tehtävä 2",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "a) Kalle haluaa matkustaa päiväntasaajalta Etelänavalle. Määritä, kuinka monta prosenttia matka lyhenisi, jos Kalle matkustaisi lyhintä mahdollista reittiä Etelänavalle. Maan ympärysmitta on 40 000 km."
+      },
+      {
+        "type": "text",
+        "content": "b) Suomen eteläisimmällä luodolla sijaitsevaa Bengtskärin majakkaa pidetään yhtenä Suomen kauneimpana nähtävyytenä. Majakan korkeus on 45,8 metriä. Kuinka kaukana horisontti on  majakan korkeimmasta kohdasta? Kuinka pitkä matka tulisi uida, jotta pääsisi yhtä kauas? Maapallon säde on 6370 km."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a) Merkitään lyhyintä mahdollista reittiä kirjaimella $s$. Todellinen reitti eli maanpintaa pitkin kuljettu reitti on merkitty kuvaan vihreällä. Kuvan suorakulmaisesta kolmiosta saadaan\n$$\\begin{aligned}\nr^2 + r^2 &= s^2 \\\\\n2r^2 &= s^2\n\\end{aligned}$$\n\nKoska maan ympärysmitta on 40 000 km, saadaan säde yhtälöstä\n$$\\begin{aligned}\np &= 2\\pi r \\\\\n40000 &= 2\\pi r \\\\\nr &= \\frac{40000}{2\\pi} \\\\\nr  &= \\frac{20000}{\\pi}\n\\end{aligned}$$\n\nNäin ollen saadaan\n$$\\begin{aligned}\ns^2 &= 2 \\cdot \\left( \\frac{20000}{\\pi} \\right)^2 \\\\\ns &= \\pm \\sqrt{2 \\cdot \\left( \\frac{20000}{\\pi} \\right)^2} \\\\\n  &\\approx 9003{,}163\\ \\mathrm{km}\n\\end{aligned}$$\n\nKaaren pituus on\n$$\\begin{aligned}\nb &= \\frac{90^\\circ}{360^\\circ} \\cdot 40000\\ \\mathrm{km} \\\\\nb  &= 10000\\ \\mathrm{km}\n\\end{aligned}$$\n\nMatkojen suhde\n$$\\begin{aligned}\n\\frac{s}{b} &= \\frac{9003{,}163\\ \\mathrm{km}}{10000\\ \\mathrm{km}} \\\\\n            &\\approx 0{,}900316 \\approx 0{,}90 = 90\\%\n\\end{aligned}$$\n\nMatka lyhenisi\n$$\\begin{aligned}\n100\\% - 90\\% &= 10\\%\n\\end{aligned}$$"
+      },
+      {
+        "type": "image",
+        "src": "/utils/MAA3/Paivantasaaja.png",
+        "alt": ""
+      },
+      {
+        "type": "text",
+        "content": "b) Kuvan suorakulmaisesta kolmiosta\n$$\\begin{aligned}\nx^2 + 6370^2 &= \\left(6370 + 0{,}0458\\right)^2 \\\\\nx &= \\pm 24{,}1556\\ \\mathrm{km}\n\\end{aligned}$$\n\nKoska negatiivinen ratkaisu ei käy, on horisontin etäisyys majakan korkeimmasta kohdasta\n$$\\begin{aligned}\nx &= 24{,}1556\\ \\mathrm{km}\n\\end{aligned}$$\n\nKuvan suorakulmaisesta kolmiosta edelleen\n$$\\begin{aligned}\n\\sin\\alpha &= \\frac{6370}{6370 + 0{,}0458} \\\\\n\\alpha &= \\sin^{-1}\\left(\\frac{6370}{6370 + 0{,}0458}\\right)\n\\end{aligned}$$\n\nKysytty uintimatka\n$$\\begin{aligned}\nb &= \\frac{\\sin^{-1}\\left(\\frac{6370}{6370 + 0{,}0458}\\right)}{360^\\circ} \\cdot 2 \\cdot \\pi \\cdot 6370\\ \\mathrm{km} \\\\\n  &\\approx 174\\ \\mathrm{km}\n\\end{aligned}$$"
+      },
+      {
+        "type": "image",
+        "src": "/utils/MAA3/Majakka.png",
+        "alt": ""
+      }
+    ]
+  },
+  {
+    "id": "OSAIII_T3",
+    "section": "Osa III",
+    "title": "Tehtävä 3",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Sini ajaa vesijetillä 50 km/h vakionopeudella Saimaalla ja arvioi etuoikealla näkyvän Äitsaaren olevan 45° kulmassa ajosuunnan suhteen. 3 minuuttia myöhemmin Sini arvioi kulman suuruudeksi 78°. Kuinka kaukana Sini on alkutilanteessa Äitsaaresta?"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "\\\\"
+      },
+      {
+        "type": "image",
+        "src": "/utils/MAA3/Aitsaari.png",
+        "alt": ""
+      },
+      {
+        "type": "text",
+        "content": "Merkitään kysyttyä etäisyyttä kirjaimella $ x $. Nopeus \n$$\nv = \\frac{s}{t},\n$$\nmissä $ s $ on ajassa $ t $ kuljettu matka. Siten\n$$\\begin{aligned}\ns &= vt = 50\\ \\mathrm{\\frac{km}{h}} \\cdot \\frac{1}{20}\\ \\mathrm{h} \\\\\n  &= 2{,}5\\ \\mathrm{km}\n\\end{aligned}$$\n\nKoska kolmion kulmien summa on 180°, Äitsaaren kulma on\n$$\\begin{aligned}\n\\alpha &= 180^\\circ - 75^\\circ - 45^\\circ \\\\\n       &= 60^\\circ\n\\end{aligned}$$\n\nSinin etäisyys voidaan ratkaista sinilauseella:\n$$\\begin{aligned}\n\\frac{2{,}5\\ \\mathrm{km}}{\\sin 60^\\circ} &= \\frac{x}{\\sin 75^\\circ} \\\\\nx &= \\frac{2{,}5\\ \\mathrm{km} \\cdot \\sin 75^\\circ}{\\sin 60^\\circ} \\\\\n  &\\approx 2{,}8\\ \\mathrm{km}\n\\end{aligned}$$\n\nSini on alkutilanteessa 2{,}8 km etäisyydellä Äitsaaresta."
+      }
+    ]
+  },
+  {
+    "id": "OSAIII_T4",
+    "section": "Osa III",
+    "title": "Tehtävä 4",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Kuvassa näkyvä dikloorioksidi on yksi kloorin oksideista, jota käytetään esimerkiksi klooriyhdisteiden valmistukseen. Kloorioksidi kuuluu niin sanottuihin V-muotoisiin molekyyleihin. Molekyylissä kloori- ja happiytimien etäisyys toisistaan on 170 pm ja kloori-happi-sidosten välinen kulma 110°. Määritä klooriytimien etäisyys toisistaan. Ilmoita vastauksesi pikometreinä."
+      },
+      {
+        "type": "image",
+        "src": "/utils/MAA3/Kloorioksidi.png",
+        "alt": ""
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "\\\\\n\nKoska kloori-happi-sidosten välinen kulma on $ 110^\\circ $ ja kaksi muuta kulmaa ovat yhtä suuret, on niiden kulmat\n$$\\begin{aligned}\n\\frac{180^\\circ - 110^\\circ}{2} = 35^\\circ\n\\end{aligned}$$\n\nKysytty etäisyys ratkaistaan sinilauseella:\n$$\\begin{aligned}\n\\frac{|\\mathrm{Cl}|}{\\sin 110^\\circ} &= \\frac{170\\cdot10^{-12}\\ \\mathrm{m}}{\\sin 35^\\circ} \\\\\n|\\mathrm{Cl}| &= \\frac{170\\cdot10^{-12}\\ \\mathrm{m} \\cdot \\sin 110^\\circ}{\\sin 35^\\circ} \\\\\n              &\\approx 279\\cdot10^{-12}\\ \\mathrm{m} = 279\\ \\mathrm{pm}\n\\end{aligned}$$"
+      }
+    ]
+  },
+  {
+    "id": "OSAIII_T5",
+    "section": "Osa III",
+    "title": "Tehtävä 5",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Kolmion sivun pituudet ovat 6, 8 ja 12. Määritä, kuinka pitkiin osiin suurimman kulman puolittaja jakaa kulmaa vastaan olevan sivun."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "\\\\"
+      },
+      {
+        "type": "image",
+        "src": "/utils/MAA3/Kulmanpuolittaja.png",
+        "alt": ""
+      },
+      {
+        "type": "text",
+        "content": "Kulmanpuolittajalauseen mukaan kulmanpuolittaja jakaa kulmaa vastaan olevan sivun kulman viereisten sivujen pituuksien suhteessa. Koska \n$$\\begin{aligned}\nx + y = 12 \\quad \\Leftrightarrow \\quad y = 12 - x,\n\\end{aligned}$$\nsaadaan yhtälö\n$$\\begin{aligned}\n\\frac{x}{12 - x} &= \\frac{6}{8} \\\\\n8x &= 6(12 - x) \\\\\n8x &= 72 - 6x \\\\\n14x &= 72 \\\\\nx &= \\frac{72}{14} = \\frac{36}{7}\n\\end{aligned}$$\n\nSivun toisen osan pituus:\n$$\\begin{aligned}\n12 - x = 12 - \\frac{36}{7} = \\frac{48}{7}\n\\end{aligned}$$"
+      }
+    ]
+  },
+  {
+    "id": "OSAIII_T6",
+    "section": "Osa III",
+    "title": "Tehtävä 6",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Tiedetään, että kolmion kaksi sivua ovat 6 ja 11. Lisäksi kolmion ala on 29. Kuinka suuri on tunnettujen sivujen välinen kulma $\\beta$ ?"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "\\\\\n\nOlkoon kysytty kulma $\\beta$. Kolmion ala voidaan ratkaista yhtälöstä \n$$\nA = \\frac{1}{2} ab \\sin\\beta,\n$$\nmissä $\\beta$ on sivujen $a$ ja $b$ välinen kulma. Saadaan yhtälö\n$$\\begin{aligned}\n29 &= \\frac{1}{2} \\cdot 6 \\cdot 11 \\cdot \\sin\\beta \\\\\n29 &= 33 \\sin\\beta \\\\\n\\sin\\beta &= \\frac{29}{33} \\\\\n\\beta &= \\arcsin\\left(\\frac{29}{33}\\right) \\approx 61{,}496^\\circ \\approx 61{,}5^\\circ\n\\end{aligned}$$\n\nKoska suplementtikulmien sinit ovat yhtä suuret, kulma $\\beta$ voi olla myös\n$$\n\\beta = 180^\\circ - 61{,}496^\\circ \\approx 118{,}5^\\circ.\n$$\n\nSiis $\\beta = 61{,}5^\\circ$ tai $\\beta = 118{,}5^\\circ$.\n\nHavainnollistetaan vielä ratkaisua piirtämällä kuva tilanteesta."
+      },
+      {
+        "type": "image",
+        "src": "/utils/MAA3/Suplementti.png",
+        "alt": ""
+      },
+      {
+        "type": "text",
+        "content": "Kuvista nähdään, että sama kolmio voidaan piirtää annetuilla ehdoilla kahdella tavalla kuitenkin niin, että korkeus $h$ pysyy samana."
+      }
+    ]
+  },
+  {
+    "id": "OSAIII_T7",
+    "section": "Osa III",
+    "title": "Tehtävä 7",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Raudasta valmistettu pallon muotoinen kuula putosi maahan jättäen kuopan, jonka halkaisija on 10  cm ja syvyys 4  cm. Määritä kuulan massa, kun raudan tiheys on $ 7{,}87\\ \\mathrm{\\frac{g}{cm^3}} $. Ilmoita vastauksesi kilogrammoina kahden desimaalin tarkkuudella"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "\\\\\n\n\nHahmotellaan tilannetta piirtämällä kuva kuopasta, jonka kuula jättää maahan pudotessaan."
+      },
+      {
+        "type": "image",
+        "src": "/utils/MAA3/Rautapallo.png",
+        "alt": ""
+      },
+      {
+        "type": "text",
+        "content": "Kuvan suorakulmaisesta kolmiosta saadaan\n$$\nx^2 + 5^2 = r^2.\n$$\nKoska kuopan syvyys on 4 cm, saadaan\n$$\nr = x + 4.\n$$\nSijoittamalla tämä ensimmäiseen yhtälöön saadaan\n$$\\begin{aligned}\nx^2 + 25 &= (x + 4)^2 \\\\\nx^2 + 25 &= x^2 + 8x + 16 \\\\\n25 &= 8x + 16 \\\\\n8x &= 9 \\\\\nx &= \\frac{9}{8}.\n\\end{aligned}$$\n\nNäin ollen\n$$\nr = x + 4 = \\frac{9}{8} + 4 = \\frac{41}{8} = 5{,}125\\ \\mathrm{cm}.\n$$\n\nPallon tilavuus on\n$$\nV = \\frac{4}{3}\\pi r^3 = \\frac{4}{3}\\cdot\\pi\\cdot(5{,}125)^3 \\approx 563{,}8586127\\ \\mathrm{cm^3}.\n$$\n\nTiheys on massan ja tilavuuden osamäärä eli\n$$\n\\rho = \\frac{m}{V} \\quad \\Leftrightarrow \\quad m = \\rho V.\n$$\n\nKuulan massaksi saadaan\n$$\nm = 7{,}87\\ \\frac{\\mathrm{g}}{\\mathrm{cm^3}} \\cdot 563{,}8586127\\ \\mathrm{cm^3} \\approx 4436{,}6\\ \\mathrm{g} = 4{,}44\\ \\mathrm{kg}.\n$$"
+      }
+    ]
+  },
+  {
+    "id": "OSAIII_T8",
+    "section": "Osa III",
+    "title": "Tehtävä 8",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Osoita, että kolmion ala $ A = \\frac{1}{2}ab\\sin\\gamma $."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "\\\\\n\nTiedetään, että kolmion ala voidaan laskea kaavalla\n$$\nA = \\frac{1}{2}ah.\n$$\n\nOlkoon kolmion kaksi sivua $ a $ ja $ b $ sekä näiden välinen kulma $ \\gamma $. Olkoon lisäksi $ a $ kolmion kanta. Kun kolmioon piirretään korkeusjana $ h $, saadaan suorakulmaisesta kolmiosta\n$$\\begin{aligned}\n\\sin\\gamma &= \\frac{h}{b} \\\\\nh &= b\\sin\\gamma.\n\\end{aligned}$$\n\nSijoitetaan tämä korkeuden lauseke pinta-alan kaavaan:\n$$\\begin{aligned}\nA &= \\frac{1}{2}a h \\\\\n  &= \\frac{1}{2}a b \\sin\\gamma.\n\\end{aligned}$$\n\nTäten on osoitettu, että kolmion ala\n$$\nA = \\frac{1}{2}ab\\sin\\gamma. \\quad \\blacksquare\n$$"
+      }
+    ]
+  },
+  {
+    "id": "OSAIII_T9",
+    "section": "Osa III",
+    "title": "Tehtävä 9",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Tasakylkisen kolmion kanta on kylki on 5 ja kanta 8. Mikä on painopisteen etäisyys huippukulmasta?"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "image",
+        "src": "/utils/MAA3/Mediaani.png",
+        "alt": ""
+      },
+      {
+        "type": "text",
+        "content": "Painopiste on mediaanien leikkauspisteessä. Kolmio on tasakylkinen, joten huippukulmasta piirretty mediaani on kohtisuorassa kantaa vastaan. Pythagoraan lauseella saadaan\n$$\\begin{aligned}\n4^2 + (3x)^2 &= 5^2 \\\\\n9x^2 + 16 &= 25 \\\\\n9x^2 &= 9 \\\\\nx^2 &= 1 \\\\\nx &= \\pm 1\n\\end{aligned}$$\n\nVain positiivinen ratkaisu kelpaa. Etäisyys huippukulmasta on\n$$\n2x = 2 \\cdot 1 = 2.\n$$"
+      }
+    ]
+  },
+  {
+    "id": "OSAIII_T10",
+    "section": "Osa III",
+    "title": "Tehtävä 10",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Määritä 25-kulmion ja 28-kulmion kulmien summien suhde."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "\\\\\n\nn-kulmion kulmien summa on \n$$\n(n-2)\\cdot180^\\circ.\n$$\nSiten 25-kulmion kulmien summa on\n$$\\begin{aligned}\n(25-2)\\cdot180^\\circ &= 23\\cdot180^\\circ,\n\\end{aligned}$$\nja 28-kulmion kulmien summa\n$$\\begin{aligned}\n(28-2)\\cdot180^\\circ &= 26\\cdot180^\\circ.\n\\end{aligned}$$\n\nKulmien suhde on\n$$\n\\frac{23\\cdot180^\\circ}{26\\cdot180^\\circ} = \\frac{23}{26}.\n$$"
+      }
+    ]
+  },
+  {
+    "id": "OSAIV_T1",
+    "section": "Osa IV",
+    "title": "Tehtävä 1",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Kärjellään olevaan suoraan ympyräkartioon, jonka korkeus on 22,8 cm, sataa 11 mm vettä. Kuinka korkealle vedenpinta nousee kartiossa, kun se oli tyhjä ennen sadetta?"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "image",
+        "src": "/utils/MAA3/Vesikartio.png",
+        "alt": ""
+      },
+      {
+        "type": "text",
+        "content": "**Ratkaisu** \\\\\n\nTarkastellaan ympyräkartioiden poikkileikkauksia. Muodostuu kaksi yhdenmuotoista tasakylkistä kolmiota. Koska tilavuuksien suhde on mittakaavan kuutio, saadaan yhtälö\n$$\\begin{aligned}\n\\frac{V_{\\mathrm{pieni}}}{V_{\\mathrm{iso}}} &= \\left(\\frac{h}{22{,}8}\\right)^3 \\\\\n\\frac{V_{\\mathrm{pieni}}}{V_{\\mathrm{iso}}} &= \\frac{h^3}{(22{,}8)^3} \\\\\nh &= \\sqrt[3]{\\frac{V_{\\mathrm{pieni}} \\cdot (22{,}8)^3}{V_{\\mathrm{iso}}}} = 22{,}8\\sqrt[3]{\\frac{V_{\\mathrm{pieni}}}{V_{\\mathrm{iso}}}}\n\\end{aligned}$$\n\nVeden tilavuus voidaan ajatella myös suorana ympyrälieriönä, jonka säde on $r$. Tällöin\n$$\nV_{\\mathrm{pieni}} = \\pi r^2 \\cdot 11.\n$$\nNyt voidaan laskea tämän ja koko kartion tilavuuden suhde:\n$$\\begin{aligned}\n\\frac{V_{\\mathrm{pieni}}}{V_{\\mathrm{iso}}} &= \\frac{\\pi r^2 \\cdot 11}{\\frac{1}{3} \\pi r^2 \\cdot 228} = \\frac{11}{76}, \\\\\nh &= 22{,}8 \\sqrt[3]{\\frac{11}{76}} \\approx 12{,}0\\ \\mathrm{cm}.\n\\end{aligned}$$\n\nVesi nousee 12,0 cm korkeuteen."
+      }
+    ]
+  },
+  {
+    "id": "OSAIV_T2",
+    "section": "Osa IV",
+    "title": "Tehtävä 2",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Todista kuvaa hyödyntäen Pythagoraan lause $a^2+b^2=c^2$."
+      },
+      {
+        "type": "image",
+        "src": "/utils/MAA3/Pythagoras.png",
+        "alt": ""
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "image",
+        "src": "/utils/MAA3/Pythagorastodistus.png",
+        "alt": ""
+      },
+      {
+        "type": "text",
+        "content": "Koska suuremman nelikulmion kaikkien sivujen pituus on $a + b$ ja pienemmän nelikulmion kaikkien sivujen pituus on $c$, ovat molemmat nelikulmiot neliöitä.\n\nSuuremman neliön ala:\n$$\nA_{\\mathrm{suuri}} = (a + b)^2 = a^2 + 2ab + b^2.\n$$\n\nSuuremman neliön ala voidaan myös ilmaista neljän suorakulmaisen kolmion ja sisään piirretyn pienemmän neliön alojen summana:\n$$\nA_{\\mathrm{suuri}} = 4 \\cdot \\frac{1}{2} ab + c^2 = 2ab + c^2.\n$$\n\nYhdistämällä lausekkeet saadaan yhtälö\n$$\\begin{aligned}\na^2 + 2ab + b^2 &= 2ab + c^2 \\\\\na^2 + b^2 &= c^2.\n\\end{aligned}$$\n\nOn osoitettu, että suorakulmaiselle kolmiolle pätee\n$$\na^2 + b^2 = c^2.\\quad \\blacksquare\n$$"
+      }
+    ]
+  },
+  {
+    "id": "OSAIV_T3",
+    "section": "Osa IV",
+    "title": "Tehtävä 3",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Suorakulmaisen kolmion sisään piirretään ympyrä, jonka keskipisteen etäisyydet kolmion kahdesta kärjestä ovat $3\\sqrt{3}$ ja  $7$. Lisäksi tiedetään, että nämä etäisyydet kuvaavat etäisyyttä terävien kulmien kärjistä. Mikä on tällaisen suorakulmaisen hypotenuusan pituus? Anna vastauksesi tarkkana arvona."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "image",
+        "src": "/utils/MAA3/OSAIV_T3.png",
+        "alt": ""
+      },
+      {
+        "type": "text",
+        "content": "Olkoon tarkasteltava kolmio $EFG$ ja piste $O$ sen ympyrän keskipiste, joka piirretään kolmion $EFG$ sisään. Piste $O$ on samalla myös kulman $\\sphericalangle GEF$, kulman $\\beta = \\sphericalangle FGE$ ja kulman $\\alpha = \\sphericalangle EFG$ kulmanpuolittaja. \n\nKoska kolmion kulmien summa on $180^\\circ$, kolmioita $GEO$ ja $EFO$ hyödyntäen saadaan muodostettua yhtälö\n$$\n\\sphericalangle FOG = 45^\\circ + \\frac{\\alpha}{2} + 45^\\circ + \\frac{\\beta}{2} = 90^\\circ + \\frac{1}{2}(\\alpha + \\beta).\n$$\n\nSiten\n$$\n\\sphericalangle FOG = 180^\\circ - 45^\\circ = 135^\\circ.\n$$\n\nKolmioon $FGO$ voidaan hyödyntää kosinilausetta. Taulukkokirjasta nähdään, että $\\cos 135^\\circ = -\\frac{1}{\\sqrt{2}}$, joten saadaan\n$$\nc^2 = 7^2 + (3\\sqrt{3})^2 - 2 \\cdot 7 \\cdot 3\\sqrt{3} \\cdot \\left(-\\frac{1}{\\sqrt{2}}\\right) = 21\\sqrt{6} + 76,\n$$\njosta edelleen kysytyn sivun pituudeksi saadaan\n$$\nc = \\sqrt{21\\sqrt{6} + 76}.\n$$"
+      }
+    ]
+  },
+  {
+    "id": "OSAIV_T4",
+    "section": "Osa IV",
+    "title": "Tehtävä 4",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Todista, että tetraedrin, jonka särmän pituus on $x$, tilavuus on $\\frac{x^3\\sqrt{2}}{12}$."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "image",
+        "src": "/utils/MAA3/Tetraedri.png",
+        "alt": ""
+      },
+      {
+        "type": "text",
+        "content": "Olkoon tetraedrin pohjatahko tasasivuinen kolmio $ABC$ ja kolmion sivun pituus $x$. Kolmion korkeus $h$ saadaan Pythagoraan lauseella:\n$$\n\\left(\\frac{x}{2}\\right)^2 + h^2 = x^2 \\ \\Leftrightarrow\\ h^2 = x^2 - \\frac{x^2}{4} = \\frac{3x^2}{4} \\ \\Leftrightarrow\\ h = \\pm \\frac{x \\sqrt{3}}{2}.\n$$\nKoska vain positiivinen ratkaisu kelpaa, on\n$$\nh = \\frac{x \\sqrt{3}}{2}.\n$$\n\nPohjatahkon alaksi saadaan\n$$\nA_{\\mathrm{pohjatahko}} = \\frac{1}{2} \\cdot AB \\cdot h = \\frac{1}{2} \\cdot x \\cdot \\frac{x \\sqrt{3}}{2} = \\frac{x^2 \\sqrt{3}}{4}.\n$$\n\nOlkoon $k$ tetraedrin korkeusjana. Tämän korkeusjanan päätepiste on kolmion $ABC$ mediaanien leikkauspisteessä, mutta koska $ABC$ on tasasivuinen kolmio, on sen korkeusjana ja mediaani yhtä suuria eli mediaani on $h = \\frac{x \\sqrt{3}}{2}$.\n\nOlkoon $z$ pohjatahkon kärjen etäisyys pohjan keskipisteestä. Koska mediaanien leikkauspiste jakaa mediaanin suhteessa 2:1, saadaan\n$$\nz = \\frac{2}{3} \\cdot h = \\frac{2}{3} \\cdot \\frac{x \\sqrt{3}}{2} = \\frac{x \\sqrt{3}}{3}.\n$$\n\nJos merkitään tetraedrin korkeutta kirjaimella $y$, saadaan suorakulmaisesta kolmiosta\n$$\ny^2 = x^2 - z^2 = x^2 - \\left(\\frac{x \\sqrt{3}}{3}\\right)^2 = x^2 - \\frac{3x^2}{9} = \\frac{6x^2}{9} = \\frac{2x^2}{3}.\n$$\n\nTästä\n$$\ny = \\pm \\frac{x \\sqrt{6}}{3},\n$$\njoista vain positiivinen ratkaisu kelpaa.\n\nKoska tetraedri on pyramidin muotoinen, tetraedrin tilavuudeksi saadaan\n$$\nV = \\frac{1}{3} A_{\\mathrm{pohjatahko}} \\cdot y = \\frac{1}{3} \\cdot \\frac{x^2 \\sqrt{3}}{4} \\cdot \\frac{x \\sqrt{6}}{3} = \\frac{x^3 \\sqrt{2}}{12},\n$$\nmikä on todistettu."
+      }
+    ]
+  },
+  {
+    "id": "OSAIV_T5",
+    "section": "Osa IV",
+    "title": "Tehtävä 5",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "110 cm pitkä Pertti seisoo puumajassaan, joka sijaitsee 9 metrin korkeudella ja katselee alaviistoon. Viereisellä tontilla on omakotitalo, jota rajaa 1,5 metriä korkea orapihlaja-aita ja joka on 23 metrin päässä Pertin puumajasta. Onko Pertin mahdollista nähdä puumajastaan 95 cm korkea lumiukko, joka sijaitsee 2 metriä aidasta?"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "image",
+        "src": "/utils/MAA3/Pertti.png",
+        "alt": ""
+      },
+      {
+        "type": "text",
+        "content": "Koska Pertti on 110 cm pitkä, hän katselee tilannetta  \n$$\n9\\,\\mathrm{m} + 1{,}10\\,\\mathrm{m} = 10{,}10\\,\\mathrm{m}\n$$\nkorkeudelta.\n\nMääritetään näkölinja eli korkeus $h$. Ratkaistaan ensin verrantoyhtälö  \n$$\n\\frac{23 + 2 + z}{2 + z} = \\frac{10{,}1}{1{,}5},\n$$\njosta laskimella ratkaistuna  \n$$\nz = 2{,}0116\\ldots\\,\\mathrm{m}.\n$$\n\nTämän jälkeen voidaan muodostaa seuraava verrantoyhtälö  \n$$\n\\frac{2 + z}{z} = \\frac{1{,}5}{h}.\n$$\nSijoitetaan $z = 2{,}0116\\,\\mathrm{m}$ ja ratkaistaan $h$:  \n$$\n\\frac{2 + 2{,}0116\\,\\mathrm{m}}{2{,}0116\\,\\mathrm{m}} = \\frac{1{,}5\\,\\mathrm{m}}{h} \\quad \\Leftrightarrow \\quad h = 0{,}7521\\ldots\\,\\mathrm{m} \\approx 0{,}75\\,\\mathrm{m}.\n$$\n\nPertti voi nähdä sen mittaisen kohteen, joka on ainakin 0,76 m korkea. Pertti siis näkee lumiukon."
+      }
+    ]
+  }
+]

@@ -5,15 +5,40 @@ interface MathTextProps {
   content: string
 }
 
+// Some source problems embed bare LaTeX prose escapes (decimal-comma and
+// thin-space/percent spacing commands) outside of $...$ math. Those commands
+// are never rendered here, so normalize them to plain characters.
+function cleanProseEscapes(text: string): string {
+  return text
+    .replace(/\{,\}/g, ',')
+    .replace(/\\,/g, ' ')
+    .replace(/\\%/g, '%')
+    .replace(/\\&/g, '&')
+}
+
+// Splits on **bold** spans that stay within a single line, so a stray pair
+// of ** inside a code snippet's exponentiation operator can't be mistaken
+// for a bold marker (this path never sees code blocks, which are carved out
+// before it runs).
 function renderPlainText(text: string, keyPrefix: string) {
+  const lines = cleanProseEscapes(text).split('\n')
   return (
     <Fragment key={keyPrefix}>
-      {text.split('\n').map((line, i, arr) => (
-        <Fragment key={i}>
-          {line}
-          {i < arr.length - 1 && <br />}
-        </Fragment>
-      ))}
+      {lines.map((line, i) => {
+        const boldParts = line.split(/(\*\*[^*\n]+?\*\*)/g)
+        return (
+          <Fragment key={i}>
+            {boldParts.map((part, j) =>
+              part.startsWith('**') && part.endsWith('**') && part.length > 4 ? (
+                <strong key={j}>{part.slice(2, -2)}</strong>
+              ) : (
+                <Fragment key={j}>{part}</Fragment>
+              ),
+            )}
+            {i < lines.length - 1 && <br />}
+          </Fragment>
+        )
+      })}
     </Fragment>
   )
 }
@@ -41,11 +66,11 @@ function renderInline(text: string, keyPrefix: string) {
 // pass first, before splitting the surrounding text on single $...$, keeps
 // a single-$ neighboring a $$ block from "stealing" one of its delimiters
 // and swallowing unrelated prose into math mode.
-function renderSegments(content: string) {
+function renderMathSegments(content: string, keyPrefix: string) {
   const parts = content.split(/(\$\$[\s\S]+?\$\$)/g)
 
   return parts.map((part, index) => {
-    const key = String(index)
+    const key = `${keyPrefix}-${index}`
     if (part.startsWith('$$') && part.endsWith('$$')) {
       try {
         const html = katex.renderToString(part.slice(2, -2), { throwOnError: false, displayMode: true })
@@ -55,6 +80,26 @@ function renderSegments(content: string) {
       }
     }
     return <Fragment key={key}>{renderInline(part, key)}</Fragment>
+  })
+}
+
+// Fenced ```code``` blocks are carved out first and rendered verbatim in
+// monospace, so their content (which often contains ** as an exponentiation
+// operator) never reaches the math or bold-span parsing below.
+function renderSegments(content: string) {
+  const parts = content.split(/(```[\s\S]*?```)/g)
+
+  return parts.map((part, index) => {
+    const key = String(index)
+    if (part.startsWith('```') && part.endsWith('```')) {
+      const code = part.slice(3, -3).replace(/^\n/, '').replace(/\n$/, '')
+      return (
+        <pre key={key} className="my-2 overflow-x-auto rounded-xl bg-surface-2 p-3 font-mono text-sm text-ink">
+          {code}
+        </pre>
+      )
+    }
+    return <Fragment key={key}>{renderMathSegments(part, key)}</Fragment>
   })
 }
 

@@ -1,0 +1,780 @@
+[
+  {
+    "id": "OSAI_T1",
+    "section": "Osa I",
+    "title": "Tehtävä 1",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Matti päättää tehdä talletuksen korkotilille. Korkotilistä tiedetään, että sen korko on 1{,}50\\,\\%. Lisäksi Suomen valtio perii lainmukaisen 30\\,\\% lähdeveron Matin saamista tuotoista. Kun talletuksesta on kulunut 14 kuukautta, Matin talletuksesta on kertynyt 87{,}97\\,€ korkoa. Mikä oli rahamäärä, jonka Matti sijoitti alun perin korkotilille?"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Merkitään kirjaimella $k$ rahamäärää, jonka Matti alun perin sijoitti korkotilille. Koska korko on $1{,}50\\%=0{,}015$ ja lähdeveron jälkeen $100\\%-30\\%=70\\%=0{,}7$, nettokorkokannaksi saadaan $0{,}015\\cdot0{,}7=0{,}0105$. Saadaan yhtälö\n$$87{,}97=k\\cdot0{,}0150\\cdot0{,}7\\cdot\\frac{14}{12}\\ \\Leftrightarrow\\ k=\\frac{87{,}97}{0{,}0105\\cdot\\frac{14}{12}}\\ \\Leftrightarrow\\ k=7181{,}2244...\\approx7200$$\n\nMatti sijoitti 7200 euroa alun perin."
+      }
+    ]
+  },
+  {
+    "id": "OSAI_T2",
+    "section": "Osa I",
+    "title": "Tehtävä 2",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Tässä tehtävässä saa käyttää laskinta, kunhan saa muodostettua tehtävän tavoitteen konkreettiseen muotoon. Eräälle korkotilille säästetään kahden vuoden ajan siten, että jokaisen kuukauden ensimmäisenä päivänä tilille laitetaan 75\\,€. Tilin nettokorkokanta on 1{,}15\\,\\%. Kuinka paljon tilillä on rahaa säästämisen jälkeen? Korkokausi on poikkeuksellisesti kahden vuoden mittainen."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Lasketaan ensin, kuinka suuri voitto säästämisellä saadaan aikaan. Ensimmäisen kuukauden talletuksen tuotto on $75\\cdot0{,}015\\cdot\\frac{24}{24}$ ja toisen kuukauden tuotto $75\\cdot0{,}015\\cdot\\frac{23}{24}$. Siten viimeisen kuukauden talletuksen tuotto on $75\\cdot0{,}015\\cdot\\frac{1}{24}$. Koska n:nnen kuukauden tuotto on $75\\cdot0{,}015\\cdot\\frac{n}{24}$, jokaisen kuukauden yhteenlasketuista tuotoista saadaan summa \n$$\\sum_{n=1}^{24}\\left(75\\cdot0{,}015\\cdot\\frac{n}{24}\\right)=18{,}75.$$ \nKoska rahaa talletetaan tilille yhteensä $75\\cdot24=1800$ euroa, tilillä on säästämisen jälkeen $1818{,}75$ euroa."
+      }
+    ]
+  },
+  {
+    "id": "OSAI_T3",
+    "section": "Osa I",
+    "title": "Tehtävä 3",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Talletettakoon eräälle tilille kertatalletuksena 10\\,000 euroa. Tilin korkokanta on 1{,}7\\,\\% ja lähdevero on 30\\,\\%. Mikä summa tilillä on"
+      },
+      {
+        "type": "text",
+        "content": "a) 20 vuoden jälkeen?"
+      },
+      {
+        "type": "text",
+        "content": "b) 75 vuoden jälkeen?"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a) Nettokorkokanta on $0{,}017\\cdot0{,}7=0{,}0119$, jolloin korkokasvukerroin $q=1+0{,}0119=1{,}0119$. 20 vuoden jälkeen tilillä on $10000\\cdot1{,}0119^{20}=12669{,}279...\\approx12700$ euroa.\n\nb) 75 vuoden jälkeen tilillä on $10000\\cdot1{,}0119^{75}=24283{,}970...\\approx24300$ euroa."
+      }
+    ]
+  },
+  {
+    "id": "OSAI_T4",
+    "section": "Osa I",
+    "title": "Tehtävä 4",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Olkoon lukujono $$a_n = 4,\\ 8,\\ 12,\\ 16,\\ \\ldots$$"
+      },
+      {
+        "type": "text",
+        "content": "a) Mikä on lukujonon 3. jäsen?"
+      },
+      {
+        "type": "text",
+        "content": "b) Mikä on lukujonon 6. jäsen?"
+      },
+      {
+        "type": "text",
+        "content": "c) Määritä lukujonon yleisen jäsenen lauseke."
+      },
+      {
+        "type": "text",
+        "content": "d) Ratkaise lukujonon 52. jäsen."
+      },
+      {
+        "type": "text",
+        "content": "e) Monesko jäsen luku 48 on lukujonossa?"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a) $a_2=12$  \n\nb) $a_6=24$  \n\nc) Huomataan, että $a_1=1\\cdot4=4$, $a_2=2\\cdot4=8$ ja $a_3=3\\cdot4=12$. Näin ollen $a_n=n\\cdot4$  \n\nd) $a_{52}=52\\cdot4=208$  \n\ne) Saadaan yhtälö $48=n\\cdot4\\ \\Leftrightarrow\\ n=12$. Luku 48 on 12. jäsen."
+      }
+    ]
+  },
+  {
+    "id": "OSAI_T5",
+    "section": "Osa I",
+    "title": "Tehtävä 5",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Tarkastellaan lukujonoa $ a_n = 3n + 4 $."
+      },
+      {
+        "type": "text",
+        "content": "a) Määritä $ a_1,\\ a_2 $ ja $ a_3 $."
+      },
+      {
+        "type": "text",
+        "content": "b) Ratkaise lukujonon 27. jäsen."
+      },
+      {
+        "type": "text",
+        "content": "c) Onko luku 71 lukujonon jäsen?"
+      },
+      {
+        "type": "text",
+        "content": "d) Piirrä lukujonon kuvaaja koordinaatistoon."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a)   \n$a_1=3\\cdot1+4=7$  \n$a_2=3\\cdot2+4=10$  \n$a_3=3\\cdot3+4=13$  \n\nb) $a_{27}=3\\cdot27+4=85$  \n\nc) Ratkaistaan, onko yhtälöllä $71=3n+4$ ratkaisuja millään $n\\in\\mathbb{Z}_+$.  \n$71=3n+4\\ \\Leftrightarrow\\ 3n=67\\ \\Leftrightarrow\\ n=\\frac{67}{3}$, joka ei ole positiivinen kokonaisluku.  \nLuku 71 ei ole lukujonon jäsen.\n\nd)"
+      },
+      {
+        "type": "image",
+        "src": "/utils/MAA9/Lukujono_kuvaaja.png",
+        "alt": ""
+      },
+      {
+        "type": "text",
+        "content": "Kuvaajaan on piirretty lukujonon 20 ensimmäistä jäsentä."
+      }
+    ]
+  },
+  {
+    "id": "OSAI_T6",
+    "section": "Osa I",
+    "title": "Tehtävä 6",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Määritä lukujonon viisi ensimmäistä jäsentä, kun"
+      },
+      {
+        "type": "text",
+        "content": "a) $$\\begin{cases}\n    a_1 = 4 \\\\\n    a_n = 2a_{n-1} - 3,\\quad n = 2,\\ 3,\\ 4,\\ \\ldots\n    \\end{cases}$$"
+      },
+      {
+        "type": "text",
+        "content": "b) $$\\begin{cases}\n    a_1 = 2 \\\\\n    a_n = -2a_{n-1} - 1,\\quad n = 2,\\ 3,\\ 4,\\ \\ldots\n    \\end{cases}$$"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a) Käytetään yleistä jäsentä $a_n=2a_{n-1}-3$.\n$$\\begin{aligned}\na_2 &= 2\\cdot4 - 3 = 5 \\\\\na_3 &= 2\\cdot5 - 3 = 7 \\\\\na_4 &= 2\\cdot7 - 3 = 11 \\\\\na_5 &= 2\\cdot11 - 3 = 19\n\\end{aligned}$$\n\nb) Käytetään yleistä jäsentä $a_n=-2a_{n-1}-1$.\n$$\\begin{aligned}\na_2 &= -2\\cdot2 - 1 = -5 \\\\\na_3 &= -2\\cdot(-5) - 1 = 9 \\\\\na_4 &= -2\\cdot9 - 1 = -19 \\\\\na_5 &= -2\\cdot(-19) - 1 = 37\n\\end{aligned}$$"
+      }
+    ]
+  },
+  {
+    "id": "OSAI_T7",
+    "section": "Osa I",
+    "title": "Tehtävä 7",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Määritä taulukkolaskentaohjelmaa käyttäen $ a_{19} $, kun\n$$\\begin{cases}\na_1 = 4 \\\\\na_n = 3a_{n-1} + 8,\\quad n = 2,\\ 3,\\ 4,\\ \\ldots\n\\end{cases}$$"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "image",
+        "src": "/utils/MAA9/MAA9_Taulukko_1.png",
+        "alt": ""
+      },
+      {
+        "type": "image",
+        "src": "/utils/MAA9/MAA9_Taulukko_2.png",
+        "alt": ""
+      },
+      {
+        "type": "text",
+        "content": "Siis $ a_{19}=2883577.$"
+      }
+    ]
+  },
+  {
+    "id": "OSAI_T8",
+    "section": "Osa I",
+    "title": "Tehtävä 8",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Yksi tunnetuimmista lukujonoista on italialaismatemaatikko Fibonaccin lukujono, joka alkaa seuraavasti:  \n1, 1, 2, 3, 5, 8. Fibonaccin lukujonossa kolmannesta jäsenestä eteenpäin kukin jäsen on kahden edellisen jäsenen summa. Määritä"
+      },
+      {
+        "type": "text",
+        "content": "a) Yleinen jäsen $ a_n $"
+      },
+      {
+        "type": "text",
+        "content": "b) $ a_{15} $"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a) Koska lukujono kolmannesta jäsenestä eteenpäin on kahden edellisen jäsenen summa, on yleinen jäsen  \n$$a_n = a_{n-1} + a_{n-2},\\quad n = 3,\\ 4,\\ 5,\\ \\ldots.$$\n\nb) Laaditaan ratkaisu taulukkolaskentaohjelmalla. Kopioidaan kaavaa niin pitkään, että saadaan haluttu 19. jäsen näkyviin."
+      },
+      {
+        "type": "image",
+        "src": "/utils/MAA9/Fibonacci_ratk.png",
+        "alt": ""
+      },
+      {
+        "type": "text",
+        "content": "Siis $a_{19}=610.$"
+      }
+    ]
+  },
+  {
+    "id": "OSAI_T9",
+    "section": "Osa I",
+    "title": "Tehtävä 9",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Tarkastellaan aritmeettista lukujonoa, jonka ensimmäinen jäsen on 5 ja jonka seuraava jäsen saadaan lisäämällä edelliseen jäseneen luku 3."
+      },
+      {
+        "type": "text",
+        "content": "a) Muodosta aritmeettisen lukujonon yleisen jäsenen lauseke."
+      },
+      {
+        "type": "text",
+        "content": "b) Määritä $ a_8 $"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a) Koska seuraava jäsen saadaan lisäämällä edelliseen jäseneen luku 3, on differenssi  $d = 3.$  \nNäin ollen  $a_n = 5 + (n - 1) \\cdot 3 = 5 + 3n - 3 = 3n + 2.$\n\nb)  \n$a_8 = 3 \\cdot 8 + 2 = 26.$"
+      }
+    ]
+  },
+  {
+    "id": "OSAI_T10",
+    "section": "Osa I",
+    "title": "Tehtävä 10",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Määritä aritmeettisen jonon $ 5,\\ 10,\\ 15,\\ \\ldots $ ensimmäisen kahdenkymmenen jäsenen summa."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Differenssi $d = 10 - 5 = 5$ ja viimeinen jäsen $a_{20} = 5 + (20 - 1) \\cdot 5 = 100$. Ensimmäisen kahdenkymmenen jäsenen summa saadaan aritmeettisen summan kaavalla $S_n = n \\cdot \\frac{a_1 + a_n}{2}$. $S_{20} = 20 \\cdot \\frac{5 + 100}{2} = 1050$."
+      }
+    ]
+  },
+  {
+    "id": "OSAII_T1",
+    "section": "Osa II",
+    "title": "Tehtävä 1",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Laske aritmeettisen summan $ 3 + 10 + 17 + \\ldots + 136 $ arvo."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Differenssi $d=10-3=7$ ja viimeinen jäsen $a_n=136$. Aritmeettisen jonon yleinen jäsen on $a_n=a_1+\\left(n-1\\right)\\cdot d=3+\\left(n-1\\right)\\cdot7=7n-4$. Saadaan yhtälö $7n-4=136\\ \\Leftrightarrow\\ 7n=140\\ \\Leftrightarrow\\ n=20$. Summa on $S_{20}=20\\cdot\\frac{3+136}{2}=1390$."
+      }
+    ]
+  },
+  {
+    "id": "OSAII_T2",
+    "section": "Osa II",
+    "title": "Tehtävä 2",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Määritä summakaavaa käyttäen"
+      },
+      {
+        "type": "text",
+        "content": "a) $ \\displaystyle \\sum_{n=1}^5 (3n + 2) $"
+      },
+      {
+        "type": "text",
+        "content": "b) $ \\displaystyle \\sum_{n=3}^6 (3 - 4n) $"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a) Ensimmäinen yhteenlaskettava $a_1=3\\cdot1+2=5$ ja viimeinen yhteenlaskettava $a_5=3\\cdot5+2=17$. Yhteenlaskettavia on 5 kappaletta. Summa $S_5=5\\cdot\\frac{5+17}{2}=55$. \n\nb) Ensimmäinen yhteenlaskettava $a_3=3-4\\cdot3=-9$. Viimeinen yhteenlaskettava $a_6=3-4\\cdot6=-21$. Yhteenlaskettavia on 4 kappaletta. Summa $S_4=4\\cdot\\frac{-9-21}{2}=60$."
+      }
+    ]
+  },
+  {
+    "id": "OSAII_T3",
+    "section": "Osa II",
+    "title": "Tehtävä 3",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "a) Tarkastellaan geometrista jonoa, jonka ensimmäinen jäsen on 10 ja toinen jäsen 2. Määritä jonon yleinen jäsen $ a_n $."
+      },
+      {
+        "type": "text",
+        "content": "b) Mikä on geometrisen jonon yleinen jäsen $ a_n $, kun jonon ensimmäinen jäsen on 4 ja seuraava jäsen saadaan kertomalla edellinen jäsen luvulla $-1$?"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a) Koska $a_1=10$ ja $a_2=2$, niin suhdeluku $q=\\frac{2}{10}=\\frac{1}{5}$. Yleinen jäsen $a_n=10\\cdot\\left(\\frac{1}{5}\\right)^{n-1}$. \n\nb) Koska seuraava jäsen saadaan kertomalla edellinen jäsen luvulla $-1$, niin $a_2=a_1\\cdot\\left(-1\\right)=4\\cdot\\left(-1\\right)=-4$, jolloin suhdeluku $-\\frac{4}{4}=-1$. Näin ollen $a_n=a_1\\cdot\\left(-1\\right)^{n-1}$."
+      }
+    ]
+  },
+  {
+    "id": "OSAII_T4",
+    "section": "Osa II",
+    "title": "Tehtävä 4",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Olkoon geometrisen jonon yleinen jäsen $a_n=500\\cdot0{,}3^{n-1}$, missä $n=1{,}\\ 2{,}\\ 3{,}\\ ...$. Ratkaise jonon 7. jäsen kolmen desimaalin tarkkuudella. Piirrä kuvaaja tilanteesta ja määritä kuvaajan avulla, kuinka monennesta jäsenestä alkaen jonon jäsenet ovat pienempiä kuin 0,001."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "$a_7=500\\cdot0{,}3^{7-1}=0{,}3645\\approx0{,}365$"
+      },
+      {
+        "type": "image",
+        "src": "/utils/MAA9/MAA9_OSAII_kuvaaja.png",
+        "alt": ""
+      },
+      {
+        "type": "text",
+        "content": "Lukujonon 12. jäsen on ensimmäinen, jonka arvo on pienempi kuin 0,001."
+      }
+    ]
+  },
+  {
+    "id": "OSAII_T5",
+    "section": "Osa II",
+    "title": "Tehtävä 5",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Tarkastellaan geometrista summaa $ 4 + 12 + 36 + 108 + 324 + 972 $."
+      },
+      {
+        "type": "text",
+        "content": "a) Esitä geometrinen summa summakaavan $ S_n = a_1 \\cdot \\frac{1 - q^n}{1 - q} $ avulla lausuttuna."
+      },
+      {
+        "type": "text",
+        "content": "b) Voiko saman summan esittää summamerkinnän $ \\sum_{n=1}^k a_n $ avulla? Esitä se mikäli mahdollista ja perustele vastauksesi, jos summaa ei voida esittää summamerkinnän avulla."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Suhdeluku $q=\\frac{a_2}{a_1}=\\frac{12}{4}=3$ ja yhteenlaskettavien määrä $n=6$. Summakaava on näin ollen $S_n=4\\cdot\\frac{1-3^6}{1-3}$. Lukujonon yleinen jäsen $a_n=a_1\\cdot q^{n-1}=4\\cdot3^{n-1}$ ja summamerkintä $S_6=\\sum_{n=1}^6\\left(4\\cdot3^{n-1}\\right)$. Summa voidaan siis esittää summamerkinnän avulla."
+      }
+    ]
+  },
+  {
+    "id": "OSAII_T6",
+    "section": "Osa II",
+    "title": "Tehtävä 6",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Matti päättää ottaa tasalyhenteistä lainaa yhteensä 7000\\,€. Laina-aikaa on 4 vuotta ja Matti lyhentää lainaa ainoastaan kerran vuodessa ja tekee sen aina vuoden lopussa. Laske Matin ottaman lainan maksuerien suuruudet. Oletetaan korkokannaksi 11\\,\\%."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Jokaisessa maksuerässä maksettava lyhennys on $ \\frac{7000}{4} = 1750\\ (€) $.\n\nEnsimmäisessä maksuerässä lainaa on jäljellä 7000€, joten 11\\% korko tulee tästä summasta. Näin ollen 1. maksuerän suuruus on $ \\frac{7000}{4} + \\left(0{,}11 \\cdot 7000\\right) = 1750 + 770 = 2520\\ (€) $. Toisessa maksuerässä lainaa on jäljellä $ 7000 - 1750 = 5250\\ (€) $. 2. maksuerän suuruus on $ 1750 + \\left(0{,}11 \\cdot 5250\\right) = 2327{,}5\\ (€) $. 3. maksuerän suuruus on $ 1750 + \\left(3500 \\cdot 0{,}11\\right) = 2135\\ (€) $ ja 4. maksuerän suuruus $ 1750 + \\left(1750 \\cdot 0{,}11\\right) = 1942{,}5\\ (€) $."
+      }
+    ]
+  },
+  {
+    "id": "OSAII_T7",
+    "section": "Osa II",
+    "title": "Tehtävä 7",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Ingrid ottaa tasalyhenteistä lainaa 114\\,000\\,€. Laina-aika on 10 vuotta ja lainaa lyhennetään kuukausittain. Kuukausikorkokantana on 1{,}8\\,\\% ja pankin korkomarginaali on 1{,}5\\,\\%. Määritä ensimmäisen ja viimeisen maksuerän suuruudet. Mikä on summa, joka kaiken kaikkiaan tulee Ingridin maksettavaksi?"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Kuukausittainen tasalyhennys on $ \\frac{114000}{10\\cdot12} = 950\\ (€) $. Lainan kuukausikorko on $ \\frac{1{,}8\\% + 1{,}5\\%}{12} = 0{,}275\\% = 0{,}00275 $. Ensimmäisen maksuerän korko on $ 0{,}00275 \\cdot 114000 = 313{,}5\\ (€) $ ja viimeisen maksuerän korko $ 0{,}00275 \\cdot 950 = 2{,}6125\\ (€) $. Ensimmäisen maksuerän suuruus on näin ollen $ 950 + 313{,}5 = 1263{,}5\\ (€) $ ja viimeisen erän $ 950 + 2{,}6125 = 952{,}6125\\ (€) $. Annuiteettilainassa korot muodostavat aritmeettisen jonon, joten korkojen yhteenlaskettu summa saadaan aritmeettisena summana $ S_n = n\\cdot\\frac{a_1 + a_n}{2} $, missä $n$ on lyhennysten määrä, $a_1$ ensimmäinen korko ja $a_n$ viimeinen korko. Korkojen yhteenlaskettu summa on $ S_{120} = 120 \\cdot \\frac{313{,}5 + 2{,}6125}{2} = 18966{,}75\\ (€) $."
+      }
+    ]
+  },
+  {
+    "id": "OSAII_T8",
+    "section": "Osa II",
+    "title": "Tehtävä 8",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Liisa ottaa ensiasunnon ostamisen yhteydessä 85\\,000\\,€ suuruisen annuiteettilainan. Korkeapalkkaisen työn saatuaan hän päättää ottaa laina-ajakseen viisi vuotta ja lyhentää lainaa kuukausittain. Korkokantana on 1{,}8\\,\\% ja pankin korkomarginaali on 1{,}5\\,\\%. Määritä Liisan maksaman kuukausittaisen maksuerän suuruus. Mikä on lainasta maksettava kokonaiskorko?"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Koska laina-aika on viisi vuotta, maksueriä on yhteensä $n = 5 \\cdot 12 = 60$ kappaletta. Kuukausikorkokannaksi saadaan $ \\frac{1{,}8\\% + 1{,}5\\%}{12} = 0{,}275\\% = 0{,}00275 $, joten $ q = 1 + 0{,}00275 = 1{,}00275 $. Kuukausittaisen maksuerän suuruus $ A = K q^n \\frac{1 - q}{1 - q^n} $, missä $A$ on annuiteetti ja $K$ lainapääoma. Maksuerän suuruus $ A = 85000 \\cdot 1{,}00275^{60} \\cdot \\frac{1 - 1{,}00275}{1 - 1{,}00275^{60}} = 1538{,}69\\ldots\\,€ \\approx 1540\\,€ $. Lainasta maksettava kokonaiskorko on $ 60 \\cdot 1538{,}69\\ldots\\,€ - 85000\\,€ = 7321{,}8135\\ldots\\,€ \\approx 7320\\,€ $."
+      }
+    ]
+  },
+  {
+    "id": "OSAII_T9",
+    "section": "Osa II",
+    "title": "Tehtävä 9",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Olkoon lukujono $ a_n = 13n + 27 $. Kuinka moni lukujonon jäsenistä on pienempi kuin 32\\,000? Mikä on viimeinen jäsen, joka on pienempi kuin 32\\,000?"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Koska jäsenen $a_n$ tulee olla pienempi kuin 32000, saadaan epäyhtälö $a_n < 32000\\ \\Leftrightarrow\\ 13n + 27 < 32000\\ \\Leftrightarrow\\ 13n < 31973\\ \\Leftrightarrow\\ n < 2459{,}461\\ldots$ Suurin kokonaisluku, joka toteuttaa epäyhtälön, on $2459$. Lukujonon jäsenistä 2459 on pienempiä kuin 32000. Tämä 2459. jäsen on $a_{2459} = 13 \\cdot 2459 + 27 = 31994$."
+      }
+    ]
+  },
+  {
+    "id": "OSAII_T10",
+    "section": "Osa II",
+    "title": "Tehtävä 10",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Aritmeettisesta lukujonosta tiedetään, että $ a_5 = 22 $ ja $ a_{25} = 82 $. Mikä on lukujonon yleisen jäsenen $ a_n $ lauseke?"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Hahmotellaan tilannetta kirjoittamalla jäseniä kymmenennen jäsenen ja differenssin avulla. $a_5 = 22$, $a_6 = a_5 + d = 22 + d$, $a_7 = a_5 + 2d = 22 + 2d$.\n\nHavaitaan, että $a_{25} = 22 + (25 - 5)d = 22 + 20d$. Koska toisaalta $a_{25} = 82$, saadaan yhtälö $22 + 20d = 82\\ \\Leftrightarrow\\ 20d = 60\\ \\Leftrightarrow\\ d = 3$. Koska edelleen $a_5 = a_1 + (5 - 1) \\cdot 3$ ja $a_5 = 22$, saadaan yhtälö $22 = a_1 + (5 - 1) \\cdot 3\\ \\Leftrightarrow\\ 22 = a_1 + 12\\ \\Leftrightarrow\\ a_1 = 10$. Yleisen jäsenen $a_n$ lauseke $a_n = a_1 + (n - 1)d = 10 + (n - 1) \\cdot 3 = 3n + 7$."
+      }
+    ]
+  },
+  {
+    "id": "OSAIII_T1",
+    "section": "Osa III",
+    "title": "Tehtävä 1",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Alennettakoon erään tuotteen hintaa jo valmiiksi alennetusta hinnasta 35\\%. Tällöin kokonaisalennus alkuperäiseen hintaan nähden on tuotetta myyvän liikkeen mukaan 70\\%. Kuinka monta prosenttiyksikköä suurempi kokonaisalennus on ensimmäiseen alennukseen verrattuna? Anna vastauksesi prosenttiyksikön tarkkuudella."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Merkitään alkuperäistä hintaa kirjaimella $a$ ja kirjaimella $y$ ensimmäisen alennuksen prosenttikerrointa. Kun hintaa alennetaan 35\\%, on se edelliseen nähden $100\\% - 35\\% = 65\\% = 0{,}65$ ja alkuperäiseen hintaan nähden uusin hinta on $100\\% - 70\\% = 30\\% = 0{,}3$. Saadaan yhtälö $a \\cdot 0{,}65y = 0{,}3a\\ \\Leftrightarrow\\ 0{,}65y = 0{,}3\\ \\Leftrightarrow\\ y = 0{,}4615\\ldots$ Alkuperäinen alennus oli siis $0{,}4615\\ldots = 46{,}15\\ldots\\%$, joten ensimmäiseen alennukseen verrattuna kokonaisalennus on prosenttiyksikköinä $70\\% - 46{,}15\\ldots\\% = 23{,}84615\\ldots \\approx 24\\%$ suurempi."
+      }
+    ]
+  },
+  {
+    "id": "OSAIII_T2",
+    "section": "Osa III",
+    "title": "Tehtävä 2",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Sari ottaa $5400\\,€$ suuruisen lainan pankista, jonka hän aikoo maksaa takaisin puolivuosittain neljässä vuodessa. Määritä kunkin lainan maksuerän suuruus, kun laina on tasalyhennyslaina ja vuosikorkokanta on $9{,}5\\%$."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Koska laina maksetaan takaisin puolivuosittain neljässä vuodessa, on maksueriä $4\\cdot2=8$ kappaletta. Jokaisen lainan yhteydessä maksettava lyhennys on $\\frac{5400}{8}=675\\left(€\\right)$. Koska maksueriä on 8 kappaletta, tarkastellaan tilannetta taulukkolaskentaohjelmalla.\n\n\nKorko on laskettu komennolla A2*0,095*1/2 ja maksuerä komennolla B2+C2."
+      },
+      {
+        "type": "image",
+        "src": "/utils/MAA9/MAA9_OSA3_Taulukko.png",
+        "alt": ""
+      }
+    ]
+  },
+  {
+    "id": "OSAIII_T3",
+    "section": "Osa III",
+    "title": "Tehtävä 3",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Marko ottaa $5400\\,€$ suuruisen lainan pankista, jonka hän aikoo maksaa takaisin puolivuosittain neljässä vuodessa. Määritä kunkin lainan maksuerän suuruus, kun laina on tasaerälaina ja vuosikorkokanta on $9{,}5\\%$."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Koska kyseessä on nyt tasaerä- eli annuiteettilaina, on jokainen maksuerä yhtä suuri. Annuiteettilainan suuruus saadaan kaavasta $A = K q^n \\frac{1 - q}{1 - q^n}$, missä $K$ on lainapääoma, $q$ on korkotekijä ja $n$ maksuerien määrä. Koska vuosikorkokanta on 9,5\\%, on korkotekijä $q = 1 + 0{,}095 = 1{,}095$. Maksuerien määrä on 8 ja lainapääoma 5400. Lainan maksuerän suuruus on $A = 5400 \\cdot \\left(1{,}095\\right)^8 \\cdot \\frac{1 - 1{,}095}{1 - \\left(1{,}095\\right)^8} = 993{,}846\\ldots \\approx 993{,}8\\ (€)$."
+      }
+    ]
+  },
+  {
+    "id": "OSAIII_T4",
+    "section": "Osa III",
+    "title": "Tehtävä 4",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Talletettakoon eräälle talletustilille $8000\\,€$ seitsemän kuukauden ajaksi. Näiden kuukausien aikana talletustilille kertyi $42{,}57\\,€$ korkoa sen jälkeen, kun $30\\%$ lähdev"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Talletusaika on vähemmän kuin yhden korkokauden verran, joten voidaan hyödyntää yksinkertaisen korkolaskennan yhtälöä $r = k i t$, missä $r$ on korko, $k$ on alkuperäinen pääoma, $i$ on nettokorkokanta ja $t$ korkoaika kuukausina. Näistä tiedetään kaikki muut paitsi nettokorkokanta, joten saadaan yhtälö $42{,}57 = 8000 \\cdot i \\cdot \\frac{7}{12}\\ \\Leftrightarrow\\ i = 0{,}009122\\ldots$. Koska tässä on otettu 30\\% lähdevero huomioon, vuosikorkokanta $v$ saadaan yhtälöstä $v \\cdot 0{,}7 = 0{,}009122\\ \\Leftrightarrow\\ v = 0{,}0130\\ldots \\approx 0{,}013 = 1{,}3\\ (\\%)$. Vuosikorkokanta on 1,3 \\%."
+      }
+    ]
+  },
+  {
+    "id": "OSAIII_T5",
+    "section": "Osa III",
+    "title": "Tehtävä 5",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Tositapahtumiin perustuva armeijahenkinen elokuva tulee elokuvateattereihin viikon ajaksi katsottavaksi. Ensi-illassa kävijöitä on $347$ ihmistä ja jokaisessa näytöksessä kävijämäärä kasvaa $5\\%$. Mikä on kävijämäärä viimeisessä näytöksessä? Kuinka monta henkilöä käy katsomassa elokuvan viikon aikana? Anna vastauksesi yhden henkilön tarkkuudella."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Koska jokaisessa näytöksessä kävijämäärä kasvaa 5\\,\\%, kävijämäärät muodostavat geometrisen jonon, jonka ensimmäinen jäsen $a_1 = 347$ ja suhdeluku $q = 1{,}05$. Koska viikossa on seitsemän päivää ja elokuva on viikon ajan katsottavana, viimeisen näytöksen kävijämäärä on $a_7 = a_1 q^{7-1} = 347 \\cdot (1{,}05)^6 = 465{,}01\\ldots \\approx 465$ henkilöä. Koko viikon kävijämäärä saadaan geometrisena summana $S_7 = 7 \\cdot \\frac{a_1 + a_7}{2} = 7 \\cdot \\frac{347 + 465{,}01}{2} = 2842{,}046 \\approx 2842$. Kävijöitä viikon aikana on siis 2842 kappaletta."
+      }
+    ]
+  },
+  {
+    "id": "OSAIII_T6",
+    "section": "Osa III",
+    "title": "Tehtävä 6",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Olkiluoto-ydinvoimalassa tapahtuu vakava ydinvoimalaonnettomuus, jonka seurauksena ympäristöön vapautuu hengenvaarallista radioaktiivista ainetta. Tutkijat havaitsevat, että kyseisen aineen puoliintumisaika on $45$ vuotta. Puoliintumisajalla tarkoitetaan aikaa, jolloin aineen alkuperäinen määrä on puolittunut."
+      },
+      {
+        "type": "text",
+        "content": "a) Mikä on prosenttimäärä, joka ainetta hajoaa vuodessa? Anna vastauksesi prosentteina yhden desimaalin tarkkuudella."
+      },
+      {
+        "type": "text",
+        "content": "b) Mikä on aineen määrä $30$ vuoden kuluttua onnettomuudesta?"
+      },
+      {
+        "type": "text",
+        "content": "c) Onnin mukaan aine on hävinnyt alueelta $90$ vuoden kuluttua. Tutki matemaattisesti Onnin väitteen paikkansapitävyyttä."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a) Merkitään kirjaimella $a$ aineen määrää heti onnettomuuden tapahduttua ja kirjaimella $k$ vuotuista aineen vähenemiskerrointa. 45 vuoden päästä ainetta on jäljellä $0{,}5a$. Saadaan yhtälö $a \\cdot k^{45} = 0{,}5a \\ \\Leftrightarrow\\ k^{45} = 0{,}5 \\ \\Leftrightarrow\\ k = \\sqrt[45]{0{,}5} = 0{,}9847\\ldots$. Ainetta hajoaa $1 - 0{,}9847\\ldots = 0{,}0153\\ldots \\approx 0{,}015 = 1{,}5\\,\\%$ vuodessa.\n\nb) Aineen määrä saadaan yhtälöstä $k^{30} \\cdot a = 0{,}9847^{30} \\cdot a = 0{,}6299\\ldots a \\approx 0{,}63a$, eli se on noin 63 prosenttia alkuperäisestä.\n\nc) Koska 45 vuodessa aineen määrä puolittuu, sen jälkeen aineen määrä on $0{,}5a$. Kun tästä edetään 45 vuotta, tämä määrä puolittuu uudelleen, eli ainetta on jäljellä $0{,}25a$. Näin ollen aine ei ole hävinnyt alueelta 90 vuoden kuluttua, vaan sitä on jäljellä vielä 25 prosenttia. Onnin väite ei siis pidä paikkansa. (Koska aine puolittuu aina 45 vuodessa, se ei itse asiassa koskaan häviä alueelta kokonaan vaan se lähenee lopulta äärettömän lähelle nollaa.)"
+      }
+    ]
+  },
+  {
+    "id": "OSAIII_T7",
+    "section": "Osa III",
+    "title": "Tehtävä 7",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Talletettakoon eräälle kiinteäkorkoiselle tilille $7\\,500\\,€$. 15 vuoden päästä talletushetkestä kyseisellä tilillä on rahaa $9\\,000\\,€$. Korkoa talletukselle maksetaan jokaisen vuoden lopussa kerran. Määritä tilin vuosikorkokanta. Milloin tilin rahamäärä ylittää $12\\,000\\,€$?"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Merkitään korkoprosenttikerrointa kirjaimella $k$. Koska talletushetkestä kuluu 15 vuotta, saadaan yhtälö $7500 \\cdot k^{15} = 9000 \\ \\Leftrightarrow\\ k^{15} = \\frac{6}{5} \\ \\Leftrightarrow\\ k = \\sqrt[15]{\\frac{6}{5}} = 1{,}0122\\ldots \\approx 1{,}012$.\n\nKoska korkoprosenttikerroin $k = 1{,}012$, sijoitustilin vuosikorkokanta on noin 1,2\\,\\%. Olkoon $v$ vuosien määrä, joka kuluu ennen kuin tilin rahamäärä ylittää 12000\\ €. Saadaan yhtälö $7500 \\cdot \\left(\\sqrt[15]{\\frac{6}{5}}\\right)^v > 12000$, josta laskimella ratkaistuna saadaan $v > 38{,}668\\ldots$. Tilin rahamäärä ylittää 12000\\ €, kun talletuksesta on kulunut 39 vuotta."
+      }
+    ]
+  },
+  {
+    "id": "OSAIII_T8",
+    "section": "Osa III",
+    "title": "Tehtävä 8",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Olkoon $a_n = 32 - 8n$. Osoita matemaattisesti, että jono on aritmeettinen."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Jono $a_n$ on aritmeettinen, jos ja vain jos kahden peräkkäisen jäsenen erotus on vakio. On osoitettava, että $a_{n+1} - a_n$ ei riipu muuttujasta $n$ millään muuttujan $n \\in \\mathbb{R}$. Koska $a_{n+1} - a_n = 32 - 8(n+1) - (32 - 8n) = 32 - 8n - 8 - 32 + 8n = -8$, eli erotus $a_{n+1} - a_n = -8$, joka on vakio, on jono $a_n$ aritmeettinen, mikä on todistettu."
+      }
+    ]
+  },
+  {
+    "id": "OSAIII_T9",
+    "section": "Osa III",
+    "title": "Tehtävä 9",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Kerro perustellen, mitä tarkoitetaan käsitteillä annuiteettilaina ja tasalyhennyslaina. Mikä ero niillä on?"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Annuiteetti- eli tasaerälaina on on nimensä mukaisesti lainatapa, jossa jokaisen maksuerän suuruus on sama. Annuiteettilainassa maksetaan siis joka kuukausi sama summa, josta osa on korkoa ja osa takaisinmaksua. Koska alussa lainaa on lyhennetty vasta vähän, koron osuus maksuerästä on suuri ja vastaavasti mitä enemmän lainaa on lyhennetty, sitä suurempi osa summasta on lyhennystä ja sitä pienempi on koron osuus. Tasalyhennyslainassa maksetaan joka kuukausi kiinteä, samana pysyvä summa lyhennystä ja tämän lisäksi korot. Maksuerän suuruus vaihtuu joka kuukausi, koska koron osuus pienenee joka kuukausi ja näin ollen maksuerä on lainan alussa hyvin suuri ja lopussa pieni. Siinä missä annuiteettilainassa lyhennyksen määrä muuttuu joka kuukausi, tasalyhennyslainassa se pysyy joka kuukausi saman. Toinen ero on maksuerien suuruus: annuiteettilainassa kuukausittain maksettava maksuerä pysyy samana, kun taas tasalyhennyslainassa se muuttuu joka kuukausi."
+      }
+    ]
+  },
+  {
+    "id": "OSAIII_T10",
+    "section": "Osa III",
+    "title": "Tehtävä 10",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Yrityksen tavoitteena on saada uuden tuotteen myynti nousuun. Tavoitteena on kasvattaa 7\\% tuotteen myyntiä jokaisena päivänä seuraavan kuuden viikon ajan. Ensimmäisenä päivänä tuotetta myydään 30 kappaletta."
+      },
+      {
+        "type": "text",
+        "content": "a) Mikä on myyntimäärä viimeisenä päivänä? Anna vastauksesi kymmenen tuotteen tarkkuudella."
+      },
+      {
+        "type": "text",
+        "content": "b) Yritys ilmoittaa seuraavan kuun kuukausikatsauksessaan, että tuotetta myytiin 6880 kappaletta. Toteutuiko alkuperäinen tavoite?"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a) Myyntimäärät muodostavat geometrisen lukujonon, jonka suhdeluku $q = \\frac{a_2}{a_1} = \\frac{30 \\cdot 1{,}07}{30} = 1{,}07$ ja ensimmäinen jäsen $a_1 = 30$. Viimeisenä päivänä myyntimäärä on $a_{42} = 30 \\cdot (1{,}07)^{42 - 1} = 30 \\cdot (1{,}07)^{41} = 480{,}68 \\approx 480$ tuotetta.\n\nb) Jos tavoitteessa oltaisiin pysytty, saadaan myyntimäärä geometrisena summana $S_{42} = \\frac{30(1 - (1{,}07)^{42})}{1 - 1{,}07} = 6918{,}967... > 6880$.\n\nAlkuperäinen tavoite ei toteutunut."
+      }
+    ]
+  },
+  {
+    "id": "OSAIV_T1",
+    "section": "Osa IV",
+    "title": "Tehtävä 1",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Olkoon annettuna geometrinen lukujono $b_n$, jonka ensimmäinen termi $b_1 = 5$ ja geometrinen summa $S_n = 5\\left(2^n - 1\\right)$."
+      },
+      {
+        "type": "text",
+        "content": "a) Määritä lukujonon suhdeluku $ q $."
+      },
+      {
+        "type": "text",
+        "content": "b) Määritä $ b_2 $ ja $ b_{10} $."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a) Geometrinen summa on muotoa $S_n = \\frac{b_1(1 - q^n)}{1 - q}$, missä $q \\ne 1$. Koska $S_n = 5(2^n - 1)$ ja $b_1 = 5$, saadaan yhtälö\n$$\n5(2^n - 1) = \\frac{5(1 - q^n)}{1 - q} \\ \\Leftrightarrow\\ 2^n - 1 = \\frac{1 - q^n}{1 - q}\n$$\nHuomataan, että ainoa ratkaisu yhtälölle on $q = 2$: sijoittamalla $q = 2$ saadaan\n$$\n\\frac{1 - 2^n}{1 - 2} = \\frac{1 - 2^n}{-1} = - (1 - 2^n) = 2^n - 1\n$$\njoka on sama kuin yhtälön vasen puoli. Siis $q = 2$.\n\nb) $b_2 = b_1 q^{2 - 1} = b_1 q = 5 \\cdot 2 = 10$ ja $b_{10} = b_1 q^{10 - 1} = 5 \\cdot 2^9 = 2560$"
+      }
+    ]
+  },
+  {
+    "id": "OSAIV_T2",
+    "section": "Osa IV",
+    "title": "Tehtävä 2",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Suuren jalkapallostadionin katsomossa alimmalla, 1. rivillä on 180 paikkaa ja ylimmällä eli 51. rivillä 1480 paikkaa. Oletetaan, että paikkojen määrät eri riveillä muodostavat aritmeettisen jonon."
+      },
+      {
+        "type": "text",
+        "content": "a) Ratkaise 2. ja 16. rivin paikkojen määrä."
+      },
+      {
+        "type": "text",
+        "content": "b) Onko olemassa sellaista riviä, jolla olisi 1420 paikkaa?"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a) Koska paikkojen määrät eri riveillä muodostavat aritmeettisen jonon ja paikkojen määrä n:nnellä rivillä on $ a_n = a_1 + (n - 1)d $. Ensimmäisellä rivillä on 180 paikkaa eli $ a_1 = 180 $. Näin ollen aritmeettisen jonon yleinen jäsen $ a_n = 180 + (n - 1)d $. Ratkaistaan erotusluku $ d $. Tiedetään, että 51. rivillä on 1480 paikkaa eli $ a_{51} = 1480 $. Toisaalta $ a_{51} = 180 + (51 - 1)d $. Saadaan yhtälö $ 1480 = 180 + 50d \\Leftrightarrow 1300 = 50d \\Leftrightarrow d = 26 $. Näin ollen 2. rivin paikkojen määrä $ a_2 = 180 + (2 - 1)\\cdot 26 = 180 + 26 = 206 $ ja 10. rivin paikkojen määrä $ a_{10} = 180 + (10 - 1)\\cdot 26 = 180 + 9\\cdot 26 = 414 $.\n\nb) Jotta jollakin rivillä olisi 1420, on luvun 1420 oltava lukujonon jäsen. Tällöin yhtälöllä $ a_n = 1420 $ on ratkaisu jollakin $ n \\in \\mathbb{Z}_+ $. Koska $ a_n = 1420 \\Leftrightarrow 180 + (n - 1)\\cdot 26 = 1420 \\Leftrightarrow n = \\frac{633}{13} $, joka ei ole positiivinen kokonaisluku. Jalkapallostadionilla ei ole sellaista riviä, jossa olisi 1420 paikkaa."
+      }
+    ]
+  },
+  {
+    "id": "OSAIV_T3",
+    "section": "Osa IV",
+    "title": "Tehtävä 3",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Tärpätti on havupuiden pihkasta saatava neste, jota käytetään muun muassa kemianteollisuudessa liuottimiin ja kosmetiikkateollisuudessa hajusteisiin. Tärpätti on hiilivety-yhdiste, ja ilmaan joutuessaan hiilivedyt hajoavat nopeasti. Elmeri ostaa tärpättipurkin ja jättää sen ajatuksissaan aukinaisena aina päiväksi tyhjään huoneeseen. Ensimmäisenä päivänä tärpättiä on desi ja Elmeri lisää tärpättiä joka vuorokauden lopussa aina 0{,}01 desiä purkkiin. Oletetaan, että tärpätistä haihtuu vuorokaudessa 0{,}20\\,\\%."
+      },
+      {
+        "type": "text",
+        "content": "a) Muodosta lauseke, jolla purkissa olevan tärpätin määrä voidaan laskea kunakin vuorokautena."
+      },
+      {
+        "type": "text",
+        "content": "b) Kuinka paljon tärpättiä on kahden viikon jälkeen?"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a) Tärpättimäärät vuorokausien alussa muodostavat rekursiivisen lukujonon, jonka ensimmäinen jäsen $ a_1 = 1 $. Koska joka vuorokausi tärpätistä haihtuu 0,20\\,\\%, on ensimmäisen vuorokauden lopussa $ 0{,}998 \\cdot 1 $ litraa. Tärpätin lisäyksen jälkeen määrä on $ a_2 = 0{,}998 \\cdot 1 + 0{,}01 = a_1 \\cdot 0{,}998 + 0{,}01 $ desiä. Lukujonolle saadaan rekursiokaava\n$$\\begin{cases}\na_1 = 1 & \\\\\na_n = a_{n-1} \\cdot 0{,}998 + 0{,}01 &\n\\end{cases}$$\njonka avulla voidaan laskea tärpätin määrä $ n $:ntenä vuorokautena.\n\nb) Koska lukujonon 14. jäsen kuvaa tärpättimäärää 14. päivän alussa, on tärpättimäärä kahden jälkeen $ a_{15} = a_{15-1} \\cdot 0{,}998 + 0{,}01 = 1{,}1105\\ldots \\approx 1{,}10\\, \\mathrm{\\left(dl\\right)} $."
+      }
+    ]
+  },
+  {
+    "id": "OSAIV_T4",
+    "section": "Osa IV",
+    "title": "Tehtävä 4",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Antti ottaa tasalyhenteistä lainaa 36\\,000 €, jota hän aikoo lyhentää kuukausittain kaksi vuotta. Sillä hetkellä, kun Antti otti lainan, euribor-korko oli 1{,}013\\,\\% ja seuraavana vuonna 4{,}1\\,\\%. Lisäksi pankki veloittaa lainanhoitokuluista kuukausittain 8 €. Minä kuukautena Antti maksoi eniten korkoa? Määritä kyseisen kuun maksuerän suuruus."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Ratkaistaan tehtävä taulukkolaskentaohjelmalla. Korko on laskettu komennolla B2*C2 ja maksuerä komennolla D2+E2+F2."
+      },
+      {
+        "type": "image",
+        "src": "/utils/MAA9/MAA9_OSA4_taulukko.png",
+        "alt": ""
+      },
+      {
+        "type": "text",
+        "content": "Antti maksoi eniten korkoa 13. kuukautena. Kyseisessä kuussa maksuerä oli 2246 €."
+      }
+    ]
+  },
+  {
+    "id": "OSAIV_T5",
+    "section": "Osa IV",
+    "title": "Tehtävä 5",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Todista, että geometrisen summan kaava on $S_n=\\frac{a_1\\left(1-q^n\\right)}{1-q}$, missä $q \\ne 1$."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Oletetaan, että summan ensimmäinen termi on $a_1$ ja suhdeluku $q$. Tällöin summa\n$S_n = a_1 + a_1 q + a_1 q^2 + \\ldots + a_1 q^{n-1}$. Kerrotaan yhtälö puolittain suhdeluvulla $q$. Saadaan\n$q S_n = q \\left( a_1 + a_1 q + a_1 q^2 + \\ldots + a_1 q^n \\right)$. Tällöin erotus\n$S_n - q S_n = \\left( a_1 + a_1 q + a_1 q^2 + \\ldots + a_1 q^{n-1} \\right) - \\left( a_1 + a_1 q + a_1 q^2 + \\ldots + a_1 q^n \\right)$. Oikea puoli saadaan muotoon $S_n (1 - q)$ ja vasemmalla puolella kaikki muut termit kumoavat toisensa ja jäljelle jää summa $a_1 - a_1 q^n = a_1 (1 - q^n)$. Saadaan yhtälö\n$S_n (1 - q) = a_1 (1 - q^n) \\Leftrightarrow S_n = \\frac{a_1 (1 - q^n)}{1 - q}$, kun $q \\neq 1$ joka on geometrisen summan kaava. On todistettu, että geometrisen summan kaava on\n$S_n = \\frac{a_1 (1 - q^n)}{1 - q}$, missä $q \\neq 1$."
+      }
+    ]
+  }
+]

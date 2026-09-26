@@ -1,0 +1,877 @@
+[
+  {
+    "id": "OSAI_T1",
+    "section": "Osio I",
+    "title": "Tehtävä 1",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Olkoon A: \"tänään on matikkaa\" ja B: \"olen iloinen\". Suomenna seuraavat lauseet."
+      },
+      {
+        "type": "text",
+        "content": "a) $A \\land B$"
+      },
+      {
+        "type": "text",
+        "content": "b) $\\lnot A \\Rightarrow B$"
+      },
+      {
+        "type": "text",
+        "content": "c) $B \\Leftrightarrow A$"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a) Tänään on matikkaa ja olen iloinen"
+      },
+      {
+        "type": "text",
+        "content": "b) Jos tänään ei ole matikkaa, niin olen iloinen"
+      },
+      {
+        "type": "text",
+        "content": "c) Olen iloinen, jos ja vain jos tänään on matikkaa."
+      }
+    ]
+  },
+  {
+    "id": "OSAI_T2",
+    "section": "Osio I",
+    "title": "Tehtävä 2",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Muodosta lauseen totuustaulu. Milloin lause on tosi?"
+      },
+      {
+        "type": "text",
+        "content": "a) $A \\Leftrightarrow \\lnot(\\lnot A)$"
+      },
+      {
+        "type": "text",
+        "content": "b) $(\\lnot A \\land B) \\Rightarrow B$"
+      },
+      {
+        "type": "text",
+        "content": "c) $\\lnot(B \\lor C)$"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a)\n\n$$\\begin{array}{|c|c|c|c|}\\hline A & \\lnot A & \\lnot(\\lnot A) & A \\Leftrightarrow \\lnot(\\lnot A) \\\\ \\hline 1 & 0 & 1 & 1 \\\\ 1 & 0 & 1 & 1 \\\\ 0 & 1 & 0 & 1 \\\\ 0 & 1 & 0 & 1 \\\\ \\hline \\end{array}$$\n\nTosi aina eli lause on tautologinen."
+      },
+      {
+        "type": "text",
+        "content": "b)\n\n$$\\begin{array}{|c|c|c|c|c|}\\hline A & B & \\lnot A & \\lnot A \\land B & (\\lnot A \\land B) \\Rightarrow B \\\\ \\hline 1 & 1 & 0 & 0 & 1 \\\\ 1 & 0 & 0 & 0 & 1 \\\\ 0 & 1 & 1 & 1 & 1 \\\\ 0 & 0 & 1 & 0 & 1 \\\\ \\hline \\end{array}$$\n\nTosi aina eli lause on tautologinen."
+      },
+      {
+        "type": "text",
+        "content": "c)\n\n$$\\begin{array}{|c|c|c|c|}\\hline B & C & B \\lor C & \\lnot(B \\lor C) \\\\ \\hline 1 & 1 & 1 & 0 \\\\ 1 & 0 & 1 & 0 \\\\ 0 & 1 & 1 & 0 \\\\ 0 & 0 & 0 & 1 \\\\ \\hline \\end{array}$$\n\nTosi vain kun B ja C on molemmat epätosi."
+      }
+    ]
+  },
+  {
+    "id": "OSAI_T3",
+    "section": "Osio I",
+    "title": "Tehtävä 3",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Tutki ovatko lauseet tautologisia."
+      },
+      {
+        "type": "text",
+        "content": "a) $B \\lor \\lnot B$"
+      },
+      {
+        "type": "text",
+        "content": "b) $(C \\lor B) \\land (B \\land A)$"
+      },
+      {
+        "type": "text",
+        "content": "c) $(A \\Rightarrow B) \\Rightarrow C$"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Jotta lause on tautologinen, täytyy sen olla aina tosi.\n\na)\n\n$$\\begin{array}{|c|c|c|}\\hline B & \\lnot B & B \\lor \\lnot B \\\\ \\hline 1 & 0 & 1 \\\\ 1 & 0 & 1 \\\\ 0 & 1 & 1 \\\\ 0 & 1 & 1 \\\\ \\hline \\end{array}$$\n\nOn tautologinen."
+      },
+      {
+        "type": "text",
+        "content": "b)\n\n$$\\begin{array}{|c|c|c|c|c|c|}\\hline A & B & C & C \\lor B & B \\land A & (C \\lor B) \\land (B \\land A) \\\\ \\hline 1 & 1 & 1 & 1 & 1 & 1 \\\\ 1 & 1 & 0 & 1 & 1 & 1 \\\\ 1 & 0 & 1 & 1 & 0 & 0 \\\\ 1 & 0 & 0 & 0 & 0 & 0 \\\\ 0 & 1 & 1 & 1 & 0 & 0 \\\\ 0 & 1 & 0 & 1 & 0 & 0 \\\\ 0 & 0 & 1 & 1 & 0 & 0 \\\\ 0 & 0 & 0 & 0 & 0 & 0 \\\\ \\hline \\end{array}$$\n\nEli ole tautologinen."
+      },
+      {
+        "type": "text",
+        "content": "c)\n\n$$\\begin{array}{|c|c|c|c|c|}\\hline A & B & C & A \\Rightarrow B & (A \\Rightarrow B) \\Rightarrow C \\\\ \\hline 1 & 1 & 1 & 1 & 1 \\\\ 1 & 1 & 0 & 1 & 0 \\\\ 1 & 0 & 1 & 0 & 1 \\\\ 1 & 0 & 0 & 0 & 1 \\\\ 0 & 1 & 1 & 1 & 1 \\\\ 0 & 1 & 0 & 1 & 0 \\\\ 0 & 0 & 1 & 1 & 1 \\\\ 0 & 0 & 0 & 1 & 0 \\\\ \\hline \\end{array}$$\n\nEi ole tautologinen."
+      }
+    ]
+  },
+  {
+    "id": "OSAI_T4",
+    "section": "Osio I",
+    "title": "Tehtävä 4",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Määritä lukujen 60 ja 36"
+      },
+      {
+        "type": "text",
+        "content": "a) suurin yhteinen tekijä"
+      },
+      {
+        "type": "text",
+        "content": "b) pienin yhteinen monikerta.\n\nTarkasta vastaus laskimella."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a) Suurin yhteinen tekijä voidaan määrittää Eukleideen algoritmilla.\n\n$$60 = 1 \\cdot 36 + 24$$36 = 1 \\cdot 24 + 12$$24 = 2 \\cdot 12 + 0$$\n\nNäin ollen $\\mathrm{syt}(60, 36) = 12$."
+      },
+      {
+        "type": "text",
+        "content": "b) Pienin yhteinen monikerta voidaan määrittää kaavalla: $\\mathrm{pym}(a,b) = \\dfrac{ab}{\\mathrm{syt}(a,b)}$.\n\nSiten\n\n$$\\mathrm{pym}(60, 36) = \\frac{60 \\cdot 36}{12} = 180.$$"
+      }
+    ]
+  },
+  {
+    "id": "OSAI_T5",
+    "section": "Osio I",
+    "title": "Tehtävä 5",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Tutki onko luku jaollinen luvulla 8? a) 32 b) 54 c) $-72$ d) $-106$"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Tutkitaan, tuleeko luvulle jakojäännöstä.\n\na) On. $32 = 4 \\cdot 8$\n\nb) Ej ole. $54 = 6 \\cdot 8 + 6$\n\nc) On. $-72 = -9 \\cdot 8$\n\nd) Ei ole. $-106 = -13 \\cdot 8 - 2$"
+      }
+    ]
+  },
+  {
+    "id": "OSAI_T6",
+    "section": "Osio I",
+    "title": "Tehtävä 6",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Osoita, että"
+      },
+      {
+        "type": "text",
+        "content": "a) $54 \\equiv 4 \\pmod{5}$"
+      },
+      {
+        "type": "text",
+        "content": "b) $10 \\equiv 0 \\pmod{2}$"
+      },
+      {
+        "type": "text",
+        "content": "c) $k \\equiv 0 \\pmod{k}$, kaikilla $n \\in \\mathbb{N}$."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Tutkitaan lukujen jakojäännöstä.\n\na) $54 - 4 = 50 = 5 \\cdot 10$. Siten $54 \\equiv 4 \\pmod{5}$.\n\nb) $10 - 0 = 10 = 2 \\cdot 5$. Siten $10 \\equiv 0 \\pmod{2}$.\n\nc) $k - 0 = k = 1 \\cdot k$. Siten $k \\equiv 0 \\pmod{k}$."
+      }
+    ]
+  },
+  {
+    "id": "OSAI_T7",
+    "section": "Osio I",
+    "title": "Tehtävä 7",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Olkoon luku $a$ sellainen kokonaisluku, joka on jaollinen luvulla 3 ja $0 < a < 10$. Määritä kaikki luvut $a$, jotka toteuttavat ehdot."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Koska luku $a$ on jaollinen luvulla 3, niin se voidaan esittää muodossa\n$$a = 3k, \\text{ missä } k \\in \\mathbb{Z}.$$\nToisaalta koska $0 < a < 10$, niin ainoat mahdolliset $k{:}n$ arvot ovat 1, 2 ja 3. Eli näin ollen luku $a$ voi olla $a = 3$, $a = 6$ tai $a = 9$."
+      }
+    ]
+  },
+  {
+    "id": "OSAI_T8",
+    "section": "Osio I",
+    "title": "Tehtävä 8",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Onko väite tosi vai epätosi? Perustele vastauksesi."
+      },
+      {
+        "type": "text",
+        "content": "a) Irrationaaliluvun neliö on aina irrationaaliluku."
+      },
+      {
+        "type": "text",
+        "content": "b) Olkoon $a$ parillinen ja $b$ pariton. Tällöin $ab$ on aina parillinen."
+      },
+      {
+        "type": "text",
+        "content": "c) Kaikki alkuluvut ovat parittomia."
+      },
+      {
+        "type": "text",
+        "content": "d) Jos luku voidaan jakaa alkutekijöihin, niin luku on alkuluku."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a) Epätosi. Vastaesimerkki: $\\sqrt{2}$ on irrationaaliluku, mutta $\\left(\\sqrt{2}\\right)^2 = 2$ on rationaaliluku."
+      },
+      {
+        "type": "text",
+        "content": "b) Tosi. Olkoon $a = 2k$ ja $b = 2r + 1$. Tällöin $ab = (2k)(2r + 1) = 4kr + 2k = 2(2kr + k)$."
+      },
+      {
+        "type": "text",
+        "content": "c) Epätosi. Luku 2 on parillinen ja se on alkuluku."
+      },
+      {
+        "type": "text",
+        "content": "d) Epätosi. Jokainen luonnollinen luku voidaan jakaa alkutekijöihin, vaikka kaikki luonnolliset luvut eivät ole alkulukuja."
+      }
+    ]
+  },
+  {
+    "id": "OSAI_T9",
+    "section": "Osio I",
+    "title": "Tehtävä 9",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Olkoot luvut $a = 2$, $b = -3$, $c = 4$ ja $d = \\dfrac{1}{2}$. Muuta seuraavat yhtälöt koodiksi ja tulosta niiden tulos."
+      },
+      {
+        "type": "text",
+        "content": "a) $x = (a - b)^2$"
+      },
+      {
+        "type": "text",
+        "content": "b) $y = \\dfrac{a + b - c}{d}$"
+      },
+      {
+        "type": "text",
+        "content": "c) $z = a^2(c - b)^c$"
+      },
+      {
+        "type": "text",
+        "content": "d) $t = \\dfrac{ab}{d^2}$"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Koodi:\n\n```\na = 2\nb = -3\nc = 4\nd = 0.5\n\nx = (a-b) ** 2\nprint(x)\n\ny = (a+b-c) / d\nprint(y)\n\nz = a ** 2 * (c-b) ** c\nprint(z)\n\nt = (a * b) / (d ** 2)\nprint(t)\n```\n\nTulostaa arvot:\n\n$x = 25$\n\n$y = -10.0$\n\n$z = 9604$\n\n$t = -24.0$"
+      }
+    ]
+  },
+  {
+    "id": "OSAI_T10",
+    "section": "Osio I",
+    "title": "Tehtävä 10",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Tarkastellaan seuraavaa koodia.\n\n```\n# Määritellään funktio f(x)\ndef funktio(x):\n    return x ** 2\n\ndef puolisuunnikasmenetelma(a, b, n):\n    h = (b - a) / n\n    summa = (funktio(a) + funktio(b)) / 2\n    for i in range(1, n):\n        x = a + i * h\n        summa += funktio(x)\n    return summa * h\n\na = ;\nb = ;\nn = ;\n\ntulos = puolisuunnikasmenetelma(a, b, n)\nprint(\"Arvo:\", tulos)\n```"
+      },
+      {
+        "type": "text",
+        "content": "a) Selitä mitä koodi tekee."
+      },
+      {
+        "type": "text",
+        "content": "b) Valitaan arvoiksi $a = 1$, $b = 2$ ja $n = 10$. Aja koodi. Minkä arvon saat?"
+      },
+      {
+        "type": "text",
+        "content": "c) Käyttäen jotain laskinohjelmaa, kokeile saatko saman vastauksen samoilla arvoilla."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a) Kyseinen Python-koodi toteuttaa puolisuunnikasmenetelmän, joka on numeerinen menetelmä integraalille. Se käyttää puolisuunnikaiden summia funktioarvojen approksimoimiseksi tietyllä välillä $[a, b]$. Käytetty funktio on $f(x) = x^2$, mikä on integroituva kaikkialla $[a, b]$. Lisäksi $h$ on määritetty osaväli."
+      },
+      {
+        "type": "text",
+        "content": "b) Kun $a = 1$, $b = 2$ ja $n = 10$, niin koodi tulostaa arvon:\nArvioitu integraalin arvo on: 2.3350000000000004"
+      },
+      {
+        "type": "text",
+        "content": "c) Laskinohjelmalla saadaan\n\n$$\\text{Puolisuunnikassumma}(x^2, 1, 2, 10) = 2.335.$$\n\nEli vastaus on likimain sama."
+      }
+    ]
+  },
+  {
+    "id": "OSAII_T1",
+    "section": "Osio II",
+    "title": "Tehtävä 11",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Osoita De Morganin lait."
+      },
+      {
+        "type": "text",
+        "content": "a) $\\lnot(A \\lor B) \\Leftrightarrow \\lnot A \\land \\lnot B$"
+      },
+      {
+        "type": "text",
+        "content": "b) $\\lnot(A \\land B) \\Leftrightarrow \\lnot A \\lor \\lnot B$"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Osoitetaan De Morganin lait totuustaulujen avulla.\n\na)\n\n$$\\begin{array}{|c|c|c|c|c|c|c|}\\hline A & B & \\lnot A & \\lnot B & A \\lor B & \\lnot(A \\lor B) & \\lnot A \\land \\lnot B \\\\ \\hline 1 & 1 & 0 & 0 & 1 & 0 & 0 \\\\ 1 & 0 & 0 & 1 & 1 & 0 & 0 \\\\ 0 & 1 & 1 & 0 & 1 & 0 & 0 \\\\ 0 & 0 & 1 & 1 & 0 & 1 & 1 \\\\ \\hline \\end{array}$$\n\nTaulukosta huomataan, että lauseiden $\\lnot(A \\lor B)$ ja $\\lnot A \\land \\lnot B$ totuusarvot ovat samat eli ne ovat loogisesti ekvivalentit."
+      },
+      {
+        "type": "text",
+        "content": "b)\n\n$$\\begin{array}{|c|c|c|c|c|c|c|}\\hline A & B & \\lnot A & \\lnot B & A \\land B & \\lnot(A \\land B) & \\lnot A \\lor \\lnot B \\\\ \\hline 1 & 1 & 0 & 0 & 1 & 0 & 0 \\\\ 1 & 0 & 0 & 1 & 0 & 1 & 1 \\\\ 0 & 1 & 1 & 0 & 0 & 1 & 1 \\\\ 0 & 0 & 1 & 1 & 0 & 1 & 1 \\\\ \\hline \\end{array}$$\n\nTaulukosta huomataan, että lauseiden $\\lnot(A \\land B)$ ja $\\lnot A \\lor \\lnot B$ totuusarvot ovat samat eli ne ovat loogisesti ekvivalentit."
+      }
+    ]
+  },
+  {
+    "id": "OSAII_T2",
+    "section": "Osio II",
+    "title": "Tehtävä 12",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Määritä se lause $P$, joka on loogisesti ekvivalentti lauseen $A \\Rightarrow B$ kanssa. Käytä vain symboleja $\\lor$, $\\land$ sekä $\\lnot$."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Täytyy olla siis, että lauseille $A \\Rightarrow B$ ja $P$ on samat totuusarvot. Nyt\n\n$$\\begin{array}{|c|c|c|c|c|c|}\\hline A & B & A \\Rightarrow B & \\lnot A & B & \\lnot A \\lor B \\\\ \\hline 1 & 1 & 1 & 0 & 1 & 1 \\\\ 1 & 0 & 0 & 0 & 0 & 0 \\\\ 0 & 1 & 1 & 1 & 1 & 1 \\\\ 0 & 0 & 1 & 1 & 0 & 1 \\\\ \\hline \\end{array}$$\n\nEli näin ollen $P = \\lnot A \\lor B$."
+      }
+    ]
+  },
+  {
+    "id": "OSAII_T3",
+    "section": "Osio II",
+    "title": "Tehtävä 13",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Olkoon $x, y \\in \\mathbb{Z}$. Osoita, että"
+      },
+      {
+        "type": "text",
+        "content": "a) jos $z \\mid x$ ja $z \\mid y$, niin $z \\mid x + y$"
+      },
+      {
+        "type": "text",
+        "content": "b) jos $z \\mid x$, niin $z \\mid ax$, missä $a \\in \\mathbb{Z}$"
+      },
+      {
+        "type": "text",
+        "content": "c) Tutki perustellen, onko b)-kohdan väite totta, jos $a \\in \\mathbb{N}$?"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a) Nyt oletetaan, että $z$ on jaollinen luvuilla $x$ ja $y$. Täten siis\n$$x = kz \\text{ ja } y = rz, \\text{ missä } k, r \\in \\mathbb{Z}.$$\nSiten\n$$x + y = kz + rz = (k + r)z, \\text{ missä } k + r \\in \\mathbb{Z}.$$"
+      },
+      {
+        "type": "text",
+        "content": "b) Oletuksen nojalla pätee, että\n$$x = kz, \\text{ missä } k \\in \\mathbb{Z}.$$\nSiten\n$$ax = akz = (ak)z, \\text{ missä } ak \\in \\mathbb{Z}.$$"
+      },
+      {
+        "type": "text",
+        "content": "c) Väite on tosi. Koska luonnalliset luvut ovat kokonaislukujen osajoukko niin, väite on pakosti tosi."
+      }
+    ]
+  },
+  {
+    "id": "OSAII_T4",
+    "section": "Osio II",
+    "title": "Tehtävä 14",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Onko olemassa sellainen $x$, jolle pätee, että $\\mathrm{syt}(x^2, 10) = x$ ja $\\mathrm{pym}(x^2, 10) = 14$. Perustele vastaus."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Samaan tapaan kuin tehtävässä 4, voidaan muodostaa yhtälö siten, että\n\n$$\\mathrm{pym}(x^2, 10) = \\frac{10x^2}{\\mathrm{syt}(x^2, 10)} \\Leftrightarrow 14 = \\frac{10x^2}{x} \\Leftrightarrow 14 = 10x \\Leftrightarrow x = \\frac{7}{5}.$$\n\nKoska luku $x$ ei ole kokonaisluku, niin yhtälöllä ei ole ratkaisua."
+      }
+    ]
+  },
+  {
+    "id": "OSAII_T5",
+    "section": "Osio II",
+    "title": "Tehtävä 15",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "a) Olkoon joukko $A = \\{2x^3 - 4 \\mid x \\in \\mathbb{Z}\\}$. Tutki päteekö, että $0 \\in A$ tai $12 \\in A$?"
+      },
+      {
+        "type": "text",
+        "content": "b) Olkoon joukko $B = \\{x^2 < 2 \\mid x \\in \\mathbb{R}\\}$. Tutki päteekö, että $0 \\in B$ tai $-1 \\in B$?"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a) Muodostetaan yhtälö ja ratkaistaan se. Nyt\n$$2x^3 - 4 = 0 \\Leftrightarrow x = \\sqrt[3]{2} \\notin \\mathbb{Z}$$\nja\n$$2x^3 - 4 = 12 \\Leftrightarrow x = 2 \\in \\mathbb{Z}.$$\nEli vain $12 \\in A$."
+      },
+      {
+        "type": "text",
+        "content": "b) Toisaalta joukko $B$ voidaan esittää muodossa $B = \\{-\\sqrt{2} < x < \\sqrt{2} \\mid x \\in \\mathbb{R}\\}$.\n\nKoska\n$$-\\sqrt{2} < -1 < 0 < \\sqrt{2}$$\nniin $0 \\in B$ ja $-1 \\in B$."
+      }
+    ]
+  },
+  {
+    "id": "OSAII_T6",
+    "section": "Osio II",
+    "title": "Tehtävä 16",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "a) Tarkastellaan lukua $\\dfrac{5135}{12454}$. Voiko lukua supistaa? Perustele vastaus."
+      },
+      {
+        "type": "text",
+        "content": "b) Määritä lukujen 144, 252 ja 360 suurin yhteinen tekijä."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a) Tarkastellaan lukujen 12454 ja 5135 suurinta yhteistä tekijää. Saadaan, että\n$$12454 = 5135 \\cdot 2 + 2184$$5135 = 2184 \\cdot 2 + 767$$2184 = 767 \\cdot 2 + 650$$767 = 650 \\cdot 1 + 117$$650 = 117 \\cdot 5 + 65$$117 = 65 \\cdot 1 + 52$$65 = 52 \\cdot 1 + 13$$52 = 13 \\cdot 4 + 0$$\n\nSiten $\\mathrm{syt}(12454, 5135) = 13$. Eli luku $\\dfrac{5135}{12454}$ voidaan supistaa ja $\\dfrac{5135}{12454} = \\dfrac{395}{958}$."
+      },
+      {
+        "type": "text",
+        "content": "b) Koska pätee, että $\\mathrm{syt}(a, b, c) = \\mathrm{syt}(\\mathrm{syt}(a, b), c)$\n\nMääritetään ensin $\\mathrm{syt}(252, 144)$. Saadaan\n$$252 = 144 \\cdot 1 + 108$$144 = 108 \\cdot 1 + 36$$108 = 36 \\cdot 3 + 0$$\n\nEli $\\mathrm{syt}(252, 144) = 36$. Nyt määritetään $\\mathrm{syt}(360, 36)$.\n$$360 = 36 \\cdot 10 + 0$$\n\nEli $\\mathrm{syt}(360, 36) = 36$. Siten siis $\\mathrm{syt}(360, 252, 144) = 36$."
+      }
+    ]
+  },
+  {
+    "id": "OSAII_T7",
+    "section": "Osio II",
+    "title": "Tehtävä 17",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Olkoon $a$ kokonaisluku, joka on jaollinen luvuilla 5 ja 7. Osoita, että tällöin luku $a$ jaollinen myös luvulla 35."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Nyt siis osoitetaan, että $\\mathrm{syt}(7, 5) = 1$. Esitetään luvut alkutekijöiden tulona. Eli $5 = 1 \\cdot 5$ ja $7 = 1 \\cdot 7$. Eli luvut ovat itse alkulukuja.\n\nToisaalta luku $a$ täytyy olla jaollinen lukujen 5 ja 7 tulolla, kun niiden suurin yhteinen tekijä on 1, joten luku $a$ täytyy olla jaollinen myös luvulla $5 \\cdot 7 = 35$."
+      }
+    ]
+  },
+  {
+    "id": "OSAII_T8",
+    "section": "Osio II",
+    "title": "Tehtävä 18",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "a) Määritä luvun $3^{256}$ viimeinen numero."
+      },
+      {
+        "type": "text",
+        "content": "b) Olkoon $n$ parillinen luonnollinen luku. Tutki mikä on luvun $3^n$ viimeinen numero."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a) Luvun viimeinen numero on se luku, joka jää jakojäännökseen, kun lukua jaetaan 10. Tutkitaan luvun $3^{256}$ kongruenssia modulo 10. Saadaan\n$$3^{256} \\equiv 9^{128} \\equiv (-1)^{128} \\equiv 1 \\pmod{10}$$\n\nSiten luvun $3^{256}$ viimeinen numero on 1."
+      },
+      {
+        "type": "text",
+        "content": "b) Koska luku $n$ on parillinen, niin voidaan esittää muodossa $n = 2k$, missä $k$ on jokin luonnollinen luku.\n\n1) Nyt tarkastellaan lukua $k$. Jos luku $k$ on parillinen, niin\n$$(-1)^k \\equiv 1 \\pmod{9}$$\n\n2) Toisaalta jos luku $k$ on pariton niin\n$$(-1)^k \\equiv -1 \\equiv 9 \\pmod{9}$$\n\nNäin ollen luvun $3^n$ viimeinen numero on 1 tai 9. $\\square$"
+      }
+    ]
+  },
+  {
+    "id": "OSAII_T9",
+    "section": "Osio II",
+    "title": "Tehtävä 19",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Tarkastellaan seuraavaa koodia.\n\n```\n# Määritellään funktio f(x)\ndef funktio(x):\n    return x**2 - 2\n\n# Määritellään toinen funktio g(x)\ndef g(x):\n    return 2*x\n\n# Määritellään käytetettävä menetelmä\ndef menetelma(alkuarvo, toleranssi=1e-6, maksimi_iteraatiot=100):\n    x = alkuarvo\n    for i in range(maksimi_iteraatiot):\n        f_x = funktio(x)\n        g_x = g(x)\n        if g_x == 0:\n            raise ValueError(\"Johdannainen on nolla; ratkaisua ei löydy.\")\n        uusi_x = x - f_x / g_x\n        if abs(uusi_x - x) < toleranssi:\n            return uusi_x\n        x = uusi_x\n    raise ValueError(\"Maksimi-iteraatiot saavutettu; ratkaisua ei löydy.\")\n\nalkuarvaus = 1.0\nnollakohta = menetelma(alkuarvaus)\nprint(f\"Löydetty ratkaisu: {ratkaisu}\")\n```"
+      },
+      {
+        "type": "text",
+        "content": "a) Mitä koodi tekee? Mitä menetelmää koodissa käytetään? Mitä koodissa $g(x)$ ja \"ratkaisu\" ovat?"
+      },
+      {
+        "type": "text",
+        "content": "b) Käytä koodia ja katso mitä koodi tulostaa."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a) Koodi käyttää Newtonin menetelmää, jonka tarkoituksena on numeerisesti löytää jonkin funktion nollakohtaa. Koodi koostuu for-silmukasta ja if-lauseesta, johon on asetettu tiettyjä ehtoja, jotka täytyy toteutua.\n\nFunktio $g(x)$ on funktio $f(x) = x^2 - 2$ derivaatta eli $g(x) = f'(x) = 2x$.\n\nRatkaisu tarkoittaa arvoa, minkä koodi tulostaa. Eli arvo missä funktiolla on nollakohta."
+      },
+      {
+        "type": "text",
+        "content": "b) Koodi tulostaa:\nLöydetty ratkaisu: 1.4142135623730951\n\nLikiarvo vastaa lukua $\\sqrt{2}$, mikä on yhtälön $x^2 = 2$ eräs ratkaisu."
+      }
+    ]
+  },
+  {
+    "id": "OSAII_T10",
+    "section": "Osio II",
+    "title": "Tehtävä 20",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Kirjoita koodi, joka laskee suorakulmaisen kolmion pinta-alan."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Suorakulmaisen kolmion pinta-ala on $A = \\dfrac{1}{2}ab$, missä $a$ ja $b$ ovat kateettien pituudet. Täten saadaan tehtyä yksinkertainen koodi.\n\n```\ndef suorakulmaisen_kolmion_pinta_ala(a, b):\n    return 0.5 * a * b\n\n# Tähän voi syöttää halutut arvot.\nkanta = float(input(\"Anna kolmion kateetti pituus a: \"))\nkorkeus = float(input(\"Anna kolmion kateetti pituus b: \"))\n\n# Pinta-alan laskeminen\npinta_ala = suorakulmaisen_kolmion_pinta_ala(kanta, korkeus)\nprint(f\"Suorakulmaisen kolmion pinta-ala on {pinta_ala}.\")\n```\n\nKoodin voi tehdä myös helpommin niin, että vakiot $a$ ja $b$ määritetään suoraan."
+      }
+    ]
+  },
+  {
+    "id": "OSAIII_T1",
+    "section": "Osio III",
+    "title": "Tehtävä 21",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Suomenna lauseet. Käyttäen vastaesimerkkiä, tutki onko lauseet tosi?"
+      },
+      {
+        "type": "text",
+        "content": "a) $\\exists x \\in \\mathbb{Q}\\colon \\sqrt[5]{x} = x$"
+      },
+      {
+        "type": "text",
+        "content": "b) $\\forall x \\in \\mathbb{R} \\setminus \\{\\mathbb{Q}\\}\\colon -x < -x^2$"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a) On olemassa sellainen rationaaliluku $x$, jolle pätee $\\sqrt[5]{x} = x$.\n\nOn tosi. Valitaan $x = 1$. Koska $\\sqrt[5]{1} = 1$."
+      },
+      {
+        "type": "text",
+        "content": "b) Kaikille irrationaaliluvuille $x$ pätee, että $-x < -x^2$.\n\nEpätosi. Vastaesimerkki. Valitaan $x = \\sqrt{2}$. Tällöin $-\\sqrt{2} \\approx -1{,}41 > -2 = -(\\sqrt{2})^2$, joka on epätosi."
+      }
+    ]
+  },
+  {
+    "id": "OSAIII_T2",
+    "section": "Osio III",
+    "title": "Tehtävä 22",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Olkoon $n \\in \\mathbb{N}$. Osoita, että lukujen $7n + 5$ ja $4n + 3$ suurin yhteinen tekijä on 1."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Täytyy siis osoittaa, että $\\mathrm{syt}(7n + 5, 4n + 3) = 1$. Käytetään Eukleideen algoritmia.\n\n$$7n + 5 = (4n + 3) \\cdot 1 + 3n + 2$$4n + 3 = (3n + 2) \\cdot 1 + n + 1$$3n + 2 = (n + 1) \\cdot 2 + n$$n + 1 = n \\cdot 1 + 1$$n = 1 \\cdot n + 0$$\n\nJoten $\\mathrm{syt}(7n + 5, 4n + 3) = 1$. $\\square$"
+      }
+    ]
+  },
+  {
+    "id": "OSAIII_T3",
+    "section": "Osio III",
+    "title": "Tehtävä 23",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Määritä kaikki ne luvut $a$, joille pätee $a \\mid 1$. Eli toisin sanoen, määritä kaikki luvut $a$, jotka jakavat luvun 1."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Koska $a \\mid 1$ pätee, että\n$$1 = ka, \\text{ missä } k \\in \\mathbb{Z}.$$\n\nToisaalta koska edelleen luvun $\\dfrac{1}{k}$ täytyy olla kokonaisluku, niin ainoat luvut $k$, joilla luku $\\dfrac{1}{k}$ on kokonaisluku, on kun $k = 1$ tai $k = -1$.\n\nEli $a \\mid 1$ pätee kun $a = 1$ tai $a = -1$."
+      }
+    ]
+  },
+  {
+    "id": "OSAIII_T4",
+    "section": "Osio III",
+    "title": "Tehtävä 24",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Tarkastellaan lukuja 25, 29 ja 209."
+      },
+      {
+        "type": "text",
+        "content": "a) Tutki ovatko luvut alkulukuja"
+      },
+      {
+        "type": "text",
+        "content": "b) Jaa luvut alkutekijöihin."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Käytetään alkuluvun määritelmää apuna.\n\n1) Koska $25 = 5 \\cdot 5$, niin luku 25 on jaollinen alkuluvulla 5, joten se ei ole itse alkuluku.\n\n2) Nyt $\\sqrt{29} = 5{,}38\\ldots$ Täytyy siis tarkastaa onko luku jaollinen luvuilla 2, 3 ja 5.\n$$\\frac{29}{2} = 14{,}5 \\quad \\frac{29}{3} = 9{,}666\\ldots \\quad \\frac{29}{5} = 5{,}8$$\nTäten luku 29 on alkuluku.\n\n3) Nyt $\\sqrt{209} = 14{,}45\\ldots$ Täytyy siis tarkastaa onko luku jaollinen luvuilla 2, 3, 5, 7, 11 ja 13.\n$$\\frac{209}{2} = 104{,}5 \\quad \\frac{209}{3} = 69{,}66\\ldots \\quad \\frac{209}{5} = 41{,}8 \\quad \\frac{209}{7} = 29{,}85\\ldots \\quad \\frac{209}{11} = 19$$\nKoska luku 209 on jaollinen alkuluvulla 11, niin se ei ole itse alkuluku."
+      },
+      {
+        "type": "text",
+        "content": "Alkutekijähajotelmat:\n\n$25 = 5^2$\n\n$29$ on alkuluku\n\n$209 = 11 \\cdot 19$"
+      }
+    ]
+  },
+  {
+    "id": "OSAIII_T5",
+    "section": "Osio III",
+    "title": "Tehtävä 25",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Todista, että jos luku $n \\geq 3$ on alkuluku, niin luku $n^2 + 1$ on jaollinen luvulla 2."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Alkuluvun määritelmän mukaan täytyy päteä, että luku on pariton. Näin ollen luku $n$ voidaan esittää muodossa\n$$n = 2k + 1, \\text{ missä } k \\in \\mathbb{N}.$$\n\nSiten siis\n$$n^2 + 1 = (2k + 1)^2 + 1 = 4k^2 + 4k + 1 + 1 = 4k^2 + 4k + 2 = 2(2k^2 + 2k + 1),$$\nmissä $2k^2 + 2k + 1 \\in \\mathbb{N}$. Näin ollen luku $n^2 + 1$ on jaollinen luvulla 2. $\\square$"
+      }
+    ]
+  },
+  {
+    "id": "OSAIII_T6",
+    "section": "Osio III",
+    "title": "Tehtävä 26",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Määritä eräät sellaiset kokonaisluvut $a$ ja $b$, joille pätee, että $a \\equiv 2 \\pmod{b}$ ja $b \\equiv -4 \\pmod{a}$."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Täytyy siis toteutua, että\n$$\\begin{cases} a \\equiv 2 \\pmod{b} \\\\ b \\equiv -4 \\pmod{a} \\end{cases}$$\n\nToisaalta yhtälöpari voidaan esittää muodossa\n$$\\begin{cases} a - 2 = kb \\\\ b + 4 = ra \\end{cases}$$\nmissä $k, r \\in \\mathbb{Z}$.\n\nRatkaistaan yhtälöpari.\n$$\\begin{cases} a = \\dfrac{4k - 2}{kr - 1} \\\\[6pt] b = \\dfrac{-2r + 4}{kr - 1} \\end{cases}$$\n\nValitaan esimerkiksi, että $k = 2$ ja $r = 1$.\n$$\\begin{cases} a = 6 \\\\ b = 2 \\end{cases}$$\n\nKoska $a$ ja $b$ ovat positiivisia kokonaislukuja, niin ne ovat eräät ratkaisut."
+      }
+    ]
+  },
+  {
+    "id": "OSAIII_T7",
+    "section": "Osio III",
+    "title": "Tehtävä 27",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Olkoon $a \\equiv b \\pmod{n}$, $c \\equiv d \\pmod{n}$ ja $k \\in \\mathbb{Z}$. Todista, että"
+      },
+      {
+        "type": "text",
+        "content": "a) $ka \\equiv kb \\pmod{n}$"
+      },
+      {
+        "type": "text",
+        "content": "b) $a + c \\equiv b + d \\pmod{n}$"
+      },
+      {
+        "type": "text",
+        "content": "c) $ac \\equiv bd \\pmod{n}$."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a) Oletuksena, että $a \\equiv b \\pmod{n}$ eli $a - b = qn$, missä $q \\in \\mathbb{Z}$. Siten\n$$a - b = qn \\Leftrightarrow k(a - b) = kqn = (kq)n, \\text{ missä } kq \\in \\mathbb{Z}.$$\nNäin ollen\n$$ka \\equiv kb \\pmod{n}. \\quad \\square$$"
+      },
+      {
+        "type": "text",
+        "content": "b) Nyt oletuksena, että $a \\equiv b \\pmod{n}$ ja $c \\equiv d \\pmod{n}$. Siten\n$$a - b = qn \\text{ ja } c - d = rn, \\text{ missä } q, r \\in \\mathbb{Z}.$$\nTästä saadaan, että\n$$(a + c) - (b + d) = (a - b) + (c - d) = qn + rn = (q + r)n, \\text{ missä } q + r \\in \\mathbb{Z}.$$\nNäin ollen\n$$a + c \\equiv b + d \\pmod{n}.$$"
+      },
+      {
+        "type": "text",
+        "content": "c) Edelleen pätee, että $a - b = qn$ ja $c - d = rn$, missä $q, r \\in \\mathbb{Z}$.\nNyt\n$$ac - bd = ac - ad + ad - bd = a(c - d) - d(a - b) = arn - dqn = n(ar - dq),$$\nmissä $ar - dq \\in \\mathbb{Z}$. Näin ollen pätee, että\n$$ac \\equiv bd \\pmod{n}.$$"
+      }
+    ]
+  },
+  {
+    "id": "OSAIII_T8",
+    "section": "Osio III",
+    "title": "Tehtävä 28",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Osoita, että luku $2^{3030} - 1$ on jaollinen luvulla 9."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Täytyy osoittaa, että luvun jakojäännös on nolla eli $2^{3030} - 1 \\equiv 0 \\pmod{9}$. Tarkastellaan ensin luvun $2^{3030}$ kongruenssia modulo 9. Saadaan\n$$2^{3030} \\equiv (2^3)^{1010} \\equiv 8^{1010} \\equiv (-1)^{1010} \\equiv 1 \\pmod{9}$$\n\nTäten\n$$2^{3030} - 1 = 1 - 1 = 0 \\pmod{9}.$$\nNäin ollen luku $2^{3030} - 1$ on jaollinen luvulla 9. $\\square$"
+      }
+    ]
+  },
+  {
+    "id": "OSAIII_T9",
+    "section": "Osio III",
+    "title": "Tehtävä 29",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Kirjoita yksinkertainen koodi, joka laskee ensimmäisen $n{:}n$ luonnollisen luvun summan. Testaa koodin toimivuutta arvoilla $n = 5$ ja $n = 17$."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Luonnollisten peräkkäisten lukujen summa voidaan esittää muodossa\n$$\\sum_{i=1}^{n} i = \\frac{n(n+1)}{2}.$$\nTämän perusteella saadaan muodostettua koodi.\n\n```\ndef summa(n):\n    return n * (n + 1) // 2\n\n# Määritetään haluttu luonnollinen luku.\nn = int(input(\"Syötä luonnollinen luku n: \"))\nprint(\"Summa:\", summa(n))\n```\n\nArvolla $n = 5$: Summa: 15\n\nArvolla $n = 17$: Summa: 153.\n\nKoodin voi tehdä myös suoraan laskemalla luvut yhteen."
+      }
+    ]
+  },
+  {
+    "id": "OSAIII_T10",
+    "section": "Osio III",
+    "title": "Tehtävä 30",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Kirjoita python-ohjelma, joka tutkii, onko luku $n$ alkuluku. Käytä koodissa if-lausetta sekä for-silmukkaa. Lisäksi voit käyttää apuna lausetta, jonka mukaan luku $n$ on alkuluku, jos se ei ole jaollinen millään alkuluvulla, joka on pienempi tai yhtä suuri kuin $\\sqrt{n}$.\n\nMuista myös, että luku $a$ on jaollinen luvulla $b$, mikäli jakojäännös on nolla."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Koodi. Huom. Koodin voi tehdä usealla eri tavalla. Tässä on eräs ratkaisu.\n\n```\ndef onko_alkuluku(n):\n    if n <= 1:\n        return False\n    for i in range(2, int(n**0.5) + 1):\n        if n % i == 0:\n            return False\n    return True\n\n# Testataan funktiota\nluku = int(input(\"Anna luku: \"))\nif onko_alkuluku(luku):\n    print(f\"{luku} on alkuluku.\")\nelse:\n    print(f\"{luku} ei ole alkuluku.\")\n```"
+      }
+    ]
+  },
+  {
+    "id": "OSAIV_T1",
+    "section": "Osio IV",
+    "title": "Tehtävä 31",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Suorassa todistuksessa osoitetaan, että oletuksesta $P$ seuraa väite $Q$. Toisin sanoen, kun oletus $P$ on tosi, niin myös lause $P \\Rightarrow Q$ on tosi."
+      },
+      {
+        "type": "text",
+        "content": "a) Osoita, että parillisen luonnollisen luvun neliö on parillinen."
+      },
+      {
+        "type": "text",
+        "content": "b) Osoita, että parittoman kokonaisluvun neliö on pariton."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a) Nyt oletuksena, että luku $n$ on parillinen. Näin ollen se voidaan esittää muodossa $n = 2k$, missä $k \\in \\mathbb{N}$. Siten\n$$n^2 = (2k)^2 = 4k^2 = 2(2k^2), \\text{ missä } 2k^2 \\in \\mathbb{N}.$$"
+      },
+      {
+        "type": "text",
+        "content": "b) Nyt oletuksena, että luku $n$ on pariton. Näin ollen se voidaan esittää muodossa $n = 2k + 1$, missä $k \\in \\mathbb{Z}$. Siten\n$$n^2 = (2k + 1)^2 = 4k^2 + 4k + 1 = 2(2k^2 + 2k) + 1, \\text{ missä } 2k^2 + 2k \\in \\mathbb{Z}. \\quad \\square$$"
+      }
+    ]
+  },
+  {
+    "id": "OSAIV_T2",
+    "section": "Osio IV",
+    "title": "Tehtävä 32",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Todista, että kahden eri parittoman kokonaisluvun tulo on pariton."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Oletuksena, että luvut $n$ ja $m$ ovat parittomia. Näin ollen ne voidaan esittää muodossa $n = 2k + 1$ ja $m = 2r + 1$, missä $k, r \\in \\mathbb{Z}$. Siten\n$$nm = (2k + 1)(2r + 1) = 4kr + 2k + 2r + 1 = 2(2kr + k + r) + 1,$$\nmissä $2kr + k + r \\in \\mathbb{Z}$. $\\square$"
+      }
+    ]
+  },
+  {
+    "id": "OSAIV_T3",
+    "section": "Osio IV",
+    "title": "Tehtävä 33",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Antiteesi eli ristiriitaisuustodistus mukaan lause $P \\Rightarrow Q$ voidaan osoittaa todeksi osoittamalla, että lauseesta $P$, $\\lnot Q$ seuraa epätosi. Vastatodistus, josta $P \\land \\lnot Q$ seuraa epätosi.\n\nTehtävä: Todista, että $\\sqrt{2}$ on irrationaaliluku."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Oletetaan vastoin väitettä, että luku $\\sqrt{2}$ on rationaaliluku. Näin ollen se voidaan esittää muodossa\n$$\\sqrt{2} = \\frac{m}{n}, \\text{ missä } n, m \\in \\mathbb{Z} \\text{ ja } n \\neq 0.$$\n\nLisäksi voidaan olettaa, että luku $\\dfrac{m}{n}$ supistetuimmassa muodossa. Näin ollen ainakin toisen luvun ($m$ tai $n$) täytyy olla pariton. Korotetaan yhtälö neliöön.\n\n$$2 = \\left(\\frac{m}{n}\\right)^2 \\Leftrightarrow 2n^2 = m^2.$$\n\nSiis luku $m^2$ on parillinen. Tästä seuraa myös, että luku $m$ on parillinen. Näin ollen se voidaan esittää muodossa $m = 2k$, missä $k \\in \\mathbb{Z}$. Saadaan edelleen\n$$2n^2 = (2k)^2 \\Leftrightarrow 2n^2 = 4k^2 \\Leftrightarrow n^2 = 2k^2.$$\n\nTäten $n^2$ on parillinen, jolloin myös $n$ on parillinen.\n\nSiten siis $m$ ja $n$ ovat molemmat parillisia. Tästä kuitenkin seuraa ristiriita alkuperäisen oletuksen kanssa. Täten alkuperäisen väitteen täytyy olla totta eli $\\sqrt{2}$ on irrationaaliluku. $\\square$"
+      }
+    ]
+  },
+  {
+    "id": "OSAIV_T4",
+    "section": "Osio IV",
+    "title": "Tehtävä 34",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Induktiotodistus on todistustapa, jolla luonnollisille luvuille liittyvä väite $P(n)$ osoitetaan todeksi kaikille luonnollisille luvuille $n \\geq n_0$. Todistus koostuu kahdesta osasta:\n\n1) Alkuaskel. $P(n_0)$ on tosi.\n\n2) Induktioaskel: Oletetaan, että $P(n)$ tosi mielivaltaisella $n{:}n$ arvolla. Osoitetaan, että myös $P(n+1)$ on tosi arvolla.\n\nEsimerkki. Olkoon $n \\in \\mathbb{N}$. Osoitetaan, että $1 + 2 + 3 + \\cdots + n = \\dfrac{n(n+1)}{2}$.\n\n1) Alkuaskel. Nyt $1 = \\dfrac{1 \\cdot 2}{2} = 1$. Tosi.\n\n2) Induktioaskel. Oletetaan, että induktioväite on tosi kaikilla mielivaltaisilla $n{:}n$ arvoilla. Näin ollen sen täytyy päteä myös arvolla $n + 1$. Täten\n\n$$(1 + 2 + 3 + \\cdots + n) + (n + 1) = \\frac{n(n+1)}{2} + n + 1 = \\frac{n(n+1) + 2(n+1)}{2} = \\frac{(n+1)(n+2)}{2}.$$\n\nNäin ollen kohtien 1) ja 2) sekä induktioperiaat teen nojalla väite on tosi. $\\square$\n\nTehtävä: Osoita induktiolla, että $1^2 + 3^2 + 5^2 + \\cdots + (2n-1)^2 = \\dfrac{n(4n^2-1)}{3}$."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Todistus.\n\n1) Alkuaskel. Nyt\n$$1 = \\frac{4 - 1}{3} = 1. \\text{ Tosi.}$$\n\n2) Induktioaskel. Oletetaan, että induktioväite on tosi kaikilla mielivaltaisilla $n{:}n$ arvoilla. Näin ollen sen täytyy päteä myös arvolla $n + 1$. Täten\n\n$$1^2 + 3^2 + 5^2 + \\cdots + (2n-1)^2 + (2n+1)^2 = \\frac{n(4n^2-1)}{3} + (2n+1)^2$$= \\frac{n(4n^2-1)}{3} + \\frac{3(2n+1)^2}{3}$$= \\frac{n(4n^2-1) + 3(2n+1)^2}{3}$$= \\frac{n(4n^2-1) + 12n^2 + 4n + 1 + 1 - 1}{3}$$= \\frac{(n+1)(4x^2 + 8x + 3)}{3}$$= \\frac{(n+1)(4(x^2 + 2x + 1) - 1)}{3}$$= \\frac{(n+1)(4(x+1)^2 - 1)}{3}.$$\n\nNäin ollen kohtien 1) ja 2) sekä induktioperiaat teen nojalla väite on tosi. $\\square$"
+      }
+    ]
+  },
+  {
+    "id": "OSAIV_T5",
+    "section": "Osio IV",
+    "title": "Tehtävä 35",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "a) Osoita induktiolla Bernoullin epäyhtälö $(1 + x)^n \\geq 1 + nx$, missä $x > -1$ ja $n \\in \\mathbb{N}$."
+      },
+      {
+        "type": "text",
+        "content": "b) Osoita, että $5^x > \\dfrac{1}{4} \\cdot 4^x$, missä $x > 0$."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a) Todistus.\n\n1) Alkuaskel. Nyt\n$$(1 + x)^1 = 1 + x \\geq 1 + x. \\text{ Tosi.}$$\n\n2) Induktioaskel. Oletetaan, että induktioväite on tosi kaikilla mielivaltaisilla $n{:}n$ arvoilla. Näin ollen sen täytyy päteä myös arvolla $n + 1$. Täten\n\n$$(1 + x)^{n+1} = (1 + x)^n (x + 1)$$\\geq (1 + nx)(x + 1)$$= nx^2 + nx + x + 1$$\\geq nx + x + 1$$= 1 + (n+1)x$$\n\nNäin ollen kohtien 1) ja 2) sekä induktioperiaat teen nojalla väite on tosi. $\\square$"
+      },
+      {
+        "type": "text",
+        "content": "b) Voidaan soveltaa Bernoullin epäyhtälöä. Saadaan\n\n$$\\left(1 + \\frac{1}{4}\\right)^x \\geq 1 + \\frac{1}{4}x \\Leftrightarrow \\left(\\frac{5}{4}\\right)^x = \\frac{5^x}{4^x} \\geq 1 + \\frac{1}{4}x > \\frac{1}{4}x \\Leftrightarrow 5^x > \\frac{1}{4} \\cdot 4^x.$$"
+      }
+    ]
+  }
+]

@@ -2,14 +2,14 @@ import { useMemo, useState } from 'react'
 import Feed from './components/Feed'
 import TopMenu, { type MenuSection } from './components/TopMenu'
 import CourseList from './components/CourseList'
-import Osaaminen, { type AnswerRecord } from './components/Osaaminen'
+import Osaaminen from './components/Osaaminen'
 import { cards } from './data/cards'
 import type { TopicCode } from './types'
 
 function App() {
   const [section, setSection] = useState<MenuSection>('suositellut')
   const [selectedCourse, setSelectedCourse] = useState<TopicCode | null>(null)
-  const [answers, setAnswers] = useState<Record<string, AnswerRecord>>({})
+  const [engagedIds, setEngagedIds] = useState<Record<string, true>>({})
 
   function handleSelectSection(next: MenuSection) {
     if (next === 'kurssit' && section === 'kurssit') {
@@ -20,10 +20,8 @@ function App() {
     if (next !== 'kurssit') setSelectedCourse(null)
   }
 
-  function handleAnswer(cardId: string, correct: boolean) {
-    const card = cards.find((c) => c.id === cardId)
-    if (!card) return
-    setAnswers((prev) => ({ ...prev, [cardId]: { topic: card.topic.code, correct } }))
+  function handleEngage(cardId: string) {
+    setEngagedIds((prev) => (prev[cardId] ? prev : { ...prev, [cardId]: true }))
   }
 
   const feedCards = useMemo(() => {
@@ -39,12 +37,12 @@ function App() {
     <>
       <TopMenu active={section} onSelect={handleSelectSection} />
       {section === 'kurssit' && !selectedCourse && <CourseList onSelect={setSelectedCourse} />}
-      {section === 'osaaminen' && <Osaaminen answers={answers} />}
+      {section === 'osaaminen' && <Osaaminen engagedIds={engagedIds} />}
       {showFeed && (
         <Feed
           key={selectedCourse ?? 'all'}
           cards={feedCards}
-          onAnswer={handleAnswer}
+          onEngage={handleEngage}
           onBack={selectedCourse ? () => setSelectedCourse(null) : undefined}
         />
       )}

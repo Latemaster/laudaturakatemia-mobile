@@ -7,11 +7,11 @@ import ProgressDots from './ProgressDots'
 
 interface FeedProps {
   cards: Card[]
-  onAnswer?: (cardId: string, correct: boolean) => void
+  onEngage?: (cardId: string) => void
   onBack?: () => void
 }
 
-export default function Feed({ cards, onAnswer, onBack }: FeedProps) {
+export default function Feed({ cards, onEngage, onBack }: FeedProps) {
   const containerRef = useRef<HTMLDivElement>(null)
   const cardRefs = useRef<(HTMLDivElement | null)[]>([])
   const [currentIndex, setCurrentIndex] = useState(0)
@@ -55,9 +55,9 @@ export default function Feed({ cards, onAnswer, onBack }: FeedProps) {
             {card.type === 'lesson' ? (
               <LessonCardView card={card} showSwipeHint={index === 0} />
             ) : card.type === 'exercise' ? (
-              <ExerciseCardView card={card} onAnswer={(correct) => onAnswer?.(card.id, correct)} />
+              <ExerciseCardView card={card} onAnswer={() => onEngage?.(card.id)} />
             ) : (
-              <TaskCardView card={card} />
+              <TaskCardView card={card} onViewSolution={() => onEngage?.(card.id)} />
             )}
           </div>
         ))}

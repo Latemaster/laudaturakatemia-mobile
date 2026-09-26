@@ -1,0 +1,817 @@
+[
+  {
+    "id": "OSAI_T1",
+    "section": "Osa I",
+    "title": "Tehtävä 1",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Osoita, että funktio $F(x) = (3x^2 - 2x)^4$ on funktion $f(x) = 4(3x^2 - 2x)^3(6x - 2)$ integraalifunktio."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Funktio $F(x)$ on funktion $f(x)$ integraalifunktio, jos $F'(x) = f(x)$.\n\nKoska $F'(x) = 4(3x^2 - 2x)^3 \\cdot (3 \\cdot 2x - 2) = 4(3x^2 - 2x)^3 \\cdot (6x - 2) = f(x)$, funktio $F(x) = (3x^2 - 2x)^4$ on funktion $f(x) = 4(3x^2 - 2x)^3(6x - 2)$ integraalifunktio, mikä piti osoittaa."
+      }
+    ]
+  },
+  {
+    "id": "OSAI_T2",
+    "section": "Osa I",
+    "title": "Tehtävä 2",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Olkoon $g(x) = 4x^3 - 4x$."
+      },
+      {
+        "type": "text",
+        "content": "a) Määritä funktion $g$ eräs integraalifunktio $F$ ja kaikki integraalifunktiot $G$."
+      },
+      {
+        "type": "text",
+        "content": "b) Määritä funktion $g$ integraalifunktio, joka kulkee pisteen $(1,\\ 2)$ kautta."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a) Funktion $g$ eräs integraalifunktio on $F(x) = x^4 - 2x^2$, ja kaikki integraalifunktiot ovat muotoa $G(x) = x^4 - 2x^2 + C$, $C \\in \\mathbb{R}$."
+      },
+      {
+        "type": "text",
+        "content": "b) Se funktion $g$ integraalifunktio, joka kulkee pisteen $(1,\\ 2)$ kautta, toteuttaa yhtälön $G(1) = 2 \\Rightarrow 1^4 - 2 \\cdot 1^2 + C = 2 \\Rightarrow C = 3$. Kysytty integraalifunktio on siis $H(x) = x^4 - 2x^2 + 3$."
+      }
+    ]
+  },
+  {
+    "id": "OSAI_T3",
+    "section": "Osa I",
+    "title": "Tehtävä 3",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Integroi."
+      },
+      {
+        "type": "text",
+        "content": "a) $\\int x^9\\, dx$"
+      },
+      {
+        "type": "text",
+        "content": "b) $\\int (3x^3 - 4x^2 + 2x + 1)\\, dx$"
+      },
+      {
+        "type": "text",
+        "content": "c) $\\int \\left(-\\dfrac{x^5}{6} + \\dfrac{2}{3}x^3 - \\dfrac{x}{2}\\right)dx$"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a) $\\int x^9\\, dx = \\dfrac{1}{10}x^{10} + C,\\quad C \\in \\mathbb{R}$"
+      },
+      {
+        "type": "text",
+        "content": "b) $\\int (3x^3 - 4x^2 + 2x + 1)\\, dx = \\dfrac{3}{4}x^4 - \\dfrac{4}{3}x^3 + x^2 + x + C,\\quad C \\in \\mathbb{R}$"
+      },
+      {
+        "type": "text",
+        "content": "c) $\\int \\left(-\\dfrac{x^5}{6} + \\dfrac{2}{3}x^3 - \\dfrac{x}{2}\\right)dx = -\\dfrac{1}{36}x^6 + \\dfrac{1}{6}x^4 - \\dfrac{1}{4}x^2 + C,\\quad C \\in \\mathbb{R}$"
+      }
+    ]
+  },
+  {
+    "id": "OSAI_T4",
+    "section": "Osa I",
+    "title": "Tehtävä 4",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Määritä."
+      },
+      {
+        "type": "text",
+        "content": "a) $\\int_0^3 (x^2 + 1)\\, dx$"
+      },
+      {
+        "type": "text",
+        "content": "b) $\\int_{-1}^2 6\\, dx$"
+      },
+      {
+        "type": "text",
+        "content": "c) $\\int_1^5 (x^2 - 2x + 5)\\, dx$"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a) $\\int_0^3 (x^2 + 1)\\, dx = \\left[\\dfrac{1}{3}x^3 + x\\right]_0^3 = \\left(\\dfrac{1}{3} \\cdot 27 + 3\\right) - 0 = 12$"
+      },
+      {
+        "type": "text",
+        "content": "b) $\\int_{-1}^2 6\\, dx = \\left[6x\\right]_{-1}^2 = 6 \\cdot 2 - 6 \\cdot (-1) = 12 + 6 = 18$"
+      },
+      {
+        "type": "text",
+        "content": "c) $\\int_1^5 (x^2 - 2x + 5)\\, dx = \\left[\\dfrac{x^3}{3} - x^2 + 5x\\right]_1^5 = \\dfrac{125}{3} - \\dfrac{13}{3} = \\dfrac{112}{3}$"
+      }
+    ]
+  },
+  {
+    "id": "OSAI_T5",
+    "section": "Osa I",
+    "title": "Tehtävä 5",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Integroi."
+      },
+      {
+        "type": "text",
+        "content": "a) $\\int 7\\sqrt{2x}\\, dx$, kun $x > 0$"
+      },
+      {
+        "type": "text",
+        "content": "b) $\\int \\dfrac{1}{x^6}\\, dx$, kun $x > 0$"
+      },
+      {
+        "type": "text",
+        "content": "c) $\\int x^3(x^4 + 2)^4\\, dx$"
+      },
+      {
+        "type": "text",
+        "content": "d) $\\int 2x(3x^2 - 1)^{-3}\\, dx$"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a) $\\int 7\\sqrt{2x}\\, dx = 7\\int \\sqrt{2} \\cdot x^{1/2}\\, dx = 7\\sqrt{2} \\cdot \\dfrac{2}{3}x^{3/2} + C = \\dfrac{14x\\sqrt{2x}}{3} + C,\\quad C \\in \\mathbb{R}$"
+      },
+      {
+        "type": "text",
+        "content": "b) $\\int \\dfrac{1}{x^6}\\, dx = \\int x^{-6}\\, dx = -\\dfrac{1}{5}x^{-5} + C,\\quad C \\in \\mathbb{R}$"
+      },
+      {
+        "type": "text",
+        "content": "c) $\\int x^3(x^4 + 2)^4\\, dx = \\int \\dfrac{1}{4} \\cdot 4x^3(x^4 + 2)^4\\, dx = \\dfrac{1}{4} \\cdot \\dfrac{1}{5}(x^4 + 2)^5 + C = \\dfrac{1}{20}(x^4 + 2)^5 + C,\\quad C \\in \\mathbb{R}$"
+      },
+      {
+        "type": "text",
+        "content": "d) $\\int 2x(3x^2 - 1)^{-3}\\, dx = \\int \\dfrac{1}{3} \\cdot 6x(3x^2 - 1)^{-3}\\, dx = -\\dfrac{1}{6}(3x^2 - 1)^{-2} + C,\\quad C \\in \\mathbb{R}$"
+      }
+    ]
+  },
+  {
+    "id": "OSAI_T6",
+    "section": "Osa I",
+    "title": "Tehtävä 6",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Integroi."
+      },
+      {
+        "type": "text",
+        "content": "a) $\\int \\sin x\\, dx$"
+      },
+      {
+        "type": "text",
+        "content": "b) $\\int \\sin 4x\\, dx$"
+      },
+      {
+        "type": "text",
+        "content": "c) $\\int -\\cos 4x\\, dx$"
+      },
+      {
+        "type": "text",
+        "content": "d) $\\int x^2 \\sin x^3\\, dx$"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a) $\\int \\sin x\\, dx = -\\cos x + C,\\quad C \\in \\mathbb{R}$"
+      },
+      {
+        "type": "text",
+        "content": "b) $\\int \\sin 4x\\, dx = \\int \\dfrac{1}{4} \\cdot 4\\sin 4x\\, dx = \\dfrac{1}{4} \\cdot (-\\cos 4x) + C = -\\dfrac{1}{4}\\cos 4x + C,\\quad C \\in \\mathbb{R}$"
+      },
+      {
+        "type": "text",
+        "content": "c) $\\int -\\cos 4x\\, dx = \\int \\dfrac{1}{4} \\cdot 4 \\cdot (-\\cos 4x)\\, dx = \\dfrac{1}{4} \\cdot (-\\sin 4x) + C = -\\dfrac{1}{4}\\sin 4x + C,\\quad C \\in \\mathbb{R}$"
+      },
+      {
+        "type": "text",
+        "content": "d) $\\int x^2 \\sin x^3\\, dx = \\int \\dfrac{1}{3} \\cdot 3x^2 \\sin x^3\\, dx = \\dfrac{1}{3} \\cdot (-\\cos x^3) + C = -\\dfrac{1}{3}\\cos x^3 + C,\\quad C \\in \\mathbb{R}$"
+      }
+    ]
+  },
+  {
+    "id": "OSAI_T7",
+    "section": "Osa I",
+    "title": "Tehtävä 7",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Integroi."
+      },
+      {
+        "type": "text",
+        "content": "a) $\\int \\dfrac{3}{7x}\\, dx$"
+      },
+      {
+        "type": "text",
+        "content": "b) $\\int \\dfrac{x^2}{x^3 + 4}\\, dx$"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a) $\\int \\dfrac{3}{7x}\\, dx = \\dfrac{3}{7}\\int \\dfrac{1}{x}\\, dx = \\dfrac{3}{7}\\ln|x| + C = \\dfrac{3}{7}\\ln(-x) + C,\\quad C \\in \\mathbb{R}$. Huomaa, että $|x| = -x$, kun $x < 0$."
+      },
+      {
+        "type": "text",
+        "content": "b) $\\int \\dfrac{x^2}{x^3 + 4}\\, dx = \\int \\dfrac{1}{3} \\cdot \\dfrac{3x^2}{x^3 + 4}\\, dx = \\dfrac{1}{3}\\ln|x^3 + 4| + C = \\dfrac{1}{3}\\ln(x^3 + 4) + C,\\quad C \\in \\mathbb{R}$"
+      }
+    ]
+  },
+  {
+    "id": "OSAI_T8",
+    "section": "Osa I",
+    "title": "Tehtävä 8",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Laske funktion $f(x) = -3x^2 + 1$ kuvaajan ja $x$-akselin rajaaman alueen pinta-ala."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Integroimisrajat saadaan funktion ja $x$-akselin leikkauspisteistä. $x$-akselin leikkauspisteessä $y$-koordinaatti on nolla.\n\n$$f(x) = 0 \\Leftrightarrow -3x^2 + 1 = 0 \\Leftrightarrow 3x^2 = 1 \\Leftrightarrow x^2 = \\frac{1}{3} \\Leftrightarrow x = \\pm\\frac{1}{\\sqrt{3}} = \\pm\\frac{\\sqrt{3}}{3}$$\n\nKoska $f$ on alaspäin aukeava paraabeli, on $f(x) \\geq 0$ välillä $\\left[-\\frac{\\sqrt{3}}{3},\\ \\frac{\\sqrt{3}}{3}\\right]$.\n\n$$A = \\int_{-\\frac{\\sqrt{3}}{3}}^{\\frac{\\sqrt{3}}{3}} (-3x^2 + 1)\\, dx = \\left[-x^3 + x\\right]_{-\\frac{\\sqrt{3}}{3}}^{\\frac{\\sqrt{3}}{3}} = \\frac{4\\sqrt{3}}{9}$$"
+      }
+    ]
+  },
+  {
+    "id": "OSAI_T9",
+    "section": "Osa I",
+    "title": "Tehtävä 9",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Laske käyrän $y = 3$, funktion $f(x) = \\sqrt{x + 1}$ ja $y$-akselin rajaaman alueen pinta-ala."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Alue muodostuu nyt kuvaajan ja $y$-akselin väliin. Integraalin yläraja on $3$. Alaraja saadaan funktion $f$ ja $y$-akselin leikkauspisteestä. $y$-akselin leikkauspisteessä $x$-koordinaatti on nolla. $y = \\sqrt{0 + 1} \\Leftrightarrow y = 1$.\n\nKoska integrointi suoritetaan muuttujan $y$ suhteen, ratkaistaan muuttuja $x$ käyrän yhtälöstä ja lasketaan pinta-ala.\n\n$$y = \\sqrt{x + 1} \\Leftrightarrow y^2 = x + 1 \\Leftrightarrow x = y^2 - 1$$A = \\int_1^3 (y^2 - 1)\\, dy = \\left[\\frac{1}{3}y^3 - y\\right]_1^3 = \\left(\\frac{27}{3} - 3\\right) - \\left(\\frac{1}{3} - 1\\right) = 6 - \\left(-\\frac{2}{3}\\right) = \\frac{20}{3}$$"
+      }
+    ]
+  },
+  {
+    "id": "OSAI_T10",
+    "section": "Osa I",
+    "title": "Tehtävä 10",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Määritä käyrän $y = x^2 - 1$ ja suoran $y = x - 1$ rajaaman alueen pinta-ala."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Funktio $f(x) = y = x^2 - 1$ on ylöspäin aukeava paraabeli ja funktio $g(x) = y = x - 1$ nouseva suora. Siten aluetta rajaa yläpuolelta suora ja alapuolelta paraabeli.\n\nIntegroimisrajat saadaan funktioiden leikkauskohdista. Leikkauskohdassa $x$- ja $y$-koordinaatit ovat samat.\n\n$$x^2 - 1 = x - 1 \\Leftrightarrow x^2 - x = 0 \\Leftrightarrow x(x - 1) = 0 \\Leftrightarrow x = 0 \\lor x = 1$$\n\nLasketaan funktioiden rajaaman alueen pinta-ala.\n\n$$A = \\int_0^1 (g(x) - f(x))\\, dx = \\int_0^1 \\left(x - 1 - (x^2 - 1)\\right)dx = \\int_0^1 (-x^2 + x)\\, dx$$= \\left[-\\frac{1}{3}x^3 + \\frac{1}{2}x^2\\right]_0^1 = -\\frac{1}{3} + \\frac{1}{2} = \\frac{1}{6}$$"
+      }
+    ]
+  },
+  {
+    "id": "OSAII_T1",
+    "section": "Osa II",
+    "title": "Tehtävä 1",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Integroi."
+      },
+      {
+        "type": "text",
+        "content": "a) $\\int (3x^2 + 4ax)\\, dx$"
+      },
+      {
+        "type": "text",
+        "content": "b) $\\int (3x^2 + 4ax)\\, da$"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a) Koska integrointi suoritetaan muuttujan $x$ suhteen, muuttuja $a$ on vakiona.\n$$\\int (3x^2 + 4ax)\\, dx = x^3 + 4a \\cdot \\frac{1}{2}x^2 + C = x^3 + 2ax^2 + C,\\quad C \\in \\mathbb{R}$$"
+      },
+      {
+        "type": "text",
+        "content": "b) Koska integrointi suoritetaan muuttujan $a$ suhteen, muuttuja $x$ on vakiona.\n$$\\int (3x^2 + 4ax)\\, da = 3x^2 a + 4x \\cdot \\frac{1}{2}a^2 + C = 3ax^2 + 2a^2 x + C,\\quad C \\in \\mathbb{R}$$"
+      }
+    ]
+  },
+  {
+    "id": "OSAII_T2",
+    "section": "Osa II",
+    "title": "Tehtävä 2",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Olkoon $f''(x) = 2x - 2$. Määritä sellainen $f$, että sen kuvaajalle pisteeseen $(2,\\ 2)$ piirretyn tangentin kulmakerroin on $3$."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Muodostetaan funktioiden $f'(x)$ ja $f(x)$ lausekkeet.\n\n$$f'(x) = \\int f''(x)\\, dx = x^2 - 2x + C,\\quad C \\in \\mathbb{R}$$f(x) = \\int f'(x)\\, dx = \\frac{1}{3}x^3 - x^2 + Cx + D,\\quad C, D \\in \\mathbb{R}$$\n\nEhdoista $f(2) = 2$ ja $f'(2) = 3$ saadaan yhtälöpari.\n\n$$\\begin{cases} f(2) = 2 \\\\ f'(2) = 3 \\end{cases} \\Leftrightarrow \\begin{cases} \\frac{1}{3} \\cdot 2^3 - 2^2 + 2C + D = 2 \\\\ 2^2 - 2 \\cdot 2 + C = 3 \\end{cases}$$\n\nAlemmasta yhtälöstä saadaan $C = 3$. Sijoitetaan ylempään:\n\n$$\\frac{8}{3} - 4 + 2 \\cdot 3 + D = 2 \\Leftrightarrow \\frac{8}{3} - 4 + 6 + D = 2 \\Leftrightarrow D = -\\frac{8}{3}$$\n\nKysytty funktio on $f(x) = \\frac{1}{3}x^3 - x^2 + 3x - \\frac{8}{3}$."
+      }
+    ]
+  },
+  {
+    "id": "OSAII_T3",
+    "section": "Osa II",
+    "title": "Tehtävä 3",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Määritä"
+      },
+      {
+        "type": "text",
+        "content": "a) $\\int_0^1 (3x^2 + 2x)\\, dx + \\int_1^2 (3x^2 + 2x)\\, dx$"
+      },
+      {
+        "type": "text",
+        "content": "b) $\\int_0^1 (4x^2 + x)\\, dx - \\int_2^1 (4x^2 + x)\\, dx$"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a)\n$$\\int_0^1 (3x^2 + 2x)\\, dx + \\int_1^2 (3x^2 + 2x)\\, dx = \\int_0^2 (3x^2 + 2x)\\, dx = \\left[x^3 + x^2\\right]_0^2 = 2^3 + 2^2 = 8 + 4 = 12$$"
+      },
+      {
+        "type": "text",
+        "content": "b)\n$$\\int_0^1 (4x^2 + x)\\, dx - \\int_2^1 (4x^2 + x)\\, dx = \\int_0^1 (4x^2 + x)\\, dx - \\left(-\\int_1^2 (4x^2 + x)\\, dx\\right)$$= \\int_0^1 (4x^2 + x)\\, dx + \\int_1^2 (4x^2 + x)\\, dx = \\int_0^2 (4x^2 + x)\\, dx$$= \\left[\\frac{4}{3}x^3 + \\frac{1}{2}x^2\\right]_0^2 = \\frac{4}{3} \\cdot 8 + \\frac{1}{2} \\cdot 4 = \\frac{32}{3} + 2 = \\frac{38}{3}$$"
+      }
+    ]
+  },
+  {
+    "id": "OSAII_T4",
+    "section": "Osa II",
+    "title": "Tehtävä 4",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Määritä funktion $f(x) = \\dfrac{3}{x^3}$ integraalifunktio."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Funktio $f$ on määritelty, kun $x \\neq 0$. Määrittelyjoukko muodostuu kahdesta erillisestä välistä, jotka ovat $x < 0$ ja $x > 0$.\n\nMääritetään ensin integraalifunktio välillä $x < 0$.\n\n$$F(x) = \\int \\frac{3}{x^3}\\, dx = \\int 3x^{-3}\\, dx = -\\frac{3}{2}x^{-2} + C = \\frac{-3}{2x^2} + C,\\quad C \\in \\mathbb{R}$$\n\nMääritetään integraalifunktio välillä $x > 0$.\n\n$$F(x) = \\frac{-3}{2x^2} + D,\\quad D \\in \\mathbb{R}$$\n\nSiis\n\n$$F(x) = \\begin{cases} \\dfrac{-3}{2x^2} + C, & \\text{kun } x < 0 \\\\ \\dfrac{-3}{2x^2} + D, & \\text{kun } x > 0 \\end{cases}, \\quad \\text{missä } C, D \\in \\mathbb{R}$$"
+      }
+    ]
+  },
+  {
+    "id": "OSAII_T5",
+    "section": "Osa II",
+    "title": "Tehtävä 5",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Integroi funktiot yhdistetyn funktion integrointisäännöllä, jos se on mahdollista. Perustele vastauksesi, mikäli funktiota ei voida integroida."
+      },
+      {
+        "type": "text",
+        "content": "a) $\\int x^2(x^3 + 3)^4\\, dx$"
+      },
+      {
+        "type": "text",
+        "content": "b) $\\int 3(x^3 + 3)^3\\, dx$"
+      },
+      {
+        "type": "text",
+        "content": "c) $\\int x^4(x^3 + 3)^5\\, dx$"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a) Yhdistetyn funktion integrointisääntöä voidaan käyttää, jos ja vain jos yhdistetty funktio on kerrottuna sisäfunktion derivaatalla.\n\nSisäfunktion $s(x) = x^3 + 3$ derivaatta on $s'(x) = 3x^2$, joten\n$$\\int x^2(x^3 + 3)^4\\, dx = \\int \\frac{1}{3} \\cdot 3x^2(x^3 + 3)^4\\, dx = \\frac{1}{3} \\cdot \\frac{1}{5}(x^3 + 3)^5 + C = \\frac{1}{15}(x^3 + 3)^5 + C,\\quad C \\in \\mathbb{R}$$"
+      },
+      {
+        "type": "text",
+        "content": "b) Funktiota ei ole mahdollista kertoa sisäfunktion derivaatalla siten, ettei funktio muuttuisi. Näin ollen funktiota ei voida integroida yhdistetyn funktion integrointisäännöllä."
+      },
+      {
+        "type": "text",
+        "content": "c) Funktiota ei ole mahdollista kertoa sisäfunktion derivaatalla siten, ettei funktio muuttuisi. Näin ollen funktiota ei voida integroida yhdistetyn funktion integrointisäännöllä."
+      }
+    ]
+  },
+  {
+    "id": "OSAII_T6",
+    "section": "Osa II",
+    "title": "Tehtävä 6",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Integroi."
+      },
+      {
+        "type": "text",
+        "content": "a) $\\int 22e^x\\, dx$"
+      },
+      {
+        "type": "text",
+        "content": "b) $\\int e^{-x}\\, dx$"
+      },
+      {
+        "type": "text",
+        "content": "c) $\\int 2x^3 e^{x^4}\\, dx$"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a) $\\int 22e^x\\, dx = 22e^x + C,\\quad C \\in \\mathbb{R}$"
+      },
+      {
+        "type": "text",
+        "content": "b) $\\int e^{-x}\\, dx = -1 \\cdot \\int -e^{-x}\\, dx = -e^{-x} + C,\\quad C \\in \\mathbb{R}$"
+      },
+      {
+        "type": "text",
+        "content": "c) $\\int 2x^3 e^{x^4}\\, dx = \\dfrac{1}{2} \\cdot \\int 4x^3 e^{x^4}\\, dx = \\dfrac{1}{2}e^{x^4} + C,\\quad C \\in \\mathbb{R}$"
+      }
+    ]
+  },
+  {
+    "id": "OSAII_T7",
+    "section": "Osa II",
+    "title": "Tehtävä 7",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Laske funktion $f(x) = 4 - e^x$ ja $x$-akselin rajaaman alueen pinta-ala. Anna vastauksesi tarkkana arvona sekä kaksidesimaalisen likiarvona."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Integroimisrajat saadaan funktion ja $x$-akselin leikkauspisteistä. Tällöin $y$-koordinaatti on nolla.\n\n$$f(x) = 0 \\Leftrightarrow 4 - e^x = 0 \\Leftrightarrow e^x = 4 \\Leftrightarrow x = \\ln 4$$\n\nLasketaan alueen pinta-ala.\n\n$$A = \\int_0^{\\ln 4} (4 - e^x)\\, dx = \\left[4x - e^x\\right]_0^{\\ln 4} = (4\\ln 4 - e^{\\ln 4}) - (4 \\cdot 0 - e^0)$$= 4\\ln 4 - 4 + 1 = 4\\ln 4 - 3 = 8\\ln 2 - 3 \\approx 2{,}55$$"
+      }
+    ]
+  },
+  {
+    "id": "OSAII_T8",
+    "section": "Osa II",
+    "title": "Tehtävä 8",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Olkoon $f(x) = \\cos 4x + 5\\sin x + e^x$. Määritä funktiolle $f$ sellainen integraalifunktio $F$, jolle $F(0) = 3$."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Määritetään integraalifunktio $F$.\n\n$$F(x) = \\int f(x)\\, dx = \\int (\\cos 4x + 5\\sin x + e^x)\\, dx = \\frac{1}{4}\\sin 4x - 5\\cos x + e^x + C,\\quad C \\in \\mathbb{R}$$\n\nRatkaistaan integroimisvakio.\n\n$$F(0) = 3 \\Leftrightarrow \\frac{1}{4}\\sin(4 \\cdot 0) - 5\\cos(0) + e^0 + C = 3 \\Leftrightarrow 0 - 5 + 1 + C = 3 \\Leftrightarrow C = 7$$\n\nSiis\n\n$$F(x) = \\frac{1}{4}\\sin 4x - 5\\cos x + e^x + 7$$"
+      }
+    ]
+  },
+  {
+    "id": "OSAII_T9",
+    "section": "Osa II",
+    "title": "Tehtävä 9",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Suorat $y = 2$ ja $y = \\dfrac{x}{3}$ sekä $y$-akseli rajaavat kolmion muotoisen alueen. Laske alueen pinta-ala"
+      },
+      {
+        "type": "text",
+        "content": "a) integroimalla $y$-akselia pitkin"
+      },
+      {
+        "type": "text",
+        "content": "b) integroimalla $x$-akselia pitkin"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a) Suora $y = \\dfrac{x}{3}$ tulee ilmaista muuttujan $x$ avulla: $y = \\dfrac{x}{3} \\Leftrightarrow x = 3y$.\n\nAlue muodostuu suoran $y = \\dfrac{x}{3}$ ja $y$-akselin väliin. Sen ala on\n\n$$A = \\int_0^2 3y\\, dy = \\left[\\frac{3}{2}y^2\\right]_0^2 = \\frac{3}{2} \\cdot 4 = 6$$"
+      },
+      {
+        "type": "text",
+        "content": "b) Ratkaistaan suorien leikkauskohta: $y = y \\Leftrightarrow 2 = \\dfrac{x}{3} \\Leftrightarrow x = 6$.\n\nKysytty ala on\n\n$$A = \\int_0^6 \\frac{x}{3}\\, dx = \\left[\\frac{1}{6}x^2\\right]_0^6 = \\frac{1}{6} \\cdot 36 = 6$$"
+      }
+    ]
+  },
+  {
+    "id": "OSAII_T10",
+    "section": "Osa II",
+    "title": "Tehtävä 10",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Määritä käyrän $f(x) = \\ln(x - 1)$, suoran $y = 2$ ja suoran $y = 1$ rajaaman alueen ala."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Koska integroidaan $y$-akselia pitkin, ratkaistaan muuttuja $x$ yhtälöstä\n\n$$y = \\ln(x - 1) \\Leftrightarrow e^y = x - 1 \\Leftrightarrow x = e^y + 1$$\n\nKysytty ala\n\n$$A = \\int_1^2 (e^y + 1)\\, dy = \\left[e^y + y\\right]_1^2 = (e^2 + 2) - (e + 1) = e^2 - e + 1$$"
+      }
+    ]
+  },
+  {
+    "id": "OSAIII_T1",
+    "section": "Osa III",
+    "title": "Tehtävä 1",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Tarkastellaan funktiota $f(x) = |x - 3| + 3$. Funktion $f$ kuvaaja pyörähtää $x$-akselin ympäri välillä $0 \\leq x \\leq 4$. Laske näin muodostuvan pyörähdyskappaleen tilavuus."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Kun $x \\leq 3$, on $|x - 3| = 3 - x$, ja välillä $3 \\leq x \\leq 4$ on $|x - 3| = x - 3$.\n\nPyörähdyskappaleen tilavuus saadaan kaavasta\n\n$$V = \\pi \\int_0^4 f(x)^2\\, dx$$\n\nLasketaan\n\n$$\\int_0^3 (6 - x)^2\\, dx = 63 \\quad \\text{ja} \\quad \\int_3^4 x^2\\, dx = \\frac{37}{3}$$\n\nTilavuus on\n\n$$V = \\frac{226\\pi}{3}$$"
+      }
+    ]
+  },
+  {
+    "id": "OSAIII_T2",
+    "section": "Osa III",
+    "title": "Tehtävä 2",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "*Kukka* on marmorilaatasta leikattu veistos, joka on välillä $0 \\leq x \\leq 3$ ja jonka sivuprofiili on käyrien $y = \\dfrac{1}{2}\\sin(\\pi x)$ ja $y = \\dfrac{1}{4}x(x - 3)$ rajoittaman alueen mukainen. Laske veistoksen tilavuus. Marmorilaatan paksuus on 15 cm ja pituuden mittayksikkönä on metri."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Välillä $0 \\leq x \\leq 3$ on $f(x) = \\dfrac{1}{2}\\sin(\\pi x) \\geq \\dfrac{1}{4}x(x - 3) = g(x)$.\n\nVeistoksen ala saadaan kaavasta\n\n$$A = \\int_0^3 (f(x) - g(x))\\, dx$$\n\nLasketaan\n\n$$\\int_0^3 \\left(\\frac{1}{2}\\sin(\\pi x) - \\frac{1}{4}x(x - 3)\\right)dx = \\frac{1}{\\pi} + \\frac{9}{8}$$\n\nTilavuus on\n\n$$A \\cdot d = \\left(\\frac{1}{\\pi} + \\frac{9}{8}\\right) \\cdot \\frac{15}{100}\\ \\text{m}^3 \\approx 0{,}22\\ \\text{m}^3$$"
+      }
+    ]
+  },
+  {
+    "id": "OSAIII_T3",
+    "section": "Osa III",
+    "title": "Tehtävä 3",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Käyrät $y = \\dfrac{3}{2}$, $y = 3$, $y = \\ln(x + 9)$ ja $y = \\sqrt[3]{x} + 1$ rajaavat kaksiosaisen alueen. Määritä näistä ylemmän alueen pinta-ala. Anna vastauksesi likiarvona yhden desimaalin tarkkuudella."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Piirretään kuva tilanteesta.\n\nKoska integroidaan muuttujan $y$ suhteen, ratkaistaan käyrien yhtälöistä $x$.\n\n$$y = \\ln(x + 9) \\Leftrightarrow e^y = x + 9 \\Leftrightarrow x = e^y - 9$$y = \\sqrt[3]{x} + 1 \\Leftrightarrow y - 1 = \\sqrt[3]{x} \\Leftrightarrow x = (y - 1)^3$$\n\nVälillä $\\dfrac{3}{2} \\leq y \\leq 3$ aluetta rajaa oikealta käyrä $x = e^y - 9$ ja vasemmalta $x = (y-1)^3$.\n\nAlueen pinta-ala on\n\n$$A = \\int_{3/2}^{3} \\left(e^y - 1 - (y-1)^3\\right)dy \\approx 6{,}8$$"
+      }
+    ]
+  },
+  {
+    "id": "OSAIII_T4",
+    "section": "Osa III",
+    "title": "Tehtävä 4",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Tarkastellaan käyrää $x = y^2 - 8$ ja $y$-akselin rajaama aluetta. Laske syntyvän pyörähdyskappaleen tilavuus, kun alue pyörähtää"
+      },
+      {
+        "type": "text",
+        "content": "a) $x$-akselin ympäri"
+      },
+      {
+        "type": "text",
+        "content": "b) $y$-akselin ympäri"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a) $x$-akselin leikkauskohdassa $y$-koordinaatti on nolla: $x = 0^2 - 8 = -8$. $y$-akselin leikkauskohdassa $x$-koordinaatti on nolla: $0 = y^2 - 8 \\Leftrightarrow y = \\pm 2\\sqrt{2}$.\n\nKun alue pyörähtää $x$-akselin ympäri, integroidaan muuttujan $x$ suhteen välillä $-8 \\leq x \\leq 0$. Poikkileikkausympyrän säde on $r = |y|$, ja koska $y^2 = x + 8$, niin $r^2 = y^2 = x + 8$.\n\nPyörähdyskappaleen tilavuus:\n\n$$V = \\pi \\int_{-8}^0 r^2\\, dx = \\pi \\int_{-8}^0 (x + 8)\\, dx = 32\\pi$$"
+      },
+      {
+        "type": "text",
+        "content": "b) Alue pyörähtää nyt $y$-akselin ympäri, joten integroidaan muuttujan $y$ suhteen välillä $-2\\sqrt{2} \\leq y \\leq 2\\sqrt{2}$. Säde on $r = |x| = |y^2 - 8|$, joten $r^2 = (y^2 - 8)^2$.\n\nTilavuus:\n\n$$V = \\pi \\int_{-2\\sqrt{2}}^{2\\sqrt{2}} (y^2 - 8)^2\\, dy = \\frac{2048\\pi\\sqrt{2}}{15}$$"
+      }
+    ]
+  },
+  {
+    "id": "OSAIII_T5",
+    "section": "Osa III",
+    "title": "Tehtävä 5",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Jalkapallohallia kuvataan sivusta katsottuna käyrällä $y = \\sqrt{2x}$, missä $0 \\leq x \\leq 10$. Hallia varten poikkileikkauspuolisympyrät muodostetaan puolisympyröinä. Mikä on katoksen tilavuus? Koordinaatiston mittayksikkönä on metri."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Puolisympyrän ala kohdassa $x$ on\n\n$$A(x) = \\frac{1}{2}\\pi r^2 = \\frac{1}{2}\\pi (\\sqrt{2x})^2 = \\pi x$$\n\nTilavuus saadaan integroimalla pinta-alafunktiota:\n\n$$V = \\int_0^{10} A(x)\\, dx = \\int_0^{10} \\pi x\\, dx = 50\\pi \\approx 157\\ \\text{m}^3$$"
+      }
+    ]
+  },
+  {
+    "id": "OSAIII_T6",
+    "section": "Osa III",
+    "title": "Tehtävä 6",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Olkoon $f(x) = 4 - \\sqrt{16 - x^2}$."
+      },
+      {
+        "type": "text",
+        "content": "a) Laske algebrallisesti määrätty integraali $\\displaystyle\\int_{-4}^4 f(x)\\, dx$. Piirrä kuva tilanteesta. Muista esittää ratkaisussasi tarvittavat perustelut ja päätelmät."
+      },
+      {
+        "type": "text",
+        "content": "b) Tarkista a-kohdan vastauksesi laskimella."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a) Piirretään funktion $f$ kuvaaja.\n\nKuvaajan perusteella käyrä $y = f(x)$ näyttää puolisympyrältä. Perustellaan tämä algebrallisesti.\n\nKoska $y = 4 - \\sqrt{16 - x^2} \\Leftrightarrow y - 4 = -\\sqrt{16 - x^2}$, niin edelleen $4 - y = \\sqrt{16 - x^2}$. Tämä yhtälö toteutuu, jos ja vain jos $y \\leq 4$. Korottamalla puolittain neliöön saadaan\n\n$$(4 - y)^2 = 16 - x^2 \\Leftrightarrow x^2 + (y - 4)^2 = 16$$\n\nTämä on ympyrän yhtälö, jonka keskipiste on $(0,\\ 4)$ ja säde on $\\sqrt{16} = 4$.\n\nKoska $f(x) \\geq 0$ kaikilla $x \\in \\mathbb{R}$, määrätyn integraalin arvo saadaan laskemalla suorakulmion ala ja vähentämällä siitä puolisympyrän ala:\n\n$$\\int_{-4}^4 f(x)\\, dx = 8 \\cdot 4 - \\frac{1}{2} \\cdot \\pi \\cdot 4^2 = 32 - 8\\pi$$"
+      },
+      {
+        "type": "text",
+        "content": "b) Laskimella tarkistettuna $\\displaystyle\\int_{-4}^4 \\left(4 - \\sqrt{16 - x^2}\\right)dx = 32 - 8\\pi \\approx 6{,}87$."
+      }
+    ]
+  },
+  {
+    "id": "OSAIII_T7",
+    "section": "Osa III",
+    "title": "Tehtävä 7",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Ratkaise funktion $f(x) = \\displaystyle\\int_0^x (4t^2 - 64)\\, dt$ ääriarvokohdat."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Olkoon $g(t) = 4t^2 - 64$. Näin ollen\n\n$$f(x) = \\int_0^x g(t)\\, dt = G(x) - G(0)$$\n\nmissä $G$ on eräs funktion $g$ integraalifunktio.\n\nFunktion kulkua tarkastellaan derivaatan merkkien avulla:\n\n$$f'(x) = D\\bigl(G(x) - G(0)\\bigr) = g(x) - 0 = 4x^2 - 64$$\n\nDerivaatan nollakohdat saadaan yhtälöstä\n\n$$4x^2 - 64 = 0 \\Leftrightarrow x = -4 \\text{ tai } x = 4$$\n\nDerivaattafunktio $f'$ on polynomifunktiona jatkuva, ja sen merkki voi vaihtua vain nollakohdissa. Kulkukaavion perusteella (piirrä!) funktiolla on maksimikohta $x = -4$ ja minimikohta $x = 4$."
+      }
+    ]
+  },
+  {
+    "id": "OSAIII_T8",
+    "section": "Osa III",
+    "title": "Tehtävä 8",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Rautatangoista taivutetaan edestä katsottuna paraabelin muotoinen lääkintäteltan runko siten, että sen korkeus on 2,5 metriä, leveys 3,0 metriä ja syvyys 7,0 metriä. Kuinka suuri pinta-ala telttakangasta tarvitaan, että se peittää juuri ja juuri oviaukon?"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Koska tarkastellaan oviaukkoa ja siihen tarvittavaa telttakankaan pinta-alaa, teltan syvyyttä ei tarvitse huomioida. Koska oviaukko on paraabelin muotoinen, sen yhtälö on muotoa $y = ax^2 + bx + c$.\n\nSijoitetaan paraabeli koordinaatistoon siten, että korkein kohta on $y$-akselin leikkauskohta ja $x$-akselin leikkauskohdat ovat $(-1{,}5,\\ 0)$ ja $(1{,}5,\\ 0)$.\n\nMuodostetaan yhtälöryhmä ja ratkaistaan vakioiden $a$, $b$ ja $c$ arvot.\n\n$$\\begin{cases} 2{,}5 = a \\cdot 0^2 + b \\cdot 0 + c \\\\ 0 = a \\cdot (-1{,}5)^2 + b \\cdot (-1{,}5) + c \\\\ 0 = a \\cdot (1{,}5)^2 + b \\cdot 1{,}5 + c \\end{cases}$$\n\nLaskimella ratkaisuna saadaan $a = -\\dfrac{10}{9}$, $b = 0$ ja $c = \\dfrac{5}{2}$. Paraabelin yhtälö on $y = -\\dfrac{10}{9}x^2 + \\dfrac{5}{2}$.\n\nOviaukon pinta-ala on\n\n$$A = \\int_{-1{,}5}^{1{,}5} \\left(-\\frac{10}{9}x^2 + \\frac{5}{2}\\right)dx = 5\\ \\text{m}^2$$"
+      }
+    ]
+  },
+  {
+    "id": "OSAIII_T9",
+    "section": "Osa III",
+    "title": "Tehtävä 9",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Tarkastellaan suoran $x = 3$, käyrän $y = \\ln(x + 4)$ ja koordinaattiakselien rajaaman aluetta. Jaa alue pinta-alaltaan kahteen yhtä suureen osaan. Anna vastauksesi likiarvona yhden desimaalin tarkkuudella."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Hahmotelaan tilannetta piirtämällä kuva.\n\nAlueen pinta-alan ilmaisee integraali $A = \\displaystyle\\int_0^3 f(x)\\, dx$, missä $f(x) = \\ln(x + 4)$.\n\nOn etsittävä sellainen suora $x = a$, joka jakaa alueen kahteen yhtä suureen osaan. Vasemmanpuoleisen alueen alan ilmaisee integraali $\\displaystyle\\int_0^a \\ln(x + 4)\\, dx$ ja oikeanpuoleisen $\\displaystyle\\int_a^3 \\ln(x + 4)\\, dx$. Integraalit ovat yhtä suuret. Saadaan yhtälö\n\n$$\\int_0^a \\ln(x + 4)\\, dx = \\int_a^3 \\ln(x + 4)\\, dx$$\n\njosta laskimella ratkaisuna saadaan $x = 1{,}6207\\ldots \\approx 1{,}62$.\n\nSiis suora $x \\approx 1{,}6$ jakaa alueen kahteen yhtä suureen osaan."
+      }
+    ]
+  },
+  {
+    "id": "OSAIII_T10",
+    "section": "Osa III",
+    "title": "Tehtävä 10",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Laske funktioiden $f(x) = x^2 - 2$ ja $g(x) = -x + 4$ väliin jäävä pinta-ala välillä $[0,\\ 3]$."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Tärkeää on huomata, että tarkasteltava alue muodostuu kahdesta erillisestä osasta.\n\nRatkaistaan käyrien leikkauspisteet. Leikkauspisteet toteuttavat yhtälöparin\n\n$$\\begin{cases} y = x^2 - 2 \\\\ y = -x + 4 \\end{cases}$$\n\njosta laskimella ratkaisuna on $x = -3,\\ y = 7$ ja $x = 2,\\ y = 2$. Jälkimmäinen on tehtävän kannalta oleellinen, sillä tässä kohdassa funktio $f$ tulee ylempänä olevaksi kuin $g$.\n\nLasketaan käyrien väliin jäävä pinta-ala.\n\n$$A = \\int_0^2 (g(x) - f(x))\\, dx + \\int_2^3 (f(x) - g(x))\\, dx$$= \\int_0^2 \\bigl((-x + 4) - (x^2 - 2)\\bigr)\\, dx + \\int_2^3 \\bigl((x^2 - 2) - (-x + 4)\\bigr)\\, dx = \\frac{61}{6}$$"
+      }
+    ]
+  },
+  {
+    "id": "OSAIV_T1",
+    "section": "Osa IV",
+    "title": "Tehtävä 1",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Anna esimerkki sellaisesta funktiosta $f$, joka toteuttaa yhtälön $f'(x)e^{f(x)} = 4$, missä $x > 0$. Perustele vastauksesi."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Muokataan yhtälöä.\n\n$$f'(x)e^{f(x)} = 4 \\Leftrightarrow f'(x) = \\frac{4}{e^{f(x)}} \\Leftrightarrow e^{f(x)}\\, df = 4\\, dx$$\n\nIntegroimalla molemmat puolet saadaan\n\n$$\\int e^{f(x)}\\, df = \\int 4\\, dx \\Leftrightarrow e^{f(x)} + C_1 = 4x + C_2$$\n\nOlkoon $C = C_1 - C_2$. Tällöin\n\n$$e^{f(x)} + C = 4x \\Leftrightarrow e^{f(x)} = 4x + C$$\n\nOttamalla puolittain luonnolliset logaritmit saadaan\n\n$$f(x) = \\ln(4x + C)$$\n\nEhto: $4x + C > 0 \\Leftrightarrow x > -\\dfrac{C}{4}$.\n\nEsimerkiksi funktio $g(x) = \\ln(4x + 2)$ toteuttaa yhtälön, kun $x > 0$. Tarkistetaan ratkaisu:\n\n$$f'(x)e^{f(x)} = \\frac{4}{4x + 2} \\cdot e^{\\ln(4x+2)} = \\frac{4}{4x + 2} \\cdot (4x + 2) = 4$$\n\njoten ratkaisu todellakin toteuttaa alkuperäisen yhtälön."
+      }
+    ]
+  },
+  {
+    "id": "OSAIV_T2",
+    "section": "Osa IV",
+    "title": "Tehtävä 2",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Olkoon $f(x) = x^2 - 4a^2$, missä $a > 0$. Funktion $f$ ja $x$-akselin rajaama alue pyörähtää ensin $x$-akselin ympäri, ja sen jälkeen $y$-akselin ympäri. Millä vakion $a$ arvoilla pyörähdyskappaleiden tilavuudet ovat yhtä suuret?"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Ratkaistaan ensin kummankin pyörähdyskappaleen tilavuudet.\n\nKun funktion ja $x$-akselin rajaama alue pyörähtää $x$-akselin ympäri, säde on $r = |y| = x^2 - 4a^2 \\Rightarrow r^2 = (x^2 - 4a^2)^2$.\n\nTilavuus on\n\n$$V_1 = \\pi \\int_{-2a}^{2a} (x^2 - 4a^2)^2\\, dx = \\frac{512\\pi}{15}a^5$$\n\nKun funktion ja $x$-akselin rajaama alue pyörähtää $y$-akselin ympäri, säde on $r = |x|$, ja koska $y = x^2 - 4a^2 \\Rightarrow x^2 = y + 4a^2$, niin $r^2 = |x|^2 = y + 4a^2$.\n\nTilavuus on\n\n$$V_2 = \\pi \\int_{-4a^2}^{0} (y + 4a^2)\\, dy = 8\\pi a^4$$\n\nTilavuudet ovat yhtä suuret:\n\n$$V_1 = V_2 \\Leftrightarrow \\frac{512\\pi}{15}a^5 = 8\\pi a^4$$\n\nJaetaan puolittain $\\pi a^4$ (oletetaan $a \\neq 0$):\n\n$$\\frac{512}{15}a = 8 \\Rightarrow a = \\frac{15}{64}$$\n\nRatkaisuista vain $a = \\dfrac{15}{64}$ toteuttaa määrittelyehdon $a > 0$."
+      }
+    ]
+  },
+  {
+    "id": "OSAIV_T3",
+    "section": "Osa IV",
+    "title": "Tehtävä 3",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Todista: $\\displaystyle\\int x^n\\, dx = \\dfrac{1}{n+1}x^{n+1} + C$, kun $n \\neq -1$."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Funktion $f(x) = \\dfrac{1}{n+1}x^{n+1} + C$ derivaatta on\n\n$$f'(x) = \\frac{1}{n+1} \\cdot (n+1) \\cdot x^{n+1-1} = x^n$$\n\njoka oli alkuperäinen integroitava funktio.\n\nNäin ollen funktion $x^n$ yksi integraalifunktio on $\\dfrac{1}{n+1}x^{n+1}$.\n\nKaikki integraalifunktiot ovat muotoa $\\dfrac{1}{n+1}x^{n+1} + C$, missä $C \\in \\mathbb{R}$, mikä piti todistaa."
+      }
+    ]
+  },
+  {
+    "id": "OSAIV_T4",
+    "section": "Osa IV",
+    "title": "Tehtävä 4",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Osoita, että $\\displaystyle\\int (f(x) + g(x))\\, dx = \\int f(x)\\, dx + \\int g(x)\\, dx$."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Olkoon $F(x) = \\displaystyle\\int f(x)\\, dx$ ja $G(x) = \\displaystyle\\int g(x)\\, dx$. Tällöin\n\n$$D\\left(\\int f(x)\\, dx + \\int g(x)\\, dx\\right) = D(F(x) + G(x)) = DF(x) + DG(x) = f(x) + g(x)$$\n\nOn siis osoitettu, että\n\n$$\\int (f(x) + g(x))\\, dx = \\int f(x)\\, dx + \\int g(x)\\, dx$$\n\nmikä piti todistaa."
+      }
+    ]
+  },
+  {
+    "id": "OSAIV_T5",
+    "section": "Osa IV",
+    "title": "Tehtävä 5",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Osoita, että $\\displaystyle\\int \\dfrac{f'(x)}{f(x)}\\, dx = \\ln|f(x)| + C$, missä $f(x) \\neq 0$."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Koska lauseessa esiintyy itseisarvo, on\n\n$$\\ln|f(x)| = \\begin{cases} \\ln f(x), & \\text{kun } f(x) > 0 \\\\ \\ln(-f(x)), & \\text{kun } f(x) < 0 \\end{cases}$$\n\nAlueessa $f(x) > 0$ saadaan\n\n$$D\\ln|f(x)| = D\\ln f(x) = \\frac{1}{f(x)} \\cdot f'(x) = \\frac{f'(x)}{f(x)}$$\n\nAlueessa $f(x) < 0$ saadaan\n\n$$D\\ln|f(x)| = D\\ln(-f(x)) = \\frac{1}{-f(x)} \\cdot (-f'(x)) = \\frac{f'(x)}{f(x)}$$\n\nOn siis osoitettu, että\n\n$$\\int \\frac{f'(x)}{f(x)}\\, dx = \\ln|f(x)| + C$$\n\nmissä $f(x) \\neq 0$, mikä piti todistaa."
+      }
+    ]
+  }
+]

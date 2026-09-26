@@ -1,0 +1,777 @@
+[
+  {
+    "id": "OSAI_T1",
+    "section": "Osio I",
+    "title": "Tehtävä 1",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Olkoon vektori $\\bar{u} = 2\\bar{i} - 4\\bar{j} + \\bar{k}$ ja $\\bar{v} = \\bar{j} - 2\\bar{k}$. Määritä vektorien $\\bar{u}$ ja $\\bar{v}$"
+      },
+      {
+        "type": "text",
+        "content": "a) pituudet"
+      },
+      {
+        "type": "text",
+        "content": "b) pistetulo"
+      },
+      {
+        "type": "text",
+        "content": "c) kulman suuruus."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a) $|\\bar{u}| = \\sqrt{2^2 + (-4)^2 + 1^2} = \\sqrt{21}$ ja $|\\bar{v}| = \\sqrt{0 + 1^2 + (-2)^2} = \\sqrt{5}$"
+      },
+      {
+        "type": "text",
+        "content": "b) $\\bar{u} \\cdot \\bar{v} = 2 \\cdot 0 - 4 \\cdot 1 + 1 \\cdot (-2) = -6$"
+      },
+      {
+        "type": "text",
+        "content": "c) $\\cos(\\bar{u}, \\bar{v}) = \\frac{-6}{\\sqrt{21}\\sqrt{5}} = \\frac{-6}{\\sqrt{105}} \\Leftrightarrow \\arccos\\!\\left(\\frac{-6}{\\sqrt{105}}\\right) = 126°$"
+      }
+    ]
+  },
+  {
+    "id": "OSAI_T2",
+    "section": "Osio I",
+    "title": "Tehtävä 2",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Olkoon $\\bar{u} = 2\\bar{i} - 4\\bar{j} + \\bar{k}$ ja $\\bar{v} = \\bar{j} - 2\\bar{k}$. Määritä vektorien $\\bar{u}$ ja $\\bar{v}$ ristitulo."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Käytetään determinanttia.\n\n$$\\bar{u} \\times \\bar{v} = \\begin{vmatrix} \\bar{i} & \\bar{j} & \\bar{k} \\\\ 2 & -4 & 1 \\\\ 0 & 1 & -2 \\end{vmatrix} = (-4 \\cdot (-2) - 1)\\bar{i} + (0 - 2 \\cdot (-2))\\bar{j} + (2 - 0)\\bar{k} = 7\\bar{i} + 4\\bar{j} + 2\\bar{k}$$"
+      }
+    ]
+  },
+  {
+    "id": "OSAI_T3",
+    "section": "Osio I",
+    "title": "Tehtävä 3",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Olkoon vektori $\\bar{u} = 5\\bar{i} - 2\\bar{j} + 3\\bar{k}$. Jaa vektori $\\bar{u}$ vektorien $\\bar{a} = \\bar{i} + \\bar{k}$, $\\bar{b} = \\bar{j} - \\bar{k}$ ja $\\bar{c} = \\bar{i} - \\bar{j}$ suuntaisiin komponentteihin."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Täytyy siis päteä, että\n\n$$\\bar{u} = 5\\bar{i} - 2\\bar{j} + 3\\bar{k} = x\\bar{a} + y\\bar{b} + z\\bar{c}$$\\Leftrightarrow 5\\bar{i} - 2\\bar{j} + 3\\bar{k} = x(\\bar{i} + \\bar{k}) + y(\\bar{j} - \\bar{k}) + z(\\bar{i} - \\bar{j}) = (x+z)\\bar{i} + (y-z)\\bar{j} + (x-y)\\bar{k}$$\n\nTäten voidaan muodostaa yhtälöryhmä:\n\n$$\\begin{cases} 5 = x + z \\\\ -2 = y - z \\\\ 3 = x - y \\end{cases} \\Leftrightarrow \\begin{cases} x = -\\frac{1}{2} \\\\ y = \\frac{3}{2} \\\\ z = \\frac{5}{2} \\end{cases}$$\n\nNäin ollen siis $\\bar{u} = -\\frac{1}{2}\\bar{a} + \\frac{3}{2}\\bar{b} + \\frac{5}{2}\\bar{c}$."
+      }
+    ]
+  },
+  {
+    "id": "OSAI_T4",
+    "section": "Osio I",
+    "title": "Tehtävä 4",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Määritä origon etäisyys tasosta $-3x + y + 5z + 10 = 0$."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Täytyy siis etsiä pisteen $x_0 = (0,0,0)$ etäisyys tästä tasosta. Saadaan\n\n$$d = \\frac{|3 \\cdot 0 - 2 \\cdot 0 + 5 \\cdot 0 - 10|}{\\sqrt{3^2 + (-2)^2 + 5^2}} = \\frac{|-10|}{\\sqrt{38}} = \\frac{10}{\\sqrt{38}}$$"
+      }
+    ]
+  },
+  {
+    "id": "OSAI_T5",
+    "section": "Osio I",
+    "title": "Tehtävä 5",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Taso sisältää pisteet $A = (1,1,1)$, $B = (-2,4,3)$ ja $C = (2,1,-2)$."
+      },
+      {
+        "type": "text",
+        "content": "a) Määritä tason vektoriyhtälö."
+      },
+      {
+        "type": "text",
+        "content": "b) Kuuluuko piste $(0, 0, 0)$ tähän tasoon?"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a) Merkitään pistettä $\\bar{A} = \\overrightarrow{OA}$. Toisaalta Tällöin $\\overrightarrow{AB} = (-2 - 1, 4 - 1, 3 - 1) = (-3, 3, 2)$ ja $\\overrightarrow{AC} = (2 - 1, 1 - 1, -2 - 1) = (1, 0, -3)$. Näin ollen tason vektoriyhtälöksi saadaan\n\n$$\\overrightarrow{OP} = (1,1,1) + t(-3,3,2) + r(1,0,-3), \\quad \\text{missä } t, r \\in \\mathbb{R}.$$"
+      },
+      {
+        "type": "text",
+        "content": "b) Ei kuulu. Voidaan muodostaa yhtälöryhmä ja huomataan, ettei sillä ole ratkaisua."
+      }
+    ]
+  },
+  {
+    "id": "OSAI_T6",
+    "section": "Osio I",
+    "title": "Tehtävä 6",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Olkoon suoran parametriesitys $\\begin{cases} x = 2 + t \\\\ y = -3t \\\\ z = -1 + 2t \\end{cases}$, $t \\in \\mathbb{R}$. Missä pisteessä suora leikkaa tason $3x - 2y + 5z = 10$?"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Sijoitetaan suoran parametrin arvot tason yhtälöön ja ratkaistaan vakio $t$. Siten\n\n$$3(2 + t) - 2(-3t) + 5(-1 + 2t) = 10$$\\Leftrightarrow 19t + 1 = 10 \\Leftrightarrow t = \\frac{9}{19}.$$\n\nEli\n\n$$\\begin{cases} x = 2 + \\frac{9}{19} = \\frac{47}{19} \\\\ y = -3 \\cdot \\frac{9}{19} = -\\frac{27}{19} \\\\ z = -1 + 2 \\cdot \\frac{9}{19} = -\\frac{1}{19} \\end{cases}$$\n\nSiten suora ja taso leikkaavat pisteessä $\\left(\\frac{47}{19}, -\\frac{27}{19}, -\\frac{1}{19}\\right)$."
+      }
+    ]
+  },
+  {
+    "id": "OSAI_T7",
+    "section": "Osio I",
+    "title": "Tehtävä 7",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Tarkastellaan käyriä $y = x^2 + 3$ ja $y = \\ln(x) - 2$. Määritä käyrien lyhin mahdollinen etäisyys toisistaan."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Käyrien lyhin mahdollinen etäisyys saavutetaan, kun käyrien välinen jana on y-akselin suuntainen. Näin ollen riittää katsoa vain kahden jonolla olevan pisteen välistä etäisyttä eli itseisarvoa. Täten saadaan\n\n$$|y_2 - y_1| = |x^2 + 3 - (\\ln(x) - 2)| = |x^2 - \\ln(x) + 5|$$\n\nMerkitään $f(x) = x^2 - \\ln(x) + 5$. Tällöin $f'(x) = 0 \\Leftrightarrow 2x - \\frac{1}{x} = 0 \\Leftrightarrow 2x^2 - 1 = 0 \\Leftrightarrow x = \\frac{1}{\\sqrt{2}}$.\n\nKoska funktio on määritelty vain positiivisilla arvoilla, ainoastaan $x = \\frac{1}{\\sqrt{2}}$ kelpaa. Tällöin $|y_2 - y_1| = \\left|\\frac{1}{2} + 3 - \\ln\\!\\left(\\frac{1}{\\sqrt{2}}\\right) - 2\\right| = \\frac{11}{2} - \\ln\\!\\left(\\frac{1}{\\sqrt{2}}\\right)$"
+      }
+    ]
+  },
+  {
+    "id": "OSAI_T8",
+    "section": "Osio I",
+    "title": "Tehtävä 8",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "a) Pertti haluaa rakentaa kanalan, jonka pohja on neliönmuotoinen. Hänellä on tukirakennemateriaalia käytettävissä 100 metriä. Tukirakenne koostuu yhteensä 12 särmästä niin, että ne muodostavat suorakulmaisen särmiön. Osoita, että jos halutaan mahdollisimman suuri tilavuus, täytyy aitauksesta tehdä kuutionmuotoinen."
+      },
+      {
+        "type": "text",
+        "content": "b) Miten aitauksen tilavuudesta saataisiin mahdollisimman pieni? Onko sille olemassa tarkkaa vastausta?"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a) Nyt koska pohjan $A$ täytyy olla neliö, voidaan sitä merkitä $A = x^2$. Merkitään korkeutta muuttujalla $y$. Näin ollen saadaan tilavuuden funktioksi $V(x) = x^2 y$.\n\nToisaalta, koska tukirakenteessa on käytettävissä 100 metriä, täytyy päteä, että\n$$8x + 4y = 100 \\Leftrightarrow x + y = 5 \\Leftrightarrow y = 25 - 2x.$$\n\nNäin ollen $V(x) = x^2(25 - 2x) = 25x^2 - 2x^3$. Määritetään funktion derivaatan nollakohdat.\n\n$V'(x) = 0 \\Leftrightarrow 50x - 6x^2 = 0 \\Leftrightarrow x = \\frac{25}{3}$ (tai $x = 0$). Tutkitaan funktion kulkua.\n\n$V'(8) = 16 > 0$ ja $V'(9) = -36 < 0$.\n\nKyseessä on siis maksimikohta. Näin ollen pohjan sivun pituus on $x = \\frac{25}{3}$ ja korkeus $y = 25 - 2 \\cdot \\frac{25}{3} = \\frac{25}{3}$. Eli siis $x = y$, joten suurin tilavuus saavutetaan, kun aitaus on kuutionmuotoinen."
+      },
+      {
+        "type": "text",
+        "content": "b) Tarkastellaan tilannetta, kun pohjan tahkon pituuden raja-arvo lähenee nollaa eli $x \\to 0$. Toisaalta tällöin $\\lim y = \\lim(25 - 2x) = 25$. Toisaalta $\\lim V = \\lim x^2 y = 0$.\n\nEli näin ollen tilavuuden arvo lähestyy nollaa, kun $x$:n arvo lähestyy nollaa.\n\nTilavuus ei voi siis saada arvoa nolla (ellei tukirakenteesta ole kiinni toisissaan), mutta se voi lähestyä äärettömän lähelle nollaa."
+      }
+    ]
+  },
+  {
+    "id": "OSAI_T9",
+    "section": "Osio I",
+    "title": "Tehtävä 9",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Tarkastellaan funktiota $f(x, y) = y^2 + \\sqrt{1 - x^2}$. Määritä funktion"
+      },
+      {
+        "type": "text",
+        "content": "a) määrittelyjoukko $A$"
+      },
+      {
+        "type": "text",
+        "content": "b) arvojoukko $B$"
+      },
+      {
+        "type": "text",
+        "content": "c) nollakohdat."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a) Huomataan helposti, että funktion $f$ muuttuja $y$ on määritelty kaikilla reaaliluvuilla eli $y \\in \\mathbb{R}$. Toisaalta $\\sqrt{1 - x^2}$ täytyy päteä, että $1 - x^2 \\ge 0 \\Leftrightarrow -1 \\le x \\le 1$. Näin ollen siis funktion määrittelyjoukko on $A = \\{(x,y) \\mid -1 \\le x \\le 1, y \\in \\mathbb{R}\\}$."
+      },
+      {
+        "type": "text",
+        "content": "b) Koska $y^2 \\ge 0$ ja $\\sqrt{1 - x^2} \\ge 0$, niin $f(x,y) \\ge 0$. Lisäksi koska $\\lim y^2 = \\infty$, niin funktio saa arvoikseen kaikki positiiviset reaaliluvut eli $B = \\mathbb{R}_+$."
+      },
+      {
+        "type": "text",
+        "content": "c) Tutkitaan milloin funktiolla pätee $f(x,y) = 0$. Ilmeistä, että täytyy päteä, että $y = 0$ ja $x = \\pm 1$. Toisaalta $\\sqrt{1-x^2} = 0 \\Leftrightarrow x = -1$ tai $x = 1$. Näin ollen siis funktio saa arvon nolla pisteissä $(-1,0)$ tai $(1,0)$."
+      }
+    ]
+  },
+  {
+    "id": "OSAI_T10",
+    "section": "Osio I",
+    "title": "Tehtävä 10",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "a) Määritä funktion $f(x, y) = x^2 - xy + y^2 + 3$ kriittiset pisteet."
+      },
+      {
+        "type": "text",
+        "content": "b) Onko funktiolla pienintä ja suurinta arvo? Jos on, mitkä ne ovat?"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a) Lasketaan ensin funktion $f$ osittaisderivaataat.\n\n$$\\partial_x f(x,y) = 2x - y$$\\partial_y f(x,y) = 2y - x$$\n\nMuodostetaan yhtälöpari ja ratkaistaan kriittiset pisteet laskimella.\n\n$$\\begin{cases} 2x - y = 0 \\\\ 2y - x = 0 \\end{cases} \\Leftrightarrow \\begin{cases} x = 0 \\\\ y = 0 \\end{cases}$$\n\nFunktiolla on siis yksi kriittinen piste, joka on $(0,0)$."
+      },
+      {
+        "type": "text",
+        "content": "b) Nyt koska\n\n$$f(x,y) = x^2 - xy + y^2 + 3 = \\left(\\frac{1}{2}x - y\\right)^2 + \\frac{3}{4}x^2 + 3 \\ge 3$$\n\nNäin ollen funktion pienin arvo on 3, ja koska a-kohdan perusteella funktiolla on vain yksi kriittinen piste, niin funktiolla ei ole suurinta arvoa.\n\nEli $\\lim_{(x,y)\\to\\infty} f(x,y) = \\infty$."
+      }
+    ]
+  },
+  {
+    "id": "OSAII_T1",
+    "section": "Osio II",
+    "title": "Tehtävä 1",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Totta vai tarua? Perustele vastauksesi."
+      },
+      {
+        "type": "text",
+        "content": "a) Jos tiedetään tason suuntainen suora, saadaan muodostettua tasolle yhtälö."
+      },
+      {
+        "type": "text",
+        "content": "b) Kahden tunnetun pisteen avulla saadaan muodostettua suoran yhtälö."
+      },
+      {
+        "type": "text",
+        "content": "c) Suurin mahdollinen useamman muuttujan funktio on $f(x, y, z)$, jolloin määrittelyjoukko on $\\mathbb{R}^3$."
+      },
+      {
+        "type": "text",
+        "content": "d) Mikäli kahden tason välinen pistetulo on nolla, ovat tasot kohtisuorassa toisiinsa nähden."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a) Epätosi. Lisäksi tarvitaan toinen suora tai yksi satunnainen piste."
+      },
+      {
+        "type": "text",
+        "content": "b) Totta. Jos tunnetaan pisteet $(x_1, x_2, x_3)$ ja $(y_1, y_2, y_3)$ niin suoran parametriesitys on $\\begin{cases} x = x_1 + (y_1 - x_1)t \\\\ y = x_2 + (y_2 - x_2)t \\\\ z = x_3 + (y_3 - x_3)t \\end{cases}$, missä $t \\in \\mathbb{R}$."
+      },
+      {
+        "type": "text",
+        "content": "c) Epätosi. Useamman muuttujan funktiossa voi olla $n$ kappaletta muuttujia, missä $n$ on jokin luonnollinen luku."
+      },
+      {
+        "type": "text",
+        "content": "d) Epätosi. Tasoista ei voi laskea samalla tavalla pistetulokauin vektorista."
+      }
+    ]
+  },
+  {
+    "id": "OSAII_T2",
+    "section": "Osio II",
+    "title": "Tehtävä 2",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Vektorit $\\bar{u} = \\bar{i} - 2\\bar{j} + 3\\bar{k}$ ja $\\bar{v} = -2\\bar{i} - 2\\bar{j} + 4\\bar{k}$ virittävät tason."
+      },
+      {
+        "type": "text",
+        "content": "a) Määritä tason normaalimuotoinen esitys."
+      },
+      {
+        "type": "text",
+        "content": "b) Onko piste $(0,0,0)$ tällä tasolla?"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a) Määritetään tason normaalivektori $\\bar{n}$ ristitulolla.\n\n$$\\bar{u} \\times \\bar{v} = \\begin{vmatrix} \\bar{i} & \\bar{j} & \\bar{k} \\\\ 1 & -2 & 3 \\\\ -2 & -2 & 4 \\end{vmatrix} = (-2 \\cdot 4 + 6)\\bar{i} + (-6 - 4)\\bar{j} + (-2 - 4)\\bar{k}$$\n\nValitaan $\\bar{p}_0 = (-2, -3, 1)$ ja $\\bar{p} = (x, y, z)$. Näin ollen\n\n$$\\bar{n} \\cdot (\\bar{p} - \\bar{p}_0) = 0 \\Leftrightarrow (6\\bar{i} - \\bar{j} + 9\\bar{k}) \\cdot ((x+2)\\bar{i} + (y+3)\\bar{j} + (z-1)\\bar{k}) = 0$$\\Leftrightarrow 6(x+2) - (y+3) + 9(z-1) = 0$$\\Leftrightarrow 6x - y + 9z = 0.$$"
+      },
+      {
+        "type": "text",
+        "content": "b) Nyt jos sijoitetaan $(x,y,z) = (0,0,0)$, niin\n$$0 + 5 \\cdot 0 + 3 \\cdot 0 = 0$$\nEli piste on tasolla."
+      }
+    ]
+  },
+  {
+    "id": "OSAII_T3",
+    "section": "Osio II",
+    "title": "Tehtävä 3",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Olkoon suoran $l$ ja $m$ parametriesitykset $\\begin{cases} x = 1 - 3t \\\\ y = -1 + 4t \\\\ z = -2 + 3t \\end{cases}$ ja $\\begin{cases} x = -2 + 3s \\\\ y = -2 - s \\\\ z = 1 - 5s \\end{cases}$, missä $t, s \\in \\mathbb{R}$."
+      },
+      {
+        "type": "text",
+        "content": "a) Määritä suorien välinen kulma kahden desimaalin tarkkuudella."
+      },
+      {
+        "type": "text",
+        "content": "b) Leikkaavatko suorat toisiaan?"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a) Parametriesityksestä huomataan, että suoran $l$ eräs suuntavektori on\n$$\\bar{l} = -3\\bar{i} + 4\\bar{j} + 3\\bar{k}$$\nja suoran $m$ eräs suuntavektori on\n$$\\bar{m} = 3\\bar{i} - \\bar{j} - 5\\bar{k}.$$\n\nLasketaan suuntavektoreiden pituudet ja pistetulot.\n$$|\\bar{l}| = \\sqrt{(-3)^2 + 4^2 + 3^2} = \\sqrt{34}$$|\\bar{m}| = \\sqrt{3^2 + (-1)^2 + (-5)^2} = \\sqrt{35}$$\\bar{l} \\cdot \\bar{m} = -3 \\cdot 3 + 4 \\cdot (-1) + 3 \\cdot (-5) = -28.$$\n\nNäin ollen suuntavektoreiden välinen kulma on\n$$\\cos(\\bar{l},\\bar{m}) = \\frac{-28}{\\sqrt{34}\\sqrt{35}} \\Leftrightarrow \\arccos\\!\\left(\\frac{-28}{\\sqrt{34 \\cdot 35}}\\right) = 144°$$\n\nNäin ollen lopullinen leikkauskulma on $\\alpha = 180° - 144° = 36°$"
+      },
+      {
+        "type": "text",
+        "content": "b) Tutkitaan onko yhtälöryhmällä ratkaisua.\n$$\\begin{cases} 1 - 3t = -2 + 3s \\\\ -1 + 4t = -2 - s \\\\ -2 + 3t = 1 - 5s \\end{cases}$$\n\nHuomataan helposti, että yhtälöryhmällä ei ole ratkaisua, joten suorat eivät leikkaa toisiaan."
+      }
+    ]
+  },
+  {
+    "id": "OSAII_T4",
+    "section": "Osio II",
+    "title": "Tehtävä 4",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Suora kulkee pisteiden $A = (-1, 2, 0)$ ja $B = (2, 1, -3)$ kautta. Määritä pisteen $C = (2, 4, 1)$ etäisyys suoralta."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Muodostetaan ensin suoran parametriesitys. Saadaan, että\n$$\\begin{cases} x = -1 + 3t \\\\ y = 2 - t \\\\ z = -3t \\end{cases}, \\quad t \\in \\mathbb{R}.$$\n\nOlkoon nyt piste $P = (-1 + 3t, 2 - t, -3t)$ se suoran piste, joka on lähimpänä pistettä $C$. Toisaalta tällöin $\\overrightarrow{CP} = (-3 + 3t, -2 - t, -4 - 3t)$\n\nToisaalta lyhin matka saavutetaan, kun vektori $\\overrightarrow{CP}$ on kohtisuorassa suoran kanssa. Näin ollen voidaan ratkaista vektorin $\\overrightarrow{CP}$ ja suoran suuntavektorin $\\overrightarrow{AB}$ pistetulon yhtälö.\n\n$$\\overrightarrow{CP} \\cdot \\overrightarrow{AB} = 0$$\\Leftrightarrow 3 \\cdot (-3 + 3t) - (-2 - t) - 3 \\cdot (-1 - 3t) = 0$$\\Leftrightarrow t = \\frac{4}{19}.$$\n\nEli $Q = \\left(-\\frac{7}{19}, \\frac{34}{19}, -\\frac{12}{19}\\right)$. Ja tästä voidaan määrittää pisteen $Q$ ja pisteen $C$ välinen etäisyys.\n\n$$d = \\sqrt{\\left(2 + \\frac{7}{19}\\right)^2 + \\left(4 - \\frac{34}{19}\\right)^2 + \\left(1 + \\frac{12}{19}\\right)^2} = \\frac{5\\sqrt{190}}{19} \\approx 3.63$$"
+      }
+    ]
+  },
+  {
+    "id": "OSAII_T5",
+    "section": "Osio II",
+    "title": "Tehtävä 5",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Muuta tason parametriesitys $\\begin{cases} x = -1 - 2t + s \\\\ y = 2 - 3t - 3s \\\\ z = 3 + t - s \\end{cases}$, $t, s \\in \\mathbb{R}$ normaalimuotoiseen yhtälöön $\\bar{n} \\cdot (\\bar{p} - \\bar{p}_0) = 0$, missä $\\bar{n}$ on tason normaalivektori, $\\bar{p}$ tason yleinen piste $(x, y, z)$ ja $\\bar{p}_0$ tasolla oleva piste."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Parametriesityksen perusteella eräät suuntavektorit ovat\n$$\\bar{u} = -2\\bar{i} - 3\\bar{j} + \\bar{k} \\quad \\text{ja} \\quad \\bar{v} = \\bar{i} - 3\\bar{j} - \\bar{k}.$$\n\nMääritetään näiden vektoreiden normaalivektori $\\bar{n}$ ristitulolla.\n$$\\bar{u} \\times \\bar{v} = \\begin{vmatrix} \\bar{i} & \\bar{j} & \\bar{k} \\\\ -2 & -3 & 1 \\\\ 1 & -3 & -1 \\end{vmatrix} = 6\\bar{i} - \\bar{j} + 9\\bar{k}$$\n\nValitaan $\\bar{p}_0 = (-2, -3, 1)$ ja $\\bar{p} = (x, y, z)$. Näin ollen\n$$\\bar{n} \\cdot (\\bar{p} - \\bar{p}_0) = 0 \\Leftrightarrow (6\\bar{i} - \\bar{j} + 9\\bar{k}) \\cdot ((x+2)\\bar{i} + (y+3)\\bar{j} + (z-1)\\bar{k}) = 0$$\\Leftrightarrow 6(x + 2) - (y + 3) + 9(z - 1) = 0$$\\Leftrightarrow 6x - y + 9z = 0.$$"
+      }
+    ]
+  },
+  {
+    "id": "OSAII_T6",
+    "section": "Osio II",
+    "title": "Tehtävä 6",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "a) Tason $T_1$ yhtälö on $x + 2y - 3z = 2$. Määritä se tason $T_2$ yhtälö, joka sisältää pisteen $(0, 0, 1)$ ja on yhdensuuntainen tason $T_1$ kanssa."
+      },
+      {
+        "type": "text",
+        "content": "b) Määritä tasojen etäisyys."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a) Tason $T_1$ normaalivektori on $\\bar{n} = \\bar{i} + 2\\bar{j} - 3\\bar{k}$. Koska tasot ovat yhdensuuntaiset, on molemmilla sama normaalivektori. Näin ollen tehtävän 15 perusteella saadaan\n$$\\bar{n} \\cdot (\\bar{p} - \\bar{p}_0) = 0 \\Leftrightarrow (\\bar{i} + 2\\bar{j} - 3\\bar{k}) \\cdot ((x-0)\\bar{i} + (y-0)\\bar{j} + (z-1)\\bar{k}) = 0$$\\Leftrightarrow x + 2y - 3z + 3 = 0$$\\Leftrightarrow x + 2y - 3z = -3$$"
+      },
+      {
+        "type": "text",
+        "content": "b) Koska tiedetään, että piste $(0,0,1)$ kuuluu tasoon $T_2$, ratkaistaan ensin se piste $P$ tasolta $T_1$, joka on lähimpänä pistettä $(0,0,1)$. Muodostetaan normaalisuoran parametriesitys.\n$$\\begin{cases} x = 0 + t \\\\ y = 0 + 2t \\\\ z = 1 - 3t \\end{cases}, t \\in \\mathbb{R}.$$\n\nSijoitetaan nämä arvot tason $T_1$ yhtälöön.\n$$x + 2y - 3z = 2$$\\Leftrightarrow t + 2(2t) - 3(1 - 3t) = 2$$\\Leftrightarrow t = \\frac{5}{14}.$$\n\nEli $P = \\left(\\frac{5}{14}, \\frac{5}{7}, -\\frac{1}{14}\\right)$. Lasketaan vielä pisteen $P$ ja $(0,0,1)$ välinen etäisyys.\n\n$$= \\sqrt{\\left(0 - \\frac{5}{14}\\right)^2 + \\left(0 - \\frac{5}{7}\\right)^2 + \\left(1 + \\frac{1}{14}\\right)^2} = \\frac{5\\sqrt{14}}{14} = \\frac{5}{\\sqrt{14}} \\approx 1.34$$"
+      }
+    ]
+  },
+  {
+    "id": "OSAII_T7",
+    "section": "Osio II",
+    "title": "Tehtävä 7",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Telttoja valmistava yritys suunnittelee uutta pyramiditelttaa. Yhdessä teltassa halutaan käyttää telttatankoa yhteensä 20 metriä. Teltasta halutaan yhteensä 8 särmäinen, jolloin kyseessä on nelipohjainen pyramidi. Määritä teltan korkeus, kun siltä halutaan tehdä mahdollisimman tilava."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Koska pohja $A$ on neliö, voidaan sitä merkitä $A = x^2$. Toisaalta tilavuuden funktioksi saadaan\n$$V(x) = \\frac{1}{3}Ah = \\frac{1}{3}x^2 h.$$\n\nToisaalta koska telttatankoa on käytettävissä 20 metriä, täytyy päteä, että\n$$4x + 4y = 20 \\Leftrightarrow x + y = 5 \\Leftrightarrow y = 5 - x,$$\nmissä $y$ on pyramidin vinosärmä. Ratkaistaan $h$. Saadaan\n$$\\left(\\frac{1}{2}x\\right)^2 + \\left(\\frac{1}{2}x\\right)^2 = z^2 \\Leftrightarrow z = \\frac{1}{\\sqrt{2}}x.$$\n\nToisaalta\n$$h^2 + z^2 = y^2 \\Leftrightarrow h = \\sqrt{y^2 - z^2} = \\sqrt{y^2 - \\frac{1}{2}x^2} = \\sqrt{(5-x)^2 - \\frac{1}{2}x^2}$$\n\nNäin ollen tilavuuden funktio on muotoa\n$$V(x) = \\frac{1}{3}x^2 \\sqrt{(5-x)^2 - \\frac{1}{2}x^2}$$\n\nMääritetään funktion derivaatan nollakohdat.\n$$V'(x) = 0 \\Leftrightarrow x = \\frac{25 - 5\\sqrt{13}}{3} \\approx 2.32$$\n\nTutkitaan funktion kulkua.\n$V'(2) = 1.51 > 0$ ja $V'(2.5) = -1.47 < 0$.\n\nEli kulkukaavion perusteella funktio saa suurimman arvonsa kun $x = 2.32$. Näin ollen teltan tilavuus on suurimmillaan ja sen korkeus on\n$$h = \\sqrt{\\left(5 - \\frac{25 - 5\\sqrt{13}}{3}\\right)^2 - \\frac{1}{2}\\left(\\frac{25 - 5\\sqrt{13}}{3}\\right)^2} = \\frac{5}{3}\\sqrt{13 - 2} \\approx 2.11$$"
+      }
+    ]
+  },
+  {
+    "id": "OSAII_T8",
+    "section": "Osio II",
+    "title": "Tehtävä 8",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Osoita vektorialgebralla, että jos kuution tahkon pituus on $x$, niin avaruuslävistäjän pituus on $\\sqrt{3}x$."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Koska kyseessä on kuutio, jokaisen särmän pituus on sama. Merkitään yksittäistä särmää vektorilla $\\bar{x}$. Tällöin Pythagoraan lauseen nojalla pätee, että\n$$\\bar{x}^2 + \\bar{x}^2 = \\bar{c}^2 \\Leftrightarrow \\bar{c} = \\sqrt{2x},$$\nmissä $\\bar{c}$ on satunnaisen tahkon lävistäjä. Toisaalta edelleen\n$$\\bar{x}^2 + \\bar{c}^2 = \\bar{d}^2 \\Leftrightarrow \\bar{d} = \\sqrt{\\bar{x}^2 + \\bar{c}^2} = \\sqrt{\\bar{x}^2 + (\\sqrt{2x})^2} = \\sqrt{3\\bar{x}^2} = \\sqrt{3}x,$$\nmissä $\\bar{d}$ on kuution avaruuslävistäjä. $\\square$"
+      }
+    ]
+  },
+  {
+    "id": "OSAII_T9",
+    "section": "Osio II",
+    "title": "Tehtävä 9",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Määritä funktion $f(x, y) = x^2 + y^2 - 4x + 6y + 11$ nollakohdat? Kuinka monta niitä on? Vihje: Tarkastele funktiota graafisesti."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Ratkaistaan, milloin pätee $f(x,y) = 0$. Nyt huomataan, että\n$$x^2 + y^2 - 4x + 6y + 11 = 0$$\\Leftrightarrow x^2 - 4x + y^2 + 6y + 11 = 0$$\\Leftrightarrow x^2 - 2x \\cdot 2 + 4 + y^2 + 2y \\cdot 3 + 9 + 11 = 4 + 9$$\\Leftrightarrow x^2 - 2x \\cdot 2 + 4 + y^2 + 2y \\cdot 3 + 9 = 2$$\\Leftrightarrow (x - 2)^2 + (y + 3)^2 = 2$$\n\nNollakohdat muodostuvat siis ympyrän yhtälöstä, jolle pätee\n$$(x - 2)^2 + (y + 3)^2 = 2.$$"
+      }
+    ]
+  },
+  {
+    "id": "OSAII_T10",
+    "section": "Osio II",
+    "title": "Tehtävä 10",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "a) Määritä funktion $f(x, y) = 3x^2 + 3xy + 3$ suurimman kasvunopeuden suunta pisteessä $(1,1)$."
+      },
+      {
+        "type": "text",
+        "content": "b) Määritä kasvunopeuden suuruus."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a) Lasketaan ensin funktion $f$ osittaisderivaataat.\n$$\\partial_x f(x,y) = 6x + 3y$$\\partial_y f(x,y) = 3x$$\nJa tästä saadaan gradienttivektori pisteessä $(1,1)$.\n$$\\nabla f(1,1) = (6 + 3)\\bar{i} + 3\\bar{j} = 9\\bar{i} + 3\\bar{j}$$"
+      },
+      {
+        "type": "text",
+        "content": "b) Suurimman kasvun nopeus pisteessä $(1,1)$ on\n$$|\\nabla f(1,1)| = \\sqrt{9^2 + 3^2} = \\sqrt{81 + 9} = 3\\sqrt{10}.$$"
+      }
+    ]
+  },
+  {
+    "id": "OSAIII_T1",
+    "section": "Osio III",
+    "title": "Tehtävä 1",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Osoita, että"
+      },
+      {
+        "type": "text",
+        "content": "a) $\\bar{i} \\times \\bar{i} = \\bar{j} \\times \\bar{j} = \\bar{k} \\times \\bar{k} = 0$."
+      },
+      {
+        "type": "text",
+        "content": "b) $\\bar{k} = \\bar{i} \\times \\bar{j}$."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a) Määritetään ristitulot kantavektoreille.\n$$\\bar{i} \\times \\bar{i} = \\begin{vmatrix} \\bar{i} & \\bar{j} & \\bar{k} \\\\ 1 & 0 & 0 \\\\ 1 & 0 & 0 \\end{vmatrix} = (0 \\cdot 0 - 0 \\cdot 0)\\bar{i} + (0 \\cdot 1 - 1 \\cdot 0)\\bar{j} + (1 \\cdot 0 - 0 \\cdot 1)\\bar{k} = 0$$\n\nSamaan tapaan\n$$\\bar{j} \\times \\bar{j} = \\begin{vmatrix} \\bar{i} & \\bar{j} & \\bar{k} \\\\ 0 & 1 & 0 \\\\ 0 & 1 & 0 \\end{vmatrix} = 0$$\nja\n$$\\bar{k} \\times \\bar{k} = \\begin{vmatrix} \\bar{i} & \\bar{j} & \\bar{k} \\\\ 0 & 0 & 1 \\\\ 0 & 0 & 1 \\end{vmatrix} = 0.$$"
+      },
+      {
+        "type": "text",
+        "content": "b) $\\bar{i} \\times \\bar{j} = \\begin{vmatrix} \\bar{i} & \\bar{j} & \\bar{k} \\\\ 1 & 0 & 0 \\\\ 0 & 1 & 0 \\end{vmatrix} = (0 \\cdot 0 - 0 \\cdot 0)\\bar{i} + (0 \\cdot 0 - 1 \\cdot 0)\\bar{j} + (1 \\cdot 1 - 0 \\cdot 0)\\bar{k} = \\bar{k}$ $\\square$"
+      }
+    ]
+  },
+  {
+    "id": "OSAIII_T2",
+    "section": "Osio III",
+    "title": "Tehtävä 2",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Olkoon vektorit $\\bar{u} = (u_x, u_y, u_z)$, $\\bar{v} = (v_x, v_y, v_z)$ ja $\\bar{w} = (w_x, w_y, w_z)$. Todista, että"
+      },
+      {
+        "type": "text",
+        "content": "a) $\\bar{u} + \\bar{v} = \\bar{v} + \\bar{u}$"
+      },
+      {
+        "type": "text",
+        "content": "b) $\\bar{u} \\cdot (\\bar{v} + \\bar{w}) = \\bar{u} \\cdot \\bar{v} + \\bar{u} \\cdot \\bar{w}$"
+      },
+      {
+        "type": "text",
+        "content": "c) $\\bar{u} \\cdot \\bar{u} = |\\bar{u}|^2$."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a) $\\bar{u} + \\bar{v} = (u_x, u_y, u_z) + (v_x, v_y, v_z) = (u_x + v_x, u_y + v_y, u_z + v_z) = (v_x + u_x, v_y + u_y, v_z + u_z) = (v_x, v_y, v_z) + (u_x, u_y, u_z) = \\bar{v} + \\bar{u}$"
+      },
+      {
+        "type": "text",
+        "content": "b) $\\bar{u} \\cdot (\\bar{v} + \\bar{w}) = (u_x, u_y, u_z) \\cdot ((v_x, v_y, v_z) + (w_x, w_y, w_z)) = (u_x, u_y, u_z) \\cdot (v_x + w_x, v_y + w_y, v_z + w_z) = (u_x(v_x + w_x), u_y(v_y + w_y), u_z(v_z + w_z)) = (u_x v_x + u_x w_x, u_y v_y + u_y w_y, u_z v_z + u_z w_z) = (u_x v_x, u_y v_y, u_z v_z) + (u_x w_x, u_y w_y, u_z w_z) = \\bar{u} \\cdot \\bar{v} + \\bar{u} \\cdot \\bar{w}$"
+      },
+      {
+        "type": "text",
+        "content": "c) $\\bar{u} \\cdot \\bar{u} = (u_x, u_y, u_z) \\cdot (u_x, u_y, u_z) = (u_x u_x + u_y u_y + u_z u_z) = \\left(\\sqrt{u_x^2 + u_y^2 + u_z^2}\\right)^2 = |\\bar{u}|^2$. $\\square$"
+      }
+    ]
+  },
+  {
+    "id": "OSAIII_T3",
+    "section": "Osio III",
+    "title": "Tehtävä 3",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Olkoon tason M yhtälö $-2x + 5y - 3z = 1$. Määritä pisteen $C = (1, -1, 1)$ etäisyys tasosta."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Olkoon nyt tason M yhtälö $-2x + 5y - 3z - 1 = 0$. Tällöin pisteen $(1, -1, 1)$ etäisyys tasosta M on\n$$d = \\frac{|-2 \\cdot 1 + 5 \\cdot (-1) - 3 \\cdot 1 - 1|}{\\sqrt{(-2)^2 + 5^2 + (-3)^2}} = \\frac{|-11|}{\\sqrt{38}} = \\frac{11}{\\sqrt{38}}.$$\n\nHuomio. Tehtävän voi ratkaista myös määrittämällä ensin tason pisteen, joka on lähimpänä pistettä $(1, -1, 1)$."
+      }
+    ]
+  },
+  {
+    "id": "OSAIII_T4",
+    "section": "Osio III",
+    "title": "Tehtävä 4",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Määritä sen suoran, joka kulkee pisteiden $A = (1, 1, 1)$ ja $B = (-2, 1, -1)$ kautta ja xy-tason välinen kulma. Anna vastaus asteina ja kahden merkitsevän numeron tarkkuudella."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Määritetään ensin suoran parametriesitys. Nyt $\\overrightarrow{AB} = (-3, 0, -2)$. Siten\n$$\\begin{cases} x = 1 - 3t \\\\ y = 1 \\\\ z = 1 - 2t \\end{cases}, \\quad t \\in \\mathbb{R}.$$\n\nNäin ollen eräs suuntavektori on $\\bar{P} = -3\\bar{i} - 2\\bar{k}$.\nVastaavasti xy-tason normaalivektori on $\\bar{n} = \\bar{k}$.\n\nMääritetään näiden vektoreiden pituudet ja pistetulo.\n$$|\\bar{P}| = \\sqrt{(-3)^2 + (-2)^2} = \\sqrt{13}$$|\\bar{n}| = \\sqrt{1^2} = 1$$\\bar{P} \\cdot \\bar{n} = -2.$$\n\nNäin ollen saadaan, että\n$$\\cos(\\bar{P},\\bar{n}) = \\frac{-2}{\\sqrt{13}} \\Leftrightarrow \\arccos\\!\\left(\\frac{-2}{\\sqrt{13}}\\right) = 123.69°$$\n\nNyt siis tason normaalivektorin ja suoran suuntavektorin kulman suuruus on $123.69°$. Näin ollen siis xy-tason ja suoran välinen kulma on $\\alpha = 123.69° - 90° = 34°$."
+      }
+    ]
+  },
+  {
+    "id": "OSAIII_T5",
+    "section": "Osio III",
+    "title": "Tehtävä 5",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Millä vakion $a$ arvolla suora $\\begin{cases} x = 3 - at \\\\ y = 2 + 3at \\\\ z = 7 - 2t \\end{cases}$, $t \\in \\mathbb{R}$ ei leikkaa tasoa $x - y + 3z - 7 = 0$?"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Jotta suora ei leikkaa tasoa $x - y + 3z - 7 = 0$, niin suoran ja tason täytyy olla yhdensuuntaisia. Nyt suoran eräs suuntavektori on\n$$\\bar{s} = -a\\bar{i} + 3a\\bar{j} - 2\\bar{k}$$\nja tason eräs normaalivektori\n$$\\bar{n} = \\bar{i} - \\bar{j} + 3\\bar{k}.$$\n\nJotta suora ja taso ovat yhdensuuntaiset, täytyy suoran suuntavektorin ja tason normaalivektorin olla kohtisuorassa toisiinsa nähden. Toisin sanoen, täytyy olla, että $\\bar{s} \\cdot \\bar{n} = 0$. Ratkaistaan yhtälöstä vakio $a$.\n\n$$\\bar{s} \\cdot \\bar{n} = -a - 3a - 6 = -4a - 6 = 0 \\Leftrightarrow a = -\\frac{3}{2}.$$\n\nEli kun $a = -\\frac{3}{2}$, niin suora ja taso ovat yhdensuuntaiset."
+      }
+    ]
+  },
+  {
+    "id": "OSAIII_T6",
+    "section": "Osio III",
+    "title": "Tehtävä 6",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Määritä se $T$, joka kulkee tasojen $x + y - 3z = 5$ ja $2x - 3y - z = 10$ leikkaussuoralla sekä sisältää pisteen $(1, 2, 3)$."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Merkitään $A = (1,2,3)$. Muodostetaan yhtälöpari tasoista ja ratkaistaan se.\n$$\\begin{cases} x + y - 3z = 5 \\\\ 2x - 3y - z = 10 \\end{cases}$$\n\nValitaan, että $z = t$. Tällöin saadaan, että\n$$\\begin{cases} x = 5 + 2t \\\\ y = t \\\\ z = t \\end{cases}, \\quad \\text{missä } t \\in \\mathbb{R}.$$\n\nValitaan $t = 0$ ja $t = 1$, jolloin saadaan eräät pisteet tasolta\n$$B = (5,0,0) \\text{ ja } C = (7,1,1).$$\n\nTäten saadaan eräät tason suuntavektorit\n$$\\overrightarrow{AB} = (4, -2, -3)$$\\overrightarrow{AC} = (6, -1, -2)$$\n\nMääritetään suuntavektoreiden normaalivektori.\n$$\\overrightarrow{AB} \\times \\overrightarrow{AC} = (1, -10, 8).$$\n\nSiten saadaan tason yhtälöksi, että\n$$(x - 1) - 10(y - 2) + 8(z - 3) = 0$$\\Leftrightarrow x - 10y + 8z = 5.$$"
+      }
+    ]
+  },
+  {
+    "id": "OSAIII_T7",
+    "section": "Osio III",
+    "title": "Tehtävä 7",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Olkoon funktiot $f(x, y, z) = (f_x, f_y, f_z)$ ja $g(x, y, z) = (g_x, g_y, g_z)$. Osoita, että $\\nabla fg = f\\nabla g + g\\nabla f$. Vihje: Käytä tulon derivoimissääntöä."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Osoitus.\n\n$$\\nabla fg = (\\partial_x(f_x g_x),\\, \\partial_y(f_y g_y),\\, \\partial_z(f_z g_z))$$= ((\\partial_x f_x \\cdot g_x + f_x \\cdot \\partial_x g_x), (\\partial_y f_y \\cdot g_y + f_y \\cdot \\partial_y g_y), (\\partial_z f_z \\cdot g_z + f_z \\cdot \\partial_z g_z))$$= (\\partial_x f_x \\cdot g_x, \\partial_y f_y \\cdot g_y, \\partial_z f_z \\cdot g_z) + (f_x \\cdot \\partial_x g_x, f_y \\cdot \\partial_y g_y, f_z \\cdot \\partial_z g_z)$$= g(\\partial_x f_x, \\partial_y f_y, \\partial_z f_z) + f(\\partial_x g_x, \\partial_y g_y, \\partial_z g_z)$$= g\\nabla f + f\\nabla g$$"
+      }
+    ]
+  },
+  {
+    "id": "OSAIII_T8",
+    "section": "Osio III",
+    "title": "Tehtävä 8",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Määritä funktio $f(x, y)$, kun tiedetään, että $\\partial_x f(x, y) = 3x + 4y$ ja $\\partial_y f(x, y) = 4x + 6y$ sekä lisäksi $f(2, 1) = 10$."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Lasketaan integraali muuttujan $x$ osittaisderivaattafunktiolla $\\partial_x f(x,y)$.\n\n$$\\int \\partial_x f(x,y)\\,dx = \\int (3x + 4y)\\,dx = \\frac{3}{2}x^2 + 4xy + g(y),$$\nmissä $g(y)$ on jokin funktio, joka riippuu vain muuttujasta $y$.\n\nNäin ollen siis $f(x,y) = \\frac{3}{2}x^2 + 4xy + g(y)$. Toisaalta tämän funktion osittaisderivaatta muuttujan $y$ suhteen on\n$$\\partial_y f(x,y) = 4x + g'(y) = 4x + 6y.$$\n\nNäin ollen siis $g'(y) = 6y$, jolloin\n$$g(y) = \\int g'(y)\\,dy = \\int 6y\\,dy = 3y^2 + C$$\n\nTäten\n$$f(x,y) = \\frac{3}{2}x^2 + 4xy + 3y^2 + C$$\n\nRatkaistaan vakio $C$.\n$$f(2,1) = 10 \\Leftrightarrow 6 + 8 + 3 + C = 10 \\Leftrightarrow C = -7.$$\n\nSiten funktio on $f(x,y) = \\frac{3}{2}x^2 + 4xy + 3y^2 - 7$."
+      }
+    ]
+  },
+  {
+    "id": "OSAIII_T9",
+    "section": "Osio III",
+    "title": "Tehtävä 9",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Tarkastellaan palloa, jonka säde on $R$. Pallon sisään asetetaan mahdollisimman suuri ympyräpohjainen lieriö. Määritä tämän lieriön korkeus $h$."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Tehtävässä voidaan soveltaa Pythagoraan lausetta siten, että\n$$x^2 + \\left(\\frac{1}{2}h\\right)^2 = R^2 \\Leftrightarrow x^2 + \\frac{1}{4}h^2 = R^2 \\Leftrightarrow h = 2\\sqrt{R^2 - x^2},$$\nmissä $h$ on lieriön korkeus, $x$ lieriön pohjan halkaisija ja $R$ pallon säde.\n\nToisaalta sylinterin tilavuuden funktioksi saadaan\n$$V(x) = Ah = \\pi x^2 h = 2\\pi x^2 \\sqrt{R^2 - x^2}.$$\n\nMääritetään derivaatta funktion nollakohdat.\n$$V'(x) = 0 \\Leftrightarrow x = \\frac{\\sqrt{6}}{3}R \\quad \\left(x = 0 \\text{ tai } x = -\\frac{\\sqrt{6}}{3}R\\right)$$\n\nTutkitaan funktion kulkua. Nyt koska $R > 0$.\n$$V'\\!\\left(\\frac{1}{2}R\\right) = \\frac{5\\pi R^2}{2\\sqrt{3}} > 0$$V'\\!\\left(\\frac{9}{10}R\\right) = \\frac{-387\\pi R^2}{50\\sqrt{19}} < 0$$\n\nNäin ollen kyseessä on maksimi kohta ja tällöin sylinterin säde on $x = \\frac{\\sqrt{6}}{3}R$. Ja täten korkeus on\n$$h = 2\\sqrt{R^2 - x^2} = 2\\sqrt{R^2 - \\left(\\frac{\\sqrt{6}}{3}R\\right)^2} = \\frac{2}{\\sqrt{3}}R.$$"
+      }
+    ]
+  },
+  {
+    "id": "OSAIII_T10",
+    "section": "Osio III",
+    "title": "Tehtävä 10",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Olkoon funktio $f\\colon \\mathbb{R}^3 \\to \\mathbb{R}$, $f(x, y) = e^{-x^2 - y^2}$."
+      },
+      {
+        "type": "text",
+        "content": "a) Missä pisteessä funktion gradienttivektori on nollavektori?"
+      },
+      {
+        "type": "text",
+        "content": "b) Mikä on funktion arvojoukko?"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a) Lasketaan funktion kriittiset pisteet.\n$$\\partial_x f(x,y) = -2x e^{-x^2 - y^2}$$\\partial_y f(x,y) = -2y e^{-x^2 - y^2}$$\n\nTäten\n$$\\begin{cases} -2x e^{-x^2 - y^2} = 0 \\\\ -2y e^{-x^2 - y^2} = 0 \\end{cases} \\Leftrightarrow \\begin{cases} x = 0 \\\\ y = 0 \\end{cases}$$\n\nKyseessä on joko ääriarvopiste tai satulapiste. Siten $\\nabla f(0,0) = (0,0)$.\n\nb) Funktiolla on vain yksi kriittinen piste kohdassa $(0,0)$.\n$$f(0,0) = 1.$$\n\nToisaalta koska\n$$\\lim_{(x,y) \\to \\infty} e^{-x^2 - y^2} = \\lim_{(x,y) \\to \\infty} \\frac{1}{e^{x^2 + y^2}} = 0.$$\n\nTäten täytyy olla, että funktion suurin arvo on 1 ja funktion epäoleellinen raja-arvo lähestyy kohti arvoa 0.\n\nTäten funktion arvojoukko on $]0, 1]$."
+      }
+    ]
+  },
+  {
+    "id": "OSAIV_T1",
+    "section": "Osio IV",
+    "title": "Tehtävä 1",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Tarkastellaan planeetan liikettä ajan funktiona $f(t)$ siten, että $f\\colon \\mathbb{R} \\to \\mathbb{R}^2$, $f(t) = (r\\cos(\\omega t), r\\sin(\\omega t))$, missä $r$ ja $\\omega$ ovat vakioita. Osoita, että planeetan nopeusvektori ja kiihtyvyysvektori ovat kohtisuorassa toisiinsa nähden. Nopeus vektori saadaan funktion ensimmäisestä aikaderivaatasta ja kiihtyvyys toisesta aikaderivaatasta. Toisin sanoen siis $v = \\frac{df}{dt}$ ja $a = \\frac{dv}{dt} = \\frac{d^2f}{dt^2}$."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Määritetään ensin $f'(t)$ ja $f''(t)$.\nNyt\n$$f'(t) = (-r\\omega\\sin(\\omega t),\\, r\\omega\\cos(\\omega t))$$\nja\n$$f''(t) = (-r\\omega^2\\cos(\\omega t),\\, -r\\omega^2\\sin(\\omega t))$$\n\nOsoitetaan, että $f'(t) \\cdot f''(t) = 0$.\nTäten\n$$(-r\\omega\\sin(\\omega t),\\, r\\omega\\cos(\\omega t)) \\cdot (-r\\omega^2\\cos(\\omega t),\\, -r\\omega^2\\sin(\\omega t))$$= -r\\omega\\sin(\\omega t) \\cdot (-r\\omega^2\\cos(\\omega t)) + r\\omega\\cos(\\omega t) \\cdot (-r\\omega^2\\sin(\\omega t))$$= r^2\\omega^3\\sin(\\omega t)\\cos(\\omega t) - r^2\\omega^3\\sin(\\omega t)\\cos(\\omega t)$$= 0.$$\n\nSiten $\\bar{a} \\cdot \\bar{v} = 0$ eli kiihtyvyysvektori ja nopeusvektori ovat kohtisuorassa toisiinsa nähden."
+      }
+    ]
+  },
+  {
+    "id": "OSAIV_T2",
+    "section": "Osio IV",
+    "title": "Tehtävä 2",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Tarkasteltaessa useamman muuttujan suuntaa tietyssä pisteessä, käytetään termiä suuntaisderivaatta. Funktiolle $f$ suuntaisderivaatta suuntaan $\\bar{u}$ pisteessä $x_0$, jos on olemassa raja-arvo\n$$\\lim_{t \\to 0} \\frac{f(x_0 + t\\bar{u}) - f(x_0)}{t}$$\nmissä suuntavektori $\\bar{u}$ on yksikkövektori. Tällöin käytetään merkintää $\\partial_u f(x_0)$."
+      },
+      {
+        "type": "text",
+        "content": "Tutki onko funktiolla $f(x, y) = \\begin{cases} \\frac{x}{x + y^2}, & x \\ne 0 \\\\ 0, & x = (0,0) \\end{cases}$ suuntaisderivaattaa pisteessä $(0,0)$?"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Tutkitaan, onko funktiolla suuntaderivaattaa pisteessä $(0,0)$ käyttäen määritelmää. Nyt\n\n$$\\lim_{t \\to 0} \\frac{f(0 + tu) - f(0)}{t} = \\lim_{t \\to 0} \\frac{f(tu_1, tu_2) - 0}{t} = \\lim_{t \\to 0} \\frac{tu_1}{tu_1 + (tu_2)^2} = \\lim_{t \\to 0} \\frac{u_1}{u_1 + tu_2^2} = \\frac{u_1}{u_1} = 1$$\n\nSiten funktiolla $f$ on olemassa suuntaderivaatta pisteessä $(0,0)$, jonka arvo on $\\partial_u f(0) = 1$"
+      }
+    ]
+  },
+  {
+    "id": "OSAIV_T3",
+    "section": "Osio IV",
+    "title": "Tehtävä 3",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Divergenssi on differentiaalilaskennassa käytetty operaattori, joka kuvastaa vektorikentän läheisyyttä. Vektorikentän $\\bar{V} = V_x\\bar{i} + V_y\\bar{j} + V_z\\bar{k}$ divergenssi voidaan määritellä pistetulon avulla siten, että\n$$\\nabla \\cdot \\bar{V} = \\left(\\bar{i}\\frac{\\partial}{\\partial x} + \\bar{j}\\frac{\\partial}{\\partial y} + \\bar{k}\\frac{\\partial}{\\partial z}\\right) \\cdot (V_x\\bar{i} + V_y\\bar{j} + V_z\\bar{k}) = \\frac{\\partial V_x}{\\partial x} + \\frac{\\partial V_y}{\\partial y} + \\frac{\\partial V_z}{\\partial z}$$\n\nLaske vektorikentän $\\bar{V} = xy^2\\bar{i} - 2yz\\bar{j} + x^2z\\bar{k}$ divergenssi."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Nyt\n$$\\nabla \\cdot \\bar{V} = \\frac{\\partial}{\\partial x}(xy^2) + \\frac{\\partial}{\\partial y}(-2yz) + \\frac{\\partial}{\\partial z}(x^2z) = y^2 - 2z + x^2$$"
+      }
+    ]
+  },
+  {
+    "id": "OSAIV_T4",
+    "section": "Osio IV",
+    "title": "Tehtävä 4",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Divergenssin tapaan roottori on myös differentiaalilaskennassa käytetty operaattori, joka kuvastaa vektorikentän pyörteisyyttä. Vektorikentän $\\bar{V} = V_x\\bar{i} + V_y\\bar{j} + V_z\\bar{k}$ roottori voidaan määritellä ristulon avulla siten, että\n$$\\nabla \\times \\bar{V} = \\begin{vmatrix} \\bar{i} & \\bar{j} & \\bar{k} \\\\ \\frac{\\partial}{\\partial x} & \\frac{\\partial}{\\partial y} & \\frac{\\partial}{\\partial z} \\\\ V_x & V_y & V_z \\end{vmatrix}$$\n\nLaske vektorikentän $\\bar{V} = xy^2\\bar{i} - 2yz\\bar{j} + x^2z\\bar{k}$ roottori."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Nyt\n$$\\nabla \\times \\bar{V} = \\begin{vmatrix} \\bar{i} & \\bar{j} & \\bar{k} \\\\ \\frac{\\partial}{\\partial x} & \\frac{\\partial}{\\partial y} & \\frac{\\partial}{\\partial z} \\\\ xy^2 & -2yz & x^2z \\end{vmatrix}$$= \\left(\\frac{\\partial}{\\partial y}(x^2z) - \\frac{\\partial}{\\partial z}(-2yz)\\right)\\bar{i} + \\left(\\frac{\\partial}{\\partial z}(xy^2) - \\frac{\\partial}{\\partial x}(x^2z)\\right)\\bar{j} + \\left(\\frac{\\partial}{\\partial x}(-2yz) - \\frac{\\partial}{\\partial y}(xy^2)\\right)\\bar{k}$$= 2y\\bar{i} - 2xz\\bar{j} - 2xy\\bar{k}$$"
+      }
+    ]
+  },
+  {
+    "id": "OSAIV_T5",
+    "section": "Osio IV",
+    "title": "Tehtävä 5",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Laplace-operaattori $\\nabla^2$ voidaan määritellä skalaarikunktiolle $f$ gradientin divergenssinä siten, että\n$$\\nabla^2 f = \\nabla \\cdot \\nabla f = \\frac{\\partial^2 f}{\\partial x^2} + \\frac{\\partial^2 f}{\\partial y^2} + \\frac{\\partial^2 f}{\\partial z^2}$$\n\nLaske funktion $f(x, y, z) = x^2y + 2xyz^2 + 3x$ Laplace-operaatio $\\nabla^2 f$."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Lasketaan ensin ensimmäiset osittaisderivaataat.\n$$\\frac{\\partial f}{\\partial x} = 2xy + 2yz^2 + 3$$\\frac{\\partial f}{\\partial y} = x^2 + 2xz^2$$\\frac{\\partial f}{\\partial z} = 4xyz.$$\n\nLasketaan sitten toinen osittaisderivaatta.\n$$\\frac{\\partial^2 f}{\\partial x^2} = 2y$$\\frac{\\partial^2 f}{\\partial y^2} = 0$$\\frac{\\partial^2 f}{\\partial z^2} = 4xy.$$\n\nTäten\n$$\\nabla^2 f = 4xy + 2y.$$"
+      }
+    ]
+  }
+]

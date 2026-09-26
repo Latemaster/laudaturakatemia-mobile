@@ -1,19 +1,11 @@
 import { cards } from '../data/cards'
 import { COURSES } from '../data/courses'
-import type { TopicCode } from '../types'
-
-export interface AnswerRecord {
-  topic: TopicCode
-  correct: boolean
-}
 
 interface OsaaminenProps {
-  answers: Record<string, AnswerRecord>
+  engagedIds: Record<string, true>
 }
 
-export default function Osaaminen({ answers }: OsaaminenProps) {
-  const records = Object.values(answers)
-
+export default function Osaaminen({ engagedIds }: OsaaminenProps) {
   return (
     <div className="grid-bg h-dvh overflow-y-auto bg-page px-6 pb-10 pt-[calc(env(safe-area-inset-top)+4.5rem)]">
       <div className="mx-auto w-full max-w-md">
@@ -21,12 +13,12 @@ export default function Osaaminen({ answers }: OsaaminenProps) {
         <p className="mb-6 text-sm text-ink-dim">Edistymisesi kursseittain tällä istunnolla.</p>
         <div className="flex flex-col gap-4">
           {COURSES.map((course) => {
-            const total = cards.filter(
-              (card) => card.type === 'exercise' && card.topic.code === course.code,
-            ).length
-            const attempted = records.filter((record) => record.topic === course.code)
-            const correct = attempted.filter((record) => record.correct).length
-            const pct = attempted.length > 0 ? Math.round((correct / attempted.length) * 100) : 0
+            const practiceCards = cards.filter(
+              (card) => card.topic.code === course.code && (card.type === 'task' || card.type === 'exercise'),
+            )
+            const total = practiceCards.length
+            const engaged = practiceCards.filter((card) => engagedIds[card.id]).length
+            const pct = total > 0 ? Math.round((engaged / total) * 100) : 0
 
             return (
               <div key={course.code} className="rounded-2xl border border-ink/10 bg-surface p-4 shadow-sm">
@@ -37,7 +29,7 @@ export default function Osaaminen({ answers }: OsaaminenProps) {
                     {course.code} · {course.name}
                   </span>
                   <span className="shrink-0 text-sm font-semibold text-ink-dim">
-                    {attempted.length}/{total}
+                    {engaged}/{total}
                   </span>
                 </div>
                 <div className="h-2 w-full overflow-hidden rounded-full bg-ink/10">
@@ -47,9 +39,9 @@ export default function Osaaminen({ answers }: OsaaminenProps) {
                   />
                 </div>
                 <p className="mt-2 text-xs text-ink-dim">
-                  {attempted.length === 0
-                    ? 'Ei vielä vastauksia tässä kurssissa.'
-                    : `${correct}/${attempted.length} oikein vastatuista tehtävistä.`}
+                  {engaged === 0
+                    ? 'Ei vielä käytyjä tehtäviä tässä kurssissa.'
+                    : `${engaged}/${total} tehtävää käyty läpi.`}
                 </p>
               </div>
             )

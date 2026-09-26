@@ -7,6 +7,7 @@ import { PencilIcon } from './icons'
 
 interface TaskCardViewProps {
   card: TaskCard
+  onViewSolution?: () => void
 }
 
 function BlockList({ blocks }: { blocks: ProblemBlock[] }) {
@@ -16,18 +17,25 @@ function BlockList({ blocks }: { blocks: ProblemBlock[] }) {
         block.type === 'image' ? (
           <img key={index} src={block.src} alt={block.alt} className="w-full rounded-xl" />
         ) : (
-          <p key={index} className="text-base leading-relaxed text-ink">
+          <div key={index} className="text-base leading-relaxed text-ink">
             <MathText content={block.content} />
-          </p>
+          </div>
         ),
       )}
     </div>
   )
 }
 
-export default function TaskCardView({ card }: TaskCardViewProps) {
+export default function TaskCardView({ card, onViewSolution }: TaskCardViewProps) {
   const [showSolution, setShowSolution] = useState(false)
   const { problem } = card
+
+  function toggleSolution() {
+    setShowSolution((v) => {
+      if (!v) onViewSolution?.()
+      return !v
+    })
+  }
 
   return (
     <CardShell topic={card.topic}>
@@ -43,7 +51,7 @@ export default function TaskCardView({ card }: TaskCardViewProps) {
       <div className="sticky bottom-0 mt-4 bg-gradient-to-t from-page from-60% to-transparent pb-4 pt-6">
         <button
           type="button"
-          onClick={() => setShowSolution((v) => !v)}
+          onClick={toggleSolution}
           className="w-full rounded-2xl bg-accent px-4 py-3 text-center font-semibold text-white shadow-md"
         >
           {showSolution ? 'Takaisin tehtävään' : 'Näytä ratkaisu'}

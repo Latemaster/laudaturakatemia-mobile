@@ -1,0 +1,1007 @@
+[
+  {
+    "id": "OSAI_T1",
+    "section": "Osa I",
+    "title": "Tehtävä 1",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "a) Määritä radiaaneina 30° kulman suuruus."
+      },
+      {
+        "type": "text",
+        "content": "b) Määritä radiaaneina 179° kulman suuruus."
+      },
+      {
+        "type": "text",
+        "content": "c) Määritä asteina $\\frac{3\\pi}{2}$ kulman suuruus."
+      },
+      {
+        "type": "text",
+        "content": "d) Määritä asteina $\\frac{5\\pi}{2}$ kulman suuruus."
+      },
+      {
+        "type": "text",
+        "content": "e) Mikä on keskuskulman suuruus, kun sektorin säde on 37 ja kaaren pituus 42? Anna vastaus radiaaneina ja asteina kahden merkitsevän numeron tarkkuudella."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a)  \n$$\\begin{aligned}\n180^\\circ &= \\pi \\\\\n1^\\circ &= \\frac{\\pi}{180} \\\\\n30^\\circ &= \\frac{30\\pi}{180} = \\frac{5\\pi}{30}\\ (rad)\n\\end{aligned}$$"
+      },
+      {
+        "type": "text",
+        "content": "b)  \n$$\\begin{aligned}\n180^\\circ &= \\pi \\\\\n1^\\circ &= \\frac{\\pi}{180} \\\\\n179^\\circ &= \\frac{179\\pi}{180}\\ (rad)\n\\end{aligned}$$"
+      },
+      {
+        "type": "text",
+        "content": "c) Koska $180^\\circ = \\pi$, niin selvästi $\\frac{3\\pi}{2} = 270^\\circ$"
+      },
+      {
+        "type": "text",
+        "content": "d) Koska $180^\\circ = \\pi$, niin selvästi $\\frac{5\\pi}{2} = 450^\\circ$"
+      },
+      {
+        "type": "text",
+        "content": "e) $x = \\frac{b}{r} = \\frac{42}{37} \\approx 1{,}1\\,\\mathrm{rad}$, ja  \n$$\n\\frac{42}{37} \\cdot \\frac{180^\\circ}{\\pi} \\approx 65^\\circ.\n$$"
+      }
+    ]
+  },
+  {
+    "id": "OSAI_T2",
+    "section": "Osa I",
+    "title": "Tehtävä 2",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Tarkastellaan kuvassa näkyvää yksikköympyrää ja kulman $\\alpha$ loppukyljen sekä yksikköympyrän leikkauspistettä P."
+      },
+      {
+        "type": "image",
+        "src": "/utils/MAA5/Yksikkoympyra.png",
+        "alt": ""
+      },
+      {
+        "type": "text",
+        "content": "Esitä kuvaa hyödyntäen kulman $\\alpha$ sinin ja kosinin trigonometrinen tulkinta."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "\\\\"
+      },
+      {
+        "type": "image",
+        "src": "/utils/MAA5/Trig_tulkinta.png",
+        "alt": ""
+      },
+      {
+        "type": "text",
+        "content": "Merkitään pistettä $ P = (x,\\ y) $. Kun kuvaan piirretään yllä oleva suorakulmainen kolmio, saadaan pisteen $ P $ koordinaatit ilmaistua trigonometristen funktioiden avulla. Saadaan  \n$$\n\\cos\\alpha = \\frac{x}{1} \\Leftrightarrow x = \\cos\\alpha \\quad ja \\quad \\sin\\alpha = \\frac{y}{1} \\Leftrightarrow y = \\sin\\alpha\n$$\nHuomataan, että $ \\cos\\alpha $ ilmaisee suunnatun kulman $ \\alpha $ kehäpisteen x-koordinaatin ja $ \\sin\\alpha $ kehäpisteen y-koordinaatin, mikä on sinin ja kosinin trigonometrinen tulkinta."
+      }
+    ]
+  },
+  {
+    "id": "OSAI_T3",
+    "section": "Osa I",
+    "title": "Tehtävä 3",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "a) Mikä on kulman $x$ kosinin tarkka arvo, kun $\\sin x=\\frac{1}{5}$ ja $\\frac{\\pi}{2} \\le x \\le \\pi$?"
+      },
+      {
+        "type": "text",
+        "content": "b) Olkoon annettuina yksikköympyrään piirretyn suunnatun kulman $\\alpha$ kehäpisteen koordinaatit $x = \\cos\\alpha$ ja $y = \\sin\\alpha$. Johda ainoastaan annettuja koordinaatteja ja yksikköympyrää hyödyntäen trigonometrian peruskaava $\\sin^2\\alpha + \\cos^2\\alpha = 1$."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a)\n$$\\begin{aligned}\n\\sin^2x + \\cos^2x &= 1 \\\\\n\\Leftrightarrow\\ \\cos^2x &= 1 - \\sin^2x \\\\\n\\Leftrightarrow\\ \\cos x &= \\pm\\sqrt{1 - \\sin^2x} \\\\\n\\Leftrightarrow\\ \\cos x &= \\pm\\sqrt{1 - \\left(\\frac{1}{5}\\right)^2} \\\\\n\\Leftrightarrow\\ \\cos x &= \\pm\\sqrt{\\frac{24}{25}} = \\pm\\frac{2\\sqrt{6}}{5}\n\\end{aligned}$$\nKoska $ \\frac{\\pi}{2} \\le x \\le \\pi $, niin $ \\cos x < 0 $, eli $ \\cos x = -\\frac{2\\sqrt{6}}{5} $."
+      },
+      {
+        "type": "text",
+        "content": "b) Yksikköympyrän yhtälö on $ x^2 + y^2 = 1 $. Tähän sijoitettuna $ x = \\cos\\alpha $ ja $ y = \\sin\\alpha $ saadaan \n$ (\\cos\\alpha)^2 + (\\sin\\alpha)^2 = 1 \\Leftrightarrow \\cos^2\\alpha + \\sin^2\\alpha = 1 \\Leftrightarrow \\sin^2\\alpha + \\cos^2\\alpha = 1 $, joka on trigonometrian peruskaava."
+      }
+    ]
+  },
+  {
+    "id": "OSAI_T4",
+    "section": "Osa I",
+    "title": "Tehtävä 4",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "a) Ratkaise yhtälö $\\sin 2x = \\frac{\\sqrt{3}}{2}$."
+      },
+      {
+        "type": "text",
+        "content": "b) Ratkaise yhtälö $\\cos x = \\frac{1}{4}\\sqrt{10 - 2\\sqrt{5}}$."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a)\n\n$\n\\sin 2x = \\frac{\\sqrt{3}}{2} \\ \\Leftrightarrow\\ 2x = \\frac{\\pi}{3} + n\\cdot2\\pi \\ \\vee\\ 2x = \\pi - \\frac{\\pi}{3} + n\\cdot2\\pi \\ \\Leftrightarrow\\ x = \\frac{\\pi}{6} + n\\cdot\\pi \\ \\vee\\ x = \\frac{\\pi}{3} + n\\cdot\\pi,\n$\nmissä $ n \\in \\mathbb{Z} $."
+      },
+      {
+        "type": "text",
+        "content": "b)\n\n$\n\\cos x = \\frac{1}{4} \\sqrt{10 - 2\\sqrt{5}} \\Leftrightarrow x = \\frac{3\\pi}{10} + n\\cdot 2\\pi \\ \\vee\\ x = -\\frac{3\\pi}{10} + n\\cdot 2\\pi,\n$\nmissä $ n \\in \\mathbb{Z} $."
+      }
+    ]
+  },
+  {
+    "id": "OSAI_T5",
+    "section": "Osa I",
+    "title": "Tehtävä 5",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Ilmaise kohdissa a--d lausekkeet juurilausekkeena ja anna niiden tarkat arvot, jos se on mahdollista."
+      },
+      {
+        "type": "text",
+        "content": "a) $81^{\\frac{1}{3}}$"
+      },
+      {
+        "type": "text",
+        "content": "b) $125^{\\frac{1}{5}}$"
+      },
+      {
+        "type": "text",
+        "content": "c) $x^{\\frac{5}{17}}$, missä $x > 0$"
+      },
+      {
+        "type": "text",
+        "content": "d) $x^{\\frac{113}{792}}$, missä $x > 0$"
+      },
+      {
+        "type": "text",
+        "content": "e) Tarkastellaan potenssia $a^{\\frac{m}{n}}$, missä $m, n \\in \\mathbb{Z}_+$ ja $a > 0$. Määritelmän mukaan $a^{\\frac{m}{n}} = \\sqrt[n]{a^m}$. Tutki määritelmää negatiivisilla eksponenteilla. Mitä huomaat kantaluvun $a$ määrittelystä? Miksi murtopotenssin määritelmässä $a > 0$ eikä $a \\ne 0$?  Minkä muun määrittelyehdon eksponenttifunktio $f(x) = a^x$ tarvitsee?"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a) $ 81^{\\frac{1}{3}} = \\sqrt[3]{81} \\approx 4{,}33 $"
+      },
+      {
+        "type": "text",
+        "content": "b) $ 125^{\\frac{1}{5}} = \\sqrt[5]{125} \\approx 2{,}63 $"
+      },
+      {
+        "type": "text",
+        "content": "c) $ x^{\\frac{5}{17}} = \\sqrt[17]{x^5} $, kun $ x > 0 $"
+      },
+      {
+        "type": "text",
+        "content": "d) $ x^{\\frac{113}{792}} = \\sqrt[792]{x^{113}} $, kun $ x > 0 $"
+      },
+      {
+        "type": "text",
+        "content": "e) Murtopotenssin määritelmässä $ a^{\\frac{m}{n}} $ on määritelty $ a > 0 $, sillä mikäli $ a = 0 $, niin negatiivisella eksponentilla $ -\\frac{m}{n} $ saataisiin $ a^{-\\frac{m}{n}} = \\frac{1}{a^{\\frac{m}{n}}} = \\frac{1}{0} $, eikä lauseketta olisi määriteltävissä. Vastaavasti jos $ a < 0 $, määrittelyehto riippuisi eksponentin $ \\frac{m}{n} $ etumerkistä. Kun $ a > 0 $, määrittelyehtoon ei vaikuta eksponentin etumerkki. Eksponenttifunktio $ f(x) = a^x $ tarvitsee lisäksi määrittelyehdon $ a \\ne 1 $, sillä muutoin jokaisella x:n arvolla funktion arvo olisi 1."
+      }
+    ]
+  },
+  {
+    "id": "OSAI_T6",
+    "section": "Osa I",
+    "title": "Tehtävä 6",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Tutki algebrallisesti, onko funktio $f$ aidosti kasvava tai aidosti vähenevä."
+      },
+      {
+        "type": "text",
+        "content": "a) $f(x) = 11^x$"
+      },
+      {
+        "type": "text",
+        "content": "b) $f(x) = 17^{-x}$"
+      },
+      {
+        "type": "text",
+        "content": "c) Piirrä funktioiden kuvaajat."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a) Koska kantaluku $ 11 > 1 $, funktio on aidosti kasvava."
+      },
+      {
+        "type": "text",
+        "content": "b) Koska $ f(x) = 17^{-x} = \\frac{1}{17^x} = \\left( \\frac{1}{17} \\right)^x $ eli $ 0 < \\frac{1}{17} < 1 $, funktio on aidosti vähenevä."
+      },
+      {
+        "type": "text",
+        "content": "c) Merkitään $ g(x) = 17^{-x} $, jotta kuvaajat voidaan piirtää samaan koordinaatistoon."
+      },
+      {
+        "type": "image",
+        "src": "/utils/MAA5/kuvaajat.png",
+        "alt": ""
+      }
+    ]
+  },
+  {
+    "id": "OSAI_T7",
+    "section": "Osa I",
+    "title": "Tehtävä 7",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Tarkastellaan funktioita $f(x) = 5^x$ ja $g(x) = \\log_5 x$."
+      },
+      {
+        "type": "text",
+        "content": "a) Ovatko funktiot aidosti väheneviä vai aidosti kasvavia? Perustele vastaus."
+      },
+      {
+        "type": "text",
+        "content": "b) Piirrä funktioiden kuvaajat ja suoran $y = x$ kuvaaja. Mitä huomaat?"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a) Koska molempien kantaluvut $ 5 > 1 $, funktiot ovat aidosti kasvavia."
+      },
+      {
+        "type": "text",
+        "content": "b) Funktioiden kuvaajat ovat symmetrisiä suoran  $y = x$ suhteen. Ne ovat täten toistensa käänteisfunktioita."
+      },
+      {
+        "type": "image",
+        "src": "/utils/MAA5/y_x_kuvaajat.png",
+        "alt": ""
+      }
+    ]
+  },
+  {
+    "id": "OSAI_T8",
+    "section": "Osa I",
+    "title": "Tehtävä 8",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Laske lausekkeen $\\log_7 70 - 3\\log_7 3 + \\log_7 12$ tarkka arvo."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "$$\\begin{aligned}\n\\log_7 70 - 3\\log_7 3 + \\log_7 12 \n&= \\log_7 70 - \\log_7 27 + \\log_7 12 \\\\\n&= \\log_7\\left( \\frac{70}{27} \\right) + \\log_7 12 \\\\\n&= \\log_7\\left( \\frac{70 \\cdot 12}{27} \\right) \\\\\n&= \\log_7\\left( \\frac{280}{9} \\right)\n\\end{aligned}$$"
+      }
+    ]
+  },
+  {
+    "id": "OSAI_T9",
+    "section": "Osa I",
+    "title": "Tehtävä 9",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Ratkaise yhtälö $\\log_5(4x + 5) = 7$."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Ratkaistaan yhtälön määrittelyehto.\n$$\n4x + 5 > 0 \\ \\Leftrightarrow\\ x > -\\frac{5}{4}\n$$\nRatkaistaan yhtälö.\n$$\\begin{aligned}\n\\log_5(4x + 5) &= 7 \\\\\n\\Leftrightarrow\\ 4x + 5 &= 5^7 \\\\\n\\Leftrightarrow\\ 4x &= 5^7 - 5 \\\\\n\\Leftrightarrow\\ x &= \\frac{5^7 - 5}{4} \\\\\n\\Leftrightarrow\\ x &= 19530\n\\end{aligned}$$\n\nRatkaisu toteuttaa määrittelyehdon."
+      }
+    ]
+  },
+  {
+    "id": "OSAI_T10",
+    "section": "Osa I",
+    "title": "Tehtävä 10",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Virukset lisääntyvät suotuisissa olosuhteissa erittäin tehokkaasti. Virustutkija tutki erästä virusta ja havaitsi, että tarkasteltavan viruksen määrä kolminkertaistui puolessa tunnissa. Tutkimuksen alussa virusten määrä oli 3000."
+      },
+      {
+        "type": "text",
+        "content": "a) Muodosta funktio, joka kuvaa virusten määrää $t$ tunnin kuluttua."
+      },
+      {
+        "type": "text",
+        "content": "b) Piirrä funktion kuvaaja."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a) Koska viruksen määrä kolminkertaistuu tunnissa, tunnissa määrä on \n$$\n3^2 = 9\n$$-kertainen. Näin ollen funktio on \n$$\nf(t) = 9^t.\n$$"
+      },
+      {
+        "type": "text",
+        "content": "b) Tehdään muuttujanvaihto $ x = t $ kuvaajan piirtämisen helpottamiseksi."
+      },
+      {
+        "type": "image",
+        "src": "/utils/MAA5/virus_kuvaaja.png",
+        "alt": ""
+      }
+    ]
+  },
+  {
+    "id": "OSAII_T1",
+    "section": "Osa II",
+    "title": "Tehtävä 1",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Kulman $\\alpha$ kehäpiste on $\\left(\\frac{1}{4}(\\sqrt{5} + 1),\\ \\frac{1}{4}\\sqrt{10 - 2\\sqrt{5}}\\right)$. Määritä kulman $\\alpha$ suuruus. Anna vastaus asteina ja radiaaneina."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Kulman kehäpisteen x-koordinaatti on kosini ja kehäpisteen y-koordinaatti sini. Taulukkokirjasta nähdään, että \n$$\n\\cos\\left(\\frac{1}{4}\\sqrt{5} + 1\\right) = \\frac{\\pi}{5} = 36^\\circ\n\\quad sekä \\quad \n\\sin\\left(\\frac{1}{4}\\sqrt{10 - 2\\sqrt{5}}\\right) = \\frac{\\pi}{5} = 36^\\circ.\n$$"
+      }
+    ]
+  },
+  {
+    "id": "OSAII_T2",
+    "section": "Osa II",
+    "title": "Tehtävä 2",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "a) Laske välivaiheet esittäen lausekkeen $\\sin 5\\pi + \\cos\\left(-\\frac{13\\pi}{2}\\right)$ tarkka arvo."
+      },
+      {
+        "type": "text",
+        "content": "b) Sievennä $\\frac{\\cos 8\\pi - \\sin \\frac{15\\pi}{2}}{\\cos 17\\pi}$"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a)\n$$\\begin{aligned}\n\\sin 5\\pi + \\cos\\left(-\\frac{13\\pi}{2}\\right) \n&= \\sin\\left(4\\pi + \\pi\\right) + \\cos\\left(\\frac{-12\\pi}{2} - \\frac{\\pi}{2}\\right) \\\\\n&= \\sin\\pi + \\cos\\left(-\\frac{\\pi}{2}\\right) \\\\\n&= 0 + 0 = 0\n\\end{aligned}$$"
+      },
+      {
+        "type": "text",
+        "content": "b)\n$$\\begin{aligned}\n\\frac{\\cos 8\\pi - \\sin\\frac{15\\pi}{2}}{\\cos 17\\pi} \n&= \\frac{\\cos\\left(3\\cdot 2\\pi + 2\\pi\\right) - \\sin\\left(3\\cdot 2\\pi + \\frac{3\\pi}{2}\\right)}{\\cos\\left(8\\cdot 2\\pi + \\pi\\right)} \\\\\n&= \\frac{\\cos 2\\pi - \\sin\\frac{3\\pi}{2}}{\\cos \\pi} \\\\\n&= \\frac{1 - (-1)}{-1} = \\frac{2}{-1} = -2\n\\end{aligned}$$"
+      }
+    ]
+  },
+  {
+    "id": "OSAII_T3",
+    "section": "Osa II",
+    "title": "Tehtävä 3",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "a) Laske $\\cos x$, kun $\\cos 2x = \\frac{1}{\\sqrt{2}}$ ja $\\frac{\\pi}{2} \\le x \\le \\pi$"
+      },
+      {
+        "type": "text",
+        "content": "b) Olkoon annettuina $\\sin x = \\frac{\\sqrt{3}}{2}$ ja $\\sin y = \\frac{1}{2}$, missä kulmat $x$ ja $y$ ovat teräviä. Ratkaise lausekkeiden $\\sin(x - y)$ ja $\\cos(x - y)$ tarkat arvot."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a)\n$$\\begin{aligned}\n\\cos 2x &= \\frac{1}{\\sqrt{2}} \\\\\n\\Leftrightarrow\\ 2\\cos^2 x - 1 &= \\frac{1}{\\sqrt{2}} \\\\\n\\Leftrightarrow\\ 2\\cos^2 x &= \\frac{\\sqrt{2}}{2} + 1 \\\\\n\\Leftrightarrow\\ \\cos^2 x &= \\frac{\\sqrt{2}}{4} + \\frac{1}{2} \\\\\n\\Leftrightarrow\\ \\cos x &= \\pm\\sqrt{\\frac{\\sqrt{2}}{4} + \\frac{2}{4}} \n= \\pm\\sqrt{\\frac{\\sqrt{2} + 2}{4}} \n= \\pm\\frac{\\sqrt{\\sqrt{2} + 2}}{2}\n\\end{aligned}$$\n\nKoska $\\frac{\\pi}{2} \\le x \\le \\pi$, niin $\\cos x = -\\frac{1}{2}\\sqrt{2 + \\sqrt{2}}$."
+      },
+      {
+        "type": "text",
+        "content": "b) Ratkaistaan kosinien arvot trigonometrian peruskaavalla.\n$$\\begin{aligned}\n\\sin^2 x + \\cos^2 x &= 1 \\\\\n\\Leftrightarrow\\ \\cos^2 x &= 1 - \\sin^2 x \n= 1 - \\left(\\frac{\\sqrt{3}}{2}\\right)^2 \n= 1 - \\frac{3}{4} \n= \\frac{1}{4} \\\\\n\\Rightarrow\\ \\cos x &= \\pm\\frac{1}{2}\n\\end{aligned}$$\\begin{aligned}\n\\cos^2 y &= 1 - \\sin^2 y \n= 1 - \\left(\\frac{1}{2}\\right)^2 \n= \\frac{3}{4} \n\\Rightarrow\\ \\cos y = \\pm\\frac{\\sqrt{3}}{2}\n\\end{aligned}$$\n\nKulmat ovat teräviä, joten molemmat kosinit ovat positiivisia.\n\n$$\\begin{aligned}\n\\sin(x - y) &= \\sin x \\cos y - \\cos x \\sin y \n= \\frac{\\sqrt{3}}{2} \\cdot \\frac{\\sqrt{3}}{2} - \\frac{1}{2} \\cdot \\frac{1}{2} \n= \\frac{3}{4} - \\frac{1}{4} \n= \\frac{1}{2}\n\\end{aligned}$$\\begin{aligned}\n\\cos(x - y) &= \\cos x \\cos y + \\sin x \\sin y \n= \\frac{1}{2} \\cdot \\frac{\\sqrt{3}}{2} + \\frac{\\sqrt{3}}{2} \\cdot \\frac{1}{2} \n= \\frac{2\\sqrt{3}}{4} \n= \\frac{\\sqrt{3}}{2}\n\\end{aligned}$$"
+      }
+    ]
+  },
+  {
+    "id": "OSAII_T4",
+    "section": "Osa II",
+    "title": "Tehtävä 4",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "a) Ratkaise yhtälö $\\sin 4x = \\sin 2x$. Mitkä yhtälön juurista kuuluvat välille $[0,\\ \\pi]$?"
+      },
+      {
+        "type": "text",
+        "content": "b) Ratkaise yhtälö $\\sin^2 x - \\sin x = 0$."
+      },
+      {
+        "type": "text",
+        "content": "c) Ratkaise yhtälö $2\\sin 4x = -1$."
+      },
+      {
+        "type": "text",
+        "content": "d) Ratkaise yhtälö $\\sin(\\sin x) = 1$."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a)\n$$\\begin{aligned}\n\\sin 4x &= \\sin 2x \\\\\n\\Leftrightarrow\\ 4x &= 2x + n \\cdot 2\\pi \\ \\vee\\ 4x = \\pi - 2x + n \\cdot 2\\pi \\\\\n\\Leftrightarrow\\ 2x &= n \\cdot 2\\pi\\ \\vee\\ 6x = \\pi + n \\cdot 2\\pi \\\\\n\\Leftrightarrow\\ x &= n \\cdot \\pi\\ \\vee\\ x = \\frac{\\pi}{6} + n \\cdot \\frac{\\pi}{3}\n\\end{aligned}$$\n\nTutkitaan, mitkä juurista kuuluvat välille $[0{,}\\ \\pi]$. Ratkaisun $x = n \\cdot \\pi$ juurista välille kuuluvat selvästi $0$ ja $\\pi$. Koska $\\frac{\\pi}{6} - 1 \\cdot \\frac{\\pi}{3} = -\\frac{\\pi}{6} < 0$, $\\frac{\\pi}{6} + 0 \\cdot \\frac{\\pi}{3} = \\frac{\\pi}{6}$, $\\frac{\\pi}{6} + 1 \\cdot \\frac{\\pi}{3} = \\frac{\\pi}{2}$ ja $\\frac{\\pi}{6} + 2 \\cdot \\frac{\\pi}{3} = \\frac{5\\pi}{6}$ mutta $\\frac{\\pi}{6} + 3 \\cdot \\frac{\\pi}{3} = \\frac{7\\pi}{6} > \\pi$, niin jälkimmäisestä ratkaisuista kysytylle välille kuuluvat $\\frac{\\pi}{6}$, $\\frac{\\pi}{2}$ ja $\\frac{5\\pi}{6}$. Siten yhtälön ratkaisuista välille $[0{,}\\ \\pi]$ kuuluvat $0{,}\\ \\frac{\\pi}{6}{,}\\ \\frac{\\pi}{2}{,}\\ \\frac{5\\pi}{6}$ ja $\\pi$."
+      },
+      {
+        "type": "text",
+        "content": "b)\n$$\\begin{aligned}\n\\sin^2 x - \\sin x &= 0 \\\\\n\\Leftrightarrow\\ \\sin x(\\sin x - 1) &= 0 \\\\\n\\Leftrightarrow\\ \\sin x = 0 &\\Rightarrow x = n \\cdot \\pi \\\\\n\\vee\\ \\sin x = 1 &\\Rightarrow x = \\frac{\\pi}{2} + n \\cdot 2\\pi,\\quad n \\in \\mathbb{Z}\n\\end{aligned}$$\nSiis $x = n \\cdot \\pi$ tai $x = \\frac{\\pi}{2} + n \\cdot 2\\pi,\\ n \\in \\mathbb{Z}$."
+      },
+      {
+        "type": "text",
+        "content": "c)\n$$\\begin{aligned}\n2\\sin 4x &= -1 \\\\\n\\Leftrightarrow\\ \\sin 4x &= -\\frac{1}{2} \\\\\n\\Leftrightarrow\\ 4x &= \\frac{7\\pi}{6} + n \\cdot 2\\pi\\ \\vee\\ 4x = \\pi - \\frac{7\\pi}{6} + n \\cdot 2\\pi \\\\\n\\Leftrightarrow\\ x &= \\frac{7\\pi}{24} + n \\cdot \\frac{\\pi}{2}\\ \\vee\\ x = -\\frac{\\pi}{24} + n \\cdot \\frac{\\pi}{2},\\quad n \\in \\mathbb{Z}\n\\end{aligned}$$"
+      },
+      {
+        "type": "text",
+        "content": "d) Olkoon $\\sin x = t$. Tällöin\n$$\\begin{aligned}\n\\sin(t) = 1 &\\Leftrightarrow t = \\frac{\\pi}{2} + n \\cdot 2\\pi,\\quad n \\in \\mathbb{Z}\n\\end{aligned}$$\nKoska kuitenkin $-1 \\le \\sin x \\le 1$ ja ratkaisuista väliä lähimpänä oleva $\\frac{\\pi}{2} = 1{,}57\\ldots > 1$, yhtälöllä ei ole ratkaisuja $x \\in \\mathbb{R}$."
+      }
+    ]
+  },
+  {
+    "id": "OSAII_T5",
+    "section": "Osa II",
+    "title": "Tehtävä 5",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "a) Ratkaise yhtälö $\\cos\\left(2x + \\frac{\\pi}{2}\\right) = \\frac{1}{2}$"
+      },
+      {
+        "type": "text",
+        "content": "b) Ratkaise yhtälö $2\\sin x \\cos x = \\frac{1}{4}(\\sqrt{5} - 1)$"
+      },
+      {
+        "type": "text",
+        "content": "c) Ratkaise yhtälö $\\cos^2 x - \\sin^2 x = \\frac{1}{4}(\\sqrt{6} + \\sqrt{2})$"
+      },
+      {
+        "type": "text",
+        "content": "d) Ratkaise yhtälö $\\sin^2 x - \\cos x - 2 = 0$"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a)\n$$\\begin{aligned}\n\\cos\\left(2x + \\frac{\\pi}{2}\\right) &= \\frac{1}{2} \\\\\n2x + \\frac{\\pi}{2} &= \\frac{\\pi}{3} + n \\cdot 2\\pi \\ \\Leftrightarrow\\ x = -\\frac{\\pi}{12} + n \\cdot \\pi \\\\\ntai  2x + \\frac{\\pi}{2} &= -\\frac{\\pi}{3} + n \\cdot 2\\pi \\ \\Leftrightarrow\\ x = -\\frac{5\\pi}{12} + n \\cdot \\pi,\\quad n \\in \\mathbb{Z}\n\\end{aligned}$$"
+      },
+      {
+        "type": "text",
+        "content": "b)\n$$\\begin{aligned}\n2\\sin x \\cos x &= \\frac{1}{4}(\\sqrt{5} - 1) \\\\\n\\sin 2x &= \\frac{1}{4}(\\sqrt{5} - 1) \\\\\n2x &= \\frac{\\pi}{10} + n \\cdot 2\\pi \\ \\Leftrightarrow\\ x = \\frac{\\pi}{20} + n \\cdot \\pi \\\\\ntai  2x &= \\pi - \\frac{\\pi}{10} + n \\cdot 2\\pi \\ \\Leftrightarrow\\ x = \\frac{9\\pi}{20} + n \\cdot \\pi,\\quad n \\in \\mathbb{Z}\n\\end{aligned}$$"
+      },
+      {
+        "type": "text",
+        "content": "c)\n$$\\begin{aligned}\n\\cos^2 x - \\sin^2 x &= \\frac{1}{4}(\\sqrt{6} + \\sqrt{2}) \\\\\n\\Leftrightarrow\\ \\cos 2x &= \\frac{1}{4}(\\sqrt{6} + \\sqrt{2}) \\\\\n\\Leftrightarrow\\ 2x &= \\pm \\frac{\\pi}{12} + n \\cdot 2\\pi \\ \\Leftrightarrow\\ x = \\pm \\frac{\\pi}{24} + n \\cdot \\pi,\\quad n \\in \\mathbb{Z}\n\\end{aligned}$$"
+      },
+      {
+        "type": "text",
+        "content": "d)\n$$\\begin{aligned}\n\\sin^2 x - \\cos x - 2 &= 0 \\\\\n1 - \\cos^2 x - \\cos x - 2 &= 0 \\\\\n-\\cos^2 x - \\cos x - 1 &= 0 \\\\\n\\cos^2 x + \\cos x + 1 &= 0 \\\\\nOlkoon  \\cos x = t &\\Rightarrow t^2 + t + 1 = 0\n\\end{aligned}$$\n\nKyseessä on ylöspäin aukeava paraabeli, joka leikkaa y-akselin kohdassa $(0,\\ 1)$. Siten paraabeli ei saa arvoa nolla millään $t \\in \\mathbb{R}$. Yhtälöllä ei näin ollen ole ratkaisuja."
+      }
+    ]
+  },
+  {
+    "id": "OSAII_T6",
+    "section": "Osa II",
+    "title": "Tehtävä 6",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Tarkastellaan kuvassa näkyviä funktioita $f$ ja $g$. Määritä funktioiden lausekkeet."
+      },
+      {
+        "type": "image",
+        "src": "/utils/MAA5/Trig_kuvaajat.png",
+        "alt": ""
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Funktio $f$ kulkee origon kautta, joten kyseessä on sinifunktio. Sen suurin arvo on 3 ja pienin arvo -3. Näin ollen kyseessä olisi $3\\sin x$. Huomataan kuitenkin, että funktion $f$ perusjakso on $\\pi$. Funktion $3\\sin bx$ perusjakso on $\\frac{2\\pi}{b}$. Yhtälöstä $\\frac{2\\pi}{b}=\\pi$ saadaan $b=2$. Näin ollen funktio $f(x)=3\\sin 2x$.\n\nFunktio $g$ saa pienimmän arvonsa kohdassa $x=0$, eikä se kulje origon kautta. Kyseessä on siis kosinifunktio. Funktion amplitudi ei kuitenkaan ole 2, sillä tämä funktio saisi suurimman arvonsa eli arvon 2 kohdassa $x=0$. Siten on $a=-2$. Funktion $g$ perusjakso on $2\\pi$. Siten kyseessä oleva funktio on $g(x)=-2\\cos x$."
+      }
+    ]
+  },
+  {
+    "id": "OSAII_T7",
+    "section": "Osa II",
+    "title": "Tehtävä 7",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Määritä funktion $f(x) = 2 - 2\\cos 5x$ arvojoukko ja perusjakso."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Funktion $2\\cos x$ arvot ovat välillä $[-2,\\ 2]$. Saadaan kaksoisepäyhtälö $-2 \\le 2 - 2\\cos 5x \\le 2 \\ \\Leftrightarrow\\ -4 \\le -2\\cos 5x \\le 0$. Funktion $f$ arvojoukko on siis $[-4,\\ 0]$. Ratkaistaan funktion $\\cos 5x$ perusjakso. Jaksollisuuden nojalla $\\cos 5x = \\cos(5x + 2\\pi) = \\cos\\left(5\\left(x + \\frac{2}{5}\\pi\\right)\\right)$. Koska $f\\left(x + \\frac{2}{5}\\pi\\right) = 2 - 2\\cos 5\\left(x + \\frac{2}{5}\\pi\\right) = 2 - 2\\cos(5x + 2\\pi) = 2 - 2\\cos 5x = f(x)$, niin funktion $f$ perusjakso on $\\frac{2}{5}\\pi$."
+      }
+    ]
+  },
+  {
+    "id": "OSAII_T8",
+    "section": "Osa II",
+    "title": "Tehtävä 8",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Ratkaise yhtälö $2\\log_9(x+1) = \\log_9(x+3) + \\log_9 x$ välivaihein."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Ratkaistaan yhtälön määrittelyehto:  \n$x + 1 > 0\\ \\Leftrightarrow\\ x > -1$ ja $x + 3 > 0\\ \\Leftrightarrow\\ x > -3$ ja $x > 0$.\n\nMäärittelyehdot yhdistämällä saadaan määrittelyehdoksi $x > 0$.\n\nRatkaistaan yhtälö.\n$$\\begin{aligned}\n2\\log_9(x + 1) &= \\log_9(x + 3) + \\log_9 x \\\\\n\\Leftrightarrow\\ \\log_9(x + 1)^2 &= \\log_9\\big((x + 3) \\cdot x\\big) \\\\\n\\Leftrightarrow\\ \\log_9(x + 1)^2 &= \\log_9(x^2 + 3x)\n\\end{aligned}$$\n\nLogaritmifunktio $f(t) = \\log_a t$ on aidosti monotoninen ja logaritmeilla on sama kantaluku. Yhtälö toteutuu, kun logaritmoitavat ovat yhtä suuret.\n$$\\begin{aligned}\n(x + 1)^2 &= x^2 + 3x \\\\\n2x + 1 &= 3x \\\\\nx &= 1\n\\end{aligned}$$\n\nRatkaisu toteuttaa määrittelyehdon."
+      }
+    ]
+  },
+  {
+    "id": "OSAII_T9",
+    "section": "Osa II",
+    "title": "Tehtävä 9",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "a) Ratkaise yhtälö $6 \\cdot 8^{x+2} = 2664$. Anna vastauksesi tarkkana arvona ja kaksidesimaalisena likiarvona."
+      },
+      {
+        "type": "text",
+        "content": "b) Ratkaise epäyhtälö $20 \\cdot 0{,}4^x > 8$."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a)\n$$\\begin{aligned}\n6 \\cdot 8^{x+2} &= 2664 \\\\\n\\Leftrightarrow\\ 8^{x+2} &= 444 \\\\\n\\Leftrightarrow\\ x + 2 &= \\log_8 444 \\\\\n\\Leftrightarrow\\ x &= \\log_8 444 - 2 \\approx 0{,}93\n\\end{aligned}$$"
+      },
+      {
+        "type": "text",
+        "content": "b)\n$$\\begin{aligned}\n20 \\cdot 0{,}4^x &> 8 \\\\\n\\Leftrightarrow\\ 0{,}4^x &> \\frac{2}{5}\n\\end{aligned}$$\n\nOtetaan puolittain logaritmit. Eksponenttifunktio $f(t) = 0{,}4^t$ on aidosti vähenevä, joten suuruusjärjestys vaihtuu.\n$$\\begin{aligned}\n\\Leftrightarrow\\ \\log(0{,}4^x) &< \\log\\left(\\frac{2}{5}\\right) \\\\\n\\Leftrightarrow\\ x \\cdot \\log(0{,}4) &< \\log\\left(\\frac{2}{5}\\right) \\\\\n\\Leftrightarrow\\ x &< \\frac{\\log\\left(\\frac{2}{5}\\right)}{\\log(0{,}4)} \\\\\n\\Leftrightarrow\\ x &< 1\n\\end{aligned}$$"
+      }
+    ]
+  },
+  {
+    "id": "OSAII_T10",
+    "section": "Osa II",
+    "title": "Tehtävä 10",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Määritä luvun $3^{2024}$ sisältämien numeroiden määrä. Mitkä ovat luvun neljä ensimmäistä numeroa?"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Muokataan lukua ottamalla kantaluvuksi 10 ja sievennetään lukua kymmenpotenssimuotoon.\n\n$$\\begin{aligned}\n3^{2024} &= \\left(10^{\\log_{10}3}\\right)^{2024} \\\\\n&= 10^{\\log_{10}3 \\cdot 2024} \\\\\n&= 10^{2024 \\cdot \\log_{10}3} \\\\\n&= 10^{965{,}693419\\ldots} \\\\\n&= 10^{965 + 0{,}6934\\ldots} \\\\\n&= 10^{965} \\cdot 10^{0{,}6934\\ldots} \\\\\n&\\approx 4{,}9365\\ldots \\cdot 10^{965}\n\\end{aligned}$$\n\nTästä muodosta nähdään, että luku $3^{2024}$ on kokonaisluku, jonka neljä ensimmäistä numeroa ovat 4, 9, 3 ja 6. Luvun 4 jälkeen luvussa on vielä 965 numeroa. Luvussa on näin ollen 966 numeroa."
+      }
+    ]
+  },
+  {
+    "id": "OSAIII_T1",
+    "section": "Osa III",
+    "title": "Tehtävä 1",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Määritä parametri $t \\in \\mathbb{R}$ siten, että yhtälöllä $3t\\sin^2x - 2 = 2 + 7t$ on ratkaisuja."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Muokataan yhtälöä.\n$$\\begin{aligned}\n3t\\sin^2x - 2 &= 2 + 7t \\\\\n3t\\sin^2x &= 4 + 7t \\\\\n\\sin^2x &= \\frac{4 + 7t}{3t}\n\\end{aligned}$$\n\nKoska $-1 \\le \\sin x \\le 1$, niin $0 \\le \\sin^2x \\le 1$, saadaan epäyhtälö\n$$\\begin{aligned}\n0 &\\le \\frac{4 + 7t}{3t} \\le 1,\n\\end{aligned}$$\njosta ratkaistuna\n$$\\begin{aligned}\n-1 &\\le t \\le -\\frac{4}{7}\n\\end{aligned}$$\n\nYhtälöllä on ratkaisuja, kun $-1 \\le t \\le -\\frac{4}{7}$."
+      }
+    ]
+  },
+  {
+    "id": "OSAIII_T2",
+    "section": "Osa III",
+    "title": "Tehtävä 2",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Merellä aallot liikkuvat usein sinimuotoisina aaltoina. Esittäköön funktio\n$$\nh(t) = a \\sin(2\\pi f t)\n$$\naallon korkeutta $h$ metreinä ajan funktiona. Funktiossa $a$ kuvaa aallon huipun ja pohjan välistä etäisyyttä metreinä jaettuna kahdella ja $f$ aallon taajuutta."
+      },
+      {
+        "type": "text",
+        "content": "a) Mikä on aallon korkeus, kun aallon huipun ja pohjan väli on 4 metriä, taajuus $0{,}4\\ \\mathrm{Hz}$ ja kulunut aika 11 s?"
+      },
+      {
+        "type": "text",
+        "content": "b) Olkoon $0 \\le t \\le 0{,}5$. Määritä $t$, kun $a = 2\\ \\mathrm{m}$, aallon korkeus on $1\\ \\mathrm{m}$ ja taajuus $0{,}5\\ \\mathrm{Hz}$."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a) Amplitudi $ a $ on huipun ja pohjan välinen keskiarvo eli $ a = \\frac{4}{2} = 2 $. Aallon korkeus, kun $ f = 0{,}4\\ \\mathrm{Hz} $ ja $ t = 11\\ \\mathrm{s} $, on $ h(2) = 2 \\cdot \\sin(2\\pi \\cdot 0{,}4 \\cdot 11) \\approx 1{,}18\\ \\mathrm{(m)} $."
+      },
+      {
+        "type": "text",
+        "content": "b) $ h(t) = 1 $. Rajataan ratkaisu välille $ 0 \\le t \\le 0{,}5 $. $ \\Leftrightarrow 2 \\cdot \\sin(2\\pi \\cdot 0{,}5 \\cdot t) = 1 $, josta laskimella ratkaistuna $ t = 0{,}16666\\ldots \\approx 0{,}17\\ \\mathrm{(s)} $."
+      }
+    ]
+  },
+  {
+    "id": "OSAIII_T3",
+    "section": "Osa III",
+    "title": "Tehtävä 3",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Erään veneen hinta on ostohetkellä on 77000 euroa. Veneen hinta laskee Taulukon 1 mukaisesti ajan myötä.\n\n$$\nTaulukko 1. \\quad\n\\begin{array}{l|l}\n\\mathrm{veneen\\ ikä\\ \\left(vuotta\\right)} & \\mathrm{hinta\\ \\left(euroina\\right)} \\\\ \\hline\n0 & 77000 \\\\\n2 & 59700 \\\\\n3 & 50400 \\\\\n5 & 38700 \\\\\n7 & 27000 \\\\\n10 & 10800 \\\\\n12 & 7500 \\\\\n15 & 2700 \\\\\n\\end{array}\n$$"
+      },
+      {
+        "type": "text",
+        "content": "a) Piirrä kuvaaja, joka havainnollistaa veneen hinnan alenemista ajan funktiona. Laadi kuvaaja siten, että siitä näkyvät kaikki aineiston pisteet ja että siitä voi lukea veneen arvon millä tahansa ajanhetkellä aikavälillä 0–15 vuotta."
+      },
+      {
+        "type": "text",
+        "content": "b) Millaista muutos on? Perustele matemaattisesti."
+      },
+      {
+        "type": "text",
+        "content": "c) Laske, kuinka monta prosenttia veneen hinta aleni vuosittain keskimääräisesti veneen ikävuosien 5 ja 10 välillä."
+      },
+      {
+        "type": "text",
+        "content": "d) Laadi ennuste siitä, milloin veneen hinta putoaa alle tuhannen euron. Oletetaan, että veneen hinta alenee samaa vauhtia kuin c)-kohdassa."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a) Piirretään kuvaaja veneen hinnan alenemisesta ajan funktiona. Mittauspisteisiin sovitetaan eksponenttifunktio."
+      },
+      {
+        "type": "image",
+        "src": "/utils/MAA5/vene.png",
+        "alt": ""
+      },
+      {
+        "type": "text",
+        "content": "b) Koska mittauspisteisiin voidaan sovittaa eksponenttifunktio, muutos on eksponentiaalista."
+      },
+      {
+        "type": "text",
+        "content": "c) Olkoon $ k $ kerroin, joka kuvaa hinnan vuotuista vähenemisprosenttikerrointa. Veneen hinta 5 vuoden jälkeen on 38700 ja 10 vuoden jälkeen 10800. Vuosia kuluu $ 10 - 5 = 5 $. Saadaan yhtälö $ 38700 \\cdot k^5 = 10800 \\ \\Leftrightarrow\\ k^5 = \\frac{10800}{38700} \\ \\Leftrightarrow\\ k = \\sqrt[5]{\\frac{10800}{38700}} $. Veneen hinta alenee ikävuosien 5 ja 10 välillä vuosittain keskimäärin $ \\left(1 - \\sqrt[5]{\\frac{10800}{38700}}\\right) \\cdot 100\\% = 22{,}528\\% \\approx 22{,}5\\% $."
+      },
+      {
+        "type": "text",
+        "content": "d) Merkitään kirjaimella $ t $ kuluvia vuosia, ennen kuin veneen hinta putoaa alle tuhannen euron. 15 vuoden jälkeen veneen hinta on 2700 euroa. Saadaan epäyhtälö $ 2700 \\cdot k^t < 1000 \\ \\Leftrightarrow\\ 2700 \\cdot \\left( \\sqrt[5]{\\frac{10800}{38700}} \\right)^t < 1000 $, josta laskimella ratkaistuna $ t > 3{,}891 $. Vuosia kuluu siis ostohetkestä $ 15 + 4 = 19 $ vuotta ennen kuin veneen hinta putoaa alle tuhannen euron."
+      }
+    ]
+  },
+  {
+    "id": "OSAIII_T4",
+    "section": "Osa III",
+    "title": "Tehtävä 4",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "a) Ydinvoimalassa tapahtuu onnettomuus, jonka seurauksena ympäristöön vapautuu radioaktiivista ainetta. Aineen puoliintumisaika on 32 vuotta. Puoliintumisajalla tarkoitetaan aikaa, jonka kuluessa puolet aineesta on hajonnut. Milloin aineesta on jäljellä viidesosa?"
+      },
+      {
+        "type": "text",
+        "content": "b) Oletetaan, että ihmisen on turvallista liikkua radioaktiivista ainetta sisältävällä alueella, kun ainetta on jäljellä alle prosentti. Milloin alueella voi liikkua turvallisesti?"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a) Olkoon $ a $ radioaktiivisen aineen määrä onnettomuuden tapahduttua ja $ k $ vuotuinen aineen vähenemisprosenttikerroin. Aineen määrä 32 vuoden päästä on $ 0{,}5a $. Saadaan yhtälö $ a \\cdot k^{32} = 0{,}5a \\ \\parallel: a \\ne 0 \\ \\Leftrightarrow\\ k^{32} = 0{,}5 \\ \\Leftrightarrow\\ k = \\pm\\sqrt[32]{0{,}5} \\ \\Leftrightarrow\\ k = \\pm 0{,}9785... $. Kerroin ei voi olla negatiivinen, joten $ k = 0{,}9785... $. Ratkaistaan, milloin aineesta on jäljellä viidesosa. Merkitään kirjaimella $ t $ vuosia, joita kuluu siihen asti, kunnes aineesta on jäljellä viidesosa. Saadaan yhtälö $ a \\cdot \\left(\\sqrt[32]{0{,}5}\\right)^t = 0{,}2a $, josta laskimella ratkaistuna $ t = 74{,}30169... $. Alueella voi liikkua turvallisesti 75 vuoden kuluttua."
+      },
+      {
+        "type": "text",
+        "content": "b) Saadaan epäyhtälö $ a \\cdot \\left(\\sqrt[32]{0{,}5}\\right)^t < 0{,}01a $, josta laskimella saadaan $ t > 212{,}603... \\approx 213 $ vuotta. Alueella voi liikkua turvallisesti 213 vuoden päästä."
+      }
+    ]
+  },
+  {
+    "id": "OSAIII_T5",
+    "section": "Osa III",
+    "title": "Tehtävä 5",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Vuorovesi-ilmiö johtuu Kuun massan vaikutuksesta Maahan. Kuun vetovoiman suuruus riippuu siitä, mitä ainetta Maan pinta on sekä siitä, mihin Maan pisteeseen vetovoima vaikuttaa. Merenpinta pyrkiikin nousemaan kohti Kuuta, sillä vetovoima on suurin lähimpänä kuuta. Porvoossa sijaitsevassa Sköldvikin satamassa veden syvyys vaihtelee nousu- ja laskuvesi-ilmiön vaikutuksesta 11 tunnin jaksoissa. Veden suurin syvyys 10{,}4 metriä saavutetaan erään kuukauden jokaisena päivänä kello 8.05, ja pienin syvyys 2{,}5 metriä kello 15.50. Esittäköön funktio $H(t)=A\\sin\\left(b(t-c)\\right)+d$ veden syvyyttä metreinä ajan $t$ funktiona, missä $t$ kuvaa kulunutta aikaa tunteina keskiyöstä."
+      },
+      {
+        "type": "text",
+        "content": "a) Mikä on funktion $H$ lauseke?"
+      },
+      {
+        "type": "text",
+        "content": "b) Määritä veden syvyys seuraavana päivänä kello 11.50."
+      },
+      {
+        "type": "text",
+        "content": "c) Piirrä funktion kuvaaja ja ratkaise kuvaajaa käyttäen, milloin veden syvyys on kolmannen kerran 7 metriä. Anna vastaus kellonaikana muodossa xx:yy."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a) Vakio a muuttaa sinifunktion amplitudia ja on puolet suurimman ja pienimmän arvon erotuksesta eli $a = \\frac{10{,}4 - 2{,}5}{2} = 3{,}95$.  \nVakio b muuttaa perusjaksoa. $\\sin bt = \\sin\\left(b(t + 2\\pi)\\right) = \\sin\\left(b\\left(t + \\frac{2\\pi}{b}\\right)\\right)$ ja jakson pituus on 11 tuntia, joten  \n$\\frac{2\\pi}{b} = 11 \\Leftrightarrow b = \\frac{2\\pi}{11}$.  \nVakio d siirtää sinifunktion kuvaajaa pystysuunnassa. Funktion $f(t) = 3{,}95 \\sin t$ suurin arvo on 3,95. Suurimman arvon on oltava 10,4, joten kuvaajaa tulee siirtää pystysuunnassa $10{,}4 - 3{,}95 = 6{,}45$ yksikköä ylöspäin.  \nVakio c voidaan ratkaista yhtälöstä $H\\left(\\frac{97}{12}\\right) = 10{,}4$, missä $\\frac{97}{12} = 8 + \\frac{1}{12} = \\frac{97}{12}$, sillä suurin syvyys saavutetaan kellonaikana 8.05.  \nSaadaan yhtälö  \n$3{,}95 \\sin\\left( \\frac{2\\pi}{11} \\left( \\frac{97}{12} - c \\right) \\right) + 6{,}45 = 10{,}4$.  \nRajataan ratkaisu välille $0 \\le c \\le 11$, sillä syvyys vaihtelee 11 tunnin jaksoissa. Laskimella ratkaistuna saadaan $c = 5{,}333\\ldots$.  \nSiis funktio $H(t) = 3{,}95 \\sin\\left( \\frac{2\\pi}{11}(t - 5{,}33) \\right) + 6{,}45$."
+      },
+      {
+        "type": "text",
+        "content": "b) Seuraavana päivänä tunteja on kulunut $24 + 11 + \\frac{50}{60} = \\frac{215}{6}$ tuntia.  \nSiten veden syvyys on  \n$H\\left(\\frac{215}{6}\\right) = 3{,}95 \\sin\\left( \\frac{2\\pi}{11} \\left( \\frac{215}{6} - 5{,}33 \\right) \\right) + 6{,}45 \\approx 2{,}54\\ \\mathrm{(m)}$."
+      },
+      {
+        "type": "text",
+        "content": "c) Piirretään funktion $H$ kuvaaja välille $[0{,}\\ \\infty[$ ja suora $y = 7$ sekä tutkitaan kuvaajan ja suoran kolmatta leikkauspistettä $A$. Veden syvyys kolmannen kerran on 7 metriä silloin, kun keskiyöstä on kulunut $16{,}57\\ \\mathrm{h} = 16\\ \\mathrm{h} + 0{,}57 \\cdot 60\\ \\mathrm{min} = 16\\ \\mathrm{h}\\ 34\\ \\mathrm{min}$.  \nKellonaika on siis 16:34, kun veden syvyys on kolmannen kerran 7 metriä."
+      },
+      {
+        "type": "image",
+        "src": "/utils/MAA5/syvyys_kuvaaja.png",
+        "alt": ""
+      }
+    ]
+  },
+  {
+    "id": "OSAIII_T6",
+    "section": "Osa III",
+    "title": "Tehtävä 6",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Erään maan asukasluku on tällä hetkellä 21{,}5 miljoonaa, ja arvioiden mukaan se vähenee vuosittain 1{,}5\\%. Toisen maan väkiluku tällä hetkellä on 14{,}7 miljoonaa, ja arvion mukaan se kasvaa vuosittain 2{,}7\\%. Muodosta maiden väkilukujen funktio vuoden $t$ päästä ja ratkaise, milloin väkiluvultaan kasvava maa ohittaa toisen maan. Anna vastaus vuosina."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Väkilukujen funktiot t vuoden päästä ovat $f(t) = 21{,}5 \\cdot 10^6 \\cdot (0{,}985)^t$ ja $g(t) = 14{,}7 \\cdot 10^6 \\cdot (1{,}027)^t$.  \nVäkiluvultaan kasvava maa ohittaa vähenevän maan, kun epäyhtälö $g(t) > f(t)$ toteutuu.  \n\n$14{,}7 \\cdot 10^6 \\cdot (1{,}027)^t > 21{,}5 \\cdot 10^6 \\cdot (0{,}985)^t\\ \\Leftrightarrow\\ t > 9{,}4907\\ldots$  \n\nVäkiluvultaan kasvava maa ohittaa väkiluvultaan vähenevän 10 vuoden päästä."
+      }
+    ]
+  },
+  {
+    "id": "OSAIII_T7",
+    "section": "Osa III",
+    "title": "Tehtävä 7",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "a) Ratkaise välivaiheet esittäen yhtälö $4e^{2x} - 3e^x - 2 = 0$."
+      },
+      {
+        "type": "text",
+        "content": "b) Ratkaise a)-kohdan yhtälö laskimella."
+      },
+      {
+        "type": "text",
+        "content": "c) Tutki matemaattisesti perustellen, kumpi luvuista $3^{100}$ ja $81^{24}$ on suurempi."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a)  \nOlkoon $t = e^x$. Tällöin $4t^2 - 3t - 2 = 0 \\ \\Leftrightarrow\\ t = \\frac{3 \\pm \\sqrt{(-3)^2 - 4 \\cdot 4 \\cdot (-2)}}{2 \\cdot 4} \\ \\Leftrightarrow\\ t = \\frac{3 \\pm \\sqrt{41}}{8}$.  \n\nSaadaan yhtälö $e^x = \\frac{3 + \\sqrt{41}}{8} \\ \\vee\\ e^x = \\frac{3 - \\sqrt{41}}{8}$, joista jälkimmäisellä ei ole ratkaisua, koska $e^x > 0$ kaikilla $x \\in \\mathbb{R}$.  \n\nNäin ollen $e^x = \\frac{3 + \\sqrt{41}}{8} \\ \\Leftrightarrow\\ x = \\ln\\left(\\frac{3 + \\sqrt{41}}{8}\\right)$.\n\nb)"
+      },
+      {
+        "type": "image",
+        "src": "/utils/MAA5/solve.png",
+        "alt": ""
+      },
+      {
+        "type": "text",
+        "content": "c) Koska $81^{24} = (27 \\cdot 3)^{24} = (3^3 \\cdot 3)^{24} = (3^4)^{24} = 3^{4 \\cdot 24} = 3^{96}$ ja $100 > 96$, niin $3^{100} > 81^{24}$."
+      }
+    ]
+  },
+  {
+    "id": "OSAIII_T8",
+    "section": "Osa III",
+    "title": "Tehtävä 8",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Osoita perustellen, että lausekkeen $\\frac{\\log_3x+\\log_3x^3-\\log_3\\sqrt[3]{x}}{\\log_3\\sqrt{x}-\\log_3x^2}$, missä $x>0$, arvo ei riipu muuttujan $x$ arvosta."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Muokataan lauseketta:\n$$\\begin{aligned}\n\\frac{\\log_3 x + \\log_3 x^3 - \\log_3 \\sqrt[3]{x}}{\\log_3 \\sqrt{x} - \\log_3 x^2} \n&= \\frac{\\log_3 x^4 - \\log_3 x^{\\frac{1}{3}}}{\\log_3 x^{\\frac{1}{2}} - \\log_3 x^2} \\\\\n&= \\frac{\\log_3 x^{\\frac{11}{3}}}{\\log_3 x^{-\\frac{3}{2}}} \\\\\n&= \\frac{\\frac{11}{3}}{-\\frac{3}{2}} \\\\\n&= \\frac{11}{3} \\cdot \\left(-\\frac{2}{3}\\right) \\\\\n&= -\\frac{22}{9}\n\\end{aligned}$$\n\nLausekkeen arvo on aina $-\\frac{22}{9}$. Lausekkeen arvo ei näin ollen riipu muuttujan $x$ arvosta, kun $x > 0$."
+      }
+    ]
+  },
+  {
+    "id": "OSAIII_T9",
+    "section": "Osa III",
+    "title": "Tehtävä 9",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Selvitä välivaihein, kumpi lausekkeista $\\ln\\left(4x+2\\right)-\\ln\\left(4x\\right)$ vai $\\ln\\left(2x+2\\right)-\\ln\\left(x\\right)$ on suurempi muuttujan arvoilla $x>1$."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Logaritmin laskusääntöjen avulla saadaan\n$$\\begin{aligned}\n\\ln(4x + 2) - \\ln(4x) &= \\ln\\left( \\frac{4x + 2}{4x} \\right) = \\ln\\left( 1 + \\frac{2}{4x} \\right) = \\ln\\left( 1 + \\frac{1}{2x} \\right), \\\\\n\\ln(2x + 2) - \\ln(2x) &= \\ln\\left( \\frac{2x + 2}{2x} \\right) = \\ln\\left( 1 + \\frac{2}{2x} \\right) = \\ln\\left( 1 + \\frac{1}{x} \\right).\n\\end{aligned}$$\n\nLogaritmifunktio on aidosti kasvava ja $\\frac{1}{2x} < \\frac{1}{x}$, joten  \n$$\n\\ln(2x + 2) - \\ln(2x) > \\ln(4x + 2) - \\ln(4x),\n$$\nkun $x > 1$."
+      }
+    ]
+  },
+  {
+    "id": "OSAIII_T10",
+    "section": "Osa III",
+    "title": "Tehtävä 10",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Tarkastellaan yksikköympyrää ja kulmaa $\\theta$. Kulma $\\theta$ toteuttaa seuraavat ehdot:"
+      },
+      {
+        "type": "text",
+        "content": "a) $\\theta$ on välillä $[0{,}\\ \\pi]$"
+      },
+      {
+        "type": "text",
+        "content": "b) Kulman $\\theta$ kehäpiste on suoralla $y = 4x$"
+      },
+      {
+        "type": "text",
+        "content": "Määritä kulma $\\theta$. Anna vastauksesi asteina desimaalin tarkkuudella."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Koska kulman $\\theta$ kehäpiste on suoralla $y = 4x$, kehäpisteet ovat muotoa $\\left(x,\\ 4x\\right)$. Trigonometrinen identiteetti $\\sin^2 \\theta + \\cos^2 \\theta = 1\\ \\Leftrightarrow\\ (4x)^2 + x^2 = 1\\ \\Leftrightarrow\\ 17x^2 = 1\\ \\Leftrightarrow\\ x = \\pm \\frac{\\sqrt{17}}{17}$. Kulman $\\theta$ kosini tarkoittaa kehäpisteen x-koordinaattia, joten $\\cos \\theta = \\frac{\\sqrt{17}}{17}\\ \\Leftrightarrow\\ \\theta = 75{,}96\\ldots^\\circ \\approx 76{,}0^\\circ$ ja $\\cos \\theta = -\\frac{\\sqrt{17}}{17}\\ \\Leftrightarrow\\ \\theta = 104{,}03\\ldots^\\circ \\approx 104{,}0^\\circ$, kun ratkaisut rajataan välille $[0,\\ \\pi]$ eli välille $0 \\le \\theta \\le 180^\\circ$. Siis kulma $\\theta = 76{,}0^\\circ$ tai $\\theta = 104{,}0^\\circ$."
+      }
+    ]
+  },
+  {
+    "id": "OSAIV_T1",
+    "section": "Osa IV",
+    "title": "Tehtävä 1",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Aurinkopaneelien tuottoa $P$ voidaan mallintaa trigonometrian avulla riippuen auringon korkeuskulmasta $\\theta$ ja sen korkeuden maksimista $\\theta_{\\max}$. Tällöin aurinkopaneelien tuotto voidaan määritellä funktiolla $P(\\theta) = P_{\\mathrm{max}} \\sin \\theta$, missä $P_{\\max}$ on aurinkopaneelin tuottomaksimi. Aurinkopaneelit saavuttavat tuottomaksiminsa, kun $\\theta_{\\max} = 60^\\circ$."
+      },
+      {
+        "type": "text",
+        "content": "a) Määritä aurinkopaneelien tuotto, kun $\\theta = 40^\\circ$ ja tuottomaksimi on $2000\\ \\mathrm{W}$."
+      },
+      {
+        "type": "text",
+        "content": "b) Mikä on korkeuskulma, kun paneelien tuotto on $500\\ \\mathrm{W}$ ja $P_{\\max} = 1000\\ \\mathrm{W}$? Anna vastaus radiaaneina."
+      },
+      {
+        "type": "text",
+        "content": "c) Olkoon $P_{\\max} = 2000\\ \\mathrm{W}$ ja $\\theta = 30^\\circ$. Kuinka paljon on aurinkopaneelien tuoton poikkeama $\\Delta P$ maksimituotosta?"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a) Tuotto $P$ on $P(40^\\circ) = 2000\\ \\mathrm{W} \\cdot \\sin(40^\\circ) \\approx 1300\\ \\mathrm{W}$"
+      },
+      {
+        "type": "text",
+        "content": "b) $500\\ \\mathrm{W} = 1000\\ \\mathrm{W} \\cdot \\sin \\theta\\ \\Leftrightarrow\\ \\frac{500}{1000} = \\sin \\theta\\ \\Leftrightarrow\\ \\theta = \\arcsin\\left(\\frac{1}{2}\\right) = 30^\\circ = \\frac{\\pi}{6}$"
+      },
+      {
+        "type": "text",
+        "content": "c) $\\Delta P = P_{\\max} - P(30^\\circ) = 2000\\ \\mathrm{W} - 2000\\ \\mathrm{W} \\cdot \\sin(30^\\circ) = 1000\\ \\mathrm{W}$"
+      }
+    ]
+  },
+  {
+    "id": "OSAIV_T2",
+    "section": "Osa IV",
+    "title": "Tehtävä 2",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Todista, että yhtälö $\\sin^2x = \\frac{1}{2}\\left(1 - \\cos(2x)\\right)$ on voimassa kaikilla $x \\in \\mathbb{R}$."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Koska $\\cos 2x = \\cos^2 x - \\sin^2 x = \\cos^2 x - 1 + \\cos^2 x = 2\\cos^2 x - 1$, niin $\\frac{1}{2}\\left(1 - \\cos(2x)\\right) = \\frac{1}{2}\\left(1 - (2\\cos^2 x - 1)\\right) = \\frac{1}{2}(2 - 2\\cos^2 x) = 1 - \\cos^2 x = \\sin^2 x$, sillä trigonometrinen identiteetti $\\sin^2 x + \\cos^2 x = 1\\ \\Leftrightarrow\\ \\sin^2 x = 1 - \\cos^2 x$. On osoitettu, että $\\sin^2 x = \\frac{1}{2}(1 - \\cos(2x))$ kaikilla $x \\in \\mathbb{R}$."
+      }
+    ]
+  },
+  {
+    "id": "OSAIV_T3",
+    "section": "Osa IV",
+    "title": "Tehtävä 3",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Olkoon $0 \\le a \\le 1$. Osoita, että\n\n$$2^{a-1} + 3^{a+1} \\le 10.$$"
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "Koska $0 \\le a \\le 1$, niin on olemassa sellainen $t \\in \\mathbb{R}$, että $a = 1 - t$, missä $0 \\le t \\le 1$. Epäyhtälö saa muodon $2^{(1 - t) - 1} + 3^{(1 - t) + 1} \\le 10\\ \\Leftrightarrow\\ 2^{-t} + 3^{2 - t} \\le 10$. Tutkitaan epäyhtälön vasemman puolen termejä ja niiden ääriarvoja erikseen. Termin $2^{-t}$ suurin arvo saadaan, kun $t = 0$, jolloin $2^{-0} = 1$. Vastaavasti pienin arvo saavutetaan, kun $t = 1$, jolloin $2^{-1} = \\frac{1}{2}$. Termin $3^{2 - t}$ suurin arvo on kohdassa $t = 0$, jolloin $3^2 = 9$ ja pienin arvo $3^1 = 3$. Tällöin epäyhtälö termien suurimmille arvoille on $2^{-0} + 3^{2 - 0} \\le 10\\ \\Leftrightarrow\\ 1 + 9 \\le 10\\ \\Leftrightarrow\\ 10 \\le 10$, joka on aina tosi. On osoitettu, että $2^{a - 1} + 3^{a + 1} \\le 10$, kun $0 \\le a \\le 1$."
+      }
+    ]
+  },
+  {
+    "id": "OSAIV_T4",
+    "section": "Osa IV",
+    "title": "Tehtävä 4",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Eräässä kaupungissa lyhyimmän päivän (22.12) pituus auringonnoususta laskuun oli 3 tuntia ja 23 minuuttia ja pisimmän päivän (21.6) pituus 22 tuntia ja 34 minuuttia. Tutkijoiden mukaan vuoden $x$:nnen päivän pituutta tunteina voidaan mallintaa sinifunktiolla."
+      },
+      {
+        "type": "text",
+        "content": "a) Määritä funktion lauseke. Vihje: 22.12 on vuoden 356. päivä ja 21.6 on vuoden 172. päivä."
+      },
+      {
+        "type": "text",
+        "content": "b) Tee matemaattinen arvio siitä, mikä on päivän pituus tammikuun 4. päivänä."
+      },
+      {
+        "type": "text",
+        "content": "c) Millä välillä päivän pituus on vähintään 19 tuntia? Ratkaise graafisesti."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a) Funktion lauseke on muotoa $f(x) = a\\sin(b(x - c)) + d$, missä $a > 0$ ja $b \\ne 0$. Funktio kuvaa vuoden x:nnen päivän pituutta tunteina. Koska 22.12 on vuoden 356. päivä ja 21.6 172. päivä ja vastaavien päivien pituudet olivat 3 tuntia ja 23 minuuttia sekä 22 tuntia ja 34 minuuttia, saadaan $f(356) = 3 + \\frac{23}{60} \\approx 3{,}38\\ \\mathrm{h}$ ja $f(172) = 22 + \\frac{34}{60} \\approx 22{,}6\\ \\mathrm{h}$. Funktion lausekkeessa vakio $a$ muuttaa sinifunktion ampilitudia, ja se on puolet suurimman ja pienimmän arvon erotuksesta eli $a = \\frac{22{,}6 - 3{,}38}{2} = 9{,}61$. Vakio $b$ muuttaa sinifunktion perusjaksoa. Nyt tarkasteltava jakso on 365 päivää, joten $b$ saadaan yhtälöstä $\\frac{2\\pi}{b} = 365\\ \\Leftrightarrow\\ b = \\frac{2\\pi}{365}$. Vakio $d$ siirtää kuvaajaa pystysuunnassa. Koska $a = 9{,}61$, mutta funktion suurin arvo on kuitenkin 22,6, on $d = 22{,}6 - 9{,}61 = 12{,}99$. Koska lisäksi tiedetään, että $f(356) = 3{,}38$, saadaan yhtälö $3{,}38 = 9{,}61\\sin\\left(\\frac{2\\pi}{365}(356 - c)\\right) + 12{,}99$, missä $0 \\le c \\le 365$. Laskimella saadaan $c = 82{,}25$. \n\nFunktion lauseke on $f(x) = 9{,}61\\sin\\left(\\frac{2\\pi}{365}(x - 82{,}25)\\right) + 12{,}99$."
+      },
+      {
+        "type": "text",
+        "content": "b) Koska $f(4) = 9{,}61\\sin\\left(\\frac{2\\pi}{365}(4 - 82{,}25)\\right) + 12{,}99 \\approx 3{,}62$, malliin nojautuneen matemaattisen arvion mukaan päivän pituus tammikuun 4. päivänä on 3,62 tuntia."
+      },
+      {
+        "type": "text",
+        "content": "c) Piirretään funktion kuvaaja ja suora $y = 19$ geometriaohjelmaan sekä ratkaistaan näiden leikkauspisteet. Päivän pituus on yli 19 tuntia 122. päivän ja 225. päivän välillä."
+      },
+      {
+        "type": "image",
+        "src": "/utils/MAA5/leikkauspisteet.png",
+        "alt": ""
+      }
+    ]
+  },
+  {
+    "id": "OSAIV_T5",
+    "section": "Osa IV",
+    "title": "Tehtävä 5",
+    "promptBlocks": [
+      {
+        "type": "text",
+        "content": "Ihmisen aiheuttama ilmaston lämpeneminen on yksi ihmiskunnan suurimmista maailmanlaajuisista kriiseistä tällä hetkellä. Maapallon keskilämpötilaa ajan $t$ kuluttua voidaan mallintaa funktiolla $T(t)=T_0+ve^{rt}$, missä $T_0$ kuvaa maapallon lämpötilaa vuonna 2023, $v$ maapallon lämpenemisnopeutta ja $r$ korjauskerrointa, joka ottaa huomioon luonnolliset lämpötilan vaihtelut."
+      },
+      {
+        "type": "text",
+        "content": "a) Suomalaisen sääpalveluyrityksen Forecan tietojen mukaan maapallon keskilämpötila oli eräänä vuonna 14{,}98 °C. Oletetaan, että lämpötila nousee 0{,}3 °C vuodessa. Määritä maapallon keskilämpötila 40 vuoden päästä. Käytä korjauskerrointa $r=0{,}05$. Anna vastaus celsiusasteina yhden desimaalin tarkkuudella."
+      },
+      {
+        "type": "text",
+        "content": "b) Kuinka monta vuotta kuluu, jotta keskilämpötila olisi noussut vuodesta 2063 kolme celsiusastetta? Käytä korjauskerrointa $r=0{,}05$ ja ratkaisussasi pyöristettyä a)-kohdan arvoa."
+      },
+      {
+        "type": "text",
+        "content": "c) Mitä funktion arvoille tapahtuisi, jos korjauskerroin $r<0$? Vähentyisikö maapallon lämpötila? Perustele vastaus matemaattisesti."
+      }
+    ],
+    "answerBlocks": [
+      {
+        "type": "text",
+        "content": "a) Maapallon keskilämpötilaa 40 vuoden päästä kuvaa lauseke $T(40) = 14{,}98 + 0{,}3 \\cdot e^{0{,}05 \\cdot 40} \\approx 17{,}2^\\circ\\mathrm{C}$. Keskilämpötila olisi siis 17,2 celsiusastetta."
+      },
+      {
+        "type": "text",
+        "content": "b) Jos lämpötila olisi noussut kolme celsiusastetta, se olisi $17{,}2^\\circ\\mathrm{C} + 3^\\circ\\mathrm{C} = 20{,}2^\\circ\\mathrm{C}$. Saadaan yhtälö  \n$$20{,}2 = 17{,}2 + 0{,}3 \\cdot e^{0{,}05t} \\ \\Leftrightarrow\\ 3 = 0{,}3e^{0{,}05t} \\ \\Leftrightarrow\\ 10 = e^{0{,}05t} \\ \\Leftrightarrow\\ 0{,}05t = \\ln(10) \\ \\Leftrightarrow\\ t = \\frac{\\ln(10)}{0{,}05} \\approx 46{,}1$$\n\nKuluu siis 46,1 vuotta, jotta keskilämpötila olisi noussut kolme celsiusastetta vuodesta 2063."
+      },
+      {
+        "type": "text",
+        "content": "c) Kun $r > 0$, eksponentiaalinen kasvu $e^{rt}$ lisääntyy, mikä tarkoittaa lämpötilan muutosnopeuden kasvua ajan edetessä. Vastaavasti, kun $r < 0$, eksponentiaalinen kasvu hidastuu, mikä tarkoittaa lämpötilan muutosnopeuden hidastumista ajan myötä. Maapallon lämpötila ei siis laskisi, vaan lämpötilan nousu olisi hitaampaa."
+      }
+    ]
+  }
+]
