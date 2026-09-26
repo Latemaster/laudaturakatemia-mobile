@@ -52,6 +52,15 @@ export default function TaskCardView({ card, onViewSolution }: TaskCardViewProps
         onExpandedChange={setIsExpanded}
       >
         <BlockList blocks={showSolution ? problem.answerBlocks : problem.promptBlocks} />
+        {isExpanded && (
+          <button
+            type="button"
+            onClick={toggleSolution}
+            className="mt-6 w-full rounded-2xl bg-accent px-4 py-3 text-center font-semibold text-white shadow-md"
+          >
+            {showSolution ? 'Takaisin tehtävään' : 'Näytä ratkaisu'}
+          </button>
+        )}
       </ExpandableBox>
 
       {!isExpanded && (
