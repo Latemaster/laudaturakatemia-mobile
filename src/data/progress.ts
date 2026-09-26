@@ -26,6 +26,14 @@ export function getOverallPct(engagedIds: Record<string, true>): number {
 
 export type Difficulty = 'easy' | 'mid' | 'hard'
 
+// Point weight per solved problem, by difficulty.
+export const DIFFICULTY_POINTS: Record<Difficulty, number> = { easy: 1, mid: 2, hard: 5 }
+
+// Every course splits its 35 problems 10/10/15 across easy/mid/hard (see
+// classifyDifficulty below) — used where a course's per-tier totals are
+// needed without walking the full card list (e.g. example-data generation).
+export const DIFFICULTY_TOTALS: Record<Difficulty, number> = { easy: 10, mid: 10, hard: 15 }
+
 // Every course's 35 problems are split 10/10/10/5 across "Osa I".."Osa IV"
 // (some courses spell it "Osio"), matching the source packets' own
 // perustehtävä / keskivaikea / syventävä / vaativa split. Osa III and IV are

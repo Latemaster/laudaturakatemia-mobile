@@ -1,10 +1,49 @@
 import { GRADE_BANDS, predictGrade, type FinnishGrade } from '../data/grade'
+import { COURSES } from '../data/courses'
+import { DIFFICULTY_POINTS, DIFFICULTY_TOTALS, type Difficulty } from '../data/progress'
+
+const WEEKS = 8
+const DIFFICULTIES: Difficulty[] = ['easy', 'mid', 'hard']
+// Rough weekly odds of engaging one more problem of each difficulty, per
+// course — tuned so hard problems visibly lag behind easy/mid, like a real
+// study pattern would.
+const WEEKLY_ODDS: Record<Difficulty, number> = { easy: 0.7, mid: 0.55, hard: 0.35 }
+
+const MAX_POINTS_PER_COURSE = DIFFICULTIES.reduce(
+  (sum, d) => sum + DIFFICULTY_TOTALS[d] * DIFFICULTY_POINTS[d],
+  0,
+)
+const MAX_TOTAL_POINTS = MAX_POINTS_PER_COURSE * COURSES.length
 
 // Placeholder trend until real per-session history exists (no time-series
-// tracking yet — engagement only knows "now"). Illustrates the intended
-// visual with an example series that climbs into the M band, so the chart
-// can be reviewed before wiring it to real data later.
-const EXAMPLE_SERIES = [20, 27, 33, 40, 47, 53, 60, 66]
+// tracking yet — engagement only knows "now"). Simulates a random but
+// plausible weighted-points history across all courses (hard=5, mid=2,
+// easy=1 points per solved problem) so the visual can be reviewed before
+// it's wired to real data later. Generated once per page load, not per
+// render, so it doesn't jitter every time something else re-renders.
+function generateExampleSeries(): number[] {
+  const engaged: Record<Difficulty, number>[] = COURSES.map(() => ({ easy: 0, mid: 0, hard: 0 }))
+  const series: number[] = []
+
+  for (let week = 0; week < WEEKS; week++) {
+    for (let c = 0; c < COURSES.length; c++) {
+      for (const d of DIFFICULTIES) {
+        if (Math.random() < WEEKLY_ODDS[d]) {
+          engaged[c][d] = Math.min(DIFFICULTY_TOTALS[d], engaged[c][d] + 1)
+        }
+      }
+    }
+    const totalPoints = engaged.reduce(
+      (sum, course) => sum + DIFFICULTIES.reduce((s, d) => s + course[d] * DIFFICULTY_POINTS[d], 0),
+      0,
+    )
+    series.push(Math.round((totalPoints / MAX_TOTAL_POINTS) * 100))
+  }
+
+  return series
+}
+
+const EXAMPLE_SERIES = generateExampleSeries()
 
 const TIER_STROKE: Record<FinnishGrade['tier'], string> = {
   high: 'stroke-good',
@@ -110,12 +149,17 @@ export default function ProgressChart() {
           />
         ))}
 
-        <text x={PAD_LEFT} y={HEIGHT - 6} textAnchor="start" className="fill-ink-dim/60 text-[9px]">
-          8 vk sitten
-        </text>
-        <text x={WIDTH - PAD_RIGHT} y={HEIGHT - 6} textAnchor="end" className="fill-ink-dim/60 text-[9px]">
-          Nyt
-        </text>
+        {series.map((_, i) => (
+          <text
+            key={i}
+            x={xFor(i, series.length)}
+            y={HEIGHT - 6}
+            textAnchor="middle"
+            className="fill-ink-dim/60 text-[8px]"
+          >
+            vk {i + 1}
+          </text>
+        ))}
       </svg>
     </div>
   )
