@@ -1,11 +1,8 @@
-import type { Card, Problem, Topic } from '../types'
+import type { Card, Problem } from '../types'
+import { COURSE_MAP } from './courses'
 import maa6Problems from './problems/maa6.json'
 
-const TOPICS: Record<string, Topic> = {
-  derivaatta: { code: 'MAA6', name: 'Derivaatta' },
-  trigonometria: { code: 'MAA5', name: 'Trigonometria' },
-  integraalit: { code: 'MAA7', name: 'Integraalilaskenta' },
-}
+const TOPICS = COURSE_MAP
 
 const maa6: Problem[] = maa6Problems as Problem[]
 
@@ -14,7 +11,7 @@ export const cards: Card[] = [
   {
     id: 'der-lesson',
     type: 'lesson',
-    topic: TOPICS.derivaatta,
+    topic: TOPICS.MAA6,
     title: 'Derivaatan perussäännöt',
     body:
       'Derivaatta kertoo funktion muutosnopeuden. Potenssisääntö: $(x^n)\' = n \\cdot x^{n-1}$.\n\n' +
@@ -25,7 +22,7 @@ export const cards: Card[] = [
     (problem): Card => ({
       id: `der-task-${problem.id}`,
       type: 'task',
-      topic: TOPICS.derivaatta,
+      topic: TOPICS.MAA6,
       problem,
     }),
   ),
@@ -34,7 +31,7 @@ export const cards: Card[] = [
   {
     id: 'trig-lesson',
     type: 'lesson',
-    topic: TOPICS.trigonometria,
+    topic: TOPICS.MAA5,
     title: 'Yksikköympyrä ja peruskaavat',
     body:
       'Yksikköympyrällä pisteen koordinaatit kulman $\\alpha$ kohdalla ovat $(\\cos \\alpha, \\sin \\alpha)$.\n\n' +
@@ -44,7 +41,7 @@ export const cards: Card[] = [
   {
     id: 'trig-ex-1',
     type: 'exercise',
-    topic: TOPICS.trigonometria,
+    topic: TOPICS.MAA5,
     question: 'Mikä on sin(30°) arvo?',
     options: [
       { id: 'a', text: '1/2', correct: true },
@@ -57,7 +54,7 @@ export const cards: Card[] = [
   {
     id: 'trig-ex-2',
     type: 'exercise',
-    topic: TOPICS.trigonometria,
+    topic: TOPICS.MAA5,
     question: 'Mitä sin²x + cos²x on aina, kun x on reaaliluku?',
     options: [
       { id: 'a', text: '0', correct: false },
@@ -71,7 +68,7 @@ export const cards: Card[] = [
   {
     id: 'trig-ex-3',
     type: 'exercise',
-    topic: TOPICS.trigonometria,
+    topic: TOPICS.MAA5,
     question:
       'Ratkaise yhtälö sin(x) = 1/2, kun x ∈ [0°, 360°). Kuinka monta ratkaisua yhtälöllä on?',
     options: [
@@ -88,7 +85,7 @@ export const cards: Card[] = [
   {
     id: 'int-lesson',
     type: 'lesson',
-    topic: TOPICS.integraalit,
+    topic: TOPICS.MAA7,
     title: 'Integraalifunktio',
     body:
       'Integrointi on derivoinnin käänteisoperaatio. Potenssisääntö integroinnille:\n\n' +
@@ -98,7 +95,7 @@ export const cards: Card[] = [
   {
     id: 'int-ex-1',
     type: 'exercise',
-    topic: TOPICS.integraalit,
+    topic: TOPICS.MAA7,
     question: 'Laske ∫3x² dx',
     options: [
       { id: 'a', text: 'x³ + C', correct: true },
@@ -111,7 +108,7 @@ export const cards: Card[] = [
   {
     id: 'int-ex-2',
     type: 'exercise',
-    topic: TOPICS.integraalit,
+    topic: TOPICS.MAA7,
     question: 'Laske määrätty integraali ∫₀² (2x + 1) dx',
     options: [
       { id: 'a', text: '4', correct: false },
@@ -125,7 +122,7 @@ export const cards: Card[] = [
   {
     id: 'int-ex-3',
     type: 'exercise',
-    topic: TOPICS.integraalit,
+    topic: TOPICS.MAA7,
     question: 'Mikä on funktion cos(x) integraalifunktio?',
     options: [
       { id: 'a', text: '−sin(x) + C', correct: false },

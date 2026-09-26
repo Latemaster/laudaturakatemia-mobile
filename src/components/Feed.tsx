@@ -7,9 +7,11 @@ import ProgressDots from './ProgressDots'
 
 interface FeedProps {
   cards: Card[]
+  onAnswer?: (cardId: string, correct: boolean) => void
+  onBack?: () => void
 }
 
-export default function Feed({ cards }: FeedProps) {
+export default function Feed({ cards, onAnswer, onBack }: FeedProps) {
   const containerRef = useRef<HTMLDivElement>(null)
   const cardRefs = useRef<(HTMLDivElement | null)[]>([])
   const [currentIndex, setCurrentIndex] = useState(0)
@@ -37,13 +39,23 @@ export default function Feed({ cards }: FeedProps) {
   return (
     <>
       <ProgressDots total={cards.length} current={currentIndex} />
+      {onBack && (
+        <button
+          type="button"
+          onClick={onBack}
+          aria-label="Takaisin kursseihin"
+          className="fixed left-4 top-[calc(env(safe-area-inset-top)+3.5rem)] z-20 flex h-9 w-9 items-center justify-center rounded-full bg-surface/90 text-lg text-ink shadow-md ring-1 ring-ink/5 backdrop-blur"
+        >
+          ←
+        </button>
+      )}
       <div ref={containerRef} className="snap-feed">
         {cards.map((card, index) => (
           <div key={card.id} ref={(el) => (cardRefs.current[index] = el)}>
             {card.type === 'lesson' ? (
               <LessonCardView card={card} showSwipeHint={index === 0} />
             ) : card.type === 'exercise' ? (
-              <ExerciseCardView card={card} />
+              <ExerciseCardView card={card} onAnswer={(correct) => onAnswer?.(card.id, correct)} />
             ) : (
               <TaskCardView card={card} />
             )}

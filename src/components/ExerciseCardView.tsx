@@ -7,11 +7,12 @@ import { CheckIcon, ListCheckIcon, XIcon } from './icons'
 
 interface ExerciseCardViewProps {
   card: ExerciseCard
+  onAnswer?: (correct: boolean) => void
 }
 
 const LETTERS = ['A', 'B', 'C', 'D', 'E', 'F']
 
-export default function ExerciseCardView({ card }: ExerciseCardViewProps) {
+export default function ExerciseCardView({ card, onAnswer }: ExerciseCardViewProps) {
   const [selectedId, setSelectedId] = useState<string | null>(null)
 
   const isAnswered = selectedId !== null
@@ -63,7 +64,10 @@ export default function ExerciseCardView({ card }: ExerciseCardViewProps) {
             key={option.id}
             type="button"
             disabled={isAnswered}
-            onClick={() => setSelectedId(option.id)}
+            onClick={() => {
+              setSelectedId(option.id)
+              onAnswer?.(option.correct)
+            }}
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: false, amount: 0.6 }}
