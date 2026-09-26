@@ -10,7 +10,7 @@ interface CardShellProps {
 
 const COLLAPSED_CLASSES = 'mx-auto flex w-full max-w-md flex-1 flex-col overflow-hidden'
 const EXPANDED_CLASSES =
-  'scrollbar-hide fixed inset-0 z-50 mx-auto w-full max-w-md overflow-y-auto overscroll-contain bg-page px-6 pb-10'
+  'scrollbar-hide fixed inset-0 z-50 mx-auto w-full max-w-md overflow-y-auto overflow-x-hidden overscroll-contain bg-page px-6 pb-10'
 
 export default function CardShell({ topic, children }: CardShellProps) {
   const outerRef = useRef<HTMLDivElement>(null)
@@ -45,7 +45,21 @@ export default function CardShell({ topic, children }: CardShellProps) {
 
   return (
     <section className="grid-bg snap-card relative flex w-full flex-col bg-page px-6 pb-6 pt-[env(safe-area-inset-top)]">
-      {!isExpanded && <div className="mb-4 mt-24">{badge}</div>}
+      {!isExpanded && (
+        <div className="mb-4 mt-24 flex items-start justify-between gap-3">
+          {badge}
+          {isOverflowing && (
+            <button
+              type="button"
+              onClick={() => setIsExpanded(true)}
+              aria-label="Näytä koko sisältö"
+              className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-surface text-ink shadow-lg ring-1 ring-ink/10"
+            >
+              <ExpandIcon className="h-5 w-5" />
+            </button>
+          )}
+        </div>
+      )}
 
       <div ref={outerRef} className={isExpanded ? EXPANDED_CLASSES : COLLAPSED_CLASSES}>
         {isExpanded && (
@@ -65,17 +79,6 @@ export default function CardShell({ topic, children }: CardShellProps) {
           {children}
         </div>
       </div>
-
-      {isOverflowing && !isExpanded && (
-        <button
-          type="button"
-          onClick={() => setIsExpanded(true)}
-          aria-label="Näytä koko sisältö"
-          className="absolute bottom-6 right-6 flex h-11 w-11 items-center justify-center rounded-full bg-surface text-ink shadow-lg ring-1 ring-ink/10"
-        >
-          <ExpandIcon className="h-5 w-5" />
-        </button>
-      )}
     </section>
   )
 }
