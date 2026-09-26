@@ -14,15 +14,26 @@ export const FINNISH_GRADES: FinnishGrade[] = [
   { letter: 'I', name: 'Improbatur', tier: 'low' },
 ]
 
-// Placeholder mapping until real scoring (MCQ correctness, lesson completion)
-// exists — for now it's driven purely by how much of each course has been
-// engaged with, not by how well. Thresholds are provisional.
+export interface GradeBand {
+  grade: FinnishGrade
+  min: number
+}
+
+// Placeholder thresholds until real scoring (MCQ correctness, lesson
+// completion) exists — for now grade is driven purely by how much of each
+// course has been engaged with, not by how well. `min` is the percentage a
+// band starts at; bands are listed high to low and cover 0-100 with no gaps.
+export const GRADE_BANDS: GradeBand[] = [
+  { grade: FINNISH_GRADES[0], min: 90 }, // L
+  { grade: FINNISH_GRADES[1], min: 75 }, // E
+  { grade: FINNISH_GRADES[2], min: 60 }, // M
+  { grade: FINNISH_GRADES[3], min: 45 }, // C
+  { grade: FINNISH_GRADES[4], min: 30 }, // B
+  { grade: FINNISH_GRADES[5], min: 15 }, // A
+  { grade: FINNISH_GRADES[6], min: 0 }, // I
+]
+
 export function predictGrade(overallPct: number): FinnishGrade {
-  if (overallPct >= 90) return FINNISH_GRADES[0] // L
-  if (overallPct >= 75) return FINNISH_GRADES[1] // E
-  if (overallPct >= 60) return FINNISH_GRADES[2] // M
-  if (overallPct >= 45) return FINNISH_GRADES[3] // C
-  if (overallPct >= 30) return FINNISH_GRADES[4] // B
-  if (overallPct >= 15) return FINNISH_GRADES[5] // A
-  return FINNISH_GRADES[6] // I
+  const band = GRADE_BANDS.find((b) => overallPct >= b.min)
+  return band ? band.grade : FINNISH_GRADES[FINNISH_GRADES.length - 1]
 }

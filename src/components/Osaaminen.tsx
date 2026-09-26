@@ -3,6 +3,7 @@ import { COURSES } from '../data/courses'
 import { getCourseDifficultyBreakdown, getCourseProgress, getOverallPct, type Difficulty } from '../data/progress'
 import { predictGrade, type FinnishGrade } from '../data/grade'
 import { ChevronDownIcon } from './icons'
+import ProgressChart from './ProgressChart'
 import type { TopicCode } from '../types'
 
 interface OsaaminenProps {
@@ -83,6 +84,8 @@ export default function Osaaminen({ engagedIds }: OsaaminenProps) {
             Ennuste perustuu käytyihin tehtäviin, ei vielä oikeisiin vastauksiin.
           </p>
         </div>
+
+        <ProgressChart />
 
         <div className="flex flex-col gap-3">
           {COURSES.map((course) => {
