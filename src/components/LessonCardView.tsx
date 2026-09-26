@@ -1,6 +1,8 @@
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 import type { LessonCard } from '../types'
 import CardShell from './CardShell'
+import ExpandableBox from './ExpandableBox'
 import KindLabel from './KindLabel'
 import MathText from './MathText'
 import { BookIcon } from './icons'
@@ -11,6 +13,8 @@ interface LessonCardViewProps {
 }
 
 export default function LessonCardView({ card, showSwipeHint }: LessonCardViewProps) {
+  const [isExpanded, setIsExpanded] = useState(false)
+
   return (
     <CardShell topic={card.topic}>
       <KindLabel icon={<BookIcon />} label="Oppitunti" />
@@ -23,11 +27,14 @@ export default function LessonCardView({ card, showSwipeHint }: LessonCardViewPr
       >
         {card.title}
       </motion.h1>
-      <div className="text-lg leading-relaxed text-ink-dim">
-        <MathText content={card.body} />
-      </div>
 
-      {showSwipeHint && (
+      <ExpandableBox isExpanded={isExpanded} onExpandedChange={setIsExpanded}>
+        <div className="text-lg leading-relaxed text-ink-dim">
+          <MathText content={card.body} />
+        </div>
+      </ExpandableBox>
+
+      {!isExpanded && showSwipeHint && (
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1, y: [0, -8, 0] }}
