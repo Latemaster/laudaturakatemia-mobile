@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import type { ProblemBlock, TaskCard } from '../types'
+import AnswerBox from './AnswerBox'
 import CardShell from './CardShell'
 import ExpandableBox from './ExpandableBox'
 import KindLabel from './KindLabel'
@@ -52,28 +53,16 @@ export default function TaskCardView({ card, onViewSolution }: TaskCardViewProps
         onExpandedChange={setIsExpanded}
       >
         <BlockList blocks={showSolution ? problem.answerBlocks : problem.promptBlocks} />
-        {isExpanded && (
-          <button
-            type="button"
-            onClick={toggleSolution}
-            className="mt-6 w-full rounded-2xl bg-accent px-4 py-3 text-center font-semibold text-white shadow-md"
-          >
-            {showSolution ? 'Takaisin tehtävään' : 'Näytä ratkaisu'}
-          </button>
-        )}
+        <button
+          type="button"
+          onClick={toggleSolution}
+          className="mt-6 w-full rounded-2xl bg-accent px-4 py-3 text-center font-semibold text-white shadow-md"
+        >
+          {showSolution ? 'Takaisin tehtävään' : 'Näytä ratkaisu'}
+        </button>
       </ExpandableBox>
 
-      {!isExpanded && (
-        <div className="sticky bottom-0 mt-4 bg-gradient-to-t from-page from-60% to-transparent pb-4 pt-6">
-          <button
-            type="button"
-            onClick={toggleSolution}
-            className="w-full rounded-2xl bg-accent px-4 py-3 text-center font-semibold text-white shadow-md"
-          >
-            {showSolution ? 'Takaisin tehtävään' : 'Näytä ratkaisu'}
-          </button>
-        </div>
-      )}
+      {!isExpanded && <AnswerBox />}
     </CardShell>
   )
 }
