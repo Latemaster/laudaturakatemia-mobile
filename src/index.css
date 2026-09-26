@@ -38,6 +38,15 @@ body {
   display: none;
 }
 
+.scrollbar-hide {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
 .snap-card {
   height: 100dvh;
   scroll-snap-align: start;
