@@ -36,7 +36,9 @@ function App() {
   return (
     <>
       <TopMenu active={section} onSelect={handleSelectSection} />
-      {section === 'kurssit' && !selectedCourse && <CourseList onSelect={setSelectedCourse} />}
+      {section === 'kurssit' && !selectedCourse && (
+        <CourseList onSelect={setSelectedCourse} engagedIds={engagedIds} />
+      )}
       {section === 'osaaminen' && <Osaaminen engagedIds={engagedIds} />}
       {showFeed && (
         <Feed
