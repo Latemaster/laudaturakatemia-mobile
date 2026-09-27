@@ -6,6 +6,7 @@ import type { LessonCard } from '../../types'
 const maa10Theory: Array<Omit<LessonCard, 'id' | 'type' | 'topic'>> = [
   {
     title: 'Avaruusvektori ja kantavektorit',
+    visual: 'space-vector-axes',
     body:
       'Avaruusvektori yleistää tason vektorit kolmeen ulottuvuuteen lisäämällä $z$-komponentin. ' +
       'Kantavektorit ovat lyhyt tapa kirjoittaa mikä tahansa avaruusvektori.\n\n' +
@@ -16,6 +17,7 @@ const maa10Theory: Array<Omit<LessonCard, 'id' | 'type' | 'topic'>> = [
   },
   {
     title: 'Suoran parametrimuotoinen esitys ja leikkauspiste',
+    visual: 'parametric-line-3d',
     body:
       'Avaruudessa suora esitetään lähtöpisteen ja suuntavektorin avulla, koska pelkkä yhtälö ei ' +
       'enää riitä (kuten tasossa).\n\n' +
@@ -25,6 +27,7 @@ const maa10Theory: Array<Omit<LessonCard, 'id' | 'type' | 'topic'>> = [
   },
   {
     title: 'Taso ja sen normaalimuoto',
+    visual: 'plane-normal-3d',
     body:
       'Taso voidaan määritellä joko kahdella suuntavektorilla tai yhdellä tasoa vastaan kohtisuoralla ' +
       'normaalivektorilla - jälkimmäinen johtaa käytännöllisempään yhtälöön.\n\n' +
@@ -34,6 +37,7 @@ const maa10Theory: Array<Omit<LessonCard, 'id' | 'type' | 'topic'>> = [
   },
   {
     title: 'Pistetulo ja vektorien välinen kulma',
+    visual: 'dot-product-angle',
     body:
       'Pistetulo yhdistää kahden vektorin pituudet ja niiden välisen kulman yhdeksi luvuksi.\n\n' +
       '- $\\vec{a}\\cdot\\vec{b} = \\|\\vec{a}\\|\\|\\vec{b}\\|\\cos\\theta$\n' +
@@ -42,6 +46,7 @@ const maa10Theory: Array<Omit<LessonCard, 'id' | 'type' | 'topic'>> = [
   },
   {
     title: 'Ristitulo ja normaalivektori',
+    visual: 'cross-product-viz',
     body:
       'Ristitulo tuottaa kahdesta vektorista kolmannen vektorin, joka on kohtisuorassa molempia ' +
       'alkuperäisiä vastaan - juuri sitä tarvitaan tason normaalivektoriksi.\n\n' +
@@ -51,6 +56,7 @@ const maa10Theory: Array<Omit<LessonCard, 'id' | 'type' | 'topic'>> = [
   },
   {
     title: 'Skalaarikolmitulo',
+    visual: 'parallelepiped-viz',
     body:
       'Skalaarikolmitulo yhdistää kolme vektoria yhdeksi luvuksi, joka kertoo niiden määräämän ' +
       'suuntaissärmiön tilavuuden.\n\n' +
@@ -60,6 +66,7 @@ const maa10Theory: Array<Omit<LessonCard, 'id' | 'type' | 'topic'>> = [
   },
   {
     title: 'Etäisyys pisteestä suoralle tai tasolle',
+    visual: 'point-line-distance',
     body:
       'Pisteen etäisyys suorasta tai tasosta lasketaan ristitulon tai normaalivektorin avulla, samaan ' +
       'tapaan kuin tasogeometriassa pisteen etäisyys suorasta.\n\n' +
@@ -69,6 +76,7 @@ const maa10Theory: Array<Omit<LessonCard, 'id' | 'type' | 'topic'>> = [
   },
   {
     title: 'Kahden muuttujan funktio, nollakohdat ja tasa-arvokäyrä',
+    visual: 'level-curves',
     body:
       'Kahden muuttujan funktio antaa arvon jokaiselle tason pisteelle $(x,y)$, joten sen kuvaaja on ' +
       'pinta kolmiulotteisessa avaruudessa.\n\n' +
@@ -79,6 +87,7 @@ const maa10Theory: Array<Omit<LessonCard, 'id' | 'type' | 'topic'>> = [
   },
   {
     title: 'Osittaisderivaatta, kriittiset pisteet ja gradientti',
+    visual: 'gradient-field',
     body:
       'Kahden muuttujan funktiota derivoidaan yhden muuttujan suhteen kerrallaan pitäen toista vakiona. ' +
       'Näin löydetään funktion kasvusuunta ja mahdolliset ääriarvokohdat.\n\n' +

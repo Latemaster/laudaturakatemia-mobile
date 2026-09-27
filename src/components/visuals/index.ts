@@ -11,16 +11,22 @@ import DistanceMidpoint from './DistanceMidpoint'
 import DotProductAngle from './DotProductAngle'
 import AreaUnderCurve from './AreaUnderCurve'
 import CompoundInterest from './CompoundInterest'
+import CrossProductViz from './CrossProductViz'
 import ExpEquationGraph from './ExpEquationGraph'
 import ExpLogMirror from './ExpLogMirror'
 import ExtremaGraph from './ExtremaGraph'
+import GradientField from './GradientField'
 import IntegrationByPartsFlow from './IntegrationByPartsFlow'
+import LevelCurves from './LevelCurves'
 import LineSlope from './LineSlope'
 import LoanComparison from './LoanComparison'
 import LogPointGraph from './LogPointGraph'
 import LogRuleCheck from './LogRuleCheck'
 import ParabolaShape from './ParabolaShape'
+import ParallelepipedViz from './ParallelepipedViz'
+import ParametricLine3D from './ParametricLine3D'
 import PerpendicularLines from './PerpendicularLines'
+import PlaneNormal3D from './PlaneNormal3D'
 import PointLineDistance from './PointLineDistance'
 import PowerRuleGraph from './PowerRuleGraph'
 import PowerRuleIntegral from './PowerRuleIntegral'
@@ -37,6 +43,7 @@ import SimilarTriangles from './SimilarTriangles'
 import SineEquationGraph from './SineEquationGraph'
 import SineWaveParams from './SineWaveParams'
 import SolidShapesGrid from './SolidShapesGrid'
+import SpaceVectorAxes from './SpaceVectorAxes'
 import TangentGraph from './TangentGraph'
 import TangentLine from './TangentLine'
 import TriangleLawsDiagram from './TriangleLawsDiagram'
@@ -88,4 +95,11 @@ export const VISUALS: Record<VisualKey, ComponentType> = {
   'series-sum': SeriesSum,
   'compound-interest': CompoundInterest,
   'loan-comparison': LoanComparison,
+  'space-vector-axes': SpaceVectorAxes,
+  'parametric-line-3d': ParametricLine3D,
+  'plane-normal-3d': PlaneNormal3D,
+  'cross-product-viz': CrossProductViz,
+  'parallelepiped-viz': ParallelepipedViz,
+  'level-curves': LevelCurves,
+  'gradient-field': GradientField,
 }

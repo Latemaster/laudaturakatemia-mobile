@@ -64,6 +64,13 @@ export type VisualKey =
   | 'series-sum'
   | 'compound-interest'
   | 'loan-comparison'
+  | 'space-vector-axes'
+  | 'parametric-line-3d'
+  | 'plane-normal-3d'
+  | 'cross-product-viz'
+  | 'parallelepiped-viz'
+  | 'level-curves'
+  | 'gradient-field'
 
 export interface LessonCard extends BaseCard {
   type: 'lesson'
