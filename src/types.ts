@@ -20,7 +20,7 @@ interface BaseCard {
   topic: Topic
 }
 
-export type VisualKey = 'quadratic-discriminant' | 'binomial-square'
+export type VisualKey = 'quadratic-discriminant' | 'binomial-square' | 'unit-circle' | 'tangent-line'
 
 export interface LessonCard extends BaseCard {
   type: 'lesson'

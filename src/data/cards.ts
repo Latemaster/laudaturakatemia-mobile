@@ -1,6 +1,15 @@
 import type { Card, LessonCard, Problem, TopicCode } from '../types'
 import { COURSE_MAP } from './courses'
 import maa2Theory from './theory/maa2'
+import maa3Theory from './theory/maa3'
+import maa4Theory from './theory/maa4'
+import maa5Theory from './theory/maa5'
+import maa6Theory from './theory/maa6'
+import maa7Theory from './theory/maa7'
+import maa9Theory from './theory/maa9'
+import maa10Theory from './theory/maa10'
+import maa11Theory from './theory/maa11'
+import maa12Theory from './theory/maa12'
 
 import maa2Problems from './problems/maa2.json'
 import maa3Problems from './problems/maa3.json'
@@ -138,6 +147,15 @@ export const cards: Card[] = COURSE_ORDER.flatMap(buildCourseCards)
 // single LESSONS blurb, so this is purely additive per course.
 const CONCEPTS: Partial<Record<TopicCode, Array<Omit<LessonCard, 'id' | 'type' | 'topic'>>>> = {
   MAA2: maa2Theory,
+  MAA3: maa3Theory,
+  MAA4: maa4Theory,
+  MAA5: maa5Theory,
+  MAA6: maa6Theory,
+  MAA7: maa7Theory,
+  MAA9: maa9Theory,
+  MAA10: maa10Theory,
+  MAA11: maa11Theory,
+  MAA12: maa12Theory,
 }
 
 export function getConceptCards(code: TopicCode): LessonCard[] {
