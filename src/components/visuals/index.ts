@@ -2,13 +2,18 @@ import type { ComponentType } from 'react'
 import type { VisualKey } from '../../types'
 import AbsoluteValueLine from './AbsoluteValueLine'
 import AngleBisector from './AngleBisector'
+import AngleSymmetry from './AngleSymmetry'
 import AngleTypes from './AngleTypes'
 import BinomialSquare from './BinomialSquare'
 import CircleEquation from './CircleEquation'
 import CircleSector from './CircleSector'
 import DistanceMidpoint from './DistanceMidpoint'
 import DotProductAngle from './DotProductAngle'
+import ExpEquationGraph from './ExpEquationGraph'
+import ExpLogMirror from './ExpLogMirror'
 import LineSlope from './LineSlope'
+import LogPointGraph from './LogPointGraph'
+import LogRuleCheck from './LogRuleCheck'
 import ParabolaShape from './ParabolaShape'
 import PerpendicularLines from './PerpendicularLines'
 import PointLineDistance from './PointLineDistance'
@@ -17,7 +22,10 @@ import RightTriangleTrig from './RightTriangleTrig'
 import ScaleFactor from './ScaleFactor'
 import ShapeAreaGrid from './ShapeAreaGrid'
 import SimilarTriangles from './SimilarTriangles'
+import SineEquationGraph from './SineEquationGraph'
+import SineWaveParams from './SineWaveParams'
 import SolidShapesGrid from './SolidShapesGrid'
+import TangentGraph from './TangentGraph'
 import TangentLine from './TangentLine'
 import TriangleLawsDiagram from './TriangleLawsDiagram'
 import UnitCircle from './UnitCircle'
@@ -48,4 +56,12 @@ export const VISUALS: Record<VisualKey, ComponentType> = {
   'vector-addition': VectorAddition,
   'dot-product-angle': DotProductAngle,
   'unit-vector': UnitVectorViz,
+  'angle-symmetry': AngleSymmetry,
+  'tangent-graph': TangentGraph,
+  'sine-equation-graph': SineEquationGraph,
+  'sine-wave-params': SineWaveParams,
+  'log-point-graph': LogPointGraph,
+  'log-rule-check': LogRuleCheck,
+  'exp-log-mirror': ExpLogMirror,
+  'exp-equation-graph': ExpEquationGraph,
 }

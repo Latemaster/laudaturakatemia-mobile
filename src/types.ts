@@ -44,6 +44,14 @@ export type VisualKey =
   | 'vector-addition'
   | 'dot-product-angle'
   | 'unit-vector'
+  | 'angle-symmetry'
+  | 'tangent-graph'
+  | 'sine-equation-graph'
+  | 'sine-wave-params'
+  | 'log-point-graph'
+  | 'log-rule-check'
+  | 'exp-log-mirror'
+  | 'exp-equation-graph'
 
 export interface LessonCard extends BaseCard {
   type: 'lesson'

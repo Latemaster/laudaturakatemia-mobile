@@ -17,6 +17,7 @@ const maa5Theory: Array<Omit<LessonCard, 'id' | 'type' | 'topic'>> = [
   },
   {
     title: 'Vastakulmat, suplementtikulmat ja jaksollisuus',
+    visual: 'angle-symmetry',
     body:
       'Tietyt kulmaparit tuottavat suoraan toisiinsa liittyviä sini- ja kosiniarvoja, ja koko funktio ' +
       'toistuu säännöllisin väliajoin.\n\n' +
@@ -27,6 +28,7 @@ const maa5Theory: Array<Omit<LessonCard, 'id' | 'type' | 'topic'>> = [
   },
   {
     title: 'Tangentti',
+    visual: 'tangent-graph',
     body:
       'Tangentti kertoo sinin ja kosinin suhteen, ja se ei ole määritelty niissä kulmissa, joissa kosini on nolla.\n\n' +
       '- $\\tan x = \\dfrac{\\sin x}{\\cos x}$\n' +
@@ -35,6 +37,7 @@ const maa5Theory: Array<Omit<LessonCard, 'id' | 'type' | 'topic'>> = [
   },
   {
     title: 'Trigonometriset yhtälöt',
+    visual: 'sine-equation-graph',
     body:
       'Trigonometrinen yhtälö ratkeaa yleensä useaan ratkaisuun funktion jaksollisuuden takia, joten ' +
       'vastaukseen lisätään kokonaislukukerrannainen jaksosta.\n\n' +
@@ -45,6 +48,7 @@ const maa5Theory: Array<Omit<LessonCard, 'id' | 'type' | 'topic'>> = [
   },
   {
     title: 'Trigonometristen funktioiden kuvaajat',
+    visual: 'sine-wave-params',
     body:
       'Sini, kosini ja tangentti tunnistaa kuvaajistaan, ja kertoimet muuttavat kuvaajan muotoa ' +
       'ennustettavalla tavalla.\n\n' +
@@ -55,6 +59,7 @@ const maa5Theory: Array<Omit<LessonCard, 'id' | 'type' | 'topic'>> = [
   },
   {
     title: 'Logaritmin määritelmä ja merkinnät',
+    visual: 'log-point-graph',
     body:
       'Logaritmi on eksponenttifunktion käänteisfunktio: se vastaa kysymykseen, mihin potenssiin kanta ' +
       'pitää korottaa, jotta saadaan haluttu luku.\n\n' +
@@ -65,6 +70,7 @@ const maa5Theory: Array<Omit<LessonCard, 'id' | 'type' | 'topic'>> = [
   },
   {
     title: 'Logaritmin ja murtopotenssien laskusäännöt',
+    visual: 'log-rule-check',
     body:
       'Logaritmin laskusäännöt vastaavat potenssien laskusääntöjä, ja murtopotenssit yhdistävät juuret ja potenssit.\n\n' +
       '- $\\log_a(xy) = \\log_a x + \\log_a y$\n' +
@@ -75,6 +81,7 @@ const maa5Theory: Array<Omit<LessonCard, 'id' | 'type' | 'topic'>> = [
   },
   {
     title: 'Eksponentti- ja logaritmifunktio',
+    visual: 'exp-log-mirror',
     body:
       'Eksponenttifunktio ja logaritmifunktio ovat toistensa käänteisfunktioita, ja niiden kuvaajat ' +
       'peilautuvat suoran $y=x$ suhteen.\n\n' +
@@ -84,6 +91,7 @@ const maa5Theory: Array<Omit<LessonCard, 'id' | 'type' | 'topic'>> = [
   },
   {
     title: 'Eksponentti- ja logaritmiyhtälöt',
+    visual: 'exp-equation-graph',
     body:
       'Eksponenttiyhtälössä tuntematon on eksponentissa ja se ratkaistaan logaritmin avulla; ' +
       'logaritmiyhtälö taas puretaan kääntämällä se eksponenttimuotoon.\n\n' +
