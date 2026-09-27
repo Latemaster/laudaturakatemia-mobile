@@ -52,6 +52,9 @@ export type VisualKey =
   | 'log-rule-check'
   | 'exp-log-mirror'
   | 'exp-equation-graph'
+  | 'secant-to-tangent'
+  | 'power-rule-graph'
+  | 'extrema-graph'
 
 export interface LessonCard extends BaseCard {
   type: 'lesson'

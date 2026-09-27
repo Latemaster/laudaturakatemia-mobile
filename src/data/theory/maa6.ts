@@ -8,6 +8,7 @@ import type { LessonCard } from '../../types'
 const maa6Theory: Array<Omit<LessonCard, 'id' | 'type' | 'topic'>> = [
   {
     title: 'Derivaatan määritelmä',
+    visual: 'secant-to-tangent',
     body:
       'Derivaatta kuvaa funktion muutosnopeutta tietyssä pisteessä - kuinka nopeasti funktion arvo ' +
       'muuttuu, kun $x$ muuttuu hieman.\n\n' +
@@ -17,6 +18,7 @@ const maa6Theory: Array<Omit<LessonCard, 'id' | 'type' | 'topic'>> = [
   },
   {
     title: 'Derivointisäännöt',
+    visual: 'power-rule-graph',
     body:
       'Käytännössä derivaattaa ei lasketa raja-arvon määritelmästä joka kerta, vaan valmiilla säännöillä.\n\n' +
       '- Vakion derivaatta: $\\dfrac{d}{dx}[c] = 0$\n' +
@@ -39,6 +41,7 @@ const maa6Theory: Array<Omit<LessonCard, 'id' | 'type' | 'topic'>> = [
   },
   {
     title: 'Ääriarvot',
+    visual: 'extrema-graph',
     body:
       'Funktion suurin ja pienin arvo (huippukohdat) löytyvät kohdista, joissa käyrän kulkusuunta ' +
       'vaihtuu - eli derivaatta on nolla.\n\n' +

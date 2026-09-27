@@ -11,15 +11,18 @@ import DistanceMidpoint from './DistanceMidpoint'
 import DotProductAngle from './DotProductAngle'
 import ExpEquationGraph from './ExpEquationGraph'
 import ExpLogMirror from './ExpLogMirror'
+import ExtremaGraph from './ExtremaGraph'
 import LineSlope from './LineSlope'
 import LogPointGraph from './LogPointGraph'
 import LogRuleCheck from './LogRuleCheck'
 import ParabolaShape from './ParabolaShape'
 import PerpendicularLines from './PerpendicularLines'
 import PointLineDistance from './PointLineDistance'
+import PowerRuleGraph from './PowerRuleGraph'
 import QuadraticDiscriminant from './QuadraticDiscriminant'
 import RightTriangleTrig from './RightTriangleTrig'
 import ScaleFactor from './ScaleFactor'
+import SecantToTangent from './SecantToTangent'
 import ShapeAreaGrid from './ShapeAreaGrid'
 import SimilarTriangles from './SimilarTriangles'
 import SineEquationGraph from './SineEquationGraph'
@@ -64,4 +67,7 @@ export const VISUALS: Record<VisualKey, ComponentType> = {
   'log-rule-check': LogRuleCheck,
   'exp-log-mirror': ExpLogMirror,
   'exp-equation-graph': ExpEquationGraph,
+  'secant-to-tangent': SecantToTangent,
+  'power-rule-graph': PowerRuleGraph,
+  'extrema-graph': ExtremaGraph,
 }
