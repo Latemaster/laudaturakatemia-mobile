@@ -30,13 +30,17 @@ export default function LessonCardView({ card, showSwipeHint }: LessonCardViewPr
         {card.title}
       </motion.h1>
 
-      <ExpandableBox isExpanded={isExpanded} onExpandedChange={setIsExpanded}>
+      <ExpandableBox
+        className="rounded-2xl border border-ink/10 bg-surface p-4 shadow-sm"
+        isExpanded={isExpanded}
+        onExpandedChange={setIsExpanded}
+      >
         {Visual && (
           <div className="mb-4">
             <Visual />
           </div>
         )}
-        <div className="text-lg leading-relaxed text-ink-dim">
+        <div className="text-base leading-relaxed text-ink">
           <MathText content={card.body} />
         </div>
       </ExpandableBox>

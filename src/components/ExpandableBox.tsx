@@ -4,6 +4,7 @@ import { ExpandIcon, XIcon } from './icons'
 
 interface ExpandableBoxProps {
   className?: string
+  fadeClassName?: string
   isExpanded: boolean
   onExpandedChange: (expanded: boolean) => void
   children: ReactNode
@@ -12,7 +13,13 @@ interface ExpandableBoxProps {
 const EXPANDED_HOST_CLASSES =
   'scrollbar-hide fixed inset-0 z-50 overflow-y-auto overflow-x-hidden overscroll-contain bg-surface px-6 pb-10 pt-[calc(env(safe-area-inset-top)+1.5rem)]'
 
-export default function ExpandableBox({ className = '', isExpanded, onExpandedChange, children }: ExpandableBoxProps) {
+export default function ExpandableBox({
+  className = '',
+  fadeClassName = 'from-surface',
+  isExpanded,
+  onExpandedChange,
+  children,
+}: ExpandableBoxProps) {
   const placeholderRef = useRef<HTMLDivElement>(null)
   const innerRef = useRef<HTMLDivElement>(null)
   const [portalHost] = useState(() => document.createElement('div'))
@@ -65,6 +72,12 @@ export default function ExpandableBox({ className = '', isExpanded, onExpandedCh
           <div ref={innerRef} className="flex flex-col">
             {children}
           </div>
+          {isOverflowing && !isExpanded && (
+            <div
+              aria-hidden
+              className={`pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t ${fadeClassName} to-transparent`}
+            />
+          )}
           {isExpanded && (
             <button
               type="button"
