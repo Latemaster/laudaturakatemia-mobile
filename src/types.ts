@@ -55,6 +55,11 @@ export type VisualKey =
   | 'secant-to-tangent'
   | 'power-rule-graph'
   | 'extrema-graph'
+  | 'riemann-sum'
+  | 'power-rule-integral'
+  | 'integration-by-parts-flow'
+  | 'area-under-curve'
+  | 'revolution-solid'
 
 export interface LessonCard extends BaseCard {
   type: 'lesson'

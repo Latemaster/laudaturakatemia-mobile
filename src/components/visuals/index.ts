@@ -9,9 +9,11 @@ import CircleEquation from './CircleEquation'
 import CircleSector from './CircleSector'
 import DistanceMidpoint from './DistanceMidpoint'
 import DotProductAngle from './DotProductAngle'
+import AreaUnderCurve from './AreaUnderCurve'
 import ExpEquationGraph from './ExpEquationGraph'
 import ExpLogMirror from './ExpLogMirror'
 import ExtremaGraph from './ExtremaGraph'
+import IntegrationByPartsFlow from './IntegrationByPartsFlow'
 import LineSlope from './LineSlope'
 import LogPointGraph from './LogPointGraph'
 import LogRuleCheck from './LogRuleCheck'
@@ -19,7 +21,10 @@ import ParabolaShape from './ParabolaShape'
 import PerpendicularLines from './PerpendicularLines'
 import PointLineDistance from './PointLineDistance'
 import PowerRuleGraph from './PowerRuleGraph'
+import PowerRuleIntegral from './PowerRuleIntegral'
 import QuadraticDiscriminant from './QuadraticDiscriminant'
+import RiemannSum from './RiemannSum'
+import RevolutionSolid from './RevolutionSolid'
 import RightTriangleTrig from './RightTriangleTrig'
 import ScaleFactor from './ScaleFactor'
 import SecantToTangent from './SecantToTangent'
@@ -70,4 +75,9 @@ export const VISUALS: Record<VisualKey, ComponentType> = {
   'secant-to-tangent': SecantToTangent,
   'power-rule-graph': PowerRuleGraph,
   'extrema-graph': ExtremaGraph,
+  'riemann-sum': RiemannSum,
+  'power-rule-integral': PowerRuleIntegral,
+  'integration-by-parts-flow': IntegrationByPartsFlow,
+  'area-under-curve': AreaUnderCurve,
+  'revolution-solid': RevolutionSolid,
 }

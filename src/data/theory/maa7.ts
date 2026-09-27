@@ -8,6 +8,7 @@ import type { LessonCard } from '../../types'
 const maa7Theory: Array<Omit<LessonCard, 'id' | 'type' | 'topic'>> = [
   {
     title: 'Integraalin määritelmä',
+    visual: 'riemann-sum',
     body:
       'Integraali kuvaa funktion kuvaajan ja x-akselin väliin jäävää pinta-alaa, ja se lasketaan ' +
       'derivoinnin käänteisoperaationa.\n\n' +
@@ -17,6 +18,7 @@ const maa7Theory: Array<Omit<LessonCard, 'id' | 'type' | 'topic'>> = [
   },
   {
     title: 'Perusintegraalit',
+    visual: 'power-rule-integral',
     body:
       'Integrointi on derivoinnin käänteisoperaatio, joten integraalifunktion oikeellisuuden voi aina ' +
       'tarkistaa derivoimalla se takaisin.\n\n' +
@@ -26,6 +28,7 @@ const maa7Theory: Array<Omit<LessonCard, 'id' | 'type' | 'topic'>> = [
   },
   {
     title: 'Osittaisintegrointi',
+    visual: 'integration-by-parts-flow',
     body:
       'Osittaisintegrointia käytetään, kun integroitava on kahden funktion tulo eikä perusintegraaleilla ' +
       'pärjätä suoraan.\n\n' +
@@ -35,6 +38,7 @@ const maa7Theory: Array<Omit<LessonCard, 'id' | 'type' | 'topic'>> = [
   },
   {
     title: 'Käyrän pinta-ala',
+    visual: 'area-under-curve',
     body:
       'Määrätty integraali antaa suoraan käyrän ja x-akselin väliin jäävän pinta-alan välillä $[a,b]$.\n\n' +
       '- Pinta-ala: $A = \\displaystyle\\int_a^b f(x)\\,dx$, kun $f(x) \\ge 0$ välillä $[a,b]$\n\n' +
@@ -43,6 +47,7 @@ const maa7Theory: Array<Omit<LessonCard, 'id' | 'type' | 'topic'>> = [
   },
   {
     title: 'Tilavuus pyörähdyskappaleesta',
+    visual: 'revolution-solid',
     body:
       'Kun käyrän ja x-akselin välinen alue pyörähtää x-akselin ympäri, syntyy pyörähdyskappale, jonka ' +
       'tilavuus lasketaan integroimalla.\n\n' +
