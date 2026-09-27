@@ -20,7 +20,20 @@ interface BaseCard {
   topic: Topic
 }
 
-export type VisualKey = 'quadratic-discriminant' | 'binomial-square' | 'unit-circle' | 'tangent-line'
+export type VisualKey =
+  | 'quadratic-discriminant'
+  | 'binomial-square'
+  | 'unit-circle'
+  | 'tangent-line'
+  | 'scale-factor'
+  | 'angle-types'
+  | 'similar-triangles'
+  | 'angle-bisector'
+  | 'right-triangle-trig'
+  | 'shape-area-grid'
+  | 'triangle-laws'
+  | 'circle-sector'
+  | 'solid-shapes-grid'
 
 export interface LessonCard extends BaseCard {
   type: 'lesson'

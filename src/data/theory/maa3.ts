@@ -6,6 +6,7 @@ import type { LessonCard } from '../../types'
 const maa3Theory: Array<Omit<LessonCard, 'id' | 'type' | 'topic'>> = [
   {
     title: 'Yksikkömuutokset ja mittakaava',
+    visual: 'scale-factor',
     body:
       'Yksikkömuutokset tehdään kertomalla tai jakamalla muunnoskertoimella. Mittakaava kertoo, kuinka ' +
       'suuri jokin esitys (esim. kartta tai pienoismalli) on suhteessa todelliseen kohteeseen.\n\n' +
@@ -18,6 +19,7 @@ const maa3Theory: Array<Omit<LessonCard, 'id' | 'type' | 'topic'>> = [
   },
   {
     title: 'Kulmien tyypit ja ominaisuudet',
+    visual: 'angle-types',
     body:
       'Kulmat luokitellaan suuruutensa mukaan, ja niiden väliset suhteet auttavat päättelemään ' +
       'tuntemattomia kulmia kuviosta.\n\n' +
@@ -30,6 +32,7 @@ const maa3Theory: Array<Omit<LessonCard, 'id' | 'type' | 'topic'>> = [
   },
   {
     title: 'Yhdensuuntaisuus ja yhdenmuotoisuus',
+    visual: 'similar-triangles',
     body:
       'Yhdensuuntaiset suorat eivät koskaan leikkaa toisiaan, ja niillä on sama kulmakerroin. ' +
       'Yhdenmuotoiset kuviot taas näyttävät samalta mutta ovat eri kokoisia.\n\n' +
@@ -41,6 +44,7 @@ const maa3Theory: Array<Omit<LessonCard, 'id' | 'type' | 'topic'>> = [
   },
   {
     title: 'Kolmion perusominaisuudet ja kulmanpuolittaja',
+    visual: 'angle-bisector',
     body:
       'Kolmio määritellään kolmen kärkipisteen avulla, ja sen kulmien summa on aina vakio riippumatta ' +
       'kolmion muodosta.\n\n' +
@@ -52,6 +56,7 @@ const maa3Theory: Array<Omit<LessonCard, 'id' | 'type' | 'topic'>> = [
   },
   {
     title: 'Suorakulmainen kolmio, trigonometria ja Pythagoraan lause',
+    visual: 'right-triangle-trig',
     body:
       'Suorakulmaisessa kolmiossa yksi kulma on $90^\\circ$. Tällaisessa kolmiossa sivujen ja kulmien ' +
       'väliset yhteydet tunnetaan tarkasti Pythagoraan lauseen ja trigonometristen funktioiden avulla.\n\n' +
@@ -63,6 +68,7 @@ const maa3Theory: Array<Omit<LessonCard, 'id' | 'type' | 'topic'>> = [
   },
   {
     title: '2D-kappaleiden pinta-alat ja lävistäjä',
+    visual: 'shape-area-grid',
     body:
       'Tasokuvioiden pinta-alat lasketaan kuvion omalla kaavalla. Lävistäjä yhdistää kaksi ei-vierekkäistä ' +
       'kärkeä ja sitä käytetään esimerkiksi neliön tai suorakulmion mittojen selvittämiseen.\n\n' +
@@ -74,6 +80,7 @@ const maa3Theory: Array<Omit<LessonCard, 'id' | 'type' | 'topic'>> = [
   },
   {
     title: 'Sini- ja kosinilause',
+    visual: 'triangle-laws',
     body:
       'Muissa kuin suorakulmaisissa kolmioissa sivuja ja kulmia lasketaan sini- ja kosinilauseilla.\n\n' +
       '- Sinilause: $\\dfrac{a}{\\sin A} = \\dfrac{b}{\\sin B} = \\dfrac{c}{\\sin C}$\n' +
@@ -83,6 +90,7 @@ const maa3Theory: Array<Omit<LessonCard, 'id' | 'type' | 'topic'>> = [
   },
   {
     title: 'Ympyrä: määritelmä, sektori ja kaari',
+    visual: 'circle-sector',
     body:
       'Ympyrä on kaikkien niiden pisteiden joukko, jotka ovat yhtä kaukana keskipisteestä. Sektori ja ' +
       'kaari ovat ympyrän osia, joiden koko riippuu keskuskulmasta.\n\n' +
@@ -94,6 +102,7 @@ const maa3Theory: Array<Omit<LessonCard, 'id' | 'type' | 'topic'>> = [
   },
   {
     title: 'Avaruuskappaleiden pinta-alat ja tilavuudet',
+    visual: 'solid-shapes-grid',
     body:
       'Avaruuskappaleiden pinta-ala ja tilavuus lasketaan kappaleen muodolle ominaisella kaavalla.\n\n' +
       '- Pallo: $A = 4\\pi r^2$, $V = \\frac{4}{3}\\pi r^3$\n' +
