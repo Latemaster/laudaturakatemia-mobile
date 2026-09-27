@@ -1,9 +1,17 @@
 import type { ComponentType } from 'react'
 import type { VisualKey } from '../../types'
+import AbsoluteValueLine from './AbsoluteValueLine'
 import AngleBisector from './AngleBisector'
 import AngleTypes from './AngleTypes'
 import BinomialSquare from './BinomialSquare'
+import CircleEquation from './CircleEquation'
 import CircleSector from './CircleSector'
+import DistanceMidpoint from './DistanceMidpoint'
+import DotProductAngle from './DotProductAngle'
+import LineSlope from './LineSlope'
+import ParabolaShape from './ParabolaShape'
+import PerpendicularLines from './PerpendicularLines'
+import PointLineDistance from './PointLineDistance'
 import QuadraticDiscriminant from './QuadraticDiscriminant'
 import RightTriangleTrig from './RightTriangleTrig'
 import ScaleFactor from './ScaleFactor'
@@ -13,6 +21,8 @@ import SolidShapesGrid from './SolidShapesGrid'
 import TangentLine from './TangentLine'
 import TriangleLawsDiagram from './TriangleLawsDiagram'
 import UnitCircle from './UnitCircle'
+import UnitVectorViz from './UnitVectorViz'
+import VectorAddition from './VectorAddition'
 
 export const VISUALS: Record<VisualKey, ComponentType> = {
   'quadratic-discriminant': QuadraticDiscriminant,
@@ -28,4 +38,14 @@ export const VISUALS: Record<VisualKey, ComponentType> = {
   'triangle-laws': TriangleLawsDiagram,
   'circle-sector': CircleSector,
   'solid-shapes-grid': SolidShapesGrid,
+  'absolute-value-line': AbsoluteValueLine,
+  'distance-midpoint': DistanceMidpoint,
+  'line-slope': LineSlope,
+  'perpendicular-lines': PerpendicularLines,
+  'circle-equation': CircleEquation,
+  'point-line-distance': PointLineDistance,
+  'parabola-shape': ParabolaShape,
+  'vector-addition': VectorAddition,
+  'dot-product-angle': DotProductAngle,
+  'unit-vector': UnitVectorViz,
 }

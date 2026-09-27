@@ -34,6 +34,16 @@ export type VisualKey =
   | 'triangle-laws'
   | 'circle-sector'
   | 'solid-shapes-grid'
+  | 'absolute-value-line'
+  | 'distance-midpoint'
+  | 'line-slope'
+  | 'perpendicular-lines'
+  | 'circle-equation'
+  | 'point-line-distance'
+  | 'parabola-shape'
+  | 'vector-addition'
+  | 'dot-product-angle'
+  | 'unit-vector'
 
 export interface LessonCard extends BaseCard {
   type: 'lesson'

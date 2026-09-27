@@ -6,6 +6,7 @@ import type { LessonCard } from '../../types'
 const maa4Theory: Array<Omit<LessonCard, 'id' | 'type' | 'topic'>> = [
   {
     title: 'Itseisarvoyhtälöt ja -epäyhtälöt',
+    visual: 'absolute-value-line',
     body:
       'Itseisarvo $|x|$ kertoo luvun etäisyyden nollasta, joten itseisarvoyhtälöllä on yleensä kaksi ' +
       'ratkaisua.\n\n' +
@@ -16,6 +17,7 @@ const maa4Theory: Array<Omit<LessonCard, 'id' | 'type' | 'topic'>> = [
   },
   {
     title: 'Pisteiden välinen etäisyys ja janan keskipiste',
+    visual: 'distance-midpoint',
     body:
       'Kahden pisteen välinen etäisyys ja niiden yhdistävän janan keskipiste lasketaan suoraan pisteiden ' +
       'koordinaateista.\n\n' +
@@ -26,6 +28,7 @@ const maa4Theory: Array<Omit<LessonCard, 'id' | 'type' | 'topic'>> = [
   },
   {
     title: 'Suoran yhtälö ja kulmakerroin',
+    visual: 'line-slope',
     body:
       'Suoran yhtälö kertoo, miten $y$ riippuu $x$:stä. Kulmakerroin kuvaa suoran jyrkkyyttä ja suuntaa.\n\n' +
       '- Ratkaistu muoto: $y = kx + b$, missä $k$ on kulmakerroin ja $b$ on $y$-akselin leikkauspiste\n' +
@@ -36,6 +39,7 @@ const maa4Theory: Array<Omit<LessonCard, 'id' | 'type' | 'topic'>> = [
   },
   {
     title: 'Suorien keskinäinen asema',
+    visual: 'perpendicular-lines',
     body:
       'Kahden suoran leikkauspiste, kohtisuoruus ja niiden välinen kulma kaikki selviävät kulmakertoimista.\n\n' +
       '- Leikkauspiste saadaan ratkaisemalla suorien yhtälöt yhtälöparina\n' +
@@ -45,6 +49,7 @@ const maa4Theory: Array<Omit<LessonCard, 'id' | 'type' | 'topic'>> = [
   },
   {
     title: 'Ympyrän yhtälö',
+    visual: 'circle-equation',
     body:
       'Ympyrän yhtälö on esimerkki pistejoukon yhtälöstä: se kuvaa kaikkia pisteitä, jotka toteuttavat ' +
       'ehdon "etäisyys keskipisteestä on $r$".\n\n' +
@@ -54,6 +59,7 @@ const maa4Theory: Array<Omit<LessonCard, 'id' | 'type' | 'topic'>> = [
   },
   {
     title: 'Pisteen ja suoran sekä ympyröiden etäisyydet',
+    visual: 'point-line-distance',
     body:
       'Etäisyyksien laskeminen pisteestä suoraan tai kahden ympyrän välillä auttaa selvittämään, ' +
       'sivuavatko tai leikkaavatko kuviot toisiaan.\n\n' +
@@ -63,6 +69,7 @@ const maa4Theory: Array<Omit<LessonCard, 'id' | 'type' | 'topic'>> = [
   },
   {
     title: 'Paraabelin yhtälö',
+    visual: 'parabola-shape',
     body:
       'Paraabeli on toisen asteen funktion kuvaaja, ja sen muoto riippuu kertoimista $a$, $b$ ja $c$.\n\n' +
       '- Yhtälö: $y = ax^2 + bx + c$\n' +
@@ -71,6 +78,7 @@ const maa4Theory: Array<Omit<LessonCard, 'id' | 'type' | 'topic'>> = [
   },
   {
     title: 'Vektorin perusominaisuudet ja laskutoimitukset',
+    visual: 'vector-addition',
     body:
       'Vektorilla on sekä suunta että suuruus, ja sitä voidaan siirtää tasossa paikkaa muuttamatta sen ' +
       'ominaisuuksia. Vektoreita lasketaan komponenteittain.\n\n' +
@@ -82,6 +90,7 @@ const maa4Theory: Array<Omit<LessonCard, 'id' | 'type' | 'topic'>> = [
   },
   {
     title: 'Pistetulo ja vektorien välinen kulma',
+    visual: 'dot-product-angle',
     body:
       'Pistetulo kertoo, kuinka "samansuuntaisia" kaksi vektoria ovat, ja sen avulla lasketaan niiden ' +
       'välinen kulma.\n\n' +
@@ -92,6 +101,7 @@ const maa4Theory: Array<Omit<LessonCard, 'id' | 'type' | 'topic'>> = [
   },
   {
     title: 'Yksikkövektori',
+    visual: 'unit-vector',
     body:
       'Yksikkövektori osoittaa saman suunnan kuin alkuperäinen vektori, mutta sen pituus on tasan $1$.\n\n' +
       '- $\\hat{v} = \\dfrac{\\vec{v}}{|\\vec{v}|}$\n\n' +
