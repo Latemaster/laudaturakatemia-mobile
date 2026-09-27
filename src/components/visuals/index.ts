@@ -8,7 +8,9 @@ import AngleTypes from './AngleTypes'
 import BinomialSquare from './BinomialSquare'
 import CircleEquation from './CircleEquation'
 import CircleSector from './CircleSector'
+import ContinuityKink from './ContinuityKink'
 import DistanceMidpoint from './DistanceMidpoint'
+import DomainRangeHyperbola from './DomainRangeHyperbola'
 import DotProductAngle from './DotProductAngle'
 import AreaUnderCurve from './AreaUnderCurve'
 import CompoundInterest from './CompoundInterest'
@@ -18,7 +20,9 @@ import ExpLogMirror from './ExpLogMirror'
 import EuclideanAlgorithm from './EuclideanAlgorithm'
 import ExtremaGraph from './ExtremaGraph'
 import GradientField from './GradientField'
+import ImproperIntegralConvergence from './ImproperIntegralConvergence'
 import IntegrationByPartsFlow from './IntegrationByPartsFlow'
+import InverseFunctionMirror from './InverseFunctionMirror'
 import LevelCurves from './LevelCurves'
 import LineSlope from './LineSlope'
 import LoanComparison from './LoanComparison'
@@ -26,6 +30,7 @@ import LogicTruthTable from './LogicTruthTable'
 import LogPointGraph from './LogPointGraph'
 import LogRuleCheck from './LogRuleCheck'
 import ModularClock from './ModularClock'
+import NormalDistribution from './NormalDistribution'
 import ParabolaShape from './ParabolaShape'
 import ParallelepipedViz from './ParallelepipedViz'
 import ParametricLine3D from './ParametricLine3D'
@@ -114,4 +119,9 @@ export const VISUALS: Record<VisualKey, ComponentType> = {
   'euclidean-algorithm': EuclideanAlgorithm,
   'sieve-of-eratosthenes': SieveOfEratosthenes,
   'python-conditional': PythonConditional,
+  'domain-range-hyperbola': DomainRangeHyperbola,
+  'continuity-kink': ContinuityKink,
+  'inverse-function-mirror': InverseFunctionMirror,
+  'improper-integral-convergence': ImproperIntegralConvergence,
+  'normal-distribution': NormalDistribution,
 }

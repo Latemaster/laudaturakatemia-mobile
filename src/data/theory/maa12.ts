@@ -5,6 +5,7 @@ import type { LessonCard } from '../../types'
 const maa12Theory: Array<Omit<LessonCard, 'id' | 'type' | 'topic'>> = [
   {
     title: 'Määrittely- ja arvojoukko',
+    visual: 'domain-range-hyperbola',
     body:
       'Ennen funktion tarkempaa tutkimista on hyvä tietää, mitkä $x$:n arvot funktio hyväksyy ja mitä ' +
       'arvoja se voi tuottaa.\n\n' +
@@ -15,6 +16,7 @@ const maa12Theory: Array<Omit<LessonCard, 'id' | 'type' | 'topic'>> = [
   },
   {
     title: 'Jatkuvuus ja derivoituvuus',
+    visual: 'continuity-kink',
     body:
       'Jatkuva funktio ei "hyppää", ja derivoituva funktio on lisäksi tasainen ilman teräviä kulmia. ' +
       'Näillä ominaisuuksilla on tärkeitä seurauksia funktion käyttäytymiselle.\n\n' +
@@ -26,6 +28,7 @@ const maa12Theory: Array<Omit<LessonCard, 'id' | 'type' | 'topic'>> = [
   },
   {
     title: 'Käänteisfunktio',
+    visual: 'inverse-function-mirror',
     body:
       'Käänteisfunktio "peruuttaa" alkuperäisen funktion vaikutuksen: jos $f$ vie $x$:n arvoksi $y$, ' +
       'käänteisfunktio vie $y$:n takaisin arvoksi $x$.\n\n' +
@@ -35,6 +38,7 @@ const maa12Theory: Array<Omit<LessonCard, 'id' | 'type' | 'topic'>> = [
   },
   {
     title: 'Raja-arvot ja äärettömyys',
+    visual: 'improper-integral-convergence',
     body:
       'Raja-arvo kertoo, mitä funktio "lähestyy" muuttujan kasvaessa rajatta tai lähestyessä tiettyä ' +
       'kohtaa, vaikka funktiolla ei siinä olisi täsmällistä arvoa.\n\n' +
@@ -46,6 +50,7 @@ const maa12Theory: Array<Omit<LessonCard, 'id' | 'type' | 'topic'>> = [
   },
   {
     title: 'Jakaumat',
+    visual: 'normal-distribution',
     body:
       'Jatkuvan satunnaismuuttujan todennäköisyyksiä kuvataan tiheysfunktiolla, ja normaalijakauma on ' +
       'yleisin ja tärkein esimerkki tällaisesta jakaumasta.\n\n' +

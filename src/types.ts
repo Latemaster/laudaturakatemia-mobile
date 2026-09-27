@@ -77,6 +77,11 @@ export type VisualKey =
   | 'euclidean-algorithm'
   | 'sieve-of-eratosthenes'
   | 'python-conditional'
+  | 'domain-range-hyperbola'
+  | 'continuity-kink'
+  | 'inverse-function-mirror'
+  | 'improper-integral-convergence'
+  | 'normal-distribution'
 
 export interface LessonCard extends BaseCard {
   type: 'lesson'
