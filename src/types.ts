@@ -71,6 +71,12 @@ export type VisualKey =
   | 'parallelepiped-viz'
   | 'level-curves'
   | 'gradient-field'
+  | 'algorithm-flowchart'
+  | 'logic-truth-table'
+  | 'modular-clock'
+  | 'euclidean-algorithm'
+  | 'sieve-of-eratosthenes'
+  | 'python-conditional'
 
 export interface LessonCard extends BaseCard {
   type: 'lesson'

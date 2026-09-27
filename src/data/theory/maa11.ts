@@ -5,6 +5,7 @@ import type { LessonCard } from '../../types'
 const maa11Theory: Array<Omit<LessonCard, 'id' | 'type' | 'topic'>> = [
   {
     title: 'Algoritmi, silmukka ja vuokaavio',
+    visual: 'algorithm-flowchart',
     body:
       'Algoritmi on tarkka, yksikäsitteinen ohjeiden sarja, joka koostuu kolmesta perusrakenteesta. ' +
       'Vuokaavio esittää algoritmin kaaviomaisesti.\n\n' +
@@ -16,6 +17,7 @@ const maa11Theory: Array<Omit<LessonCard, 'id' | 'type' | 'topic'>> = [
   },
   {
     title: 'Logiikka',
+    visual: 'logic-truth-table',
     body:
       'Logiikassa väitelauseita yhdistetään konnektiiveilla, ja lausekkeen totuusarvo lasketaan ' +
       'kiinteän laskujärjestyksen mukaan.\n\n' +
@@ -28,6 +30,7 @@ const maa11Theory: Array<Omit<LessonCard, 'id' | 'type' | 'topic'>> = [
   },
   {
     title: 'Jaollisuus ja kongruenssi',
+    visual: 'modular-clock',
     body:
       'Jakoyhtälö kuvaa, kuinka mikä tahansa kokonaisluku voidaan jakaa toisella jäljelle jäävän ' +
       'jakojäännöksen kanssa. Kongruenssi vertaa kahden luvun jakojäännöksiä.\n\n' +
@@ -38,6 +41,7 @@ const maa11Theory: Array<Omit<LessonCard, 'id' | 'type' | 'topic'>> = [
   },
   {
     title: 'Tekijät, SYT ja PYM',
+    visual: 'euclidean-algorithm',
     body:
       'Kahden luvun suurin yhteinen tekijä ja pienin yhteinen monikerta lasketaan tehokkaasti ' +
       'Eukleideen algoritmilla, ilman että kaikkia tekijöitä tarvitsee etsiä käsin.\n\n' +
@@ -48,6 +52,7 @@ const maa11Theory: Array<Omit<LessonCard, 'id' | 'type' | 'topic'>> = [
   },
   {
     title: 'Alkuluvut',
+    visual: 'sieve-of-eratosthenes',
     body:
       'Alkuluvut ovat lukuteorian rakennuspalikoita: jokainen ykköstä suurempi kokonaisluku voidaan ' +
       'jakaa alkulukujen tuloksi täsmälleen yhdellä tavalla.\n\n' +
@@ -58,6 +63,7 @@ const maa11Theory: Array<Omit<LessonCard, 'id' | 'type' | 'topic'>> = [
   },
   {
     title: 'Ohjelmointi (Python)',
+    visual: 'python-conditional',
     body:
       'Ohjelmoinnissa algoritmit kirjoitetaan koodiksi, jota tietokone suorittaa rivi riviltä.\n\n' +
       '- Tietotyypit: kokonaisluku (`int`), liukuluku (`float`), merkkijono (`"teksti"`), totuusarvo (`True`/`False`)\n' +

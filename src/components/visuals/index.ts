@@ -1,6 +1,7 @@
 import type { ComponentType } from 'react'
 import type { VisualKey } from '../../types'
 import AbsoluteValueLine from './AbsoluteValueLine'
+import AlgorithmFlowchart from './AlgorithmFlowchart'
 import AngleBisector from './AngleBisector'
 import AngleSymmetry from './AngleSymmetry'
 import AngleTypes from './AngleTypes'
@@ -14,14 +15,17 @@ import CompoundInterest from './CompoundInterest'
 import CrossProductViz from './CrossProductViz'
 import ExpEquationGraph from './ExpEquationGraph'
 import ExpLogMirror from './ExpLogMirror'
+import EuclideanAlgorithm from './EuclideanAlgorithm'
 import ExtremaGraph from './ExtremaGraph'
 import GradientField from './GradientField'
 import IntegrationByPartsFlow from './IntegrationByPartsFlow'
 import LevelCurves from './LevelCurves'
 import LineSlope from './LineSlope'
 import LoanComparison from './LoanComparison'
+import LogicTruthTable from './LogicTruthTable'
 import LogPointGraph from './LogPointGraph'
 import LogRuleCheck from './LogRuleCheck'
+import ModularClock from './ModularClock'
 import ParabolaShape from './ParabolaShape'
 import ParallelepipedViz from './ParallelepipedViz'
 import ParametricLine3D from './ParametricLine3D'
@@ -30,6 +34,7 @@ import PlaneNormal3D from './PlaneNormal3D'
 import PointLineDistance from './PointLineDistance'
 import PowerRuleGraph from './PowerRuleGraph'
 import PowerRuleIntegral from './PowerRuleIntegral'
+import PythonConditional from './PythonConditional'
 import QuadraticDiscriminant from './QuadraticDiscriminant'
 import RiemannSum from './RiemannSum'
 import RevolutionSolid from './RevolutionSolid'
@@ -39,6 +44,7 @@ import SecantToTangent from './SecantToTangent'
 import SequenceBars from './SequenceBars'
 import SeriesSum from './SeriesSum'
 import ShapeAreaGrid from './ShapeAreaGrid'
+import SieveOfEratosthenes from './SieveOfEratosthenes'
 import SimilarTriangles from './SimilarTriangles'
 import SineEquationGraph from './SineEquationGraph'
 import SineWaveParams from './SineWaveParams'
@@ -102,4 +108,10 @@ export const VISUALS: Record<VisualKey, ComponentType> = {
   'parallelepiped-viz': ParallelepipedViz,
   'level-curves': LevelCurves,
   'gradient-field': GradientField,
+  'algorithm-flowchart': AlgorithmFlowchart,
+  'logic-truth-table': LogicTruthTable,
+  'modular-clock': ModularClock,
+  'euclidean-algorithm': EuclideanAlgorithm,
+  'sieve-of-eratosthenes': SieveOfEratosthenes,
+  'python-conditional': PythonConditional,
 }
