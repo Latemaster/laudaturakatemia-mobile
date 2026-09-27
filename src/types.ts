@@ -20,10 +20,13 @@ interface BaseCard {
   topic: Topic
 }
 
+export type VisualKey = 'quadratic-discriminant' | 'binomial-square'
+
 export interface LessonCard extends BaseCard {
   type: 'lesson'
   title: string
   body: string
+  visual?: VisualKey
 }
 
 export interface ExerciseOption {

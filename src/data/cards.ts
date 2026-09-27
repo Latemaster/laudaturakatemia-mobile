@@ -1,5 +1,6 @@
 import type { Card, LessonCard, Problem, TopicCode } from '../types'
 import { COURSE_MAP } from './courses'
+import maa2Theory from './theory/maa2'
 
 import maa2Problems from './problems/maa2.json'
 import maa3Problems from './problems/maa3.json'
@@ -131,3 +132,21 @@ function buildCourseCards(code: TopicCode): Card[] {
 }
 
 export const cards: Card[] = COURSE_ORDER.flatMap(buildCourseCards)
+
+// Per-course theory boxes, used only when browsing a single course (not the
+// blended feed above). Courses with no entry here fall back to that course's
+// single LESSONS blurb, so this is purely additive per course.
+const CONCEPTS: Partial<Record<TopicCode, Array<Omit<LessonCard, 'id' | 'type' | 'topic'>>>> = {
+  MAA2: maa2Theory,
+}
+
+export function getConceptCards(code: TopicCode): LessonCard[] {
+  const topic = COURSE_MAP[code]
+  const slug = code.toLowerCase()
+  return (CONCEPTS[code] ?? []).map((concept, index) => ({
+    id: `${slug}-concept-${index + 1}`,
+    type: 'lesson',
+    topic,
+    ...concept,
+  }))
+}

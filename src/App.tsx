@@ -3,7 +3,7 @@ import Feed from './components/Feed'
 import TopMenu, { type MenuSection } from './components/TopMenu'
 import CourseList from './components/CourseList'
 import Osaaminen from './components/Osaaminen'
-import { cards } from './data/cards'
+import { cards, getConceptCards } from './data/cards'
 import type { TopicCode } from './types'
 
 function App() {
@@ -26,7 +26,11 @@ function App() {
 
   const feedCards = useMemo(() => {
     if (section === 'kurssit' && selectedCourse) {
-      return cards.filter((card) => card.topic.code === selectedCourse)
+      const courseCards = cards.filter((card) => card.topic.code === selectedCourse)
+      const concepts = getConceptCards(selectedCourse)
+      if (concepts.length === 0) return courseCards
+      // Concept boxes replace the single generic lesson blurb for this course.
+      return [...concepts, ...courseCards.filter((card) => card.type !== 'lesson')]
     }
     return cards
   }, [section, selectedCourse])

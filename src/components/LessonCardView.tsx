@@ -5,6 +5,7 @@ import CardShell from './CardShell'
 import ExpandableBox from './ExpandableBox'
 import KindLabel from './KindLabel'
 import MathText from './MathText'
+import { VISUALS } from './visuals'
 import { BookIcon } from './icons'
 
 interface LessonCardViewProps {
@@ -14,6 +15,7 @@ interface LessonCardViewProps {
 
 export default function LessonCardView({ card, showSwipeHint }: LessonCardViewProps) {
   const [isExpanded, setIsExpanded] = useState(false)
+  const Visual = card.visual ? VISUALS[card.visual] : null
 
   return (
     <CardShell topic={card.topic}>
@@ -29,6 +31,11 @@ export default function LessonCardView({ card, showSwipeHint }: LessonCardViewPr
       </motion.h1>
 
       <ExpandableBox isExpanded={isExpanded} onExpandedChange={setIsExpanded}>
+        {Visual && (
+          <div className="mb-4">
+            <Visual />
+          </div>
+        )}
         <div className="text-lg leading-relaxed text-ink-dim">
           <MathText content={card.body} />
         </div>

@@ -83,6 +83,51 @@ function renderMathSegments(content: string, keyPrefix: string) {
   })
 }
 
+type LineGroup = { type: 'list'; items: string[] } | { type: 'text'; text: string }
+
+// Groups a block's lines so consecutive "- "/"* " lines become one list
+// instead of plain text lines with a stray leading dash. Content with no
+// bullet lines collapses back to a single text group holding the original
+// string untouched, so existing non-bulleted content renders exactly as
+// before.
+function groupLines(content: string): LineGroup[] {
+  const groups: LineGroup[] = []
+
+  for (const line of content.split('\n')) {
+    const bulletMatch = line.match(/^\s*[-*]\s+(.*)$/)
+    const last = groups[groups.length - 1]
+    if (bulletMatch) {
+      if (last?.type === 'list') last.items.push(bulletMatch[1])
+      else groups.push({ type: 'list', items: [bulletMatch[1]] })
+    } else if (last?.type === 'text') {
+      last.text += '\n' + line
+    } else {
+      groups.push({ type: 'text', text: line })
+    }
+  }
+
+  return groups
+}
+
+// Renders a code-free block, turning grouped bullet lines into a real
+// <ul>/<li> list (each item still runs through the math/bold pipeline)
+// and passing everything else straight through as before.
+function renderTextBlock(content: string, keyPrefix: string) {
+  return groupLines(content).map((group, index) => {
+    const key = `${keyPrefix}-g${index}`
+    if (group.type === 'list') {
+      return (
+        <ul key={key} className="my-2 list-disc space-y-1 pl-5 marker:text-ink-dim">
+          {group.items.map((item, i) => (
+            <li key={i}>{renderMathSegments(item, `${key}-${i}`)}</li>
+          ))}
+        </ul>
+      )
+    }
+    return <Fragment key={key}>{renderMathSegments(group.text, key)}</Fragment>
+  })
+}
+
 // Fenced ```code``` blocks are carved out first and rendered verbatim in
 // monospace, so their content (which often contains ** as an exponentiation
 // operator) never reaches the math or bold-span parsing below.
@@ -99,7 +144,7 @@ function renderSegments(content: string) {
         </pre>
       )
     }
-    return <Fragment key={key}>{renderMathSegments(part, key)}</Fragment>
+    return <Fragment key={key}>{renderTextBlock(part, key)}</Fragment>
   })
 }
 
