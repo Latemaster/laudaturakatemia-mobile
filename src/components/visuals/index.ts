@@ -10,11 +10,13 @@ import CircleSector from './CircleSector'
 import DistanceMidpoint from './DistanceMidpoint'
 import DotProductAngle from './DotProductAngle'
 import AreaUnderCurve from './AreaUnderCurve'
+import CompoundInterest from './CompoundInterest'
 import ExpEquationGraph from './ExpEquationGraph'
 import ExpLogMirror from './ExpLogMirror'
 import ExtremaGraph from './ExtremaGraph'
 import IntegrationByPartsFlow from './IntegrationByPartsFlow'
 import LineSlope from './LineSlope'
+import LoanComparison from './LoanComparison'
 import LogPointGraph from './LogPointGraph'
 import LogRuleCheck from './LogRuleCheck'
 import ParabolaShape from './ParabolaShape'
@@ -28,6 +30,8 @@ import RevolutionSolid from './RevolutionSolid'
 import RightTriangleTrig from './RightTriangleTrig'
 import ScaleFactor from './ScaleFactor'
 import SecantToTangent from './SecantToTangent'
+import SequenceBars from './SequenceBars'
+import SeriesSum from './SeriesSum'
 import ShapeAreaGrid from './ShapeAreaGrid'
 import SimilarTriangles from './SimilarTriangles'
 import SineEquationGraph from './SineEquationGraph'
@@ -80,4 +84,8 @@ export const VISUALS: Record<VisualKey, ComponentType> = {
   'integration-by-parts-flow': IntegrationByPartsFlow,
   'area-under-curve': AreaUnderCurve,
   'revolution-solid': RevolutionSolid,
+  'sequence-bars': SequenceBars,
+  'series-sum': SeriesSum,
+  'compound-interest': CompoundInterest,
+  'loan-comparison': LoanComparison,
 }

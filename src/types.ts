@@ -60,6 +60,10 @@ export type VisualKey =
   | 'integration-by-parts-flow'
   | 'area-under-curve'
   | 'revolution-solid'
+  | 'sequence-bars'
+  | 'series-sum'
+  | 'compound-interest'
+  | 'loan-comparison'
 
 export interface LessonCard extends BaseCard {
   type: 'lesson'

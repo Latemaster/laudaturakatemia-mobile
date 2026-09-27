@@ -5,6 +5,7 @@ import type { LessonCard } from '../../types'
 const maa9Theory: Array<Omit<LessonCard, 'id' | 'type' | 'topic'>> = [
   {
     title: 'Rekursiivinen, aritmeettinen ja geometrinen lukujono',
+    visual: 'sequence-bars',
     body:
       'Lukujono voidaan määritellä sen edellisten jäsenten avulla (rekursiivisesti) tai suoraan ' +
       'kaavalla. Kaksi tärkeintä lukujonotyyppiä ovat aritmeettinen ja geometrinen.\n\n' +
@@ -16,6 +17,7 @@ const maa9Theory: Array<Omit<LessonCard, 'id' | 'type' | 'topic'>> = [
   },
   {
     title: 'Aritmeettinen ja geometrinen summa',
+    visual: 'series-sum',
     body:
       'Lukujonon ensimmäisten jäsenten summa voidaan laskea suoraan kaavalla ilman, että kaikkia ' +
       'jäseniä lasketaan yhteen erikseen.\n\n' +
@@ -25,6 +27,7 @@ const maa9Theory: Array<Omit<LessonCard, 'id' | 'type' | 'topic'>> = [
   },
   {
     title: 'Korkoa korolle',
+    visual: 'compound-interest',
     body:
       'Korkoa korolle -ilmiössä pääoma kasvaa geometrisen lukujonon tavoin, koska joka jaksolla ' +
       'kasvu lasketaan jo kasvaneesta pääomasta.\n\n' +
@@ -34,6 +37,7 @@ const maa9Theory: Array<Omit<LessonCard, 'id' | 'type' | 'topic'>> = [
   },
   {
     title: 'Tasaerälaina ja tasalyhennyslaina',
+    visual: 'loan-comparison',
     body:
       'Lainan takaisinmaksu voidaan järjestää kahdella tavalla riippuen siitä, pysyykö maksuerä vai ' +
       'lyhennys vakiona.\n\n' +
