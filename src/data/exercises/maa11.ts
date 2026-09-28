@@ -32,13 +32,15 @@ const maa11Exercises: Array<DistributiveOmit<ExerciseCard, 'id' | 'type' | 'topi
     // Topic: Jaollisuus ja kongruenssi
     kind: 'numeric',
     visual: 'modular-clock',
-    question: 'Aseta yllä olevan kuvan liukusäädin a:lle arvoon 17. Mikä on 17 mod 5?',
-    answer: 2,
+    answerVia: 'slider',
+    question: 'Säädä liukusäädintä a. Millä SUURIMMALLA a:n arvolla (väliltä 0-24) pätee a mod 5 = 2?',
+    answer: 22,
     tolerance: 0,
     min: 0,
     max: 24,
     step: 1,
-    explanation: '17 = 3·5 + 2, joten 17 mod 5 = 2.',
+    sliderStart: 5,
+    explanation: 'a mod 5 = 2 toteutuu arvoilla 2, 7, 12, 17, 22; suurin näistä on 22.',
   },
   {
     // Topic: Tekijät, SYT ja PYM
@@ -53,13 +55,15 @@ const maa11Exercises: Array<DistributiveOmit<ExerciseCard, 'id' | 'type' | 'topi
     // Topic: Alkuluvut
     kind: 'numeric',
     visual: 'sieve-of-eratosthenes',
-    question: 'Aseta yllä olevan kuvan liukusäädin askeleeksi 4 (täysi seula alkuluvuilla 2,3,5,7). Montako alkulukua on väliltä 2-50?',
-    answer: 15,
+    answerVia: 'slider',
+    question: 'Säädä liukusäädintä (askel). Millä pienimmällä askeleen arvolla kuvassa näkyy kaikki 15 alkulukua väliltä 2-50?',
+    answer: 3,
     tolerance: 0,
     min: 0,
     max: 4,
     step: 1,
-    explanation: 'Alkuluvut 2-50 ovat 2,3,5,7,11,13,17,19,23,29,31,37,41,43,47 - yhteensä 15 kappaletta.',
+    sliderStart: 0,
+    explanation: 'Kun alkuluvut 2, 3 ja 5 on käytetty (askel 3), yksikään todellinen alkuluku ≤50 ei enää tarvitse lukua 7 jakajakseen, joten kaikki 15 alkulukua näkyvät jo oikein - vain luku 49 jää vielä harmaana, kunnes 7 sovelletaan.',
   },
   {
     // Topic: Ohjelmointi (Python)

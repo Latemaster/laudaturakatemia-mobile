@@ -1,10 +1,13 @@
 import { useMemo, useState } from 'react'
+import type { VisualProps } from './index'
 
 const A1 = 1
 const D = 1
 
-export default function SeriesSum() {
-  const [n, setN] = useState(5)
+export default function SeriesSum({ value, onChange }: VisualProps = {}) {
+  const [internalN, setInternalN] = useState(5)
+  const n = value ?? internalN
+  const setN = onChange ?? setInternalN
 
   const { terms, sum } = useMemo(() => {
     const values = Array.from({ length: n }, (_, i) => A1 + i * D)

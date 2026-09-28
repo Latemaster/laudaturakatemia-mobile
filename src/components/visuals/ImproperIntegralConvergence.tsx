@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react'
+import type { VisualProps } from './index'
 
 const X_MAX = 8
 const Y_SCALE = 3
@@ -24,8 +25,10 @@ function buildAreaPath(n: number) {
   return `M ${points.join(' L ')} Z`
 }
 
-export default function ImproperIntegralConvergence() {
-  const [n, setN] = useState(4)
+export default function ImproperIntegralConvergence({ value, onChange }: VisualProps = {}) {
+  const [internalN, setInternalN] = useState(4)
+  const n = value ?? internalN
+  const setN = onChange ?? setInternalN
   const curvePath = useMemo(buildCurvePath, [])
   const areaPath = useMemo(() => buildAreaPath(n), [n])
   const area = 1 - 1 / n

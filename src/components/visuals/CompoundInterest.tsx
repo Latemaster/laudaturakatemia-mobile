@@ -1,10 +1,13 @@
 import { useMemo, useState } from 'react'
+import type { VisualProps } from './index'
 
 const A0 = 1000
 const MAX_T = 20
 
-export default function CompoundInterest() {
-  const [ratePct, setRatePct] = useState(5)
+export default function CompoundInterest({ value, onChange }: VisualProps = {}) {
+  const [internalRatePct, setInternalRatePct] = useState(5)
+  const ratePct = value ?? internalRatePct
+  const setRatePct = onChange ?? setInternalRatePct
 
   const r = ratePct / 100
   const path = useMemo(() => {

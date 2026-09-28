@@ -1,9 +1,12 @@
 import { useMemo, useState } from 'react'
+import type { VisualProps } from './index'
 
 const WINDOW = 1.35
 
-export default function UnitCircle() {
-  const [degrees, setDegrees] = useState(45)
+export default function UnitCircle({ value, onChange }: VisualProps = {}) {
+  const [internalDegrees, setInternalDegrees] = useState(45)
+  const degrees = value ?? internalDegrees
+  const setDegrees = onChange ?? setInternalDegrees
 
   const { x, y, radians } = useMemo(() => {
     const rad = (degrees * Math.PI) / 180

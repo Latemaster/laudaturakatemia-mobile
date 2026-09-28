@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react'
+import type { VisualProps } from './index'
 
 const WINDOW_X = 2 * Math.PI
 const WINDOW_Y = 3.2
@@ -12,8 +13,10 @@ function buildPath(amp: number, freq: number) {
   return `M ${points.join(' L ')}`
 }
 
-export default function SineWaveParams() {
-  const [amp, setAmp] = useState(1)
+export default function SineWaveParams({ value, onChange }: VisualProps = {}) {
+  const [internalAmp, setInternalAmp] = useState(1)
+  const amp = value ?? internalAmp
+  const setAmp = onChange ?? setInternalAmp
   const [freq, setFreq] = useState(1)
   const path = useMemo(() => buildPath(amp, freq), [amp, freq])
 

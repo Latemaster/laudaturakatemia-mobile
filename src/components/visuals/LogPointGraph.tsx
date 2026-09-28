@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react'
+import type { VisualProps } from './index'
 
 function buildPath() {
   const points: string[] = []
@@ -8,8 +9,10 @@ function buildPath() {
   return `M ${points.join(' L ')}`
 }
 
-export default function LogPointGraph() {
-  const [x, setX] = useState(8)
+export default function LogPointGraph({ value, onChange }: VisualProps = {}) {
+  const [internalX, setInternalX] = useState(8)
+  const x = value ?? internalX
+  const setX = onChange ?? setInternalX
   const path = useMemo(buildPath, [])
   const y = Math.log2(x)
 

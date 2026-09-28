@@ -1,10 +1,13 @@
 import { useMemo, useState } from 'react'
+import type { VisualProps } from './index'
 
 const N = 6
 const A1 = 2
 
-export default function SequenceBars() {
-  const [d, setD] = useState(3)
+export default function SequenceBars({ value, onChange }: VisualProps = {}) {
+  const [internalD, setInternalD] = useState(3)
+  const d = value ?? internalD
+  const setD = onChange ?? setInternalD
   const [r, setR] = useState(1.5)
 
   const { arith, geo, maxVal } = useMemo(() => {

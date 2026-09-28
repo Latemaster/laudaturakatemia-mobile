@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react'
+import type { VisualProps } from './index'
 
 const WINDOW = 5
 
@@ -16,8 +17,10 @@ function buildBranch(from: number, to: number, step: number) {
   return `M ${points.join(' L ')}`
 }
 
-export default function DomainRangeHyperbola() {
-  const [x, setX] = useState(1.5)
+export default function DomainRangeHyperbola({ value, onChange }: VisualProps = {}) {
+  const [internalX, setInternalX] = useState(1.5)
+  const x = value ?? internalX
+  const setX = onChange ?? setInternalX
   const y = f(x)
 
   const rightBranch = useMemo(() => buildBranch(0.2, WINDOW, 0.05), [])

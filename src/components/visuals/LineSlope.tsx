@@ -1,10 +1,13 @@
 import { useMemo, useState } from 'react'
+import type { VisualProps } from './index'
 
 const WINDOW = 5
 const B = 1
 
-export default function LineSlope() {
-  const [k, setK] = useState(1)
+export default function LineSlope({ value, onChange }: VisualProps = {}) {
+  const [internalK, setInternalK] = useState(1)
+  const k = value ?? internalK
+  const setK = onChange ?? setInternalK
 
   const { y1, y2 } = useMemo(
     () => ({

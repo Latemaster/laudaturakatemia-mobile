@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react'
+import type { VisualProps } from './index'
 
 const WINDOW = 6
 
@@ -23,8 +24,10 @@ function buildAreaPath(b: number) {
   return `M ${points.join(' L ')} Z`
 }
 
-export default function AreaUnderCurve() {
-  const [b, setB] = useState(4)
+export default function AreaUnderCurve({ value, onChange }: VisualProps = {}) {
+  const [internalB, setInternalB] = useState(4)
+  const b = value ?? internalB
+  const setB = onChange ?? setInternalB
   const curvePath = useMemo(buildCurvePath, [])
   const areaPath = useMemo(() => buildAreaPath(b), [b])
   const area = (2 / 3) * Math.pow(b, 1.5)

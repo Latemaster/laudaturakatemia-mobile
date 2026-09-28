@@ -1,9 +1,12 @@
 import { useMemo, useState } from 'react'
+import type { VisualProps } from './index'
 
 const WINDOW = 5
 
-export default function DistanceMidpoint() {
-  const [bx, setBx] = useState(4)
+export default function DistanceMidpoint({ value, onChange }: VisualProps = {}) {
+  const [internalBx, setInternalBx] = useState(4)
+  const bx = value ?? internalBx
+  const setBx = onChange ?? setInternalBx
   const [by, setBy] = useState(3)
 
   const { distance, mx, my } = useMemo(

@@ -1,11 +1,14 @@
 import { useMemo, useState } from 'react'
+import type { VisualProps } from './index'
 
 const WINDOW = 5
 const U_LEN = 3
 const V_LEN = 2.5
 
-export default function DotProductAngle() {
-  const [deg, setDeg] = useState(60)
+export default function DotProductAngle({ value, onChange }: VisualProps = {}) {
+  const [internalDeg, setInternalDeg] = useState(60)
+  const deg = value ?? internalDeg
+  const setDeg = onChange ?? setInternalDeg
 
   const { v, dot } = useMemo(() => {
     const rad = (deg * Math.PI) / 180

@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react'
+import type { VisualProps } from './index'
 
 const A = 0
 const B = 4
@@ -18,8 +19,10 @@ function buildCurvePath() {
   return `M ${points.join(' L ')}`
 }
 
-export default function RiemannSum() {
-  const [n, setN] = useState(4)
+export default function RiemannSum({ value, onChange }: VisualProps = {}) {
+  const [internalN, setInternalN] = useState(4)
+  const n = value ?? internalN
+  const setN = onChange ?? setInternalN
   const curvePath = useMemo(buildCurvePath, [])
 
   const { rects, sum } = useMemo(() => {

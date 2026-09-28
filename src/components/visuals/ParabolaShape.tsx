@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react'
+import type { VisualProps } from './index'
 
 const WINDOW = 5
 
@@ -10,8 +11,10 @@ function buildPath(a: number) {
   return `M ${points.join(' L ')}`
 }
 
-export default function ParabolaShape() {
-  const [a, setA] = useState(1)
+export default function ParabolaShape({ value, onChange }: VisualProps = {}) {
+  const [internalA, setInternalA] = useState(1)
+  const a = value ?? internalA
+  const setA = onChange ?? setInternalA
   const path = useMemo(() => buildPath(a), [a])
 
   return (

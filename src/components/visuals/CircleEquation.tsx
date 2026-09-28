@@ -1,9 +1,12 @@
 import { useState } from 'react'
+import type { VisualProps } from './index'
 
 const WINDOW = 5
 
-export default function CircleEquation() {
-  const [r, setR] = useState(3)
+export default function CircleEquation({ value, onChange }: VisualProps = {}) {
+  const [internalR, setInternalR] = useState(3)
+  const r = value ?? internalR
+  const setR = onChange ?? setInternalR
 
   return (
     <div className="rounded-2xl border border-ink/10 bg-surface-2 p-4">

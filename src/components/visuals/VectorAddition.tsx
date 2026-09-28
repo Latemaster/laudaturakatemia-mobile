@@ -1,11 +1,14 @@
 import { useMemo, useState } from 'react'
+import type { VisualProps } from './index'
 
 const WINDOW = 5
 const U: [number, number] = [3, 1]
 const V_LEN = 2.5
 
-export default function VectorAddition() {
-  const [deg, setDeg] = useState(70)
+export default function VectorAddition({ value, onChange }: VisualProps = {}) {
+  const [internalDeg, setInternalDeg] = useState(70)
+  const deg = value ?? internalDeg
+  const setDeg = onChange ?? setInternalDeg
 
   const { v, sum } = useMemo(() => {
     const rad = (deg * Math.PI) / 180

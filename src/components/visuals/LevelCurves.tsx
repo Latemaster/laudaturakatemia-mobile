@@ -1,10 +1,13 @@
 import { useState } from 'react'
+import type { VisualProps } from './index'
 
 const WINDOW = 5
 const REFERENCE_LEVELS = [4, 9, 16, 25]
 
-export default function LevelCurves() {
-  const [c, setC] = useState(12)
+export default function LevelCurves({ value, onChange }: VisualProps = {}) {
+  const [internalC, setInternalC] = useState(12)
+  const c = value ?? internalC
+  const setC = onChange ?? setInternalC
   const r = Math.sqrt(c)
 
   return (

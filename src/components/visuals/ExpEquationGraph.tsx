@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react'
+import type { VisualProps } from './index'
 
 const WINDOW = 5
 
@@ -12,8 +13,10 @@ function buildPath() {
   return `M ${points.join(' L ')}`
 }
 
-export default function ExpEquationGraph() {
-  const [b, setB] = useState(4)
+export default function ExpEquationGraph({ value, onChange }: VisualProps = {}) {
+  const [internalB, setInternalB] = useState(4)
+  const b = value ?? internalB
+  const setB = onChange ?? setInternalB
   const path = useMemo(buildPath, [])
   const x = Math.log2(b)
 

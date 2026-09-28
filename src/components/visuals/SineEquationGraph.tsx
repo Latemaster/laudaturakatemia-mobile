@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react'
+import type { VisualProps } from './index'
 
 const MAX_X = 4 * Math.PI // two periods
 
@@ -20,8 +21,10 @@ function solutionsInRange(c: number) {
   return [...new Set(candidates.map((x) => Math.round(x * 100) / 100))].filter((x) => x >= 0 && x <= MAX_X + 0.05)
 }
 
-export default function SineEquationGraph() {
-  const [c, setC] = useState(0.5)
+export default function SineEquationGraph({ value, onChange }: VisualProps = {}) {
+  const [internalC, setInternalC] = useState(0.5)
+  const c = value ?? internalC
+  const setC = onChange ?? setInternalC
   const path = useMemo(buildSinePath, [])
   const solutions = useMemo(() => solutionsInRange(c), [c])
 

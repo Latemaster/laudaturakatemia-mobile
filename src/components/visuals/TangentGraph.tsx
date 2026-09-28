@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react'
+import type { VisualProps } from './index'
 
 const WINDOW = 6
 
@@ -18,11 +19,13 @@ function buildPath() {
   return segments.join(' ')
 }
 
-export default function TangentGraph() {
-  const [deg, setDeg] = useState(45)
+export default function TangentGraph({ value, onChange }: VisualProps = {}) {
+  const [internalDeg, setInternalDeg] = useState(45)
+  const deg = value ?? internalDeg
+  const setDeg = onChange ?? setInternalDeg
   const path = useMemo(buildPath, [])
   const rad = (deg * Math.PI) / 180
-  const value = Math.tan(rad)
+  const tanValue = Math.tan(rad)
 
   return (
     <div className="rounded-2xl border border-ink/10 bg-surface-2 p-4">
@@ -33,7 +36,7 @@ export default function TangentGraph() {
         <line x1={-WINDOW} y1={0} x2={WINDOW} y2={0} className="stroke-ink/20" strokeWidth={0.06} />
         <line x1={0} y1={-WINDOW} x2={0} y2={WINDOW} className="stroke-ink/20" strokeWidth={0.06} />
         <path d={path} fill="none" className="stroke-accent" strokeWidth={0.1} />
-        {Math.abs(value) <= WINDOW && <circle cx={rad} cy={-value} r={0.15} className="fill-good" />}
+        {Math.abs(tanValue) <= WINDOW && <circle cx={rad} cy={-tanValue} r={0.15} className="fill-good" />}
       </svg>
 
       <label className="flex items-center gap-3 text-sm">
@@ -51,7 +54,7 @@ export default function TangentGraph() {
       </label>
 
       <p className="mt-3 text-sm text-ink-dim">
-        <span className="font-mono">tan({deg}°) = {value.toFixed(2)}</span> — asymptootit ±90° kohdalla
+        <span className="font-mono">tan({deg}°) = {tanValue.toFixed(2)}</span> — asymptootit ±90° kohdalla
       </p>
     </div>
   )

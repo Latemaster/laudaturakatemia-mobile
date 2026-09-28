@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react'
+import type { VisualProps } from './index'
 
 const WINDOW = 1.35
 
@@ -7,8 +8,10 @@ function point(deg: number): [number, number] {
   return [Math.cos(rad), Math.sin(rad)]
 }
 
-export default function AngleSymmetry() {
-  const [deg, setDeg] = useState(30)
+export default function AngleSymmetry({ value, onChange }: VisualProps = {}) {
+  const [internalDeg, setInternalDeg] = useState(30)
+  const deg = value ?? internalDeg
+  const setDeg = onChange ?? setInternalDeg
 
   const { p, pSupp } = useMemo(
     () => ({

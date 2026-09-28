@@ -1,9 +1,12 @@
 import { useMemo, useState } from 'react'
+import type { VisualProps } from './index'
 
 const C = 4 // fixed hypotenuse length
 
-export default function RightTriangleTrig() {
-  const [deg, setDeg] = useState(40)
+export default function RightTriangleTrig({ value, onChange }: VisualProps = {}) {
+  const [internalDeg, setInternalDeg] = useState(40)
+  const deg = value ?? internalDeg
+  const setDeg = onChange ?? setInternalDeg
 
   const { a, b, arcPath } = useMemo(() => {
     const rad = (deg * Math.PI) / 180

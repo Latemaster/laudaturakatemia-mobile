@@ -1,10 +1,13 @@
 import { useMemo, useState } from 'react'
+import type { VisualProps } from './index'
 
 const WINDOW = 5
 const V_LEN = 4
 
-export default function UnitVectorViz() {
-  const [deg, setDeg] = useState(35)
+export default function UnitVectorViz({ value, onChange }: VisualProps = {}) {
+  const [internalDeg, setInternalDeg] = useState(35)
+  const deg = value ?? internalDeg
+  const setDeg = onChange ?? setInternalDeg
 
   const { v, unit } = useMemo(() => {
     const rad = (deg * Math.PI) / 180

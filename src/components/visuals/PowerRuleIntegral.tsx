@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react'
+import type { VisualProps } from './index'
 
 const WINDOW = 4
 const SUPERSCRIPTS = ['⁰', '¹', '²', '³', '⁴']
@@ -13,8 +14,10 @@ function buildPath(fn: (x: number) => number) {
   return `M ${points.join(' L ')}`
 }
 
-export default function PowerRuleIntegral() {
-  const [n, setN] = useState(1)
+export default function PowerRuleIntegral({ value, onChange }: VisualProps = {}) {
+  const [internalN, setInternalN] = useState(1)
+  const n = value ?? internalN
+  const setN = onChange ?? setInternalN
 
   const { fPath, bigFPath } = useMemo(
     () => ({

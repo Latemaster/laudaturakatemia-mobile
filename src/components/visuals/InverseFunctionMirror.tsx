@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import type { VisualProps } from './index'
 
 const WINDOW = 5
 
@@ -10,8 +11,10 @@ function fInv(y: number) {
   return (y - 3) / 2
 }
 
-export default function InverseFunctionMirror() {
-  const [x, setX] = useState(0.5)
+export default function InverseFunctionMirror({ value, onChange }: VisualProps = {}) {
+  const [internalX, setInternalX] = useState(0.5)
+  const x = value ?? internalX
+  const setX = onChange ?? setInternalX
   const y = f(x)
 
   return (

@@ -1,9 +1,12 @@
 import { useState } from 'react'
+import type { VisualProps } from './index'
 
 const BASE = 2
 
-export default function ScaleFactor() {
-  const [k, setK] = useState(1.5)
+export default function ScaleFactor({ value, onChange }: VisualProps = {}) {
+  const [internalK, setInternalK] = useState(1.5)
+  const k = value ?? internalK
+  const setK = onChange ?? setInternalK
   const scaledSide = BASE * k
 
   return (

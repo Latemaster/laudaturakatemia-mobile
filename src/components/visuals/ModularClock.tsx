@@ -1,10 +1,13 @@
 import { useMemo, useState } from 'react'
+import type { VisualProps } from './index'
 
 const N = 5
 const R = 3.4
 
-export default function ModularClock() {
-  const [a, setA] = useState(13)
+export default function ModularClock({ value, onChange }: VisualProps = {}) {
+  const [internalA, setInternalA] = useState(13)
+  const a = value ?? internalA
+  const setA = onChange ?? setInternalA
   const r = ((a % N) + N) % N
 
   const ticks = useMemo(

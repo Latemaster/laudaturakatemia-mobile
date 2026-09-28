@@ -1,10 +1,13 @@
 import { useMemo, useState } from 'react'
+import type { VisualProps } from './index'
 
 const WINDOW = 5
 const K1 = 1
 
-export default function PerpendicularLines() {
-  const [k2, setK2] = useState(-1)
+export default function PerpendicularLines({ value, onChange }: VisualProps = {}) {
+  const [internalK2, setInternalK2] = useState(-1)
+  const k2 = value ?? internalK2
+  const setK2 = onChange ?? setInternalK2
 
   const product = useMemo(() => K1 * k2, [k2])
   const isPerpendicular = Math.abs(product + 1) < 0.05

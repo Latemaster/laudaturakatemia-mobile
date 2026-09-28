@@ -1,12 +1,15 @@
 import { useMemo, useState } from 'react'
+import type { VisualProps } from './index'
 
 const MAX_N = 50
 const PRIMES_USED = [2, 3, 5, 7]
 const NUMBERS = Array.from({ length: MAX_N - 1 }, (_, i) => i + 2)
 const COLS = 7
 
-export default function SieveOfEratosthenes() {
-  const [step, setStep] = useState(4)
+export default function SieveOfEratosthenes({ value, onChange }: VisualProps = {}) {
+  const [internalStep, setInternalStep] = useState(4)
+  const step = value ?? internalStep
+  const setStep = onChange ?? setInternalStep
 
   const activePrimes = PRIMES_USED.slice(0, step)
 
@@ -14,12 +17,18 @@ export default function SieveOfEratosthenes() {
     const map = new Map<number, 'prime' | 'composite' | 'unknown'>()
     for (const n of NUMBERS) {
       const isComposite = activePrimes.some((p) => n !== p && n % p === 0)
+      // A number is confirmed prime only once every prime that could
+      // possibly divide it (i.e. every used prime up to sqrt(n)) has
+      // actually been applied - not just because n^2 exceeds MAX_N, which
+      // wrongly marked e.g. 49 "prime" before the sieve reached 7.
+      const necessaryPrimes = PRIMES_USED.filter((p) => p * p <= n)
+      const fullyChecked = necessaryPrimes.every((p) => activePrimes.includes(p))
       if (isComposite) map.set(n, 'composite')
-      else if (n * n > MAX_N || activePrimes.includes(n) || step >= PRIMES_USED.length) map.set(n, 'prime')
+      else if (fullyChecked) map.set(n, 'prime')
       else map.set(n, 'unknown')
     }
     return map
-  }, [activePrimes, step])
+  }, [activePrimes])
 
   return (
     <div className="rounded-2xl border border-ink/10 bg-surface-2 p-4">

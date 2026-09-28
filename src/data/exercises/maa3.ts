@@ -1,21 +1,23 @@
 import type { DistributiveOmit, ExerciseCard } from '../../types'
 
 // One exercise per lecture topic in theory/maa3.ts, in the same order.
-// Several are numeric-answer exercises tied to an interactive slider visual
-// (set the slider to a given value, read off the resulting number, submit
-// it) rather than multiple choice.
+// Slider-driven numeric exercises ask "find the value where a property
+// holds" and are answered by dragging the visual's own slider to that
+// value - not by typing a separately-read-off number into a text box.
 const maa3Exercises: Array<DistributiveOmit<ExerciseCard, 'id' | 'type' | 'topic'>> = [
   {
     // Topic: Yksikkömuutokset ja mittakaava
     kind: 'numeric',
     visual: 'scale-factor',
-    question: 'Aseta yllä olevan kuvan liukusäädin k:lle arvoon 2. Mikä on tällöin suuremman neliön pinta-ala A₂?',
-    answer: 16,
-    tolerance: 0.5,
+    answerVia: 'slider',
+    question: 'Säädä liukusäädintä k. Millä k:n arvolla suuremman neliön pinta-ala A₂ on tasan 16?',
+    answer: 2,
+    tolerance: 0.05,
     min: 0.5,
     max: 2.5,
     step: 0.25,
-    explanation: 'A₂ = A₁·k² = 4·2² = 16.',
+    sliderStart: 1,
+    explanation: 'A₂ = A₁·k² = 4·k² = 16 ⇒ k² = 4 ⇒ k = 2.',
   },
   {
     // Topic: Kulmien tyypit ja ominaisuudet
@@ -55,13 +57,16 @@ const maa3Exercises: Array<DistributiveOmit<ExerciseCard, 'id' | 'type' | 'topic
     // Topic: Suorakulmainen kolmio, trigonometria ja Pythagoraan lause
     kind: 'numeric',
     visual: 'right-triangle-trig',
-    question: 'Aseta yllä olevan kuvan liukusäädin θ:lle arvoon 30°. Mikä on tällöin sivu a (pyöristä kahteen desimaaliin)?',
-    answer: 2.0,
-    tolerance: 0.05,
+    answerVia: 'slider',
+    question: 'Säädä liukusäädintä θ. Millä θ:n arvolla sivu a on tasan 2,00 (c = 4 kiinteä)?',
+    answer: 30,
+    tolerance: 2,
+    unit: '°',
     min: 10,
     max: 80,
     step: 5,
-    explanation: 'a = c·sin θ = 4·sin 30° = 4·0,5 = 2,00.',
+    sliderStart: 60,
+    explanation: 'a = c·sin θ = 2,00 ⇒ sin θ = 0,5 ⇒ θ = 30°.',
   },
   {
     // Topic: 2D-kappaleiden pinta-alat ja lävistäjä
@@ -85,13 +90,16 @@ const maa3Exercises: Array<DistributiveOmit<ExerciseCard, 'id' | 'type' | 'topic
     // Topic: Ympyrä: määritelmä, sektori ja kaari
     kind: 'numeric',
     visual: 'circle-sector',
-    question: 'Aseta yllä olevan kuvan keskuskulmaksi θ = 120°. Mikä on sektorin pinta-ala (pyöristä kahteen desimaaliin)?',
-    answer: 12.82,
-    tolerance: 0.1,
+    answerVia: 'slider',
+    question: 'Säädä liukusäädintä θ (r = 3,5 kiinteä). Millä keskuskulman θ arvolla sektorin pinta-ala on tasan 12,82?',
+    answer: 120,
+    tolerance: 5,
+    unit: '°',
     min: 10,
     max: 350,
     step: 10,
-    explanation: 'A = (θ/360)·π·r² = (120/360)·π·3,5² ≈ 12,82.',
+    sliderStart: 90,
+    explanation: 'A = (θ/360)·π·r² = 12,82 ⇒ θ = 120°.',
   },
   {
     // Topic: Avaruuskappaleiden pinta-alat ja tilavuudet

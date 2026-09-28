@@ -15,13 +15,15 @@ const maa10Exercises: Array<DistributiveOmit<ExerciseCard, 'id' | 'type' | 'topi
     // Topic: Suoran parametrimuotoinen esitys ja leikkauspiste
     kind: 'numeric',
     visual: 'parametric-line-3d',
-    question: 'Aseta yllä olevan kuvan liukusäädin t:lle arvoon 2. Suora on r(t) = a + t·v, missä a=(0,0,0) ja v=(2,1,1.3). Mikä on pisteen x-koordinaatti tällöin?',
-    answer: 4,
+    answerVia: 'slider',
+    question: 'Säädä liukusäädintä t. Suora on r(t) = a + t·v, missä a=(0,0,0) ja v=(2,1,1.3). Millä t:n arvolla pisteen x-koordinaatti on tasan 4?',
+    answer: 2,
     tolerance: 0.1,
     min: -2,
     max: 2,
     step: 0.1,
-    explanation: 'x(2) = 0 + 2·2 = 4.',
+    sliderStart: -1,
+    explanation: 'x(t) = 2t = 4 ⇒ t = 2.',
   },
   {
     // Topic: Taso ja sen normaalimuoto
@@ -36,13 +38,16 @@ const maa10Exercises: Array<DistributiveOmit<ExerciseCard, 'id' | 'type' | 'topi
     // Topic: Pistetulo ja vektorien välinen kulma
     kind: 'numeric',
     visual: 'dot-product-angle',
-    question: 'Aseta yllä olevan kuvan liukusäädin θ:lle arvoon 60°. Mikä on pistetulo u·v tällöin (pyöristä kahteen desimaaliin, |u|=3, |v|=2.5)?',
-    answer: 3.75,
-    tolerance: 0.1,
+    answerVia: 'slider',
+    question: 'Säädä liukusäädintä θ (|u|=3, |v|=2.5). Millä θ:n arvolla pistetulo u·v on tasan 3,75?',
+    answer: 60,
+    tolerance: 2,
+    unit: '°',
     min: 0,
     max: 180,
     step: 5,
-    explanation: 'u·v = |u||v|cos θ = 3·2,5·cos 60° = 7,5·0,5 = 3,75.',
+    sliderStart: 120,
+    explanation: 'u·v = |u||v|cos θ = 7,5·cos θ = 3,75 ⇒ cos θ = 0,5 ⇒ θ = 60°.',
   },
   {
     // Topic: Ristitulo ja normaalivektori
@@ -75,13 +80,15 @@ const maa10Exercises: Array<DistributiveOmit<ExerciseCard, 'id' | 'type' | 'topi
     // Topic: Kahden muuttujan funktio, nollakohdat ja tasa-arvokäyrä
     kind: 'numeric',
     visual: 'level-curves',
-    question: 'Aseta yllä olevan kuvan liukusäädin c:lle arvoon 16. Funktio on f(x,y) = x²+y². Mikä on tasa-arvokäyrän säde tällöin?',
-    answer: 4,
-    tolerance: 0.1,
+    answerVia: 'slider',
+    question: 'Säädä liukusäädintä c. Funktio on f(x,y) = x²+y². Millä c:n arvolla tasa-arvokäyrän säde on tasan 4?',
+    answer: 16,
+    tolerance: 0.5,
     min: 1,
     max: 24,
     step: 1,
-    explanation: 'x²+y² = 16 on ympyrä, jonka säde on √16 = 4.',
+    sliderStart: 9,
+    explanation: 'r = √c = 4 ⇒ c = 16.',
   },
   {
     // Topic: Osittaisderivaatta, kriittiset pisteet ja gradientti

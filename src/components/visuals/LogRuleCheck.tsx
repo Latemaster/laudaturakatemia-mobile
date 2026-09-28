@@ -1,7 +1,10 @@
 import { useState } from 'react'
+import type { VisualProps } from './index'
 
-export default function LogRuleCheck() {
-  const [x, setX] = useState(4)
+export default function LogRuleCheck({ value, onChange }: VisualProps = {}) {
+  const [internalX, setInternalX] = useState(4)
+  const x = value ?? internalX
+  const setX = onChange ?? setInternalX
   const [y, setY] = useState(5)
 
   const left = Math.log10(x * y)

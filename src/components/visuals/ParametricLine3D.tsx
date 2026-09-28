@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react'
+import type { VisualProps } from './index'
 
 function project([x, y, z]: [number, number, number]): [number, number] {
   return [x + 0.5 * z, -(y + 0.3 * z)]
@@ -7,8 +8,10 @@ function project([x, y, z]: [number, number, number]): [number, number] {
 const A: [number, number, number] = [0, 0, 0]
 const DIR: [number, number, number] = [2, 1, 1.3]
 
-export default function ParametricLine3D() {
-  const [t, setT] = useState(1)
+export default function ParametricLine3D({ value, onChange }: VisualProps = {}) {
+  const [internalT, setInternalT] = useState(1)
+  const t = value ?? internalT
+  const setT = onChange ?? setInternalT
 
   const point = useMemo<[number, number, number]>(
     () => [A[0] + t * DIR[0], A[1] + t * DIR[1], A[2] + t * DIR[2]],
