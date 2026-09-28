@@ -13,6 +13,7 @@ import maa12Theory from './theory/maa12'
 
 import maa2Exercises from './exercises/maa2'
 import maa3Exercises from './exercises/maa3'
+import maa4Exercises from './exercises/maa4'
 
 import maa2Problems from './problems/maa2.json'
 import maa3Problems from './problems/maa3.json'
@@ -177,6 +178,7 @@ export function getConceptCards(code: TopicCode): LessonCard[] {
 const EXERCISES: Partial<Record<TopicCode, Array<DistributiveOmit<ExerciseCard, 'id' | 'type' | 'topic'>>>> = {
   MAA2: maa2Exercises,
   MAA3: maa3Exercises,
+  MAA4: maa4Exercises,
 }
 
 export function getExerciseCards(code: TopicCode): ExerciseCard[] {
