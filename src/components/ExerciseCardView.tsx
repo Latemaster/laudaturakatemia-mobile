@@ -1,10 +1,11 @@
-import { useState } from 'react'
+import { useState, type ComponentType } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import type { ExerciseCard } from '../types'
 import CardShell from './CardShell'
 import ExpandableBox from './ExpandableBox'
 import KindLabel from './KindLabel'
 import { VISUALS } from './visuals'
+import type { VisualProps } from './visuals'
 import { CheckIcon, ListCheckIcon, PencilIcon, XIcon } from './icons'
 
 interface ExerciseCardViewProps {
@@ -100,6 +101,63 @@ function ChoiceExercise({ card, onAnswer }: { card: Extract<ExerciseCard, { kind
   )
 }
 
+function SliderAnswerExercise({
+  card,
+  Visual,
+  onAnswer,
+}: {
+  card: Extract<ExerciseCard, { kind: 'numeric' }>
+  Visual: ComponentType<VisualProps>
+  onAnswer?: (correct: boolean) => void
+}) {
+  const [value, setValue] = useState(card.sliderStart ?? card.min ?? 0)
+  const [checked, setChecked] = useState(false)
+  const isCorrect = Math.abs(value - card.answer) <= card.tolerance
+
+  function handleCheck() {
+    setChecked(true)
+    onAnswer?.(isCorrect)
+  }
+
+  return (
+    <>
+      <div className="mb-4">
+        <Visual value={value} onChange={setValue} />
+      </div>
+
+      {!checked && (
+        <button
+          type="button"
+          onClick={handleCheck}
+          className="w-full rounded-2xl bg-accent px-4 py-3 text-center font-semibold text-white shadow-md"
+        >
+          Tarkista vastaus
+        </button>
+      )}
+
+      <AnimatePresence>
+        {checked && (
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="mt-4 rounded-2xl bg-surface-2 p-4"
+          >
+            <p className={`mb-1 text-sm font-semibold ${isCorrect ? 'text-good' : 'text-bad'}`}>
+              {isCorrect ? 'Oikein!' : `Ei aivan - liukusäädin on nyt kohdassa ${value}${card.unit ? ` ${card.unit}` : ''}. Oikea vastaus: ${card.answer}${card.unit ? ` ${card.unit}` : ''}.`}
+            </p>
+            <p className="text-sm leading-relaxed text-ink-dim">{card.explanation}</p>
+            <button type="button" onClick={() => setChecked(false)} className="mt-2 text-sm font-semibold text-accent">
+              Säädä uudelleen
+            </button>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
+  )
+}
+
 function NumericExercise({ card, onAnswer }: { card: Extract<ExerciseCard, { kind: 'numeric' }>; onAnswer?: (correct: boolean) => void }) {
   const [value, setValue] = useState('')
   const [submitted, setSubmitted] = useState(false)
@@ -173,6 +231,7 @@ function NumericExercise({ card, onAnswer }: { card: Extract<ExerciseCard, { kin
 export default function ExerciseCardView({ card, onAnswer }: ExerciseCardViewProps) {
   const [isExpanded, setIsExpanded] = useState(false)
   const Visual = card.visual ? VISUALS[card.visual] : null
+  const isSliderAnswer = card.kind === 'numeric' && card.answerVia === 'slider'
 
   return (
     <CardShell topic={card.topic}>
@@ -191,13 +250,20 @@ export default function ExerciseCardView({ card, onAnswer }: ExerciseCardViewPro
       </motion.h2>
 
       <ExpandableBox isExpanded={isExpanded} onExpandedChange={setIsExpanded}>
-        {Visual && (
+        {/* Slider-answer exercises own the Visual themselves, so they can
+            drive it with controlled value/onChange - it must not also be
+            rendered uncontrolled here. */}
+        {Visual && !isSliderAnswer && (
           <div className="mb-4">
             <Visual />
           </div>
         )}
         {card.kind === 'numeric' ? (
-          <NumericExercise card={card} onAnswer={onAnswer} />
+          isSliderAnswer && Visual ? (
+            <SliderAnswerExercise card={card} Visual={Visual} onAnswer={onAnswer} />
+          ) : (
+            <NumericExercise card={card} onAnswer={onAnswer} />
+          )
         ) : (
           <ChoiceExercise card={card} onAnswer={onAnswer} />
         )}

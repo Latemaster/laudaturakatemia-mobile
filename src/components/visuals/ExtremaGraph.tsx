@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react'
+import type { VisualProps } from './index'
 
 const WINDOW = 4
 
@@ -20,8 +21,10 @@ function buildPath() {
   return `M ${points.join(' L ')}`
 }
 
-export default function ExtremaGraph() {
-  const [x, setX] = useState(-2)
+export default function ExtremaGraph({ value, onChange }: VisualProps = {}) {
+  const [internalX, setInternalX] = useState(-2)
+  const x = value ?? internalX
+  const setX = onChange ?? setInternalX
   const path = useMemo(buildPath, [])
   const y = f(x)
   const slope = fPrime(x)

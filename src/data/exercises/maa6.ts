@@ -1,53 +1,64 @@
 import type { DistributiveOmit, ExerciseCard } from '../../types'
 
-// One exercise per lecture topic in theory/maa6.ts, in the same order.
+// One exercise per lecture topic in theory/maa6.ts, in the same order. All
+// four ask "find the x (or n, or h) where some derivative-related property
+// holds" and are answered by dragging the visual's own slider to that value
+// - not by typing a separately-read-off number into a text box.
 const maa6Exercises: Array<DistributiveOmit<ExerciseCard, 'id' | 'type' | 'topic'>> = [
   {
     // Topic: Derivaatan määritelmä
     kind: 'numeric',
     visual: 'secant-to-tangent',
-    question: 'Aseta yllä olevan kuvan liukusäädin h:lle arvoon 0.1 (lähelle nollaa). Mikä on sekantin kulmakerroin Δy/Δx tällöin (pyöristä kahteen desimaaliin)?',
-    answer: -0.76,
+    answerVia: 'slider',
+    question: 'Säädä liukusäädintä h. Millä h:n arvolla sekantin kulmakerroin Δy/Δx on tasan 0?',
+    answer: 2,
     tolerance: 0.05,
     min: 0.1,
     max: 3,
     step: 0.1,
-    explanation: 'Kun h on pieni, sekantin kulmakerroin lähestyy tangentin kulmakerrointa f\'(−1) = 0,8·(−1) = −0,8.',
+    sliderStart: 1,
+    explanation: 'Pisteet x=-1 ja x=1 (h=2) ovat yhtä kaukana paraabelin f(x)=0,4x²-1,5 huipusta, joten f(-1)=f(1) ja sekantin kulmakerroin on 0.',
   },
   {
     // Topic: Derivointisäännöt
     kind: 'numeric',
     visual: 'power-rule-graph',
-    question: 'Aseta yllä olevan kuvan liukusäädin n:lle arvoon 3, jolloin f(x) = x³. Mikä on f\'(2)?',
-    answer: 12,
-    tolerance: 0.5,
+    answerVia: 'slider',
+    question: 'Säädä liukusäädintä n. Millä n:n arvolla derivaattafunktio f\'(x) = n·xⁿ⁻¹ on vakiofunktio (ei riipu x:stä)?',
+    answer: 1,
+    tolerance: 0,
     min: 1,
     max: 4,
     step: 1,
-    explanation: 'f\'(x) = 3x², joten f\'(2) = 3·2² = 12.',
+    sliderStart: 3,
+    explanation: 'Kun n=1, f(x)=x ja f\'(x)=1 - vakio kaikilla x:n arvoilla, koska eksponentti n-1=0.',
   },
   {
     // Topic: Käyrän tangentti
     kind: 'numeric',
     visual: 'tangent-line',
-    question: 'Aseta yllä olevan kuvan liukusäädin x:lle arvoon 2. Mikä on tangentin kulmakerroin f\'(2) tällöin?',
-    answer: 1.6,
+    answerVia: 'slider',
+    question: 'Säädä liukusäädintä x. Millä x:n arvolla tangentin kulmakerroin f\'(x) on tasan 0?',
+    answer: 0,
     tolerance: 0.05,
     min: -5,
     max: 5,
     step: 0.25,
-    explanation: 'f\'(x) = 0,8x, joten f\'(2) = 0,8·2 = 1,6.',
+    sliderStart: 2,
+    explanation: 'f\'(x) = 0,8x = 0 ⇒ x = 0. Paraabelin huipussa tangentti on vaakasuora.',
   },
   {
     // Topic: Ääriarvot
     kind: 'numeric',
     visual: 'extrema-graph',
-    question: 'Aseta yllä olevan kuvan liukusäädin x:lle sellaiseen positiiviseen arvoon, jolla derivaatta f\'(x) = 0. Mikä on x?',
+    answerVia: 'slider',
+    question: 'Säädä liukusäädintä x. Millä positiivisella x:n arvolla derivaatta f\'(x) on tasan 0?',
     answer: 1,
     tolerance: 0.05,
     min: -2.5,
     max: 2.5,
     step: 0.1,
+    sliderStart: -2,
     explanation: 'f\'(x) = 3x² − 3 = 0 ⇒ x² = 1 ⇒ x = 1 tai x = −1; positiivinen ratkaisu on x = 1.',
   },
 ]

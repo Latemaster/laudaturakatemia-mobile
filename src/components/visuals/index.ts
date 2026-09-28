@@ -1,5 +1,14 @@
 import type { ComponentType } from 'react'
 import type { VisualKey } from '../../types'
+
+// Optional controlled-slider props: a visual that accepts these can be
+// driven from outside (e.g. a "find x" exercise where the slider itself is
+// the answer input). Visuals that ignore these props keep their own
+// internal state and work exactly as before.
+export interface VisualProps {
+  value?: number
+  onChange?: (value: number) => void
+}
 import AbsoluteValueLine from './AbsoluteValueLine'
 import AlgorithmFlowchart from './AlgorithmFlowchart'
 import AngleBisector from './AngleBisector'
@@ -62,7 +71,7 @@ import UnitCircle from './UnitCircle'
 import UnitVectorViz from './UnitVectorViz'
 import VectorAddition from './VectorAddition'
 
-export const VISUALS: Record<VisualKey, ComponentType> = {
+export const VISUALS: Record<VisualKey, ComponentType<VisualProps>> = {
   'quadratic-discriminant': QuadraticDiscriminant,
   'binomial-square': BinomialSquare,
   'unit-circle': UnitCircle,

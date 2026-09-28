@@ -118,6 +118,14 @@ export interface NumericExerciseCard extends BaseExerciseCard {
   min?: number
   max?: number
   step?: number
+  // When set, the student answers by dragging the visual's own slider to
+  // the value they believe is correct (checked against `answer`), instead
+  // of typing a number into a separate input. Requires `visual` to point
+  // at a component that accepts controlled `value`/`onChange` props.
+  // `sliderStart` is where the slider begins (should differ from `answer`
+  // so the exercise doesn't start pre-solved); defaults to `min`.
+  answerVia?: 'slider'
+  sliderStart?: number
 }
 
 export type ExerciseCard = ChoiceExerciseCard | NumericExerciseCard

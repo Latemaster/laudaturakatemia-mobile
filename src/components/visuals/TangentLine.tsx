@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react'
+import type { VisualProps } from './index'
 
 const WINDOW = 6
 
@@ -18,8 +19,10 @@ function buildCurvePath() {
   return `M ${points.join(' L ')}`
 }
 
-export default function TangentLine() {
-  const [x0, setX0] = useState(2)
+export default function TangentLine({ value, onChange }: VisualProps = {}) {
+  const [internalX0, setInternalX0] = useState(2)
+  const x0 = value ?? internalX0
+  const setX0 = onChange ?? setInternalX0
 
   const curvePath = useMemo(buildCurvePath, [])
   const y0 = f(x0)

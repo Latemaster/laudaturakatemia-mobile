@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react'
+import type { VisualProps } from './index'
 
 const WINDOW = 6
 const X0 = -1
@@ -15,8 +16,10 @@ function buildCurvePath() {
   return `M ${points.join(' L ')}`
 }
 
-export default function SecantToTangent() {
-  const [h, setH] = useState(1.5)
+export default function SecantToTangent({ value, onChange }: VisualProps = {}) {
+  const [internalH, setInternalH] = useState(1.5)
+  const h = value ?? internalH
+  const setH = onChange ?? setInternalH
   const curvePath = useMemo(buildCurvePath, [])
 
   const x1 = X0 + h
