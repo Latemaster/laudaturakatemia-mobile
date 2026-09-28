@@ -250,6 +250,9 @@ export default function ExerciseCardView({ card, onAnswer }: ExerciseCardViewPro
       </motion.h2>
 
       <ExpandableBox isExpanded={isExpanded} onExpandedChange={setIsExpanded}>
+        {isExpanded && (
+          <h2 className="mb-4 text-2xl font-semibold leading-snug text-ink">{card.question}</h2>
+        )}
         {/* Slider-answer exercises own the Visual themselves, so they can
             drive it with controlled value/onChange - it must not also be
             rendered uncontrolled here. */}
