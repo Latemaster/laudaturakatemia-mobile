@@ -19,7 +19,7 @@ function buildCurvePath() {
   return `M ${points.join(' L ')}`
 }
 
-export default function TangentLine({ value, onChange }: VisualProps = {}) {
+export default function TangentLine({ value, onChange, hideReadout }: VisualProps = {}) {
   const [internalX0, setInternalX0] = useState(2)
   const x0 = value ?? internalX0
   const setX0 = onChange ?? setInternalX0
@@ -59,11 +59,13 @@ export default function TangentLine({ value, onChange }: VisualProps = {}) {
         <span className="w-14 text-right font-mono text-ink-dim">{x0}</span>
       </label>
 
-      <p className="mt-3 text-sm text-ink-dim">
-        <span className="font-mono">
-          f({x0}) = {y0.toFixed(2)}, f&apos;({x0}) = {slope.toFixed(2)}
-        </span>
-      </p>
+      {!hideReadout && (
+        <p className="mt-3 text-sm text-ink-dim">
+          <span className="font-mono">
+            f({x0}) = {y0.toFixed(2)}, f&apos;({x0}) = {slope.toFixed(2)}
+          </span>
+        </p>
+      )}
     </div>
   )
 }

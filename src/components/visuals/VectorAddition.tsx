@@ -5,7 +5,7 @@ const WINDOW = 5
 const U: [number, number] = [3, 1]
 const V_LEN = 2.5
 
-export default function VectorAddition({ value, onChange }: VisualProps = {}) {
+export default function VectorAddition({ value, onChange, hideReadout }: VisualProps = {}) {
   const [internalDeg, setInternalDeg] = useState(70)
   const deg = value ?? internalDeg
   const setDeg = onChange ?? setInternalDeg
@@ -56,11 +56,13 @@ export default function VectorAddition({ value, onChange }: VisualProps = {}) {
         <span className="w-14 text-right font-mono text-ink-dim">{deg}°</span>
       </label>
 
-      <p className="mt-3 text-sm text-ink-dim">
-        <span className="font-mono">
-          u+v = ({sum[0].toFixed(1)}, {sum[1].toFixed(1)})
-        </span>
-      </p>
+      {!hideReadout && (
+        <p className="mt-3 text-sm text-ink-dim">
+          <span className="font-mono">
+            u+v = ({sum[0].toFixed(1)}, {sum[1].toFixed(1)})
+          </span>
+        </p>
+      )}
     </div>
   )
 }

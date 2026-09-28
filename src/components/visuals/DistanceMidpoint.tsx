@@ -3,7 +3,7 @@ import type { VisualProps } from './index'
 
 const WINDOW = 5
 
-export default function DistanceMidpoint({ value, onChange }: VisualProps = {}) {
+export default function DistanceMidpoint({ value, onChange, hideReadout }: VisualProps = {}) {
   const [internalBx, setInternalBx] = useState(4)
   const bx = value ?? internalBx
   const setBx = onChange ?? setInternalBx
@@ -52,11 +52,13 @@ export default function DistanceMidpoint({ value, onChange }: VisualProps = {}) 
         <span className="w-10 text-right font-mono text-ink-dim">{by}</span>
       </label>
 
-      <p className="mt-3 text-sm text-ink-dim">
-        <span className="font-mono">
-          d = {distance.toFixed(2)}, M = ({mx.toFixed(1)}, {my.toFixed(1)})
-        </span>
-      </p>
+      {!hideReadout && (
+        <p className="mt-3 text-sm text-ink-dim">
+          <span className="font-mono">
+            d = {distance.toFixed(2)}, M = ({mx.toFixed(1)}, {my.toFixed(1)})
+          </span>
+        </p>
+      )}
     </div>
   )
 }

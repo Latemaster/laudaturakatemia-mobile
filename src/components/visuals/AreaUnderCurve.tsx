@@ -24,7 +24,7 @@ function buildAreaPath(b: number) {
   return `M ${points.join(' L ')} Z`
 }
 
-export default function AreaUnderCurve({ value, onChange }: VisualProps = {}) {
+export default function AreaUnderCurve({ value, onChange, hideReadout }: VisualProps = {}) {
   const [internalB, setInternalB] = useState(4)
   const b = value ?? internalB
   const setB = onChange ?? setInternalB
@@ -54,11 +54,13 @@ export default function AreaUnderCurve({ value, onChange }: VisualProps = {}) {
         <span className="w-10 text-right font-mono text-ink-dim">{b}</span>
       </label>
 
-      <p className="mt-3 text-sm text-ink-dim">
-        <span className="font-mono">
-          A = ∫₀^{b} √x dx = {area.toFixed(2)}
-        </span>
-      </p>
+      {!hideReadout && (
+        <p className="mt-3 text-sm text-ink-dim">
+          <span className="font-mono">
+            A = ∫₀^{b} √x dx = {area.toFixed(2)}
+          </span>
+        </p>
+      )}
     </div>
   )
 }

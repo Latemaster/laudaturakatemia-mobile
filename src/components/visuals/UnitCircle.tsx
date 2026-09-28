@@ -3,7 +3,7 @@ import type { VisualProps } from './index'
 
 const WINDOW = 1.35
 
-export default function UnitCircle({ value, onChange }: VisualProps = {}) {
+export default function UnitCircle({ value, onChange, hideReadout }: VisualProps = {}) {
   const [internalDegrees, setInternalDegrees] = useState(45)
   const degrees = value ?? internalDegrees
   const setDegrees = onChange ?? setInternalDegrees
@@ -47,13 +47,15 @@ export default function UnitCircle({ value, onChange }: VisualProps = {}) {
         <span className="w-14 text-right font-mono text-ink-dim">{degrees}°</span>
       </label>
 
-      <p className="mt-3 text-sm text-ink-dim">
-        <span className="font-mono">θ = {(radians / Math.PI).toFixed(2)}π rad</span>
-        <br />
-        <span className="font-mono text-bad">cos θ = {x.toFixed(2)}</span>
-        {'   '}
-        <span className="font-mono text-good">sin θ = {y.toFixed(2)}</span>
-      </p>
+      {!hideReadout && (
+        <p className="mt-3 text-sm text-ink-dim">
+          <span className="font-mono">θ = {(radians / Math.PI).toFixed(2)}π rad</span>
+          <br />
+          <span className="font-mono text-bad">cos θ = {x.toFixed(2)}</span>
+          {'   '}
+          <span className="font-mono text-good">sin θ = {y.toFixed(2)}</span>
+        </p>
+      )}
     </div>
   )
 }

@@ -5,7 +5,7 @@ const WINDOW = 5
 const U_LEN = 3
 const V_LEN = 2.5
 
-export default function DotProductAngle({ value, onChange }: VisualProps = {}) {
+export default function DotProductAngle({ value, onChange, hideReadout }: VisualProps = {}) {
   const [internalDeg, setInternalDeg] = useState(60)
   const deg = value ?? internalDeg
   const setDeg = onChange ?? setInternalDeg
@@ -52,10 +52,12 @@ export default function DotProductAngle({ value, onChange }: VisualProps = {}) {
         <span className="w-14 text-right font-mono text-ink-dim">{deg}°</span>
       </label>
 
-      <p className={`mt-3 text-sm font-mono ${isPerpendicular ? 'font-semibold text-good' : 'text-ink-dim'}`}>
-        u·v = |u||v|cos θ = {dot.toFixed(2)}
-        {isPerpendicular && ' — kohtisuorassa!'}
-      </p>
+      {!hideReadout && (
+        <p className={`mt-3 text-sm font-mono ${isPerpendicular ? 'font-semibold text-good' : 'text-ink-dim'}`}>
+          u·v = |u||v|cos θ = {dot.toFixed(2)}
+          {isPerpendicular && ' — kohtisuorassa!'}
+        </p>
+      )}
     </div>
   )
 }

@@ -17,7 +17,7 @@ function buildBranch(from: number, to: number, step: number) {
   return `M ${points.join(' L ')}`
 }
 
-export default function DomainRangeHyperbola({ value, onChange }: VisualProps = {}) {
+export default function DomainRangeHyperbola({ value, onChange, hideReadout }: VisualProps = {}) {
   const [internalX, setInternalX] = useState(1.5)
   const x = value ?? internalX
   const setX = onChange ?? setInternalX
@@ -61,12 +61,14 @@ export default function DomainRangeHyperbola({ value, onChange }: VisualProps = 
         <span className="w-14 text-right font-mono text-ink-dim">{x.toFixed(1)}</span>
       </label>
 
-      <p className="mt-3 text-center text-sm text-ink-dim">
-        <span className="font-mono">
-          f({x.toFixed(1)}) = 1/{x.toFixed(1)} = {y.toFixed(2)}
-        </span>
-        {' · '}Määrittelyjoukko: x ≠ 0
-      </p>
+      {!hideReadout && (
+        <p className="mt-3 text-center text-sm text-ink-dim">
+          <span className="font-mono">
+            f({x.toFixed(1)}) = 1/{x.toFixed(1)} = {y.toFixed(2)}
+          </span>
+          {' · '}Määrittelyjoukko: x ≠ 0
+        </p>
+      )}
     </div>
   )
 }

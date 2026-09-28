@@ -3,7 +3,7 @@ import type { VisualProps } from './index'
 
 const BASE = 2
 
-export default function ScaleFactor({ value, onChange }: VisualProps = {}) {
+export default function ScaleFactor({ value, onChange, hideReadout }: VisualProps = {}) {
   const [internalK, setInternalK] = useState(1.5)
   const k = value ?? internalK
   const setK = onChange ?? setInternalK
@@ -25,16 +25,18 @@ export default function ScaleFactor({ value, onChange }: VisualProps = {}) {
           className="fill-good/20 stroke-good"
           strokeWidth={0.05}
         />
-        <text
-          x={9.5 - scaledSide / 2}
-          y={6.5 - scaledSide / 2}
-          textAnchor="middle"
-          dominantBaseline="middle"
-          fontSize={scaledSide > 1.4 ? 0.35 : 0}
-          className="fill-ink font-semibold"
-        >
-          A₂ = {(BASE * BASE * k * k).toFixed(1)}
-        </text>
+        {!hideReadout && (
+          <text
+            x={9.5 - scaledSide / 2}
+            y={6.5 - scaledSide / 2}
+            textAnchor="middle"
+            dominantBaseline="middle"
+            fontSize={scaledSide > 1.4 ? 0.35 : 0}
+            className="fill-ink font-semibold"
+          >
+            A₂ = {(BASE * BASE * k * k).toFixed(1)}
+          </text>
+        )}
       </svg>
 
       <label className="flex items-center gap-3 text-sm">
@@ -51,9 +53,11 @@ export default function ScaleFactor({ value, onChange }: VisualProps = {}) {
         <span className="w-10 text-right font-mono text-ink-dim">{k}</span>
       </label>
 
-      <p className="mt-3 text-sm text-ink-dim">
-        <span className="font-mono">A₂ = A₁ · k² = {BASE * BASE} · {k}² = {(BASE * BASE * k * k).toFixed(1)}</span>
-      </p>
+      {!hideReadout && (
+        <p className="mt-3 text-sm text-ink-dim">
+          <span className="font-mono">A₂ = A₁ · k² = {BASE * BASE} · {k}² = {(BASE * BASE * k * k).toFixed(1)}</span>
+        </p>
+      )}
     </div>
   )
 }

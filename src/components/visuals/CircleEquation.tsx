@@ -3,7 +3,7 @@ import type { VisualProps } from './index'
 
 const WINDOW = 5
 
-export default function CircleEquation({ value, onChange }: VisualProps = {}) {
+export default function CircleEquation({ value, onChange, hideReadout }: VisualProps = {}) {
   const [internalR, setInternalR] = useState(3)
   const r = value ?? internalR
   const setR = onChange ?? setInternalR
@@ -35,9 +35,11 @@ export default function CircleEquation({ value, onChange }: VisualProps = {}) {
         <span className="w-10 text-right font-mono text-ink-dim">{r}</span>
       </label>
 
-      <p className="mt-3 text-sm text-ink-dim">
-        <span className="font-mono">x² + y² = {r}² = {r * r}</span>
-      </p>
+      {!hideReadout && (
+        <p className="mt-3 text-sm text-ink-dim">
+          <span className="font-mono">x² + y² = {r}² = {r * r}</span>
+        </p>
+      )}
     </div>
   )
 }

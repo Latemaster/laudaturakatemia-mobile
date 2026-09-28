@@ -4,7 +4,7 @@ import type { VisualProps } from './index'
 const WINDOW = 5
 const B = 1
 
-export default function LineSlope({ value, onChange }: VisualProps = {}) {
+export default function LineSlope({ value, onChange, hideReadout }: VisualProps = {}) {
   const [internalK, setInternalK] = useState(1)
   const k = value ?? internalK
   const setK = onChange ?? setInternalK
@@ -43,9 +43,11 @@ export default function LineSlope({ value, onChange }: VisualProps = {}) {
         <span className="w-10 text-right font-mono text-ink-dim">{k}</span>
       </label>
 
-      <p className="mt-3 text-sm text-ink-dim">
-        <span className="font-mono">y = {k}x + {B}</span>
-      </p>
+      {!hideReadout && (
+        <p className="mt-3 text-sm text-ink-dim">
+          <span className="font-mono">y = {k}x + {B}</span>
+        </p>
+      )}
     </div>
   )
 }

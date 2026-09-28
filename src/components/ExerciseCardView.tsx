@@ -122,7 +122,7 @@ function SliderAnswerExercise({
   return (
     <>
       <div className="mb-4">
-        <Visual value={value} onChange={setValue} />
+        <Visual value={value} onChange={setValue} hideReadout />
       </div>
 
       {!checked && (

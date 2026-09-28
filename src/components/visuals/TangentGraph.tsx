@@ -19,7 +19,7 @@ function buildPath() {
   return segments.join(' ')
 }
 
-export default function TangentGraph({ value, onChange }: VisualProps = {}) {
+export default function TangentGraph({ value, onChange, hideReadout }: VisualProps = {}) {
   const [internalDeg, setInternalDeg] = useState(45)
   const deg = value ?? internalDeg
   const setDeg = onChange ?? setInternalDeg
@@ -53,9 +53,11 @@ export default function TangentGraph({ value, onChange }: VisualProps = {}) {
         <span className="w-14 text-right font-mono text-ink-dim">{deg}°</span>
       </label>
 
-      <p className="mt-3 text-sm text-ink-dim">
-        <span className="font-mono">tan({deg}°) = {tanValue.toFixed(2)}</span> — asymptootit ±90° kohdalla
-      </p>
+      {!hideReadout && (
+        <p className="mt-3 text-sm text-ink-dim">
+          <span className="font-mono">tan({deg}°) = {tanValue.toFixed(2)}</span> — asymptootit ±90° kohdalla
+        </p>
+      )}
     </div>
   )
 }

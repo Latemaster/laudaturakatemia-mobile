@@ -16,7 +16,7 @@ function buildCurvePath() {
   return `M ${points.join(' L ')}`
 }
 
-export default function SecantToTangent({ value, onChange }: VisualProps = {}) {
+export default function SecantToTangent({ value, onChange, hideReadout }: VisualProps = {}) {
   const [internalH, setInternalH] = useState(1.5)
   const h = value ?? internalH
   const setH = onChange ?? setInternalH
@@ -55,12 +55,14 @@ export default function SecantToTangent({ value, onChange }: VisualProps = {}) {
         <span className="w-10 text-right font-mono text-ink-dim">{h.toFixed(1)}</span>
       </label>
 
-      <p className="mt-3 text-sm text-ink-dim">
-        <span className="font-mono">
-          Δy/Δx = ({y1.toFixed(2)}-{y0.toFixed(2)})/{h.toFixed(1)} = {slope.toFixed(2)}
-        </span>
-        {h <= 0.2 && ' ≈ tangentin kulmakerroin'}
-      </p>
+      {!hideReadout && (
+        <p className="mt-3 text-sm text-ink-dim">
+          <span className="font-mono">
+            Δy/Δx = ({y1.toFixed(2)}-{y0.toFixed(2)})/{h.toFixed(1)} = {slope.toFixed(2)}
+          </span>
+          {h <= 0.2 && ' ≈ tangentin kulmakerroin'}
+        </p>
+      )}
     </div>
   )
 }

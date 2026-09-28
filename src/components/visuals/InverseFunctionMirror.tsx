@@ -11,7 +11,7 @@ function fInv(y: number) {
   return (y - 3) / 2
 }
 
-export default function InverseFunctionMirror({ value, onChange }: VisualProps = {}) {
+export default function InverseFunctionMirror({ value, onChange, hideReadout }: VisualProps = {}) {
   const [internalX, setInternalX] = useState(0.5)
   const x = value ?? internalX
   const setX = onChange ?? setInternalX
@@ -49,11 +49,13 @@ export default function InverseFunctionMirror({ value, onChange }: VisualProps =
         <span className="w-14 text-right font-mono text-ink-dim">{x.toFixed(1)}</span>
       </label>
 
-      <p className="mt-3 text-center text-sm text-ink-dim">
-        <span className="font-mono text-accent">f({x.toFixed(1)}) = {y.toFixed(1)}</span>
-        {'  '}
-        <span className="font-mono text-good">f⁻¹({y.toFixed(1)}) = {x.toFixed(1)}</span>
-      </p>
+      {!hideReadout && (
+        <p className="mt-3 text-center text-sm text-ink-dim">
+          <span className="font-mono text-accent">f({x.toFixed(1)}) = {y.toFixed(1)}</span>
+          {'  '}
+          <span className="font-mono text-good">f⁻¹({y.toFixed(1)}) = {x.toFixed(1)}</span>
+        </p>
+      )}
     </div>
   )
 }

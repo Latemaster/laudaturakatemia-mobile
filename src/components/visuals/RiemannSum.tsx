@@ -19,7 +19,7 @@ function buildCurvePath() {
   return `M ${points.join(' L ')}`
 }
 
-export default function RiemannSum({ value, onChange }: VisualProps = {}) {
+export default function RiemannSum({ value, onChange, hideReadout }: VisualProps = {}) {
   const [internalN, setInternalN] = useState(4)
   const n = value ?? internalN
   const setN = onChange ?? setInternalN
@@ -70,11 +70,13 @@ export default function RiemannSum({ value, onChange }: VisualProps = {}) {
         <span className="w-10 text-right font-mono text-ink-dim">{n}</span>
       </label>
 
-      <p className="mt-3 text-sm text-ink-dim">
-        <span className="font-mono">
-          Summa ≈ {sum.toFixed(2)} (tarkka arvo {EXACT.toFixed(2)})
-        </span>
-      </p>
+      {!hideReadout && (
+        <p className="mt-3 text-sm text-ink-dim">
+          <span className="font-mono">
+            Summa ≈ {sum.toFixed(2)} (tarkka arvo {EXACT.toFixed(2)})
+          </span>
+        </p>
+      )}
     </div>
   )
 }

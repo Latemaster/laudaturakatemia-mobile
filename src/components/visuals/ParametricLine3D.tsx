@@ -8,7 +8,7 @@ function project([x, y, z]: [number, number, number]): [number, number] {
 const A: [number, number, number] = [0, 0, 0]
 const DIR: [number, number, number] = [2, 1, 1.3]
 
-export default function ParametricLine3D({ value, onChange }: VisualProps = {}) {
+export default function ParametricLine3D({ value, onChange, hideReadout }: VisualProps = {}) {
   const [internalT, setInternalT] = useState(1)
   const t = value ?? internalT
   const setT = onChange ?? setInternalT
@@ -48,11 +48,13 @@ export default function ParametricLine3D({ value, onChange }: VisualProps = {}) 
         <span className="w-10 text-right font-mono text-ink-dim">{t.toFixed(1)}</span>
       </label>
 
-      <p className="mt-3 text-sm text-ink-dim">
-        <span className="font-mono">
-          r(t) = a + t·v = ({point[0].toFixed(1)}, {point[1].toFixed(1)}, {point[2].toFixed(1)})
-        </span>
-      </p>
+      {!hideReadout && (
+        <p className="mt-3 text-sm text-ink-dim">
+          <span className="font-mono">
+            r(t) = a + t·v = ({point[0].toFixed(1)}, {point[1].toFixed(1)}, {point[2].toFixed(1)})
+          </span>
+        </p>
+      )}
     </div>
   )
 }

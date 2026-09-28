@@ -8,6 +8,12 @@ import type { VisualKey } from '../../types'
 export interface VisualProps {
   value?: number
   onChange?: (value: number) => void
+  // When true, suppress the live computed-value readout (the text that
+  // spells out the current formula result, e.g. "f'(2) = 1.60") so a
+  // slider-answer exercise doesn't hand over the answer just by looking.
+  // The diagram itself, axis/point labels, and the slider's own position
+  // stay visible - only the printed numeric conclusion is hidden.
+  hideReadout?: boolean
 }
 import AbsoluteValueLine from './AbsoluteValueLine'
 import AlgorithmFlowchart from './AlgorithmFlowchart'

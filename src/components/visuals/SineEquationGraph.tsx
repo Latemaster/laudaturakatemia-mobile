@@ -21,7 +21,7 @@ function solutionsInRange(c: number) {
   return [...new Set(candidates.map((x) => Math.round(x * 100) / 100))].filter((x) => x >= 0 && x <= MAX_X + 0.05)
 }
 
-export default function SineEquationGraph({ value, onChange }: VisualProps = {}) {
+export default function SineEquationGraph({ value, onChange, hideReadout }: VisualProps = {}) {
   const [internalC, setInternalC] = useState(0.5)
   const c = value ?? internalC
   const setC = onChange ?? setInternalC
@@ -53,9 +53,11 @@ export default function SineEquationGraph({ value, onChange }: VisualProps = {})
         <span className="w-10 text-right font-mono text-ink-dim">{c.toFixed(1)}</span>
       </label>
 
-      <p className="mt-3 text-sm text-ink-dim">
-        <span className="font-mono">sin x = {c.toFixed(1)}</span> — {solutions.length} ratkaisua kahdella jaksolla
-      </p>
+      {!hideReadout && (
+        <p className="mt-3 text-sm text-ink-dim">
+          <span className="font-mono">sin x = {c.toFixed(1)}</span> — {solutions.length} ratkaisua kahdella jaksolla
+        </p>
+      )}
     </div>
   )
 }

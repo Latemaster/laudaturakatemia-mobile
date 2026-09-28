@@ -14,7 +14,7 @@ function buildPath(fn: (x: number) => number) {
   return `M ${points.join(' L ')}`
 }
 
-export default function PowerRuleGraph({ value, onChange }: VisualProps = {}) {
+export default function PowerRuleGraph({ value, onChange, hideReadout }: VisualProps = {}) {
   const [internalN, setInternalN] = useState(3)
   const n = value ?? internalN
   const setN = onChange ?? setInternalN
@@ -53,13 +53,15 @@ export default function PowerRuleGraph({ value, onChange }: VisualProps = {}) {
         <span className="w-10 text-right font-mono text-ink-dim">{n}</span>
       </label>
 
-      <p className="mt-3 text-sm text-ink-dim">
-        <span className="font-mono text-accent">f(x) = x{SUPERSCRIPTS[n]}</span>
-        {'   '}
-        <span className="font-mono text-good">
-          f&apos;(x) = {n}x{SUPERSCRIPTS[n - 1]}
-        </span>
-      </p>
+      {!hideReadout && (
+        <p className="mt-3 text-sm text-ink-dim">
+          <span className="font-mono text-accent">f(x) = x{SUPERSCRIPTS[n]}</span>
+          {'   '}
+          <span className="font-mono text-good">
+            f&apos;(x) = {n}x{SUPERSCRIPTS[n - 1]}
+          </span>
+        </p>
+      )}
     </div>
   )
 }

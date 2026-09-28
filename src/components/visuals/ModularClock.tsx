@@ -4,7 +4,7 @@ import type { VisualProps } from './index'
 const N = 5
 const R = 3.4
 
-export default function ModularClock({ value, onChange }: VisualProps = {}) {
+export default function ModularClock({ value, onChange, hideReadout }: VisualProps = {}) {
   const [internalA, setInternalA] = useState(13)
   const a = value ?? internalA
   const setA = onChange ?? setInternalA
@@ -57,11 +57,13 @@ export default function ModularClock({ value, onChange }: VisualProps = {}) {
         <span className="w-10 text-right font-mono text-ink-dim">{a}</span>
       </label>
 
-      <p className="mt-3 text-center text-sm text-ink-dim">
-        <span className="font-mono">
-          {a} mod {N} = {r}
-        </span>
-      </p>
+      {!hideReadout && (
+        <p className="mt-3 text-center text-sm text-ink-dim">
+          <span className="font-mono">
+            {a} mod {N} = {r}
+          </span>
+        </p>
+      )}
     </div>
   )
 }

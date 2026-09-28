@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import type { VisualProps } from './index'
 
-export default function LogRuleCheck({ value, onChange }: VisualProps = {}) {
+export default function LogRuleCheck({ value, onChange, hideReadout }: VisualProps = {}) {
   const [internalX, setInternalX] = useState(4)
   const x = value ?? internalX
   const setX = onChange ?? setInternalX
@@ -16,12 +16,16 @@ export default function LogRuleCheck({ value, onChange }: VisualProps = {}) {
         <p className="font-mono text-base text-ink">
           log(x·y) = log(x) + log(y)
         </p>
-        <p className="mt-2 font-mono text-sm text-ink-dim">
-          log({x}·{y}) = {left.toFixed(3)}
-        </p>
-        <p className="font-mono text-sm text-ink-dim">
-          log({x}) + log({y}) = {right.toFixed(3)}
-        </p>
+        {!hideReadout && (
+          <>
+            <p className="mt-2 font-mono text-sm text-ink-dim">
+              log({x}·{y}) = {left.toFixed(3)}
+            </p>
+            <p className="font-mono text-sm text-ink-dim">
+              log({x}) + log({y}) = {right.toFixed(3)}
+            </p>
+          </>
+        )}
       </div>
 
       <label className="flex items-center gap-3 text-sm">

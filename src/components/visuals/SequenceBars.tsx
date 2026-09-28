@@ -4,7 +4,7 @@ import type { VisualProps } from './index'
 const N = 6
 const A1 = 2
 
-export default function SequenceBars({ value, onChange }: VisualProps = {}) {
+export default function SequenceBars({ value, onChange, hideReadout }: VisualProps = {}) {
   const [internalD, setInternalD] = useState(3)
   const d = value ?? internalD
   const setD = onChange ?? setInternalD
@@ -39,13 +39,15 @@ export default function SequenceBars({ value, onChange }: VisualProps = {}) {
         <span className="w-10 text-right font-mono text-ink-dim">{r.toFixed(1)}</span>
       </label>
 
-      <p className="mt-3 text-sm text-ink-dim">
-        <span className="font-mono text-accent">aₙ = {A1}+(n-1)·{d}</span>
-        {'  '}
-        <span className="font-mono text-good">
-          aₙ = {A1}·{r.toFixed(1)}ⁿ⁻¹
-        </span>
-      </p>
+      {!hideReadout && (
+        <p className="mt-3 text-sm text-ink-dim">
+          <span className="font-mono text-accent">aₙ = {A1}+(n-1)·{d}</span>
+          {'  '}
+          <span className="font-mono text-good">
+            aₙ = {A1}·{r.toFixed(1)}ⁿ⁻¹
+          </span>
+        </p>
+      )}
     </div>
   )
 }

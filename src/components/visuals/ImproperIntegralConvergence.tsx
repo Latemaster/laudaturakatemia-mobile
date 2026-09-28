@@ -25,7 +25,7 @@ function buildAreaPath(n: number) {
   return `M ${points.join(' L ')} Z`
 }
 
-export default function ImproperIntegralConvergence({ value, onChange }: VisualProps = {}) {
+export default function ImproperIntegralConvergence({ value, onChange, hideReadout }: VisualProps = {}) {
   const [internalN, setInternalN] = useState(4)
   const n = value ?? internalN
   const setN = onChange ?? setInternalN
@@ -55,11 +55,13 @@ export default function ImproperIntegralConvergence({ value, onChange }: VisualP
         <span className="w-10 text-right font-mono text-ink-dim">{n}</span>
       </label>
 
-      <p className="mt-3 text-center text-sm text-ink-dim">
-        <span className="font-mono">
-          ∫₁^{n} 1/x² dx = 1 − 1/{n} = {area.toFixed(3)} → 1
-        </span>
-      </p>
+      {!hideReadout && (
+        <p className="mt-3 text-center text-sm text-ink-dim">
+          <span className="font-mono">
+            ∫₁^{n} 1/x² dx = 1 − 1/{n} = {area.toFixed(3)} → 1
+          </span>
+        </p>
+      )}
     </div>
   )
 }

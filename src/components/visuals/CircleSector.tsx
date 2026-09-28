@@ -4,7 +4,7 @@ import type { VisualProps } from './index'
 const WINDOW = 4
 const R = 3.5
 
-export default function CircleSector({ value, onChange }: VisualProps = {}) {
+export default function CircleSector({ value, onChange, hideReadout }: VisualProps = {}) {
   const [internalDeg, setInternalDeg] = useState(90)
   const deg = value ?? internalDeg
   const setDeg = onChange ?? setInternalDeg
@@ -45,9 +45,11 @@ export default function CircleSector({ value, onChange }: VisualProps = {}) {
         <span className="w-14 text-right font-mono text-ink-dim">{deg}°</span>
       </label>
 
-      <p className="mt-3 text-sm text-ink-dim">
-        <span className="font-mono">Kaari s = {arcLength}, sektorin A = {sectorArea}</span>
-      </p>
+      {!hideReadout && (
+        <p className="mt-3 text-sm text-ink-dim">
+          <span className="font-mono">Kaari s = {arcLength}, sektorin A = {sectorArea}</span>
+        </p>
+      )}
     </div>
   )
 }

@@ -4,7 +4,7 @@ import type { VisualProps } from './index'
 const A0 = 1000
 const MAX_T = 20
 
-export default function CompoundInterest({ value, onChange }: VisualProps = {}) {
+export default function CompoundInterest({ value, onChange, hideReadout }: VisualProps = {}) {
   const [internalRatePct, setInternalRatePct] = useState(5)
   const ratePct = value ?? internalRatePct
   const setRatePct = onChange ?? setInternalRatePct
@@ -43,11 +43,13 @@ export default function CompoundInterest({ value, onChange }: VisualProps = {}) 
         <span className="w-10 text-right font-mono text-ink-dim">{ratePct}</span>
       </label>
 
-      <p className="mt-3 text-sm text-ink-dim">
-        <span className="font-mono">
-          A = 1000·(1+{(r).toFixed(2)})ᵗ → {finalValue.toFixed(0)} € 20v kuluttua
-        </span>
-      </p>
+      {!hideReadout && (
+        <p className="mt-3 text-sm text-ink-dim">
+          <span className="font-mono">
+            A = 1000·(1+{(r).toFixed(2)})ᵗ → {finalValue.toFixed(0)} € 20v kuluttua
+          </span>
+        </p>
+      )}
     </div>
   )
 }

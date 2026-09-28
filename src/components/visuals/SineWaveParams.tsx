@@ -13,7 +13,7 @@ function buildPath(amp: number, freq: number) {
   return `M ${points.join(' L ')}`
 }
 
-export default function SineWaveParams({ value, onChange }: VisualProps = {}) {
+export default function SineWaveParams({ value, onChange, hideReadout }: VisualProps = {}) {
   const [internalAmp, setInternalAmp] = useState(1)
   const amp = value ?? internalAmp
   const setAmp = onChange ?? setInternalAmp
@@ -41,9 +41,11 @@ export default function SineWaveParams({ value, onChange }: VisualProps = {}) {
         <span className="w-10 text-right font-mono text-ink-dim">{freq}</span>
       </label>
 
-      <p className="mt-3 text-sm text-ink-dim">
-        <span className="font-mono">y = {amp}·sin({freq}x)</span>
-      </p>
+      {!hideReadout && (
+        <p className="mt-3 text-sm text-ink-dim">
+          <span className="font-mono">y = {amp}·sin({freq}x)</span>
+        </p>
+      )}
     </div>
   )
 }

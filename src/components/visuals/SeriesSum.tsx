@@ -4,7 +4,7 @@ import type { VisualProps } from './index'
 const A1 = 1
 const D = 1
 
-export default function SeriesSum({ value, onChange }: VisualProps = {}) {
+export default function SeriesSum({ value, onChange, hideReadout }: VisualProps = {}) {
   const [internalN, setInternalN] = useState(5)
   const n = value ?? internalN
   const setN = onChange ?? setInternalN
@@ -31,11 +31,13 @@ export default function SeriesSum({ value, onChange }: VisualProps = {}) {
         <span className="w-10 text-right font-mono text-ink-dim">{n}</span>
       </label>
 
-      <p className="mt-3 text-sm text-ink-dim">
-        <span className="font-mono">
-          Sₙ = n/2·(a₁+aₙ) = {sum}
-        </span>
-      </p>
+      {!hideReadout && (
+        <p className="mt-3 text-sm text-ink-dim">
+          <span className="font-mono">
+            Sₙ = n/2·(a₁+aₙ) = {sum}
+          </span>
+        </p>
+      )}
     </div>
   )
 }

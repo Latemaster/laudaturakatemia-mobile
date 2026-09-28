@@ -11,7 +11,7 @@ function buildPath(a: number) {
   return `M ${points.join(' L ')}`
 }
 
-export default function ParabolaShape({ value, onChange }: VisualProps = {}) {
+export default function ParabolaShape({ value, onChange, hideReadout }: VisualProps = {}) {
   const [internalA, setInternalA] = useState(1)
   const a = value ?? internalA
   const setA = onChange ?? setInternalA
@@ -42,9 +42,11 @@ export default function ParabolaShape({ value, onChange }: VisualProps = {}) {
         <span className="w-10 text-right font-mono text-ink-dim">{a}</span>
       </label>
 
-      <p className="mt-3 text-sm text-ink-dim">
-        <span className="font-mono">y = {a}x²</span> — {a > 0 ? 'aukeaa ylös' : 'aukeaa alas'}
-      </p>
+      {!hideReadout && (
+        <p className="mt-3 text-sm text-ink-dim">
+          <span className="font-mono">y = {a}x²</span> — {a > 0 ? 'aukeaa ylös' : 'aukeaa alas'}
+        </p>
+      )}
     </div>
   )
 }

@@ -13,7 +13,7 @@ function buildPath() {
   return `M ${points.join(' L ')}`
 }
 
-export default function ExpEquationGraph({ value, onChange }: VisualProps = {}) {
+export default function ExpEquationGraph({ value, onChange, hideReadout }: VisualProps = {}) {
   const [internalB, setInternalB] = useState(4)
   const b = value ?? internalB
   const setB = onChange ?? setInternalB
@@ -48,11 +48,13 @@ export default function ExpEquationGraph({ value, onChange }: VisualProps = {}) 
         <span className="w-10 text-right font-mono text-ink-dim">{b}</span>
       </label>
 
-      <p className="mt-3 text-sm text-ink-dim">
-        <span className="font-mono">
-          2ˣ = {b} ⇒ x = log₂({b}) = {x.toFixed(2)}
-        </span>
-      </p>
+      {!hideReadout && (
+        <p className="mt-3 text-sm text-ink-dim">
+          <span className="font-mono">
+            2ˣ = {b} ⇒ x = log₂({b}) = {x.toFixed(2)}
+          </span>
+        </p>
+      )}
     </div>
   )
 }

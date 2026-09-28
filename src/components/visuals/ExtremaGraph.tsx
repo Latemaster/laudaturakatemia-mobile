@@ -21,7 +21,7 @@ function buildPath() {
   return `M ${points.join(' L ')}`
 }
 
-export default function ExtremaGraph({ value, onChange }: VisualProps = {}) {
+export default function ExtremaGraph({ value, onChange, hideReadout }: VisualProps = {}) {
   const [internalX, setInternalX] = useState(-2)
   const x = value ?? internalX
   const setX = onChange ?? setInternalX
@@ -39,8 +39,12 @@ export default function ExtremaGraph({ value, onChange }: VisualProps = {}) {
         <line x1={-WINDOW} y1={0} x2={WINDOW} y2={0} className="stroke-ink/20" strokeWidth={0.06} />
         <line x1={0} y1={-WINDOW} x2={0} y2={WINDOW} className="stroke-ink/20" strokeWidth={0.06} />
         <path d={path} fill="none" className="stroke-accent" strokeWidth={0.12} />
-        <circle cx={-1} cy={-f(-1)} r={0.14} className="fill-good" />
-        <circle cx={1} cy={-f(1)} r={0.14} className="fill-bad" />
+        {!hideReadout && (
+          <>
+            <circle cx={-1} cy={-f(-1)} r={0.14} className="fill-good" />
+            <circle cx={1} cy={-f(1)} r={0.14} className="fill-bad" />
+          </>
+        )}
         <circle cx={x} cy={-y} r={0.18} className="fill-ink" />
       </svg>
 
@@ -58,9 +62,11 @@ export default function ExtremaGraph({ value, onChange }: VisualProps = {}) {
         <span className="w-10 text-right font-mono text-ink-dim">{x.toFixed(1)}</span>
       </label>
 
-      <p className="mt-3 text-sm text-ink-dim">
-        <span className="font-mono">f&apos;({x.toFixed(1)}) = {slope.toFixed(2)}</span> — {sign}
-      </p>
+      {!hideReadout && (
+        <p className="mt-3 text-sm text-ink-dim">
+          <span className="font-mono">f&apos;({x.toFixed(1)}) = {slope.toFixed(2)}</span> — {sign}
+        </p>
+      )}
     </div>
   )
 }

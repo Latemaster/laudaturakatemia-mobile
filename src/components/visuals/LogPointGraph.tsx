@@ -9,7 +9,7 @@ function buildPath() {
   return `M ${points.join(' L ')}`
 }
 
-export default function LogPointGraph({ value, onChange }: VisualProps = {}) {
+export default function LogPointGraph({ value, onChange, hideReadout }: VisualProps = {}) {
   const [internalX, setInternalX] = useState(8)
   const x = value ?? internalX
   const setX = onChange ?? setInternalX
@@ -40,9 +40,11 @@ export default function LogPointGraph({ value, onChange }: VisualProps = {}) {
         <span className="w-10 text-right font-mono text-ink-dim">{x}</span>
       </label>
 
-      <p className="mt-3 text-sm text-ink-dim">
-        <span className="font-mono">log₂({x}) = {y.toFixed(2)}</span>
-      </p>
+      {!hideReadout && (
+        <p className="mt-3 text-sm text-ink-dim">
+          <span className="font-mono">log₂({x}) = {y.toFixed(2)}</span>
+        </p>
+      )}
     </div>
   )
 }

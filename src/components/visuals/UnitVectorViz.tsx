@@ -4,7 +4,7 @@ import type { VisualProps } from './index'
 const WINDOW = 5
 const V_LEN = 4
 
-export default function UnitVectorViz({ value, onChange }: VisualProps = {}) {
+export default function UnitVectorViz({ value, onChange, hideReadout }: VisualProps = {}) {
   const [internalDeg, setInternalDeg] = useState(35)
   const deg = value ?? internalDeg
   const setDeg = onChange ?? setInternalDeg
@@ -49,11 +49,13 @@ export default function UnitVectorViz({ value, onChange }: VisualProps = {}) {
         <span className="w-14 text-right font-mono text-ink-dim">{deg}°</span>
       </label>
 
-      <p className="mt-3 text-sm text-ink-dim">
-        <span className="font-mono">
-          v̂ = v / |v| = ({unit[0].toFixed(2)}, {unit[1].toFixed(2)}), |v̂| = 1
-        </span>
-      </p>
+      {!hideReadout && (
+        <p className="mt-3 text-sm text-ink-dim">
+          <span className="font-mono">
+            v̂ = v / |v| = ({unit[0].toFixed(2)}, {unit[1].toFixed(2)}), |v̂| = 1
+          </span>
+        </p>
+      )}
     </div>
   )
 }

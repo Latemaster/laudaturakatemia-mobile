@@ -4,7 +4,7 @@ import type { VisualProps } from './index'
 const WINDOW = 5
 const K1 = 1
 
-export default function PerpendicularLines({ value, onChange }: VisualProps = {}) {
+export default function PerpendicularLines({ value, onChange, hideReadout }: VisualProps = {}) {
   const [internalK2, setInternalK2] = useState(-1)
   const k2 = value ?? internalK2
   const setK2 = onChange ?? setInternalK2
@@ -38,10 +38,12 @@ export default function PerpendicularLines({ value, onChange }: VisualProps = {}
         <span className="w-10 text-right font-mono text-ink-dim">{k2.toFixed(1)}</span>
       </label>
 
-      <p className={`mt-3 text-sm font-mono ${isPerpendicular ? 'text-good font-semibold' : 'text-ink-dim'}`}>
-        k₁·k₂ = {K1} · {k2.toFixed(1)} = {product.toFixed(2)}
-        {isPerpendicular && ' — kohtisuorassa!'}
-      </p>
+      {!hideReadout && (
+        <p className={`mt-3 text-sm font-mono ${isPerpendicular ? 'text-good font-semibold' : 'text-ink-dim'}`}>
+          k₁·k₂ = {K1} · {k2.toFixed(1)} = {product.toFixed(2)}
+          {isPerpendicular && ' — kohtisuorassa!'}
+        </p>
+      )}
     </div>
   )
 }

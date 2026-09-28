@@ -4,7 +4,7 @@ import type { VisualProps } from './index'
 const WINDOW = 5
 const REFERENCE_LEVELS = [4, 9, 16, 25]
 
-export default function LevelCurves({ value, onChange }: VisualProps = {}) {
+export default function LevelCurves({ value, onChange, hideReadout }: VisualProps = {}) {
   const [internalC, setInternalC] = useState(12)
   const c = value ?? internalC
   const setC = onChange ?? setInternalC
@@ -38,11 +38,13 @@ export default function LevelCurves({ value, onChange }: VisualProps = {}) {
         <span className="w-10 text-right font-mono text-ink-dim">{c}</span>
       </label>
 
-      <p className="mt-3 text-sm text-ink-dim">
-        <span className="font-mono">
-          f(x,y) = x²+y² = {c} → ympyrä, säde {r.toFixed(2)}
-        </span>
-      </p>
+      {!hideReadout && (
+        <p className="mt-3 text-sm text-ink-dim">
+          <span className="font-mono">
+            f(x,y) = x²+y² = {c} → ympyrä, säde {r.toFixed(2)}
+          </span>
+        </p>
+      )}
     </div>
   )
 }

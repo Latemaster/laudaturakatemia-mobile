@@ -3,7 +3,7 @@ import type { VisualProps } from './index'
 
 const C = 4 // fixed hypotenuse length
 
-export default function RightTriangleTrig({ value, onChange }: VisualProps = {}) {
+export default function RightTriangleTrig({ value, onChange, hideReadout }: VisualProps = {}) {
   const [internalDeg, setInternalDeg] = useState(40)
   const deg = value ?? internalDeg
   const setDeg = onChange ?? setInternalDeg
@@ -59,11 +59,13 @@ export default function RightTriangleTrig({ value, onChange }: VisualProps = {})
         <span className="w-14 text-right font-mono text-ink-dim">{deg}°</span>
       </label>
 
-      <p className="mt-3 text-sm text-ink-dim">
-        <span className="font-mono">
-          a = c·sin θ = {a.toFixed(2)}, b = c·cos θ = {b.toFixed(2)}
-        </span>
-      </p>
+      {!hideReadout && (
+        <p className="mt-3 text-sm text-ink-dim">
+          <span className="font-mono">
+            a = c·sin θ = {a.toFixed(2)}, b = c·cos θ = {b.toFixed(2)}
+          </span>
+        </p>
+      )}
     </div>
   )
 }

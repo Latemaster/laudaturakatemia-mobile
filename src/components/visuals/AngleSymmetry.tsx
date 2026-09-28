@@ -8,7 +8,7 @@ function point(deg: number): [number, number] {
   return [Math.cos(rad), Math.sin(rad)]
 }
 
-export default function AngleSymmetry({ value, onChange }: VisualProps = {}) {
+export default function AngleSymmetry({ value, onChange, hideReadout }: VisualProps = {}) {
   const [internalDeg, setInternalDeg] = useState(30)
   const deg = value ?? internalDeg
   const setDeg = onChange ?? setInternalDeg
@@ -52,14 +52,16 @@ export default function AngleSymmetry({ value, onChange }: VisualProps = {}) {
         <span className="w-14 text-right font-mono text-ink-dim">{deg}°</span>
       </label>
 
-      <p className="mt-3 text-sm text-ink-dim">
-        <span className="font-mono text-accent">sin({deg}°) = {p[1].toFixed(2)}</span>
-        <br />
-        <span className="font-mono text-good">
-          sin({180 - deg}°) = {pSupp[1].toFixed(2)}
-        </span>
-        {' — sama arvo, vastakulma'}
-      </p>
+      {!hideReadout && (
+        <p className="mt-3 text-sm text-ink-dim">
+          <span className="font-mono text-accent">sin({deg}°) = {p[1].toFixed(2)}</span>
+          <br />
+          <span className="font-mono text-good">
+            sin({180 - deg}°) = {pSupp[1].toFixed(2)}
+          </span>
+          {' — sama arvo, vastakulma'}
+        </p>
+      )}
     </div>
   )
 }
