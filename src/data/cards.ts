@@ -1,4 +1,4 @@
-import type { Card, ExerciseCard, LessonCard, Problem, TopicCode } from '../types'
+import type { Card, DistributiveOmit, ExerciseCard, LessonCard, Problem, TopicCode } from '../types'
 import { COURSE_MAP } from './courses'
 import maa2Theory from './theory/maa2'
 import maa3Theory from './theory/maa3'
@@ -12,6 +12,7 @@ import maa11Theory from './theory/maa11'
 import maa12Theory from './theory/maa12'
 
 import maa2Exercises from './exercises/maa2'
+import maa3Exercises from './exercises/maa3'
 
 import maa2Problems from './problems/maa2.json'
 import maa3Problems from './problems/maa3.json'
@@ -173,8 +174,9 @@ export function getConceptCards(code: TopicCode): LessonCard[] {
 
 // Multiple-choice exercises, one per concept box above, kept in a separate
 // map from both the concept boxes and the open-answer task cards.
-const EXERCISES: Partial<Record<TopicCode, Array<Omit<ExerciseCard, 'id' | 'type' | 'topic'>>>> = {
+const EXERCISES: Partial<Record<TopicCode, Array<DistributiveOmit<ExerciseCard, 'id' | 'type' | 'topic'>>>> = {
   MAA2: maa2Exercises,
+  MAA3: maa3Exercises,
 }
 
 export function getExerciseCards(code: TopicCode): ExerciseCard[] {

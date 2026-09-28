@@ -1,14 +1,15 @@
-import type { ExerciseCard } from '../../types'
+import type { DistributiveOmit, ExerciseCard } from '../../types'
 
 // One multiple-choice exercise per lecture topic in theory/maa2.ts, in the
 // same order, so index i here reinforces concept box i. Separate from the
 // open-answer task cards in problems/maa2.json. The correct option's
 // position is deliberately varied (not always "A") so the answer can't be
 // guessed from a pattern.
-const maa2Exercises: Array<Omit<ExerciseCard, 'id' | 'type' | 'topic'>> = [
+const maa2Exercises: Array<DistributiveOmit<ExerciseCard, 'id' | 'type' | 'topic'>> = [
   {
     // Topic: Polynomien laskutoimitukset
     question: 'Mikä on tulon (x + 3)(x − 2) kehitetty muoto?',
+    kind: 'choice',
     options: [
       { id: 'a', text: 'x² − x − 6', correct: false },
       { id: 'b', text: 'x² + 5x − 6', correct: false },
@@ -20,6 +21,7 @@ const maa2Exercises: Array<Omit<ExerciseCard, 'id' | 'type' | 'topic'>> = [
   {
     // Topic: Arvon määrittäminen
     question: 'Olkoon f(x) = x² − 2x + 1. Mikä on f(3)?',
+    kind: 'choice',
     options: [
       { id: 'a', text: '4', correct: true },
       { id: 'b', text: '7', correct: false },
@@ -32,6 +34,7 @@ const maa2Exercises: Array<Omit<ExerciseCard, 'id' | 'type' | 'topic'>> = [
     // Topic: Binomin neliö
     visual: 'binomial-square',
     question: 'Mikä lauseke vastaa binomin neliötä (a + b)²?',
+    kind: 'choice',
     options: [
       { id: 'a', text: 'a² + b²', correct: false },
       { id: 'b', text: 'a² − 2ab + b²', correct: false },
@@ -43,6 +46,7 @@ const maa2Exercises: Array<Omit<ExerciseCard, 'id' | 'type' | 'topic'>> = [
   {
     // Topic: Neliöjuuri
     question: 'Mikä on √49?',
+    kind: 'choice',
     options: [
       { id: 'a', text: '98', correct: false },
       { id: 'b', text: '7', correct: true },
@@ -54,6 +58,7 @@ const maa2Exercises: Array<Omit<ExerciseCard, 'id' | 'type' | 'topic'>> = [
   {
     // Topic: Potenssiyhtälö
     question: 'Ratkaise yhtälö x³ = 8.',
+    kind: 'choice',
     options: [
       { id: 'a', text: 'x = 4', correct: false },
       { id: 'b', text: 'x = −2', correct: false },
@@ -70,6 +75,7 @@ const maa2Exercises: Array<Omit<ExerciseCard, 'id' | 'type' | 'topic'>> = [
     visual: 'quadratic-discriminant',
     question:
       'Säädä yllä olevan kuvan liukusäätimiä niin, ettei paraabeli leikkaa x-akselia lainkaan. Mikä on tällöin diskriminantin D = b² − 4ac etumerkki?',
+    kind: 'choice',
     options: [
       { id: 'a', text: 'positiivinen', correct: false },
       { id: 'b', text: 'negatiivinen', correct: true },
@@ -82,6 +88,7 @@ const maa2Exercises: Array<Omit<ExerciseCard, 'id' | 'type' | 'topic'>> = [
   {
     // Topic: Soveltaminen
     question: 'Suorakulmion pinta-ala on x(x + 3) = 40. Mikä on x, kun sivun pituus on positiivinen?',
+    kind: 'choice',
     options: [
       { id: 'a', text: 'x = −8', correct: false },
       { id: 'b', text: 'x = 5', correct: true },
@@ -93,6 +100,7 @@ const maa2Exercises: Array<Omit<ExerciseCard, 'id' | 'type' | 'topic'>> = [
   {
     // Topic: Tekijöihin jakaminen
     question: 'Mikä on x² − 9 jaettuna tekijöihin?',
+    kind: 'choice',
     options: [
       { id: 'a', text: '(x − 3)(x + 3)', correct: true },
       { id: 'b', text: '(x − 9)(x + 1)', correct: false },
@@ -104,6 +112,7 @@ const maa2Exercises: Array<Omit<ExerciseCard, 'id' | 'type' | 'topic'>> = [
   {
     // Topic: Funktion nollakohdat
     question: 'Mikä on funktion f(x) = 2x − 6 nollakohta?',
+    kind: 'choice',
     options: [
       { id: 'a', text: 'x = −3', correct: false },
       { id: 'b', text: 'x = 6', correct: false },
@@ -115,6 +124,7 @@ const maa2Exercises: Array<Omit<ExerciseCard, 'id' | 'type' | 'topic'>> = [
   {
     // Topic: Juurifunktio ja -yhtälö
     question: 'Ratkaise juuriyhtälö √(x + 1) = 3.',
+    kind: 'choice',
     options: [
       { id: 'a', text: 'x = 9', correct: false },
       { id: 'b', text: 'x = 2', correct: false },
@@ -126,6 +136,7 @@ const maa2Exercises: Array<Omit<ExerciseCard, 'id' | 'type' | 'topic'>> = [
   {
     // Topic: Rationaalifunktio ja -yhtälö
     question: 'Millä x:n arvolla funktio f(x) = 1/(x + 1) ei ole määritelty?',
+    kind: 'choice',
     options: [
       { id: 'a', text: 'x = 0', correct: false },
       { id: 'b', text: 'x = −1', correct: true },
@@ -137,6 +148,7 @@ const maa2Exercises: Array<Omit<ExerciseCard, 'id' | 'type' | 'topic'>> = [
   {
     // Topic: Tulon nollasääntö
     question: 'Ratkaise yhtälö (x − 2)(x + 5) = 0.',
+    kind: 'choice',
     options: [
       { id: 'a', text: 'x = 2 tai x = −5', correct: true },
       { id: 'b', text: 'x = −2 tai x = 5', correct: false },
@@ -148,6 +160,7 @@ const maa2Exercises: Array<Omit<ExerciseCard, 'id' | 'type' | 'topic'>> = [
   {
     // Topic: Korkeamman asteen yhtälöt
     question: 'Ratkaise yhtälö x³ − x = 0.',
+    kind: 'choice',
     options: [
       { id: 'a', text: 'x = 0 tai x = 1', correct: false },
       { id: 'b', text: 'x = 1 tai x = −1', correct: false },

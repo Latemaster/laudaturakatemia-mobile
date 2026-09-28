@@ -96,13 +96,37 @@ export interface ExerciseOption {
   correct: boolean
 }
 
-export interface ExerciseCard extends BaseCard {
+interface BaseExerciseCard extends BaseCard {
   type: 'exercise'
   question: string
-  options: ExerciseOption[]
   explanation: string
   visual?: VisualKey
 }
+
+export interface ChoiceExerciseCard extends BaseExerciseCard {
+  kind: 'choice'
+  options: ExerciseOption[]
+}
+
+export interface NumericExerciseCard extends BaseExerciseCard {
+  kind: 'numeric'
+  // Correct value and the +/- tolerance accepted around it (e.g. for
+  // rounded or read-off-a-graph answers).
+  answer: number
+  tolerance: number
+  unit?: string
+  min?: number
+  max?: number
+  step?: number
+}
+
+export type ExerciseCard = ChoiceExerciseCard | NumericExerciseCard
+
+// Plain Omit collapses a union to its shared keys, which drops `options` /
+// `answer` / `tolerance` since they aren't common to both ExerciseCard
+// variants. This distributes Omit over the union member-by-member instead,
+// so exercise data keeps its discriminated 'choice' | 'numeric' shape.
+export type DistributiveOmit<T, K extends keyof any> = T extends unknown ? Omit<T, K> : never
 
 export interface ProblemTextBlock {
   type: 'text'
