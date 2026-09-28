@@ -4,6 +4,7 @@ import type { ExerciseCard } from '../types'
 import CardShell from './CardShell'
 import ExpandableBox from './ExpandableBox'
 import KindLabel from './KindLabel'
+import { VISUALS } from './visuals'
 import { CheckIcon, ListCheckIcon, XIcon } from './icons'
 
 interface ExerciseCardViewProps {
@@ -19,6 +20,7 @@ export default function ExerciseCardView({ card, onAnswer }: ExerciseCardViewPro
 
   const isAnswered = selectedId !== null
   const selectedOption = card.options.find((o) => o.id === selectedId)
+  const Visual = card.visual ? VISUALS[card.visual] : null
 
   function rowClasses(optionId: string, correct: boolean) {
     if (!isAnswered) {
@@ -61,6 +63,11 @@ export default function ExerciseCardView({ card, onAnswer }: ExerciseCardViewPro
       </motion.h2>
 
       <ExpandableBox isExpanded={isExpanded} onExpandedChange={setIsExpanded}>
+        {Visual && (
+          <div className="mb-4">
+            <Visual />
+          </div>
+        )}
         <div className="flex flex-col gap-3">
           {card.options.map((option, index) => (
             <motion.button

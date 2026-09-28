@@ -101,6 +101,7 @@ export interface ExerciseCard extends BaseCard {
   question: string
   options: ExerciseOption[]
   explanation: string
+  visual?: VisualKey
 }
 
 export interface ProblemTextBlock {

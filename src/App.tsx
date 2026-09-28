@@ -3,7 +3,8 @@ import Feed from './components/Feed'
 import TopMenu, { type MenuSection } from './components/TopMenu'
 import CourseList from './components/CourseList'
 import Osaaminen from './components/Osaaminen'
-import { cards, getConceptCards } from './data/cards'
+import { cards, getConceptCards, getExerciseCards } from './data/cards'
+import type { Card } from './types'
 import type { TopicCode } from './types'
 
 function App() {
@@ -30,7 +31,14 @@ function App() {
       const concepts = getConceptCards(selectedCourse)
       if (concepts.length === 0) return courseCards
       // Concept boxes replace the single generic lesson blurb for this course.
-      return [...concepts, ...courseCards.filter((card) => card.type !== 'lesson')]
+      // Each concept is immediately followed by its matching multiple-choice
+      // exercise, when one exists; open-answer task cards stay untouched and
+      // come after, at the end.
+      const exercises = getExerciseCards(selectedCourse)
+      const lessonAndExercises: Card[] = concepts.flatMap((concept, index) =>
+        exercises[index] ? [concept, exercises[index]] : [concept],
+      )
+      return [...lessonAndExercises, ...courseCards.filter((card) => card.type !== 'lesson')]
     }
     return cards
   }, [section, selectedCourse])
