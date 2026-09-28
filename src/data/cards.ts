@@ -15,6 +15,7 @@ import maa2Exercises from './exercises/maa2'
 import maa3Exercises from './exercises/maa3'
 import maa4Exercises from './exercises/maa4'
 import maa5Exercises from './exercises/maa5'
+import maa6Exercises from './exercises/maa6'
 
 import maa2Problems from './problems/maa2.json'
 import maa3Problems from './problems/maa3.json'
@@ -181,6 +182,7 @@ const EXERCISES: Partial<Record<TopicCode, Array<DistributiveOmit<ExerciseCard, 
   MAA3: maa3Exercises,
   MAA4: maa4Exercises,
   MAA5: maa5Exercises,
+  MAA6: maa6Exercises,
 }
 
 export function getExerciseCards(code: TopicCode): ExerciseCard[] {
