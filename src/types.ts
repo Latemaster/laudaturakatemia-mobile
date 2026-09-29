@@ -101,6 +101,12 @@ interface BaseExerciseCard extends BaseCard {
   question: string
   explanation: string
   visual?: VisualKey
+  // 0-based index of the theory concept box (in the course's theory file)
+  // this exercise follows in the course feed. Exercises without it pair up
+  // with the concept boxes in file order, one per concept; any further
+  // quick question for a concept sets it explicitly and can then sit
+  // anywhere in the file (by convention right after its sibling).
+  conceptIndex?: number
 }
 
 export interface ChoiceExerciseCard extends BaseExerciseCard {
