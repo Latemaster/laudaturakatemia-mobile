@@ -1,6 +1,6 @@
 import { cards } from './cards'
-import { COURSES, COURSE_MAP } from './courses'
-import { FINNISH_GRADES, type FinnishGrade } from './grade'
+import { COURSE_MAP } from './courses'
+import { FINNISH_GRADES, GRADE_POINTS, type FinnishGrade, type GradePoints } from './grade'
 import { classifyDifficulty, type Difficulty } from './progress'
 import type { Card, TopicCode } from '../types'
 
@@ -35,9 +35,6 @@ export interface PlanTier {
 
 export interface StudyPlan {
   grade: TargetGrade
-  // Typical exam point cutoff for this grade: mean and roughly one standard
-  // deviation either side.
-  points: { min: number; avg: number; max: number }
   strategy: string
   tiers: PlanTier[]
   important: string
@@ -88,7 +85,6 @@ const MINIMUM_REQUIREMENT: PlanCourse[] = [
 export const STUDY_PLANS: Record<TargetGrade, StudyPlan> = {
   B: {
     grade: 'B',
-    points: { min: 21, avg: 24, max: 27 },
     strategy:
       'B-arvosanaan riittää noin 20 % pisteistä, joten kertaus kannattaa kohdistaa rajattuihin aihealueisiin. ' +
       'A-osan tehtävät ja B-osan ensimmäiset tehtävät ovat helpoimpia: panosta siihen, että ne onnistuvat mahdollisimman varmasti. ' +
@@ -123,7 +119,6 @@ export const STUDY_PLANS: Record<TargetGrade, StudyPlan> = {
 
   C: {
     grade: 'C',
-    points: { min: 31, avg: 36, max: 41 },
     strategy:
       'C:n pisteisiin voi teoriassa päästä pelkällä A-osalla, mutta panostusta kannattaa jakaa myös B-osan puolelle. ' +
       'Keskity erityisesti kolmeen ensimmäiseen kurssiin – kun ne ovat hallussa, olet vahvoilla. ' +
@@ -168,7 +163,6 @@ export const STUDY_PLANS: Record<TargetGrade, StudyPlan> = {
 
   M: {
     grade: 'M',
-    points: { min: 44, avg: 47, max: 51 },
     strategy:
       'M:n pisteisiin on jo vaikeampi päästä pelkällä A-osalla, joten panostusta kannattaa selkeästi jakaa B-osan puolelle. ' +
       'Kertaus kannattaa silti kohdistaa: ota muutama aihealue kunnolla haltuun sen sijaan, että uhraat aikaa kaikkein haastavimpiin tehtäviin. ' +
@@ -211,7 +205,6 @@ export const STUDY_PLANS: Record<TargetGrade, StudyPlan> = {
 
   E: {
     grade: 'E',
-    points: { min: 65, avg: 70, max: 75 },
     strategy:
       'E:tä tavoitellessa panostus jaetaan tasan A- ja B-osan välillä, painotus jopa hieman B-osan puolelle: A-osan alkutehtävien tulisi olla jo lähes ilmaisia. ' +
       'Kohdista kertaus omiin heikkouksiin, ei materiaalin järjestykseen. ' +
@@ -263,7 +256,6 @@ export const STUDY_PLANS: Record<TargetGrade, StudyPlan> = {
 
   L: {
     grade: 'L',
-    points: { min: 81, avg: 89, max: 97 },
     strategy:
       'L:ää tavoitellessa tulee osata lähes kaikki. Painotus on selkeästi B-osan puolella, sillä A-osan alkutehtävien tulisi olla ilmaisia. ' +
       'Kohdista kertaus omiin heikkouksiin ja fokusoi haasteellisimpiin, syventäviin tehtäviin. ' +
@@ -304,6 +296,10 @@ export const STUDY_PLANS: Record<TargetGrade, StudyPlan> = {
     schedule:
       'Aloita heti kun pystyt, noin 4–5 kertaa viikossa. Hyvä strategia on tehdä jonkin verran ja usein, esim. 3–5 tehtävää päivässä. Lue mahdollisimman paljon, mutta pysy järjissäsi.',
   },
+}
+
+export function getTargetPoints(letter: TargetGrade): GradePoints {
+  return GRADE_POINTS[letter]
 }
 
 export function getFinnishGrade(letter: TargetGrade): FinnishGrade {
@@ -354,37 +350,6 @@ export function getRecommendedCards(grade: TargetGrade): Card[] {
   }
 
   return result
-}
-
-export interface CourseBucket {
-  title: string
-  courses: { code: TopicCode; focus?: string }[]
-}
-
-const BUCKET_TITLES = ['Tärkeimmät', 'Seuraavaksi tärkeimmät', 'Jos aikaa jää'] as const
-
-// The app's courses split into three priority buckets for a target grade:
-// the plan's first tier, its second tier, and everything after that. A
-// course the plan never mentions lands in the last bucket without a focus
-// note. Each course is placed by its first appearance, in plan order.
-export function getCourseBuckets(grade: TargetGrade): CourseBucket[] {
-  const buckets: CourseBucket[] = BUCKET_TITLES.map((title) => ({ title, courses: [] }))
-  const placed = new Set<TopicCode>()
-
-  STUDY_PLANS[grade].tiers.forEach((tier, index) => {
-    const bucket = buckets[Math.min(index, buckets.length - 1)]
-    for (const course of tier.courses) {
-      if (!isAppCourse(course.code) || placed.has(course.code)) continue
-      placed.add(course.code)
-      bucket.courses.push({ code: course.code, focus: course.focus })
-    }
-  })
-
-  for (const course of COURSES) {
-    if (!placed.has(course.code)) buckets[buckets.length - 1].courses.push({ code: course.code })
-  }
-
-  return buckets
 }
 
 const STORAGE_KEY = 'laudatur.targetGrade'

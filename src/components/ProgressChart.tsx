@@ -78,10 +78,16 @@ function xFor(index: number, count: number) {
   return PAD_LEFT + (index / (count - 1)) * PLOT_WIDTH
 }
 
-export default function ProgressChart() {
+interface ProgressChartProps {
+  targetLetter: string
+  targetPct: number
+}
+
+export default function ProgressChart({ targetLetter, targetPct }: ProgressChartProps) {
   const series = EXAMPLE_SERIES
   const lastPct = series[series.length - 1]
   const currentGrade = predictGrade(lastPct)
+  const targetY = yFor(targetPct)
 
   const bandIndex = GRADE_BANDS.findIndex((b) => b.grade.letter === currentGrade.letter)
   const bandTop = bandIndex > 0 ? GRADE_BANDS[bandIndex - 1].min : 100
@@ -96,7 +102,7 @@ export default function ProgressChart() {
         <span className="text-[11px] font-medium text-ink-dim/70">Esimerkkidata</span>
       </div>
       <p className="mb-2 text-xs text-ink-dim">
-        Suunta kohti tasoa {currentGrade.letter} ({currentGrade.name}).
+        Suunta kohti tasoa {currentGrade.letter} ({currentGrade.name}). Tavoite {targetLetter} on {targetPct} %.
       </p>
       <svg viewBox={`0 0 ${WIDTH} ${HEIGHT}`} className="w-full">
         <rect
@@ -129,6 +135,35 @@ export default function ProgressChart() {
             </text>
           </g>
         ))}
+
+        <g>
+          <line
+            x1={PAD_LEFT}
+            x2={WIDTH - PAD_RIGHT}
+            y1={targetY}
+            y2={targetY}
+            strokeWidth={1.5}
+            strokeDasharray="5 3"
+            className="stroke-accent"
+          />
+          <rect
+            x={WIDTH - PAD_RIGHT - 52}
+            y={targetY - 7}
+            width={52}
+            height={13}
+            rx={6.5}
+            className="fill-accent"
+          />
+          <text
+            x={WIDTH - PAD_RIGHT - 26}
+            y={targetY}
+            textAnchor="middle"
+            dominantBaseline="central"
+            className="fill-white text-[8px] font-semibold"
+          >
+            Tavoite {targetLetter}
+          </text>
+        </g>
 
         <polyline
           points={points}

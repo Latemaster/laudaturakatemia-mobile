@@ -14,24 +14,48 @@ export const FINNISH_GRADES: FinnishGrade[] = [
   { letter: 'I', name: 'Improbatur', tier: 'low' },
 ]
 
+// The pitkä matematiikka exam is scored out of 120 points.
+export const EXAM_MAX_POINTS = 120
+
+export interface GradePoints {
+  // Typical point cutoff for the grade: the mean, and roughly one standard
+  // deviation either side of it.
+  min: number
+  avg: number
+  max: number
+}
+
+// Cutoffs from the LaudaturAkatemia study plans (L..B). A has no plan; its
+// figures are a typical cutoff. I is everything below A.
+export const GRADE_POINTS: Record<string, GradePoints> = {
+  L: { min: 81, avg: 89, max: 97 },
+  E: { min: 65, avg: 70, max: 75 },
+  M: { min: 44, avg: 47, max: 51 },
+  C: { min: 31, avg: 36, max: 41 },
+  B: { min: 21, avg: 24, max: 27 },
+  A: { min: 12, avg: 15, max: 18 },
+  I: { min: 0, avg: 0, max: 0 },
+}
+
+export function pointsToPct(points: number): number {
+  return Math.round((points / EXAM_MAX_POINTS) * 100)
+}
+
 export interface GradeBand {
   grade: FinnishGrade
   min: number
 }
 
-// Placeholder thresholds until real scoring (MCQ correctness, lesson
-// completion) exists — for now grade is driven purely by how much of each
-// course has been engaged with, not by how well. `min` is the percentage a
-// band starts at; bands are listed high to low and cover 0-100 with no gaps.
-export const GRADE_BANDS: GradeBand[] = [
-  { grade: FINNISH_GRADES[0], min: 90 }, // L
-  { grade: FINNISH_GRADES[1], min: 75 }, // E
-  { grade: FINNISH_GRADES[2], min: 60 }, // M
-  { grade: FINNISH_GRADES[3], min: 45 }, // C
-  { grade: FINNISH_GRADES[4], min: 30 }, // B
-  { grade: FINNISH_GRADES[5], min: 15 }, // A
-  { grade: FINNISH_GRADES[6], min: 0 }, // I
-]
+// Each grade band starts at its typical point cutoff, expressed as a share
+// of the exam's maximum, so the predicted grade, the chart bands and the
+// target markers all sit on the same scale. Bands are listed high to low
+// and cover 0-100 with no gaps. Scoring itself is still a placeholder:
+// the percentage is driven by how much of each course has been engaged
+// with, not by how well.
+export const GRADE_BANDS: GradeBand[] = FINNISH_GRADES.map((grade) => ({
+  grade,
+  min: pointsToPct(GRADE_POINTS[grade.letter].avg),
+}))
 
 export function predictGrade(overallPct: number): FinnishGrade {
   const band = GRADE_BANDS.find((b) => overallPct >= b.min)

@@ -73,7 +73,7 @@ function App() {
         />
       )}
       {section === 'kurssit' && !selectedCourse && (
-        <CourseList onSelect={setSelectedCourse} engagedIds={engagedIds} targetGrade={targetGrade} />
+        <CourseList onSelect={setSelectedCourse} engagedIds={engagedIds} />
       )}
       {section === 'osaaminen' && <Osaaminen engagedIds={engagedIds} targetGrade={targetGrade} />}
       {showFeed && (

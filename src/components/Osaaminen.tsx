@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { COURSES } from '../data/courses'
 import { getCourseDifficultyBreakdown, getCourseProgress, getOverallPct, type Difficulty } from '../data/progress'
-import { predictGrade, type FinnishGrade } from '../data/grade'
-import { STUDY_PLANS, getFinnishGrade, gradeRank, type TargetGrade } from '../data/studyPlans'
+import { EXAM_MAX_POINTS, pointsToPct, predictGrade, type FinnishGrade } from '../data/grade'
+import { getFinnishGrade, getTargetPoints, gradeRank, type TargetGrade } from '../data/studyPlans'
 import { ChevronDownIcon } from './icons'
 import ProgressChart from './ProgressChart'
 import type { TopicCode } from '../types'
@@ -29,13 +29,24 @@ const DONUT_STROKE = 8
 const DONUT_RADIUS = (DONUT_SIZE - DONUT_STROKE) / 2
 const DONUT_CIRCUMFERENCE = 2 * Math.PI * DONUT_RADIUS
 
-function GradeDonut({ pct, grade }: { pct: number; grade: FinnishGrade }) {
+function GradeDonut({ pct, grade, targetPct }: { pct: number; grade: FinnishGrade; targetPct: number }) {
   const tierClasses = TIER_CLASSES[grade.tier]
   const offset = DONUT_CIRCUMFERENCE * (1 - pct / 100)
+  // The svg is rotated -90deg so the arc starts at 12 o'clock; the tick is
+  // placed in the unrotated frame and rotates along with it.
+  const targetAngle = (targetPct / 100) * 2 * Math.PI
+  const tickInner = DONUT_RADIUS - DONUT_STROKE / 2 - 3
+  const tickOuter = DONUT_RADIUS + DONUT_STROKE / 2 + 3
+  const tick = {
+    x1: DONUT_SIZE / 2 + tickInner * Math.cos(targetAngle),
+    y1: DONUT_SIZE / 2 + tickInner * Math.sin(targetAngle),
+    x2: DONUT_SIZE / 2 + tickOuter * Math.cos(targetAngle),
+    y2: DONUT_SIZE / 2 + tickOuter * Math.sin(targetAngle),
+  }
 
   return (
     <div className="relative flex shrink-0 items-center justify-center" style={{ width: DONUT_SIZE, height: DONUT_SIZE }}>
-      <svg width={DONUT_SIZE} height={DONUT_SIZE} className="-rotate-90">
+      <svg width={DONUT_SIZE} height={DONUT_SIZE} className="-rotate-90 overflow-visible">
         <circle
           cx={DONUT_SIZE / 2}
           cy={DONUT_SIZE / 2}
@@ -52,6 +63,15 @@ function GradeDonut({ pct, grade }: { pct: number; grade: FinnishGrade }) {
           strokeDashoffset={offset}
           strokeLinecap="round"
           className={`fill-none transition-all duration-500 ${tierClasses.stroke}`}
+        />
+        <line
+          x1={tick.x1}
+          y1={tick.y1}
+          x2={tick.x2}
+          y2={tick.y2}
+          strokeWidth={3}
+          strokeLinecap="round"
+          className="stroke-accent"
         />
       </svg>
       <span
@@ -70,7 +90,8 @@ export default function Osaaminen({ engagedIds, targetGrade }: OsaaminenProps) {
   const tierClasses = TIER_CLASSES[grade.tier]
   const target = getFinnishGrade(targetGrade)
   const targetTierClasses = TIER_CLASSES[target.tier]
-  const targetPoints = STUDY_PLANS[targetGrade].points
+  const targetPoints = getTargetPoints(targetGrade)
+  const targetPct = pointsToPct(targetPoints.avg)
   // Grades are ranked L=0 .. I=6, so a smaller rank is a better grade.
   const gradesToGo = gradeRank(grade.letter) - gradeRank(target.letter)
 
@@ -84,9 +105,13 @@ export default function Osaaminen({ engagedIds, targetGrade }: OsaaminenProps) {
           <span className="mb-3 text-[11px] font-semibold uppercase tracking-widest text-ink-dim/70">
             Ennustettu arvosana
           </span>
-          <GradeDonut pct={overallPct} grade={grade} />
+          <GradeDonut pct={overallPct} grade={grade} targetPct={targetPct} />
           <span className={`mt-3 text-base font-semibold ${tierClasses.text}`}>{grade.name}</span>
           <span className="mt-1 text-sm font-semibold text-ink-dim">{overallPct} % kokonaisosaaminen</span>
+          <span className="mt-0.5 inline-flex items-center gap-1.5 text-xs font-medium text-accent">
+            <span aria-hidden className="inline-block h-0.5 w-3 rounded-full bg-accent" />
+            Tavoite {target.letter} · {targetPct} %
+          </span>
           <p className="mt-3 text-xs leading-relaxed text-ink-dim">
             Ennuste perustuu käytyihin tehtäviin, ei vielä oikeisiin vastauksiin.
           </p>
@@ -103,7 +128,7 @@ export default function Osaaminen({ engagedIds, targetGrade }: OsaaminenProps) {
               </span>
               <span className="text-sm font-semibold text-ink">{target.name}</span>
               <span className="text-xs text-ink-dim">
-                Pistetavoite n. {targetPoints.avg} p. ·{' '}
+                Pistetavoite n. {targetPoints.avg} / {EXAM_MAX_POINTS} p. ({targetPct} %) ·{' '}
                 {gradesToGo <= 0
                   ? 'ennuste on tavoitteessa.'
                   : `ennusteesta tavoitteeseen ${gradesToGo} ${gradesToGo === 1 ? 'arvosana' : 'arvosanaa'}.`}
@@ -113,7 +138,7 @@ export default function Osaaminen({ engagedIds, targetGrade }: OsaaminenProps) {
           <p className="mt-2 text-[11px] text-ink-dim/80">Tavoitteen voit vaihtaa Suositellut-välilehdeltä.</p>
         </div>
 
-        <ProgressChart />
+        <ProgressChart targetLetter={target.letter} targetPct={targetPct} />
 
         <div className="flex flex-col gap-3">
           {COURSES.map((course) => {

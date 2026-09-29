@@ -4,6 +4,7 @@ import {
   STUDY_PLANS,
   TARGET_GRADES,
   getFinnishGrade,
+  getTargetPoints,
   isAppCourse,
   type PlanCourse,
   type TargetGrade,
@@ -50,6 +51,7 @@ export default function SuositellutHome({
 }: SuositellutHomeProps) {
   const plan = STUDY_PLANS[targetGrade]
   const grade = getFinnishGrade(targetGrade)
+  const points = getTargetPoints(targetGrade)
 
   return (
     <div className="grid-bg h-dvh overflow-y-auto bg-page px-6 pb-32 pt-[calc(env(safe-area-inset-top)+4.5rem)]">
@@ -87,7 +89,7 @@ export default function SuositellutHome({
           <div className="flex flex-col gap-0.5">
             <span className="text-base font-semibold text-ink">{grade.name}</span>
             <span className="text-xs font-semibold text-ink-dim">
-              Pisteraja n. {plan.points.min}–{plan.points.max} · tavoite {plan.points.avg} p.
+              Pisteraja n. {points.min}–{points.max} · tavoite {points.avg} p.
             </span>
           </div>
         </section>
