@@ -3,7 +3,6 @@ import {
   EXTERNAL_COURSE_NAMES,
   STUDY_PLANS,
   TARGET_GRADES,
-  getFinnishGrade,
   getTargetPoints,
   isAppCourse,
   type PlanCourse,
@@ -48,7 +47,6 @@ function PlanCourseRow({ course }: { course: PlanCourse }) {
 // progress will follow.
 export default function TargetGradeView({ targetGrade, onTargetGradeChange, onClose }: TargetGradeViewProps) {
   const plan = STUDY_PLANS[targetGrade]
-  const grade = getFinnishGrade(targetGrade)
   const points = getTargetPoints(targetGrade)
 
   return (
@@ -101,12 +99,9 @@ export default function TargetGradeView({ targetGrade, onTargetGradeChange, onCl
               )
             })}
           </div>
-          <div className="flex flex-col gap-0.5">
-            <span className="text-base font-semibold text-ink">{grade.name}</span>
-            <span className="text-xs font-semibold text-ink-dim">
-              Pisteraja n. {points.min}–{points.max} · tavoite {points.avg} p.
-            </span>
-          </div>
+          <span className="text-sm font-semibold text-ink-dim">
+            Pisteraja n. {points.min}–{points.max} · tavoite {points.avg} p.
+          </span>
         </section>
 
         <h2 className="mb-1 mt-2 text-lg font-bold text-ink">Tavoite perustuu näihin kursseihin</h2>

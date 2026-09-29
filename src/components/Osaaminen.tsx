@@ -239,7 +239,7 @@ export default function Osaaminen({ engagedIds, targetGrade, onTargetGradeChange
 
           <div className="mt-3 flex flex-col items-center text-center">
             <GradeDonut pct={overallPct} grade={grade} targetPct={targetPct} />
-            <span className={`mt-3 text-base font-semibold ${tierClasses.text}`}>{grade.name}</span>
+            <span className={`mt-3 text-base font-semibold ${tierClasses.text}`}>Arvosana {grade.letter}</span>
             <span className="mt-1 text-sm font-semibold text-ink-dim">{overallPct} % kokonaisosaaminen</span>
           </div>
 
@@ -258,9 +258,10 @@ export default function Osaaminen({ engagedIds, targetGrade, onTargetGradeChange
               <span className="text-[11px] font-semibold uppercase tracking-widest text-ink-dim/70">
                 Tavoitearvosana
               </span>
-              <span className="text-sm font-semibold text-ink">{target.name}</span>
+              <span className="text-sm font-semibold text-ink">
+                {targetPoints.avg} / {EXAM_MAX_POINTS} p. · {targetPct} %
+              </span>
               <span className="text-xs text-ink-dim">
-                {targetPoints.avg} / {EXAM_MAX_POINTS} p. ({targetPct} %) ·{' '}
                 {gradesToGo <= 0
                   ? 'ennuste on tavoitteessa'
                   : `${gradesToGo} ${gradesToGo === 1 ? 'arvosana' : 'arvosanaa'} tavoitteeseen`}

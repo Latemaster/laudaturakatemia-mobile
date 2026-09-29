@@ -113,7 +113,7 @@ export default function ProgressChart({ targetLetter, targetPct }: ProgressChart
               </li>
               <li className="flex items-center gap-2">
                 <span aria-hidden className={`inline-block h-3 w-5 rounded-sm ${TIER_BG[currentGrade.tier]} opacity-20`} />
-                Väritetty kaista = nykyinen arvosanataso {currentGrade.letter} ({currentGrade.name})
+                Väritetty kaista = nykyinen arvosanataso {currentGrade.letter}
               </li>
               <li className="flex items-center gap-2">
                 <span aria-hidden className="inline-block h-0.5 w-5 border-t-2 border-dashed border-accent" />
@@ -127,7 +127,7 @@ export default function ProgressChart({ targetLetter, targetPct }: ProgressChart
           </InfoToggle>
       </div>
       <p className="mb-2 text-xs text-ink-dim">
-        Suunta kohti tasoa {currentGrade.letter} ({currentGrade.name}).{' '}
+        Suunta kohti tasoa {currentGrade.letter}.{' '}
         <span className="text-ink-dim/70">Esimerkkidata.</span>
       </p>
       <svg viewBox={`0 0 ${WIDTH} ${HEIGHT}`} className="w-full">
