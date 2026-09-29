@@ -1,15 +1,32 @@
 import { useState } from 'react'
-import { COURSES } from '../data/courses'
-import { getCourseDifficultyBreakdown, getCourseProgress, getOverallPct, type Difficulty } from '../data/progress'
+import { COURSES, COURSE_MAP } from '../data/courses'
+import {
+  DIFFICULTY_POINTS,
+  getCourseDifficultyBreakdown,
+  getCourseProgress,
+  getOverallPct,
+  getTargetedCourseProgress,
+  type Difficulty,
+} from '../data/progress'
 import { EXAM_MAX_POINTS, pointsToPct, predictGrade, type FinnishGrade } from '../data/grade'
-import { getFinnishGrade, getTargetPoints, gradeRank, type TargetGrade } from '../data/studyPlans'
-import { ChevronDownIcon } from './icons'
+import {
+  getCourseTargets,
+  getFinnishGrade,
+  getTargetPoints,
+  gradeRank,
+  saveTargetGrade,
+  type TargetGrade,
+} from '../data/studyPlans'
+import { ChevronDownIcon, ChevronRightIcon } from './icons'
+import InfoToggle from './InfoToggle'
 import ProgressChart from './ProgressChart'
+import TargetGradeView from './TargetGradeView'
 import type { TopicCode } from '../types'
 
 interface OsaaminenProps {
   engagedIds: Record<string, true>
   targetGrade: TargetGrade
+  onTargetGradeChange: (grade: TargetGrade) => void
 }
 
 const TIER_CLASSES: Record<FinnishGrade['tier'], { badge: string; text: string; stroke: string }> = {
@@ -18,11 +35,17 @@ const TIER_CLASSES: Record<FinnishGrade['tier'], { badge: string; text: string; 
   low: { badge: 'bg-bad/15 text-bad ring-bad/30', text: 'text-bad', stroke: 'stroke-bad' },
 }
 
-const DIFFICULTY_LABELS: { key: Difficulty; label: string }[] = [
-  { key: 'easy', label: 'Helpot' },
-  { key: 'mid', label: 'Keskivaikeat' },
-  { key: 'hard', label: 'Vaikeat' },
+const DIFFICULTY_LABELS: { key: Difficulty; label: string; section: string }[] = [
+  { key: 'easy', label: 'Helpot', section: 'Osa I' },
+  { key: 'mid', label: 'Keskivaikeat', section: 'Osa II' },
+  { key: 'hard', label: 'Vaikeat', section: 'Osa III–IV' },
 ]
+
+function difficultyList(difficulties: Difficulty[]): string {
+  const labels = DIFFICULTY_LABELS.filter((d) => difficulties.includes(d.key)).map((d) => d.label.toLowerCase())
+  if (labels.length === 3) return 'kaikki tehtävät'
+  return labels.join(' ja ')
+}
 
 const DONUT_SIZE = 104
 const DONUT_STROKE = 8
@@ -83,8 +106,81 @@ function GradeDonut({ pct, grade, targetPct }: { pct: number; grade: FinnishGrad
   )
 }
 
-export default function Osaaminen({ engagedIds, targetGrade }: OsaaminenProps) {
+interface CourseRowProps {
+  code: TopicCode
+  engagedIds: Record<string, true>
+  // Difficulty tiers the target grade asks for; undefined when the course
+  // is outside the plan and every tier is shown as untargeted.
+  targeted?: Difficulty[]
+  isExpanded: boolean
+  onToggle: () => void
+}
+
+function CourseRow({ code, engagedIds, targeted, isExpanded, onToggle }: CourseRowProps) {
+  const course = COURSE_MAP[code]
+  const inPlan = targeted !== undefined
+  const { engaged, total, pct } = inPlan
+    ? getTargetedCourseProgress(code, engagedIds, targeted)
+    : getCourseProgress(code, engagedIds)
+  const breakdown = getCourseDifficultyBreakdown(code, engagedIds)
+
+  return (
+    <div className={`rounded-2xl border border-ink/10 bg-surface p-3 shadow-sm ${inPlan ? '' : 'opacity-60'}`}>
+      <button type="button" onClick={onToggle} className="flex w-full flex-col gap-1.5 text-left">
+        <div className="flex items-center justify-between gap-2">
+          <span className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold ring-1 ${course.badgeClass}`}>
+            {course.code}
+          </span>
+          <div className="flex items-center gap-1.5">
+            <span className="text-xs font-semibold text-ink-dim">
+              {engaged}/{total} · {pct} %
+            </span>
+            <ChevronDownIcon
+              className={`h-3.5 w-3.5 text-ink-dim/70 transition-transform ${isExpanded ? 'rotate-180' : ''}`}
+            />
+          </div>
+        </div>
+        <span className="text-[11px] text-ink-dim">
+          {inPlan ? `Tavoitteessa: ${difficultyList(targeted)}` : 'Ei tavoitteessa · kaikki tehtävät'}
+        </span>
+        <div className="h-1.5 w-full overflow-hidden rounded-full bg-ink/10">
+          <div className={`h-full rounded-full ${course.barClass}`} style={{ width: `${pct}%` }} />
+        </div>
+      </button>
+
+      {isExpanded && (
+        <div className="mt-3 flex flex-col gap-2 border-t border-ink/10 pt-3">
+          {DIFFICULTY_LABELS.map(({ key, label }) => {
+            const stats = breakdown[key]
+            const tierPct = stats.total > 0 ? Math.round((stats.engaged / stats.total) * 100) : 0
+            const isTargeted = inPlan && targeted.includes(key)
+            return (
+              <div key={key} className={isTargeted || !inPlan ? '' : 'opacity-40'}>
+                <div className="mb-1 flex items-center justify-between text-xs">
+                  <span className="font-medium text-ink-dim">
+                    {label}
+                    {inPlan && !isTargeted && <span className="font-normal"> · ei tavoitteessa</span>}
+                  </span>
+                  <span className="font-semibold text-ink-dim">
+                    {stats.engaged}/{stats.total} tehtävää
+                  </span>
+                </div>
+                <div className="h-1 w-full overflow-hidden rounded-full bg-ink/10">
+                  <div className={`h-full rounded-full ${course.barClass}`} style={{ width: `${tierPct}%` }} />
+                </div>
+              </div>
+            )
+          })}
+        </div>
+      )}
+    </div>
+  )
+}
+
+export default function Osaaminen({ engagedIds, targetGrade, onTargetGradeChange }: OsaaminenProps) {
   const [expandedCourse, setExpandedCourse] = useState<TopicCode | null>(null)
+  const [targetOpen, setTargetOpen] = useState(false)
+
   const overallPct = getOverallPct(engagedIds)
   const grade = predictGrade(overallPct)
   const tierClasses = TIER_CLASSES[grade.tier]
@@ -95,111 +191,147 @@ export default function Osaaminen({ engagedIds, targetGrade }: OsaaminenProps) {
   // Grades are ranked L=0 .. I=6, so a smaller rank is a better grade.
   const gradesToGo = gradeRank(grade.letter) - gradeRank(target.letter)
 
+  const courseTargets = getCourseTargets(targetGrade)
+  const inPlanCodes = new Set(courseTargets.map((t) => t.code))
+  const otherCourses = COURSES.filter((course) => !inPlanCodes.has(course.code))
+
+  function toggleCourse(code: TopicCode) {
+    setExpandedCourse((prev) => (prev === code ? null : code))
+  }
+
+  function handleTargetChange(next: TargetGrade) {
+    onTargetGradeChange(next)
+    saveTargetGrade(next)
+  }
+
   return (
     <div className="grid-bg h-dvh overflow-y-auto bg-page px-6 pb-10 pt-[calc(env(safe-area-inset-top)+4.5rem)]">
       <div className="mx-auto w-full max-w-md">
         <h1 className="mb-1 text-2xl font-bold text-ink">Osaaminen</h1>
         <p className="mb-6 text-sm text-ink-dim">Ennuste ja edistyminen tällä istunnolla.</p>
 
-        <div className="mb-6 flex flex-col items-center rounded-3xl border border-ink/10 bg-surface p-6 text-center shadow-sm">
-          <span className="mb-3 text-[11px] font-semibold uppercase tracking-widest text-ink-dim/70">
-            Ennustettu arvosana
-          </span>
-          <GradeDonut pct={overallPct} grade={grade} targetPct={targetPct} />
-          <span className={`mt-3 text-base font-semibold ${tierClasses.text}`}>{grade.name}</span>
-          <span className="mt-1 text-sm font-semibold text-ink-dim">{overallPct} % kokonaisosaaminen</span>
-          <span className="mt-0.5 inline-flex items-center gap-1.5 text-xs font-medium text-accent">
-            <span aria-hidden className="inline-block h-0.5 w-3 rounded-full bg-accent" />
-            Tavoite {target.letter} · {targetPct} %
-          </span>
-          <p className="mt-3 text-xs leading-relaxed text-ink-dim">
-            Ennuste perustuu käytyihin tehtäviin, ei vielä oikeisiin vastauksiin.
-          </p>
+        <div className="mb-6 rounded-3xl border border-ink/10 bg-surface p-6 shadow-sm">
+          <div className="flex flex-wrap items-center justify-between gap-2">
+            <span className="text-[11px] font-semibold uppercase tracking-widest text-ink-dim/70">
+              Ennustettu arvosana
+            </span>
+            <InfoToggle label="Mitä ennuste tarkoittaa">
+              <p className="mb-2">
+                Rengas näyttää kokonaisosaamisen: kuinka suuri osa kaikkien kurssien tehtävistä on käyty läpi.
+                Ennuste perustuu käytyihin tehtäviin, ei vielä oikeisiin vastauksiin.
+              </p>
+              <ul className="flex flex-col gap-1">
+                <li className="flex items-center gap-2">
+                  <span aria-hidden className={`inline-block h-2 w-4 rounded-full ${tierClasses.stroke.replace('stroke-', 'bg-')}`} />
+                  Täyttyvä rengas = kokonaisosaaminen ({overallPct} %)
+                </li>
+                <li className="flex items-center gap-2">
+                  <span aria-hidden className="inline-block h-3 w-1 rounded-full bg-accent" />
+                  Sininen merkki = tavoitearvosanan pisteraja ({targetPct} %)
+                </li>
+              </ul>
+              <p className="mt-2">
+                Arvosanarajat on laskettu tyypillisistä yo-kokeen pisterajoista jaettuna kokeen {EXAM_MAX_POINTS}{' '}
+                pisteellä.
+              </p>
+            </InfoToggle>
+          </div>
 
-          <div className="mt-5 flex w-full items-center gap-3 rounded-2xl bg-surface-2 p-3 text-left">
+          <div className="mt-3 flex flex-col items-center text-center">
+            <GradeDonut pct={overallPct} grade={grade} targetPct={targetPct} />
+            <span className={`mt-3 text-base font-semibold ${tierClasses.text}`}>{grade.name}</span>
+            <span className="mt-1 text-sm font-semibold text-ink-dim">{overallPct} % kokonaisosaaminen</span>
+          </div>
+
+          <button
+            type="button"
+            onClick={() => setTargetOpen(true)}
+            aria-haspopup="dialog"
+            className="mt-5 flex w-full items-center gap-3 rounded-2xl bg-surface-2 p-3 text-left ring-1 ring-transparent transition-colors active:ring-accent/40"
+          >
             <span
               className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-lg font-bold ring-2 ${targetTierClasses.badge}`}
             >
               {target.letter}
             </span>
-            <div className="flex min-w-0 flex-col">
+            <div className="flex min-w-0 flex-1 flex-col">
               <span className="text-[11px] font-semibold uppercase tracking-widest text-ink-dim/70">
                 Tavoitearvosana
               </span>
               <span className="text-sm font-semibold text-ink">{target.name}</span>
               <span className="text-xs text-ink-dim">
-                Pistetavoite n. {targetPoints.avg} / {EXAM_MAX_POINTS} p. ({targetPct} %) ·{' '}
+                {targetPoints.avg} / {EXAM_MAX_POINTS} p. ({targetPct} %) ·{' '}
                 {gradesToGo <= 0
-                  ? 'ennuste on tavoitteessa.'
-                  : `ennusteesta tavoitteeseen ${gradesToGo} ${gradesToGo === 1 ? 'arvosana' : 'arvosanaa'}.`}
+                  ? 'ennuste on tavoitteessa'
+                  : `${gradesToGo} ${gradesToGo === 1 ? 'arvosana' : 'arvosanaa'} tavoitteeseen`}
               </span>
             </div>
-          </div>
-          <p className="mt-2 text-[11px] text-ink-dim/80">Tavoitteen voit vaihtaa Suositellut-välilehdeltä.</p>
+            <span className="flex items-center gap-0.5 text-xs font-semibold text-accent">
+              Muuta
+              <ChevronRightIcon className="h-4 w-4" />
+            </span>
+          </button>
         </div>
 
         <ProgressChart targetLetter={target.letter} targetPct={targetPct} />
 
-        <div className="flex flex-col gap-3">
-          {COURSES.map((course) => {
-            const { pct } = getCourseProgress(course.code, engagedIds)
-            const isExpanded = expandedCourse === course.code
-            const breakdown = getCourseDifficultyBreakdown(course.code, engagedIds)
-
-            return (
-              <div key={course.code} className="rounded-2xl border border-ink/10 bg-surface p-3 shadow-sm">
-                <button
-                  type="button"
-                  onClick={() => setExpandedCourse(isExpanded ? null : course.code)}
-                  className="flex w-full flex-col gap-1.5 text-left"
-                >
-                  <div className="flex items-center justify-between gap-2">
-                    <span
-                      className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold ring-1 ${course.badgeClass}`}
-                    >
-                      {course.code}
-                    </span>
-                    <div className="flex items-center gap-1.5">
-                      <span className="text-xs font-semibold text-ink-dim">{pct} %</span>
-                      <ChevronDownIcon
-                        className={`h-3.5 w-3.5 text-ink-dim/70 transition-transform ${isExpanded ? 'rotate-180' : ''}`}
-                      />
-                    </div>
-                  </div>
-                  <div className="h-1.5 w-full overflow-hidden rounded-full bg-ink/10">
-                    <div className={`h-full rounded-full ${course.barClass}`} style={{ width: `${pct}%` }} />
-                  </div>
-                </button>
-
-                {isExpanded && (
-                  <div className="mt-3 flex flex-col gap-2 border-t border-ink/10 pt-3">
-                    {DIFFICULTY_LABELS.map(({ key, label }) => {
-                      const { engaged, total } = breakdown[key]
-                      const tierPct = total > 0 ? Math.round((engaged / total) * 100) : 0
-                      return (
-                        <div key={key}>
-                          <div className="mb-1 flex items-center justify-between text-xs">
-                            <span className="font-medium text-ink-dim">{label}</span>
-                            <span className="font-semibold text-ink-dim">
-                              {engaged}/{total} pistettä
-                            </span>
-                          </div>
-                          <div className="h-1 w-full overflow-hidden rounded-full bg-ink/10">
-                            <div
-                              className={`h-full rounded-full ${course.barClass}`}
-                              style={{ width: `${tierPct}%` }}
-                            />
-                          </div>
-                        </div>
-                      )
-                    })}
-                  </div>
-                )}
-              </div>
-            )
-          })}
+        <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
+          <h2 className="text-sm font-semibold text-ink">Kurssit tavoitteessa {target.letter}</h2>
+          <InfoToggle label="Miten kurssien edistyminen lasketaan">
+            <p className="mb-2">
+              Kurssin prosentti lasketaan vain niistä tehtävistä, joita tavoitearvosanan lukusuunnitelma pyytää.
+              Esimerkiksi jos tavoite pyytää MAA6:sta vain helpot tehtävät, prosentti kuvaa niiden edistymistä.
+            </p>
+            <p className="mb-2">Avaa kurssi nähdäksesi jaon vaikeustasoihin. Himmennetyt tasot eivät kuulu tavoitteeseen.</p>
+            <ul className="flex flex-col gap-1">
+              {DIFFICULTY_LABELS.map(({ key, label, section }) => (
+                <li key={key}>
+                  <span className="font-semibold text-ink">{label}</span> = {section} · {DIFFICULTY_POINTS[key]} p. /
+                  tehtävä
+                </li>
+              ))}
+            </ul>
+          </InfoToggle>
         </div>
+
+        <div className="flex flex-col gap-3">
+          {courseTargets.map(({ code, difficulties }) => (
+            <CourseRow
+              key={code}
+              code={code}
+              engagedIds={engagedIds}
+              targeted={difficulties}
+              isExpanded={expandedCourse === code}
+              onToggle={() => toggleCourse(code)}
+            />
+          ))}
+        </div>
+
+        {otherCourses.length > 0 && (
+          <>
+            <h2 className="mb-3 mt-6 text-sm font-semibold text-ink-dim">Tavoitteen ulkopuolella</h2>
+            <div className="flex flex-col gap-3">
+              {otherCourses.map((course) => (
+                <CourseRow
+                  key={course.code}
+                  code={course.code}
+                  engagedIds={engagedIds}
+                  isExpanded={expandedCourse === course.code}
+                  onToggle={() => toggleCourse(course.code)}
+                />
+              ))}
+            </div>
+          </>
+        )}
       </div>
+
+      {targetOpen && (
+        <TargetGradeView
+          targetGrade={targetGrade}
+          onTargetGradeChange={handleTargetChange}
+          onClose={() => setTargetOpen(false)}
+        />
+      )}
     </div>
   )
 }

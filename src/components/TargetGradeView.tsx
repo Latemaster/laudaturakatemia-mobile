@@ -9,12 +9,12 @@ import {
   type PlanCourse,
   type TargetGrade,
 } from '../data/studyPlans'
+import { XIcon } from './icons'
 
-interface SuositellutHomeProps {
+interface TargetGradeViewProps {
   targetGrade: TargetGrade
   onTargetGradeChange: (grade: TargetGrade) => void
-  cardCount: number
-  onStart: () => void
+  onClose: () => void
 }
 
 function PlanCourseRow({ course }: { course: PlanCourse }) {
@@ -43,22 +43,37 @@ function PlanCourseRow({ course }: { course: PlanCourse }) {
   )
 }
 
-export default function SuositellutHome({
-  targetGrade,
-  onTargetGradeChange,
-  cardCount,
-  onStart,
-}: SuositellutHomeProps) {
+// Full-screen sheet for picking the target grade and seeing which courses
+// (and which of their task tiers) the Suositellut feed and the Osaaminen
+// progress will follow.
+export default function TargetGradeView({ targetGrade, onTargetGradeChange, onClose }: TargetGradeViewProps) {
   const plan = STUDY_PLANS[targetGrade]
   const grade = getFinnishGrade(targetGrade)
   const points = getTargetPoints(targetGrade)
 
   return (
-    <div className="grid-bg h-dvh overflow-y-auto bg-page px-6 pb-32 pt-[calc(env(safe-area-inset-top)+4.5rem)]">
+    <div
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="target-grade-title"
+      className="grid-bg fixed inset-0 z-40 overflow-y-auto bg-page px-6 pb-32 pt-[calc(env(safe-area-inset-top)+1.25rem)]"
+    >
       <div className="mx-auto w-full max-w-md">
-        <h1 className="mb-1 text-2xl font-bold text-ink">Suositellut</h1>
+        <div className="mb-1 flex items-start justify-between gap-3">
+          <h1 id="target-grade-title" className="text-2xl font-bold text-ink">
+            Aseta tavoite
+          </h1>
+          <button
+            type="button"
+            onClick={onClose}
+            aria-label="Sulje"
+            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-surface/90 text-ink shadow-md ring-1 ring-ink/5"
+          >
+            <XIcon className="h-4 w-4" />
+          </button>
+        </div>
         <p className="mb-6 text-sm text-ink-dim">
-          Valitse tavoitearvosana, niin suositellut kohdistetaan sen mukaan.
+          Tavoitearvosana ohjaa Suositellut-syötettä ja sitä, mitä Osaaminen-sivu seuraa.
         </p>
 
         <section className="mb-4 rounded-3xl border border-ink/10 bg-surface p-5 shadow-sm">
@@ -94,9 +109,9 @@ export default function SuositellutHome({
           </div>
         </section>
 
-        <h2 className="mb-1 mt-2 text-lg font-bold text-ink">Suositellut perustuu näihin kursseihin</h2>
+        <h2 className="mb-1 mt-2 text-lg font-bold text-ink">Tavoite perustuu näihin kursseihin</h2>
         <p className="mb-3 text-xs text-ink-dim">
-          Valintasi mukaan. Kortit tulevat tässä järjestyksessä: perusteet ensin, vaikeimmat tehtävät viimeisenä.
+          Suositellut näyttää kortit tässä järjestyksessä: perusteet ensin, vaikeimmat tehtävät viimeisenä.
         </p>
 
         <div className="flex flex-col gap-3">
@@ -124,11 +139,10 @@ export default function SuositellutHome({
       <div className="pointer-events-none fixed inset-x-0 bottom-0 z-20 flex justify-center bg-gradient-to-t from-page via-page/90 to-transparent px-6 pb-[calc(env(safe-area-inset-bottom)+1.25rem)] pt-8">
         <button
           type="button"
-          onClick={onStart}
-          className="pointer-events-auto flex w-full max-w-md items-center justify-center gap-2 rounded-full bg-accent px-6 py-3.5 text-base font-semibold text-white shadow-lg transition-transform active:scale-[0.98]"
+          onClick={onClose}
+          className="pointer-events-auto flex w-full max-w-md items-center justify-center rounded-full bg-accent px-6 py-3.5 text-base font-semibold text-white shadow-lg transition-transform active:scale-[0.98]"
         >
-          Aloita kertaus
-          <span className="text-sm font-medium text-white/80">· {cardCount} korttia</span>
+          Valmis
         </button>
       </div>
     </div>

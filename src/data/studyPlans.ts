@@ -352,6 +352,32 @@ export function getRecommendedCards(grade: TargetGrade): Card[] {
   return result
 }
 
+export interface CourseTarget {
+  code: TopicCode
+  // Union of the task difficulties the plan asks for from this course.
+  difficulties: Difficulty[]
+}
+
+const DIFFICULTY_ORDER: Difficulty[] = ['easy', 'mid', 'hard']
+
+// The app's courses a plan covers, in plan order, each with the difficulty
+// tiers the plan targets in it across all its tiers.
+export function getCourseTargets(grade: TargetGrade): CourseTarget[] {
+  const targets = new Map<TopicCode, Set<Difficulty>>()
+  for (const tier of STUDY_PLANS[grade].tiers) {
+    for (const course of tier.courses) {
+      if (!isAppCourse(course.code)) continue
+      const set = targets.get(course.code) ?? new Set<Difficulty>()
+      course.difficulties.forEach((d) => set.add(d))
+      targets.set(course.code, set)
+    }
+  }
+  return [...targets].map(([code, set]) => ({
+    code,
+    difficulties: DIFFICULTY_ORDER.filter((d) => set.has(d)),
+  }))
+}
+
 const STORAGE_KEY = 'laudatur.targetGrade'
 const DEFAULT_TARGET_GRADE: TargetGrade = 'M'
 

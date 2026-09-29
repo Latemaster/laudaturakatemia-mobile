@@ -57,6 +57,24 @@ export function ChevronDownIcon({ className }: IconProps) {
   )
 }
 
+export function ChevronRightIcon({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} className={className}>
+      <path d="m9 6 6 6-6 6" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  )
+}
+
+export function InfoIcon({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} className={className}>
+      <circle cx={12} cy={12} r={9} />
+      <path d="M12 11v5" strokeLinecap="round" />
+      <circle cx={12} cy={8} r={0.6} fill="currentColor" />
+    </svg>
+  )
+}
+
 export function ExpandIcon({ className }: IconProps) {
   return (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} className={className}>

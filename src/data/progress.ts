@@ -45,6 +45,24 @@ export function classifyDifficulty(section: string): Difficulty {
   return 'hard'
 }
 
+// Progress over only the task cards of the given difficulties — how far
+// along a course is with respect to a target grade's plan.
+export function getTargetedCourseProgress(
+  code: TopicCode,
+  engagedIds: Record<string, true>,
+  difficulties: Difficulty[],
+): CourseProgress {
+  const wanted = new Set(difficulties)
+  const taskCards = cards.filter(
+    (card): card is TaskCard =>
+      card.topic.code === code && card.type === 'task' && wanted.has(classifyDifficulty(card.problem.section)),
+  )
+  const total = taskCards.length
+  const engaged = taskCards.filter((card) => engagedIds[card.id]).length
+  const pct = total > 0 ? Math.round((engaged / total) * 100) : 0
+  return { engaged, total, pct }
+}
+
 export interface DifficultyStats {
   engaged: number
   total: number

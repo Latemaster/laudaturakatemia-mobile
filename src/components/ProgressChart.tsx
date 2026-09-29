@@ -1,6 +1,7 @@
 import { GRADE_BANDS, predictGrade, type FinnishGrade } from '../data/grade'
 import { COURSES } from '../data/courses'
 import { DIFFICULTY_POINTS, DIFFICULTY_TOTALS, type Difficulty } from '../data/progress'
+import InfoToggle from './InfoToggle'
 
 const WEEKS = 8
 const DIFFICULTIES: Difficulty[] = ['easy', 'mid', 'hard']
@@ -55,6 +56,11 @@ const TIER_FILL: Record<FinnishGrade['tier'], string> = {
   mid: 'fill-accent',
   low: 'fill-bad',
 }
+const TIER_BG: Record<FinnishGrade['tier'], string> = {
+  high: 'bg-good',
+  mid: 'bg-accent',
+  low: 'bg-bad',
+}
 const TIER_BAND_FILL: Record<FinnishGrade['tier'], string> = {
   high: 'fill-good/10',
   mid: 'fill-accent/10',
@@ -97,12 +103,32 @@ export default function ProgressChart({ targetLetter, targetPct }: ProgressChart
 
   return (
     <div className="mb-6 rounded-2xl border border-ink/10 bg-surface p-4 shadow-sm">
-      <div className="mb-1 flex items-center justify-between">
+      <div className="mb-1 flex flex-wrap items-center justify-between gap-2">
         <span className="text-sm font-semibold text-ink">Edistyminen ajan mittaan</span>
-        <span className="text-[11px] font-medium text-ink-dim/70">Esimerkkidata</span>
+        <InfoToggle label="Kaavion selite">
+            <ul className="flex flex-col gap-1.5">
+              <li className="flex items-center gap-2">
+                <span aria-hidden className={`inline-block h-0.5 w-5 rounded-full ${TIER_BG[currentGrade.tier]}`} />
+                Viiva = kokonaisosaaminen viikoittain (toistaiseksi esimerkkidataa)
+              </li>
+              <li className="flex items-center gap-2">
+                <span aria-hidden className={`inline-block h-3 w-5 rounded-sm ${TIER_BG[currentGrade.tier]} opacity-20`} />
+                Väritetty kaista = nykyinen arvosanataso {currentGrade.letter} ({currentGrade.name})
+              </li>
+              <li className="flex items-center gap-2">
+                <span aria-hidden className="inline-block h-0.5 w-5 border-t-2 border-dashed border-accent" />
+                Katkoviiva = tavoite {targetLetter}, {targetPct} % pisteistä
+              </li>
+              <li className="flex items-center gap-2">
+                <span aria-hidden className="inline-block h-0.5 w-5 border-t border-dashed border-ink/30" />
+                Vaaleat viivat = arvosanarajat L–A pisterajojen mukaan
+              </li>
+            </ul>
+          </InfoToggle>
       </div>
       <p className="mb-2 text-xs text-ink-dim">
-        Suunta kohti tasoa {currentGrade.letter} ({currentGrade.name}). Tavoite {targetLetter} on {targetPct} %.
+        Suunta kohti tasoa {currentGrade.letter} ({currentGrade.name}).{' '}
+        <span className="text-ink-dim/70">Esimerkkidata.</span>
       </p>
       <svg viewBox={`0 0 ${WIDTH} ${HEIGHT}`} className="w-full">
         <rect
