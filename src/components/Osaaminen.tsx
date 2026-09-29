@@ -2,12 +2,14 @@ import { useState } from 'react'
 import { COURSES } from '../data/courses'
 import { getCourseDifficultyBreakdown, getCourseProgress, getOverallPct, type Difficulty } from '../data/progress'
 import { predictGrade, type FinnishGrade } from '../data/grade'
+import { STUDY_PLANS, getFinnishGrade, gradeRank, type TargetGrade } from '../data/studyPlans'
 import { ChevronDownIcon } from './icons'
 import ProgressChart from './ProgressChart'
 import type { TopicCode } from '../types'
 
 interface OsaaminenProps {
   engagedIds: Record<string, true>
+  targetGrade: TargetGrade
 }
 
 const TIER_CLASSES: Record<FinnishGrade['tier'], { badge: string; text: string; stroke: string }> = {
@@ -61,11 +63,16 @@ function GradeDonut({ pct, grade }: { pct: number; grade: FinnishGrade }) {
   )
 }
 
-export default function Osaaminen({ engagedIds }: OsaaminenProps) {
+export default function Osaaminen({ engagedIds, targetGrade }: OsaaminenProps) {
   const [expandedCourse, setExpandedCourse] = useState<TopicCode | null>(null)
   const overallPct = getOverallPct(engagedIds)
   const grade = predictGrade(overallPct)
   const tierClasses = TIER_CLASSES[grade.tier]
+  const target = getFinnishGrade(targetGrade)
+  const targetTierClasses = TIER_CLASSES[target.tier]
+  const targetPoints = STUDY_PLANS[targetGrade].points
+  // Grades are ranked L=0 .. I=6, so a smaller rank is a better grade.
+  const gradesToGo = gradeRank(grade.letter) - gradeRank(target.letter)
 
   return (
     <div className="grid-bg h-dvh overflow-y-auto bg-page px-6 pb-10 pt-[calc(env(safe-area-inset-top)+4.5rem)]">
@@ -83,6 +90,27 @@ export default function Osaaminen({ engagedIds }: OsaaminenProps) {
           <p className="mt-3 text-xs leading-relaxed text-ink-dim">
             Ennuste perustuu käytyihin tehtäviin, ei vielä oikeisiin vastauksiin.
           </p>
+
+          <div className="mt-5 flex w-full items-center gap-3 rounded-2xl bg-surface-2 p-3 text-left">
+            <span
+              className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-lg font-bold ring-2 ${targetTierClasses.badge}`}
+            >
+              {target.letter}
+            </span>
+            <div className="flex min-w-0 flex-col">
+              <span className="text-[11px] font-semibold uppercase tracking-widest text-ink-dim/70">
+                Tavoitearvosana
+              </span>
+              <span className="text-sm font-semibold text-ink">{target.name}</span>
+              <span className="text-xs text-ink-dim">
+                Pistetavoite n. {targetPoints.avg} p. ·{' '}
+                {gradesToGo <= 0
+                  ? 'ennuste on tavoitteessa.'
+                  : `ennusteesta tavoitteeseen ${gradesToGo} ${gradesToGo === 1 ? 'arvosana' : 'arvosanaa'}.`}
+              </span>
+            </div>
+          </div>
+          <p className="mt-2 text-[11px] text-ink-dim/80">Tavoitteen voit vaihtaa Suositellut-välilehdeltä.</p>
         </div>
 
         <ProgressChart />

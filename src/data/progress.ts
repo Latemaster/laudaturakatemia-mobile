@@ -38,7 +38,7 @@ export const DIFFICULTY_TOTALS: Record<Difficulty, number> = { easy: 10, mid: 10
 // (some courses spell it "Osio"), matching the source packets' own
 // perustehtävä / keskivaikea / syventävä / vaativa split. Osa III and IV are
 // combined into one "hard" tier for a simple three-level breakdown.
-function classifyDifficulty(section: string): Difficulty {
+export function classifyDifficulty(section: string): Difficulty {
   const roman = section.trim().split(/\s+/).pop()
   if (roman === 'I') return 'easy'
   if (roman === 'II') return 'mid'

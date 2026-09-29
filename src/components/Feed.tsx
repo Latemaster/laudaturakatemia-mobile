@@ -9,9 +9,10 @@ interface FeedProps {
   cards: Card[]
   onEngage?: (cardId: string) => void
   onBack?: () => void
+  backLabel?: string
 }
 
-export default function Feed({ cards, onEngage, onBack }: FeedProps) {
+export default function Feed({ cards, onEngage, onBack, backLabel = 'Takaisin' }: FeedProps) {
   const containerRef = useRef<HTMLDivElement>(null)
   const cardRefs = useRef<(HTMLDivElement | null)[]>([])
   const [currentIndex, setCurrentIndex] = useState(0)
@@ -43,7 +44,7 @@ export default function Feed({ cards, onEngage, onBack }: FeedProps) {
         <button
           type="button"
           onClick={onBack}
-          aria-label="Takaisin kursseihin"
+          aria-label={backLabel}
           className="fixed left-4 top-[calc(env(safe-area-inset-top)+3.5rem)] z-20 flex h-9 w-9 items-center justify-center rounded-full bg-surface/90 text-lg text-ink shadow-md ring-1 ring-ink/5 backdrop-blur"
         >
           ←
