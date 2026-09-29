@@ -3,6 +3,7 @@ import Feed from './components/Feed'
 import TopMenu, { type MenuSection } from './components/TopMenu'
 import CourseList from './components/CourseList'
 import Osaaminen from './components/Osaaminen'
+import FeedInfo from './components/FeedInfo'
 import { cards, getConceptCards, getExerciseCards } from './data/cards'
 import { getRecommendedCards, loadTargetGrade, type TargetGrade } from './data/studyPlans'
 import type { Card } from './types'
@@ -60,6 +61,7 @@ function App() {
       {section === 'osaaminen' && (
         <Osaaminen engagedIds={engagedIds} targetGrade={targetGrade} onTargetGradeChange={setTargetGrade} />
       )}
+      {section === 'suositellut' && <FeedInfo targetGrade={targetGrade} cardCount={recommendedCards.length} />}
       {showFeed && (
         <Feed
           key={selectedCourse ?? `suositellut-${targetGrade}`}
