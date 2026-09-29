@@ -1,5 +1,5 @@
 import { cards } from './cards'
-import { COURSE_MAP } from './courses'
+import { COURSES, COURSE_MAP } from './courses'
 import { FINNISH_GRADES, type FinnishGrade } from './grade'
 import { classifyDifficulty, type Difficulty } from './progress'
 import type { Card, TopicCode } from '../types'
@@ -354,6 +354,37 @@ export function getRecommendedCards(grade: TargetGrade): Card[] {
   }
 
   return result
+}
+
+export interface CourseBucket {
+  title: string
+  courses: { code: TopicCode; focus?: string }[]
+}
+
+const BUCKET_TITLES = ['Tärkeimmät', 'Seuraavaksi tärkeimmät', 'Jos aikaa jää'] as const
+
+// The app's courses split into three priority buckets for a target grade:
+// the plan's first tier, its second tier, and everything after that. A
+// course the plan never mentions lands in the last bucket without a focus
+// note. Each course is placed by its first appearance, in plan order.
+export function getCourseBuckets(grade: TargetGrade): CourseBucket[] {
+  const buckets: CourseBucket[] = BUCKET_TITLES.map((title) => ({ title, courses: [] }))
+  const placed = new Set<TopicCode>()
+
+  STUDY_PLANS[grade].tiers.forEach((tier, index) => {
+    const bucket = buckets[Math.min(index, buckets.length - 1)]
+    for (const course of tier.courses) {
+      if (!isAppCourse(course.code) || placed.has(course.code)) continue
+      placed.add(course.code)
+      bucket.courses.push({ code: course.code, focus: course.focus })
+    }
+  })
+
+  for (const course of COURSES) {
+    if (!placed.has(course.code)) buckets[buckets.length - 1].courses.push({ code: course.code })
+  }
+
+  return buckets
 }
 
 const STORAGE_KEY = 'laudatur.targetGrade'

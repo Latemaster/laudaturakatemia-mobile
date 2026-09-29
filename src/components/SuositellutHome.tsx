@@ -56,7 +56,7 @@ export default function SuositellutHome({
       <div className="mx-auto w-full max-w-md">
         <h1 className="mb-1 text-2xl font-bold text-ink">Suositellut</h1>
         <p className="mb-6 text-sm text-ink-dim">
-          Valitse tavoitearvosana, niin kertaus kohdistetaan sen mukaan.
+          Valitse tavoitearvosana, niin suositellut kohdistetaan sen mukaan.
         </p>
 
         <section className="mb-4 rounded-3xl border border-ink/10 bg-surface p-5 shadow-sm">
@@ -92,14 +92,9 @@ export default function SuositellutHome({
           </div>
         </section>
 
-        <section className="mb-4 rounded-2xl border border-ink/10 bg-surface p-4 shadow-sm">
-          <h2 className="mb-2 text-sm font-bold text-ink">Strategia kokeeseen</h2>
-          <p className="text-sm leading-relaxed text-ink-dim">{plan.strategy}</p>
-        </section>
-
-        <h2 className="mb-1 mt-6 text-lg font-bold text-ink">Mihin suositellut keskittyy</h2>
+        <h2 className="mb-1 mt-2 text-lg font-bold text-ink">Suositellut perustuu näihin kursseihin</h2>
         <p className="mb-3 text-xs text-ink-dim">
-          Kortit tulevat tässä järjestyksessä: perusteet ensin, vaikeimmat tehtävät viimeisenä.
+          Valintasi mukaan. Kortit tulevat tässä järjestyksessä: perusteet ensin, vaikeimmat tehtävät viimeisenä.
         </p>
 
         <div className="flex flex-col gap-3">
@@ -121,17 +116,6 @@ export default function SuositellutHome({
               </ol>
             </section>
           ))}
-        </div>
-
-        <div className="mt-4 grid grid-cols-1 gap-3">
-          <section className="rounded-2xl border border-ink/10 bg-surface p-4 shadow-sm">
-            <h2 className="mb-2 text-sm font-bold text-ink">Tärkeää</h2>
-            <p className="text-sm leading-relaxed text-ink-dim">{plan.important}</p>
-          </section>
-          <section className="rounded-2xl border border-ink/10 bg-surface p-4 shadow-sm">
-            <h2 className="mb-2 text-sm font-bold text-ink">Aikataulutus</h2>
-            <p className="text-sm leading-relaxed text-ink-dim">{plan.schedule}</p>
-          </section>
         </div>
       </div>
 
