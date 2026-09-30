@@ -75,6 +75,15 @@ export function InfoIcon({ className }: IconProps) {
   )
 }
 
+export function MathSymbolIcon({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} className={className}>
+      <path d="M3 13h2.5l2.7 6L12.5 5H21" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="m14.5 10 5 5M19.5 10l-5 5" strokeLinecap="round" />
+    </svg>
+  )
+}
+
 export function ExpandIcon({ className }: IconProps) {
   return (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} className={className}>
