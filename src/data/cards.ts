@@ -180,8 +180,9 @@ export function getConceptCards(code: TopicCode): LessonCard[] {
   }))
 }
 
-// Multiple-choice exercises, one per concept box above, kept in a separate
-// map from both the concept boxes and the open-answer task cards.
+// Quick exercises (multiple-choice, numeric, slider) for the concept boxes
+// above, kept in a separate map from both the concept boxes and the
+// open-answer task cards. See groupExercisesByConcept for how they pair up.
 const EXERCISES: Partial<Record<TopicCode, Array<DistributiveOmit<ExerciseCard, 'id' | 'type' | 'topic'>>>> = {
   MAA2: maa2Exercises,
   MAA3: maa3Exercises,
@@ -204,4 +205,19 @@ export function getExerciseCards(code: TopicCode): ExerciseCard[] {
     topic,
     ...exercise,
   }))
+}
+
+// Buckets a course's exercises by the concept box (index into the course's
+// theory file) each one reinforces, in file order within a bucket. An
+// exercise with an explicit conceptIndex goes there; the others pair up with
+// the concepts in order, one per concept, which is how every course's
+// original one-exercise-per-topic list is written.
+export function groupExercisesByConcept(exercises: ExerciseCard[]): Map<number, ExerciseCard[]> {
+  const byConcept = new Map<number, ExerciseCard[]>()
+  let nextPositional = 0
+  for (const exercise of exercises) {
+    const index = exercise.conceptIndex ?? nextPositional++
+    byConcept.set(index, [...(byConcept.get(index) ?? []), exercise])
+  }
+  return byConcept
 }

@@ -11,6 +11,9 @@ export default {
         'ink-dim': '#5c7185',
         accent: '#5681bd',
         good: '#2f9e6e',
+        // `good` at 10 % over `page`, as an opaque colour so a fade can
+        // match a panel painted with it exactly.
+        'good-tint': '#bcdbf0',
         bad: '#d9636f',
         'topic-maa2': '#3f9142',
         'topic-maa3': '#c1554f',

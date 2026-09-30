@@ -1,10 +1,12 @@
 import { useState } from 'react'
+import ExpandableBox from './ExpandableBox'
 
 type AnswerState = 'closed' | 'editing' | 'submitted'
 
 export default function AnswerBox() {
   const [state, setState] = useState<AnswerState>('closed')
   const [answer, setAnswer] = useState('')
+  const [isExpanded, setIsExpanded] = useState(false)
 
   return (
     <div className="sticky bottom-0 mt-4 bg-gradient-to-t from-page from-60% to-transparent pb-4 pt-6">
@@ -49,9 +51,21 @@ export default function AnswerBox() {
       )}
 
       {state === 'submitted' && (
-        <div className="rounded-2xl border border-good/30 bg-good/10 p-3 shadow-md">
-          <p className="mb-1 text-sm font-semibold text-good">Vastaus lähetetty</p>
-          <p className="whitespace-pre-wrap text-sm leading-relaxed text-ink">{answer}</p>
+        <div className="rounded-2xl border border-good/30 bg-good-tint p-3 shadow-md">
+          {/* A long answer would otherwise grow this sticky panel until it
+              swallowed the task box above it, so it's capped here and gets
+              the same expand button as the task box when it overflows. */}
+          <ExpandableBox
+            sizing="natural"
+            className="max-h-40"
+            fadeClassName="from-good-tint"
+            buttonClassName="-right-1 -top-2"
+            isExpanded={isExpanded}
+            onExpandedChange={setIsExpanded}
+          >
+            <p className="mb-1 text-sm font-semibold text-good">Vastaus lähetetty</p>
+            <p className="whitespace-pre-wrap text-sm leading-relaxed text-ink">{answer}</p>
+          </ExpandableBox>
           <button
             type="button"
             onClick={() => setState('editing')}

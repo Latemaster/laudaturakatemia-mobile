@@ -4,7 +4,7 @@ import TopMenu, { type MenuSection } from './components/TopMenu'
 import CourseList from './components/CourseList'
 import Osaaminen from './components/Osaaminen'
 import FeedInfo from './components/FeedInfo'
-import { cards, getConceptCards, getExerciseCards } from './data/cards'
+import { cards, getConceptCards, getExerciseCards, groupExercisesByConcept } from './data/cards'
 import { getRecommendedCards, loadTargetGrade, type TargetGrade } from './data/studyPlans'
 import type { Card } from './types'
 import type { TopicCode } from './types'
@@ -38,13 +38,13 @@ function App() {
       const concepts = getConceptCards(selectedCourse)
       if (concepts.length === 0) return courseCards
       // Concept boxes replace the single generic lesson blurb for this course.
-      // Each concept is immediately followed by its matching multiple-choice
-      // exercise, when one exists; open-answer task cards stay untouched and
-      // come after, at the end.
-      const exercises = getExerciseCards(selectedCourse)
-      const lessonAndExercises: Card[] = concepts.flatMap((concept, index) =>
-        exercises[index] ? [concept, exercises[index]] : [concept],
-      )
+      // Each concept is immediately followed by its exercises, when it has
+      // any; open-answer task cards stay untouched and come after, at the end.
+      const exercisesByConcept = groupExercisesByConcept(getExerciseCards(selectedCourse))
+      const lessonAndExercises: Card[] = concepts.flatMap((concept, index) => [
+        concept,
+        ...(exercisesByConcept.get(index) ?? []),
+      ])
       return [...lessonAndExercises, ...courseCards.filter((card) => card.type !== 'lesson')]
     }
     return recommendedCards
