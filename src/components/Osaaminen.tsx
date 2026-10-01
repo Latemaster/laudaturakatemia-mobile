@@ -17,7 +17,9 @@ import {
   saveTargetGrade,
   type TargetGrade,
 } from '../data/studyPlans'
+import { formatAverage, getEarlyIndication, type CourseGrade, type CourseGrades } from '../data/courseGrades'
 import { ChevronDownIcon, ChevronRightIcon } from './icons'
+import CourseGradesSection from './CourseGradesSection'
 import InfoToggle from './InfoToggle'
 import ProgressChart from './ProgressChart'
 import TargetGradeView from './TargetGradeView'
@@ -27,6 +29,8 @@ interface OsaaminenProps {
   engagedIds: Record<string, true>
   targetGrade: TargetGrade
   onTargetGradeChange: (grade: TargetGrade) => void
+  courseGrades: CourseGrades
+  onCourseGradeChange: (code: TopicCode, grade: CourseGrade | undefined) => void
 }
 
 const TIER_CLASSES: Record<FinnishGrade['tier'], { badge: string; text: string; stroke: string }> = {
@@ -177,13 +181,21 @@ function CourseRow({ code, engagedIds, targeted, isExpanded, onToggle }: CourseR
   )
 }
 
-export default function Osaaminen({ engagedIds, targetGrade, onTargetGradeChange }: OsaaminenProps) {
+export default function Osaaminen({
+  engagedIds,
+  targetGrade,
+  onTargetGradeChange,
+  courseGrades,
+  onCourseGradeChange,
+}: OsaaminenProps) {
   const [expandedCourse, setExpandedCourse] = useState<TopicCode | null>(null)
   const [targetOpen, setTargetOpen] = useState(false)
 
   const overallPct = getOverallPct(engagedIds)
   const grade = predictGrade(overallPct)
   const tierClasses = TIER_CLASSES[grade.tier]
+  const earlyIndication = getEarlyIndication(courseGrades)
+  const earlyTierClasses = TIER_CLASSES[earlyIndication.grade.tier]
   const target = getFinnishGrade(targetGrade)
   const targetTierClasses = TIER_CLASSES[target.tier]
   const targetPoints = getTargetPoints(targetGrade)
@@ -241,6 +253,13 @@ export default function Osaaminen({ engagedIds, targetGrade, onTargetGradeChange
             <GradeDonut pct={overallPct} grade={grade} targetPct={targetPct} />
             <span className={`mt-3 text-base font-semibold ${tierClasses.text}`}>Arvosana {grade.letter}</span>
             <span className="mt-1 text-sm font-semibold text-ink-dim">{overallPct} % kokonaisosaaminen</span>
+            {earlyIndication.average !== null && (
+              <span className="mt-1 text-xs text-ink-dim">
+                Esitietojen perusteella{' '}
+                <span className={`font-semibold ${earlyTierClasses.text}`}>{earlyIndication.grade.letter}</span>
+                {' · '}keskiarvo {formatAverage(earlyIndication.average)}
+              </span>
+            )}
           </div>
 
           <button
@@ -273,6 +292,8 @@ export default function Osaaminen({ engagedIds, targetGrade, onTargetGradeChange
             </span>
           </button>
         </div>
+
+        <CourseGradesSection courseGrades={courseGrades} onCourseGradeChange={onCourseGradeChange} />
 
         <ProgressChart targetLetter={target.letter} targetPct={targetPct} />
 

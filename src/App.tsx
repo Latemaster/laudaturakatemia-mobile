@@ -6,6 +6,7 @@ import Osaaminen from './components/Osaaminen'
 import FeedInfo from './components/FeedInfo'
 import { cards, getConceptCards, getExerciseCards, groupExercisesByConcept } from './data/cards'
 import { getRecommendedCards, loadTargetGrade, type TargetGrade } from './data/studyPlans'
+import { loadCourseGrades, saveCourseGrades, type CourseGrade, type CourseGrades } from './data/courseGrades'
 import type { Card } from './types'
 import type { TopicCode } from './types'
 
@@ -16,6 +17,20 @@ function App() {
   // Set from the Osaaminen page; drives the Suositellut feed and what
   // Osaaminen tracks. Persisted by the component that changes it.
   const [targetGrade, setTargetGrade] = useState<TargetGrade>(loadTargetGrade)
+  // Lukio course grades (4-10) the student reports on the Osaaminen page
+  // as an early indication of their level. Kept here rather than in the
+  // page so a later knowledge check elsewhere can reflect against them.
+  const [courseGrades, setCourseGrades] = useState<CourseGrades>(loadCourseGrades)
+
+  function handleCourseGradeChange(code: TopicCode, grade: CourseGrade | undefined) {
+    setCourseGrades((prev) => {
+      const next = { ...prev }
+      if (grade === undefined) delete next[code]
+      else next[code] = grade
+      saveCourseGrades(next)
+      return next
+    })
+  }
 
   function handleSelectSection(next: MenuSection) {
     if (next === 'kurssit' && section === 'kurssit') {
@@ -59,7 +74,13 @@ function App() {
         <CourseList onSelect={setSelectedCourse} engagedIds={engagedIds} />
       )}
       {section === 'osaaminen' && (
-        <Osaaminen engagedIds={engagedIds} targetGrade={targetGrade} onTargetGradeChange={setTargetGrade} />
+        <Osaaminen
+          engagedIds={engagedIds}
+          targetGrade={targetGrade}
+          onTargetGradeChange={setTargetGrade}
+          courseGrades={courseGrades}
+          onCourseGradeChange={handleCourseGradeChange}
+        />
       )}
       {section === 'suositellut' && <FeedInfo targetGrade={targetGrade} cardCount={recommendedCards.length} />}
       {showFeed && (
