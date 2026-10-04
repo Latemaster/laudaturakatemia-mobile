@@ -1,9 +1,14 @@
-import { useLayoutEffect, useRef, useState } from 'react'
+import { lazy, Suspense, useRef, useState } from 'react'
 import ExpandableBox from './ExpandableBox'
-import MathSymbolPicker, { type MathSnippet } from './MathSymbolPicker'
+import type { EditorMode, MathAnswerEditorHandle } from './MathAnswerEditor'
+import MathSymbolPicker from './MathSymbolPicker'
 import MathText from './MathText'
+import { toKatexAnswer } from './mathAnswerFormat'
 import { MathSymbolIcon } from './icons'
-import { insertMathSnippet } from './insertMathSnippet'
+
+// The formula editor pulls in MathLive, which is heavier than the rest of
+// the app, so it only loads once someone starts answering.
+const MathAnswerEditor = lazy(() => import('./MathAnswerEditor'))
 
 type AnswerState = 'closed' | 'editing' | 'submitted'
 
@@ -12,30 +17,11 @@ export default function AnswerBox() {
   const [answer, setAnswer] = useState('')
   const [isExpanded, setIsExpanded] = useState(false)
   const [showSymbols, setShowSymbols] = useState(false)
-  const textareaRef = useRef<HTMLTextAreaElement>(null)
-  const pendingCaret = useRef<number | null>(null)
-
-  // The caret can only be placed once React has written the new value into
-  // the textarea, so it's parked here and applied after the render.
-  useLayoutEffect(() => {
-    const caret = pendingCaret.current
-    const textarea = textareaRef.current
-    if (caret === null || !textarea) return
-    pendingCaret.current = null
-    textarea.focus()
-    textarea.setSelectionRange(caret, caret)
-  }, [answer])
-
-  function handleInsert(snippet: MathSnippet) {
-    const textarea = textareaRef.current
-    const selStart = textarea?.selectionStart ?? answer.length
-    const selEnd = textarea?.selectionEnd ?? answer.length
-    const next = insertMathSnippet(answer, selStart, selEnd, snippet)
-    pendingCaret.current = next.caret
-    setAnswer(next.text)
-  }
+  const [mode, setMode] = useState<EditorMode>('text')
+  const editorRef = useRef<MathAnswerEditorHandle>(null)
 
   function startEditing() {
+    setMode('text')
     setState('editing')
   }
 
@@ -49,10 +35,8 @@ export default function AnswerBox() {
     setState('submitted')
   }
 
-  const hasMath = answer.includes('$')
-
   // z-20 keeps the panel above the task box's expand button, which would
-  // otherwise poke through once the palette and preview make it tall.
+  // otherwise poke through once the palette makes it tall.
   return (
     <div className="sticky bottom-0 z-20 mt-4 bg-gradient-to-t from-page from-60% to-transparent pb-4 pt-6">
       {state === 'closed' && (
@@ -68,15 +52,15 @@ export default function AnswerBox() {
       {state === 'editing' && (
         <div className="rounded-2xl border border-ink/10 bg-surface p-3 shadow-md">
           <div className="relative">
-            <textarea
-              ref={textareaRef}
-              autoFocus
-              rows={3}
-              value={answer}
-              onChange={(e) => setAnswer(e.target.value)}
-              placeholder="Kirjoita vastauksesi tähän..."
-              className="w-full resize-none rounded-xl border border-ink/10 bg-page py-2 pl-3 pr-11 text-sm leading-relaxed text-ink outline-none placeholder:text-ink-dim/60"
-            />
+            <Suspense fallback={<div className="min-h-[4.5rem] w-full animate-pulse rounded-xl border border-ink/10 bg-page" />}>
+              <MathAnswerEditor
+                ref={editorRef}
+                initialValue={answer}
+                placeholder="Kirjoita vastauksesi tähän..."
+                onChange={setAnswer}
+                onModeChange={setMode}
+              />
+            </Suspense>
             <button
               type="button"
               onPointerDown={(e) => e.preventDefault()}
@@ -91,15 +75,13 @@ export default function AnswerBox() {
             </button>
           </div>
 
-          {showSymbols && <MathSymbolPicker onInsert={handleInsert} />}
-
-          {hasMath && (
-            <div className="mt-2 rounded-xl bg-surface-2 px-3 py-2">
-              <p className="mb-1 text-[11px] font-semibold uppercase tracking-wide text-ink-dim">Esikatselu</p>
-              <div className="text-sm leading-relaxed text-ink">
-                <MathText content={answer} />
-              </div>
-            </div>
+          {showSymbols && (
+            <MathSymbolPicker
+              mode={mode}
+              onInsert={(snippet) => editorRef.current?.insert(snippet.insert)}
+              onNewFormula={() => editorRef.current?.newFormula()}
+              onExitFormula={() => editorRef.current?.exitFormula()}
+            />
           )}
 
           <div className="mt-2 flex gap-2">
@@ -137,7 +119,7 @@ export default function AnswerBox() {
           >
             <p className="mb-1 text-sm font-semibold text-good">Vastaus lähetetty</p>
             <div className="text-sm leading-relaxed text-ink">
-              <MathText content={answer} />
+              <MathText content={toKatexAnswer(answer)} />
             </div>
           </ExpandableBox>
           <button
