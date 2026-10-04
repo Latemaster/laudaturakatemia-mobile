@@ -1,13 +1,15 @@
 import katex from 'katex'
 import { useMemo, useState } from 'react'
+import type { EditorMode } from './MathAnswerEditor'
 
-// A LaTeX fragment the palette can drop into the answer. Empty `{}` pairs are
-// placeholders: the first one receives whatever text was selected in the
-// answer, and the caret lands in the first empty one that remains.
+// A snippet the palette can drop into a formula, in MathLive's insert
+// syntax: #? is an empty slot to fill, #0 the current selection and #@ the
+// selection or, failing that, the item just before the caret (so "x" then
+// the power button gives x to the power of a slot).
 export interface MathSnippet {
-  latex: string
+  insert: string
   label: string
-  // What the palette button shows; defaults to `latex` with each placeholder
+  // What the palette button shows; defaults to `insert` with every slot
   // drawn as a small box.
   preview?: string
 }
@@ -19,74 +21,74 @@ interface SymbolGroup {
 }
 
 const GREEK: MathSnippet[] = [
-  { latex: '\\alpha', label: 'alfa' },
-  { latex: '\\beta', label: 'beeta' },
-  { latex: '\\gamma', label: 'gamma' },
-  { latex: '\\delta', label: 'delta' },
-  { latex: '\\varepsilon', label: 'epsilon' },
-  { latex: '\\theta', label: 'theeta' },
-  { latex: '\\lambda', label: 'lambda' },
-  { latex: '\\mu', label: 'myy' },
-  { latex: '\\pi', label: 'pii' },
-  { latex: '\\rho', label: 'rhoo' },
-  { latex: '\\sigma', label: 'sigma' },
-  { latex: '\\tau', label: 'tau' },
-  { latex: '\\varphi', label: 'fii' },
-  { latex: '\\omega', label: 'oomega' },
-  { latex: '\\Delta', label: 'iso delta' },
-  { latex: '\\Sigma', label: 'iso sigma' },
-  { latex: '\\Omega', label: 'iso oomega' },
+  { insert: '\\alpha', label: 'alfa' },
+  { insert: '\\beta', label: 'beeta' },
+  { insert: '\\gamma', label: 'gamma' },
+  { insert: '\\delta', label: 'delta' },
+  { insert: '\\varepsilon', label: 'epsilon' },
+  { insert: '\\theta', label: 'theeta' },
+  { insert: '\\lambda', label: 'lambda' },
+  { insert: '\\mu', label: 'myy' },
+  { insert: '\\pi', label: 'pii' },
+  { insert: '\\rho', label: 'rhoo' },
+  { insert: '\\sigma', label: 'sigma' },
+  { insert: '\\tau', label: 'tau' },
+  { insert: '\\varphi', label: 'fii' },
+  { insert: '\\omega', label: 'oomega' },
+  { insert: '\\Delta', label: 'iso delta' },
+  { insert: '\\Sigma', label: 'iso sigma' },
+  { insert: '\\Omega', label: 'iso oomega' },
 ]
 
 const OPERATORS: MathSnippet[] = [
-  { latex: '\\pm', label: 'plus miinus' },
-  { latex: '\\cdot', label: 'kertomerkki' },
-  { latex: '\\times', label: 'kertomerkki (risti)' },
-  { latex: '\\div', label: 'jakomerkki' },
-  { latex: '\\le', label: 'pienempi tai yhtä suuri' },
-  { latex: '\\ge', label: 'suurempi tai yhtä suuri' },
-  { latex: '\\ne', label: 'eri suuri' },
-  { latex: '\\approx', label: 'likimain' },
-  { latex: '\\infty', label: 'ääretön' },
-  { latex: '^\\circ', label: 'aste', preview: '^\\circ' },
-  { latex: '\\%', label: 'prosentti' },
-  { latex: '\\rightarrow', label: 'nuoli' },
-  { latex: '\\Rightarrow', label: 'seuraa' },
-  { latex: '\\Leftrightarrow', label: 'yhtäpitävä' },
-  { latex: '\\in', label: 'kuuluu joukkoon' },
-  { latex: '\\notin', label: 'ei kuulu joukkoon' },
-  { latex: '\\mathbb{R}', label: 'reaaliluvut' },
-  { latex: '\\emptyset', label: 'tyhjä joukko' },
-  { latex: '\\cup', label: 'yhdiste' },
-  { latex: '\\cap', label: 'leikkaus' },
-  { latex: '\\angle', label: 'kulma' },
-  { latex: '\\perp', label: 'kohtisuora' },
-  { latex: '\\parallel', label: 'yhdensuuntainen' },
-  { latex: '\\ldots', label: 'kolme pistettä' },
+  { insert: '\\pm', label: 'plus miinus' },
+  { insert: '\\cdot', label: 'kertomerkki' },
+  { insert: '\\times', label: 'kertomerkki (risti)' },
+  { insert: '\\div', label: 'jakomerkki' },
+  { insert: '\\le', label: 'pienempi tai yhtä suuri' },
+  { insert: '\\ge', label: 'suurempi tai yhtä suuri' },
+  { insert: '\\ne', label: 'eri suuri' },
+  { insert: '\\approx', label: 'likimain' },
+  { insert: '\\infty', label: 'ääretön' },
+  { insert: '#@^\\circ', label: 'aste', preview: '^\\circ' },
+  { insert: '\\%', label: 'prosentti' },
+  { insert: '\\rightarrow', label: 'nuoli' },
+  { insert: '\\Rightarrow', label: 'seuraa' },
+  { insert: '\\Leftrightarrow', label: 'yhtäpitävä' },
+  { insert: '\\in', label: 'kuuluu joukkoon' },
+  { insert: '\\notin', label: 'ei kuulu joukkoon' },
+  { insert: '\\mathbb{R}', label: 'reaaliluvut' },
+  { insert: '\\emptyset', label: 'tyhjä joukko' },
+  { insert: '\\cup', label: 'yhdiste' },
+  { insert: '\\cap', label: 'leikkaus' },
+  { insert: '\\angle', label: 'kulma' },
+  { insert: '\\perp', label: 'kohtisuora' },
+  { insert: '\\parallel', label: 'yhdensuuntainen' },
+  { insert: '\\ldots', label: 'kolme pistettä' },
 ]
 
 const STRUCTURES: MathSnippet[] = [
-  { latex: '\\frac{}{}', label: 'murtoluku' },
-  { latex: '\\sqrt{}', label: 'neliöjuuri' },
-  { latex: '\\sqrt[]{}', label: 'n:s juuri', preview: '\\sqrt[n]{\\square}' },
-  { latex: '{}^{}', label: 'potenssi' },
-  { latex: '{}_{}', label: 'alaindeksi' },
-  { latex: '\\left|{}\\right|', label: 'itseisarvo' },
-  { latex: '\\left({}\\right)', label: 'sulkeet' },
-  { latex: '\\int {} \\,dx', label: 'integraali', preview: '\\int \\square \\,dx' },
-  { latex: '\\int_{}^{} {} \\,dx', label: 'määrätty integraali', preview: '\\int_{\\square}^{\\square}' },
-  { latex: '\\sum_{}^{} {}', label: 'summa', preview: '\\sum_{\\square}^{\\square}' },
-  { latex: '\\lim_{{} \\to {}} {}', label: 'raja-arvo', preview: '\\lim' },
-  { latex: "f'({})", label: 'derivaatta', preview: "f'(x)" },
-  { latex: '\\frac{d}{dx}{}', label: 'derivaatta d/dx', preview: '\\frac{d}{dx}' },
-  { latex: '\\vec{}', label: 'vektori' },
-  { latex: '\\overline{}', label: 'yläviiva' },
-  { latex: '\\binom{}{}', label: 'binomikerroin' },
-  { latex: '\\log_{}{}', label: 'logaritmi', preview: '\\log_{\\square}' },
-  { latex: '\\sin{}', label: 'sini', preview: '\\sin' },
-  { latex: '\\cos{}', label: 'kosini', preview: '\\cos' },
-  { latex: '\\tan{}', label: 'tangentti', preview: '\\tan' },
-  { latex: '\\begin{cases} {} \\\\ {} \\end{cases}', label: 'yhtälöpari', preview: '\\begin{cases} \\square \\\\ \\square \\end{cases}' },
+  { insert: '\\frac{#@}{#?}', label: 'murtoluku' },
+  { insert: '\\sqrt{#0}', label: 'neliöjuuri' },
+  { insert: '\\sqrt[#?]{#0}', label: 'n:s juuri', preview: '\\sqrt[n]{\\square}' },
+  { insert: '#@^{#?}', label: 'potenssi' },
+  { insert: '#@_{#?}', label: 'alaindeksi' },
+  { insert: '\\left|#0\\right|', label: 'itseisarvo' },
+  { insert: '\\left(#0\\right)', label: 'sulkeet' },
+  { insert: '\\int #0\\,dx', label: 'integraali', preview: '\\int \\square \\,dx' },
+  { insert: '\\int_{#?}^{#?} #0\\,dx', label: 'määrätty integraali', preview: '\\int_{\\square}^{\\square}' },
+  { insert: '\\sum_{#?}^{#?} #0', label: 'summa', preview: '\\sum_{\\square}^{\\square}' },
+  { insert: '\\lim_{#? \\to #?} #0', label: 'raja-arvo', preview: '\\lim' },
+  { insert: "f'(#?)", label: 'derivaatta', preview: "f'(x)" },
+  { insert: '\\frac{d}{dx}', label: 'derivaatta d/dx' },
+  { insert: '\\vec{#0}', label: 'vektori' },
+  { insert: '\\overline{#0}', label: 'yläviiva' },
+  { insert: '\\binom{#?}{#?}', label: 'binomikerroin' },
+  { insert: '\\log_{#?}', label: 'logaritmi' },
+  { insert: '\\sin', label: 'sini' },
+  { insert: '\\cos', label: 'kosini' },
+  { insert: '\\tan', label: 'tangentti' },
+  { insert: '\\begin{cases} #? \\\\ #? \\end{cases}', label: 'yhtälöpari' },
 ]
 
 const GROUPS: SymbolGroup[] = [
@@ -96,28 +98,48 @@ const GROUPS: SymbolGroup[] = [
 ]
 
 function previewHtml(snippet: MathSnippet): string {
-  const source = snippet.preview ?? snippet.latex.replace(/\{\}/g, '{\\square}')
+  const source = snippet.preview ?? snippet.insert.replace(/#[?0@]/g, '\\square')
   return katex.renderToString(source, { throwOnError: false, displayMode: false })
 }
 
 interface MathSymbolPickerProps {
+  mode: EditorMode
   onInsert: (snippet: MathSnippet) => void
+  onNewFormula: () => void
+  onExitFormula: () => void
 }
 
-// The symbol palette that opens from the answer box. Buttons swallow their
-// pointerdown so tapping one never steals focus (and the caret) from the
-// textarea the snippet is going into.
-export default function MathSymbolPicker({ onInsert }: MathSymbolPickerProps) {
+// The symbol palette that opens from the answer box. Every button swallows
+// its pointerdown so tapping one never steals focus (and the caret) from
+// the text or the formula the snippet is going into.
+export default function MathSymbolPicker({ mode, onInsert, onNewFormula, onExitFormula }: MathSymbolPickerProps) {
   const [groupId, setGroupId] = useState(GROUPS[0].id)
   const group = GROUPS.find((g) => g.id === groupId) ?? GROUPS[0]
 
   const previews = useMemo(
-    () => Object.fromEntries(GROUPS.flatMap((g) => g.snippets.map((s) => [s.latex, previewHtml(s)]))),
+    () => Object.fromEntries(GROUPS.flatMap((g) => g.snippets.map((s) => [s.insert, previewHtml(s)]))),
     [],
   )
 
+  const inFormula = mode === 'math'
+
   return (
     <div className="mt-2 rounded-xl border border-ink/10 bg-page p-2" role="group" aria-label="Matemaattiset symbolit">
+      <div className="mb-2 flex items-center gap-2">
+        <p className="min-w-0 flex-1 text-xs leading-snug text-ink-dim">
+          {inFormula ? 'Kirjoitat kaavaa. Symbolit lisätään kaavaan.' : 'Symboli aloittaa kaavan kohdistimen kohdalle.'}
+        </p>
+        <button
+          type="button"
+          onPointerDown={(e) => e.preventDefault()}
+          onClick={inFormula ? onExitFormula : onNewFormula}
+          className={`shrink-0 rounded-lg px-3 py-1.5 text-xs font-semibold transition-colors ${
+            inFormula ? 'bg-surface text-ink ring-1 ring-ink/10 active:bg-surface-2' : 'bg-accent text-white'
+          }`}
+        >
+          {inFormula ? 'Valmis' : 'Uusi kaava'}
+        </button>
+      </div>
       <div className="mb-2 flex gap-1" role="tablist">
         {GROUPS.map((g) => (
           <button
@@ -138,14 +160,14 @@ export default function MathSymbolPicker({ onInsert }: MathSymbolPickerProps) {
       <div className="scrollbar-hide grid max-h-32 grid-cols-6 gap-1 overflow-y-auto">
         {group.snippets.map((snippet) => (
           <button
-            key={snippet.latex}
+            key={snippet.insert}
             type="button"
             aria-label={snippet.label}
             title={snippet.label}
             onPointerDown={(e) => e.preventDefault()}
             onClick={() => onInsert(snippet)}
             className="flex h-10 items-center justify-center overflow-hidden rounded-lg bg-surface text-sm text-ink ring-1 ring-ink/10 active:bg-surface-2"
-            dangerouslySetInnerHTML={{ __html: previews[snippet.latex] }}
+            dangerouslySetInnerHTML={{ __html: previews[snippet.insert] }}
           />
         ))}
       </div>

@@ -52,3 +52,41 @@ body {
   scroll-snap-align: start;
   scroll-snap-stop: always;
 }
+
+/* Formula boxes inside the answer editor. The box is a MathLive
+   <math-field>; it is dashed while idle so it reads as "tap to edit" and
+   solid while the caret is in it. */
+.math-answer__field {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 2px;
+}
+
+.math-answer math-field {
+  display: inline-block;
+  min-width: 1.5rem;
+  padding: 1px 4px;
+  border: 1px dashed rgba(86, 129, 189, 0.6);
+  border-radius: 0.375rem;
+  background: #ffffff;
+  font-size: 1.05rem;
+  --caret-color: #5681bd;
+  --selection-background-color: rgba(86, 129, 189, 0.25);
+  --contains-highlight-background-color: transparent;
+  --placeholder-color: rgba(92, 113, 133, 0.6);
+}
+
+.math-answer math-field:focus-within {
+  border-style: solid;
+  border-color: #5681bd;
+  outline: none;
+}
+
+.math-answer math-field::part(virtual-keyboard-toggle),
+.math-answer math-field::part(menu-toggle) {
+  display: none;
+}
+
+.math-answer math-field::part(container) {
+  min-height: 0;
+}
