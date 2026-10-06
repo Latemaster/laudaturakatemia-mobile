@@ -3,6 +3,9 @@
     "id": "OSAI_T1",
     "section": "Osa I",
     "title": "Tehtävä 1",
+    "themes": [
+      "maa2-polynomit"
+    ],
     "promptBlocks": [
       {
         "type": "text",
@@ -36,6 +39,9 @@
     "id": "OSAI_T2",
     "section": "Osa I",
     "title": "Tehtävä 2",
+    "themes": [
+      "maa2-polynomit"
+    ],
     "promptBlocks": [
       {
         "type": "text",
@@ -65,6 +71,10 @@
     "id": "OSAI_T3",
     "section": "Osa I",
     "title": "Tehtävä 3",
+    "themes": [
+      "maa2-polynomit",
+      "maa2-tekijat"
+    ],
     "promptBlocks": [
       {
         "type": "text",
@@ -90,6 +100,9 @@
     "id": "OSAI_T4",
     "section": "Osa I",
     "title": "Tehtävä 4",
+    "themes": [
+      "maa2-juuret-ja-potenssit"
+    ],
     "promptBlocks": [
       {
         "type": "text",
@@ -115,6 +128,9 @@
     "id": "OSAI_T5",
     "section": "Osa I",
     "title": "Tehtävä 5",
+    "themes": [
+      "maa2-juuret-ja-potenssit"
+    ],
     "promptBlocks": [
       {
         "type": "text",
@@ -148,6 +164,9 @@
     "id": "OSAI_T6",
     "section": "Osa I",
     "title": "Tehtävä 6",
+    "themes": [
+      "maa2-toisen-asteen-yhtalo"
+    ],
     "promptBlocks": [
       {
         "type": "text",
@@ -190,6 +209,10 @@
     "id": "OSAI_T7",
     "section": "Osa I",
     "title": "Tehtävä 7",
+    "themes": [
+      "maa2-toisen-asteen-yhtalo",
+      "maa2-tekijat"
+    ],
     "promptBlocks": [
       {
         "type": "text",
@@ -227,6 +250,9 @@
     "id": "OSAI_T8",
     "section": "Osa I",
     "title": "Tehtävä 8",
+    "themes": [
+      "maa2-tekijat"
+    ],
     "promptBlocks": [
       {
         "type": "text",
@@ -244,6 +270,10 @@
     "id": "OSAI_T9",
     "section": "Osa I",
     "title": "Tehtävä 9",
+    "themes": [
+      "maa2-juuri-ja-rationaaliyhtalot",
+      "maa2-tekijat"
+    ],
     "promptBlocks": [
       {
         "type": "text",
@@ -273,6 +303,10 @@
     "id": "OSAI_T10",
     "section": "Osa I",
     "title": "Tehtävä 10",
+    "themes": [
+      "maa2-juuret-ja-potenssit",
+      "maa2-juuri-ja-rationaaliyhtalot"
+    ],
     "promptBlocks": [
       {
         "type": "text",
@@ -302,6 +336,9 @@
     "id": "OSAII_T1",
     "section": "Osa II",
     "title": "Tehtävä 1",
+    "themes": [
+      "maa2-polynomit"
+    ],
     "promptBlocks": [
       {
         "type": "text",
@@ -319,6 +356,10 @@
     "id": "OSAII_T2",
     "section": "Osa II",
     "title": "Tehtävä 2",
+    "themes": [
+      "maa2-juuri-ja-rationaaliyhtalot",
+      "maa2-tekijat"
+    ],
     "promptBlocks": [
       {
         "type": "text",
@@ -336,6 +377,9 @@
     "id": "OSAII_T3",
     "section": "Osa II",
     "title": "Tehtävä 3",
+    "themes": [
+      "maa2-juuret-ja-potenssit"
+    ],
     "promptBlocks": [
       {
         "type": "text",
@@ -361,6 +405,9 @@
     "id": "OSAII_T4",
     "section": "Osa II",
     "title": "Tehtävä 4",
+    "themes": [
+      "maa2-juuri-ja-rationaaliyhtalot"
+    ],
     "promptBlocks": [
       {
         "type": "text",
@@ -378,6 +425,9 @@
     "id": "OSAII_T5",
     "section": "Osa II",
     "title": "Tehtävä 5",
+    "themes": [
+      "maa2-toisen-asteen-yhtalo"
+    ],
     "promptBlocks": [
       {
         "type": "text",
@@ -395,6 +445,9 @@
     "id": "OSAII_T6",
     "section": "Osa II",
     "title": "Tehtävä 6",
+    "themes": [
+      "maa2-toisen-asteen-yhtalo"
+    ],
     "promptBlocks": [
       {
         "type": "text",
@@ -412,6 +465,9 @@
     "id": "OSAII_T7",
     "section": "Osa II",
     "title": "Tehtävä 7",
+    "themes": [
+      "maa2-tekijat"
+    ],
     "promptBlocks": [
       {
         "type": "text",
@@ -429,6 +485,10 @@
     "id": "OSAII_T8",
     "section": "Osa II",
     "title": "Tehtävä 8",
+    "themes": [
+      "maa2-tekijat",
+      "maa2-polynomit"
+    ],
     "promptBlocks": [
       {
         "type": "text",
@@ -446,6 +506,9 @@
     "id": "OSAII_T9",
     "section": "Osa II",
     "title": "Tehtävä 9",
+    "themes": [
+      "maa2-juuri-ja-rationaaliyhtalot"
+    ],
     "promptBlocks": [
       {
         "type": "text",
@@ -463,6 +526,9 @@
     "id": "OSAII_T10",
     "section": "Osa II",
     "title": "Tehtävä 10",
+    "themes": [
+      "maa2-soveltaminen"
+    ],
     "promptBlocks": [
       {
         "type": "text",
@@ -480,6 +546,10 @@
     "id": "OSAIII_T1",
     "section": "Osa III",
     "title": "Tehtävä 1",
+    "themes": [
+      "maa2-soveltaminen",
+      "maa2-toisen-asteen-yhtalo"
+    ],
     "promptBlocks": [
       {
         "type": "text",
@@ -517,6 +587,9 @@
     "id": "OSAIII_T2",
     "section": "Osa III",
     "title": "Tehtävä 2",
+    "themes": [
+      "maa2-soveltaminen"
+    ],
     "promptBlocks": [
       {
         "type": "text",
@@ -534,6 +607,9 @@
     "id": "OSAIII_T3",
     "section": "Osa III",
     "title": "Tehtävä 3",
+    "themes": [
+      "maa2-toisen-asteen-yhtalo"
+    ],
     "promptBlocks": [
       {
         "type": "text",
@@ -551,6 +627,10 @@
     "id": "OSAIII_T4",
     "section": "Osa III",
     "title": "Tehtävä 4",
+    "themes": [
+      "maa2-soveltaminen",
+      "maa2-toisen-asteen-yhtalo"
+    ],
     "promptBlocks": [
       {
         "type": "text",
@@ -588,6 +668,10 @@
     "id": "OSAIII_T5",
     "section": "Osa III",
     "title": "Tehtävä 5",
+    "themes": [
+      "maa2-juuri-ja-rationaaliyhtalot",
+      "maa2-tekijat"
+    ],
     "promptBlocks": [
       {
         "type": "text",
@@ -605,6 +689,9 @@
     "id": "OSAIII_T6",
     "section": "Osa III",
     "title": "Tehtävä 6",
+    "themes": [
+      "maa2-soveltaminen"
+    ],
     "promptBlocks": [
       {
         "type": "text",
@@ -622,6 +709,10 @@
     "id": "OSAIII_T7",
     "section": "Osa III",
     "title": "Tehtävä 7",
+    "themes": [
+      "maa2-soveltaminen",
+      "maa2-toisen-asteen-yhtalo"
+    ],
     "promptBlocks": [
       {
         "type": "text",
@@ -639,6 +730,9 @@
     "id": "OSAIII_T8",
     "section": "Osa III",
     "title": "Tehtävä 8",
+    "themes": [
+      "maa2-juuret-ja-potenssit"
+    ],
     "promptBlocks": [
       {
         "type": "text",
@@ -656,6 +750,9 @@
     "id": "OSAIII_T9",
     "section": "Osa III",
     "title": "Tehtävä 9",
+    "themes": [
+      "maa2-tekijat"
+    ],
     "promptBlocks": [
       {
         "type": "text",
@@ -673,6 +770,9 @@
     "id": "OSAIII_T10",
     "section": "Osa III",
     "title": "Tehtävä 10",
+    "themes": [
+      "maa2-juuri-ja-rationaaliyhtalot"
+    ],
     "promptBlocks": [
       {
         "type": "text",
@@ -690,6 +790,10 @@
     "id": "OSAIV_T1",
     "section": "Osa IV",
     "title": "Tehtävä 1",
+    "themes": [
+      "maa2-toisen-asteen-yhtalo",
+      "maa2-polynomit"
+    ],
     "promptBlocks": [
       {
         "type": "text",
@@ -707,6 +811,9 @@
     "id": "OSAIV_T2",
     "section": "Osa IV",
     "title": "Tehtävä 2",
+    "themes": [
+      "maa2-polynomit"
+    ],
     "promptBlocks": [
       {
         "type": "text",
@@ -748,6 +855,9 @@
     "id": "OSAIV_T3",
     "section": "Osa IV",
     "title": "Tehtävä 3",
+    "themes": [
+      "maa2-soveltaminen"
+    ],
     "promptBlocks": [
       {
         "type": "text",
@@ -765,6 +875,9 @@
     "id": "OSAIV_T4",
     "section": "Osa IV",
     "title": "Tehtävä 4",
+    "themes": [
+      "maa2-tekijat"
+    ],
     "promptBlocks": [
       {
         "type": "text",
@@ -782,6 +895,9 @@
     "id": "OSAIV_T5",
     "section": "Osa IV",
     "title": "Tehtävä 5",
+    "themes": [
+      "maa2-juuret-ja-potenssit"
+    ],
     "promptBlocks": [
       {
         "type": "text",

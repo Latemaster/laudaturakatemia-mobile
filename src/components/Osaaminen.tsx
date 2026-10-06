@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import { COURSES, COURSE_MAP } from '../data/courses'
 import {
   DIFFICULTY_POINTS,
@@ -18,6 +18,13 @@ import {
   type TargetGrade,
 } from '../data/studyPlans'
 import { formatAverage, getEarlyIndication, type CourseGrade, type CourseGrades } from '../data/courseGrades'
+import {
+  computeKnowledge,
+  KNOWLEDGE_LEVELS,
+  type CourseKnowledge,
+  type KnowledgeState,
+  type ThemeScore,
+} from '../data/knowledge'
 import { ChevronDownIcon, ChevronRightIcon } from './icons'
 import CourseGradesSection from './CourseGradesSection'
 import InfoToggle from './InfoToggle'
@@ -31,13 +38,19 @@ interface OsaaminenProps {
   onTargetGradeChange: (grade: TargetGrade) => void
   courseGrades: CourseGrades
   onCourseGradeChange: (code: TopicCode, grade: CourseGrade | undefined) => void
+  knowledge: KnowledgeState
 }
 
-const TIER_CLASSES: Record<FinnishGrade['tier'], { badge: string; text: string; stroke: string }> = {
-  high: { badge: 'bg-good/15 text-good ring-good/30', text: 'text-good', stroke: 'stroke-good' },
-  mid: { badge: 'bg-accent/15 text-accent ring-accent/30', text: 'text-accent', stroke: 'stroke-accent' },
-  low: { badge: 'bg-bad/15 text-bad ring-bad/30', text: 'text-bad', stroke: 'stroke-bad' },
+const TIER_CLASSES: Record<FinnishGrade['tier'], { badge: string; text: string; stroke: string; bar: string }> = {
+  high: { badge: 'bg-good/15 text-good ring-good/30', text: 'text-good', stroke: 'stroke-good', bar: 'bg-good' },
+  mid: { badge: 'bg-accent/15 text-accent ring-accent/30', text: 'text-accent', stroke: 'stroke-accent', bar: 'bg-accent' },
+  low: { badge: 'bg-bad/15 text-bad ring-bad/30', text: 'text-bad', stroke: 'stroke-bad', bar: 'bg-bad' },
 }
+
+// A theme with no poll answer and no attempts has nothing to colour; one
+// with only a course grade behind it gets the same neutral treatment but
+// shows its rough estimate (see ThemeRow).
+const NO_DATA_BAR = 'bg-ink/20'
 
 const DIFFICULTY_LABELS: { key: Difficulty; label: string; section: string }[] = [
   { key: 'easy', label: 'Helpot', section: 'Osa I' },
@@ -110,9 +123,74 @@ function GradeDonut({ pct, grade, targetPct }: { pct: number; grade: FinnishGrad
   )
 }
 
+function answerCount(count: number): string {
+  return count === 1 ? '1 vastaus' : `${count} vastausta`
+}
+
+// One theme of a course: name, score with its level, a bar in the level's
+// colour and a line saying what the score rests on.
+function ThemeRow({ score }: { score: ThemeScore }) {
+  const { theme, pct, level, hasData, prior, attempts, confidence } = score
+  const fromGrade = !hasData && prior.source === 'courseGrade'
+  const tier = TIER_CLASSES[level.tier]
+
+  let detail: string
+  if (hasData) {
+    const parts = [answerCount(attempts)]
+    if (prior.source === 'poll') parts.push('esikysely')
+    if (confidence < 1) parts.push('arvio tarkentuu')
+    detail = parts.join(' · ')
+  } else if (fromGrade) {
+    detail = 'Arvio kurssiarvosanan perusteella'
+  } else {
+    detail = 'Vastaa teeman tehtäviin Kurssit-välilehdellä'
+  }
+
+  return (
+    <div>
+      <div className="flex items-start justify-between gap-2 text-xs">
+        <span className="flex min-w-0 items-start gap-1.5 font-medium leading-snug text-ink">
+          <span aria-hidden className={`mt-1 h-2 w-2 shrink-0 rounded-full ${hasData ? tier.bar : NO_DATA_BAR}`} />
+          <span>{theme.name}</span>
+        </span>
+        <span className={`shrink-0 font-semibold ${hasData ? tier.text : 'text-ink-dim/70'}`}>
+          {hasData ? `${pct} % · ${level.label}` : fromGrade ? `≈ ${pct} %` : 'ei tietoa'}
+        </span>
+      </div>
+      <div className="mt-1 h-1 w-full overflow-hidden rounded-full bg-ink/10">
+        <div
+          className={`h-full rounded-full transition-all duration-500 ${hasData ? tier.bar : NO_DATA_BAR}`}
+          style={{ width: `${hasData || fromGrade ? pct : 0}%` }}
+        />
+      </div>
+      <span className="mt-0.5 block text-[10px] text-ink-dim">{detail}</span>
+    </div>
+  )
+}
+
+// One segment per theme, coloured by its level, so the course's profile
+// reads at a glance without expanding the row.
+function ThemeStrip({ themes }: { themes: ThemeScore[] }) {
+  return (
+    <div className="flex items-center gap-2">
+      <span className="shrink-0 text-[10px] font-semibold uppercase tracking-widest text-ink-dim/70">Teemat</span>
+      <div className="flex flex-1 gap-0.5" role="img" aria-label={`${themes.length} teemaa`}>
+        {themes.map((score) => (
+          <span
+            key={score.theme.id}
+            title={score.theme.name}
+            className={`h-1.5 flex-1 rounded-full ${score.hasData ? TIER_CLASSES[score.level.tier].bar : NO_DATA_BAR}`}
+          />
+        ))}
+      </div>
+    </div>
+  )
+}
+
 interface CourseRowProps {
   code: TopicCode
   engagedIds: Record<string, true>
+  knowledge: CourseKnowledge
   // Difficulty tiers the target grade asks for; undefined when the course
   // is outside the plan and every tier is shown as untargeted.
   targeted?: Difficulty[]
@@ -120,13 +198,14 @@ interface CourseRowProps {
   onToggle: () => void
 }
 
-function CourseRow({ code, engagedIds, targeted, isExpanded, onToggle }: CourseRowProps) {
+function CourseRow({ code, engagedIds, knowledge, targeted, isExpanded, onToggle }: CourseRowProps) {
   const course = COURSE_MAP[code]
   const inPlan = targeted !== undefined
   const { engaged, total, pct } = inPlan
     ? getTargetedCourseProgress(code, engagedIds, targeted)
     : getCourseProgress(code, engagedIds)
   const breakdown = getCourseDifficultyBreakdown(code, engagedIds)
+  const knownThemes = knowledge.themes.filter((t) => t.hasData).length
 
   return (
     <div className={`rounded-2xl border border-ink/10 bg-surface p-3 shadow-sm ${inPlan ? '' : 'opacity-60'}`}>
@@ -150,31 +229,36 @@ function CourseRow({ code, engagedIds, targeted, isExpanded, onToggle }: CourseR
         <div className="h-1.5 w-full overflow-hidden rounded-full bg-ink/10">
           <div className={`h-full rounded-full ${course.barClass}`} style={{ width: `${pct}%` }} />
         </div>
+        <ThemeStrip themes={knowledge.themes} />
       </button>
 
       {isExpanded && (
-        <div className="mt-3 flex flex-col gap-2 border-t border-ink/10 pt-3">
-          {DIFFICULTY_LABELS.map(({ key, label }) => {
-            const stats = breakdown[key]
-            const tierPct = stats.total > 0 ? Math.round((stats.engaged / stats.total) * 100) : 0
-            const isTargeted = inPlan && targeted.includes(key)
-            return (
-              <div key={key} className={isTargeted || !inPlan ? '' : 'opacity-40'}>
-                <div className="mb-1 flex items-center justify-between text-xs">
-                  <span className="font-medium text-ink-dim">
-                    {label}
-                    {inPlan && !isTargeted && <span className="font-normal"> · ei tavoitteessa</span>}
-                  </span>
-                  <span className="font-semibold text-ink-dim">
-                    {stats.engaged}/{stats.total} tehtävää
-                  </span>
-                </div>
-                <div className="h-1 w-full overflow-hidden rounded-full bg-ink/10">
-                  <div className={`h-full rounded-full ${course.barClass}`} style={{ width: `${tierPct}%` }} />
-                </div>
-              </div>
-            )
-          })}
+        <div className="mt-3 flex flex-col gap-3 border-t border-ink/10 pt-3">
+          <div className="flex items-center justify-between text-xs">
+            <span className="font-semibold text-ink">Osaaminen teemoittain</span>
+            <span className="text-ink-dim">
+              {knownThemes > 0
+                ? `${knownThemes}/${knowledge.themes.length} teemasta tietoa`
+                : 'ei vielä vastauksia'}
+            </span>
+          </div>
+          {knowledge.themes.map((score) => (
+            <ThemeRow key={score.theme.id} score={score} />
+          ))}
+
+          <p className="border-t border-ink/10 pt-2 text-[11px] text-ink-dim">
+            <span className="font-semibold">Tehtäviä käyty:</span>{' '}
+            {DIFFICULTY_LABELS.map(({ key, label }, index) => {
+              const stats = breakdown[key]
+              const isTargeted = inPlan && targeted.includes(key)
+              return (
+                <span key={key} className={isTargeted || !inPlan ? '' : 'opacity-50'}>
+                  {index > 0 && ' · '}
+                  {label.toLowerCase()} {stats.engaged}/{stats.total}
+                </span>
+              )
+            })}
+          </p>
         </div>
       )}
     </div>
@@ -187,9 +271,11 @@ export default function Osaaminen({
   onTargetGradeChange,
   courseGrades,
   onCourseGradeChange,
+  knowledge,
 }: OsaaminenProps) {
   const [expandedCourse, setExpandedCourse] = useState<TopicCode | null>(null)
   const [targetOpen, setTargetOpen] = useState(false)
+  const scores = useMemo(() => computeKnowledge(knowledge, courseGrades), [knowledge, courseGrades])
 
   const overallPct = getOverallPct(engagedIds)
   const grade = predictGrade(overallPct)
@@ -304,14 +390,29 @@ export default function Osaaminen({
               Kurssin prosentti lasketaan vain niistä tehtävistä, joita tavoitearvosanan lukusuunnitelma pyytää.
               Esimerkiksi jos tavoite pyytää MAA6:sta vain helpot tehtävät, prosentti kuvaa niiden edistymistä.
             </p>
-            <p className="mb-2">Avaa kurssi nähdäksesi jaon vaikeustasoihin. Himmennetyt tasot eivät kuulu tavoitteeseen.</p>
-            <ul className="flex flex-col gap-1">
+            <ul className="mb-2 flex flex-col gap-1">
               {DIFFICULTY_LABELS.map(({ key, label, section }) => (
                 <li key={key}>
                   <span className="font-semibold text-ink">{label}</span> = {section} · {DIFFICULTY_POINTS[key]} p. /
                   tehtävä
                 </li>
               ))}
+            </ul>
+            <p className="mb-2">
+              Teemat-rivi jakaa kurssin aihealueisiin. Jokaisella teemalla on oma osaamisarvio, joka perustuu
+              vastattuihin pikatehtäviin: oikea vastaus nostaa, väärä laskee. Avaa kurssi nähdäksesi teemat.
+            </p>
+            <ul className="flex flex-col gap-1">
+              {KNOWLEDGE_LEVELS.map((band) => (
+                <li key={band.level} className="flex items-center gap-2">
+                  <span aria-hidden className={`inline-block h-2 w-4 rounded-full ${TIER_CLASSES[band.tier].bar}`} />
+                  <span className="font-semibold text-ink">{band.label}</span> = vähintään {Math.round(band.min * 100)} %
+                </li>
+              ))}
+              <li className="flex items-center gap-2">
+                <span aria-hidden className={`inline-block h-2 w-4 rounded-full ${NO_DATA_BAR}`} />
+                Harmaa = ei vielä vastauksia
+              </li>
             </ul>
           </InfoToggle>
         </div>
@@ -322,6 +423,7 @@ export default function Osaaminen({
               key={code}
               code={code}
               engagedIds={engagedIds}
+              knowledge={scores.courses[code]}
               targeted={difficulties}
               isExpanded={expandedCourse === code}
               onToggle={() => toggleCourse(code)}
@@ -338,6 +440,7 @@ export default function Osaaminen({
                   key={course.code}
                   code={course.code}
                   engagedIds={engagedIds}
+                  knowledge={scores.courses[course.code]}
                   isExpanded={expandedCourse === course.code}
                   onToggle={() => toggleCourse(course.code)}
                 />
