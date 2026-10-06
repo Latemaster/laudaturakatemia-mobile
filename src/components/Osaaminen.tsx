@@ -23,8 +23,10 @@ import {
   KNOWLEDGE_LEVELS,
   type CourseKnowledge,
   type KnowledgeState,
+  type PollLevel,
   type ThemeScore,
 } from '../data/knowledge'
+import type { ThemeId } from '../data/themes'
 import { ChevronDownIcon, ChevronRightIcon } from './icons'
 import CourseGradesSection from './CourseGradesSection'
 import InfoToggle from './InfoToggle'
@@ -39,6 +41,7 @@ interface OsaaminenProps {
   courseGrades: CourseGrades
   onCourseGradeChange: (code: TopicCode, grade: CourseGrade | undefined) => void
   knowledge: KnowledgeState
+  onPollChange: (themeId: ThemeId, level: PollLevel | undefined) => void
 }
 
 const TIER_CLASSES: Record<FinnishGrade['tier'], { badge: string; text: string; stroke: string; bar: string }> = {
@@ -135,7 +138,9 @@ function ThemeRow({ score }: { score: ThemeScore }) {
   const tier = TIER_CLASSES[level.tier]
 
   let detail: string
-  if (hasData) {
+  if (hasData && attempts === 0) {
+    detail = 'Esikysely · tehtävien vastaukset tarkentavat arviota'
+  } else if (hasData) {
     const parts = [answerCount(attempts)]
     if (prior.source === 'poll') parts.push('esikysely')
     if (confidence < 1) parts.push('arvio tarkentuu')
@@ -272,6 +277,7 @@ export default function Osaaminen({
   courseGrades,
   onCourseGradeChange,
   knowledge,
+  onPollChange,
 }: OsaaminenProps) {
   const [expandedCourse, setExpandedCourse] = useState<TopicCode | null>(null)
   const [targetOpen, setTargetOpen] = useState(false)
@@ -379,7 +385,12 @@ export default function Osaaminen({
           </button>
         </div>
 
-        <CourseGradesSection courseGrades={courseGrades} onCourseGradeChange={onCourseGradeChange} />
+        <CourseGradesSection
+          courseGrades={courseGrades}
+          onCourseGradeChange={onCourseGradeChange}
+          polls={knowledge.polls}
+          onPollChange={onPollChange}
+        />
 
         <ProgressChart targetLetter={target.letter} targetPct={targetPct} />
 

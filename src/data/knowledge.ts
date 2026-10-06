@@ -31,16 +31,42 @@ export type PollLevel = 0 | 1 | 2 | 3
 export interface PollOption {
   level: PollLevel
   label: string
+  // Fits four buttons across a phone screen; `label` is the full answer.
+  shortLabel: string
   description: string
   // Score the theme starts from when this is the only thing we know.
   prior: number
 }
 
 export const POLL_OPTIONS: PollOption[] = [
-  { level: 0, label: 'En ole opiskellut', description: 'Aihe on minulle uusi tai en muista siitä mitään.', prior: 0.15 },
-  { level: 1, label: 'Muistan jotain', description: 'Olen nähnyt aiheen, mutta en osaisi ratkaista tehtäviä.', prior: 0.35 },
-  { level: 2, label: 'Osaan perusteet', description: 'Osaan helpot tehtävät, vaikeammat eivät vielä suju.', prior: 0.6 },
-  { level: 3, label: 'Osaan hyvin', description: 'Ratkaisen myös vaikeampia tehtäviä sujuvasti.', prior: 0.85 },
+  {
+    level: 0,
+    label: 'En ole opiskellut',
+    shortLabel: 'En osaa',
+    description: 'Aihe on minulle uusi tai en muista siitä mitään.',
+    prior: 0.15,
+  },
+  {
+    level: 1,
+    label: 'Muistan jotain',
+    shortLabel: 'Vähän',
+    description: 'Olen nähnyt aiheen, mutta en osaisi ratkaista tehtäviä.',
+    prior: 0.35,
+  },
+  {
+    level: 2,
+    label: 'Osaan perusteet',
+    shortLabel: 'Perusteet',
+    description: 'Osaan helpot tehtävät, vaikeammat eivät vielä suju.',
+    prior: 0.6,
+  },
+  {
+    level: 3,
+    label: 'Osaan hyvin',
+    shortLabel: 'Hyvin',
+    description: 'Ratkaisen myös vaikeampia tehtäviä sujuvasti.',
+    prior: 0.85,
+  },
 ]
 
 export const POLL_OPTION_MAP: Record<PollLevel, PollOption> = Object.fromEntries(

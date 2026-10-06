@@ -6,7 +6,9 @@ of one number per course, and so the Suositellut feed can later target the
 weak themes.
 
 Code: `src/data/themes.ts` (what the themes are), `src/data/knowledge.ts`
-(state, scoring, persistence). Nothing is wired into the UI yet.
+(state, scoring, persistence). The Osaaminen page shows the scores per
+theme and hosts the pre-poll; quick-exercise answers are recorded from the
+feed.
 
 ## What it replaces
 
@@ -69,10 +71,12 @@ like two correct or two wrong quick exercises. That is enough that the score
 starts where the student said, and little enough that a handful of real
 answers takes over.
 
-When to ask is a UI decision for later; the model only needs the answers to
-exist per theme. Two sensible places are a short card at the top of a course
-feed the first time it is opened, and a "Tarkenna arviota" button on the
-Osaaminen page.
+The questionnaire lives in the "Osaaminen esitiedot" section of the
+Osaaminen page: under each course's grade picker there is a collapsible
+"Esikysely teemoittain" row listing the course's themes, each with the four
+answers as buttons (tapping the selected one again clears it). A short card
+at the top of a course feed the first time it is opened would be a second
+natural place to ask; the model only needs the answers to exist per theme.
 
 **Fallbacks when the poll is unanswered**, in order:
 
@@ -188,11 +192,12 @@ chart, which is example data today.
 
 ## Next steps
 
+Done so far: theme scores under each course row on Osaaminen, quick-exercise
+answers recorded as attempts, the pre-poll in "Osaaminen esitiedot".
+
 1. Tag the tasks of MAA3–MAA12 with themes (data work, `getThemeIssues`
    tracks it).
 2. Add the self-check ("Oikein / Osittain / En osannut") to task cards after
-   the solution is shown, and record exercise answers with `recordAttempt`.
-3. Add the pre-poll UI and store answers with `setPoll`.
-4. Show theme scores on the Osaaminen page under each course row, and switch
-   the predicted grade to `overallPct` from `computeKnowledge`.
-5. Build the Suositellut ordering on `getThemePriority`.
+   the solution is shown.
+3. Switch the predicted grade to `overallPct` from `computeKnowledge`.
+4. Build the Suositellut ordering on `getThemePriority`.
