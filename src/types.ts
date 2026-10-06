@@ -159,6 +159,11 @@ export interface Problem {
   id: string
   section: string
   title: string
+  // Ids of the knowledge-score themes (data/themes.ts) this problem gives
+  // evidence for; one problem often spans several. Problems without tags
+  // still count towards course progress but not towards any theme score,
+  // so untagged ones are listed by getThemeIssues in data/knowledge.ts.
+  themes?: string[]
   promptBlocks: ProblemBlock[]
   answerBlocks: ProblemBlock[]
 }
