@@ -72,11 +72,15 @@ starts where the student said, and little enough that a handful of real
 answers takes over.
 
 The questionnaire lives in the "Osaaminen esitiedot" section of the
-Osaaminen page: under each course's grade picker there is a collapsible
-"Esikysely teemoittain" row listing the course's themes, each with the four
-answers as buttons (tapping the selected one again clears it). A short card
-at the top of a course feed the first time it is opened would be a second
-natural place to ask; the model only needs the answers to exist per theme.
+Osaaminen page. The section lists the courses; opening one shows a sheet
+with the grade picker and an "Esikysely" entry that walks through the
+course's themes one at a time. Each step shows the theme's summary
+(`Theme.summary`), the first interactive visual among its concept boxes
+(or `Theme.formula` when none has one) and the concept titles it covers,
+then the four answers as a scale. Answers save as they are tapped and the
+selected one can be tapped again to clear it. A short card at the top of a
+course feed the first time it is opened would be a second natural place to
+ask; the model only needs the answers to exist per theme.
 
 **Fallbacks when the poll is unanswered**, in order:
 
