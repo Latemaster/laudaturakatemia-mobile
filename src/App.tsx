@@ -7,8 +7,8 @@ import FeedInfo from './components/FeedInfo'
 import { cards, getConceptCards, getExerciseCards, groupExercisesByConcept } from './data/cards'
 import { getRecommendedCards, loadTargetGrade, type TargetGrade } from './data/studyPlans'
 import { loadCourseGrades, saveCourseGrades, type CourseGrade, type CourseGrades } from './data/courseGrades'
-import type { Card } from './types'
-import type { TopicCode } from './types'
+import { loadKnowledge, recordAttempt, saveKnowledge, type KnowledgeState } from './data/knowledge'
+import type { Card, TopicCode } from './types'
 
 function App() {
   const [section, setSection] = useState<MenuSection>('suositellut')
@@ -21,6 +21,17 @@ function App() {
   // as an early indication of their level. Kept here rather than in the
   // page so a later knowledge check elsewhere can reflect against them.
   const [courseGrades, setCourseGrades] = useState<CourseGrades>(loadCourseGrades)
+  // Per-theme knowledge evidence (data/knowledge.ts): pre-poll answers and
+  // first attempts at cards. Drives the theme scores on the Osaaminen page.
+  const [knowledge, setKnowledge] = useState<KnowledgeState>(loadKnowledge)
+
+  function handleAnswer(cardId: string, correct: boolean) {
+    setKnowledge((prev) => {
+      const next = recordAttempt(prev, cardId, correct ? 1 : 0)
+      if (next !== prev) saveKnowledge(next)
+      return next
+    })
+  }
 
   function handleCourseGradeChange(code: TopicCode, grade: CourseGrade | undefined) {
     setCourseGrades((prev) => {
@@ -80,6 +91,7 @@ function App() {
           onTargetGradeChange={setTargetGrade}
           courseGrades={courseGrades}
           onCourseGradeChange={handleCourseGradeChange}
+          knowledge={knowledge}
         />
       )}
       {section === 'suositellut' && <FeedInfo targetGrade={targetGrade} cardCount={recommendedCards.length} />}
@@ -88,6 +100,7 @@ function App() {
           key={selectedCourse ?? `suositellut-${targetGrade}`}
           cards={feedCards}
           onEngage={handleEngage}
+          onAnswer={handleAnswer}
           onBack={selectedCourse ? () => setSelectedCourse(null) : undefined}
           backLabel="Takaisin kursseihin"
         />

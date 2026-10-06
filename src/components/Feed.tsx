@@ -8,11 +8,14 @@ import ProgressDots from './ProgressDots'
 interface FeedProps {
   cards: Card[]
   onEngage?: (cardId: string) => void
+  // A checked quick-exercise answer; fires on every attempt, the knowledge
+  // model keeps only the first one per card.
+  onAnswer?: (cardId: string, correct: boolean) => void
   onBack?: () => void
   backLabel?: string
 }
 
-export default function Feed({ cards, onEngage, onBack, backLabel = 'Takaisin' }: FeedProps) {
+export default function Feed({ cards, onEngage, onAnswer, onBack, backLabel = 'Takaisin' }: FeedProps) {
   const containerRef = useRef<HTMLDivElement>(null)
   const cardRefs = useRef<(HTMLDivElement | null)[]>([])
   const [currentIndex, setCurrentIndex] = useState(0)
@@ -56,7 +59,13 @@ export default function Feed({ cards, onEngage, onBack, backLabel = 'Takaisin' }
             {card.type === 'lesson' ? (
               <LessonCardView card={card} showSwipeHint={index === 0} />
             ) : card.type === 'exercise' ? (
-              <ExerciseCardView card={card} onAnswer={() => onEngage?.(card.id)} />
+              <ExerciseCardView
+                card={card}
+                onAnswer={(correct) => {
+                  onEngage?.(card.id)
+                  onAnswer?.(card.id, correct)
+                }}
+              />
             ) : (
               <TaskCardView card={card} onViewSolution={() => onEngage?.(card.id)} />
             )}
