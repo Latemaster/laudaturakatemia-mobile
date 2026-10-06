@@ -7,7 +7,15 @@ import FeedInfo from './components/FeedInfo'
 import { cards, getConceptCards, getExerciseCards, groupExercisesByConcept } from './data/cards'
 import { getRecommendedCards, loadTargetGrade, type TargetGrade } from './data/studyPlans'
 import { loadCourseGrades, saveCourseGrades, type CourseGrade, type CourseGrades } from './data/courseGrades'
-import { loadKnowledge, recordAttempt, saveKnowledge, type KnowledgeState } from './data/knowledge'
+import {
+  loadKnowledge,
+  recordAttempt,
+  saveKnowledge,
+  setPoll,
+  type KnowledgeState,
+  type PollLevel,
+} from './data/knowledge'
+import type { ThemeId } from './data/themes'
 import type { Card, TopicCode } from './types'
 
 function App() {
@@ -29,6 +37,14 @@ function App() {
     setKnowledge((prev) => {
       const next = recordAttempt(prev, cardId, correct ? 1 : 0)
       if (next !== prev) saveKnowledge(next)
+      return next
+    })
+  }
+
+  function handlePollChange(themeId: ThemeId, level: PollLevel | undefined) {
+    setKnowledge((prev) => {
+      const next = setPoll(prev, themeId, level)
+      saveKnowledge(next)
       return next
     })
   }
@@ -92,6 +108,7 @@ function App() {
           courseGrades={courseGrades}
           onCourseGradeChange={handleCourseGradeChange}
           knowledge={knowledge}
+          onPollChange={handlePollChange}
         />
       )}
       {section === 'suositellut' && <FeedInfo targetGrade={targetGrade} cardCount={recommendedCards.length} />}
