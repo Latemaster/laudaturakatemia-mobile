@@ -159,10 +159,21 @@ The last task is also tagged "Soveltaminen", so that theme moved too.
 - **Course score** = mean of its theme scores, weighted by each theme's
   `weight` (default 1; raise it for themes the exam asks about more). Course
   confidence is the plain mean of theme confidences.
-- **Overall percentage** = mean of the course scores × 100, on the same
-  0–100 scale as today's engagement percentage, so `predictGrade` can take
-  it unchanged. Whether the overall should instead weight courses by the
-  study plan (e.g. MAA2–MAA3 count more for a B target) is left open.
+- **Overall percentage (kokonaisosaaminen)** = `overall.pct` from
+  `computeKnowledge`: the same course-equal, theme-weighted mean × 100, on
+  the 0–100 exam-points scale so `predictGrade` takes it unchanged. It drives
+  the predicted grade and the donut on Osaaminen. A theme counts only once
+  something is known about it (poll answer, course grade or an attempt);
+  a theme with nothing behind it counts as 0, not the neutral 50 %, so the
+  estimate starts from zero instead of predicting M on an empty profile.
+  Whether courses should be weighted by the study plan (e.g. MAA2–MAA3 count
+  more for a B target) is left open.
+- **Reliability** = how much of the overall rests on exercise answers rather
+  than esitiedot. Per theme the exercise share is
+  `evidence / (priorWeight + evidence)` (0 for an uninformed theme), averaged
+  with the same weights as the score. Under ⅓ is *Epävarma arvio*, ⅓–⅔
+  *Kohtuullinen arvio*, over ⅔ *Hyvä arvio*. An estimate built from esitiedot
+  alone is therefore always flagged epävarma.
 
 ## Hook for the Suositellut feed
 
@@ -197,11 +208,11 @@ chart, which is example data today.
 ## Next steps
 
 Done so far: theme scores under each course row on Osaaminen, quick-exercise
-answers recorded as attempts, the pre-poll in "Osaaminen esitiedot".
+answers recorded as attempts, the pre-poll in "Osaaminen esitiedot", the
+predicted grade on the knowledge score with a reliability flag.
 
 1. Tag the tasks of MAA3–MAA12 with themes (data work, `getThemeIssues`
    tracks it).
 2. Add the self-check ("Oikein / Osittain / En osannut") to task cards after
    the solution is shown.
-3. Switch the predicted grade to `overallPct` from `computeKnowledge`.
-4. Build the Suositellut ordering on `getThemePriority`.
+3. Build the Suositellut ordering on `getThemePriority`.

@@ -267,9 +267,83 @@ export interface CourseKnowledge {
 export interface Knowledge {
   themes: Record<ThemeId, ThemeScore>
   courses: Record<TopicCode, CourseKnowledge>
-  // Mean of the course scores as a percentage, on the same 0-100 scale as
-  // the exam-points prediction so predictGrade can take it directly.
-  overallPct: number
+  overall: OverallEstimate
+}
+
+// How much of the overall estimate rests on the student's own answers to
+// exercises rather than on esitiedot (pre-poll, course grades).
+export type EstimateReliability = 'epävarma' | 'kohtuullinen' | 'hyvä'
+
+export interface ReliabilityInfo {
+  reliability: EstimateReliability
+  label: string
+  // Minimum exercise share for the band; listed high to low.
+  min: number
+}
+
+export const RELIABILITY_LEVELS: ReliabilityInfo[] = [
+  { reliability: 'hyvä', label: 'Hyvä arvio', min: 2 / 3 },
+  { reliability: 'kohtuullinen', label: 'Kohtuullinen arvio', min: 1 / 3 },
+  { reliability: 'epävarma', label: 'Epävarma arvio', min: 0 },
+]
+
+export function getReliability(exerciseShare: number): ReliabilityInfo {
+  return (
+    RELIABILITY_LEVELS.find((band) => exerciseShare >= band.min) ?? RELIABILITY_LEVELS[RELIABILITY_LEVELS.length - 1]
+  )
+}
+
+export interface OverallEstimate {
+  // Kokonaisosaaminen as a percentage, on the same 0-100 scale as the
+  // exam-points prediction so predictGrade can take it directly.
+  pct: number
+  // 0..1: share of the estimate that comes from exercise answers.
+  exerciseShare: number
+  reliability: ReliabilityInfo
+  // False when nothing at all is known: no esitiedot and no answers.
+  hasData: boolean
+}
+
+// A theme counts towards kokonaisosaaminen once something is known about
+// it: a poll answer, a course grade or an attempt. A theme with none of
+// those counts as 0 rather than the neutral prior, so the estimate starts
+// from zero and only grows with information.
+function isInformed(score: ThemeScore): boolean {
+  return score.prior.source !== 'none' || score.attempts > 0
+}
+
+// Share of a theme's score that comes from attempts: their summed weight
+// against the prior's. An uninformed theme rests on nothing, so 0.
+function themeExerciseShare(score: ThemeScore): number {
+  if (!isInformed(score)) return 0
+  return score.evidence / (score.prior.weight + score.evidence)
+}
+
+// Courses count equally, themes within a course by their weight, so the
+// exercise share is averaged exactly the way the score is.
+function computeOverall(courses: Record<TopicCode, CourseKnowledge>): OverallEstimate {
+  let score = 0
+  let share = 0
+  let hasData = false
+  for (const course of COURSES) {
+    const themes = courses[course.code].themes
+    const totalWeight = themes.reduce((sum, t) => sum + (t.theme.weight ?? 1), 0)
+    if (totalWeight === 0) continue
+    for (const t of themes) {
+      const w = (t.theme.weight ?? 1) / totalWeight / COURSES.length
+      if (isInformed(t)) {
+        hasData = true
+        score += w * t.score
+      }
+      share += w * themeExerciseShare(t)
+    }
+  }
+  return {
+    pct: Math.round(score * 100),
+    exerciseShare: share,
+    reliability: getReliability(share),
+    hasData,
+  }
 }
 
 interface EvidenceAcc {
@@ -330,10 +404,7 @@ export function computeKnowledge(state: KnowledgeState, courseGrades: CourseGrad
     }
   }
 
-  const overallPct =
-    COURSES.length > 0 ? Math.round((COURSES.reduce((sum, c) => sum + courses[c.code].score, 0) / COURSES.length) * 100) : 0
-
-  return { themes, courses, overallPct }
+  return { themes, courses, overall: computeOverall(courses) }
 }
 
 // How urgently a theme should be practised, for the Suositellut feed: the

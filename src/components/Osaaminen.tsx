@@ -4,7 +4,6 @@ import {
   DIFFICULTY_POINTS,
   getCourseDifficultyBreakdown,
   getCourseProgress,
-  getOverallPct,
   getTargetedCourseProgress,
   type Difficulty,
 } from '../data/progress'
@@ -17,10 +16,17 @@ import {
   saveTargetGrade,
   type TargetGrade,
 } from '../data/studyPlans'
-import { formatAverage, getEarlyIndication, type CourseGrade, type CourseGrades } from '../data/courseGrades'
+import type { CourseGrade, CourseGrades } from '../data/courseGrades'
 import {
   computeKnowledge,
+  EXERCISE_WEIGHT,
+  FALLBACK_PRIOR_WEIGHT,
   KNOWLEDGE_LEVELS,
+  POLL_PRIOR_WEIGHT,
+  RELIABILITY_LEVELS,
+  TASK_WEIGHT,
+  type EstimateReliability,
+  type OverallEstimate,
   type CourseKnowledge,
   type KnowledgeState,
   type PollLevel,
@@ -123,6 +129,30 @@ function GradeDonut({ pct, grade, targetPct }: { pct: number; grade: FinnishGrad
         {grade.letter}
       </span>
     </div>
+  )
+}
+
+const RELIABILITY_CLASSES: Record<EstimateReliability, { text: string; bar: string; filled: number }> = {
+  epävarma: { text: 'text-bad', bar: 'bg-bad', filled: 1 },
+  kohtuullinen: { text: 'text-accent', bar: 'bg-accent', filled: 2 },
+  hyvä: { text: 'text-good', bar: 'bg-good', filled: 3 },
+}
+
+// Three-step flag under the donut: how much of kokonaisosaaminen rests on
+// exercise answers rather than esitiedot.
+function ReliabilityFlag({ overall }: { overall: OverallEstimate }) {
+  const { reliability, exerciseShare } = overall
+  const classes = RELIABILITY_CLASSES[reliability.reliability]
+  return (
+    <span className="mt-2 inline-flex items-center gap-2 rounded-full bg-surface-2 px-3 py-1 text-xs ring-1 ring-ink/10">
+      <span aria-hidden className="flex gap-0.5">
+        {[1, 2, 3].map((step) => (
+          <span key={step} className={`h-2.5 w-1.5 rounded-full ${step <= classes.filled ? classes.bar : 'bg-ink/15'}`} />
+        ))}
+      </span>
+      <span className={`font-semibold ${classes.text}`}>{reliability.label}</span>
+      <span className="text-ink-dim">· {Math.round(exerciseShare * 100)} % tehtävistä</span>
+    </span>
   )
 }
 
@@ -283,11 +313,10 @@ export default function Osaaminen({
   const [targetOpen, setTargetOpen] = useState(false)
   const scores = useMemo(() => computeKnowledge(knowledge, courseGrades), [knowledge, courseGrades])
 
-  const overallPct = getOverallPct(engagedIds)
+  const { overall } = scores
+  const overallPct = overall.pct
   const grade = predictGrade(overallPct)
   const tierClasses = TIER_CLASSES[grade.tier]
-  const earlyIndication = getEarlyIndication(courseGrades)
-  const earlyTierClasses = TIER_CLASSES[earlyIndication.grade.tier]
   const target = getFinnishGrade(targetGrade)
   const targetTierClasses = TIER_CLASSES[target.tier]
   const targetPoints = getTargetPoints(targetGrade)
@@ -319,25 +348,52 @@ export default function Osaaminen({
             <span className="text-[11px] font-semibold uppercase tracking-widest text-ink-dim/70">
               Ennustettu arvosana
             </span>
-            <InfoToggle label="Mitä ennuste tarkoittaa">
+            <InfoToggle label="Miten ennuste lasketaan">
               <p className="mb-2">
-                Rengas näyttää kokonaisosaamisen: kuinka suuri osa kaikkien kurssien tehtävistä on käyty läpi.
-                Ennuste perustuu käytyihin tehtäviin, ei vielä oikeisiin vastauksiin.
+                Kokonaisosaaminen lasketaan teemoittain. Jokaisen teeman arvio on painotettu keskiarvo
+                lähtötasosta ja tehtävien vastauksista:
               </p>
-              <ul className="flex flex-col gap-1">
-                <li className="flex items-center gap-2">
-                  <span aria-hidden className={`inline-block h-2 w-4 rounded-full ${tierClasses.stroke.replace('stroke-', 'bg-')}`} />
-                  Täyttyvä rengas = kokonaisosaaminen ({overallPct} %)
+              <ul className="mb-2 flex list-disc flex-col gap-1 pl-4">
+                <li>
+                  <span className="font-semibold text-ink">Lähtötaso</span> tulee esitiedoista: esikyselyn
+                  vastaus (paino {POLL_PRIOR_WEIGHT}) tai, jos teemaan ei ole vastattu, kurssiarvosana (paino{' '}
+                  {FALLBACK_PRIOR_WEIGHT}).
                 </li>
-                <li className="flex items-center gap-2">
-                  <span aria-hidden className="inline-block h-3 w-1 rounded-full bg-accent" />
-                  Sininen merkki = tavoitearvosanan pisteraja ({targetPct} %)
+                <li>
+                  <span className="font-semibold text-ink">Tehtävät</span>: vain ensimmäinen vastaus kuhunkin
+                  tehtävään lasketaan. Pikatehtävä painaa {EXERCISE_WEIGHT}, avoin tehtävä {TASK_WEIGHT.easy}–
+                  {TASK_WEIGHT.hard} vaikeuden mukaan. Täyden painon saa vain oikea vastaus, joten yksi
+                  epäonnistunut vaikea tehtävä ei kumoa perusteiden osaamista.
+                </li>
+                <li>
+                  Kurssin arvio on sen teemojen keskiarvo ja kokonaisosaaminen kurssien keskiarvo. Teema, josta ei
+                  ole esitietoja eikä vastauksia, lasketaan nollaksi.
                 </li>
               </ul>
-              <p className="mt-2">
-                Arvosanarajat on laskettu tyypillisistä yo-kokeen pisterajoista jaettuna kokeen {EXAM_MAX_POINTS}{' '}
-                pisteellä.
+              <p className="mb-2">
+                Ennustettu arvosana saadaan vertaamalla kokonaisosaamista yo-kokeen tyypillisiin pisterajoihin
+                jaettuna kokeen {EXAM_MAX_POINTS} pisteellä.
               </p>
+              <p className="mb-2">
+                Esitiedot ovat heikkoa näyttöä, joten arviolle näytetään luotettavuus sen mukaan, kuinka suuri osa
+                siitä perustuu tehtävien vastauksiin:
+              </p>
+              <ul className="flex flex-col gap-1">
+                {[...RELIABILITY_LEVELS].reverse().map((band, index, bands) => {
+                  const next = bands[index + 1]
+                  const range = next
+                    ? `${index === 0 ? 'alle ' : `${Math.round(band.min * 100)}–`}${Math.round(next.min * 100)} %`
+                    : `vähintään ${Math.round(band.min * 100)} %`
+                  return (
+                    <li key={band.reliability}>
+                      <span className={`font-semibold ${RELIABILITY_CLASSES[band.reliability].text}`}>
+                        {band.label}
+                      </span>{' '}
+                      = {range} tehtävistä
+                    </li>
+                  )
+                })}
+              </ul>
             </InfoToggle>
           </div>
 
@@ -345,12 +401,10 @@ export default function Osaaminen({
             <GradeDonut pct={overallPct} grade={grade} targetPct={targetPct} />
             <span className={`mt-3 text-base font-semibold ${tierClasses.text}`}>Arvosana {grade.letter}</span>
             <span className="mt-1 text-sm font-semibold text-ink-dim">{overallPct} % kokonaisosaaminen</span>
-            {earlyIndication.average !== null && (
-              <span className="mt-1 text-xs text-ink-dim">
-                Esitietojen perusteella{' '}
-                <span className={`font-semibold ${earlyTierClasses.text}`}>{earlyIndication.grade.letter}</span>
-                {' · '}keskiarvo {formatAverage(earlyIndication.average)}
-              </span>
+            {overall.hasData ? (
+              <ReliabilityFlag overall={overall} />
+            ) : (
+              <span className="mt-1 text-xs text-ink-dim">Täytä esitiedot tai vastaa tehtäviin</span>
             )}
           </div>
 

@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { COURSES } from '../data/courses'
 import {
   COURSE_GRADES,
   COURSE_GRADE_LETTER,
@@ -10,9 +9,9 @@ import {
 } from '../data/courseGrades'
 import type { FinnishGrade } from '../data/grade'
 import { POLL_OPTIONS, type KnowledgeState, type PollLevel } from '../data/knowledge'
-import { THEMES, getCourseThemes, type ThemeId } from '../data/themes'
+import { THEMES, type ThemeId } from '../data/themes'
 import { ChevronRightIcon } from './icons'
-import CourseSetupView from './CourseSetupView'
+import EsitiedotView from './EsitiedotView'
 import InfoToggle from './InfoToggle'
 import type { TopicCode } from '../types'
 
@@ -30,15 +29,15 @@ const TIER_BADGE: Record<FinnishGrade['tier'], string> = {
 }
 
 // "Osaaminen esitiedot": the student's lukio grades and pre-poll answers.
-// Shows one row per course; tapping a course opens CourseSetupView where
-// both are filled in.
+// Shows a summary; "Muuta" opens EsitiedotView with the course list, the
+// same pattern as the tavoitearvosana row.
 export default function CourseGradesSection({
   courseGrades,
   onCourseGradeChange,
   polls,
   onPollChange,
 }: CourseGradesSectionProps) {
-  const [selected, setSelected] = useState<TopicCode | null>(null)
+  const [open, setOpen] = useState(false)
   const indication = getEarlyIndication(courseGrades)
   const { average } = indication
   const hasGrades = average !== null
@@ -52,9 +51,9 @@ export default function CourseGradesSection({
         </span>
         <InfoToggle label="Mitä esitiedot tarkoittavat">
           <p className="mb-2">
-            Esitiedot antavat arvion osaamisesta jo ennen kuin tehtäviä on tehty. Avaa kurssi ja täytä lukion
-            kurssiarvosanasi (4–10) sekä esikysely, jossa kerrot jokaisesta kurssin teemasta, kuinka hyvin osaat
-            sen.
+            Esitiedot antavat arvion osaamisesta jo ennen kuin tehtäviä on tehty. Valitse Muuta, avaa kurssi ja
+            täytä lukion kurssiarvosanasi (4–10) sekä esikysely, jossa kerrot jokaisesta kurssin teemasta, kuinka
+            hyvin osaat sen.
           </p>
           <p className="mb-2">Arvosanojen keskiarvo muunnetaan yo-arvosanaksi samalle pisteasteikolle kuin ennuste:</p>
           <ul className="mb-2 flex flex-wrap gap-x-3 gap-y-1">
@@ -84,7 +83,12 @@ export default function CourseGradesSection({
         </InfoToggle>
       </div>
 
-      <div className="mt-3 flex items-center gap-3 rounded-2xl bg-surface-2 p-3">
+      <button
+        type="button"
+        onClick={() => setOpen(true)}
+        aria-haspopup="dialog"
+        className="mt-3 flex w-full items-center gap-3 rounded-2xl bg-surface-2 p-3 text-left ring-1 ring-transparent transition-colors active:ring-accent/40"
+      >
         <span
           className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-lg font-bold ring-2 ${
             hasGrades ? TIER_BADGE[indication.grade.tier] : 'bg-ink/5 text-ink-dim/60 ring-ink/10'
@@ -101,49 +105,19 @@ export default function CourseGradesSection({
             {indication.filled}/{indication.total} arvosanaa · esikysely {answeredThemes}/{THEMES.length} teemaa
           </span>
         </div>
-      </div>
+        <span className="flex items-center gap-0.5 text-xs font-semibold text-accent">
+          Muuta
+          <ChevronRightIcon className="h-4 w-4" />
+        </span>
+      </button>
 
-      <p className="mb-2 mt-4 text-xs text-ink-dim">Avaa kurssi täyttääksesi arvosanan ja esikyselyn.</p>
-      <ul className="flex flex-col divide-y divide-ink/5">
-        {COURSES.map((course) => {
-          const grade = courseGrades[course.code]
-          const themes = getCourseThemes(course.code)
-          const answered = themes.filter((theme) => polls[theme.id] !== undefined).length
-          const complete = grade !== undefined && answered === themes.length
-          return (
-            <li key={course.code}>
-              <button
-                type="button"
-                onClick={() => setSelected(course.code)}
-                className="flex w-full items-center gap-3 py-2.5 text-left active:bg-ink/5"
-              >
-                <span
-                  className={`inline-flex shrink-0 items-center rounded-full px-2.5 py-0.5 text-xs font-semibold ring-1 ${course.badgeClass}`}
-                >
-                  {course.code}
-                </span>
-                <span className="flex min-w-0 flex-1 flex-col">
-                  <span className="truncate text-sm font-medium text-ink">{course.name}</span>
-                  <span className={`truncate text-xs ${complete ? 'text-good' : 'text-ink-dim'}`}>
-                    {grade === undefined ? 'Ei arvosanaa' : `Arvosana ${grade}`}
-                    {' · '}esikysely {answered}/{themes.length}
-                  </span>
-                </span>
-                <ChevronRightIcon className="h-4 w-4 shrink-0 text-ink-dim/50" />
-              </button>
-            </li>
-          )
-        })}
-      </ul>
-
-      {selected && (
-        <CourseSetupView
-          code={selected}
-          grade={courseGrades[selected]}
-          onGradeChange={(grade) => onCourseGradeChange(selected, grade)}
+      {open && (
+        <EsitiedotView
+          courseGrades={courseGrades}
+          onCourseGradeChange={onCourseGradeChange}
           polls={polls}
           onPollChange={onPollChange}
-          onClose={() => setSelected(null)}
+          onClose={() => setOpen(false)}
         />
       )}
     </section>
