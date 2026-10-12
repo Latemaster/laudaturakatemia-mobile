@@ -4,6 +4,7 @@ import TopMenu, { type MenuSection } from './components/TopMenu'
 import CourseList from './components/CourseList'
 import Osaaminen from './components/Osaaminen'
 import FeedInfo from './components/FeedInfo'
+import EvaluationList from './components/EvaluationList'
 import { cards, getConceptCards, getExerciseCards, groupExercisesByConcept } from './data/cards'
 import { getRecommendedCards, loadTargetGrade, type TargetGrade } from './data/studyPlans'
 import { loadCourseGrades, saveCourseGrades, type CourseGrade, type CourseGrades } from './data/courseGrades'
@@ -111,6 +112,7 @@ function App() {
           onPollChange={handlePollChange}
         />
       )}
+      {section === 'arviointi' && <EvaluationList />}
       {section === 'suositellut' && <FeedInfo targetGrade={targetGrade} cardCount={recommendedCards.length} />}
       {showFeed && (
         <Feed
