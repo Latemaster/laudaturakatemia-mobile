@@ -1,4 +1,4 @@
-export type MenuSection = 'suositellut' | 'kurssit' | 'osaaminen'
+export type MenuSection = 'suositellut' | 'kurssit' | 'osaaminen' | 'arviointi'
 
 interface TopMenuProps {
   active: MenuSection
@@ -9,6 +9,7 @@ const ITEMS: { id: MenuSection; label: string }[] = [
   { id: 'suositellut', label: 'Suositellut' },
   { id: 'kurssit', label: 'Kurssit' },
   { id: 'osaaminen', label: 'Osaaminen' },
+  { id: 'arviointi', label: 'Arviointi' },
 ]
 
 export default function TopMenu({ active, onSelect }: TopMenuProps) {
@@ -20,7 +21,7 @@ export default function TopMenu({ active, onSelect }: TopMenuProps) {
             key={item.id}
             type="button"
             onClick={() => onSelect(item.id)}
-            className={`rounded-full px-4 py-1.5 text-sm font-semibold transition-colors ${
+            className={`rounded-full px-3 py-1.5 text-sm font-semibold transition-colors ${
               active === item.id ? 'bg-accent text-white' : 'text-ink-dim'
             }`}
           >

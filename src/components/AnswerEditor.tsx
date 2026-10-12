@@ -12,11 +12,18 @@ interface AnswerEditorProps {
   onChange: (answer: string) => void
   onCancel: () => void
   onSubmit: (answer: string) => void
+  submitLabel?: string
 }
 
 // The answer editor with its symbol picker and Peruuta / Lähetä, shown at
 // the bottom of TaskAnswerView.
-export default function AnswerEditor({ initialValue, onChange, onCancel, onSubmit }: AnswerEditorProps) {
+export default function AnswerEditor({
+  initialValue,
+  onChange,
+  onCancel,
+  onSubmit,
+  submitLabel = 'Lähetä',
+}: AnswerEditorProps) {
   const [answer, setAnswer] = useState(initialValue)
   const [showSymbols, setShowSymbols] = useState(false)
   const [mode, setMode] = useState<EditorMode>('text')
@@ -70,7 +77,7 @@ export default function AnswerEditor({ initialValue, onChange, onCancel, onSubmi
           onClick={() => onSubmit(answer)}
           className="flex-1 rounded-xl bg-accent px-3 py-2 text-sm font-semibold text-white disabled:opacity-40"
         >
-          Lähetä
+          {submitLabel}
         </button>
       </div>
     </div>
