@@ -21,9 +21,10 @@ interface TaskAnswerViewProps {
   onClose: () => void
 }
 
-// Full-screen view opened by "Vastaa tehtävään": the problem (or, once an
-// answer is sent, optionally the solution) scrolls at the top and the answer
-// editor stays pinned at the bottom. Portalled to body so it escapes the
+// Full-screen white view opened by "Vastaa tehtävään": the problem (or, once
+// an answer is sent, optionally the solution) with the answer editor right
+// below it, so the two read as one page instead of the question drifting
+// away from an editor pinned to the bottom. Portalled to body so it escapes the
 // scroll-snapping feed, like ExpandableBox's expanded state.
 export default function TaskAnswerView({
   card,
@@ -74,18 +75,19 @@ export default function TaskAnswerView({
         </div>
       </div>
 
-      <div ref={scrollRef} className="scrollbar-hide min-h-0 flex-1 overflow-y-auto overscroll-contain px-6 pb-4">
-        <ProblemBlocks blocks={showSolution ? problem.answerBlocks : problem.promptBlocks} />
-      </div>
+      <div
+        ref={scrollRef}
+        className="scrollbar-hide min-h-0 flex-1 overflow-y-auto overscroll-contain px-6 pb-[calc(env(safe-area-inset-bottom)+1.5rem)]"
+      >
+        <div className="mx-auto flex w-full max-w-md flex-col gap-5">
+          <ProblemBlocks blocks={showSolution ? problem.answerBlocks : problem.promptBlocks} />
 
-      <div className="border-t border-ink/10 bg-page px-6 pb-[calc(env(safe-area-inset-bottom)+1rem)] pt-3">
-        <div className="mx-auto w-full max-w-md">
           {isEditing || submittedAnswer === null ? (
             <AnswerEditor initialValue={draft} onChange={onDraftChange} onCancel={cancel} onSubmit={onSubmit} />
           ) : (
-            <div className="rounded-2xl border border-good/30 bg-good-tint p-3 shadow-md">
+            <div className="rounded-2xl border border-good/30 bg-good/10 p-3">
               <p className="mb-1 text-sm font-semibold text-good">Vastaus lähetetty</p>
-              <div className="scrollbar-hide max-h-40 overflow-y-auto text-sm leading-relaxed text-ink">
+              <div className="text-sm leading-relaxed text-ink">
                 <MathText content={toKatexAnswer(submittedAnswer)} />
               </div>
               <button

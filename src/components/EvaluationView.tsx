@@ -70,14 +70,10 @@ export default function EvaluationView({
           </button>
         </div>
 
-        <div className="scrollbar-hide min-h-0 flex-1 overflow-y-auto overscroll-contain px-6 pb-4">
-          <div className="mx-auto w-full max-w-md">
+        <div className="scrollbar-hide min-h-0 flex-1 overflow-y-auto overscroll-contain px-6 pb-[calc(env(safe-area-inset-bottom)+1.5rem)]">
+          <div className="mx-auto flex w-full max-w-md flex-col gap-5">
             <ProblemBlocks blocks={exercise.promptBlocks} />
-          </div>
-        </div>
 
-        <div className="border-t border-ink/10 bg-page px-6 pb-[calc(env(safe-area-inset-bottom)+1rem)] pt-3">
-          <div className="mx-auto w-full max-w-md">
             {isEditing || answer === null ? (
               <AnswerEditor
                 initialValue={draft}
@@ -87,9 +83,9 @@ export default function EvaluationView({
                 submitLabel="Tarkista vastaus"
               />
             ) : (
-              <div className="rounded-2xl border border-ink/10 bg-surface p-3 shadow-md">
+              <div className="rounded-2xl border border-ink/10 bg-surface-2 p-3">
                 <p className="mb-1 text-sm font-semibold text-ink-dim">Vastauksesi</p>
-                <div className="scrollbar-hide max-h-32 overflow-y-auto text-sm leading-relaxed text-ink">
+                <div className="text-sm leading-relaxed text-ink">
                   <MathText content={toKatexAnswer(answer)} />
                 </div>
                 <div className="mt-3 flex gap-2">
