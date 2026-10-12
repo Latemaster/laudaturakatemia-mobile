@@ -16,7 +16,7 @@ interface AnswerEditorProps {
 }
 
 // The answer editor with its symbol picker and Peruuta / Lähetä, shown at
-// the bottom of TaskAnswerView.
+// below the problem in the full-screen answer views.
 export default function AnswerEditor({
   initialValue,
   onChange,
@@ -30,7 +30,7 @@ export default function AnswerEditor({
   const editorRef = useRef<MathAnswerEditorHandle>(null)
 
   return (
-    <div className="rounded-2xl border border-ink/10 bg-surface p-3 shadow-md">
+    <div className="rounded-2xl border border-ink/10 bg-surface p-3 shadow-sm">
       <div className="relative">
         <Suspense fallback={<div className="min-h-[4.5rem] w-full animate-pulse rounded-xl border border-ink/10 bg-page" />}>
           <MathAnswerEditor
