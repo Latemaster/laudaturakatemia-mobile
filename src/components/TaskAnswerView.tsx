@@ -1,7 +1,7 @@
-import { useEffect, useRef } from 'react'
+import { useCallback, useEffect, useRef } from 'react'
 import { createPortal } from 'react-dom'
 import type { TaskCard } from '../types'
-import AnswerEditor from './AnswerEditor'
+import AnswerEditor, { type AnswerEditorHandle } from './AnswerEditor'
 import MathText from './MathText'
 import ProblemBlocks from './ProblemBlocks'
 import SolutionToggle from './SolutionToggle'
@@ -40,6 +40,12 @@ export default function TaskAnswerView({
 }: TaskAnswerViewProps) {
   const { problem } = card
   const scrollRef = useRef<HTMLDivElement>(null)
+  const editorRef = useRef<AnswerEditorHandle>(null)
+  const editorOpen = isEditing || submittedAnswer === null
+  // Question formulas can be tapped into the answer while it's being
+  // written; the solution's can't.
+  const formulasTappable = editorOpen && !showSolution
+  const insertFormula = useCallback((latex: string) => editorRef.current?.insertFormula(latex), [])
 
   useEffect(() => {
     scrollRef.current?.scrollTo({ top: 0 })
@@ -80,10 +86,23 @@ export default function TaskAnswerView({
         className="scrollbar-hide min-h-0 flex-1 overflow-y-auto overscroll-contain px-6 pb-[calc(env(safe-area-inset-bottom)+1.5rem)]"
       >
         <div className="mx-auto flex w-full max-w-md flex-col gap-5">
-          <ProblemBlocks blocks={showSolution ? problem.answerBlocks : problem.promptBlocks} />
+          <ProblemBlocks
+            blocks={showSolution ? problem.answerBlocks : problem.promptBlocks}
+            onFormulaTap={formulasTappable ? insertFormula : undefined}
+          />
 
-          {isEditing || submittedAnswer === null ? (
-            <AnswerEditor initialValue={draft} onChange={onDraftChange} onCancel={cancel} onSubmit={onSubmit} />
+          {formulasTappable && (
+            <p className="-mt-2 text-xs text-ink-dim">Napauta tehtävän kaavaa, niin se lisätään vastaukseesi.</p>
+          )}
+
+          {editorOpen ? (
+            <AnswerEditor
+              ref={editorRef}
+              initialValue={draft}
+              onChange={onDraftChange}
+              onCancel={cancel}
+              onSubmit={onSubmit}
+            />
           ) : (
             <div className="rounded-2xl border border-good/30 bg-good/10 p-3">
               <p className="mb-1 text-sm font-semibold text-good">Vastaus lähetetty</p>
