@@ -17,6 +17,9 @@ export interface MathAnswerEditorHandle {
   insert: (latex: string) => void
   newFormula: () => void
   exitFormula: () => void
+  // Copies the focused formula onto a new line right below it and moves
+  // into the copy, so the next step of a calculation starts from the last.
+  duplicateFormula: () => void
   focus: () => void
 }
 
@@ -290,6 +293,16 @@ const MathAnswerEditor = forwardRef<MathAnswerEditorHandle, MathAnswerEditorProp
       exitFormula() {
         const mf = activeField()
         if (mf) leaveField(mf, 'after')
+      },
+      duplicateFormula() {
+        const mf = activeField()
+        const root = rootRef.current
+        if (!mf || !root) return
+        const latex = mf.getValue('latex-without-placeholders')
+        if (!latex.trim()) return
+        leaveField(mf, 'after')
+        insertLineBreak(root)
+        insertFieldAtCaret(latex)
       },
       focus() {
         rootRef.current?.focus()

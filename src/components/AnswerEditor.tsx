@@ -1,7 +1,7 @@
-import { lazy, Suspense, useRef, useState } from 'react'
+import { forwardRef, lazy, Suspense, useImperativeHandle, useRef, useState } from 'react'
 import type { EditorMode, MathAnswerEditorHandle } from './MathAnswerEditor'
 import MathSymbolPicker from './MathSymbolPicker'
-import { MathSymbolIcon } from './icons'
+import { CopyIcon, MathSymbolIcon } from './icons'
 
 // The formula editor pulls in MathLive, which is heavier than the rest of
 // the app, so it only loads once someone starts answering.
@@ -15,19 +15,28 @@ interface AnswerEditorProps {
   submitLabel?: string
 }
 
-// The answer editor with its symbol picker and Peruuta / Lähetä, shown at
+export interface AnswerEditorHandle {
+  // Adds a formula (e.g. one tapped in the question) to the answer: into
+  // the formula being edited, or as a new formula box at the caret.
+  insertFormula: (latex: string) => void
+}
+
+// The answer editor with its symbol picker and Peruuta / Lähetä, shown
 // below the problem in the full-screen answer views.
-export default function AnswerEditor({
-  initialValue,
-  onChange,
-  onCancel,
-  onSubmit,
-  submitLabel = 'Lähetä',
-}: AnswerEditorProps) {
+const AnswerEditor = forwardRef<AnswerEditorHandle, AnswerEditorProps>(function AnswerEditor(
+  { initialValue, onChange, onCancel, onSubmit, submitLabel = 'Lähetä' },
+  ref,
+) {
   const [answer, setAnswer] = useState(initialValue)
   const [showSymbols, setShowSymbols] = useState(false)
   const [mode, setMode] = useState<EditorMode>('text')
   const editorRef = useRef<MathAnswerEditorHandle>(null)
+
+  useImperativeHandle(ref, () => ({
+    insertFormula(latex) {
+      editorRef.current?.insert(latex)
+    },
+  }))
 
   return (
     <div className="rounded-2xl border border-ink/10 bg-surface p-3 shadow-sm">
@@ -58,6 +67,20 @@ export default function AnswerEditor({
         </button>
       </div>
 
+      {mode === 'math' && (
+        <button
+          type="button"
+          // Keeps the formula focused so the copy knows what to duplicate.
+          onPointerDown={(e) => e.preventDefault()}
+          onMouseDown={(e) => e.preventDefault()}
+          onClick={() => editorRef.current?.duplicateFormula()}
+          className="mt-2 flex items-center gap-1.5 rounded-full bg-accent/10 px-3 py-1 text-xs font-semibold text-accent active:bg-accent/20"
+        >
+          <CopyIcon className="h-3.5 w-3.5" />
+          Kopioi kaava uudelle riville
+        </button>
+      )}
+
       {showSymbols && (
         <MathSymbolPicker
           mode={mode}
@@ -82,4 +105,6 @@ export default function AnswerEditor({
       </div>
     </div>
   )
-}
+})
+
+export default AnswerEditor

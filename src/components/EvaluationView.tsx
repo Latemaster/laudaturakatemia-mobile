@@ -1,8 +1,8 @@
-import { useState } from 'react'
+import { useCallback, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 import type { CriterionScores, EvaluationExercise } from '../data/evaluation'
-import AnswerEditor from './AnswerEditor'
+import AnswerEditor, { type AnswerEditorHandle } from './AnswerEditor'
 import MathText from './MathText'
 import ProblemBlocks from './ProblemBlocks'
 import RubricPanel from './RubricPanel'
@@ -35,6 +35,9 @@ export default function EvaluationView({
   const [isEditing, setIsEditing] = useState(answer === null)
   const [draft, setDraft] = useState(answer ?? '')
   const [showRubric, setShowRubric] = useState(false)
+  const editorRef = useRef<AnswerEditorHandle>(null)
+  const editorOpen = isEditing || answer === null
+  const insertFormula = useCallback((latex: string) => editorRef.current?.insertFormula(latex), [])
 
   function cancel() {
     setDraft(answer ?? '')
@@ -72,10 +75,15 @@ export default function EvaluationView({
 
         <div className="scrollbar-hide min-h-0 flex-1 overflow-y-auto overscroll-contain px-6 pb-[calc(env(safe-area-inset-bottom)+1.5rem)]">
           <div className="mx-auto flex w-full max-w-md flex-col gap-5">
-            <ProblemBlocks blocks={exercise.promptBlocks} />
+            <ProblemBlocks blocks={exercise.promptBlocks} onFormulaTap={editorOpen ? insertFormula : undefined} />
 
-            {isEditing || answer === null ? (
+            {editorOpen && (
+              <p className="-mt-2 text-xs text-ink-dim">Napauta tehtävän kaavaa, niin se lisätään vastaukseesi.</p>
+            )}
+
+            {editorOpen ? (
               <AnswerEditor
+                ref={editorRef}
                 initialValue={draft}
                 onChange={setDraft}
                 onCancel={cancel}
