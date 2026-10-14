@@ -28,8 +28,21 @@ for tone and granularity.
   able to say yes or no.
   - Good: `Derivaatta $f'(x) = 3x^2 - 6x - 9$`, `Nollakohdat $x = -1$ ja $x = 3$`
   - Bad: `Laskut oikein`, `Hyvä ratkaisu`
-- Points follow the **method and the steps**, not only the final answer. A bare answer without
-  working never earns full points. Say in a note what it does earn.
+- **Decide for each intermediate step whether it is what the question is checking.**
+  - **Routine step:** for example, the factorisation in a "sievennä" task, or rewriting $\sqrt{12} = 2\sqrt{3}$.
+    Here the correct final answer already proves the step, so give the step
+    `"impliedBy": "<id of the answer criterion>"`. Then:
+    - right step, wrong answer: partial points;
+    - right answer: full points, whether the step was written or not.
+
+    Marking the answer at full points fills in the implied steps automatically in the app.
+  - **Crucial step:** the work *is* the knowledge check. Examples: the sign analysis that justifies an
+    inequality's solution set, the discriminant that justifies "no solutions", the algebra when the
+    task says "ratkaise algebrallisesti", or deriving $f'(x)$ and solving $f'(x) = 0$ before stating
+    extremum points. Leave out `impliedBy`, because a bare answer must not earn these points.
+  - This depends on context, so judge it task by task. Ask: "could a student plausibly get this answer
+    right without understanding the step?" If yes, the step is crucial.
+- If a task is mostly crucial steps, say in a note what a bare answer earns.
 - **Accept equivalent forms and other valid methods.** Add `(tai yhtäpitävä)` or name the alternative,
   e.g. `Ratkaisukaava sovellettu oikein (tai yhtälö jaettu tekijöihin)`.
 - Exact values are expected unless the problem asks for a decimal. If a decimal answer is acceptable,
@@ -121,4 +134,9 @@ When the reviewer sends feedback:
 Corrections from review, oldest first. Each line is a rule that applies to all later batches.
 Add a date and the course where it came from.
 
-- *(empty: the first entries come from the review of the MAA2 Osa I pilot)*
+- 2026-10-14 (MAA2): Don't reserve points for routine intermediate steps that a correct final
+  answer already proves. A student who gets the right answer to a "sievennä" or "laske" task without
+  writing down every step gets full points. Mark such steps `impliedBy` the answer criterion.
+  Reserve points without `impliedBy` only for steps the question is really checking: justifications,
+  sign charts, derivations asked for explicitly, and reasoning that leads to "no solution". See
+  "Writing criteria".

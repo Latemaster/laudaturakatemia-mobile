@@ -67,7 +67,8 @@
           {
             "id": "a-brackets",
             "text": "Sulut poistettu oikein: $3x+4-5x-7$",
-            "points": 1
+            "points": 1,
+            "impliedBy": "a-result"
           },
           {
             "id": "a-result",
@@ -83,7 +84,8 @@
           {
             "id": "b-expand",
             "text": "Sulut poistettu oikein etumerkkeineen: $-6x+12+3x-6$",
-            "points": 1
+            "points": 1,
+            "impliedBy": "b-result"
           },
           {
             "id": "b-result",
@@ -108,7 +110,8 @@
           {
             "id": "a-method",
             "text": "Binomin neliön kaava tai kertolasku $(4x+3)(4x+3)$ auki kerrottuna",
-            "points": 1
+            "points": 1,
+            "impliedBy": "a-result"
           },
           {
             "id": "a-result",
@@ -127,7 +130,8 @@
           {
             "id": "b-recognise",
             "text": "Tunnistettu binomin neliö $x^2+2 \\cdot 5x+5^2$ (tai etsitty luvut, joiden tulo on $25$ ja summa $10$)",
-            "points": 1
+            "points": 1,
+            "impliedBy": "b-result"
           },
           {
             "id": "b-result",
@@ -149,7 +153,8 @@
           {
             "id": "a-combine",
             "text": "Juuret yhdistetty: $\\sqrt{2 \\cdot 8} = \\sqrt{16}$",
-            "points": 1
+            "points": 1,
+            "impliedBy": "a-result"
           },
           {
             "id": "a-result",
@@ -165,12 +170,14 @@
           {
             "id": "b-sqrt12",
             "text": "$\\sqrt{12} = 2\\sqrt{3}$",
-            "points": 1
+            "points": 1,
+            "impliedBy": "b-result"
           },
           {
             "id": "b-sqrt75",
             "text": "$\\sqrt{75} = 5\\sqrt{3}$",
-            "points": 1
+            "points": 1,
+            "impliedBy": "b-result"
           },
           {
             "id": "b-result",
@@ -195,7 +202,8 @@
           {
             "id": "a-isolate",
             "text": "Yhtälö muotoon $x^2 = 16$ (tai tekijöihin $(x-4)(x+4) = 0$)",
-            "points": 1
+            "points": 1,
+            "impliedBy": "a-roots"
           },
           {
             "id": "a-roots",
@@ -214,7 +222,8 @@
           {
             "id": "b-root",
             "text": "Kuutiojuuri otettu: $x = \\sqrt[3]{8}$",
-            "points": 1
+            "points": 1,
+            "impliedBy": "b-result"
           },
           {
             "id": "b-result",
@@ -297,12 +306,14 @@
           {
             "id": "a-formula",
             "text": "Ratkaisukaava sovellettu kertoimilla $a = 1$, $b = 7$, $c = -5$",
-            "points": 1
+            "points": 1,
+            "impliedBy": "a-roots"
           },
           {
             "id": "a-discriminant",
             "text": "Juurrettava $7^2-4 \\cdot 1 \\cdot (-5) = 69$",
-            "points": 1
+            "points": 1,
+            "impliedBy": "a-roots"
           },
           {
             "id": "a-roots",
@@ -342,7 +353,8 @@
           {
             "id": "c-rule",
             "text": "Tulon nollasääntö käytetty: $x-1 = 0$ tai $x+5 = 0$",
-            "points": 1
+            "points": 1,
+            "impliedBy": "c-roots"
           },
           {
             "id": "c-roots",
@@ -367,17 +379,20 @@
           {
             "id": "factor",
             "text": "Yhteinen tekijä $x^2$ erotettu: $x^2(x^2+2x-3)$",
-            "points": 1
+            "points": 1,
+            "impliedBy": "answer"
           },
           {
             "id": "zeros-quadratic",
             "text": "Toisen asteen tekijän nollakohdat $x = 1$ ja $x = -3$",
-            "points": 1
+            "points": 1,
+            "impliedBy": "answer"
           },
           {
             "id": "zero-double",
             "text": "Nollakohta $x = 0$ huomioitu",
-            "points": 1
+            "points": 1,
+            "impliedBy": "answer"
           },
           {
             "id": "sign",
@@ -393,7 +408,7 @@
         "notes": [
           "Jos merkkikaaviosta puuttuu perustelu (testikohdat tai tekijöiden merkit), kohdasta ”merkki perusteltu” 1 p.",
           "Jos vastaukseen on otettu mukaan väli $0 < x < 1$ tai $-3 < x < 0$, kohdasta ”vastaus” 0 p.",
-          "Pelkästä vastauksesta ilman perusteluja 1 p."
+          "Oikeasta vastauksesta ilman merkin perustelua (merkkikaavio tai tekijöiden merkit) enintään 4 p."
         ]
       }
     ]
@@ -409,7 +424,8 @@
           {
             "id": "a-denominator",
             "text": "Nimittäjän nollakohta ratkaistu: $2x+4 = 0 \\iff x = -2$",
-            "points": 1
+            "points": 1,
+            "impliedBy": "a-domain"
           },
           {
             "id": "a-domain",
@@ -425,12 +441,14 @@
           {
             "id": "b-numerator",
             "text": "Osoittaja jaettu tekijöihin: $(x-2)(x+2)$",
-            "points": 1
+            "points": 1,
+            "impliedBy": "b-result"
           },
           {
             "id": "b-denominator",
             "text": "Nimittäjä jaettu tekijöihin: $2(x+2)$",
-            "points": 1
+            "points": 1,
+            "impliedBy": "b-result"
           },
           {
             "id": "b-result",
@@ -456,7 +474,8 @@
           {
             "id": "a-even-root",
             "text": "Parillisen juuren vuoksi $x \\ge 0$",
-            "points": 1
+            "points": 1,
+            "impliedBy": "a-denominator"
           },
           {
             "id": "a-denominator",
@@ -472,12 +491,14 @@
           {
             "id": "b-powers",
             "text": "Juuret muutettu murtopotensseiksi: $\\sqrt[4]{x} = x^{\\frac{1}{4}}$ ja $\\sqrt[3]{\\sqrt{x}} = x^{\\frac{1}{6}}$",
-            "points": 1
+            "points": 1,
+            "impliedBy": "b-result"
           },
           {
             "id": "b-divide",
             "text": "Potenssien jakolasku: eksponentit vähennetty $\\frac{1}{4}-\\frac{1}{6}$",
-            "points": 1
+            "points": 1,
+            "impliedBy": "b-result"
           },
           {
             "id": "b-result",

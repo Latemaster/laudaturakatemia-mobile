@@ -179,6 +179,12 @@ export interface RubricCriterion {
   // $f'(x) = 3x^2 - 6x - 9$".
   text: string
   points: number
+  // Id of the criterion (usually the final answer) that already proves this
+  // step. Marking that one at full points gives this one full points too,
+  // so a student who gets the right answer without writing a routine step
+  // down isn't penalised. Left out for steps the question is really
+  // checking, such as the justification of a sign chart.
+  impliedBy?: string
 }
 
 export interface RubricPart {

@@ -34,6 +34,18 @@ export default function RubricPanel({ exercise, answer, scores, onScore, onReset
   const { marked, total: criteriaCount } = markedCount(exercise, scores)
   const done = marked === criteriaCount
 
+  // Full points on a criterion also give full points to the unmarked steps
+  // it implies (RubricCriterion.impliedBy).
+  function score(criterionId: string, points: number | undefined) {
+    onScore(criterionId, points)
+    const criteria = exercise.parts.flatMap((part) => part.criteria)
+    const source = criteria.find((c) => c.id === criterionId)
+    if (!source || points !== source.points) return
+    for (const step of criteria) {
+      if (step.impliedBy === criterionId && scores[step.id] === undefined) onScore(step.id, step.points)
+    }
+  }
+
   return (
     <div className="flex h-full flex-col bg-page">
       <div className="flex items-start justify-between gap-3 px-5 pb-3 pt-[calc(env(safe-area-inset-top)+1rem)]">
@@ -92,7 +104,7 @@ export default function RubricPanel({ exercise, answer, scores, onScore, onReset
 
         <div className="flex flex-col gap-4">
           {exercise.parts.map((part, index) => (
-            <RubricPartCard key={part.label ?? index} part={part} scores={scores} onScore={onScore} />
+            <RubricPartCard key={part.label ?? index} part={part} scores={scores} onScore={score} />
           ))}
         </div>
 
@@ -186,6 +198,9 @@ function CriterionRow({ criterion, value, onChange }: CriterionRowProps) {
       <div className="flex items-start justify-between gap-3 text-sm leading-relaxed text-ink">
         <div className="min-w-0">
           <MathText content={criterion.text} />
+          {criterion.impliedBy && (
+            <p className="mt-0.5 text-xs text-ink-dim">Tulee täysin pistein, jos lopputulos on oikein.</p>
+          )}
         </div>
         <span className="shrink-0 pt-0.5 text-xs font-semibold text-ink-dim">{criterion.points} p</span>
       </div>

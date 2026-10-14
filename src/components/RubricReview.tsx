@@ -259,6 +259,9 @@ function PartView({ part }: { part: RubricPart }) {
           <li key={criterion.id} className="flex items-start justify-between gap-3 py-2 text-sm leading-relaxed text-ink">
             <div className="min-w-0">
               <MathText content={criterion.text} />
+              {criterion.impliedBy && (
+                <p className="mt-0.5 text-xs text-ink-dim">Sisältyy oikeaan lopputulokseen ({criterion.impliedBy})</p>
+              )}
             </div>
             <span className="shrink-0 pt-0.5 text-xs font-semibold text-ink-dim">{criterion.points} p</span>
           </li>

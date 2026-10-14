@@ -85,6 +85,13 @@ function checkRubric(where, problem, rubric) {
       }
       total += criterion.points ?? 0
     }
+    const partIds = new Set(part.criteria.map((criterion) => criterion.id))
+    for (const criterion of part.criteria) {
+      if (criterion.impliedBy === undefined) continue
+      if (criterion.impliedBy === criterion.id || !partIds.has(criterion.impliedBy)) {
+        errors.push(`${partWhere} ${criterion.id}: impliedBy must name another criterion in the same part`)
+      }
+    }
     for (const note of part.notes ?? []) {
       if (!dollarsBalanced(note)) errors.push(`${partWhere}: unbalanced $ in a note`)
     }
