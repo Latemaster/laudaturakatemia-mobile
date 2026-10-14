@@ -35,6 +35,17 @@ interface MathAnswerEditorProps {
 const ZWSP = '​'
 const FIELD_CLASS = 'math-answer__field'
 
+// Phone keyboards offer these as their multiplication and division signs;
+// MathLive would otherwise keep them as text (• becomes a \textbullet box).
+const OPERATOR_SHORTCUTS: Record<string, string> = {
+  '•': '\\cdot',
+  '·': '\\cdot',
+  '∙': '\\cdot',
+  '⋅': '\\cdot',
+  '×': '\\times',
+  '÷': '\\div',
+}
+
 function isField(node: Node | null): node is HTMLElement {
   return node instanceof HTMLElement && node.classList.contains(FIELD_CLASS)
 }
@@ -118,6 +129,10 @@ const MathAnswerEditor = forwardRef<MathAnswerEditorHandle, MathAnswerEditorProp
   const [isEmpty, setIsEmpty] = useState(!initialValue.trim())
   const onChangeRef = useRef(onChange)
   const onModeChangeRef = useRef(onModeChange)
+  // The formula being edited. Tapping the symbol palette can take the focus
+  // off it (on phones the keyboard closes), but the student is still
+  // working on that formula until they move back into the text.
+  const currentFieldRef = useRef<MathfieldElement | null>(null)
   onChangeRef.current = onChange
   onModeChangeRef.current = onModeChange
 
@@ -132,7 +147,9 @@ const MathAnswerEditor = forwardRef<MathAnswerEditorHandle, MathAnswerEditorProp
   const activeField = useCallback((): MathfieldElement | null => {
     const root = rootRef.current
     const active = document.activeElement
-    return active instanceof MathfieldElement && root?.contains(active) ? active : null
+    if (active instanceof MathfieldElement && root?.contains(active)) return active
+    const current = currentFieldRef.current
+    return current && root?.contains(current) ? current : null
   }, [])
 
   const leaveField = useCallback(
@@ -140,6 +157,7 @@ const MathAnswerEditor = forwardRef<MathAnswerEditorHandle, MathAnswerEditorProp
       const field = fieldOf(mf)
       const root = rootRef.current
       if (!field || !root) return
+      currentFieldRef.current = null
       const text = textNodeBeside(field, side)
       root.focus({ preventScroll: true })
       placeCaret(text, side === 'after' ? (text.data.startsWith(ZWSP) ? 1 : 0) : text.length)
@@ -163,11 +181,27 @@ const MathAnswerEditor = forwardRef<MathAnswerEditorHandle, MathAnswerEditorProp
       mf.addEventListener('mount', () => {
         // Only settable once the field is in the document.
         mf.menuItems = []
+        mf.inlineShortcuts = { ...mf.inlineShortcuts, ...OPERATOR_SHORTCUTS }
         // MathLive hides the phone's own keyboard, expecting its virtual
         // one; the palette plus the native keyboard is what this editor
         // uses instead, so let the native keyboard show.
         mf.shadowRoot?.querySelector('[part=keyboard-sink]')?.setAttribute('inputmode', 'text')
       })
+      // Touch keyboards deliver text as input events, which skip MathLive's
+      // shortcuts (those only cover key presses), so swap the operator in
+      // before MathLive's own input handler in the shadow root sees it.
+      mf.addEventListener(
+        'input',
+        (event) => {
+          const latex = event instanceof InputEvent && event.data ? OPERATOR_SHORTCUTS[event.data] : undefined
+          if (!latex) return
+          event.stopPropagation()
+          const sink = event.composedPath()[0]
+          if (sink instanceof HTMLElement) sink.textContent = ''
+          mf.executeCommand(['insert', latex])
+        },
+        { capture: true },
+      )
       mf.addEventListener('input', emit)
       mf.addEventListener('move-out', (event) => {
         event.preventDefault()
@@ -255,7 +289,9 @@ const MathAnswerEditor = forwardRef<MathAnswerEditorHandle, MathAnswerEditorProp
     const root = rootRef.current
     if (!root) return
     function handleFocusIn(event: FocusEvent) {
-      onModeChangeRef.current?.(event.target instanceof MathfieldElement ? 'math' : 'text')
+      const mf = event.target instanceof MathfieldElement ? event.target : null
+      currentFieldRef.current = mf
+      onModeChangeRef.current?.(mf ? 'math' : 'text')
     }
     // Phone keyboards report their return key as a paragraph insertion
     // rather than an Enter keydown; both must become the same <br>.
@@ -281,6 +317,7 @@ const MathAnswerEditor = forwardRef<MathAnswerEditorHandle, MathAnswerEditorProp
       insert(latex) {
         const mf = activeField()
         if (mf) {
+          if (document.activeElement !== mf) mf.focus()
           mf.executeCommand(['insert', latex])
           emit()
         } else {
@@ -298,6 +335,7 @@ const MathAnswerEditor = forwardRef<MathAnswerEditorHandle, MathAnswerEditorProp
         const mf = activeField()
         const root = rootRef.current
         if (!mf || !root) return
+        if (document.activeElement !== mf) mf.focus()
         const latex = mf.getValue('latex-without-placeholders')
         if (!latex.trim()) return
         leaveField(mf, 'after')
