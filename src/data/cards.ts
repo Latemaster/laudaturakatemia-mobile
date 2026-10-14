@@ -33,7 +33,7 @@ import maa10Problems from './problems/maa10.json'
 import maa11Problems from './problems/maa11.json'
 import maa12Problems from './problems/maa12.json'
 
-const PROBLEM_SETS: Record<TopicCode, Problem[]> = {
+export const PROBLEM_SETS: Record<TopicCode, Problem[]> = {
   MAA2: maa2Problems as Problem[],
   MAA3: maa3Problems as Problem[],
   MAA4: maa4Problems as Problem[],

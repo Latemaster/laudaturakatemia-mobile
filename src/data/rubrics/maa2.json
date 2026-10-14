@@ -1,0 +1,492 @@
+{
+  "OSAI_T1": {
+    "status": "draft",
+    "maxPoints": 4,
+    "parts": [
+      {
+        "label": "a)",
+        "solution": "Suurin $x$:n potenssi on $x^2$, joten asteluku on $2$.",
+        "criteria": [
+          {
+            "id": "a-degree",
+            "text": "Asteluku $2$",
+            "points": 1
+          }
+        ]
+      },
+      {
+        "label": "b)",
+        "solution": "Vakiotermi on $7$.",
+        "criteria": [
+          {
+            "id": "b-constant",
+            "text": "Vakiotermi $7$",
+            "points": 1
+          }
+        ]
+      },
+      {
+        "label": "c)",
+        "solution": "Toisen asteen termi on $2x^2$.",
+        "criteria": [
+          {
+            "id": "c-term",
+            "text": "Toisen asteen termi $2x^2$ (termi kertoimineen ja muuttujineen)",
+            "points": 1
+          }
+        ],
+        "notes": [
+          "Pelkästä kertoimesta $2$ ei pistettä: kysytään termiä, ei kerrointa."
+        ]
+      },
+      {
+        "label": "d)",
+        "solution": "Ensimmäisen asteen termi on $4x$, joten sen kerroin on $4$.",
+        "criteria": [
+          {
+            "id": "d-coefficient",
+            "text": "Kerroin $4$",
+            "points": 1
+          }
+        ],
+        "notes": [
+          "Vastauksesta $4x$ ei pistettä: kysytään kerrointa, ei termiä."
+        ]
+      }
+    ],
+    "reviewNote": "c) and d) are a deliberate pair (term vs. coefficient); the notes make the distinction strict. Loosen if that feels too harsh for a 1 p item."
+  },
+  "OSAI_T2": {
+    "status": "draft",
+    "maxPoints": 4,
+    "parts": [
+      {
+        "label": "a)",
+        "solution": "$$(3x+4)+(-5x-7) = 3x+4-5x-7 = -2x-3$$",
+        "criteria": [
+          {
+            "id": "a-brackets",
+            "text": "Sulut poistettu oikein: $3x+4-5x-7$",
+            "points": 1
+          },
+          {
+            "id": "a-result",
+            "text": "Tulos $-2x-3$",
+            "points": 1
+          }
+        ]
+      },
+      {
+        "label": "b)",
+        "solution": "$$-3(2x-4)-(-3x+6) = -6x+12+3x-6 = -3x+6$$",
+        "criteria": [
+          {
+            "id": "b-expand",
+            "text": "Sulut poistettu oikein etumerkkeineen: $-6x+12+3x-6$",
+            "points": 1
+          },
+          {
+            "id": "b-result",
+            "text": "Tulos $-3x+6$",
+            "points": 1
+          }
+        ],
+        "notes": [
+          "Jos toisen sulun etumerkit on jätetty vaihtamatta ($-3x-6$ tai vastaava), mutta jatko on johdonmukainen, b-kohdasta 1 p."
+        ]
+      }
+    ]
+  },
+  "OSAI_T3": {
+    "status": "draft",
+    "maxPoints": 4,
+    "parts": [
+      {
+        "label": "a)",
+        "solution": "Binomin neliön kaavalla $(a+b)^2 = a^2+2ab+b^2$:\n$$(4x+3)^2 = (4x)^2+2 \\cdot 4x \\cdot 3+3^2$$\n$$= 16x^2+24x+9$$",
+        "criteria": [
+          {
+            "id": "a-method",
+            "text": "Binomin neliön kaava tai kertolasku $(4x+3)(4x+3)$ auki kerrottuna",
+            "points": 1
+          },
+          {
+            "id": "a-result",
+            "text": "Tulos $16x^2+24x+9$",
+            "points": 1
+          }
+        ],
+        "notes": [
+          "Vastauksesta $16x^2+9$ (keskitermi puuttuu) 0 p."
+        ]
+      },
+      {
+        "label": "b)",
+        "solution": "Lauseke on binomin neliön muotoa:\n$$x^2+10x+25 = x^2+2 \\cdot 5 \\cdot x+5^2 = (x+5)^2$$",
+        "criteria": [
+          {
+            "id": "b-recognise",
+            "text": "Tunnistettu binomin neliö $x^2+2 \\cdot 5x+5^2$ (tai etsitty luvut, joiden tulo on $25$ ja summa $10$)",
+            "points": 1
+          },
+          {
+            "id": "b-result",
+            "text": "Tekijämuoto $(x+5)^2$ (tai $(x+5)(x+5)$)",
+            "points": 1
+          }
+        ]
+      }
+    ]
+  },
+  "OSAI_T4": {
+    "status": "draft",
+    "maxPoints": 5,
+    "parts": [
+      {
+        "label": "a)",
+        "solution": "$$\\sqrt{2} \\cdot \\sqrt{8} = \\sqrt{2 \\cdot 8} = \\sqrt{16} = 4$$",
+        "criteria": [
+          {
+            "id": "a-combine",
+            "text": "Juuret yhdistetty: $\\sqrt{2 \\cdot 8} = \\sqrt{16}$",
+            "points": 1
+          },
+          {
+            "id": "a-result",
+            "text": "Tulos $4$",
+            "points": 1
+          }
+        ]
+      },
+      {
+        "label": "b)",
+        "solution": "$$\\frac{\\sqrt{12}+\\sqrt{75}}{7} = \\frac{\\sqrt{4 \\cdot 3}+\\sqrt{25 \\cdot 3}}{7}$$\n$$= \\frac{2\\sqrt{3}+5\\sqrt{3}}{7} = \\frac{7\\sqrt{3}}{7} = \\sqrt{3}$$",
+        "criteria": [
+          {
+            "id": "b-sqrt12",
+            "text": "$\\sqrt{12} = 2\\sqrt{3}$",
+            "points": 1
+          },
+          {
+            "id": "b-sqrt75",
+            "text": "$\\sqrt{75} = 5\\sqrt{3}$",
+            "points": 1
+          },
+          {
+            "id": "b-result",
+            "text": "Sievennetty muotoon $\\sqrt{3}$",
+            "points": 1
+          }
+        ],
+        "notes": [
+          "Laskimella saadusta likiarvosta $1{,}73$ ilman sievennystä 0 p."
+        ]
+      }
+    ]
+  },
+  "OSAI_T5": {
+    "status": "draft",
+    "maxPoints": 4,
+    "parts": [
+      {
+        "label": "a)",
+        "solution": "$$x^2-16 = 0 \\iff x^2 = 16$$\n$$\\iff x = \\pm\\sqrt{16} = \\pm 4$$\n(Vaihtoehtoisesti $(x-4)(x+4) = 0$, joten $x = 4$ tai $x = -4$.)",
+        "criteria": [
+          {
+            "id": "a-isolate",
+            "text": "Yhtälö muotoon $x^2 = 16$ (tai tekijöihin $(x-4)(x+4) = 0$)",
+            "points": 1
+          },
+          {
+            "id": "a-roots",
+            "text": "Molemmat ratkaisut $x = 4$ ja $x = -4$",
+            "points": 1
+          }
+        ],
+        "notes": [
+          "Jos vain ratkaisu $x = 4$ on annettu, a-kohdasta 1 p."
+        ]
+      },
+      {
+        "label": "b)",
+        "solution": "$$x^3 = 8 \\iff x = \\sqrt[3]{8} = 2$$\nParittoman asteen yhtälöllä on vain yksi reaalijuuri.",
+        "criteria": [
+          {
+            "id": "b-root",
+            "text": "Kuutiojuuri otettu: $x = \\sqrt[3]{8}$",
+            "points": 1
+          },
+          {
+            "id": "b-result",
+            "text": "Ratkaisu $x = 2$ (ja vain se)",
+            "points": 1
+          }
+        ],
+        "notes": [
+          "Vastauksesta $x = \\pm 2$ b-kohdasta 1 p, koska $(-2)^3 = -8$."
+        ]
+      }
+    ],
+    "reviewNote": "Source answerBlocks contain a c) part (x^2+16=0, no real solutions) but the prompt only asks a) and b). Either add 'c) x^2+16=0' to the prompt or drop the c) answer block. The rubric only scores a) and b)."
+  },
+  "OSAI_T6": {
+    "status": "draft",
+    "maxPoints": 6,
+    "parts": [
+      {
+        "label": "a)",
+        "solution": "Kuvaajasta nähdään, että suora leikkaa $x$-akselin kohdassa $x = 2$ ja on $x$-akselin alapuolella sen oikealla puolella. Siis $f(x) < 0$, kun $x > 2$.",
+        "criteria": [
+          {
+            "id": "a-zero",
+            "text": "Nollakohta $x = 2$ luettu kuvaajasta",
+            "points": 1
+          },
+          {
+            "id": "a-answer",
+            "text": "$f(x) < 0$, kun $x > 2$",
+            "points": 1
+          }
+        ]
+      },
+      {
+        "label": "b)",
+        "solution": "Funktio on $x$-akselilla tai sen yläpuolella, kun $x \\le 2$. Siis $f(x) \\ge 0 \\iff x \\le 2$.",
+        "criteria": [
+          {
+            "id": "b-interval",
+            "text": "Väli $x$:n arvoille, jotka ovat pienempiä kuin $2$",
+            "points": 1
+          },
+          {
+            "id": "b-endpoint",
+            "text": "Päätepiste mukana: $x \\le 2$ (ei $x < 2$)",
+            "points": 1
+          }
+        ]
+      },
+      {
+        "label": "c)",
+        "solution": "$$-3x+6 \\ge 0 \\iff -3x \\ge -6 \\quad \\|:(-3) < 0$$\nNegatiivisella luvulla jaettaessa epäyhtälön suunta vaihtuu:\n$$x \\le 2$$",
+        "criteria": [
+          {
+            "id": "c-setup",
+            "text": "Epäyhtälö $-3x+6 \\ge 0$ muodostettu ja muokattu muotoon $-3x \\ge -6$",
+            "points": 1
+          },
+          {
+            "id": "c-flip",
+            "text": "Jaettu luvulla $-3$ ja epäyhtälön suunta käännetty: $x \\le 2$",
+            "points": 1
+          }
+        ],
+        "notes": [
+          "Pelkästä vastauksesta $x \\le 2$ ilman algebrallista ratkaisua c-kohdasta 0 p (vastaus on jo b-kohdassa)."
+        ]
+      }
+    ]
+  },
+  "OSAI_T7": {
+    "status": "draft",
+    "maxPoints": 8,
+    "parts": [
+      {
+        "label": "a)",
+        "solution": "Ratkaisukaavalla, kun $a = 1$, $b = 7$ ja $c = -5$:\n$$x = \\frac{-7 \\pm \\sqrt{7^2-4 \\cdot 1 \\cdot (-5)}}{2 \\cdot 1}$$\n$$= \\frac{-7 \\pm \\sqrt{69}}{2}$$",
+        "criteria": [
+          {
+            "id": "a-formula",
+            "text": "Ratkaisukaava sovellettu kertoimilla $a = 1$, $b = 7$, $c = -5$",
+            "points": 1
+          },
+          {
+            "id": "a-discriminant",
+            "text": "Juurrettava $7^2-4 \\cdot 1 \\cdot (-5) = 69$",
+            "points": 1
+          },
+          {
+            "id": "a-roots",
+            "text": "Ratkaisut $x = \\frac{-7 \\pm \\sqrt{69}}{2}$",
+            "points": 1
+          }
+        ],
+        "notes": [
+          "Pelkistä likiarvoista $x \\approx 0{,}65$ ja $x \\approx -7{,}65$ ilman tarkkaa arvoa enintään 2 p."
+        ]
+      },
+      {
+        "label": "b)",
+        "solution": "Jaetaan yhtälö luvulla $4$: $x^2+2x+4 = 0$.\nDiskriminantti $D = 2^2-4 \\cdot 1 \\cdot 4 = -12 < 0$, joten yhtälöllä ei ole reaalisia ratkaisuja.\n(Ilman jakamista $D = 8^2-4 \\cdot 4 \\cdot 16 = -192 < 0$.)",
+        "criteria": [
+          {
+            "id": "b-discriminant",
+            "text": "Diskriminantti laskettu: $D = -12$ (tai $D = -192$ jakamatta yhtälöä)",
+            "points": 1
+          },
+          {
+            "id": "b-negative",
+            "text": "Todettu, että $D < 0$ (tai neliöjuuren alla negatiivinen luku)",
+            "points": 1
+          },
+          {
+            "id": "b-conclusion",
+            "text": "Johtopäätös: yhtälöllä ei ole reaalisia ratkaisuja",
+            "points": 1
+          }
+        ]
+      },
+      {
+        "label": "c)",
+        "solution": "Tulon nollasäännöllä:\n$$x-1 = 0 \\text{ tai } x+5 = 0$$\n$$\\iff x = 1 \\text{ tai } x = -5$$",
+        "criteria": [
+          {
+            "id": "c-rule",
+            "text": "Tulon nollasääntö käytetty: $x-1 = 0$ tai $x+5 = 0$",
+            "points": 1
+          },
+          {
+            "id": "c-roots",
+            "text": "Ratkaisut $x = 1$ ja $x = -5$",
+            "points": 1
+          }
+        ],
+        "notes": [
+          "Jos sulut on kerrottu auki ja yhtälö ratkaistu ratkaisukaavalla oikein, täydet pisteet."
+        ]
+      }
+    ],
+    "reviewNote": "Three equations scored as one 8 p short problem (3+3+2) rather than 12 p, since each part is routine Osa I work."
+  },
+  "OSAI_T8": {
+    "status": "draft",
+    "maxPoints": 6,
+    "parts": [
+      {
+        "solution": "Erotetaan yhteinen tekijä:\n$$x^4+2x^3-3x^2 = x^2(x^2+2x-3)$$\n$$= x^2(x-1)(x+3)$$\nNollakohdat ovat $x = 0$ (kaksinkertainen), $x = 1$ ja $x = -3$.\nMerkkikaavio testikohdilla, kun $f(x) = x^4+2x^3-3x^2$:\n$f(-4) = 80 > 0$, $f(-1) = -4 < 0$, $f(0{,}5) = -0{,}4375 < 0$, $f(2) = 20 > 0$.\n(Vaihtoehtoisesti: $x^2 \\ge 0$ aina, joten lausekkeen merkki määräytyy tekijästä $(x-1)(x+3)$, kun $x \\ne 0$.)\nSiis $x^4+2x^3-3x^2 > 0$, kun $x < -3$ tai $x > 1$.",
+        "criteria": [
+          {
+            "id": "factor",
+            "text": "Yhteinen tekijä $x^2$ erotettu: $x^2(x^2+2x-3)$",
+            "points": 1
+          },
+          {
+            "id": "zeros-quadratic",
+            "text": "Toisen asteen tekijän nollakohdat $x = 1$ ja $x = -3$",
+            "points": 1
+          },
+          {
+            "id": "zero-double",
+            "text": "Nollakohta $x = 0$ huomioitu",
+            "points": 1
+          },
+          {
+            "id": "sign",
+            "text": "Lausekkeen merkki perusteltu kaikilla väleillä (merkkikaavio testikohtineen tai tekijöiden merkit)",
+            "points": 2
+          },
+          {
+            "id": "answer",
+            "text": "Vastaus: $x < -3$ tai $x > 1$",
+            "points": 1
+          }
+        ],
+        "notes": [
+          "Jos merkkikaaviosta puuttuu perustelu (testikohdat tai tekijöiden merkit), kohdasta ”merkki perusteltu” 1 p.",
+          "Jos vastaukseen on otettu mukaan väli $0 < x < 1$ tai $-3 < x < 0$, kohdasta ”vastaus” 0 p.",
+          "Pelkästä vastauksesta ilman perusteluja 1 p."
+        ]
+      }
+    ]
+  },
+  "OSAI_T9": {
+    "status": "draft",
+    "maxPoints": 5,
+    "parts": [
+      {
+        "label": "a)",
+        "solution": "Nimittäjä ei saa olla nolla:\n$$2x+4 = 0 \\iff x = -2$$\nMäärittelyjoukko on $\\mathbb{R} \\setminus \\{-2\\}$ eli $x \\ne -2$.",
+        "criteria": [
+          {
+            "id": "a-denominator",
+            "text": "Nimittäjän nollakohta ratkaistu: $2x+4 = 0 \\iff x = -2$",
+            "points": 1
+          },
+          {
+            "id": "a-domain",
+            "text": "Määrittelyjoukko $\\mathbb{R} \\setminus \\{-2\\}$ (tai ehto $x \\ne -2$)",
+            "points": 1
+          }
+        ]
+      },
+      {
+        "label": "b)",
+        "solution": "$$\\frac{x^2-4}{2x+4} = \\frac{(x-2)(x+2)}{2(x+2)} = \\frac{x-2}{2}, \\quad x \\ne -2$$",
+        "criteria": [
+          {
+            "id": "b-numerator",
+            "text": "Osoittaja jaettu tekijöihin: $(x-2)(x+2)$",
+            "points": 1
+          },
+          {
+            "id": "b-denominator",
+            "text": "Nimittäjä jaettu tekijöihin: $2(x+2)$",
+            "points": 1
+          },
+          {
+            "id": "b-result",
+            "text": "Supistettu muotoon $\\frac{x-2}{2}$ (tai $\\frac{1}{2}x-1$)",
+            "points": 1
+          }
+        ],
+        "notes": [
+          "Supistaminen ilman tekijöihin jakoa (esim. $x^2$ ja $2x$ ”supistettu”) 0 p kohdasta ”supistettu”."
+        ]
+      }
+    ],
+    "reviewNote": "Judgment call: b) does not require restating x != -2 after simplifying, since a) already asks for the domain. Make it a criterion if you want students to always write it."
+  },
+  "OSAI_T10": {
+    "status": "draft",
+    "maxPoints": 5,
+    "parts": [
+      {
+        "label": "a)",
+        "solution": "Lausekkeessa on parillisia juuria ($\\sqrt[4]{x}$ ja $\\sqrt{x}$), jotka on määritelty vain, kun $x \\ge 0$.\nLisäksi nimittäjä $\\sqrt[3]{\\sqrt{x}}$ ei saa olla nolla, joten $x \\ne 0$.\nMäärittelyehto on siis $x > 0$.",
+        "criteria": [
+          {
+            "id": "a-even-root",
+            "text": "Parillisen juuren vuoksi $x \\ge 0$",
+            "points": 1
+          },
+          {
+            "id": "a-denominator",
+            "text": "Nimittäjä ei saa olla nolla, joten $x = 0$ hylätään: ehto $x > 0$",
+            "points": 1
+          }
+        ]
+      },
+      {
+        "label": "b)",
+        "solution": "Muutetaan juuret potensseiksi:\n$$\\frac{\\sqrt[4]{x}}{\\sqrt[3]{\\sqrt{x}}} = \\frac{x^{\\frac{1}{4}}}{\\left(x^{\\frac{1}{2}}\\right)^{\\frac{1}{3}}} = \\frac{x^{\\frac{1}{4}}}{x^{\\frac{1}{6}}}$$\n$$= x^{\\frac{1}{4}-\\frac{1}{6}} = x^{\\frac{1}{12}}$$",
+        "criteria": [
+          {
+            "id": "b-powers",
+            "text": "Juuret muutettu murtopotensseiksi: $\\sqrt[4]{x} = x^{\\frac{1}{4}}$ ja $\\sqrt[3]{\\sqrt{x}} = x^{\\frac{1}{6}}$",
+            "points": 1
+          },
+          {
+            "id": "b-divide",
+            "text": "Potenssien jakolasku: eksponentit vähennetty $\\frac{1}{4}-\\frac{1}{6}$",
+            "points": 1
+          },
+          {
+            "id": "b-result",
+            "text": "Tulos $x^{\\frac{1}{12}}$ (tai $\\sqrt[12]{x}$)",
+            "points": 1
+          }
+        ]
+      }
+    ],
+    "reviewNote": "Source a) solution is confused: it says the domain follows the *odd* roots (it is the even roots that require x >= 0) and calls h a rational function. The rubric's model solution is rewritten; consider fixing the source answerBlocks too."
+  }
+}

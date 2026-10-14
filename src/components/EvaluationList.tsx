@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { COURSE_MAP } from '../data/courses'
+import { COURSE_MAP, COURSES } from '../data/courses'
 import {
   EVALUATION_EXERCISES,
   exerciseMaxPoints,
@@ -8,16 +8,73 @@ import {
   saveEvaluation,
   scoredPoints,
   type EvaluationAttempt,
+  type EvaluationExercise,
   type EvaluationState,
 } from '../data/evaluation'
+import { RUBRIC_EXERCISES } from '../data/rubrics'
 import EvaluationView from './EvaluationView'
 
-// Test tab for self-evaluation: a handful of exercises the student answers
-// and then scores against a YTL-style point breakdown.
+const ALL_EXERCISES: EvaluationExercise[] = [...EVALUATION_EXERCISES, ...RUBRIC_EXERCISES]
+
+// Course tasks that have a rubric, grouped by course in course order.
+const RUBRIC_GROUPS = COURSES.map(({ code }) => ({
+  code,
+  exercises: RUBRIC_EXERCISES.filter((exercise) => exercise.topic.code === code),
+})).filter((group) => group.exercises.length > 0)
+
+interface ExerciseButtonProps {
+  exercise: EvaluationExercise
+  attempt: EvaluationAttempt | undefined
+  draft?: boolean
+  onOpen: () => void
+}
+
+function ExerciseButton({ exercise, attempt, draft, onOpen }: ExerciseButtonProps) {
+  const max = exerciseMaxPoints(exercise)
+  const progress = attempt ? markedCount(exercise, attempt.scores) : null
+  const evaluated = progress !== null && progress.marked === progress.total
+  return (
+    <button
+      type="button"
+      onClick={onOpen}
+      className="flex flex-col gap-2 rounded-2xl border border-ink/10 bg-surface p-4 text-left shadow-sm transition-colors active:bg-surface-2"
+    >
+      <div className="flex items-center justify-between gap-2">
+        <span className="flex items-center gap-2">
+          <span
+            className={`inline-flex w-fit items-center rounded-full px-3 py-1 text-xs font-semibold ring-1 ${COURSE_MAP[exercise.topic.code].badgeClass}`}
+          >
+            {exercise.topic.code}
+          </span>
+          {draft && (
+            <span className="inline-flex items-center rounded-full bg-ink/5 px-2 py-1 text-xs font-semibold text-ink-dim ring-1 ring-ink/10">
+              Luonnos
+            </span>
+          )}
+        </span>
+        <span className="shrink-0 text-xs font-semibold text-ink-dim">
+          {exercise.length === 'short' ? 'Lyhyt' : 'Pitkä'} · {max} p
+        </span>
+      </div>
+      <span className="font-semibold text-ink">{exercise.title}</span>
+      <span className={`text-xs font-semibold ${evaluated ? 'text-good' : 'text-ink-dim'}`}>
+        {attempt === undefined
+          ? 'Ei vastattu'
+          : evaluated
+            ? `Arvioitu: ${scoredPoints(exercise, attempt.scores)} / ${max} p`
+            : `Vastattu · arvioitu ${progress!.marked} / ${progress!.total} kriteeriä`}
+      </span>
+    </button>
+  )
+}
+
+// Self-evaluation tab: the student answers an exercise and then scores it
+// against a YTL-style point breakdown. Lists the hand-written test set and
+// every course task that has a rubric.
 export default function EvaluationList() {
   const [state, setState] = useState<EvaluationState>(loadEvaluation)
   const [openId, setOpenId] = useState<string | null>(null)
-  const openExercise = EVALUATION_EXERCISES.find((exercise) => exercise.id === openId)
+  const openExercise = ALL_EXERCISES.find((exercise) => exercise.id === openId)
 
   function update(exerciseId: string, change: (prev: EvaluationAttempt) => EvaluationAttempt) {
     setState((prev) => {
@@ -36,40 +93,34 @@ export default function EvaluationList() {
           itse, montako pistettä vastauksesi ansaitsee.
         </p>
         <div className="flex flex-col gap-3">
-          {EVALUATION_EXERCISES.map((exercise) => {
-            const attempt = state[exercise.id]
-            const max = exerciseMaxPoints(exercise)
-            const progress = attempt ? markedCount(exercise, attempt.scores) : null
-            const evaluated = progress !== null && progress.marked === progress.total
-            return (
-              <button
-                key={exercise.id}
-                type="button"
-                onClick={() => setOpenId(exercise.id)}
-                className="flex flex-col gap-2 rounded-2xl border border-ink/10 bg-surface p-4 text-left shadow-sm transition-colors active:bg-surface-2"
-              >
-                <div className="flex items-center justify-between gap-2">
-                  <span
-                    className={`inline-flex w-fit items-center rounded-full px-3 py-1 text-xs font-semibold ring-1 ${COURSE_MAP[exercise.topic.code].badgeClass}`}
-                  >
-                    {exercise.topic.code}
-                  </span>
-                  <span className="shrink-0 text-xs font-semibold text-ink-dim">
-                    {exercise.length === 'short' ? 'Lyhyt' : 'Pitkä'} · {max} p
-                  </span>
-                </div>
-                <span className="font-semibold text-ink">{exercise.title}</span>
-                <span className={`text-xs font-semibold ${evaluated ? 'text-good' : 'text-ink-dim'}`}>
-                  {attempt === undefined
-                    ? 'Ei vastattu'
-                    : evaluated
-                      ? `Arvioitu: ${scoredPoints(exercise, attempt.scores)} / ${max} p`
-                      : `Vastattu · arvioitu ${progress!.marked} / ${progress!.total} kriteeriä`}
-                </span>
-              </button>
-            )
-          })}
+          {EVALUATION_EXERCISES.map((exercise) => (
+            <ExerciseButton
+              key={exercise.id}
+              exercise={exercise}
+              attempt={state[exercise.id]}
+              onOpen={() => setOpenId(exercise.id)}
+            />
+          ))}
         </div>
+
+        {RUBRIC_GROUPS.map((group) => (
+          <section key={group.code} className="mt-8">
+            <h2 className="mb-3 text-lg font-semibold text-ink">
+              {group.code} · {COURSE_MAP[group.code].name}
+            </h2>
+            <div className="flex flex-col gap-3">
+              {group.exercises.map((exercise) => (
+                <ExerciseButton
+                  key={exercise.id}
+                  exercise={exercise}
+                  attempt={state[exercise.id]}
+                  draft={exercise.status === 'draft'}
+                  onOpen={() => setOpenId(exercise.id)}
+                />
+              ))}
+            </div>
+          </section>
+        ))}
       </div>
 
       {openExercise && (

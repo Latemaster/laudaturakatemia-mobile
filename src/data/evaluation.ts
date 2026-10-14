@@ -1,29 +1,13 @@
-import type { ProblemBlock, Topic } from '../types'
+import type { ProblemBlock, RubricPart, Topic } from '../types'
+import { RUBRIC_EXERCISES } from './rubrics'
+
+export type { RubricCriterion, RubricPart } from '../types'
 
 // Self-evaluation test set: open-answer exercises with a point breakdown in
 // the style of the Ylioppilastutkintolautakunta's "hyvän vastauksen
 // piirteet". Each part has a model solution and the scoring criteria it is
 // marked against; the student goes through the criteria and gives
 // themselves the points their own answer earns.
-
-export interface RubricCriterion {
-  id: string
-  // What the answer has to contain for these points, e.g. "Derivaatta
-  // $f'(x) = 3x^2 - 6x - 9$".
-  text: string
-  points: number
-}
-
-export interface RubricPart {
-  // "a)", "b)" ... or undefined for a single-part exercise.
-  label?: string
-  // Model solution shown above the criteria, in the MathText format.
-  solution: string
-  criteria: RubricCriterion[]
-  // Partial-credit and deduction notes, like the "Huom." lines in the
-  // YTL descriptions.
-  notes?: string[]
-}
 
 export interface EvaluationExercise {
   id: string
@@ -274,7 +258,7 @@ export function loadEvaluation(): EvaluationState {
     const parsed: unknown = JSON.parse(stored)
     if (typeof parsed !== 'object' || parsed === null) return {}
     const result: EvaluationState = {}
-    for (const exercise of EVALUATION_EXERCISES) {
+    for (const exercise of [...EVALUATION_EXERCISES, ...RUBRIC_EXERCISES]) {
       const raw = (parsed as Record<string, unknown>)[exercise.id] as Partial<EvaluationAttempt> | undefined
       if (!raw || typeof raw.answer !== 'string') continue
       const scores: CriterionScores = {}

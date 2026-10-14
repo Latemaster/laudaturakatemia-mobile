@@ -168,6 +168,30 @@ export interface Problem {
   answerBlocks: ProblemBlock[]
 }
 
+// YTL-style scoring of an open-answer problem, in the spirit of the
+// "hyvän vastauksen piirteet": a model solution per part and the criteria
+// the student marks their own answer against. Used by the hand-written
+// exercises in data/evaluation.ts and the per-course rubrics in
+// data/rubrics/<course>.json.
+export interface RubricCriterion {
+  id: string
+  // What the answer has to contain for these points, e.g. "Derivaatta
+  // $f'(x) = 3x^2 - 6x - 9$".
+  text: string
+  points: number
+}
+
+export interface RubricPart {
+  // "a)", "b)" ... or undefined for a single-part exercise.
+  label?: string
+  // Model solution shown above the criteria, in the MathText format.
+  solution: string
+  criteria: RubricCriterion[]
+  // Partial-credit and deduction notes, like the "Huom." lines in the
+  // YTL descriptions.
+  notes?: string[]
+}
+
 export interface TaskCard extends BaseCard {
   type: 'task'
   problem: Problem
