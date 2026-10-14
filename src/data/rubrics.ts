@@ -38,8 +38,10 @@ function showDrafts(): boolean {
 }
 
 export interface RubricExercise extends EvaluationExercise {
+  problemId: string
   section: string
   status: ProblemRubric['status']
+  reviewNote?: string
 }
 
 function buildRubricExercises(): RubricExercise[] {
@@ -60,8 +62,10 @@ function buildRubricExercises(): RubricExercise[] {
           length: rubric.maxPoints >= 12 ? 'long' : 'short',
           promptBlocks: problem.promptBlocks,
           parts: rubric.parts,
+          problemId: problem.id,
           section: problem.section,
           status: rubric.status,
+          reviewNote: rubric.reviewNote,
         },
       ]
     })

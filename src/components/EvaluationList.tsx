@@ -13,6 +13,7 @@ import {
 } from '../data/evaluation'
 import { RUBRIC_EXERCISES } from '../data/rubrics'
 import EvaluationView from './EvaluationView'
+import RubricReview from './RubricReview'
 
 const ALL_EXERCISES: EvaluationExercise[] = [...EVALUATION_EXERCISES, ...RUBRIC_EXERCISES]
 
@@ -21,6 +22,10 @@ const RUBRIC_GROUPS = COURSES.map(({ code }) => ({
   code,
   exercises: RUBRIC_EXERCISES.filter((exercise) => exercise.topic.code === code),
 })).filter((group) => group.exercises.length > 0)
+
+// Draft rubrics are only loaded in dev or with ?drafts, so their presence
+// means the reviewer is here.
+const DRAFTS = RUBRIC_EXERCISES.filter((exercise) => exercise.status === 'draft')
 
 interface ExerciseButtonProps {
   exercise: EvaluationExercise
@@ -74,6 +79,7 @@ function ExerciseButton({ exercise, attempt, draft, onOpen }: ExerciseButtonProp
 export default function EvaluationList() {
   const [state, setState] = useState<EvaluationState>(loadEvaluation)
   const [openId, setOpenId] = useState<string | null>(null)
+  const [mode, setMode] = useState<'practice' | 'review'>(DRAFTS.length > 0 ? 'review' : 'practice')
   const openExercise = ALL_EXERCISES.find((exercise) => exercise.id === openId)
 
   function update(exerciseId: string, change: (prev: EvaluationAttempt) => EvaluationAttempt) {
@@ -88,39 +94,69 @@ export default function EvaluationList() {
     <div className="grid-bg h-dvh overflow-y-auto bg-page px-6 pb-10 pt-[calc(env(safe-area-inset-top)+4.5rem)]">
       <div className="mx-auto w-full max-w-md">
         <h1 className="mb-1 text-2xl font-bold text-ink">Arviointi</h1>
-        <p className="mb-6 text-sm text-ink-dim">
-          Vastaa tehtävään ja tarkista vastauksesi. Saat näkyviin pisteytyksen, jonka kriteerien perusteella arvioit
-          itse, montako pistettä vastauksesi ansaitsee.
-        </p>
-        <div className="flex flex-col gap-3">
-          {EVALUATION_EXERCISES.map((exercise) => (
-            <ExerciseButton
-              key={exercise.id}
-              exercise={exercise}
-              attempt={state[exercise.id]}
-              onOpen={() => setOpenId(exercise.id)}
-            />
-          ))}
-        </div>
+        {DRAFTS.length > 0 && (
+          <div role="tablist" className="mb-5 mt-3 flex rounded-xl bg-surface p-1 shadow-sm ring-1 ring-ink/5">
+            {(
+              [
+                ['review', `Luonnokset (${DRAFTS.length})`],
+                ['practice', 'Harjoittele'],
+              ] as const
+            ).map(([id, text]) => (
+              <button
+                key={id}
+                type="button"
+                role="tab"
+                aria-selected={mode === id}
+                onClick={() => setMode(id)}
+                className={`flex-1 rounded-lg px-3 py-2 text-sm font-semibold ${
+                  mode === id ? 'bg-accent text-white' : 'text-ink-dim'
+                }`}
+              >
+                {text}
+              </button>
+            ))}
+          </div>
+        )}
 
-        {RUBRIC_GROUPS.map((group) => (
-          <section key={group.code} className="mt-8">
-            <h2 className="mb-3 text-lg font-semibold text-ink">
-              {group.code} · {COURSE_MAP[group.code].name}
-            </h2>
+        {mode === 'review' ? (
+          <RubricReview exercises={DRAFTS} />
+        ) : (
+          <>
+            <p className="mb-6 text-sm text-ink-dim">
+              Vastaa tehtävään ja tarkista vastauksesi. Saat näkyviin pisteytyksen, jonka kriteerien perusteella arvioit
+              itse, montako pistettä vastauksesi ansaitsee.
+            </p>
             <div className="flex flex-col gap-3">
-              {group.exercises.map((exercise) => (
+              {EVALUATION_EXERCISES.map((exercise) => (
                 <ExerciseButton
                   key={exercise.id}
                   exercise={exercise}
                   attempt={state[exercise.id]}
-                  draft={exercise.status === 'draft'}
                   onOpen={() => setOpenId(exercise.id)}
                 />
               ))}
             </div>
-          </section>
-        ))}
+
+            {RUBRIC_GROUPS.map((group) => (
+              <section key={group.code} className="mt-8">
+                <h2 className="mb-3 text-lg font-semibold text-ink">
+                  {group.code} · {COURSE_MAP[group.code].name}
+                </h2>
+                <div className="flex flex-col gap-3">
+                  {group.exercises.map((exercise) => (
+                    <ExerciseButton
+                      key={exercise.id}
+                      exercise={exercise}
+                      attempt={state[exercise.id]}
+                      draft={exercise.status === 'draft'}
+                      onOpen={() => setOpenId(exercise.id)}
+                    />
+                  ))}
+                </div>
+              </section>
+            ))}
+          </>
+        )}
       </div>
 
       {openExercise && (

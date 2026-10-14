@@ -108,6 +108,9 @@ One batch is **one section of one course**, e.g. MAA3 Osa II (10 problems, or 5 
    - Judgment calls the reviewer is most likely to want changed.
 
 When the reviewer sends feedback:
+- It usually arrives as a pasted message from the app's review mode. Open the site with `?drafts`, go to
+  Arviointi, then Luonnokset, and use "Kopioi palaute". The message lists approved rubrics, rubrics that
+  need fixing with a comment for each, and general rules.
 - **Problem-specific fixes** go into that rubric.
 - **General rules** ("always…", "never…", "in MAA5…") go into the Korjausloki as a new dated line.
   If needed, also fix the rubrics already written that break the new rule.
