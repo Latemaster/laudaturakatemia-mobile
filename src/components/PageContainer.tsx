@@ -9,12 +9,12 @@ interface PageContainerProps {
 
 // The scrolling grid-paper page used by Kurssit, Osaaminen and Arviointi.
 // On phones it fills the screen below the floating menu; on laptops it
-// fills the content panel next to the sidebar.
+// fills the framed content panel, which paints its own background.
 export default function PageContainer({ children, wide = false }: PageContainerProps) {
   const { isDesktop } = useLayout()
   if (isDesktop) {
     return (
-      <div className="grid-bg h-full overflow-y-auto bg-page px-10 pb-12 pt-10">
+      <div className="h-full overflow-y-auto px-10 pb-12 pt-8">
         <div className={`mx-auto w-full ${wide ? 'max-w-5xl' : 'max-w-3xl'}`}>{children}</div>
       </div>
     )

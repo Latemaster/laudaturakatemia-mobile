@@ -5,7 +5,7 @@ import type { ReactNode } from 'react'
 
 export function InfoPage({ children }: { children: ReactNode }) {
   return (
-    <div className="grid-bg h-full overflow-y-auto bg-page px-10 pb-16 pt-12">
+    <div className="h-full overflow-y-auto px-10 pb-16 pt-10">
       <div className="mx-auto flex w-full max-w-5xl flex-col gap-12">{children}</div>
     </div>
   )

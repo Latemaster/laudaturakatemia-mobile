@@ -11,6 +11,16 @@ export const ETUSIVU_PAGES: { id: EtusivuPage; label: string }[] = [
   { id: 'tue', label: 'Tue projektia' },
 ]
 
+// What a course opens to in the laptop layout's Kurssit sidebar, as on the
+// laptop site: its learning goals, its theory summary, or its exercises.
+export type CourseView = 'tavoitteet' | 'tiivistelma' | 'tehtavat'
+
+export const COURSE_VIEWS: { id: CourseView; label: string }[] = [
+  { id: 'tavoitteet', label: 'Oppimistavoitteet' },
+  { id: 'tiivistelma', label: 'Tiivistelmä' },
+  { id: 'tehtavat', label: 'Tehtävät' },
+]
+
 export function isMenuSection(section: AppSection): section is MenuSection {
   return section !== 'etusivu' && section !== 'mahdollistajat'
 }

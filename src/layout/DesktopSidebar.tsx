@@ -1,14 +1,16 @@
+import { useState } from 'react'
 import { COURSES } from '../data/courses'
 import { getCourseProgress } from '../data/progress'
 import type { TopicCode } from '../types'
-import { ETUSIVU_PAGES, type AppSection, type EtusivuPage } from './sections'
+import { COURSE_VIEWS, ETUSIVU_PAGES, type AppSection, type CourseView, type EtusivuPage } from './sections'
 
 interface DesktopSidebarProps {
   section: AppSection
   etusivuPage: EtusivuPage
   onEtusivuPageChange: (page: EtusivuPage) => void
-  selectedCourse: TopicCode | null
-  onSelectCourse: (code: TopicCode | null) => void
+  selectedCourse: TopicCode
+  courseView: CourseView
+  onSelectCourseView: (code: TopicCode, view: CourseView) => void
   engagedIds: Record<string, true>
 }
 
@@ -19,15 +21,19 @@ function itemClass(active: boolean) {
 }
 
 // Left column of the laptop layout, like the laptop site's sidebar: the
-// Etusivu sub-pages, or the course list so switching course is one click.
+// Etusivu sub-pages, or the courses, each opening to its learning goals,
+// summary and exercises.
 export default function DesktopSidebar({
   section,
   etusivuPage,
   onEtusivuPageChange,
   selectedCourse,
-  onSelectCourse,
+  courseView,
+  onSelectCourseView,
   engagedIds,
 }: DesktopSidebarProps) {
+  const [openCourse, setOpenCourse] = useState<TopicCode | null>(selectedCourse)
+
   return (
     <aside className="scrollbar-hide w-72 shrink-0 overflow-y-auto border-r border-ink/10 bg-page px-4 py-6">
       {section === 'etusivu' && (
@@ -49,19 +55,16 @@ export default function DesktopSidebar({
         <>
           <h2 className="mb-3 px-3 text-xs font-semibold uppercase tracking-widest text-ink-dim/80">Kurssit</h2>
           <ul className="flex flex-col gap-1">
-            <li>
-              <button type="button" onClick={() => onSelectCourse(null)} className={itemClass(selectedCourse === null)}>
-                Kaikki kurssit
-              </button>
-            </li>
             {COURSES.map((course) => {
               const { pct } = getCourseProgress(course.code, engagedIds)
+              const open = openCourse === course.code
               return (
                 <li key={course.code}>
                   <button
                     type="button"
-                    onClick={() => onSelectCourse(course.code)}
-                    className={itemClass(selectedCourse === course.code)}
+                    onClick={() => setOpenCourse(open ? null : course.code)}
+                    aria-expanded={open}
+                    className={itemClass(open)}
                   >
                     <span className="flex items-baseline justify-between gap-2">
                       <span className="truncate">
@@ -73,6 +76,26 @@ export default function DesktopSidebar({
                       <span className={`block h-full rounded-full ${course.barClass}`} style={{ width: `${pct}%` }} />
                     </span>
                   </button>
+                  {open && (
+                    <ul className="mb-2 ml-4 mt-1 flex flex-col gap-0.5 border-l border-ink/10 pl-2">
+                      {COURSE_VIEWS.map((view) => {
+                        const active = selectedCourse === course.code && courseView === view.id
+                        return (
+                          <li key={view.id}>
+                            <button
+                              type="button"
+                              onClick={() => onSelectCourseView(course.code, view.id)}
+                              className={`w-full rounded-lg px-3 py-1.5 text-left text-sm transition-colors ${
+                                active ? 'font-semibold text-accent' : 'font-medium text-ink-dim hover:bg-surface/60 hover:text-ink'
+                              }`}
+                            >
+                              {view.label}
+                            </button>
+                          </li>
+                        )
+                      })}
+                    </ul>
+                  )}
                 </li>
               )
             })}

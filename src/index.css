@@ -55,6 +55,19 @@ body {
   scroll-snap-stop: always;
 }
 
+/* Laptop cards: the content box grows with its content up to the room the
+   panel leaves (--card-max-h, set by whatever holds the card), then gets
+   the expand button. */
+.card-box-max {
+  max-height: var(--card-max-h, none);
+}
+
+/* Kurssit › Tehtävät shows one card under its toolbar, so it starts at the
+   top instead of being centred in the panel like the feed's cards. */
+.course-tasks .snap-card {
+  align-items: flex-start;
+}
+
 /* Formula boxes inside the answer editor. The box is a MathLive
    <math-field>; it is dashed while idle so it reads as "tap to edit" and
    solid while the caret is in it. */

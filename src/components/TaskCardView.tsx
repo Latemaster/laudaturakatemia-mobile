@@ -11,6 +11,7 @@ import { toKatexAnswer } from './mathAnswerFormat'
 import { PencilIcon } from './icons'
 import { answerPartsFromRubric } from './answerParts'
 import { getProblemRubricParts } from '../data/rubrics'
+import { useLayout } from '../layout/LayoutContext'
 
 interface TaskCardViewProps {
   card: TaskCard
@@ -26,6 +27,7 @@ export default function TaskCardView({ card, onViewSolution }: TaskCardViewProps
   const [submittedAnswer, setSubmittedAnswer] = useState<string | null>(null)
   const [showSolution, setShowSolution] = useState(false)
   const { problem } = card
+  const { isDesktop } = useLayout()
   const parts = useMemo(
     () => answerPartsFromRubric(getProblemRubricParts(card.topic.code, problem.id)),
     [card.topic.code, problem.id],
@@ -63,14 +65,20 @@ export default function TaskCardView({ card, onViewSolution }: TaskCardViewProps
   }
 
   return (
-    <CardShell topic={card.topic}>
-      <KindLabel icon={<PencilIcon />} label="Tehtävä" />
-      <h2 className="mb-3 text-lg font-semibold text-ink">
-        {problem.section} · {problem.title}
-      </h2>
-
+    <CardShell
+      topic={card.topic}
+      header={
+        <>
+          <KindLabel icon={<PencilIcon />} label="Tehtävä" />
+          <h2 className={`mb-3 font-semibold text-ink ${isDesktop ? 'text-2xl' : 'text-lg'}`}>
+            {problem.section} · {problem.title}
+          </h2>
+        </>
+      }
+    >
       <ExpandableBox
-        className="rounded-2xl border border-ink/10 bg-surface p-4 shadow-sm"
+        className={`rounded-2xl border border-ink/10 bg-surface p-4 shadow-sm ${isDesktop ? 'card-box-max p-6' : ''}`}
+        sizing={isDesktop ? 'natural' : 'fill'}
         isExpanded={isExpanded}
         onExpandedChange={handleExpandedChange}
       >
@@ -85,7 +93,11 @@ export default function TaskCardView({ card, onViewSolution }: TaskCardViewProps
       </ExpandableBox>
 
       {!isExpanded && (
-        <div className="sticky bottom-0 z-20 mt-4 bg-gradient-to-t from-page from-60% to-transparent pb-4 pt-6">
+        <div
+          className={
+            isDesktop ? 'mt-4' : 'sticky bottom-0 z-20 mt-4 bg-gradient-to-t from-page from-60% to-transparent pb-4 pt-6'
+          }
+        >
           {hasAnswered ? (
             <button
               type="button"

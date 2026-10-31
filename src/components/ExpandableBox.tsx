@@ -57,10 +57,13 @@ export default function ExpandableBox({
       // The host's padding is part of its clientHeight but not of the
       // content's scrollHeight, so count it as space the content needs:
       // otherwise content that runs into the bottom padding gets clipped
-      // without the button ever showing.
+      // without the button ever showing. offsetHeight rather than
+      // scrollHeight: entry animations move content with transforms, which
+      // count towards scrollHeight but resize nothing, so the box would be
+      // left marked as overflowing once they settle.
       const style = getComputedStyle(portalHost)
       const padding = parseFloat(style.paddingTop) + parseFloat(style.paddingBottom)
-      setIsOverflowing(inner.scrollHeight + padding > portalHost.clientHeight + 1)
+      setIsOverflowing(inner.offsetHeight + padding > portalHost.clientHeight + 1)
     }
 
     checkOverflow()

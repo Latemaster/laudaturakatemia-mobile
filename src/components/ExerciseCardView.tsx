@@ -7,6 +7,7 @@ import KindLabel from './KindLabel'
 import { VISUALS } from './visuals'
 import type { VisualProps } from './visuals'
 import { CheckIcon, ListCheckIcon, PencilIcon, XIcon } from './icons'
+import { useLayout } from '../layout/LayoutContext'
 
 interface ExerciseCardViewProps {
   card: ExerciseCard
@@ -232,24 +233,35 @@ export default function ExerciseCardView({ card, onAnswer }: ExerciseCardViewPro
   const [isExpanded, setIsExpanded] = useState(false)
   const Visual = card.visual ? VISUALS[card.visual] : null
   const isSliderAnswer = card.kind === 'numeric' && card.answerVia === 'slider'
+  const { isDesktop } = useLayout()
 
   return (
-    <CardShell topic={card.topic}>
-      <KindLabel
-        icon={card.kind === 'numeric' ? <PencilIcon /> : <ListCheckIcon />}
-        label={card.kind === 'numeric' ? 'Laske ja vastaa' : 'Monivalinta'}
-      />
-      <motion.h2
-        initial={{ opacity: 0, y: 12 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: false, amount: 0.6 }}
-        transition={{ duration: 0.4 }}
-        className="mb-6 text-2xl font-semibold leading-snug text-ink"
+    <CardShell
+      topic={card.topic}
+      header={
+        <>
+          <KindLabel
+            icon={card.kind === 'numeric' ? <PencilIcon /> : <ListCheckIcon />}
+            label={card.kind === 'numeric' ? 'Laske ja vastaa' : 'Monivalinta'}
+          />
+          <motion.h2
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false, amount: 0.6 }}
+            transition={{ duration: 0.4 }}
+            className={`mb-6 font-semibold leading-snug text-ink ${isDesktop ? 'text-3xl' : 'text-2xl'}`}
+          >
+            {card.question}
+          </motion.h2>
+        </>
+      }
+    >
+      <ExpandableBox
+        className={isDesktop ? 'card-box-max' : ''}
+        sizing={isDesktop ? 'natural' : 'fill'}
+        isExpanded={isExpanded}
+        onExpandedChange={setIsExpanded}
       >
-        {card.question}
-      </motion.h2>
-
-      <ExpandableBox isExpanded={isExpanded} onExpandedChange={setIsExpanded}>
         {isExpanded && (
           <h2 className="mb-4 text-2xl font-semibold leading-snug text-ink">{card.question}</h2>
         )}

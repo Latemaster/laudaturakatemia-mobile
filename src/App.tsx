@@ -21,7 +21,11 @@ import type { Card, TopicCode } from './types'
 import { LayoutContext, useIsDesktopViewport } from './layout/LayoutContext'
 import DesktopTopBar from './layout/DesktopTopBar'
 import DesktopSidebar from './layout/DesktopSidebar'
-import { hasSidebar, isMenuSection, type AppSection, type EtusivuPage } from './layout/sections'
+import { hasSidebar, isMenuSection, type AppSection, type CourseView, type EtusivuPage } from './layout/sections'
+import { COURSES } from './data/courses'
+import CourseGoalsView from './components/course/CourseGoalsView'
+import CourseSummaryView from './components/course/CourseSummaryView'
+import CourseTasksView from './components/course/CourseTasksView'
 import EsittelyPage from './pages/EsittelyPage'
 import TuePage from './pages/TuePage'
 import MahdollistajatPage from './pages/MahdollistajatPage'
@@ -35,6 +39,10 @@ function App() {
   const section: AppSection = isDesktop || isMenuSection(requestedSection) ? requestedSection : 'suositellut'
   const [etusivuPage, setEtusivuPage] = useState<EtusivuPage>('esittely')
   const [selectedCourse, setSelectedCourse] = useState<TopicCode | null>(null)
+  // Laptop Kurssit: which of the course's pages is open. The laptop layout
+  // always has a course open, the first one until the student picks one.
+  const [courseView, setCourseView] = useState<CourseView>('tavoitteet')
+  const desktopCourse = selectedCourse ?? COURSES[0].code
   const [engagedIds, setEngagedIds] = useState<Record<string, true>>({})
   // Set from the Osaaminen page; drives the Suositellut feed and what
   // Osaaminen tracks. Persisted by the component that changes it.
@@ -75,11 +83,12 @@ function App() {
 
   function handleSelectSection(next: AppSection) {
     if (next === 'kurssit' && section === 'kurssit') {
+      if (isDesktop) return
       setSelectedCourse(null)
       return
     }
     setSection(next)
-    if (next !== 'kurssit') setSelectedCourse(null)
+    if (next !== 'kurssit' && !isDesktop) setSelectedCourse(null)
   }
 
   function handleEngage(cardId: string) {
@@ -106,13 +115,26 @@ function App() {
     return recommendedCards
   }, [section, selectedCourse, recommendedCards])
 
-  const showFeed = section === 'suositellut' || (section === 'kurssit' && selectedCourse !== null)
+  const showFeed = section === 'suositellut' || (section === 'kurssit' && selectedCourse !== null && !isDesktop)
 
   const content = (
     <>
       {section === 'etusivu' && (etusivuPage === 'esittely' ? <EsittelyPage /> : <TuePage />)}
       {section === 'mahdollistajat' && <MahdollistajatPage />}
-      {section === 'kurssit' && !selectedCourse && (
+      {section === 'kurssit' && isDesktop && (
+        <div key={`${desktopCourse}-${courseView}`} className="h-full overflow-y-auto">
+          {courseView === 'tavoitteet' ? (
+            <div className="px-8 pt-7">
+              <CourseGoalsView code={desktopCourse} />
+            </div>
+          ) : courseView === 'tiivistelma' ? (
+            <CourseSummaryView code={desktopCourse} />
+          ) : (
+            <CourseTasksView code={desktopCourse} onEngage={handleEngage} onAnswer={handleAnswer} />
+          )}
+        </div>
+      )}
+      {section === 'kurssit' && !isDesktop && !selectedCourse && (
         <CourseList onSelect={setSelectedCourse} engagedIds={engagedIds} />
       )}
       {section === 'osaaminen' && (
@@ -130,11 +152,11 @@ function App() {
       {section === 'suositellut' && <FeedInfo targetGrade={targetGrade} cardCount={recommendedCards.length} />}
       {showFeed && (
         <Feed
-          key={selectedCourse ?? `suositellut-${targetGrade}`}
+          key={section === 'kurssit' && selectedCourse ? selectedCourse : `suositellut-${targetGrade}`}
           cards={feedCards}
           onEngage={handleEngage}
           onAnswer={handleAnswer}
-          onBack={selectedCourse ? () => setSelectedCourse(null) : undefined}
+          onBack={section === 'kurssit' && selectedCourse ? () => setSelectedCourse(null) : undefined}
           backLabel="Takaisin kursseihin"
         />
       )}
@@ -160,15 +182,25 @@ function App() {
               section={section}
               etusivuPage={etusivuPage}
               onEtusivuPageChange={setEtusivuPage}
-              selectedCourse={selectedCourse}
-              onSelectCourse={setSelectedCourse}
+              selectedCourse={desktopCourse}
+              courseView={courseView}
+              onSelectCourseView={(code, view) => {
+                setSelectedCourse(code)
+                setCourseView(view)
+              }}
               engagedIds={engagedIds}
             />
           )}
           {/* The feed's cards are sized to this panel (index.css). */}
-          <main className="relative min-w-0 flex-1 overflow-hidden" style={{ '--feed-height': 'calc(100dvh - 4rem)' } as CSSProperties}>
-            {content}
-          </main>
+          {/* Framed content panel on the grid paper, as on the laptop site. */}
+          <div className="grid-bg flex min-w-0 flex-1 p-4">
+            <main
+              className="relative min-w-0 flex-1 overflow-hidden rounded-3xl bg-surface/55 ring-1 ring-ink/5"
+              style={{ '--feed-height': 'calc(100dvh - 6rem)', '--card-max-h': 'min(40rem, calc(100dvh - 11rem))' } as CSSProperties}
+            >
+              {content}
+            </main>
+          </div>
         </div>
       </div>
     </LayoutContext.Provider>
