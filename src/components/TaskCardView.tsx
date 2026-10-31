@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import type { TaskCard } from '../types'
 import CardShell from './CardShell'
 import ExpandableBox from './ExpandableBox'
@@ -9,6 +9,8 @@ import SolutionToggle from './SolutionToggle'
 import TaskAnswerView from './TaskAnswerView'
 import { toKatexAnswer } from './mathAnswerFormat'
 import { PencilIcon } from './icons'
+import { answerPartsFromRubric } from './answerParts'
+import { getProblemRubricParts } from '../data/rubrics'
 
 interface TaskCardViewProps {
   card: TaskCard
@@ -24,6 +26,10 @@ export default function TaskCardView({ card, onViewSolution }: TaskCardViewProps
   const [submittedAnswer, setSubmittedAnswer] = useState<string | null>(null)
   const [showSolution, setShowSolution] = useState(false)
   const { problem } = card
+  const parts = useMemo(
+    () => answerPartsFromRubric(getProblemRubricParts(card.topic.code, problem.id)),
+    [card.topic.code, problem.id],
+  )
   const hasAnswered = submittedAnswer !== null
 
   function toggleSolution() {
@@ -107,6 +113,7 @@ export default function TaskCardView({ card, onViewSolution }: TaskCardViewProps
       {answerOpen && (
         <TaskAnswerView
           card={card}
+          parts={parts}
           draft={draft}
           onDraftChange={setDraft}
           submittedAnswer={submittedAnswer}

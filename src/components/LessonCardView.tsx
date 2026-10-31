@@ -7,6 +7,7 @@ import KindLabel from './KindLabel'
 import MathText from './MathText'
 import { VISUALS } from './visuals'
 import { BookIcon } from './icons'
+import { useLayout } from '../layout/LayoutContext'
 
 interface LessonCardViewProps {
   card: LessonCard
@@ -15,6 +16,7 @@ interface LessonCardViewProps {
 
 export default function LessonCardView({ card, showSwipeHint }: LessonCardViewProps) {
   const [isExpanded, setIsExpanded] = useState(false)
+  const { isDesktop } = useLayout()
   const Visual = card.visual ? VISUALS[card.visual] : null
 
   return (
@@ -52,8 +54,8 @@ export default function LessonCardView({ card, showSwipeHint }: LessonCardViewPr
           transition={{ delay: 0.8, duration: 1.6, repeat: Infinity }}
           className="mt-10 flex flex-col items-center gap-1 text-sm text-ink-dim"
         >
-          <span>Pyyhkäise ylös jatkaaksesi</span>
-          <span aria-hidden>↑</span>
+          <span>{isDesktop ? 'Vieritä alas jatkaaksesi' : 'Pyyhkäise ylös jatkaaksesi'}</span>
+          <span aria-hidden>{isDesktop ? '↓' : '↑'}</span>
         </motion.div>
       )}
     </CardShell>

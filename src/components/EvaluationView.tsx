@@ -1,12 +1,13 @@
-import { useCallback, useRef, useState } from 'react'
+import { useCallback, useMemo, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 import type { CriterionScores, EvaluationExercise } from '../data/evaluation'
 import AnswerEditor, { type AnswerEditorHandle } from './AnswerEditor'
-import MathText from './MathText'
+import AnswerDisplay from './AnswerDisplay'
+import PartedAnswerEditor from './PartedAnswerEditor'
+import { answerPartsFromRubric } from './answerParts'
 import ProblemBlocks from './ProblemBlocks'
 import RubricPanel from './RubricPanel'
-import { toKatexAnswer } from './mathAnswerFormat'
 import { XIcon } from './icons'
 
 interface EvaluationViewProps {
@@ -36,6 +37,7 @@ export default function EvaluationView({
   const [draft, setDraft] = useState(answer ?? '')
   const [showRubric, setShowRubric] = useState(false)
   const editorRef = useRef<AnswerEditorHandle>(null)
+  const parts = useMemo(() => answerPartsFromRubric(exercise.parts), [exercise.parts])
   const editorOpen = isEditing || answer === null
   const insertFormula = useCallback((latex: string) => editorRef.current?.insertFormula(latex), [])
 
@@ -74,7 +76,7 @@ export default function EvaluationView({
         </div>
 
         <div className="scrollbar-hide min-h-0 flex-1 overflow-y-auto overscroll-contain px-6 pb-[calc(env(safe-area-inset-bottom)+1.5rem)]">
-          <div className="mx-auto flex w-full max-w-md flex-col gap-5">
+          <div className="mx-auto flex w-full max-w-md flex-col gap-5 lg:max-w-2xl">
             <ProblemBlocks blocks={exercise.promptBlocks} onFormulaTap={editorOpen ? insertFormula : undefined} />
 
             {editorOpen && (
@@ -82,20 +84,30 @@ export default function EvaluationView({
             )}
 
             {editorOpen ? (
-              <AnswerEditor
-                ref={editorRef}
-                initialValue={draft}
-                onChange={setDraft}
-                onCancel={cancel}
-                onSubmit={check}
-                submitLabel="Tarkista vastaus"
-              />
+              parts ? (
+                <PartedAnswerEditor
+                  ref={editorRef}
+                  parts={parts}
+                  initialValue={draft}
+                  onChange={setDraft}
+                  onCancel={cancel}
+                  onSubmit={check}
+                  submitLabel="Tarkista vastaus"
+                />
+              ) : (
+                <AnswerEditor
+                  ref={editorRef}
+                  initialValue={draft}
+                  onChange={setDraft}
+                  onCancel={cancel}
+                  onSubmit={check}
+                  submitLabel="Tarkista vastaus"
+                />
+              )
             ) : (
               <div className="rounded-2xl border border-ink/10 bg-surface-2 p-3">
                 <p className="mb-1 text-sm font-semibold text-ink-dim">Vastauksesi</p>
-                <div className="text-sm leading-relaxed text-ink">
-                  <MathText content={toKatexAnswer(answer)} />
-                </div>
+                <AnswerDisplay answer={answer} parts={parts} />
                 <div className="mt-3 flex gap-2">
                   <button
                     type="button"

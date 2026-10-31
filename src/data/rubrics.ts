@@ -73,3 +73,10 @@ function buildRubricExercises(): RubricExercise[] {
 }
 
 export const RUBRIC_EXERCISES: RubricExercise[] = buildRubricExercises()
+
+// The rubric parts of one course problem, used to split its answer editor
+// kohta by kohta. Drafts count too: only the labels and point totals are
+// used, not the criteria themselves.
+export function getProblemRubricParts(code: TopicCode, problemId: string): RubricPart[] | undefined {
+  return courseRubrics(code)[problemId]?.parts
+}

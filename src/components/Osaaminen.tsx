@@ -39,6 +39,7 @@ import InfoToggle from './InfoToggle'
 import ProgressChart from './ProgressChart'
 import TargetGradeView from './TargetGradeView'
 import type { TopicCode } from '../types'
+import PageContainer from './PageContainer'
 
 interface OsaaminenProps {
   engagedIds: Record<string, true>
@@ -338,182 +339,180 @@ export default function Osaaminen({
   }
 
   return (
-    <div className="grid-bg h-dvh overflow-y-auto bg-page px-6 pb-10 pt-[calc(env(safe-area-inset-top)+4.5rem)]">
-      <div className="mx-auto w-full max-w-md">
-        <h1 className="mb-1 text-2xl font-bold text-ink">Osaaminen</h1>
-        <p className="mb-6 text-sm text-ink-dim">Ennuste ja edistyminen tällä istunnolla.</p>
+    <PageContainer>
+      <h1 className="mb-1 text-2xl font-bold text-ink">Osaaminen</h1>
+      <p className="mb-6 text-sm text-ink-dim">Ennuste ja edistyminen tällä istunnolla.</p>
 
-        <div className="mb-6 rounded-3xl border border-ink/10 bg-surface p-6 shadow-sm">
-          <div className="flex flex-wrap items-center justify-between gap-2">
-            <span className="text-[11px] font-semibold uppercase tracking-widest text-ink-dim/70">
-              Ennustettu arvosana
-            </span>
-            <InfoToggle label="Miten ennuste lasketaan">
-              <p className="mb-2">
-                Kokonaisosaaminen lasketaan teemoittain. Jokaisen teeman arvio on painotettu keskiarvo
-                lähtötasosta ja tehtävien vastauksista:
-              </p>
-              <ul className="mb-2 flex list-disc flex-col gap-1 pl-4">
-                <li>
-                  <span className="font-semibold text-ink">Lähtötaso</span> tulee esitiedoista: esikyselyn
-                  vastaus (paino {POLL_PRIOR_WEIGHT}) tai, jos teemaan ei ole vastattu, kurssiarvosana (paino{' '}
-                  {FALLBACK_PRIOR_WEIGHT}).
-                </li>
-                <li>
-                  <span className="font-semibold text-ink">Tehtävät</span>: vain ensimmäinen vastaus kuhunkin
-                  tehtävään lasketaan. Pikatehtävä painaa {EXERCISE_WEIGHT}, avoin tehtävä {TASK_WEIGHT.easy}–
-                  {TASK_WEIGHT.hard} vaikeuden mukaan. Täyden painon saa vain oikea vastaus, joten yksi
-                  epäonnistunut vaikea tehtävä ei kumoa perusteiden osaamista.
-                </li>
-                <li>
-                  Kurssin arvio on sen teemojen keskiarvo ja kokonaisosaaminen kurssien keskiarvo. Teema, josta ei
-                  ole esitietoja eikä vastauksia, lasketaan nollaksi.
-                </li>
-              </ul>
-              <p className="mb-2">
-                Ennustettu arvosana saadaan vertaamalla kokonaisosaamista yo-kokeen tyypillisiin pisterajoihin
-                jaettuna kokeen {EXAM_MAX_POINTS} pisteellä.
-              </p>
-              <p className="mb-2">
-                Esitiedot ovat heikkoa näyttöä, joten arviolle näytetään luotettavuus sen mukaan, kuinka suuri osa
-                siitä perustuu tehtävien vastauksiin:
-              </p>
-              <ul className="flex flex-col gap-1">
-                {[...RELIABILITY_LEVELS].reverse().map((band, index, bands) => {
-                  const next = bands[index + 1]
-                  const range = next
-                    ? `${index === 0 ? 'alle ' : `${Math.round(band.min * 100)}–`}${Math.round(next.min * 100)} %`
-                    : `vähintään ${Math.round(band.min * 100)} %`
-                  return (
-                    <li key={band.reliability}>
-                      <span className={`font-semibold ${RELIABILITY_CLASSES[band.reliability].text}`}>
-                        {band.label}
-                      </span>{' '}
-                      = {range} tehtävistä
-                    </li>
-                  )
-                })}
-              </ul>
-            </InfoToggle>
-          </div>
-
-          <div className="mt-3 flex flex-col items-center text-center">
-            <GradeDonut pct={overallPct} grade={grade} targetPct={targetPct} />
-            <span className={`mt-3 text-base font-semibold ${tierClasses.text}`}>Arvosana {grade.letter}</span>
-            <span className="mt-1 text-sm font-semibold text-ink-dim">{overallPct} % kokonaisosaaminen</span>
-            {overall.hasData ? (
-              <ReliabilityFlag overall={overall} />
-            ) : (
-              <span className="mt-1 text-xs text-ink-dim">Täytä esitiedot tai vastaa tehtäviin</span>
-            )}
-          </div>
-
-          <button
-            type="button"
-            onClick={() => setTargetOpen(true)}
-            aria-haspopup="dialog"
-            className="mt-5 flex w-full items-center gap-3 rounded-2xl bg-surface-2 p-3 text-left ring-1 ring-transparent transition-colors active:ring-accent/40"
-          >
-            <span
-              className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-lg font-bold ring-2 ${targetTierClasses.badge}`}
-            >
-              {target.letter}
-            </span>
-            <div className="flex min-w-0 flex-1 flex-col">
-              <span className="text-[11px] font-semibold uppercase tracking-widest text-ink-dim/70">
-                Tavoitearvosana
-              </span>
-              <span className="text-sm font-semibold text-ink">
-                {targetPoints.avg} / {EXAM_MAX_POINTS} p. · {targetPct} %
-              </span>
-              <span className="text-xs text-ink-dim">
-                {gradesToGo <= 0
-                  ? 'ennuste on tavoitteessa'
-                  : `${gradesToGo} ${gradesToGo === 1 ? 'arvosana' : 'arvosanaa'} tavoitteeseen`}
-              </span>
-            </div>
-            <span className="flex items-center gap-0.5 text-xs font-semibold text-accent">
-              Muuta
-              <ChevronRightIcon className="h-4 w-4" />
-            </span>
-          </button>
-        </div>
-
-        <CourseGradesSection
-          courseGrades={courseGrades}
-          onCourseGradeChange={onCourseGradeChange}
-          polls={knowledge.polls}
-          onPollChange={onPollChange}
-        />
-
-        <ProgressChart targetLetter={target.letter} targetPct={targetPct} />
-
-        <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
-          <h2 className="text-sm font-semibold text-ink">Kurssit tavoitteessa {target.letter}</h2>
-          <InfoToggle label="Miten kurssien edistyminen lasketaan">
+      <div className="mb-6 rounded-3xl border border-ink/10 bg-surface p-6 shadow-sm">
+        <div className="flex flex-wrap items-center justify-between gap-2">
+          <span className="text-[11px] font-semibold uppercase tracking-widest text-ink-dim/70">
+            Ennustettu arvosana
+          </span>
+          <InfoToggle label="Miten ennuste lasketaan">
             <p className="mb-2">
-              Kurssin prosentti lasketaan vain niistä tehtävistä, joita tavoitearvosanan lukusuunnitelma pyytää.
-              Esimerkiksi jos tavoite pyytää MAA6:sta vain helpot tehtävät, prosentti kuvaa niiden edistymistä.
+              Kokonaisosaaminen lasketaan teemoittain. Jokaisen teeman arvio on painotettu keskiarvo
+              lähtötasosta ja tehtävien vastauksista:
             </p>
-            <ul className="mb-2 flex flex-col gap-1">
-              {DIFFICULTY_LABELS.map(({ key, label, section }) => (
-                <li key={key}>
-                  <span className="font-semibold text-ink">{label}</span> = {section} · {DIFFICULTY_POINTS[key]} p. /
-                  tehtävä
-                </li>
-              ))}
+            <ul className="mb-2 flex list-disc flex-col gap-1 pl-4">
+              <li>
+                <span className="font-semibold text-ink">Lähtötaso</span> tulee esitiedoista: esikyselyn
+                vastaus (paino {POLL_PRIOR_WEIGHT}) tai, jos teemaan ei ole vastattu, kurssiarvosana (paino{' '}
+                {FALLBACK_PRIOR_WEIGHT}).
+              </li>
+              <li>
+                <span className="font-semibold text-ink">Tehtävät</span>: vain ensimmäinen vastaus kuhunkin
+                tehtävään lasketaan. Pikatehtävä painaa {EXERCISE_WEIGHT}, avoin tehtävä {TASK_WEIGHT.easy}–
+                {TASK_WEIGHT.hard} vaikeuden mukaan. Täyden painon saa vain oikea vastaus, joten yksi
+                epäonnistunut vaikea tehtävä ei kumoa perusteiden osaamista.
+              </li>
+              <li>
+                Kurssin arvio on sen teemojen keskiarvo ja kokonaisosaaminen kurssien keskiarvo. Teema, josta ei
+                ole esitietoja eikä vastauksia, lasketaan nollaksi.
+              </li>
             </ul>
             <p className="mb-2">
-              Teemat-rivi jakaa kurssin aihealueisiin. Jokaisella teemalla on oma osaamisarvio, joka perustuu
-              vastattuihin pikatehtäviin: oikea vastaus nostaa, väärä laskee. Avaa kurssi nähdäksesi teemat.
+              Ennustettu arvosana saadaan vertaamalla kokonaisosaamista yo-kokeen tyypillisiin pisterajoihin
+              jaettuna kokeen {EXAM_MAX_POINTS} pisteellä.
+            </p>
+            <p className="mb-2">
+              Esitiedot ovat heikkoa näyttöä, joten arviolle näytetään luotettavuus sen mukaan, kuinka suuri osa
+              siitä perustuu tehtävien vastauksiin:
             </p>
             <ul className="flex flex-col gap-1">
-              {KNOWLEDGE_LEVELS.map((band) => (
-                <li key={band.level} className="flex items-center gap-2">
-                  <span aria-hidden className={`inline-block h-2 w-4 rounded-full ${TIER_CLASSES[band.tier].bar}`} />
-                  <span className="font-semibold text-ink">{band.label}</span> = vähintään {Math.round(band.min * 100)} %
-                </li>
-              ))}
-              <li className="flex items-center gap-2">
-                <span aria-hidden className={`inline-block h-2 w-4 rounded-full ${NO_DATA_BAR}`} />
-                Harmaa = ei vielä vastauksia
-              </li>
+              {[...RELIABILITY_LEVELS].reverse().map((band, index, bands) => {
+                const next = bands[index + 1]
+                const range = next
+                  ? `${index === 0 ? 'alle ' : `${Math.round(band.min * 100)}–`}${Math.round(next.min * 100)} %`
+                  : `vähintään ${Math.round(band.min * 100)} %`
+                return (
+                  <li key={band.reliability}>
+                    <span className={`font-semibold ${RELIABILITY_CLASSES[band.reliability].text}`}>
+                      {band.label}
+                    </span>{' '}
+                    = {range} tehtävistä
+                  </li>
+                )
+              })}
             </ul>
           </InfoToggle>
         </div>
 
-        <div className="flex flex-col gap-3">
-          {courseTargets.map(({ code, difficulties }) => (
-            <CourseRow
-              key={code}
-              code={code}
-              engagedIds={engagedIds}
-              knowledge={scores.courses[code]}
-              targeted={difficulties}
-              isExpanded={expandedCourse === code}
-              onToggle={() => toggleCourse(code)}
-            />
-          ))}
+        <div className="mt-3 flex flex-col items-center text-center">
+          <GradeDonut pct={overallPct} grade={grade} targetPct={targetPct} />
+          <span className={`mt-3 text-base font-semibold ${tierClasses.text}`}>Arvosana {grade.letter}</span>
+          <span className="mt-1 text-sm font-semibold text-ink-dim">{overallPct} % kokonaisosaaminen</span>
+          {overall.hasData ? (
+            <ReliabilityFlag overall={overall} />
+          ) : (
+            <span className="mt-1 text-xs text-ink-dim">Täytä esitiedot tai vastaa tehtäviin</span>
+          )}
         </div>
 
-        {otherCourses.length > 0 && (
-          <>
-            <h2 className="mb-3 mt-6 text-sm font-semibold text-ink-dim">Tavoitteen ulkopuolella</h2>
-            <div className="flex flex-col gap-3">
-              {otherCourses.map((course) => (
-                <CourseRow
-                  key={course.code}
-                  code={course.code}
-                  engagedIds={engagedIds}
-                  knowledge={scores.courses[course.code]}
-                  isExpanded={expandedCourse === course.code}
-                  onToggle={() => toggleCourse(course.code)}
-                />
-              ))}
-            </div>
-          </>
-        )}
+        <button
+          type="button"
+          onClick={() => setTargetOpen(true)}
+          aria-haspopup="dialog"
+          className="mt-5 flex w-full items-center gap-3 rounded-2xl bg-surface-2 p-3 text-left ring-1 ring-transparent transition-colors active:ring-accent/40"
+        >
+          <span
+            className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-lg font-bold ring-2 ${targetTierClasses.badge}`}
+          >
+            {target.letter}
+          </span>
+          <div className="flex min-w-0 flex-1 flex-col">
+            <span className="text-[11px] font-semibold uppercase tracking-widest text-ink-dim/70">
+              Tavoitearvosana
+            </span>
+            <span className="text-sm font-semibold text-ink">
+              {targetPoints.avg} / {EXAM_MAX_POINTS} p. · {targetPct} %
+            </span>
+            <span className="text-xs text-ink-dim">
+              {gradesToGo <= 0
+                ? 'ennuste on tavoitteessa'
+                : `${gradesToGo} ${gradesToGo === 1 ? 'arvosana' : 'arvosanaa'} tavoitteeseen`}
+            </span>
+          </div>
+          <span className="flex items-center gap-0.5 text-xs font-semibold text-accent">
+            Muuta
+            <ChevronRightIcon className="h-4 w-4" />
+          </span>
+        </button>
       </div>
+
+      <CourseGradesSection
+        courseGrades={courseGrades}
+        onCourseGradeChange={onCourseGradeChange}
+        polls={knowledge.polls}
+        onPollChange={onPollChange}
+      />
+
+      <ProgressChart targetLetter={target.letter} targetPct={targetPct} />
+
+      <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
+        <h2 className="text-sm font-semibold text-ink">Kurssit tavoitteessa {target.letter}</h2>
+        <InfoToggle label="Miten kurssien edistyminen lasketaan">
+          <p className="mb-2">
+            Kurssin prosentti lasketaan vain niistä tehtävistä, joita tavoitearvosanan lukusuunnitelma pyytää.
+            Esimerkiksi jos tavoite pyytää MAA6:sta vain helpot tehtävät, prosentti kuvaa niiden edistymistä.
+          </p>
+          <ul className="mb-2 flex flex-col gap-1">
+            {DIFFICULTY_LABELS.map(({ key, label, section }) => (
+              <li key={key}>
+                <span className="font-semibold text-ink">{label}</span> = {section} · {DIFFICULTY_POINTS[key]} p. /
+                tehtävä
+              </li>
+            ))}
+          </ul>
+          <p className="mb-2">
+            Teemat-rivi jakaa kurssin aihealueisiin. Jokaisella teemalla on oma osaamisarvio, joka perustuu
+            vastattuihin pikatehtäviin: oikea vastaus nostaa, väärä laskee. Avaa kurssi nähdäksesi teemat.
+          </p>
+          <ul className="flex flex-col gap-1">
+            {KNOWLEDGE_LEVELS.map((band) => (
+              <li key={band.level} className="flex items-center gap-2">
+                <span aria-hidden className={`inline-block h-2 w-4 rounded-full ${TIER_CLASSES[band.tier].bar}`} />
+                <span className="font-semibold text-ink">{band.label}</span> = vähintään {Math.round(band.min * 100)} %
+              </li>
+            ))}
+            <li className="flex items-center gap-2">
+              <span aria-hidden className={`inline-block h-2 w-4 rounded-full ${NO_DATA_BAR}`} />
+              Harmaa = ei vielä vastauksia
+            </li>
+          </ul>
+        </InfoToggle>
+      </div>
+
+      <div className="flex flex-col gap-3">
+        {courseTargets.map(({ code, difficulties }) => (
+          <CourseRow
+            key={code}
+            code={code}
+            engagedIds={engagedIds}
+            knowledge={scores.courses[code]}
+            targeted={difficulties}
+            isExpanded={expandedCourse === code}
+            onToggle={() => toggleCourse(code)}
+          />
+        ))}
+      </div>
+
+      {otherCourses.length > 0 && (
+        <>
+          <h2 className="mb-3 mt-6 text-sm font-semibold text-ink-dim">Tavoitteen ulkopuolella</h2>
+          <div className="flex flex-col gap-3">
+            {otherCourses.map((course) => (
+              <CourseRow
+                key={course.code}
+                code={course.code}
+                engagedIds={engagedIds}
+                knowledge={scores.courses[course.code]}
+                isExpanded={expandedCourse === course.code}
+                onToggle={() => toggleCourse(course.code)}
+              />
+            ))}
+          </div>
+        </>
+      )}
 
       {targetOpen && (
         <TargetGradeView
@@ -522,6 +521,6 @@ export default function Osaaminen({
           onClose={() => setTargetOpen(false)}
         />
       )}
-    </div>
+    </PageContainer>
   )
 }

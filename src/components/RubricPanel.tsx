@@ -11,7 +11,8 @@ import {
   type RubricPart,
 } from '../data/evaluation'
 import MathText from './MathText'
-import { toKatexAnswer } from './mathAnswerFormat'
+import AnswerDisplay from './AnswerDisplay'
+import { answerPartsFromRubric } from './answerParts'
 import { ChevronDownIcon, XIcon } from './icons'
 
 interface RubricPanelProps {
@@ -96,8 +97,8 @@ export default function RubricPanel({ exercise, answer, scores, onScore, onReset
             <ChevronDownIcon className={`h-4 w-4 text-ink-dim transition-transform ${showAnswer ? 'rotate-180' : ''}`} />
           </button>
           {showAnswer && (
-            <div className="scrollbar-hide mt-2 max-h-48 overflow-y-auto text-sm leading-relaxed text-ink">
-              <MathText content={toKatexAnswer(answer)} />
+            <div className="scrollbar-hide mt-2 max-h-48 overflow-y-auto">
+              <AnswerDisplay answer={answer} parts={answerPartsFromRubric(exercise.parts)} />
             </div>
           )}
         </section>

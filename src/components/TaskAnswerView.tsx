@@ -2,14 +2,17 @@ import { useCallback, useEffect, useRef } from 'react'
 import { createPortal } from 'react-dom'
 import type { TaskCard } from '../types'
 import AnswerEditor, { type AnswerEditorHandle } from './AnswerEditor'
-import MathText from './MathText'
+import AnswerDisplay from './AnswerDisplay'
+import PartedAnswerEditor from './PartedAnswerEditor'
+import type { AnswerPart } from './answerParts'
 import ProblemBlocks from './ProblemBlocks'
 import SolutionToggle from './SolutionToggle'
-import { toKatexAnswer } from './mathAnswerFormat'
 import { XIcon } from './icons'
 
 interface TaskAnswerViewProps {
   card: TaskCard
+  // Kohdat a), b)... when the problem is answered kohta by kohta.
+  parts?: AnswerPart[] | null
   draft: string
   onDraftChange: (draft: string) => void
   submittedAnswer: string | null
@@ -28,6 +31,7 @@ interface TaskAnswerViewProps {
 // scroll-snapping feed, like ExpandableBox's expanded state.
 export default function TaskAnswerView({
   card,
+  parts,
   draft,
   onDraftChange,
   submittedAnswer,
@@ -85,7 +89,7 @@ export default function TaskAnswerView({
         ref={scrollRef}
         className="scrollbar-hide min-h-0 flex-1 overflow-y-auto overscroll-contain px-6 pb-[calc(env(safe-area-inset-bottom)+1.5rem)]"
       >
-        <div className="mx-auto flex w-full max-w-md flex-col gap-5">
+        <div className="mx-auto flex w-full max-w-md flex-col gap-5 lg:max-w-2xl">
           <ProblemBlocks
             blocks={showSolution ? problem.answerBlocks : problem.promptBlocks}
             onFormulaTap={formulasTappable ? insertFormula : undefined}
@@ -96,19 +100,28 @@ export default function TaskAnswerView({
           )}
 
           {editorOpen ? (
-            <AnswerEditor
-              ref={editorRef}
-              initialValue={draft}
-              onChange={onDraftChange}
-              onCancel={cancel}
-              onSubmit={onSubmit}
-            />
+            parts ? (
+              <PartedAnswerEditor
+                ref={editorRef}
+                parts={parts}
+                initialValue={draft}
+                onChange={onDraftChange}
+                onCancel={cancel}
+                onSubmit={onSubmit}
+              />
+            ) : (
+              <AnswerEditor
+                ref={editorRef}
+                initialValue={draft}
+                onChange={onDraftChange}
+                onCancel={cancel}
+                onSubmit={onSubmit}
+              />
+            )
           ) : (
             <div className="rounded-2xl border border-good/30 bg-good/10 p-3">
               <p className="mb-1 text-sm font-semibold text-good">Vastaus lähetetty</p>
-              <div className="text-sm leading-relaxed text-ink">
-                <MathText content={toKatexAnswer(submittedAnswer)} />
-              </div>
+              <AnswerDisplay answer={submittedAnswer} parts={parts} />
               <button
                 type="button"
                 onClick={() => onEditingChange(true)}

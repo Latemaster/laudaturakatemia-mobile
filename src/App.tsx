@@ -1,6 +1,6 @@
-import { useMemo, useState } from 'react'
+import { useMemo, useState, type CSSProperties } from 'react'
 import Feed from './components/Feed'
-import TopMenu, { type MenuSection } from './components/TopMenu'
+import TopMenu from './components/TopMenu'
 import CourseList from './components/CourseList'
 import Osaaminen from './components/Osaaminen'
 import FeedInfo from './components/FeedInfo'
@@ -18,9 +18,22 @@ import {
 } from './data/knowledge'
 import type { ThemeId } from './data/themes'
 import type { Card, TopicCode } from './types'
+import { LayoutContext, useIsDesktopViewport } from './layout/LayoutContext'
+import DesktopTopBar from './layout/DesktopTopBar'
+import DesktopSidebar from './layout/DesktopSidebar'
+import { hasSidebar, isMenuSection, type AppSection, type EtusivuPage } from './layout/sections'
+import EsittelyPage from './pages/EsittelyPage'
+import TuePage from './pages/TuePage'
+import MahdollistajatPage from './pages/MahdollistajatPage'
 
 function App() {
-  const [section, setSection] = useState<MenuSection>('suositellut')
+  const isDesktop = useIsDesktopViewport()
+  // Laptops open on the site's front page; phones go straight to the feed.
+  const [requestedSection, setSection] = useState<AppSection>(() => (isDesktop ? 'etusivu' : 'suositellut'))
+  // Etusivu and Mahdollistajat only exist in the laptop layout; if the
+  // window shrinks to phone size on one of them, show the feed instead.
+  const section: AppSection = isDesktop || isMenuSection(requestedSection) ? requestedSection : 'suositellut'
+  const [etusivuPage, setEtusivuPage] = useState<EtusivuPage>('esittely')
   const [selectedCourse, setSelectedCourse] = useState<TopicCode | null>(null)
   const [engagedIds, setEngagedIds] = useState<Record<string, true>>({})
   // Set from the Osaaminen page; drives the Suositellut feed and what
@@ -60,7 +73,7 @@ function App() {
     })
   }
 
-  function handleSelectSection(next: MenuSection) {
+  function handleSelectSection(next: AppSection) {
     if (next === 'kurssit' && section === 'kurssit') {
       setSelectedCourse(null)
       return
@@ -95,9 +108,10 @@ function App() {
 
   const showFeed = section === 'suositellut' || (section === 'kurssit' && selectedCourse !== null)
 
-  return (
+  const content = (
     <>
-      <TopMenu active={section} onSelect={handleSelectSection} />
+      {section === 'etusivu' && (etusivuPage === 'esittely' ? <EsittelyPage /> : <TuePage />)}
+      {section === 'mahdollistajat' && <MahdollistajatPage />}
       {section === 'kurssit' && !selectedCourse && (
         <CourseList onSelect={setSelectedCourse} engagedIds={engagedIds} />
       )}
@@ -125,6 +139,39 @@ function App() {
         />
       )}
     </>
+  )
+
+  if (!isDesktop) {
+    return (
+      <LayoutContext.Provider value={{ isDesktop: false }}>
+        <TopMenu active={isMenuSection(section) ? section : 'suositellut'} onSelect={handleSelectSection} />
+        {content}
+      </LayoutContext.Provider>
+    )
+  }
+
+  return (
+    <LayoutContext.Provider value={{ isDesktop: true }}>
+      <div className="flex h-dvh flex-col overflow-hidden bg-page">
+        <DesktopTopBar active={section} onSelect={handleSelectSection} />
+        <div className="flex min-h-0 flex-1">
+          {hasSidebar(section) && (
+            <DesktopSidebar
+              section={section}
+              etusivuPage={etusivuPage}
+              onEtusivuPageChange={setEtusivuPage}
+              selectedCourse={selectedCourse}
+              onSelectCourse={setSelectedCourse}
+              engagedIds={engagedIds}
+            />
+          )}
+          {/* The feed's cards are sized to this panel (index.css). */}
+          <main className="relative min-w-0 flex-1 overflow-hidden" style={{ '--feed-height': 'calc(100dvh - 4rem)' } as CSSProperties}>
+            {content}
+          </main>
+        </div>
+      </div>
+    </LayoutContext.Provider>
   )
 }
 

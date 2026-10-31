@@ -3,6 +3,7 @@ import { COURSE_MAP } from '../data/courses'
 import { STUDY_PLANS, getCourseTargets, type TargetGrade } from '../data/studyPlans'
 import type { Difficulty } from '../data/progress'
 import { InfoIcon, XIcon } from './icons'
+import { useLayout } from '../layout/LayoutContext'
 
 interface FeedInfoProps {
   targetGrade: TargetGrade
@@ -24,6 +25,7 @@ function describe(difficulties: Difficulty[]): string {
 // the recommended cards are picked and ordered for the current target.
 export default function FeedInfo({ targetGrade, cardCount }: FeedInfoProps) {
   const [open, setOpen] = useState(false)
+  const { isDesktop } = useLayout()
   const plan = STUDY_PLANS[targetGrade]
   const courseTargets = getCourseTargets(targetGrade)
 
@@ -34,7 +36,9 @@ export default function FeedInfo({ targetGrade, cardCount }: FeedInfoProps) {
         onClick={() => setOpen(true)}
         aria-label="Miten suositellut valitaan"
         aria-haspopup="dialog"
-        className="fixed right-4 top-[calc(env(safe-area-inset-top)+3.5rem)] z-20 flex h-9 w-9 items-center justify-center rounded-full bg-surface/90 text-ink shadow-md ring-1 ring-ink/5 backdrop-blur"
+        className={`${
+          isDesktop ? 'absolute right-6 top-3' : 'fixed right-4 top-[calc(env(safe-area-inset-top)+3.5rem)]'
+        } z-20 flex h-9 w-9 items-center justify-center rounded-full bg-surface/90 text-ink shadow-md ring-1 ring-ink/5 backdrop-blur`}
       >
         <InfoIcon className="h-5 w-5" />
       </button>
@@ -44,7 +48,7 @@ export default function FeedInfo({ targetGrade, cardCount }: FeedInfoProps) {
           role="dialog"
           aria-modal="true"
           aria-labelledby="feed-info-title"
-          className="fixed inset-0 z-40 flex items-end justify-center bg-ink/30 px-4 pb-[calc(env(safe-area-inset-bottom)+1rem)] pt-[calc(env(safe-area-inset-top)+4.5rem)] backdrop-blur-sm"
+          className="fixed inset-0 z-40 flex items-end justify-center bg-ink/30 lg:items-center px-4 pb-[calc(env(safe-area-inset-bottom)+1rem)] pt-[calc(env(safe-area-inset-top)+4.5rem)] backdrop-blur-sm"
           onClick={() => setOpen(false)}
         >
           <div

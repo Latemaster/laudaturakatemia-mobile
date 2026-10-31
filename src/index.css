@@ -27,8 +27,10 @@ body {
   background-size: 32px 32px;
 }
 
+/* The laptop layout sets --feed-height to the content panel's height, so
+   each card fills the panel below the top bar instead of the whole screen. */
 .snap-feed {
-  height: 100dvh;
+  height: var(--feed-height, 100dvh);
   overflow-y: scroll;
   scroll-snap-type: y mandatory;
   -webkit-overflow-scrolling: touch;
@@ -48,7 +50,7 @@ body {
 }
 
 .snap-card {
-  height: 100dvh;
+  height: var(--feed-height, 100dvh);
   scroll-snap-align: start;
   scroll-snap-stop: always;
 }

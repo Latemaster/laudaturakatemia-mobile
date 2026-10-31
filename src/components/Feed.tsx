@@ -4,6 +4,7 @@ import LessonCardView from './LessonCardView'
 import ExerciseCardView from './ExerciseCardView'
 import TaskCardView from './TaskCardView'
 import ProgressDots from './ProgressDots'
+import { useLayout } from '../layout/LayoutContext'
 
 interface FeedProps {
   cards: Card[]
@@ -19,6 +20,7 @@ export default function Feed({ cards, onEngage, onAnswer, onBack, backLabel = 'T
   const containerRef = useRef<HTMLDivElement>(null)
   const cardRefs = useRef<(HTMLDivElement | null)[]>([])
   const [currentIndex, setCurrentIndex] = useState(0)
+  const { isDesktop } = useLayout()
 
   useEffect(() => {
     const container = containerRef.current
@@ -48,7 +50,9 @@ export default function Feed({ cards, onEngage, onAnswer, onBack, backLabel = 'T
           type="button"
           onClick={onBack}
           aria-label={backLabel}
-          className="fixed left-4 top-[calc(env(safe-area-inset-top)+3.5rem)] z-20 flex h-9 w-9 items-center justify-center rounded-full bg-surface/90 text-lg text-ink shadow-md ring-1 ring-ink/5 backdrop-blur"
+          className={`${
+            isDesktop ? 'absolute left-6 top-3' : 'fixed left-4 top-[calc(env(safe-area-inset-top)+3.5rem)]'
+          } z-20 flex h-9 w-9 items-center justify-center rounded-full bg-surface/90 text-lg text-ink shadow-md ring-1 ring-ink/5 backdrop-blur`}
         >
           ←
         </button>
