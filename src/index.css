@@ -62,10 +62,21 @@ body {
   max-height: var(--card-max-h, none);
 }
 
-/* Kurssit › Tehtävät shows one card under its toolbar, so it starts at the
-   top instead of being centred in the panel like the feed's cards. */
-.course-tasks .snap-card {
-  align-items: flex-start;
+/* The tabbed answer editor's single box fills the height it is given;
+   long answers scroll inside the box rather than growing it. */
+.answer-fill-editor > div,
+.answer-fill-editor .math-answer {
+  min-height: 100%;
+}
+
+.answer-fill-editor > div {
+  height: 100%;
+}
+
+/* In the full-screen view there's room to scroll, so the formula picker
+   makes the answer box taller instead of squeezing the writing area. */
+.answer-roomy .answer-fill-editor {
+  min-height: 12rem;
 }
 
 /* Formula boxes inside the answer editor. The box is a MathLive

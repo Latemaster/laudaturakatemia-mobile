@@ -229,10 +229,36 @@ function NumericExercise({ card, onAnswer }: { card: Extract<ExerciseCard, { kin
   )
 }
 
-export default function ExerciseCardView({ card, onAnswer }: ExerciseCardViewProps) {
-  const [isExpanded, setIsExpanded] = useState(false)
+// The exercise itself: its visual and the choices, number input or slider.
+// Shared by the feed card and the laptop Kurssit › Tehtävät workspace.
+export function ExerciseBody({ card, onAnswer }: ExerciseCardViewProps) {
   const Visual = card.visual ? VISUALS[card.visual] : null
   const isSliderAnswer = card.kind === 'numeric' && card.answerVia === 'slider'
+  return (
+    <>
+      {/* Slider-answer exercises own the Visual themselves, so they can
+          drive it with controlled value/onChange - it must not also be
+          rendered uncontrolled here. */}
+      {Visual && !isSliderAnswer && (
+        <div className="mb-4">
+          <Visual />
+        </div>
+      )}
+      {card.kind === 'numeric' ? (
+        isSliderAnswer && Visual ? (
+          <SliderAnswerExercise card={card} Visual={Visual} onAnswer={onAnswer} />
+        ) : (
+          <NumericExercise card={card} onAnswer={onAnswer} />
+        )
+      ) : (
+        <ChoiceExercise card={card} onAnswer={onAnswer} />
+      )}
+    </>
+  )
+}
+
+export default function ExerciseCardView({ card, onAnswer }: ExerciseCardViewProps) {
+  const [isExpanded, setIsExpanded] = useState(false)
   const { isDesktop } = useLayout()
 
   return (
@@ -265,23 +291,7 @@ export default function ExerciseCardView({ card, onAnswer }: ExerciseCardViewPro
         {isExpanded && (
           <h2 className="mb-4 text-2xl font-semibold leading-snug text-ink">{card.question}</h2>
         )}
-        {/* Slider-answer exercises own the Visual themselves, so they can
-            drive it with controlled value/onChange - it must not also be
-            rendered uncontrolled here. */}
-        {Visual && !isSliderAnswer && (
-          <div className="mb-4">
-            <Visual />
-          </div>
-        )}
-        {card.kind === 'numeric' ? (
-          isSliderAnswer && Visual ? (
-            <SliderAnswerExercise card={card} Visual={Visual} onAnswer={onAnswer} />
-          ) : (
-            <NumericExercise card={card} onAnswer={onAnswer} />
-          )
-        ) : (
-          <ChoiceExercise card={card} onAnswer={onAnswer} />
-        )}
+        <ExerciseBody card={card} onAnswer={onAnswer} />
       </ExpandableBox>
     </CardShell>
   )

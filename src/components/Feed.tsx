@@ -4,6 +4,9 @@ import LessonCardView from './LessonCardView'
 import ExerciseCardView from './ExerciseCardView'
 import TaskCardView from './TaskCardView'
 import { useLayout } from '../layout/LayoutContext'
+import ExerciseWorkspace from './course/ExerciseWorkspace'
+import type { FullViewMode } from './course/TaskFullView'
+import { levelOf, useEvaluation } from './course/exerciseState'
 
 interface FeedProps {
   cards: Card[]
@@ -22,11 +25,42 @@ const FIRST_BATCH = 10
 const NEXT_BATCH = 5
 const LOAD_AHEAD = 5
 
+interface FeedExerciseProps {
+  card: Card
+  exercise: ReturnType<ReturnType<typeof useEvaluation>>
+  onEngage?: (cardId: string) => void
+  onAnswer?: (cardId: string, correct: boolean) => void
+}
+
+// Laptop feed: an exercise in the same box as Kurssit › Tehtävät, with its
+// course tag, but no level tabs or Edellinen / Seuraava; the feed scrolls.
+// The right gutter leaves room for the feed's info button.
+function FeedExercise({ card, exercise, onEngage, onAnswer }: FeedExerciseProps) {
+  const [fullView, setFullView] = useState<FullViewMode | null>(null)
+  return (
+    <section className="snap-card relative flex w-full flex-col py-6 pl-8 pr-14">
+      <ExerciseWorkspace
+        card={card}
+        title={card.type === 'task' ? card.problem.title : 'Pikatehtävä'}
+        badge={levelOf(card)}
+        {...exercise}
+        onEngage={() => onEngage?.(card.id)}
+        onQuickAnswer={(correct) => onAnswer?.(card.id, correct)}
+        fullView={fullView}
+        onFullViewChange={setFullView}
+        showCourse
+      />
+    </section>
+  )
+}
+
 export default function Feed({ cards, onEngage, onAnswer, onBack, backLabel = 'Takaisin' }: FeedProps) {
   const containerRef = useRef<HTMLDivElement>(null)
   const [currentIndex, setCurrentIndex] = useState(0)
   const [renderedCount, setRenderedCount] = useState(FIRST_BATCH)
   const { isDesktop } = useLayout()
+  // Answers and self-scores, shared with Kurssit and Arviointi.
+  const forExercise = useEvaluation()
 
   useEffect(() => {
     if (renderedCount < cards.length && renderedCount - currentIndex <= LOAD_AHEAD) {
@@ -61,6 +95,8 @@ export default function Feed({ cards, onEngage, onAnswer, onBack, backLabel = 'T
           <div key={card.id}>
             {card.type === 'lesson' ? (
               <LessonCardView card={card} showSwipeHint={index === 0} />
+            ) : isDesktop ? (
+              <FeedExercise card={card} exercise={forExercise(card)} onEngage={onEngage} onAnswer={onAnswer} />
             ) : card.type === 'exercise' ? (
               <ExerciseCardView
                 card={card}

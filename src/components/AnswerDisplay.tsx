@@ -30,7 +30,9 @@ export default function AnswerDisplay({ answer, parts }: AnswerDisplayProps) {
               <span className="italic text-ink-dim">Ei vastausta</span>
             )}
           </div>
-          <span className="shrink-0 pt-0.5 text-xs font-semibold text-ink-dim">{part.points} p</span>
+          {part.points !== undefined && (
+            <span className="shrink-0 pt-0.5 text-xs font-semibold text-ink-dim">{part.points} p</span>
+          )}
         </li>
       ))}
     </ol>

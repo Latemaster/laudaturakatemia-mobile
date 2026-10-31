@@ -1,6 +1,7 @@
 import katex from 'katex'
 import { useMemo, useState } from 'react'
 import type { EditorMode } from './MathAnswerEditor'
+import { XIcon } from './icons'
 
 // A snippet the palette can drop into a formula, in MathLive's insert
 // syntax: #? is an empty slot to fill, #0 the current selection and #@ the
@@ -107,12 +108,13 @@ interface MathSymbolPickerProps {
   onInsert: (snippet: MathSnippet) => void
   onNewFormula: () => void
   onExitFormula: () => void
+  onClose: () => void
 }
 
 // The symbol palette that opens from the answer box. Every button swallows
 // its pointerdown so tapping one never steals focus (and the caret) from
 // the text or the formula the snippet is going into.
-export default function MathSymbolPicker({ mode, onInsert, onNewFormula, onExitFormula }: MathSymbolPickerProps) {
+export default function MathSymbolPicker({ mode, onInsert, onNewFormula, onExitFormula, onClose }: MathSymbolPickerProps) {
   const [groupId, setGroupId] = useState(GROUPS[0].id)
   const group = GROUPS.find((g) => g.id === groupId) ?? GROUPS[0]
 
@@ -138,6 +140,16 @@ export default function MathSymbolPicker({ mode, onInsert, onNewFormula, onExitF
           }`}
         >
           {inFormula ? 'Valmis' : 'Uusi kaava'}
+        </button>
+        <button
+          type="button"
+          onPointerDown={(e) => e.preventDefault()}
+          onClick={onClose}
+          aria-label="Sulje kaavaeditori"
+          title="Sulje"
+          className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-ink-dim transition-colors hover:bg-surface hover:text-ink active:bg-ink/5"
+        >
+          <XIcon className="h-3.5 w-3.5" />
         </button>
       </div>
       <div className="mb-2 flex gap-1" role="tablist">

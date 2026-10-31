@@ -1,4 +1,4 @@
-import type { RubricPart } from '../types'
+import type { ProblemBlock, RubricPart } from '../types'
 
 // A multi-part problem ("a)", "b)", ...) is answered kohta by kohta: one
 // editor per kohta, each showing what it's worth. The answer is still
@@ -7,7 +7,8 @@ import type { RubricPart } from '../types'
 
 export interface AnswerPart {
   label: string
-  points: number
+  // Unknown for problems split from their prompt (no rubric yet).
+  points?: number
 }
 
 // The kohdat of a rubric, or null when it isn't split into labelled parts
@@ -18,6 +19,19 @@ export function answerPartsFromRubric(parts: RubricPart[] | undefined): AnswerPa
     label: part.label!,
     points: part.criteria.reduce((sum, criterion) => sum + criterion.points, 0),
   }))
+}
+
+// The kohdat of a problem without a rubric, read from its prompt: lines
+// starting "a)", "b)"... in order from a). Null when there are fewer than
+// two, so the problem keeps a single answer box.
+export function answerPartsFromPrompt(blocks: ProblemBlock[]): AnswerPart[] | null {
+  const text = blocks.map((block) => (block.type === 'text' ? block.content : '')).join('\n')
+  const parts: AnswerPart[] = []
+  for (const match of text.matchAll(/(?:^|\n)\s*([a-h])\)/g)) {
+    const expected = String.fromCharCode(97 + parts.length)
+    if (match[1] === expected) parts.push({ label: `${expected})` })
+  }
+  return parts.length >= 2 ? parts : null
 }
 
 export function joinPartAnswers(parts: AnswerPart[], answers: string[]): string {

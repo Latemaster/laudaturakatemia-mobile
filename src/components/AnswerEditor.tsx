@@ -10,9 +10,14 @@ const MathAnswerEditor = lazy(() => import('./MathAnswerEditor'))
 interface AnswerEditorProps {
   initialValue: string
   onChange: (answer: string) => void
-  onCancel: () => void
+  // Peruuta is left out when there's nothing to cancel back to, e.g. an
+  // editor that is always shown under the problem.
+  onCancel?: () => void
   onSubmit: (answer: string) => void
   submitLabel?: string
+  // Fill the height it is given (the laptop exercise workspace), with the
+  // box scrolling inside rather than growing.
+  fill?: boolean
 }
 
 export interface AnswerEditorHandle {
@@ -24,7 +29,7 @@ export interface AnswerEditorHandle {
 // The answer editor with its symbol picker and Peruuta / Lähetä, shown
 // below the problem in the full-screen answer views.
 const AnswerEditor = forwardRef<AnswerEditorHandle, AnswerEditorProps>(function AnswerEditor(
-  { initialValue, onChange, onCancel, onSubmit, submitLabel = 'Lähetä' },
+  { initialValue, onChange, onCancel, onSubmit, submitLabel = 'Lähetä', fill = false },
   ref,
 ) {
   const [answer, setAnswer] = useState(initialValue)
@@ -39,8 +44,8 @@ const AnswerEditor = forwardRef<AnswerEditorHandle, AnswerEditorProps>(function 
   }))
 
   return (
-    <div className="rounded-2xl border border-ink/10 bg-surface p-3 shadow-sm">
-      <div className="relative">
+    <div className={`rounded-2xl border border-ink/10 bg-surface p-3 shadow-sm ${fill ? 'flex h-full min-h-0 flex-1 flex-col' : ''}`}>
+      <div className={fill ? 'answer-fill-editor relative min-h-[8rem] flex-1 overflow-y-auto' : 'relative'}>
         <Suspense fallback={<div className="min-h-[4.5rem] w-full animate-pulse rounded-xl border border-ink/10 bg-page" />}>
           <MathAnswerEditor
             ref={editorRef}
@@ -87,13 +92,16 @@ const AnswerEditor = forwardRef<AnswerEditorHandle, AnswerEditorProps>(function 
           onInsert={(snippet) => editorRef.current?.insert(snippet.insert)}
           onNewFormula={() => editorRef.current?.newFormula()}
           onExitFormula={() => editorRef.current?.exitFormula()}
+          onClose={() => setShowSymbols(false)}
         />
       )}
 
       <div className="mt-2 flex gap-2">
-        <button type="button" onClick={onCancel} className="flex-1 rounded-xl px-3 py-2 text-sm font-semibold text-ink-dim">
-          Peruuta
-        </button>
+        {onCancel && (
+          <button type="button" onClick={onCancel} className="flex-1 rounded-xl px-3 py-2 text-sm font-semibold text-ink-dim">
+            Peruuta
+          </button>
+        )}
         <button
           type="button"
           disabled={!answer.trim()}

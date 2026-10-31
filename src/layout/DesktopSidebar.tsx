@@ -14,6 +14,24 @@ interface DesktopSidebarProps {
   engagedIds: Record<string, true>
 }
 
+const COLLAPSED_KEY = 'laudatur.sidebarCollapsed'
+
+function loadCollapsed(): boolean {
+  try {
+    return window.localStorage.getItem(COLLAPSED_KEY) === '1'
+  } catch {
+    return false
+  }
+}
+
+function saveCollapsed(collapsed: boolean): void {
+  try {
+    window.localStorage.setItem(COLLAPSED_KEY, collapsed ? '1' : '0')
+  } catch {
+    // Storage can be unavailable; the choice then lasts for the session.
+  }
+}
+
 function itemClass(active: boolean) {
   return `w-full rounded-xl px-3 py-2 text-left text-sm font-semibold transition-colors ${
     active ? 'bg-surface text-accent shadow-sm ring-1 ring-ink/5' : 'text-ink hover:bg-surface/60'
@@ -33,12 +51,51 @@ export default function DesktopSidebar({
   engagedIds,
 }: DesktopSidebarProps) {
   const [openCourse, setOpenCourse] = useState<TopicCode | null>(selectedCourse)
+  // Folds down to a thin strip to give the content panel the room.
+  const [collapsed, setCollapsed] = useState(loadCollapsed)
+
+  function toggleCollapsed() {
+    setCollapsed((c) => {
+      saveCollapsed(!c)
+      return !c
+    })
+  }
+
+  const title = section === 'etusivu' ? 'Etusivu' : 'Kurssit'
+
+  if (collapsed) {
+    return (
+      <aside className="flex w-12 shrink-0 flex-col items-center border-r border-ink/10 bg-page py-5">
+        <button
+          type="button"
+          onClick={toggleCollapsed}
+          aria-label={`Avaa sivupalkki (${title})`}
+          title="Avaa sivupalkki"
+          className="flex h-8 w-8 items-center justify-center rounded-full bg-surface text-sm text-ink-dim shadow-sm ring-1 ring-ink/10 transition-colors hover:text-accent"
+        >
+          »
+        </button>
+      </aside>
+    )
+  }
 
   return (
     <aside className="scrollbar-hide w-72 shrink-0 overflow-y-auto border-r border-ink/10 bg-page px-4 py-6">
+      <div className="mb-3 flex items-center justify-between gap-2 pl-3">
+        <h2 className="text-xs font-semibold uppercase tracking-widest text-ink-dim/80">{title}</h2>
+        <button
+          type="button"
+          onClick={toggleCollapsed}
+          aria-label="Pienennä sivupalkki"
+          title="Pienennä sivupalkki"
+          className="flex h-7 w-7 items-center justify-center rounded-full text-sm text-ink-dim transition-colors hover:bg-surface hover:text-accent"
+        >
+          «
+        </button>
+      </div>
+
       {section === 'etusivu' && (
         <>
-          <h2 className="mb-3 px-3 text-xs font-semibold uppercase tracking-widest text-ink-dim/80">Etusivu</h2>
           <ul className="flex flex-col gap-1">
             {ETUSIVU_PAGES.map((page) => (
               <li key={page.id}>
@@ -53,7 +110,6 @@ export default function DesktopSidebar({
 
       {section === 'kurssit' && (
         <>
-          <h2 className="mb-3 px-3 text-xs font-semibold uppercase tracking-widest text-ink-dim/80">Kurssit</h2>
           <ul className="flex flex-col gap-1">
             {COURSES.map((course) => {
               const { pct } = getCourseProgress(course.code, engagedIds)
