@@ -1,0 +1,1669 @@
+{
+  "OSAI_T1": {
+    "status": "draft",
+    "maxPoints": 5,
+    "parts": [
+      {
+        "label": "a)",
+        "solution": "$$|-5| = 5$$",
+        "criteria": [
+          {
+            "id": "a-result",
+            "text": "$|-5| = 5$",
+            "points": 1
+          }
+        ]
+      },
+      {
+        "label": "b)",
+        "solution": "$3 = \\sqrt{9} > \\sqrt{7}$, joten $3-\\sqrt{7} > 0$ ja\n$$|3-\\sqrt{7}| = 3-\\sqrt{7}$$",
+        "criteria": [
+          {
+            "id": "b-sign",
+            "text": "Merkki perusteltu: $3 = \\sqrt{9} > \\sqrt{7}$, joten $3-\\sqrt{7} > 0$",
+            "points": 1,
+            "impliedBy": "b-result"
+          },
+          {
+            "id": "b-result",
+            "text": "$|3-\\sqrt{7}| = 3-\\sqrt{7}$",
+            "points": 1
+          }
+        ]
+      },
+      {
+        "label": "c)",
+        "solution": "$2 = \\sqrt{4} < \\sqrt{5}$, joten $2-\\sqrt{5} < 0$ ja\n$$|2-\\sqrt{5}| = -(2-\\sqrt{5}) = \\sqrt{5}-2$$",
+        "criteria": [
+          {
+            "id": "c-sign",
+            "text": "Merkki perusteltu: $2 = \\sqrt{4} < \\sqrt{5}$, joten $2-\\sqrt{5} < 0$",
+            "points": 1,
+            "impliedBy": "c-result"
+          },
+          {
+            "id": "c-result",
+            "text": "$|2-\\sqrt{5}| = \\sqrt{5}-2$",
+            "points": 1
+          }
+        ],
+        "notes": [
+          "Desimaalivastaus $\\approx 0{,}24$ ilman tarkkaa arvoa: c-kohdasta 1 p."
+        ]
+      }
+    ]
+  },
+  "OSAI_T2": {
+    "status": "draft",
+    "maxPoints": 4,
+    "parts": [
+      {
+        "label": "a)",
+        "solution": "$$|3x| = 7 \\iff 3x = 7 \\ \\text{tai} \\ 3x = -7$$\n$$\\iff x = \\frac{7}{3} \\ \\text{tai} \\ x = -\\frac{7}{3}$$",
+        "criteria": [
+          {
+            "id": "a-cases",
+            "text": "Kaksi tapausta: $3x = 7$ tai $3x = -7$",
+            "points": 1,
+            "impliedBy": "a-result"
+          },
+          {
+            "id": "a-result",
+            "text": "$x = \\frac{7}{3}$ tai $x = -\\frac{7}{3}$",
+            "points": 1
+          }
+        ]
+      },
+      {
+        "label": "b)",
+        "solution": "$$|2x-5| = 16 \\iff 2x-5 = 16 \\ \\text{tai} \\ 2x-5 = -16$$\n$$\\iff x = \\frac{21}{2} \\ \\text{tai} \\ x = -\\frac{11}{2}$$",
+        "criteria": [
+          {
+            "id": "b-cases",
+            "text": "Kaksi tapausta: $2x-5 = 16$ tai $2x-5 = -16$",
+            "points": 1,
+            "impliedBy": "b-result"
+          },
+          {
+            "id": "b-result",
+            "text": "$x = \\frac{21}{2}$ tai $x = -\\frac{11}{2}$",
+            "points": 1
+          }
+        ],
+        "notes": [
+          "Jos vain positiivisen tapauksen ratkaisu, kohdasta enintään 1 p."
+        ]
+      }
+    ]
+  },
+  "OSAI_T3": {
+    "status": "draft",
+    "maxPoints": 4,
+    "parts": [
+      {
+        "solution": "Janan keskipiste on päätepisteiden koordinaattien keskiarvo:\n$$M = \\left(\\frac{6+(-2)}{2}, \\ \\frac{-3+8}{2}\\right) = \\left(2, \\ \\frac{5}{2}\\right)$$",
+        "criteria": [
+          {
+            "id": "formula",
+            "text": "Keskipiste koordinaattien keskiarvona: $\\left(\\frac{x_1+x_2}{2}, \\frac{y_1+y_2}{2}\\right)$",
+            "points": 2,
+            "impliedBy": "result"
+          },
+          {
+            "id": "result",
+            "text": "$M = \\left(2, \\frac{5}{2}\\right)$",
+            "points": 2
+          }
+        ]
+      }
+    ]
+  },
+  "OSAI_T4": {
+    "status": "draft",
+    "maxPoints": 5,
+    "parts": [
+      {
+        "label": "a)",
+        "solution": "Pisteen $(x, y)$ koordinaattien etäisyys toisistaan on $|y-x|$:\n$$|y-x| = 2$$\n$$\\iff y-x = 2 \\ \\text{tai} \\ y-x = -2$$\n$$\\iff y = x+2 \\ \\text{tai} \\ y = x-2$$\nPistejoukko on suorien $y = x+2$ ja $y = x-2$ muodostama suorapari.",
+        "criteria": [
+          {
+            "id": "a-equation",
+            "text": "Yhtälö $|y-x| = 2$ (tai $|x-y| = 2$)",
+            "points": 2
+          },
+          {
+            "id": "a-lines",
+            "text": "Pistejoukko on suorat $y = x+2$ ja $y = x-2$",
+            "points": 1,
+            "impliedBy": "a-equation"
+          }
+        ]
+      },
+      {
+        "label": "b)",
+        "solution": "Kuva A esittää suoria $y = x+2$ ja $y = x-2$, eli a-kohdan pistejoukkoa. Kuvan B ympyrä $x^2+y^2 = 4$ koostuu pisteistä, joiden etäisyys origosta on $2$; se on eri pistejoukko.\nVastaus: kuva A.",
+        "criteria": [
+          {
+            "id": "b-answer",
+            "text": "Kuva A",
+            "points": 1
+          },
+          {
+            "id": "b-why",
+            "text": "Perustelu: kuvassa A ovat suorat $y = x\\pm 2$ (tai: kuvan B ympyrä on pisteet, joiden etäisyys origosta on $2$)",
+            "points": 1
+          }
+        ],
+        "notes": [
+          "Pelkkä vastaus ”kuva A” ilman perustelua: b-kohdasta 1 p."
+        ]
+      }
+    ]
+  },
+  "OSAI_T5": {
+    "status": "draft",
+    "maxPoints": 6,
+    "parts": [
+      {
+        "solution": "Luetaan kultakin suoralta kaksi hilapistettä.\nSuora $k$ kulkee pisteiden $(0, 0)$ ja $(1, 1)$ kautta:\n$$k_k = 1, \\quad y = x$$\nSuora $s$ kulkee pisteiden $(0, 3)$ ja $(1, 5)$ kautta:\n$$k_s = \\frac{5-3}{1-0} = 2, \\quad y = 2x+3$$\nSuora $t$ kulkee pisteiden $(0, -2)$ ja $(-1, 2)$ kautta:\n$$k_t = \\frac{2-(-2)}{-1-0} = -4, \\quad y = -4x-2$$",
+        "criteria": [
+          {
+            "id": "k-slope",
+            "text": "Suoran $k$ kulmakerroin $1$",
+            "points": 1,
+            "impliedBy": "k-eq"
+          },
+          {
+            "id": "k-eq",
+            "text": "$k$: $y = x$",
+            "points": 1
+          },
+          {
+            "id": "s-slope",
+            "text": "Suoran $s$ kulmakerroin $2$",
+            "points": 1,
+            "impliedBy": "s-eq"
+          },
+          {
+            "id": "s-eq",
+            "text": "$s$: $y = 2x+3$",
+            "points": 1
+          },
+          {
+            "id": "t-slope",
+            "text": "Suoran $t$ kulmakerroin $-4$",
+            "points": 1,
+            "impliedBy": "t-eq"
+          },
+          {
+            "id": "t-eq",
+            "text": "$t$: $y = -4x-2$",
+            "points": 1
+          }
+        ]
+      }
+    ]
+  },
+  "OSAI_T6": {
+    "status": "draft",
+    "maxPoints": 5,
+    "parts": [
+      {
+        "label": "a)",
+        "solution": "Pisteen ja kulmakertoimen kautta: $y-y_0 = k(x-x_0)$.\n$$y-2 = 5(x+2) \\iff y = 5x+12$$",
+        "criteria": [
+          {
+            "id": "a-form",
+            "text": "Sijoitus: $y-2 = 5(x+2)$",
+            "points": 1,
+            "impliedBy": "a-result"
+          },
+          {
+            "id": "a-result",
+            "text": "$y = 5x+12$ (tai yhtäpitävä)",
+            "points": 1
+          }
+        ]
+      },
+      {
+        "label": "b)",
+        "solution": "Kulmakerroin:\n$$k = \\frac{7-8}{9-(-1)} = -\\frac{1}{10}$$\nSuora kulkee pisteen $(-1, 8)$ kautta:\n$$y-8 = -\\frac{1}{10}(x+1)$$\n$$\\iff y = -\\frac{1}{10}x+\\frac{79}{10}$$",
+        "criteria": [
+          {
+            "id": "b-slope",
+            "text": "Kulmakerroin $k = -\\frac{1}{10}$",
+            "points": 1,
+            "impliedBy": "b-result"
+          },
+          {
+            "id": "b-result",
+            "text": "$y = -\\frac{1}{10}x+\\frac{79}{10}$ (tai $x+10y-79 = 0$)",
+            "points": 2
+          }
+        ]
+      }
+    ]
+  },
+  "OSAI_T7": {
+    "status": "draft",
+    "maxPoints": 4,
+    "parts": [
+      {
+        "solution": "Ylemmästä yhtälöstä $x = y+7$. Sijoitetaan alempaan:\n$$4y+3(y+7) = 7 \\iff 7y = -14 \\iff y = -2$$\nTällöin $x = -2+7 = 5$.\nVastaus: $x = 5$, $y = -2$.",
+        "criteria": [
+          {
+            "id": "method",
+            "text": "Sijoitus- tai yhteenlaskumenetelmä: yhtälö, jossa on vain yksi tuntematon (esim. $7y+21 = 7$)",
+            "points": 1,
+            "impliedBy": "result"
+          },
+          {
+            "id": "first",
+            "text": "Toinen muuttujista ratkaistu oikein ($y = -2$ tai $x = 5$)",
+            "points": 1,
+            "impliedBy": "result"
+          },
+          {
+            "id": "result",
+            "text": "$x = 5$ ja $y = -2$",
+            "points": 2
+          }
+        ]
+      }
+    ]
+  },
+  "OSAI_T8": {
+    "status": "draft",
+    "maxPoints": 4,
+    "parts": [
+      {
+        "solution": "Merkitään $A = (1, 3)$ ja $B = (-4, 5)$.\n$$\\overline{AB} = (-4-1)\\overline{i}+(5-3)\\overline{j} = -5\\overline{i}+2\\overline{j}$$\n$$|\\overline{AB}| = \\sqrt{(-5)^2+2^2} = \\sqrt{29}$$",
+        "criteria": [
+          {
+            "id": "vector",
+            "text": "$\\overline{AB} = -5\\overline{i}+2\\overline{j}$ (tai vastavektori)",
+            "points": 2,
+            "impliedBy": "result"
+          },
+          {
+            "id": "result",
+            "text": "Pituus $\\sqrt{29}$",
+            "points": 2
+          }
+        ]
+      }
+    ]
+  },
+  "OSAI_T9": {
+    "status": "draft",
+    "maxPoints": 4,
+    "parts": [
+      {
+        "label": "a)",
+        "solution": "$$\\overline{a}+\\overline{b} = (2-4)\\overline{i}+(-3+9)\\overline{j}$$\n$$= -2\\overline{i}+6\\overline{j}$$",
+        "criteria": [
+          {
+            "id": "a-result",
+            "text": "$-2\\overline{i}+6\\overline{j}$",
+            "points": 1
+          }
+        ]
+      },
+      {
+        "label": "b)",
+        "solution": "$$\\overline{a}-\\overline{b} = (2+4)\\overline{i}+(-3-9)\\overline{j}$$\n$$= 6\\overline{i}-12\\overline{j}$$",
+        "criteria": [
+          {
+            "id": "b-result",
+            "text": "$6\\overline{i}-12\\overline{j}$",
+            "points": 1
+          }
+        ]
+      },
+      {
+        "label": "c)",
+        "solution": "$$\\overline{a}\\cdot\\overline{b} = 2\\cdot(-4)+(-3)\\cdot 9 = -8-27 = -35$$",
+        "criteria": [
+          {
+            "id": "c-formula",
+            "text": "Pistetulo vastinkomponenttien tulojen summana: $2\\cdot(-4)+(-3)\\cdot 9$",
+            "points": 1,
+            "impliedBy": "c-result"
+          },
+          {
+            "id": "c-result",
+            "text": "$\\overline{a}\\cdot\\overline{b} = -35$ (luku, ei vektori)",
+            "points": 1
+          }
+        ]
+      }
+    ]
+  },
+  "OSAI_T10": {
+    "status": "draft",
+    "maxPoints": 5,
+    "parts": [
+      {
+        "solution": "$$|\\overline{c}| = \\sqrt{3^2+(-2)^2} = \\sqrt{13}$$\n$$|\\overline{d}| = \\sqrt{4^2+4^2} = 4\\sqrt{2}$$\n$$\\overline{c}\\cdot\\overline{d} = 3\\cdot 4+(-2)\\cdot 4 = 4$$\nKulmalle $\\alpha$:\n$$\\cos\\alpha = \\frac{\\overline{c}\\cdot\\overline{d}}{|\\overline{c}||\\overline{d}|}$$\n$$= \\frac{4}{\\sqrt{13}\\cdot 4\\sqrt{2}} = \\frac{1}{\\sqrt{26}}$$\n$$\\alpha = \\cos^{-1}\\frac{1}{\\sqrt{26}} \\approx 78{,}7^\\circ$$",
+        "criteria": [
+          {
+            "id": "lengths",
+            "text": "Pituudet $|\\overline{c}| = \\sqrt{13}$ ja $|\\overline{d}| = 4\\sqrt{2}$",
+            "points": 1,
+            "impliedBy": "result"
+          },
+          {
+            "id": "dot",
+            "text": "Pistetulo $\\overline{c}\\cdot\\overline{d} = 4$",
+            "points": 1,
+            "impliedBy": "result"
+          },
+          {
+            "id": "cos",
+            "text": "$\\cos\\alpha = \\frac{4}{\\sqrt{13}\\cdot 4\\sqrt{2}}$ (tai yhtäpitävä)",
+            "points": 1,
+            "impliedBy": "result"
+          },
+          {
+            "id": "result",
+            "text": "$\\alpha \\approx 78{,}7^\\circ$",
+            "points": 2
+          }
+        ],
+        "notes": [
+          "Väärä tarkkuus (esim. $79^\\circ$): kohdasta ”kulma” 1 p."
+        ]
+      }
+    ]
+  },
+  "OSAII_T1": {
+    "status": "draft",
+    "maxPoints": 7,
+    "parts": [
+      {
+        "label": "a)",
+        "solution": "$$3|5x-2|-4 = 8 \\iff |5x-2| = 4$$\n$$\\iff 5x-2 = 4 \\ \\text{tai} \\ 5x-2 = -4$$\n$$\\iff x = \\frac{6}{5} \\ \\text{tai} \\ x = -\\frac{2}{5}$$",
+        "criteria": [
+          {
+            "id": "a-isolate",
+            "text": "Itseisarvo erotettu: $|5x-2| = 4$",
+            "points": 1,
+            "impliedBy": "a-result"
+          },
+          {
+            "id": "a-result",
+            "text": "$x = \\frac{6}{5}$ tai $x = -\\frac{2}{5}$",
+            "points": 2
+          }
+        ],
+        "notes": [
+          "Jos vain toinen ratkaisu, a-kohdasta enintään 2 p."
+        ]
+      },
+      {
+        "label": "b)",
+        "solution": "$$|3x-2| \\le 4 \\iff -4 \\le 3x-2 \\le 4$$\n$$\\iff -2 \\le 3x \\le 6 \\iff -\\frac{2}{3} \\le x \\le 2$$",
+        "criteria": [
+          {
+            "id": "b-double",
+            "text": "Kaksoisepäyhtälö $-4 \\le 3x-2 \\le 4$ (tai kaksi tapausta)",
+            "points": 1,
+            "impliedBy": "b-result"
+          },
+          {
+            "id": "b-result",
+            "text": "$-\\frac{2}{3} \\le x \\le 2$",
+            "points": 1
+          }
+        ]
+      },
+      {
+        "label": "c)",
+        "solution": "Itseisarvo on aina epänegatiivinen, $|5x-7| \\ge 0$ kaikilla $x$, joten epäyhtälöllä $|5x-7| < 0$ ei ole ratkaisuja.",
+        "criteria": [
+          {
+            "id": "c-why",
+            "text": "Perustelu: $|5x-7| \\ge 0$ kaikilla $x$",
+            "points": 1
+          },
+          {
+            "id": "c-result",
+            "text": "Ei ratkaisuja",
+            "points": 1
+          }
+        ],
+        "notes": [
+          "Pelkkä vastaus ”ei ratkaisuja” c-kohdassa ilman perustelua: 1 p."
+        ]
+      }
+    ]
+  },
+  "OSAII_T2": {
+    "status": "draft",
+    "maxPoints": 6,
+    "parts": [
+      {
+        "solution": "Pisteiden $x$-koordinaatit ovat eri, joten pisteet ovat samalla suoralla täsmälleen silloin, kun suorien $AB$ ja $BC$ kulmakertoimet ovat yhtä suuret:\n$$k_{AB} = \\frac{5-t^2}{2-3} = t^2-5$$\n$$k_{BC} = \\frac{t-5}{1-2} = 5-t$$\n$$t^2-5 = 5-t \\iff t^2+t-10 = 0$$\n$$t = \\frac{-1\\pm\\sqrt{1+40}}{2} = \\frac{-1\\pm\\sqrt{41}}{2}$$",
+        "criteria": [
+          {
+            "id": "condition",
+            "text": "Ehto: kahden pisteparin kautta kulkevien suorien kulmakertoimet yhtä suuret (esim. $k_{AB} = k_{BC}$)",
+            "points": 2,
+            "impliedBy": "result"
+          },
+          {
+            "id": "quadratic",
+            "text": "Yhtälö $t^2+t-10 = 0$ (tai yhtäpitävä)",
+            "points": 2,
+            "impliedBy": "result"
+          },
+          {
+            "id": "result",
+            "text": "$t = \\frac{-1+\\sqrt{41}}{2}$ tai $t = \\frac{-1-\\sqrt{41}}{2}$",
+            "points": 2
+          }
+        ],
+        "notes": [
+          "Jos vain toinen ratkaisu, kohdasta ”vastaus” 1 p."
+        ]
+      }
+    ],
+    "reviewNote": "Judgment call: the rubric compares k_AB with k_BC (the source uses k_AB and k_AC); both give t² + t − 10 = 0."
+  },
+  "OSAII_T3": {
+    "status": "draft",
+    "maxPoints": 4,
+    "parts": [
+      {
+        "label": "a)",
+        "solution": "Ympyrän yhtälö on $(x-x_0)^2+(y-y_0)^2 = r^2$:\n$$(x-2)^2+(y+3)^2 = 36$$",
+        "criteria": [
+          {
+            "id": "a-result",
+            "text": "$(x-2)^2+(y+3)^2 = 36$ (tai auki kerrottu muoto)",
+            "points": 2
+          }
+        ]
+      },
+      {
+        "label": "b)",
+        "solution": "Sijoitetaan piste $(2, 4)$:\n$$(2-2)^2+(4+3)^2 = 49 \\ne 36$$\nPiste ei ole ympyrällä (se on ympyrän ulkopuolella).",
+        "criteria": [
+          {
+            "id": "b-test",
+            "text": "Sijoitus ympyrän yhtälöön: $0^2+7^2 = 49 \\ne 36$ (tai etäisyys keskipisteestä $7 \\ne 6$)",
+            "points": 1
+          },
+          {
+            "id": "b-result",
+            "text": "Piste ei ole ympyrällä",
+            "points": 1
+          }
+        ],
+        "notes": [
+          "Pelkkä vastaus ”ei ole” ilman sijoitusta: b-kohdasta 0 p."
+        ]
+      }
+    ]
+  },
+  "OSAII_T4": {
+    "status": "draft",
+    "maxPoints": 5,
+    "parts": [
+      {
+        "solution": "$$7x-4y+2 = 0 \\iff y = \\frac{7}{4}x+\\frac{1}{2}$$\nNormaalin kulmakerroin kohtisuoruusehdosta $k_n\\cdot\\frac{7}{4} = -1$:\n$$k_n = -\\frac{4}{7}$$\nNormaali kulkee pisteen $(-9, 11)$ kautta:\n$$y-11 = -\\frac{4}{7}(x+9)$$\n$$\\iff y = -\\frac{4}{7}x+\\frac{41}{7}$$\nYleisessä muodossa $4x+7y-41 = 0$.",
+        "criteria": [
+          {
+            "id": "slope",
+            "text": "Suoran kulmakerroin $\\frac{7}{4}$",
+            "points": 1,
+            "impliedBy": "result"
+          },
+          {
+            "id": "normal-slope",
+            "text": "Normaalin kulmakerroin $-\\frac{4}{7}$ (kohtisuoruusehto)",
+            "points": 1,
+            "impliedBy": "result"
+          },
+          {
+            "id": "point",
+            "text": "Suora pisteen kautta: $y-11 = -\\frac{4}{7}(x+9)$",
+            "points": 1,
+            "impliedBy": "result"
+          },
+          {
+            "id": "result",
+            "text": "$y = -\\frac{4}{7}x+\\frac{41}{7}$ (tai $4x+7y-41 = 0$)",
+            "points": 2
+          }
+        ],
+        "notes": [
+          "Jos on muodostettu suoran suuntainen suora (kulmakerroin $\\frac{7}{4}$), enintään 1 p."
+        ]
+      }
+    ]
+  },
+  "OSAII_T5": {
+    "status": "draft",
+    "maxPoints": 8,
+    "parts": [
+      {
+        "solution": "Pisteen $(a, -3)$ etäisyys suorasta $x+y+a = 0$:\n$$d_1 = \\frac{|a-3+a|}{\\sqrt{1^2+1^2}} = \\frac{|2a-3|}{\\sqrt{2}}$$\nSuora $y = 2x-1$ yleisessä muodossa on $2x-y-1 = 0$:\n$$d_2 = \\frac{|2a+3-1|}{\\sqrt{2^2+(-1)^2}} = \\frac{|2a+2|}{\\sqrt{5}}$$\nEtäisyydet ovat yhtä suuret. Molemmat puolet ovat epänegatiivisia, joten voidaan korottaa toiseen:\n$$5(2a-3)^2 = 2(2a+2)^2$$\n$$20a^2-60a+45 = 8a^2+16a+8$$\n$$12a^2-76a+37 = 0$$\n$$a = \\frac{76\\pm\\sqrt{76^2-4\\cdot 12\\cdot 37}}{24} = \\frac{76\\pm 20\\sqrt{10}}{24}$$\n$$a = \\frac{19+5\\sqrt{10}}{6} \\ \\text{tai} \\ a = \\frac{19-5\\sqrt{10}}{6}$$",
+        "criteria": [
+          {
+            "id": "d1",
+            "text": "$d_1 = \\frac{|2a-3|}{\\sqrt{2}}$",
+            "points": 1,
+            "impliedBy": "result"
+          },
+          {
+            "id": "d2",
+            "text": "Suora yleiseen muotoon ja $d_2 = \\frac{|2a+2|}{\\sqrt{5}}$",
+            "points": 1,
+            "impliedBy": "result"
+          },
+          {
+            "id": "equation",
+            "text": "Yhtälö $d_1 = d_2$ ja itseisarvot poistettu oikein (korotus toiseen tai tapaukset $\\pm$)",
+            "points": 2,
+            "impliedBy": "result"
+          },
+          {
+            "id": "quadratic",
+            "text": "$12a^2-76a+37 = 0$ (tai yhtäpitävä)",
+            "points": 1,
+            "impliedBy": "result"
+          },
+          {
+            "id": "result",
+            "text": "$a = \\frac{19\\pm 5\\sqrt{10}}{6}$ (molemmat)",
+            "points": 3
+          }
+        ],
+        "notes": [
+          "Jos vain toinen ratkaisu (esim. vain tapaus $+$), kohdasta ”vastaus” 1 p.",
+          "Pelkät desimaalilikiarvot ($a \\approx 0{,}53$ ja $a \\approx 5{,}80$): kohdasta ”vastaus” 2 p."
+        ]
+      }
+    ]
+  },
+  "OSAII_T6": {
+    "status": "draft",
+    "maxPoints": 5,
+    "parts": [
+      {
+        "solution": "Ympyrän keskipiste on $(2, 2)$. Piste $(8, 4)$ on ympyrällä, koska $(8-2)^2+(4-2)^2 = 40$. Tangentti on kohtisuorassa sivuamispisteeseen piirrettyä sädettä vastaan.\nSäteen kulmakerroin:\n$$k_s = \\frac{4-2}{8-2} = \\frac{1}{3}$$\nKohtisuoruusehdosta $k_t\\cdot\\frac{1}{3} = -1$, joten $k_t = -3$.\n$$y-4 = -3(x-8) \\iff y = -3x+28$$",
+        "criteria": [
+          {
+            "id": "on-circle",
+            "text": "Todettu, että $(8, 4)$ on ympyrällä",
+            "points": 1,
+            "impliedBy": "result"
+          },
+          {
+            "id": "radius",
+            "text": "Säteen kulmakerroin $\\frac{1}{3}$ (keskipiste $(2, 2)$)",
+            "points": 1,
+            "impliedBy": "result"
+          },
+          {
+            "id": "tangent-slope",
+            "text": "Tangentin kulmakerroin $-3$ (tangentti kohtisuorassa sädettä vastaan)",
+            "points": 1,
+            "impliedBy": "result"
+          },
+          {
+            "id": "result",
+            "text": "$y = -3x+28$ (tai $3x+y-28 = 0$)",
+            "points": 2
+          }
+        ]
+      }
+    ]
+  },
+  "OSAII_T7": {
+    "status": "draft",
+    "maxPoints": 7,
+    "parts": [
+      {
+        "solution": "Paraabelin piste $(x, y)$ on yhtä kaukana johtosuorasta $y = -3$ ja polttopisteestä $(4, 2)$:\n$$|y+3| = \\sqrt{(x-4)^2+(y-2)^2}$$\n$$(y+3)^2 = (x-4)^2+(y-2)^2$$\n$$y^2+6y+9 = x^2-8x+16+y^2-4y+4$$\n$$10y = x^2-8x+11$$\n$$y = \\frac{1}{10}x^2-\\frac{4}{5}x+\\frac{11}{10}$$\nJohtosuora on vaakasuora, joten paraabelin akseli ($x = 4$) on $y$-akselin suuntainen. Koska $\\frac{1}{10} > 0$, paraabeli aukeaa ylöspäin (polttopiste on johtosuoran yläpuolella).",
+        "criteria": [
+          {
+            "id": "definition",
+            "text": "Määritelmä: $|y+3| = \\sqrt{(x-4)^2+(y-2)^2}$",
+            "points": 2,
+            "impliedBy": "equation"
+          },
+          {
+            "id": "simplify",
+            "text": "Sievennetty muotoon $10y = x^2-8x+11$",
+            "points": 1,
+            "impliedBy": "equation"
+          },
+          {
+            "id": "equation",
+            "text": "$y = \\frac{1}{10}x^2-\\frac{4}{5}x+\\frac{11}{10}$ (tai yhtäpitävä)",
+            "points": 2
+          },
+          {
+            "id": "axis",
+            "text": "Akseli on $y$-akselin suuntainen",
+            "points": 1
+          },
+          {
+            "id": "opens",
+            "text": "Aukeaa ylöspäin (perusteluna $a > 0$ tai polttopisteen paikka)",
+            "points": 1
+          }
+        ]
+      }
+    ]
+  },
+  "OSAII_T8": {
+    "status": "draft",
+    "maxPoints": 4,
+    "parts": [
+      {
+        "solution": "Vektorit ovat yhdensuuntaiset, jos $\\overline{a} = t\\overline{b}$ jollakin $t \\ne 0$. Komponenteittain:\n$$-2 = 5t, \\quad -8 = 20t, \\quad 6 = -15t$$\nKaikista saadaan $t = -\\frac{2}{5}$, joten $\\overline{a} = -\\frac{2}{5}\\overline{b}$. Vektorit ovat yhdensuuntaiset, ja koska $t < 0$, ne ovat erisuuntaiset.",
+        "criteria": [
+          {
+            "id": "factor",
+            "text": "Kerroin $t = -\\frac{2}{5}$ todettu samaksi kaikille kolmelle komponentille",
+            "points": 2
+          },
+          {
+            "id": "parallel",
+            "text": "Johtopäätös: yhdensuuntaiset",
+            "points": 1
+          },
+          {
+            "id": "opposite",
+            "text": "Erisuuntaiset, koska $t < 0$",
+            "points": 1
+          }
+        ],
+        "notes": [
+          "Pelkkä vastaus ”yhdensuuntaiset ja erisuuntaiset” ilman kerrointa: 1 p. Jos kerroin on tarkistettu vain yhdestä komponentista, kohdasta ”kerroin” 1 p."
+        ]
+      }
+    ]
+  },
+  "OSAII_T9": {
+    "status": "draft",
+    "maxPoints": 6,
+    "parts": [
+      {
+        "solution": "Etsitään luvut $r$, $s$ ja $t$, joille $\\overline{d} = r\\overline{a}+s\\overline{b}+t\\overline{c}$:\n$$r(\\overline{i}-\\overline{j})+s(\\overline{i}+\\overline{k})+t\\overline{j}$$\n$$= (r+s)\\overline{i}+(t-r)\\overline{j}+s\\overline{k}$$\nKomponenttiesitys on yksikäsitteinen, joten\n$$\\begin{cases} r+s = 2 \\\\ t-r = -2 \\\\ s = 2 \\end{cases}$$\nTästä $s = 2$, $r = 0$ ja $t = -2$, eli\n$$\\overline{d} = 0\\cdot\\overline{a}+2\\overline{b}-2\\overline{c}$$\nVektorin $\\overline{a}$ suuntainen komponentti olisi nollavektori, joten $\\overline{d}$ on vektorien $\\overline{b}$ ja $\\overline{c}$ virittämässä tasossa. Vektoria $\\overline{d}$ ei voi jakaa kaikkien kolmen vektorin suuntaisiin (nollasta eroaviin) komponentteihin.",
+        "criteria": [
+          {
+            "id": "setup",
+            "text": "Yhtälö $\\overline{d} = r\\overline{a}+s\\overline{b}+t\\overline{c}$",
+            "points": 1
+          },
+          {
+            "id": "system",
+            "text": "Yhtälöryhmä $r+s = 2$, $t-r = -2$, $s = 2$",
+            "points": 2
+          },
+          {
+            "id": "solution",
+            "text": "Ratkaisu $r = 0$, $s = 2$, $t = -2$",
+            "points": 2
+          },
+          {
+            "id": "conclusion",
+            "text": "Johtopäätös perusteltuna sillä, että $r = 0$ ($\\overline{a}$-suuntainen komponentti on nollavektori)",
+            "points": 1
+          }
+        ],
+        "notes": [
+          "Pelkkä vastaus ”ei voi” (tai ”voi”) ilman yhtälöryhmän ratkaisua: 0 p.",
+          "Myös vastaus ”voi: $\\overline{d} = 0\\cdot\\overline{a}+2\\overline{b}-2\\overline{c}$” hyväksytään, jos hajotelma on kirjoitettu näkyviin."
+        ]
+      }
+    ],
+    "reviewNote": "UNRESOLVED: a, b and c are linearly independent (det = −1), so every vector has a unique decomposition, here d = 0·a + 2b − 2c. The source answers ”ei voida” because r = 0, i.e. it requires every component to be nonzero. Whether a zero component counts is a convention; the rubric follows the source but accepts ”voi” with the decomposition written out. Decide which answer is intended (and maybe reword the prompt, e.g. ”nollasta eroaviin komponentteihin”)."
+  },
+  "OSAII_T10": {
+    "status": "draft",
+    "maxPoints": 4,
+    "parts": [
+      {
+        "solution": "Merkitään $A = (2, 4, 6)$. Suoran piste $P$ toteuttaa vektoriyhtälön\n$$\\overline{OP} = \\overline{OA}+t\\overline{a}, \\quad t \\in \\mathbb{R}$$\n$$= 2\\overline{i}+4\\overline{j}+6\\overline{k}$$\n$$\\quad +t(2\\overline{i}-\\overline{j}+3\\overline{k})$$\nKomponenteittain saadaan parametriesitys\n$$\\begin{cases} x = 2+2t \\\\ y = 4-t \\\\ z = 6+3t \\end{cases} \\quad t \\in \\mathbb{R}$$",
+        "criteria": [
+          {
+            "id": "vector-eq",
+            "text": "Vektoriyhtälö $\\overline{OP} = \\overline{OA}+t\\overline{a}$ sijoitettuna",
+            "points": 2,
+            "impliedBy": "parametric"
+          },
+          {
+            "id": "parametric",
+            "text": "Parametriesitys $x = 2+2t$, $y = 4-t$, $z = 6+3t$, $t \\in \\mathbb{R}$",
+            "points": 2
+          }
+        ],
+        "notes": [
+          "Jos parametrin $t \\in \\mathbb{R}$ maininta puuttuu kokonaan, −1 p."
+        ]
+      }
+    ]
+  },
+  "OSAIII_T1": {
+    "status": "draft",
+    "maxPoints": 12,
+    "parts": [
+      {
+        "solution": "Kulmanpuolittajan pisteet $(x, y)$ ovat yhtä kaukana molemmista suorista.\n$$d_1 = \\frac{|4x-3y-7|}{\\sqrt{4^2+(-3)^2}} = \\frac{|4x-3y-7|}{5}$$\nSuora $y = -1$ on muodossa $y+1 = 0$:\n$$d_2 = \\frac{|y+1|}{\\sqrt{0^2+1^2}} = |y+1|$$\n$$d_1 = d_2 \\iff |4x-3y-7| = 5|y+1|$$\n$$\\iff 4x-3y-7 = 5(y+1) \\ \\text{tai} \\ 4x-3y-7 = -5(y+1)$$\n$$\\iff 4x-8y-12 = 0 \\ \\text{tai} \\ 4x+2y-2 = 0$$\n$$\\iff x-2y-3 = 0 \\ \\text{tai} \\ 2x+y-1 = 0$$\nKulmanpuolittajat ovat $x-2y-3 = 0$ ja $2x+y-1 = 0$.\nKuva: suorat leikkaavat pisteessä $(1, -1)$. Kulmanpuolittajat kulkevat tämän pisteen kautta, ovat kohtisuorassa toisiaan vastaan ja jakavat suorien väliset kulmat kahtia.",
+        "criteria": [
+          {
+            "id": "idea",
+            "text": "Kulmanpuolittajan pisteet ovat yhtä kaukana molemmista suorista: $d_1 = d_2$",
+            "points": 2
+          },
+          {
+            "id": "d1",
+            "text": "$d_1 = \\frac{|4x-3y-7|}{5}$",
+            "points": 1
+          },
+          {
+            "id": "d2",
+            "text": "$d_2 = |y+1|$",
+            "points": 1
+          },
+          {
+            "id": "cases",
+            "text": "Itseisarvoyhtälö jaettu kahteen tapaukseen ($\\pm$)",
+            "points": 2
+          },
+          {
+            "id": "bis1",
+            "text": "$x-2y-3 = 0$ (tai yhtäpitävä)",
+            "points": 1
+          },
+          {
+            "id": "bis2",
+            "text": "$2x+y-1 = 0$ (tai yhtäpitävä)",
+            "points": 1
+          },
+          {
+            "id": "fig-lines",
+            "text": "Kuvassa annetut suorat ja niiden leikkauspiste $(1, -1)$",
+            "points": 1
+          },
+          {
+            "id": "fig-bisectors",
+            "text": "Kuvassa molemmat kulmanpuolittajat, jotka kulkevat leikkauspisteen kautta",
+            "points": 2
+          },
+          {
+            "id": "fig-check",
+            "text": "Kuvasta näkyy, että puolittajat ovat kohtisuorassa ja jakavat kulmat kahtia (tai tämä todettu laskemalla)",
+            "points": 1
+          }
+        ],
+        "notes": [
+          "Laskuvirhe, jonka jälkeen jatko on johdonmukainen: −1 p.",
+          "Jos vain toinen tapaus on käsitelty (yksi kulmanpuolittaja), enintään 9 p."
+        ]
+      }
+    ]
+  },
+  "OSAIII_T2": {
+    "status": "draft",
+    "maxPoints": 12,
+    "parts": [
+      {
+        "solution": "Täydennetään neliöiksi:\n$$x^2-4ax+y^2+2ay = -6a^2+5a$$\n$$(x-2a)^2-4a^2+(y+a)^2-a^2 = -6a^2+5a$$\n$$(x-2a)^2+(y+a)^2 = 5a-a^2$$\nYhtälö esittää ympyrää, jonka keskipiste on $(2a, -a)$, täsmälleen silloin, kun oikea puoli on positiivinen (säteen neliö $r^2 = 5a-a^2$):\n$$5a-a^2 > 0 \\iff a(5-a) > 0$$\nNollakohdat ovat $a = 0$ ja $a = 5$. Lauseke on alaspäin aukeava paraabeli, joten se on positiivinen nollakohtien välissä: $0 < a < 5$.\nAla $A = \\pi r^2 = \\pi(5a-a^2)$ on suurin, kun $r^2$ on suurin. Paraabelin huippu on nollakohtien puolivälissä, $a = \\frac{5}{2}$ (tai $\\frac{d}{da}(5a-a^2) = 5-2a = 0$):\n$$r^2 = 5\\cdot\\frac{5}{2}-\\left(\\frac{5}{2}\\right)^2 = \\frac{25}{4}$$\n$$A_{\\max} = \\frac{25\\pi}{4}$$",
+        "criteria": [
+          {
+            "id": "squares",
+            "text": "Neliöksi täydennys: $(x-2a)^2+(y+a)^2 = 5a-a^2$",
+            "points": 2
+          },
+          {
+            "id": "centre",
+            "text": "Keskipiste $(2a, -a)$ ja $r^2 = 5a-a^2$",
+            "points": 1
+          },
+          {
+            "id": "condition",
+            "text": "Ehto: ympyrä vain, kun $5a-a^2 > 0$ (säteen neliö positiivinen)",
+            "points": 2
+          },
+          {
+            "id": "zeros",
+            "text": "Nollakohdat $a = 0$ ja $a = 5$",
+            "points": 1
+          },
+          {
+            "id": "interval",
+            "text": "$0 < a < 5$ (perusteltu kuvaajalla tai merkkikaaviolla)",
+            "points": 1
+          },
+          {
+            "id": "max-idea",
+            "text": "Ala on suurin, kun $r^2 = 5a-a^2$ on suurin",
+            "points": 1
+          },
+          {
+            "id": "vertex",
+            "text": "Maksimikohta $a = \\frac{5}{2}$",
+            "points": 1
+          },
+          {
+            "id": "r2",
+            "text": "$r^2 = \\frac{25}{4}$",
+            "points": 1
+          },
+          {
+            "id": "area",
+            "text": "Suurin ala $\\frac{25\\pi}{4}$",
+            "points": 2
+          }
+        ],
+        "notes": [
+          "Laskuvirhe, jonka jälkeen jatko on johdonmukainen: −1 p.",
+          "Jos ehdoksi on otettu $5a-a^2 \\ge 0$ (mukaan $a = 0$ tai $a = 5$, jolloin ”ympyrä” on piste), kohdasta ”väli” 0 p."
+        ]
+      }
+    ],
+    "reviewNote": "SOURCE ERROR: the source gives the centre as (2a, a); from (x − 2a)² + (y + a)² it is (2a, −a). The interval 0 < a < 5 and the maximum area 25π/4 are right."
+  },
+  "OSAIII_T3": {
+    "status": "draft",
+    "maxPoints": 8,
+    "parts": [
+      {
+        "solution": "Kysytyt suorat ovat niiden pisteiden $(x, y)$ joukko, joiden etäisyys suorasta $5x-3y+4 = 0$ on $7$:\n$$\\frac{|5x-3y+4|}{\\sqrt{5^2+(-3)^2}} = 7$$\n$$\\iff |5x-3y+4| = 7\\sqrt{34}$$\n$$\\iff 5x-3y+4 = 7\\sqrt{34} \\ \\text{tai} \\ 5x-3y+4 = -7\\sqrt{34}$$\nSuorat ovat\n$$5x-3y+4-7\\sqrt{34} = 0$$\n$$5x-3y+4+7\\sqrt{34} = 0$$\n($7\\sqrt{34} \\approx 40{,}8$.) Kuvassa alkuperäinen suora ja sen molemmin puolin yhdensuuntaiset suorat samalla etäisyydellä $7$.",
+        "criteria": [
+          {
+            "id": "idea",
+            "text": "Pisteen etäisyys suorasta asetettu yhtä suureksi kuin $7$ (tai suora $5x-3y+c = 0$ ja yhdensuuntaisten suorien etäisyys)",
+            "points": 1,
+            "impliedBy": "result"
+          },
+          {
+            "id": "norm",
+            "text": "Nimittäjä $\\sqrt{5^2+(-3)^2} = \\sqrt{34}$",
+            "points": 1,
+            "impliedBy": "result"
+          },
+          {
+            "id": "cases",
+            "text": "Kaksi tapausta: $5x-3y+4 = \\pm 7\\sqrt{34}$",
+            "points": 1,
+            "impliedBy": "result"
+          },
+          {
+            "id": "result",
+            "text": "$5x-3y+4-7\\sqrt{34} = 0$ ja $5x-3y+4+7\\sqrt{34} = 0$",
+            "points": 3
+          },
+          {
+            "id": "figure",
+            "text": "Kuva: annettu suora ja kysytyt suorat sen molemmin puolin",
+            "points": 2
+          }
+        ],
+        "notes": [
+          "Jos vain toinen suora, kohdasta ”suorat” 1 p.",
+          "Nimittäjä $5$ ($\\sqrt{25+9}$ laskettu väärin): enintään 4 p."
+        ]
+      }
+    ],
+    "reviewNote": "SOURCE ERROR: the source computes sqrt(5² + (−3)²) as 5 instead of sqrt(34), so its lines 5x − 3y − 31 = 0 and 5x − 3y + 39 = 0 are only 35/sqrt(34) ≈ 6,0 from the given line. Correct: 5x − 3y + 4 ∓ 7·sqrt(34) = 0. The solution figure Suorat_etaisyys.png shows the wrong lines too. Judgment call: 8 p (short problem plus a figure), not 12."
+  },
+  "OSAIII_T4": {
+    "status": "draft",
+    "maxPoints": 12,
+    "parts": [
+      {
+        "label": "a)",
+        "solution": "Suoran parametriesitys:\n$$\\begin{cases} x = 1-2s \\\\ y = s \\\\ z = 3-6s \\end{cases} \\quad s \\in \\mathbb{R}$$\n$y$-akselin pisteissä $x = 0$ ja $z = 0$:\n$$1-2s = 0 \\iff s = \\frac{1}{2}$$\n$$3-6s = 0 \\iff s = \\frac{1}{2}$$\nMolemmat ehdot toteutuvat samalla parametrin arvolla $s = \\frac{1}{2}$, joten suora kulkee $y$-akselin pisteen $\\left(0, \\frac{1}{2}, 0\\right)$ kautta eli leikkaa $y$-akselin.",
+        "criteria": [
+          {
+            "id": "a-param",
+            "text": "Parametriesitys $x = 1-2s$, $y = s$, $z = 3-6s$ (tai vektoriyhtälö)",
+            "points": 2
+          },
+          {
+            "id": "a-condition",
+            "text": "Ehto: $y$-akselilla $x = 0$ ja $z = 0$",
+            "points": 1
+          },
+          {
+            "id": "a-same",
+            "text": "Molemmista sama $s = \\frac{1}{2}$ (yhteinen ratkaisu on olennainen)",
+            "points": 2
+          },
+          {
+            "id": "a-point",
+            "text": "Leikkauspiste $\\left(0, \\frac{1}{2}, 0\\right)$",
+            "points": 1
+          }
+        ],
+        "notes": [
+          "Jos on ratkaistu vain $x = 0$ tarkistamatta $z$-koordinaattia, a-kohdasta enintään 3 p."
+        ]
+      },
+      {
+        "label": "b)",
+        "solution": "$y$-akselin suuntavektori on $\\overline{j}$. Suorien välinen kulma on terävä tai suora, joten\n$$\\cos\\alpha = \\frac{|\\overline{v}\\cdot\\overline{j}|}{|\\overline{v}||\\overline{j}|}$$\n$$= \\frac{1}{\\sqrt{(-2)^2+1^2+(-6)^2}} = \\frac{1}{\\sqrt{41}}$$\n$$\\alpha = \\cos^{-1}\\frac{1}{\\sqrt{41}} \\approx 81{,}0^\\circ$$",
+        "criteria": [
+          {
+            "id": "b-direction",
+            "text": "$y$-akselin suuntavektori $\\overline{j}$ (tai muu $y$-akselin suuntainen)",
+            "points": 1
+          },
+          {
+            "id": "b-formula",
+            "text": "Kulma suuntavektorien avulla: $\\cos\\alpha = \\frac{\\overline{v}\\cdot\\overline{j}}{|\\overline{v}||\\overline{j}|}$",
+            "points": 2
+          },
+          {
+            "id": "b-values",
+            "text": "$\\overline{v}\\cdot\\overline{j} = 1$ ja $|\\overline{v}| = \\sqrt{41}$",
+            "points": 1
+          },
+          {
+            "id": "b-result",
+            "text": "$\\alpha \\approx 81{,}0^\\circ$ (tai $81^\\circ$)",
+            "points": 2
+          }
+        ],
+        "notes": [
+          "Laskuvirhe, jonka jälkeen jatko on johdonmukainen: −1 p.",
+          "Vastaus $99^\\circ$ (vektorien välinen tylppä kulma) ilman muuntoa suorien väliseksi kulmaksi: kohdasta ”kulma” 1 p."
+        ]
+      }
+    ],
+    "reviewNote": "SOURCE ERROR: b) cos α = 1/sqrt(41) gives α ≈ 81,0°, not 83°. The source's working (v·a = s, |v| = sqrt(41)|s|) is also garbled; the rubric uses v·j = 1 and |v| = sqrt(41)."
+  },
+  "OSAIII_T5": {
+    "status": "draft",
+    "maxPoints": 12,
+    "parts": [
+      {
+        "label": "a)",
+        "solution": "Merkitään $A = (4, -6, 7)$, $B = (8, 1, -2)$ ja $P = (1, 2, 3)$. Suoran suuntavektori:\n$$\\overline{AB} = 4\\overline{i}+7\\overline{j}-9\\overline{k}$$\nSuoran piste $Q = (4+4t, -6+7t, 7-9t)$, joten\n$$\\overline{PQ} = (3+4t)\\overline{i}+(-8+7t)\\overline{j}+(4-9t)\\overline{k}$$\nLähin piste $Q$ on se, jossa $\\overline{PQ} \\perp \\overline{AB}$:\n$$4(3+4t)+7(-8+7t)-9(4-9t) = 0$$\n$$146t-80 = 0 \\iff t = \\frac{40}{73}$$\n$$\\overline{PQ} = \\frac{1}{73}(379\\overline{i}-304\\overline{j}-68\\overline{k})$$\n$$|\\overline{PQ}| = \\frac{\\sqrt{240\\,681}}{73} \\approx 6{,}72$$",
+        "criteria": [
+          {
+            "id": "a-direction",
+            "text": "Suuntavektori $\\overline{AB} = 4\\overline{i}+7\\overline{j}-9\\overline{k}$",
+            "points": 1
+          },
+          {
+            "id": "a-point",
+            "text": "Suoran yleinen piste (parametriesitys) ja $\\overline{PQ}$ parametrin avulla",
+            "points": 1
+          },
+          {
+            "id": "a-perp",
+            "text": "Ehto: $\\overline{PQ}\\cdot\\overline{AB} = 0$ (kohtisuora etäisyys)",
+            "points": 2
+          },
+          {
+            "id": "a-t",
+            "text": "$t = \\frac{40}{73}$",
+            "points": 1
+          },
+          {
+            "id": "a-pq",
+            "text": "$\\overline{PQ} = \\frac{379}{73}\\overline{i}-\\frac{304}{73}\\overline{j}-\\frac{68}{73}\\overline{k}$",
+            "points": 1
+          },
+          {
+            "id": "a-result",
+            "text": "Etäisyys $\\frac{\\sqrt{240\\,681}}{73} \\approx 6{,}72$",
+            "points": 2
+          }
+        ],
+        "notes": [
+          "Muu oikea menetelmä (esim. $|\\overline{AP}|^2-\\left(\\frac{\\overline{AP}\\cdot\\overline{AB}}{|\\overline{AB}|}\\right)^2$ tai etäisyyden minimointi) kelpaa: kohta ”ehto” vastaa menetelmän ideaa."
+        ]
+      },
+      {
+        "label": "b)",
+        "solution": "Geometriaohjelmalla (3D): piirretään pisteet $A$, $B$ ja $P$ sekä suora $AB$. Piirretään pisteen $P$ kautta suoran $AB$ normaali (tai pisteen $P$ kautta taso, joka on kohtisuorassa suoraa $AB$ vastaan), ja määritetään sen ja suoran $AB$ leikkauspiste $Q$. Ohjelma antaa etäisyyden $|PQ| \\approx 6{,}72$.",
+        "criteria": [
+          {
+            "id": "b-line",
+            "text": "Suora pisteiden $A$ ja $B$ kautta piirretty ohjelmalla",
+            "points": 1
+          },
+          {
+            "id": "b-normal",
+            "text": "Pisteen $P$ kautta piirretty suoran normaali (tai kohtisuora taso)",
+            "points": 1
+          },
+          {
+            "id": "b-foot",
+            "text": "Leikkauspiste $Q$ määritetty ohjelman toiminnolla",
+            "points": 1
+          },
+          {
+            "id": "b-result",
+            "text": "Etäisyys $\\approx 6{,}72$ ohjelman komennolla (komennot näkyvissä)",
+            "points": 1
+          }
+        ],
+        "notes": [
+          "Laskuvirhe, jonka jälkeen jatko on johdonmukainen: −1 p.",
+          "Pelkkä a-kohdan laskun toistaminen ilman ohjelman rakennetta: b-kohdasta 0 p."
+        ]
+      }
+    ]
+  },
+  "OSAIII_T6": {
+    "status": "draft",
+    "maxPoints": 7,
+    "parts": [
+      {
+        "label": "a)",
+        "solution": "$$\\cos\\alpha = \\frac{\\overline{a}\\cdot\\overline{c}}{|\\overline{a}||\\overline{c}|}$$\n$$= \\frac{19}{8\\cdot 3} = \\frac{19}{24}$$\n$$\\alpha = \\cos^{-1}\\frac{19}{24} \\approx 37{,}7^\\circ$$",
+        "criteria": [
+          {
+            "id": "a-cos",
+            "text": "$\\cos\\alpha = \\frac{19}{24}$",
+            "points": 1,
+            "impliedBy": "a-result"
+          },
+          {
+            "id": "a-result",
+            "text": "$\\alpha \\approx 37{,}7^\\circ$",
+            "points": 2
+          }
+        ]
+      },
+      {
+        "label": "b)",
+        "solution": "$$|\\overline{a}+\\overline{c}|^2$$\n$$= (\\overline{a}+\\overline{c})\\cdot(\\overline{a}+\\overline{c})$$\n$$= |\\overline{a}|^2+2\\,\\overline{a}\\cdot\\overline{c}+|\\overline{c}|^2$$\n$$= 64+38+9 = 111$$\n$$|\\overline{a}+\\overline{c}| = \\sqrt{111}$$",
+        "criteria": [
+          {
+            "id": "b-square",
+            "text": "Pituuden neliö pistetulona: $|\\overline{a}+\\overline{c}|^2 = |\\overline{a}|^2+2\\,\\overline{a}\\cdot\\overline{c}+|\\overline{c}|^2$",
+            "points": 2,
+            "impliedBy": "b-result"
+          },
+          {
+            "id": "b-result",
+            "text": "$|\\overline{a}+\\overline{c}| = \\sqrt{111}$",
+            "points": 2
+          }
+        ],
+        "notes": [
+          "Kosinilauseella (kulma $180^\\circ-\\alpha$) saatu $\\sqrt{111}$ kelpaa. Pelkkä $8+3 = 11$: b-kohdasta 0 p."
+        ]
+      }
+    ]
+  },
+  "OSAIII_T7": {
+    "status": "draft",
+    "maxPoints": 12,
+    "parts": [
+      {
+        "solution": "Tason suuntavektorit:\n$$\\overline{FG} = -2\\overline{i}+9\\overline{j}-3\\overline{k}$$\n$$\\overline{FH} = -5\\overline{i}+10\\overline{j}-11\\overline{k}$$\nNormaalivektori $\\overline{n} = a\\overline{i}+b\\overline{j}+c\\overline{k}$ on kohtisuorassa molempia vastaan:\n$$\\begin{cases} -2a+9b-3c = 0 \\\\ -5a+10b-11c = 0 \\end{cases}$$\nRatkaisuksi kelpaa $\\overline{n} = 69\\overline{i}+7\\overline{j}-25\\overline{k}$. Taso kulkee pisteen $F$ kautta:\n$$69(x-4)+7(y+5)-25(z-9) = 0$$\n$$\\iff 69x+7y-25z-16 = 0$$\nOrigon etäisyys tasosta:\n$$d = \\frac{|-16|}{\\sqrt{69^2+7^2+(-25)^2}}$$\n$$= \\frac{16}{\\sqrt{5435}} = \\frac{16\\sqrt{5435}}{5435}$$\n($\\approx 0{,}217$.) Origoa lähin tason piste on\n$$P = \\left(\\frac{1104}{5435}, \\frac{112}{5435}, -\\frac{80}{1087}\\right)$$\nja $|\\overline{OP}| = d$.",
+        "criteria": [
+          {
+            "id": "method",
+            "text": "Menetelmä: tason normaalivektori (tai origoa lähin tason piste $P$, jolle $\\overline{OP}$ on kohtisuorassa tasoa vastaan)",
+            "points": 2
+          },
+          {
+            "id": "spanning",
+            "text": "Suuntavektorit $\\overline{FG}$ ja $\\overline{FH}$ (tai muut kaksi tason vektoria)",
+            "points": 1
+          },
+          {
+            "id": "equations",
+            "text": "Kohtisuoruusehdot pistetuloina: $\\overline{n}\\cdot\\overline{FG} = 0$ ja $\\overline{n}\\cdot\\overline{FH} = 0$ (tai $\\overline{OP}\\cdot\\overline{FG} = 0$ ja $\\overline{OP}\\cdot\\overline{FH} = 0$)",
+            "points": 2
+          },
+          {
+            "id": "normal",
+            "text": "$\\overline{n} = 69\\overline{i}+7\\overline{j}-25\\overline{k}$ tai sen monikerta (tai parametrit $s = -\\frac{2797}{5435}$, $t = \\frac{5246}{5435}$)",
+            "points": 2
+          },
+          {
+            "id": "plane",
+            "text": "Tason yhtälö $69x+7y-25z-16 = 0$ (tai $\\overline{OP}$ komponentteina)",
+            "points": 1
+          },
+          {
+            "id": "distance",
+            "text": "Etäisyys pisteen etäisyytenä tasosta (tai $|\\overline{OP}|$)",
+            "points": 2
+          },
+          {
+            "id": "result",
+            "text": "Tarkka arvo $\\frac{16}{\\sqrt{5435}} = \\frac{16\\sqrt{5435}}{5435}$",
+            "points": 2
+          }
+        ],
+        "notes": [
+          "Laskuvirhe, jonka jälkeen jatko on johdonmukainen: −1 p.",
+          "Pelkkä likiarvo $0{,}217$ ilman tarkkaa arvoa: kohdasta ”tarkka arvo” 1 p."
+        ]
+      }
+    ],
+    "reviewNote": "The source's answer 16·sqrt(5435)/5435 is right. Judgment call: the rubric's model solution uses the normal vector (equations n·FG = 0, n·FH = 0, no cross product); the source's closest-point method is credited through the alternatives in the criteria."
+  },
+  "OSAIII_T8": {
+    "status": "draft",
+    "maxPoints": 12,
+    "parts": [
+      {
+        "solution": "Pisteen $A = (4, a)$ etäisyydet suorista:\n$$d_1 = \\frac{|4+2a+1|}{\\sqrt{1^2+2^2}} = \\frac{|2a+5|}{\\sqrt{5}}$$\n$$d_2 = \\frac{|-12+a-a|}{\\sqrt{(-3)^2+1^2}} = \\frac{12}{\\sqrt{10}}$$\nVakio $a$ supistuu pois $d_2$:sta. Etäisyydet ovat yhtä suuret:\n$$|2a+5| = \\frac{12\\sqrt{5}}{\\sqrt{10}} = 6\\sqrt{2}$$\n$$2a+5 = 6\\sqrt{2} \\ \\text{tai} \\ 2a+5 = -6\\sqrt{2}$$\n$$a = \\frac{-5+6\\sqrt{2}}{2} \\ \\text{tai} \\ a = \\frac{-5-6\\sqrt{2}}{2}$$\nTapaus 1, $a = \\frac{-5+6\\sqrt{2}}{2} \\approx 1{,}74$:\n$$A = \\left(4, \\frac{-5+6\\sqrt{2}}{2}\\right)$$\n$$-3x+y+\\frac{5-6\\sqrt{2}}{2} = 0$$\nTapaus 2, $a = \\frac{-5-6\\sqrt{2}}{2} \\approx -6{,}74$:\n$$A = \\left(4, \\frac{-5-6\\sqrt{2}}{2}\\right)$$\n$$-3x+y+\\frac{5+6\\sqrt{2}}{2} = 0$$\nKuva: suorat ja piste $A$ sekä pisteestä $A$ suorille piirretyt normaalit; molemmat normaalijanat ovat pituudeltaan $\\frac{12}{\\sqrt{10}} \\approx 3{,}79$.",
+        "criteria": [
+          {
+            "id": "d1",
+            "text": "$d_1 = \\frac{|2a+5|}{\\sqrt{5}}$",
+            "points": 1
+          },
+          {
+            "id": "d2",
+            "text": "$d_2 = \\frac{12}{\\sqrt{10}}$ (huomattu, että $a$ supistuu)",
+            "points": 2
+          },
+          {
+            "id": "equation",
+            "text": "Yhtälö $d_1 = d_2$, eli $|2a+5| = 6\\sqrt{2}$ (tai yhtäpitävä)",
+            "points": 1
+          },
+          {
+            "id": "cases",
+            "text": "Itseisarvoyhtälöstä molemmat tapaukset",
+            "points": 2
+          },
+          {
+            "id": "a-values",
+            "text": "$a = \\frac{-5\\pm 6\\sqrt{2}}{2}$",
+            "points": 2
+          },
+          {
+            "id": "points",
+            "text": "Pisteet $A = \\left(4, \\frac{-5\\pm 6\\sqrt{2}}{2}\\right)$",
+            "points": 1
+          },
+          {
+            "id": "lines",
+            "text": "Suorat $-3x+y-a = 0$ sijoitettuina, molemmat tapaukset (esim. $-3x+y+\\frac{5\\mp 6\\sqrt{2}}{2} = 0$)",
+            "points": 1
+          },
+          {
+            "id": "figure",
+            "text": "Kuva: suorat, piste $A$ ja yhtä pitkät kohtisuorat etäisyysjanat ($\\approx 3{,}79$)",
+            "points": 2
+          }
+        ],
+        "notes": [
+          "Laskuvirhe, jonka jälkeen jatko on johdonmukainen: −1 p.",
+          "Jos vain toinen arvo $a$, enintään 9 p."
+        ]
+      }
+    ],
+    "reviewNote": "Judgment call: ”suoran yhtälö normaalimuodossa” is read as the second line −3x + y − a = 0 with each a substituted, as in the source. The figure gets 2 p; one figure for either case is enough."
+  },
+  "OSAIII_T9": {
+    "status": "draft",
+    "maxPoints": 12,
+    "parts": [
+      {
+        "solution": "Valitaan heittopaikka origoksi, $x$ = vaakaetäisyys (m) ja $y$ = korkeus (m). Lentorata on paraabeli $f(x) = ax^2+bx+c$, ja tehtävästä saadaan\n$$f(0) = 0, \\quad f(32{,}4) = 0, \\quad f(24) = 6{,}7$$\nNollakohdista $c = 0$ ja $f(x) = ax(x-32{,}4)$. Ehdosta $f(24) = 6{,}7$:\n$$a\\cdot 24\\cdot(24-32{,}4) = 6{,}7$$\n$$-201{,}6\\,a = 6{,}7$$\n$$a = -\\frac{67}{2016} \\approx -0{,}0332$$\n$$b = -32{,}4\\,a = \\frac{603}{560} \\approx 1{,}08$$\nLentorata:\n$$f(x) \\approx -0{,}0332x^2+1{,}08x, \\quad 0 \\le x \\le 32{,}4$$",
+        "criteria": [
+          {
+            "id": "model",
+            "text": "Malli: toisen asteen funktio $f(x) = ax^2+bx+c$ ja koordinaatisto (heittopaikka origossa)",
+            "points": 2
+          },
+          {
+            "id": "c1",
+            "text": "Ehto $f(0) = 0$",
+            "points": 1
+          },
+          {
+            "id": "c2",
+            "text": "Ehto $f(32{,}4) = 0$",
+            "points": 1
+          },
+          {
+            "id": "c3",
+            "text": "Ehto $f(24) = 6{,}7$",
+            "points": 1
+          },
+          {
+            "id": "solve",
+            "text": "Yhtälöryhmä ratkaistu (tai nollakohtamuoto $f(x) = ax(x-32{,}4)$)",
+            "points": 2
+          },
+          {
+            "id": "a",
+            "text": "$a \\approx -0{,}033$ (tarkasti $-\\frac{67}{2016}$)",
+            "points": 2
+          },
+          {
+            "id": "b",
+            "text": "$b \\approx 1{,}08$ (tarkasti $\\frac{603}{560}$) ja $c = 0$",
+            "points": 2
+          },
+          {
+            "id": "result",
+            "text": "Lentoradan yhtälö $f(x) \\approx -0{,}033x^2+1{,}08x$",
+            "points": 1
+          }
+        ],
+        "notes": [
+          "Laskuvirhe, jonka jälkeen jatko on johdonmukainen: −1 p.",
+          "Muu koordinaatiston valinta (esim. huippu origossa) kelpaa, jos ehdot on muunnettu johdonmukaisesti."
+        ]
+      }
+    ],
+    "reviewNote": "Judgment call: 12 p for a single-part modelling problem; the source has no drawing requirement in the prompt, so the rubric gives no points for a figure."
+  },
+  "OSAIII_T10": {
+    "status": "draft",
+    "maxPoints": 12,
+    "parts": [
+      {
+        "label": "a)",
+        "solution": "$$x^2-4x+y^2-4y = 32 \\iff (x-2)^2+(y-2)^2 = 40$$\nKeskipiste $(2, 2)$ ja säde $\\sqrt{40} = 2\\sqrt{10}$. Pisteen $(-6, -2)$ etäisyyden neliö keskipisteestä on $64+16 = 80 > 40$, joten piste on ympyrän ulkopuolella ja tangentteja on kaksi.\nPystysuora suora $x = -6$ on etäisyydellä $8 \\ne \\sqrt{40}$, joten se ei ole tangentti. Muut suorat pisteen kautta:\n$$y+2 = k(x+6) \\iff kx-y+6k-2 = 0$$\nTangentin etäisyys keskipisteestä on säde:\n$$\\frac{|2k-2+6k-2|}{\\sqrt{k^2+1}} = \\sqrt{40}$$\n$$(8k-4)^2 = 40(k^2+1)$$\n$$24k^2-64k-24 = 0 \\iff 3k^2-8k-3 = 0$$\n$$k = 3 \\ \\text{tai} \\ k = -\\frac{1}{3}$$\nTangentit:\n$$3x-y+16 = 0 \\quad \\text{ja} \\quad x+3y+12 = 0$$",
+        "criteria": [
+          {
+            "id": "a-circle",
+            "text": "Keskipiste $(2, 2)$ ja säde $\\sqrt{40}$",
+            "points": 1
+          },
+          {
+            "id": "a-outside",
+            "text": "Piste on ympyrän ulkopuolella ($80 > 40$)",
+            "points": 1
+          },
+          {
+            "id": "a-line",
+            "text": "Suora pisteen kautta: $y+2 = k(x+6)$",
+            "points": 1
+          },
+          {
+            "id": "a-idea",
+            "text": "Ehto: keskipisteen etäisyys tangentista on säde (tai yhteisellä pisteellä diskriminantti $0$)",
+            "points": 2
+          },
+          {
+            "id": "a-quadratic",
+            "text": "$3k^2-8k-3 = 0$ (tai yhtäpitävä)",
+            "points": 1
+          },
+          {
+            "id": "a-k",
+            "text": "$k = 3$ ja $k = -\\frac{1}{3}$",
+            "points": 1
+          },
+          {
+            "id": "a-result",
+            "text": "Tangentit $3x-y+16 = 0$ ja $x+3y+12 = 0$ (tai yhtäpitävät)",
+            "points": 2
+          }
+        ],
+        "notes": [
+          "Pystysuoran suoran $x = -6$ tarkastelun puuttuminen ei vähennä pisteitä, koska saatiin kaksi tangenttia."
+        ]
+      },
+      {
+        "label": "b)",
+        "solution": "Geometriaohjelmalla: piirretään ympyrä $(x-2)^2+(y-2)^2 = 40$ ja piste $A = (-6, -2)$, ja käytetään tangenttityökalua (esim. GeoGebran Tangentti($A$, ympyrä)). Ohjelma antaa tangentit $x+3y = -12$ ja $-3x+y = 16$.",
+        "criteria": [
+          {
+            "id": "b-objects",
+            "text": "Ympyrä ja piste piirretty ohjelmalla",
+            "points": 1
+          },
+          {
+            "id": "b-tool",
+            "text": "Tangentit ohjelman tangenttitoiminnolla (komento näkyvissä)",
+            "points": 1
+          },
+          {
+            "id": "b-result",
+            "text": "Tangenttien yhtälöt luettu ohjelmasta",
+            "points": 1
+          }
+        ],
+        "notes": [
+          "Laskuvirhe, jonka jälkeen jatko on johdonmukainen: −1 p.",
+          "Pelkät a-kohdan yhtälöt piirrettyinä ilman tangenttitoimintoa: b-kohdasta 1 p."
+        ]
+      }
+    ],
+    "reviewNote": "The source answers are right. The prompt writes the circle as x² + y² − 4x − 4y + 8 − 40 = 0 (it equals (x − 2)² + (y − 2)² = 40); left as is."
+  },
+  "OSAIV_T1": {
+    "status": "draft",
+    "maxPoints": 12,
+    "parts": [
+      {
+        "label": "a)",
+        "solution": "Kun $t = \\frac{\\pi}{4}$, on $\\overline{v} = \\frac{1}{\\sqrt{2}}\\overline{i}+\\frac{1}{\\sqrt{2}}\\overline{j}$ ja $|\\overline{v}| = 1$, $|\\overline{n}| = \\sqrt{3}$:\n$$\\cos\\theta = \\frac{\\overline{n}\\cdot\\overline{v}}{|\\overline{n}||\\overline{v}|}$$\n$$= \\frac{\\frac{1}{\\sqrt{2}}+\\frac{1}{\\sqrt{2}}}{\\sqrt{3}} = \\sqrt{\\frac{2}{3}}$$\n$$\\theta = \\cos^{-1}\\sqrt{\\frac{2}{3}} \\approx 0{,}62 \\ (\\approx 35{,}3^\\circ)$$\nKoska $0{,}62 < \\frac{\\pi}{2}$, kulma ei ole välillä $\\left(\\frac{\\pi}{2}, \\pi\\right]$: säde ei osu paneelin etupintaan.",
+        "criteria": [
+          {
+            "id": "a-formula",
+            "text": "Kulma pistetulon avulla: $\\cos\\theta = \\frac{\\overline{n}\\cdot\\overline{v}}{|\\overline{n}||\\overline{v}|}$",
+            "points": 1
+          },
+          {
+            "id": "a-cos",
+            "text": "$\\cos\\theta = \\sqrt{\\frac{2}{3}}$ (tai $\\frac{\\sqrt{2}}{\\sqrt{3}}$)",
+            "points": 1
+          },
+          {
+            "id": "a-angle",
+            "text": "$\\theta \\approx 0{,}62$ rad (tai $35{,}3^\\circ$)",
+            "points": 1
+          },
+          {
+            "id": "a-answer",
+            "text": "Ei osu etupintaan, koska $\\theta < \\frac{\\pi}{2}$",
+            "points": 1
+          }
+        ]
+      },
+      {
+        "label": "b)",
+        "solution": "Säde on kohtisuorassa paneelia vastaan, kun $\\overline{v}$ on normaalin suuntainen: $\\overline{v} = c\\,\\overline{n}$ jollakin $c \\ne 0$. Komponenteittain\n$$\\cos t = c, \\quad \\sin t = c, \\quad 0 = c$$\nViimeisestä $c = 0$, mikä on ristiriita ($\\overline{v} \\ne \\overline{0}$, koska $|\\overline{v}| = 1$). Valonsäde ei ole millään hetkellä kohtisuorassa paneelia vastaan.",
+        "criteria": [
+          {
+            "id": "b-condition",
+            "text": "Ehto: $\\overline{v} = c\\,\\overline{n}$ (säde normaalin suuntainen)",
+            "points": 2
+          },
+          {
+            "id": "b-contradiction",
+            "text": "$k$-komponentista $c = 0$, ristiriita",
+            "points": 1
+          },
+          {
+            "id": "b-answer",
+            "text": "Ei millään hetkellä",
+            "points": 1
+          }
+        ],
+        "notes": [
+          "Pelkkä vastaus ”ei koskaan” ilman ehtoa ja ristiriitaa: b-kohdasta 0 p."
+        ]
+      },
+      {
+        "label": "c)",
+        "solution": "Säde on paneelin suuntainen, kun se on kohtisuorassa normaalia vastaan:\n$$\\overline{n}\\cdot\\overline{v} = \\cos t+\\sin t = 0$$\n$$\\iff \\sin t = -\\cos t \\iff \\tan t = -1$$\nVälillä $[0, 2\\pi]$:\n$$t = \\frac{3\\pi}{4} \\ \\text{tai} \\ t = \\frac{7\\pi}{4}$$",
+        "criteria": [
+          {
+            "id": "c-condition",
+            "text": "Ehto: $\\overline{n}\\cdot\\overline{v} = 0$",
+            "points": 1
+          },
+          {
+            "id": "c-equation",
+            "text": "$\\cos t+\\sin t = 0$",
+            "points": 1
+          },
+          {
+            "id": "c-t1",
+            "text": "$t = \\frac{3\\pi}{4}$",
+            "points": 1
+          },
+          {
+            "id": "c-t2",
+            "text": "$t = \\frac{7\\pi}{4}$",
+            "points": 1
+          }
+        ],
+        "notes": [
+          "Laskuvirhe, jonka jälkeen jatko on johdonmukainen: −1 p."
+        ]
+      }
+    ],
+    "reviewNote": "The source answers are right. Judgment call: b) is the guessable part (”ei koskaan”), so the condition and the contradiction carry 3 of its 4 points."
+  },
+  "OSAIV_T2": {
+    "status": "draft",
+    "maxPoints": 12,
+    "parts": [
+      {
+        "solution": "Ympyrän yhtälö on $x^2+y^2 = r^2$. Suora $ax+by+c = 0$ kulkee origon kautta, joten $a\\cdot 0+b\\cdot 0+c = 0$ eli $c = 0$, ja suora on $ax+by = 0$ (missä $a$ ja $b$ eivät molemmat ole nollia).\nTapaus 1, $b \\ne 0$: $y = -\\frac{a}{b}x$. Sijoitetaan ympyrän yhtälöön:\n$$x^2+\\frac{a^2}{b^2}x^2 = r^2$$\n$$\\iff (a^2+b^2)x^2 = b^2r^2$$\nTästä yhtälöstä saadaan leikkauspisteiden $x$-koordinaatit:\n$$x = \\pm\\frac{br}{\\sqrt{a^2+b^2}}$$\n$$y = -\\frac{a}{b}x = \\mp\\frac{ar}{\\sqrt{a^2+b^2}}$$\nTapaus 2, $b = 0$: suora on $y$-akseli $x = 0$, ja leikkauspisteet ovat $(0, r)$ ja $(0, -r)$. Samat pisteet saadaan yllä olevista kaavoista, kun $b = 0$.\nLeikkauspisteet ovat siis\n$$\\left(\\frac{br}{\\sqrt{a^2+b^2}}, -\\frac{ar}{\\sqrt{a^2+b^2}}\\right)$$\n$$\\left(-\\frac{br}{\\sqrt{a^2+b^2}}, \\frac{ar}{\\sqrt{a^2+b^2}}\\right)$$",
+        "criteria": [
+          {
+            "id": "origin",
+            "text": "Origon kautta kulkevalle suoralle $c = 0$",
+            "points": 2
+          },
+          {
+            "id": "circle",
+            "text": "Ympyrän yhtälö $x^2+y^2 = r^2$",
+            "points": 1
+          },
+          {
+            "id": "solve-line",
+            "text": "Suoran yhtälöstä $y = -\\frac{a}{b}x$ ($b \\ne 0$)",
+            "points": 1
+          },
+          {
+            "id": "substitute",
+            "text": "Sijoitus ympyrän yhtälöön: $x^2+\\frac{a^2}{b^2}x^2 = r^2$",
+            "points": 2
+          },
+          {
+            "id": "equation",
+            "text": "Kysytty yhtälö sievennettynä: $(a^2+b^2)x^2 = b^2r^2$ (tai yhtäpitävä)",
+            "points": 2
+          },
+          {
+            "id": "coords",
+            "text": "Ratkaisu $x = \\pm\\frac{br}{\\sqrt{a^2+b^2}}$ ja vastaavat $y = \\mp\\frac{ar}{\\sqrt{a^2+b^2}}$",
+            "points": 2
+          },
+          {
+            "id": "vertical",
+            "text": "Tapaus $b = 0$ (suora $x = 0$, pisteet $(0, \\pm r)$) käsitelty tai todettu kaavan kattavan sen",
+            "points": 2
+          }
+        ],
+        "notes": [
+          "Laskuvirhe, jonka jälkeen jatko on johdonmukainen: −1 p.",
+          "Jos $c$ on jätetty yhtälöön (ehtoa $c = 0$ ei ole käytetty), mutta sijoitus ympyrän yhtälöön on tehty oikein, enintään 6 p.",
+          "Suoran kirjoittaminen muotoon $y = kx$ ilman yhteyttä kertoimiin $a$ ja $b$: kohdasta ”suoran yhtälöstä” 0 p."
+        ]
+      }
+    ],
+    "reviewNote": "SOURCE ERROR: the source writes the line as y = kx but keeps c, gets (a + bk)x + c = 0 and divides by a + bk. Since the line passes through the origin, c = 0, and for y = kx on the line a + bk = 0, so the source divides by zero and its equation is meaningless. The rubric uses c = 0, y = −(a/b)x and (a² + b²)x² = b²r². Judgment call: the prompt only asks for the equation, but the rubric gives 2 p for solving it and 2 p for the case b = 0, to make the problem worth 12 p; drop to 8 p if you prefer the literal reading."
+  },
+  "OSAIV_T3": {
+    "status": "draft",
+    "maxPoints": 12,
+    "parts": [
+      {
+        "solution": "Olkoon $A = (x_0, y_0, z_0)$ tason kiinteä piste ja $\\overline{n} = a\\overline{i}+b\\overline{j}+c\\overline{k} \\ne \\overline{0}$ tason normaalivektori. Piste $P = (x, y, z)$ on tasossa täsmälleen silloin, kun vektori $\\overline{AP}$ on tason suuntainen, eli kohtisuorassa normaalia vastaan:\n$$\\overline{AP}\\cdot\\overline{n} = 0$$\nKoska $\\overline{AP} = (x-x_0)\\overline{i}+(y-y_0)\\overline{j}+(z-z_0)\\overline{k}$,\n$$a(x-x_0)+b(y-y_0)+c(z-z_0) = 0$$\n$$\\iff ax+by+cz-ax_0-by_0-cz_0 = 0$$\nMerkitään $d = -ax_0-by_0-cz_0$ (vakio, koska $A$ on kiinteä):\n$$ax+by+cz+d = 0$$\nKaikki vaiheet ovat yhtäpitäviä, joten piste on tasossa täsmälleen silloin, kun sen koordinaatit toteuttavat yhtälön. Tason normaalimuotoinen yhtälö on $ax+by+cz+d = 0$, missä $a$, $b$, $c$ ovat normaalivektorin komponentit.",
+        "criteria": [
+          {
+            "id": "setup",
+            "text": "Merkinnät: tason piste $A = (x_0, y_0, z_0)$, normaalivektori $\\overline{n} = a\\overline{i}+b\\overline{j}+c\\overline{k}$ ja mielivaltainen piste $P = (x, y, z)$",
+            "points": 2
+          },
+          {
+            "id": "key",
+            "text": "Avainehto: $P$ on tasossa $\\iff$ $\\overline{AP} \\perp \\overline{n}$ $\\iff$ $\\overline{AP}\\cdot\\overline{n} = 0$",
+            "points": 3
+          },
+          {
+            "id": "components",
+            "text": "$\\overline{AP} = (x-x_0)\\overline{i}+(y-y_0)\\overline{j}+(z-z_0)\\overline{k}$",
+            "points": 1
+          },
+          {
+            "id": "dot",
+            "text": "Pistetulo komponenteittain: $a(x-x_0)+b(y-y_0)+c(z-z_0) = 0$",
+            "points": 2
+          },
+          {
+            "id": "constant",
+            "text": "Vakio $d = -ax_0-by_0-cz_0$ ja yhtälö $ax+by+cz+d = 0$",
+            "points": 2
+          },
+          {
+            "id": "conclusion",
+            "text": "Johtopäätös: yhtäpitävyys molempiin suuntiin (tason pisteet ja vain ne toteuttavat yhtälön)",
+            "points": 2
+          }
+        ],
+        "notes": [
+          "Laskuvirhe, jonka jälkeen jatko on johdonmukainen: −1 p.",
+          "Jos avainehto $\\overline{AP}\\cdot\\overline{n} = 0$ puuttuu tai sitä ei ole perusteltu (esim. aloitetaan suoraan yhtälöstä $a(x-x_0)+\\ldots = 0$), enintään 4 p.",
+          "Esimerkki yhdestä tasosta ei ole todistus: 0 p."
+        ]
+      }
+    ],
+    "reviewNote": "The source proof is right but only shows one direction (⇔ steps are written, so it is acceptable). Judgment call: 2 p for stating that the equivalence goes both ways."
+  },
+  "OSAIV_T4": {
+    "status": "draft",
+    "maxPoints": 12,
+    "parts": [
+      {
+        "label": "a)",
+        "solution": "Siirretään vektorit peräkkäin: $\\overline{F}_\\mu$:n alkupiste $\\overline{G}$:n kärkeen ja $\\overline{N}$:n alkupiste $\\overline{F}_\\mu$:n kärkeen. Laatikko liukuu tasaisella nopeudella, joten kokonaisvoima on nolla: vektorit muodostavat suljetun kolmion, ja $\\overline{N}$:n kärki osuu $\\overline{G}$:n alkupisteeseen.\n$$\\overline{G}+\\overline{F}_\\mu+\\overline{N} = \\overline{0}$$",
+        "criteria": [
+          {
+            "id": "a-chain",
+            "text": "Vektorit piirretty peräkkäin (kärki seuraavan alkupisteeseen), suunnat säilyttäen",
+            "points": 2
+          },
+          {
+            "id": "a-closed",
+            "text": "Kuvio sulkeutuu kolmioksi",
+            "points": 1
+          },
+          {
+            "id": "a-zero",
+            "text": "Summavektori on nollavektori",
+            "points": 1
+          },
+          {
+            "id": "a-why",
+            "text": "Perustelu: tasainen nopeus, joten kokonaisvoima on nolla (Newtonin I laki)",
+            "points": 1
+          }
+        ]
+      },
+      {
+        "label": "b)",
+        "solution": "Kolmiossa $\\overline{G}$ on hypotenuusa ja $\\overline{N} \\perp \\overline{F}_\\mu$. Tukivoima on kohtisuorassa tasoa ja paino vaakatasoa vastaan, joten $\\overline{G}$:n ja $\\overline{N}$:n välinen kulma on tason kaltevuuskulma $32^\\circ$. Suuruudet:\n$$N = G\\cos 32^\\circ = 10 \\ \\text{N}\\cdot\\cos 32^\\circ \\approx 8{,}5 \\ \\text{N}$$\n$$F_\\mu = G\\sin 32^\\circ = 10 \\ \\text{N}\\cdot\\sin 32^\\circ \\approx 5{,}3 \\ \\text{N}$$",
+        "criteria": [
+          {
+            "id": "b-triangle",
+            "text": "Suorakulmainen kolmio, jonka hypotenuusa on $G$ ($\\overline{N} \\perp \\overline{F}_\\mu$)",
+            "points": 2
+          },
+          {
+            "id": "b-angle",
+            "text": "Kulma $\\overline{G}$:n ja $\\overline{N}$:n välillä on $32^\\circ$ (perusteltu)",
+            "points": 2
+          },
+          {
+            "id": "b-normal",
+            "text": "$N = 10\\cos 32^\\circ \\approx 8{,}5$ N",
+            "points": 1
+          },
+          {
+            "id": "b-friction",
+            "text": "$F_\\mu = 10\\sin 32^\\circ \\approx 5{,}3$ N",
+            "points": 1
+          },
+          {
+            "id": "b-units",
+            "text": "Vastaukset suuruuksina yksiköineen (ei vektorimerkintää)",
+            "points": 1
+          }
+        ],
+        "notes": [
+          "Laskuvirhe, jonka jälkeen jatko on johdonmukainen: −1 p.",
+          "Jos sini ja kosini ovat vaihtaneet paikkaa ($N \\approx 5{,}3$ N, $F_\\mu \\approx 8{,}5$ N), b-kohdasta enintään 3 p."
+        ]
+      }
+    ],
+    "reviewNote": "SOURCE ERROR: b) 10 cos 32° = 8,48 N; the source rounds it to ”9 N” (one significant figure would be 8 N) and 5,30 N to ”5 N”. The rubric expects 8,5 N and 5,3 N. The source also writes magnitudes with vector bars (N̄ = Ḡ cos 32°). a) The source only shows the figure; the rubric also asks for the conclusion that the sum is the zero vector. Prompt a) has ”Muodosta summavektori” twice (fixed)."
+  },
+  "OSAIV_T5": {
+    "status": "draft",
+    "maxPoints": 12,
+    "parts": [
+      {
+        "label": "a)",
+        "solution": "Tapaamispiste on yhtä kaukana molemmista mökeistä, joten se on mökkien $A = (62, 44)$ ja $B = (42, 24)$ välisen janan keskinormaalilla; lisäksi se on rannalla eli ympyrällä.\nJanan keskipiste on $(52, 34)$ ja kulmakerroin $\\frac{44-24}{62-42} = 1$, joten keskinormaalin kulmakerroin on $-1$:\n$$y-34 = -(x-52) \\iff y = -x+86$$\nSijoitetaan ympyrän yhtälöön:\n$$x^2+(86-x)^2-96x-70(86-x)+1250 = 0$$\n$$\\iff x^2-99x+1313 = 0$$\n$$x = \\frac{99\\pm\\sqrt{4549}}{2}$$\nRannan pisteet ovat $D \\approx (83{,}2; 2{,}78)$ ja $E \\approx (15{,}8; 70{,}2)$. Pisteen $D$ etäisyys janan keskipisteestä on $\\approx 44{,}2$ ja pisteen $E$ $\\approx 51{,}2$, joten lähempi on\n$$D = \\left(\\frac{99+\\sqrt{4549}}{2}, \\frac{73-\\sqrt{4549}}{2}\\right)$$\nKumpikin kävelee suoraan mökiltään pisteeseen $D$. Esimerkiksi Hupun matka:\n$$|BD| = \\sqrt{(83{,}22-42)^2+(2{,}78-24)^2}$$\n$$\\approx 46{,}37 \\ \\text{yksikköä} \\approx 464 \\ \\text{m}$$\nTupu: $\\frac{464 \\ \\text{m}}{2 \\ \\text{m/s}} \\approx 232$ s $\\approx 3{,}9$ min, joten lähtö klo 18.56.\nHupu: $\\frac{464 \\ \\text{m}}{1 \\ \\text{m/s}} \\approx 464$ s $\\approx 7{,}7$ min, joten lähtö klo 18.52.",
+        "criteria": [
+          {
+            "id": "a-idea",
+            "text": "Tapaamispiste on janan $AB$ keskinormaalin ja ympyrän leikkauspiste",
+            "points": 2
+          },
+          {
+            "id": "a-bisector",
+            "text": "Keskinormaali $y = -x+86$ (keskipiste $(52, 34)$, kulmakerroin $-1$)",
+            "points": 1
+          },
+          {
+            "id": "a-intersect",
+            "text": "Leikkauspisteet: $x = \\frac{99\\pm\\sqrt{4549}}{2}$ (tai likiarvot)",
+            "points": 1
+          },
+          {
+            "id": "a-choose",
+            "text": "Valittu mökkejä lähempi piste $D \\approx (83{,}2; 2{,}78)$ perustellen",
+            "points": 1
+          },
+          {
+            "id": "a-distance",
+            "text": "Kävelymatka suoraan mökiltä pisteeseen $D$: $\\approx 46{,}4$ yksikköä $\\approx 464$ m",
+            "points": 2
+          },
+          {
+            "id": "a-tupu",
+            "text": "Tupun aika $\\approx 3{,}9$ min, lähtö klo 18.56",
+            "points": 1
+          },
+          {
+            "id": "a-hupu",
+            "text": "Hupun aika $\\approx 7{,}7$ min, lähtö klo 18.52",
+            "points": 1
+          }
+        ],
+        "notes": [
+          "Jos matka on laskettu mökiltä keskipisteen $(52, 34)$ kautta ($\\approx 583$ m), kohdasta ”kävelymatka” 0 p, mutta ajat johdonmukaisesti laskettuina saavat pisteensä.",
+          "Yksikkömuunnos unohtunut (matka $46$ m): kohdasta ”kävelymatka” 1 p."
+        ]
+      },
+      {
+        "label": "b)",
+        "solution": "Geometriaohjelmalla: piirretään ympyrä $x^2+y^2-96x-70y+1250 = 0$ ja pisteet $A = (62, 44)$ ja $B = (42, 24)$, jana $AB$ ja sen keskinormaali (esim. keskipiste ja normaali). Leikkauspiste-työkalu antaa keskinormaalin ja ympyrän leikkauspisteet $D \\approx (83{,}22; 2{,}78)$ ja $E \\approx (15{,}78; 70{,}22)$, joista $D$ on lähempänä mökkejä.",
+        "criteria": [
+          {
+            "id": "b-objects",
+            "text": "Ympyrä, mökit ja niiden välinen jana piirretty ohjelmalla",
+            "points": 1
+          },
+          {
+            "id": "b-bisector",
+            "text": "Keskinormaali ohjelman toiminnoilla",
+            "points": 1
+          },
+          {
+            "id": "b-point",
+            "text": "Leikkauspisteet ohjelmalla ja tapaamispisteeksi valittu $D \\approx (83{,}2; 2{,}78)$",
+            "points": 1
+          }
+        ],
+        "notes": [
+          "Laskuvirhe, jonka jälkeen jatko on johdonmukainen: −1 p."
+        ]
+      }
+    ],
+    "reviewNote": "SOURCE ERROR: a) the source adds the legs cabin → midpoint (10√2) and midpoint → D (≈ 44,2) as the walking distance (≈ 583 m, rounded to 600 m). Each walks straight from the cabin to D, which is the hypotenuse of that right triangle: ≈ 46,37 units ≈ 464 m. Departures are 18.56 (Tupu, 3 min 52 s) and 18.52 (Hupu, 7 min 44 s), not 18.55 and 18.50. The source's distance from the midpoint to E is ≈ 51,2, not 47 (the choice of D is still right). Judgment call: departure times are rounded down to the whole minute (leaving at 18.56 is in time, 18.57 is not)."
+  }
+}
