@@ -22,13 +22,24 @@ interface RubricPanelProps {
   onScore: (criterionId: string, points: number | undefined) => void
   onReset: () => void
   onClose: () => void
+  // Off where the answer is already shown beside the panel (the laptop
+  // full-screen view puts it under the problem).
+  showOwnAnswer?: boolean
 }
 
 // The point breakdown shown beside the answer after "Tarkista vastaus":
 // each part's model solution and scoring criteria, in the style of the YTL
 // "hyvän vastauksen piirteet". The student marks how many points their own
 // answer earns for each criterion.
-export default function RubricPanel({ exercise, answer, scores, onScore, onReset, onClose }: RubricPanelProps) {
+export default function RubricPanel({
+  exercise,
+  answer,
+  scores,
+  onScore,
+  onReset,
+  onClose,
+  showOwnAnswer = true,
+}: RubricPanelProps) {
   const [showAnswer, setShowAnswer] = useState(true)
   const max = exerciseMaxPoints(exercise)
   const total = scoredPoints(exercise, scores)
@@ -86,22 +97,24 @@ export default function RubricPanel({ exercise, answer, scores, onScore, onReset
           </div>
         </div>
 
-        <section className="mb-4 rounded-2xl border border-ink/10 bg-surface-2 p-3">
-          <button
-            type="button"
-            onClick={() => setShowAnswer((v) => !v)}
-            aria-expanded={showAnswer}
-            className="flex w-full items-center justify-between text-left text-sm font-semibold text-ink"
-          >
-            Oma vastauksesi
-            <ChevronDownIcon className={`h-4 w-4 text-ink-dim transition-transform ${showAnswer ? 'rotate-180' : ''}`} />
-          </button>
-          {showAnswer && (
-            <div className="scrollbar-hide mt-2 max-h-48 overflow-y-auto">
-              <AnswerDisplay answer={answer} parts={answerPartsFromRubric(exercise.parts)} />
-            </div>
-          )}
-        </section>
+        {showOwnAnswer && (
+          <section className="mb-4 rounded-2xl border border-ink/10 bg-surface-2 p-3">
+            <button
+              type="button"
+              onClick={() => setShowAnswer((v) => !v)}
+              aria-expanded={showAnswer}
+              className="flex w-full items-center justify-between text-left text-sm font-semibold text-ink"
+            >
+              Oma vastauksesi
+              <ChevronDownIcon className={`h-4 w-4 text-ink-dim transition-transform ${showAnswer ? 'rotate-180' : ''}`} />
+            </button>
+            {showAnswer && (
+              <div className="scrollbar-hide mt-2 max-h-48 overflow-y-auto">
+                <AnswerDisplay answer={answer} parts={answerPartsFromRubric(exercise.parts)} />
+              </div>
+            )}
+          </section>
+        )}
 
         <div className="flex flex-col gap-4">
           {exercise.parts.map((part, index) => (

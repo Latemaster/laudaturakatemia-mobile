@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef, useState, type PointerEvent as ReactPointerEvent, type ReactNode } from 'react'
+import { useCallback, useEffect, useRef, useState, type PointerEvent as ReactPointerEvent, type ReactNode } from 'react'
 import { createPortal } from 'react-dom'
 import { motion } from 'framer-motion'
 import type { CriterionScores } from '../../data/evaluation'
@@ -7,15 +7,14 @@ import type { TaskCard } from '../../types'
 import AnswerEditor, { type AnswerEditorHandle } from '../AnswerEditor'
 import AnswerDisplay from '../AnswerDisplay'
 import PartedAnswerEditor from '../PartedAnswerEditor'
-import { answerPartsFromPrompt, type AnswerPart } from '../answerParts'
+import type { AnswerPart } from '../answerParts'
 import ProblemBlocks from '../ProblemBlocks'
 import RubricPanel from '../RubricPanel'
 import { XIcon } from '../icons'
 
 // Shown in place of the point breakdown for problems whose rubric hasn't
-// been written yet: the student's answer and the model solution.
-function SolutionPanel({ card, answer, onClose }: { card: TaskCard; answer: string; onClose: () => void }) {
-  const parts = useMemo(() => answerPartsFromPrompt(card.problem.promptBlocks), [card.problem.promptBlocks])
+// been written yet: the model solution. The student's answer is beside it.
+function SolutionPanel({ card, onClose }: { card: TaskCard; onClose: () => void }) {
   return (
     <div className="flex h-full flex-col bg-page">
       <div className="flex items-start justify-between gap-3 px-5 pb-3 pt-4">
@@ -33,10 +32,6 @@ function SolutionPanel({ card, answer, onClose }: { card: TaskCard; answer: stri
         </button>
       </div>
       <div className="scrollbar-hide min-h-0 flex-1 overflow-y-auto px-5 pb-6">
-        <section className="mb-4 rounded-2xl border border-ink/10 bg-surface-2 p-3">
-          <p className="mb-1 text-sm font-semibold text-ink">Oma vastauksesi</p>
-          <AnswerDisplay answer={answer} parts={parts} />
-        </section>
         <section className="rounded-2xl border border-ink/10 bg-surface p-4 shadow-sm">
           <h3 className="mb-3 font-semibold text-ink">Mallivastaus</h3>
           <div className="text-sm leading-relaxed text-ink">
@@ -216,7 +211,23 @@ export default function TaskFullView({
           <div className="text-base leading-relaxed text-ink">
             <ProblemBlocks blocks={card.problem.promptBlocks} onFormulaTap={checking ? undefined : insertFormula} />
           </div>
-          {!checking && (
+          {checking ? (
+            // Pisteytys fills the right, so the answer being scored sits
+            // here under the problem.
+            <section className="mt-6 rounded-2xl border border-ink/10 bg-surface-2 p-4">
+              <div className="mb-2 flex items-baseline justify-between gap-3">
+                <h3 className="text-sm font-semibold text-ink">Oma vastauksesi</h3>
+                <button
+                  type="button"
+                  onClick={() => onModeChange('answer')}
+                  className="text-sm font-semibold text-accent"
+                >
+                  Muokkaa vastausta
+                </button>
+              </div>
+              <AnswerDisplay answer={answer} parts={parts} />
+            </section>
+          ) : (
             <p className="mt-4 text-xs text-ink-dim">Napauta tehtävän kaavaa, niin se lisätään vastaukseesi.</p>
           )}
         </div>
@@ -245,9 +256,10 @@ export default function TaskFullView({
                   onScore={onScore}
                   onReset={onResetScores}
                   onClose={() => onModeChange('answer')}
+                  showOwnAnswer={false}
                 />
               ) : (
-                <SolutionPanel card={card} answer={answer} onClose={() => onModeChange('answer')} />
+                <SolutionPanel card={card} onClose={() => onModeChange('answer')} />
               )}
             </motion.div>
           ) : (
