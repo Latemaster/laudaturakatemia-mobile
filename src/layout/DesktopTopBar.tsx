@@ -6,14 +6,13 @@ interface DesktopTopBarProps {
 }
 
 // Laptop navigation: the site's Etusivu and Mahdollistajat pages from the
-// laptop site, followed by the same four tabs the phone menu has.
+// laptop site, followed by the same tabs the phone menu has.
 const ITEMS: { id: AppSection; label: string }[] = [
   { id: 'etusivu', label: 'Etusivu' },
   { id: 'mahdollistajat', label: 'Mahdollistajat' },
   { id: 'suositellut', label: 'Suositellut' },
   { id: 'kurssit', label: 'Kurssit' },
   { id: 'osaaminen', label: 'Osaaminen' },
-  { id: 'arviointi', label: 'Arviointi' },
 ]
 
 export default function DesktopTopBar({ active, onSelect }: DesktopTopBarProps) {

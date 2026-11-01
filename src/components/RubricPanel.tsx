@@ -25,6 +25,8 @@ interface RubricPanelProps {
   // Off where the answer is already shown beside the panel (the laptop
   // full-screen view puts it under the problem).
   showOwnAnswer?: boolean
+  // Shows "Tallenna pisteet" at the end, for views that close on saving.
+  onSave?: () => void
 }
 
 // The point breakdown shown beside the answer after "Tarkista vastaus":
@@ -39,6 +41,7 @@ export default function RubricPanel({
   onReset,
   onClose,
   showOwnAnswer = true,
+  onSave,
 }: RubricPanelProps) {
   const [showAnswer, setShowAnswer] = useState(true)
   const max = exerciseMaxPoints(exercise)
@@ -121,6 +124,17 @@ export default function RubricPanel({
             <RubricPartCard key={part.label ?? index} part={part} scores={scores} onScore={score} />
           ))}
         </div>
+
+        {onSave && (
+          <button
+            type="button"
+            onClick={onSave}
+            disabled={marked === 0}
+            className="mt-5 w-full rounded-xl bg-accent px-4 py-3 text-sm font-semibold text-white shadow-sm transition-opacity hover:opacity-90 disabled:opacity-30"
+          >
+            {marked === 0 ? 'Anna pisteet kriteereille' : `Tallenna pisteet · ${total} / ${max} p`}
+          </button>
+        )}
 
         {marked > 0 && (
           <button type="button" onClick={onReset} className="mt-5 text-sm font-semibold text-ink-dim">

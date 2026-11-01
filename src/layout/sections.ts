@@ -1,6 +1,6 @@
 import type { MenuSection } from '../components/TopMenu'
 
-// The phone menu's four tabs plus the two site pages that only the laptop
+// The phone menu's tabs plus the two site pages that only the laptop
 // layout shows.
 export type AppSection = MenuSection | 'etusivu' | 'mahdollistajat'
 

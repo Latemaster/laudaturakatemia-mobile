@@ -139,6 +139,11 @@ interface TaskFullViewProps {
   onScore: (criterionId: string, points: number | undefined) => void
   onResetScores: () => void
   onClose: () => void
+  // Pisteytys' own close: back to the full-screen answer view or the
+  // exercise box, whichever it was opened from.
+  onCloseCheck: () => void
+  // "Tallenna pisteet" at the end of Pisteytys.
+  onSaveScores: () => void
   nav?: FullViewNav
 }
 
@@ -162,6 +167,8 @@ export default function TaskFullView({
   onScore,
   onResetScores,
   onClose,
+  onCloseCheck,
+  onSaveScores,
   nav,
 }: TaskFullViewProps) {
   const editorRef = useRef<AnswerEditorHandle>(null)
@@ -185,23 +192,29 @@ export default function TaskFullView({
 
   return createPortal(
     <div role="dialog" aria-modal="true" aria-label={title} className="fixed inset-0 z-50 flex h-dvh flex-col bg-surface">
-      <header className="flex shrink-0 items-center justify-between gap-4 border-b border-ink/10 px-8 py-4">
-        <div className="flex min-w-0 flex-wrap items-center gap-2.5">
-          <span className="text-sm font-semibold text-ink-dim">
-            {card.topic.code} · {card.topic.name}
-          </span>
-          <h2 className="text-xl font-bold leading-snug text-ink">{title}</h2>
-          {levelTag}
-        </div>
-        <button
-          type="button"
-          onClick={onClose}
-          aria-label="Sulje koko näyttö"
-          className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-surface text-ink shadow-md ring-1 ring-ink/10"
-        >
-          <XIcon className="h-4 w-4" />
-        </button>
-      </header>
+      {/* Pisteytys keeps to the problem and the scoring: no header or
+          Edellinen / Seuraava to leave it by accident. Its own close (back to
+          where it was opened from), "Tallenna pisteet" and Escape are the
+          ways out. */}
+      {!checking && (
+        <header className="flex shrink-0 items-center justify-between gap-4 border-b border-ink/10 px-8 py-4">
+          <div className="flex min-w-0 flex-wrap items-center gap-2.5">
+            <span className="text-sm font-semibold text-ink-dim">
+              {card.topic.code} · {card.topic.name}
+            </span>
+            <h2 className="text-xl font-bold leading-snug text-ink">{title}</h2>
+            {levelTag}
+          </div>
+          <button
+            type="button"
+            onClick={onClose}
+            aria-label="Sulje koko näyttö"
+            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-surface text-ink shadow-md ring-1 ring-ink/10"
+          >
+            <XIcon className="h-4 w-4" />
+          </button>
+        </header>
+      )}
 
       {/* Side by side across the whole width: the problem on the left
           (scrolling if it's long), and on the right the answer box filling
@@ -255,11 +268,12 @@ export default function TaskFullView({
                   scores={scores}
                   onScore={onScore}
                   onReset={onResetScores}
-                  onClose={() => onModeChange('answer')}
+                  onClose={onCloseCheck}
                   showOwnAnswer={false}
+                  onSave={onSaveScores}
                 />
               ) : (
-                <SolutionPanel card={card} onClose={() => onModeChange('answer')} />
+                <SolutionPanel card={card} onClose={onCloseCheck} />
               )}
             </motion.div>
           ) : (
@@ -287,7 +301,7 @@ export default function TaskFullView({
         </div>
       </div>
 
-      {nav && (
+      {nav && !checking && (
         <footer className="flex shrink-0 items-center justify-end gap-2 border-t border-ink/10 px-8 py-3">
           <span className="mr-1 text-xs font-semibold text-ink-dim">{nav.position}</span>
           <button

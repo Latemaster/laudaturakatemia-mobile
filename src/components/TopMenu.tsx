@@ -9,7 +9,6 @@ const ITEMS: { id: MenuSection; label: string }[] = [
   { id: 'suositellut', label: 'Suositellut' },
   { id: 'kurssit', label: 'Kurssit' },
   { id: 'osaaminen', label: 'Osaaminen' },
-  { id: 'arviointi', label: 'Arviointi' },
 ]
 
 export default function TopMenu({ active, onSelect }: TopMenuProps) {
