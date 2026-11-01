@@ -613,7 +613,7 @@
     "promptBlocks": [
       {
         "type": "text",
-        "content": "Millä  vakion $a$ arvoilla yhtälöllä $\\left(a+\\frac{9}{4}\\right)x^2+(a+1)x=-1$ on tasan yksi ratkaisu?"
+        "content": "Millä vakion $a$ arvoilla yhtälöllä $\\left(a+\\frac{9}{4}\\right)x^2+(a+1)x=-1$ on tasan yksi ratkaisu?"
       }
     ],
     "answerBlocks": [
@@ -646,7 +646,7 @@
       },
       {
         "type": "text",
-        "content": "c) Mahtuuko 3,1 metriä korkea ja 3,0 metriä korkea auto kulkemaan tunnelin läpi? Oleta, että auto pysyy omalla kaistallaan."
+        "content": "c) Mahtuuko 3,1 metriä leveä ja 3,0 metriä korkea auto kulkemaan tunnelin läpi? Oleta, että auto pysyy omalla kaistallaan."
       }
     ],
     "answerBlocks": [
@@ -736,7 +736,7 @@
     "promptBlocks": [
       {
         "type": "text",
-        "content": "Tutki perustellen, päteekö$\\sqrt{4-\\sqrt{17}} = 33-8\\sqrt{17}$."
+        "content": "Tutki perustellen, päteekö $\\sqrt{4-\\sqrt{17}} = 33-8\\sqrt{17}$."
       }
     ],
     "answerBlocks": [
@@ -776,7 +776,7 @@
     "promptBlocks": [
       {
         "type": "text",
-        "content": "Nollasta eroava uku x ja sen vastaluvun käänteisluvun neliö ovat yhtä suuret.  Määritä luku x."
+        "content": "Nollasta eroava luku x ja sen vastaluvun käänteisluvun neliö ovat yhtä suuret. Määritä luku x."
       }
     ],
     "answerBlocks": [
