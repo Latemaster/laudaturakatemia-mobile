@@ -3,18 +3,30 @@ import type { ReactNode } from 'react'
 // Building blocks shared by the Etusivu and Mahdollistajat pages, in the
 // app's own card style (white cards on the grid-paper page).
 
-export function InfoPage({ children }: { children: ReactNode }) {
+// `wide` uses the whole content panel instead of a centred column.
+export function InfoPage({ children, wide = false }: { children: ReactNode; wide?: boolean }) {
   return (
-    <div className="h-full overflow-y-auto px-10 pb-16 pt-10">
-      <div className="mx-auto flex w-full max-w-5xl flex-col gap-12">{children}</div>
+    <div className={`h-full overflow-y-auto ${wide ? 'px-8 pb-10 pt-8' : 'px-10 pb-16 pt-10'}`}>
+      <div className={`mx-auto flex w-full flex-col ${wide ? 'gap-8' : 'max-w-5xl gap-12'}`}>{children}</div>
     </div>
   )
 }
 
-export function InfoHero({ title, children }: { title: string; children?: ReactNode }) {
+// `compact` keeps the hero short, so what follows it starts above the fold.
+export function InfoHero({
+  title,
+  children,
+  compact = false,
+}: {
+  title: string
+  children?: ReactNode
+  compact?: boolean
+}) {
   return (
-    <section className="rounded-3xl border border-ink/10 bg-surface px-8 py-10 text-center shadow-sm">
-      <h1 className="mb-4 text-4xl font-bold text-accent">{title}</h1>
+    <section
+      className={`rounded-3xl border border-ink/10 bg-surface text-center shadow-sm ${compact ? 'px-8 py-6' : 'px-8 py-10'}`}
+    >
+      <h1 className={`font-bold text-accent ${compact ? 'mb-2 text-3xl' : 'mb-4 text-4xl'}`}>{title}</h1>
       {children && <div className="mx-auto max-w-3xl space-y-3 text-lg leading-relaxed text-ink">{children}</div>}
     </section>
   )

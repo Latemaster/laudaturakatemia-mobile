@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, type ReactNode } from 'react'
 import type { Card } from '../types'
 import LessonCardView from './LessonCardView'
 import ExerciseCardView from './ExerciseCardView'
@@ -16,6 +16,8 @@ interface FeedProps {
   onAnswer?: (cardId: string, correct: boolean) => void
   onBack?: () => void
   backLabel?: string
+  // A card shown before all the others (Suositellut's FeedIntroCard).
+  intro?: ReactNode
 }
 
 // The feed holds well over a hundred cards, each with KaTeX and an answer
@@ -54,7 +56,7 @@ function FeedExercise({ card, exercise, onEngage, onAnswer }: FeedExerciseProps)
   )
 }
 
-export default function Feed({ cards, onEngage, onAnswer, onBack, backLabel = 'Takaisin' }: FeedProps) {
+export default function Feed({ cards, onEngage, onAnswer, onBack, backLabel = 'Takaisin', intro }: FeedProps) {
   const containerRef = useRef<HTMLDivElement>(null)
   const [currentIndex, setCurrentIndex] = useState(0)
   const [renderedCount, setRenderedCount] = useState(FIRST_BATCH)
@@ -91,10 +93,12 @@ export default function Feed({ cards, onEngage, onAnswer, onBack, backLabel = 'T
         </button>
       )}
       <div ref={containerRef} className="snap-feed" onScroll={handleScroll}>
+        {intro}
         {cards.slice(0, renderedCount).map((card, index) => (
           <div key={card.id}>
             {card.type === 'lesson' ? (
-              <LessonCardView card={card} showSwipeHint={index === 0} />
+              // The intro has its own hint to scroll on.
+              <LessonCardView card={card} showSwipeHint={!intro && index === 0} />
             ) : isDesktop ? (
               <FeedExercise card={card} exercise={forExercise(card)} onEngage={onEngage} onAnswer={onAnswer} />
             ) : card.type === 'exercise' ? (

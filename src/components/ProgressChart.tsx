@@ -1,7 +1,8 @@
+import { useState } from 'react'
 import { GRADE_BANDS, predictGrade, type FinnishGrade } from '../data/grade'
 import { COURSES } from '../data/courses'
 import { DIFFICULTY_POINTS, DIFFICULTY_TOTALS, type Difficulty } from '../data/progress'
-import InfoToggle from './InfoToggle'
+import InfoToggle, { InfoPanel } from './InfoToggle'
 
 const WEEKS = 8
 const DIFFICULTIES: Difficulty[] = ['easy', 'mid', 'hard']
@@ -87,9 +88,12 @@ function xFor(index: number, count: number) {
 interface ProgressChartProps {
   targetLetter: string
   targetPct: number
+  // Fills its container's height (beside the grade on laptops), the chart
+  // growing into the room.
+  fill?: boolean
 }
 
-export default function ProgressChart({ targetLetter, targetPct }: ProgressChartProps) {
+export default function ProgressChart({ targetLetter, targetPct, fill = false }: ProgressChartProps) {
   const series = EXAMPLE_SERIES
   const lastPct = series[series.length - 1]
   const currentGrade = predictGrade(lastPct)
@@ -100,128 +104,144 @@ export default function ProgressChart({ targetLetter, targetPct }: ProgressChart
   const bandBottom = GRADE_BANDS[bandIndex].min
 
   const points = series.map((pct, i) => `${xFor(i, series.length)},${yFor(pct)}`).join(' ')
+  // Filling a fixed space, the open legend takes the chart's place.
+  const [infoOpen, setInfoOpen] = useState(false)
+
+  const legend = (
+    <ul className="flex flex-col gap-1.5">
+      <li className="flex items-center gap-2">
+        <span aria-hidden className={`inline-block h-0.5 w-5 rounded-full ${TIER_BG[currentGrade.tier]}`} />
+        Viiva = kokonaisosaaminen viikoittain (toistaiseksi esimerkkidataa)
+      </li>
+      <li className="flex items-center gap-2">
+        <span aria-hidden className={`inline-block h-3 w-5 rounded-sm ${TIER_BG[currentGrade.tier]} opacity-20`} />
+        Väritetty kaista = nykyinen arvosanataso {currentGrade.letter}
+      </li>
+      <li className="flex items-center gap-2">
+        <span aria-hidden className="inline-block h-0.5 w-5 border-t-2 border-dashed border-accent" />
+        Katkoviiva = tavoite {targetLetter}, {targetPct} % pisteistä
+      </li>
+      <li className="flex items-center gap-2">
+        <span aria-hidden className="inline-block h-0.5 w-5 border-t border-dashed border-ink/30" />
+        Vaaleat viivat = arvosanarajat L–A pisterajojen mukaan
+      </li>
+    </ul>
+  )
 
   return (
-    <div className="mb-6 rounded-2xl border border-ink/10 bg-surface p-4 shadow-sm">
+    <div
+      className={`border border-ink/10 bg-surface shadow-sm ${
+        fill ? 'flex h-full flex-col rounded-3xl p-6' : 'mb-6 rounded-2xl p-4'
+      }`}
+    >
       <div className="mb-1 flex flex-wrap items-center justify-between gap-2">
         <span className="text-sm font-semibold text-ink">Edistyminen ajan mittaan</span>
-        <InfoToggle label="Kaavion selite">
-            <ul className="flex flex-col gap-1.5">
-              <li className="flex items-center gap-2">
-                <span aria-hidden className={`inline-block h-0.5 w-5 rounded-full ${TIER_BG[currentGrade.tier]}`} />
-                Viiva = kokonaisosaaminen viikoittain (toistaiseksi esimerkkidataa)
-              </li>
-              <li className="flex items-center gap-2">
-                <span aria-hidden className={`inline-block h-3 w-5 rounded-sm ${TIER_BG[currentGrade.tier]} opacity-20`} />
-                Väritetty kaista = nykyinen arvosanataso {currentGrade.letter}
-              </li>
-              <li className="flex items-center gap-2">
-                <span aria-hidden className="inline-block h-0.5 w-5 border-t-2 border-dashed border-accent" />
-                Katkoviiva = tavoite {targetLetter}, {targetPct} % pisteistä
-              </li>
-              <li className="flex items-center gap-2">
-                <span aria-hidden className="inline-block h-0.5 w-5 border-t border-dashed border-ink/30" />
-                Vaaleat viivat = arvosanarajat L–A pisterajojen mukaan
-              </li>
-            </ul>
-          </InfoToggle>
+        <InfoToggle label="Kaavion selite" open={infoOpen} onOpenChange={setInfoOpen} inline={!fill}>
+          {legend}
+        </InfoToggle>
       </div>
-      <p className="mb-2 text-xs text-ink-dim">
-        Suunta kohti tasoa {currentGrade.letter}.{' '}
-        <span className="text-ink-dim/70">Esimerkkidata.</span>
-      </p>
-      <svg viewBox={`0 0 ${WIDTH} ${HEIGHT}`} className="w-full">
-        <rect
-          x={PAD_LEFT}
-          y={yFor(bandTop)}
-          width={PLOT_WIDTH}
-          height={yFor(bandBottom) - yFor(bandTop)}
-          className={TIER_BAND_FILL[currentGrade.tier]}
-        />
-
-        {GRADE_BANDS.filter((b) => b.min > 0).map((b) => (
-          <g key={b.grade.letter}>
-            <line
-              x1={PAD_LEFT}
-              x2={WIDTH - PAD_RIGHT}
-              y1={yFor(b.min)}
-              y2={yFor(b.min)}
-              strokeWidth={1}
-              strokeDasharray="3 3"
-              className="stroke-ink/10"
+      {fill && infoOpen ? (
+        <InfoPanel className="mt-2 min-h-0 flex-1 overflow-y-auto">{legend}</InfoPanel>
+      ) : (
+        <>
+          <p className="mb-2 text-xs text-ink-dim">
+            Suunta kohti tasoa {currentGrade.letter}.{' '}
+            <span className="text-ink-dim/70">Esimerkkidata.</span>
+          </p>
+          <svg viewBox={`0 0 ${WIDTH} ${HEIGHT}`} className={fill ? 'min-h-0 w-full flex-1' : 'w-full'}>
+            <rect
+              x={PAD_LEFT}
+              y={yFor(bandTop)}
+              width={PLOT_WIDTH}
+              height={yFor(bandBottom) - yFor(bandTop)}
+              className={TIER_BAND_FILL[currentGrade.tier]}
             />
-            <text
-              x={PAD_LEFT - 6}
-              y={yFor(b.min)}
-              textAnchor="end"
-              dominantBaseline="middle"
-              className="fill-ink-dim/60 text-[8px]"
-            >
-              {b.grade.letter}
-            </text>
-          </g>
-        ))}
 
-        <g>
-          <line
-            x1={PAD_LEFT}
-            x2={WIDTH - PAD_RIGHT}
-            y1={targetY}
-            y2={targetY}
-            strokeWidth={1.5}
-            strokeDasharray="5 3"
-            className="stroke-accent"
-          />
-          <rect
-            x={WIDTH - PAD_RIGHT - 52}
-            y={targetY - 7}
-            width={52}
-            height={13}
-            rx={6.5}
-            className="fill-accent"
-          />
-          <text
-            x={WIDTH - PAD_RIGHT - 26}
-            y={targetY}
-            textAnchor="middle"
-            dominantBaseline="central"
-            className="fill-white text-[8px] font-semibold"
-          >
-            Tavoite {targetLetter}
-          </text>
-        </g>
+            {GRADE_BANDS.filter((b) => b.min > 0).map((b) => (
+              <g key={b.grade.letter}>
+                <line
+                  x1={PAD_LEFT}
+                  x2={WIDTH - PAD_RIGHT}
+                  y1={yFor(b.min)}
+                  y2={yFor(b.min)}
+                  strokeWidth={1}
+                  strokeDasharray="3 3"
+                  className="stroke-ink/10"
+                />
+                <text
+                  x={PAD_LEFT - 6}
+                  y={yFor(b.min)}
+                  textAnchor="end"
+                  dominantBaseline="middle"
+                  className="fill-ink-dim/60 text-[8px]"
+                >
+                  {b.grade.letter}
+                </text>
+              </g>
+            ))}
 
-        <polyline
-          points={points}
-          fill="none"
-          strokeWidth={2.5}
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className={TIER_STROKE[currentGrade.tier]}
-        />
+            <g>
+              <line
+                x1={PAD_LEFT}
+                x2={WIDTH - PAD_RIGHT}
+                y1={targetY}
+                y2={targetY}
+                strokeWidth={1.5}
+                strokeDasharray="5 3"
+                className="stroke-accent"
+              />
+              <rect
+                x={WIDTH - PAD_RIGHT - 52}
+                y={targetY - 7}
+                width={52}
+                height={13}
+                rx={6.5}
+                className="fill-accent"
+              />
+              <text
+                x={WIDTH - PAD_RIGHT - 26}
+                y={targetY}
+                textAnchor="middle"
+                dominantBaseline="central"
+                className="fill-white text-[8px] font-semibold"
+              >
+                Tavoite {targetLetter}
+              </text>
+            </g>
 
-        {series.map((pct, i) => (
-          <circle
-            key={i}
-            cx={xFor(i, series.length)}
-            cy={yFor(pct)}
-            r={i === series.length - 1 ? 4 : 2.5}
-            className={TIER_FILL[currentGrade.tier]}
-          />
-        ))}
+            <polyline
+              points={points}
+              fill="none"
+              strokeWidth={2.5}
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className={TIER_STROKE[currentGrade.tier]}
+            />
 
-        {series.map((_, i) => (
-          <text
-            key={i}
-            x={xFor(i, series.length)}
-            y={HEIGHT - 6}
-            textAnchor="middle"
-            className="fill-ink-dim/60 text-[8px]"
-          >
-            vk {i + 1}
-          </text>
-        ))}
-      </svg>
+            {series.map((pct, i) => (
+              <circle
+                key={i}
+                cx={xFor(i, series.length)}
+                cy={yFor(pct)}
+                r={i === series.length - 1 ? 4 : 2.5}
+                className={TIER_FILL[currentGrade.tier]}
+              />
+            ))}
+
+            {series.map((_, i) => (
+              <text
+                key={i}
+                x={xFor(i, series.length)}
+                y={HEIGHT - 6}
+                textAnchor="middle"
+                className="fill-ink-dim/60 text-[8px]"
+              >
+                vk {i + 1}
+              </text>
+            ))}
+          </svg>
+        </>
+      )}
     </div>
   )
 }

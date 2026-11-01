@@ -4,6 +4,7 @@ import TopMenu from './components/TopMenu'
 import CourseList from './components/CourseList'
 import Osaaminen from './components/Osaaminen'
 import FeedInfo from './components/FeedInfo'
+import FeedIntroCard from './components/FeedIntroCard'
 import EvaluationList from './components/EvaluationList'
 import { cards, getConceptCards, getExerciseCards, groupExercisesByConcept } from './data/cards'
 import { getRecommendedCards, loadTargetGrade, type TargetGrade } from './data/studyPlans'
@@ -139,7 +140,6 @@ function App() {
       )}
       {section === 'osaaminen' && (
         <Osaaminen
-          engagedIds={engagedIds}
           targetGrade={targetGrade}
           onTargetGradeChange={setTargetGrade}
           courseGrades={courseGrades}
@@ -158,6 +158,17 @@ function App() {
           onAnswer={handleAnswer}
           onBack={section === 'kurssit' && selectedCourse ? () => setSelectedCourse(null) : undefined}
           backLabel="Takaisin kursseihin"
+          intro={
+            section === 'suositellut' ? (
+              <FeedIntroCard
+                targetGrade={targetGrade}
+                courseGrades={courseGrades}
+                onCourseGradeChange={handleCourseGradeChange}
+                polls={knowledge.polls}
+                onPollChange={handlePollChange}
+              />
+            ) : undefined
+          }
         />
       )}
     </>
