@@ -1,0 +1,1833 @@
+{
+  "OSAI_T1": {
+    "status": "draft",
+    "maxPoints": 7,
+    "parts": [
+      {
+        "label": "a)",
+        "solution": "$180^\\circ = \\pi$, joten\n$$30^\\circ = \\frac{30}{180}\\pi = \\frac{\\pi}{6}$$",
+        "criteria": [
+          {
+            "id": "a-result",
+            "text": "$\\frac{\\pi}{6}$",
+            "points": 1
+          }
+        ]
+      },
+      {
+        "label": "b)",
+        "solution": "$$179^\\circ = \\frac{179\\pi}{180} \\ (\\approx 3{,}12)$$",
+        "criteria": [
+          {
+            "id": "b-result",
+            "text": "$\\frac{179\\pi}{180}$",
+            "points": 1
+          }
+        ]
+      },
+      {
+        "label": "c)",
+        "solution": "$$\\frac{3\\pi}{2} = \\frac{3}{2}\\cdot 180^\\circ = 270^\\circ$$",
+        "criteria": [
+          {
+            "id": "c-result",
+            "text": "$270^\\circ$",
+            "points": 1
+          }
+        ]
+      },
+      {
+        "label": "d)",
+        "solution": "$$\\frac{5\\pi}{2} = \\frac{5}{2}\\cdot 180^\\circ = 450^\\circ$$",
+        "criteria": [
+          {
+            "id": "d-result",
+            "text": "$450^\\circ$",
+            "points": 1
+          }
+        ]
+      },
+      {
+        "label": "e)",
+        "solution": "Radiaaneina keskuskulma on kaaren pituus jaettuna säteellä:\n$$\\alpha = \\frac{b}{r} = \\frac{42}{37} \\approx 1{,}1$$\n$$\\alpha = \\frac{42}{37}\\cdot\\frac{180^\\circ}{\\pi} \\approx 65^\\circ$$",
+        "criteria": [
+          {
+            "id": "e-formula",
+            "text": "$\\alpha = \\frac{b}{r} = \\frac{42}{37}$",
+            "points": 1,
+            "impliedBy": "e-rad"
+          },
+          {
+            "id": "e-rad",
+            "text": "$\\alpha \\approx 1{,}1$ rad",
+            "points": 1
+          },
+          {
+            "id": "e-deg",
+            "text": "$\\alpha \\approx 65^\\circ$",
+            "points": 1
+          }
+        ]
+      }
+    ],
+    "reviewNote": "The source's a) 5π/30 is correct but unsimplified; the rubric expects π/6."
+  },
+  "OSAI_T2": {
+    "status": "draft",
+    "maxPoints": 4,
+    "parts": [
+      {
+        "solution": "Merkitään $P = (x, y)$. Pisteestä $P$ piirretään kohtisuora $x$-akselille, jolloin syntyy suorakulmainen kolmio, jonka hypotenuusa on yksikköympyrän säde $1$ ja kateetit $x$ ja $y$:\n$$\\cos\\alpha = \\frac{x}{1} = x, \\quad \\sin\\alpha = \\frac{y}{1} = y$$\nKulman $\\alpha$ kosini on siis kehäpisteen $P$ $x$-koordinaatti ja sini sen $y$-koordinaatti, $P = (\\cos\\alpha, \\sin\\alpha)$. Tätä käytetään sinin ja kosinin määritelmänä kaikille kulmille.",
+        "criteria": [
+          {
+            "id": "triangle",
+            "text": "Suorakulmainen kolmio: hypotenuusa $1$, kateetit $x$ ja $y$ (kuva tai selitys)",
+            "points": 1
+          },
+          {
+            "id": "cos",
+            "text": "$\\cos\\alpha$ on kehäpisteen $x$-koordinaatti",
+            "points": 1
+          },
+          {
+            "id": "sin",
+            "text": "$\\sin\\alpha$ on kehäpisteen $y$-koordinaatti",
+            "points": 1
+          },
+          {
+            "id": "general",
+            "text": "Todettu, että tulkinta määrittelee sinin ja kosinin kaikille (suunnatuille) kulmille",
+            "points": 1
+          }
+        ],
+        "notes": [
+          "Pelkkä vastaus ”$P = (\\cos\\alpha, \\sin\\alpha)$” ilman perustelua: 2 p."
+        ]
+      }
+    ],
+    "reviewNote": "Judgment call: the ”general” criterion (1 p) asks for the point of the interpretation, the extension to all angles; the source mentions it only implicitly (”suunnatun kulman”)."
+  },
+  "OSAI_T3": {
+    "status": "draft",
+    "maxPoints": 5,
+    "parts": [
+      {
+        "label": "a)",
+        "solution": "$$\\cos^2 x = 1-\\sin^2 x = 1-\\frac{1}{25} = \\frac{24}{25}$$\n$$\\cos x = \\pm\\frac{\\sqrt{24}}{5} = \\pm\\frac{2\\sqrt{6}}{5}$$\nVälillä $\\frac{\\pi}{2} \\le x \\le \\pi$ kosini on negatiivinen (tai nolla), joten $\\cos x = -\\frac{2\\sqrt{6}}{5}$.",
+        "criteria": [
+          {
+            "id": "a-identity",
+            "text": "Peruskaavasta $\\cos^2 x = \\frac{24}{25}$",
+            "points": 1,
+            "impliedBy": "a-result"
+          },
+          {
+            "id": "a-sign",
+            "text": "Merkki valittu välin perusteella (kosini negatiivinen)",
+            "points": 1,
+            "impliedBy": "a-result"
+          },
+          {
+            "id": "a-result",
+            "text": "$\\cos x = -\\frac{2\\sqrt{6}}{5}$",
+            "points": 1
+          }
+        ],
+        "notes": [
+          "Vastaus $\\pm\\frac{2\\sqrt{6}}{5}$ tai $+\\frac{2\\sqrt{6}}{5}$: a-kohdasta 1 p."
+        ]
+      },
+      {
+        "label": "b)",
+        "solution": "Kehäpiste $(x, y)$ on yksikköympyrällä, jonka yhtälö on $x^2+y^2 = 1$ (pisteen etäisyys origosta on $1$, Pythagoraan lause). Sijoitetaan $x = \\cos\\alpha$ ja $y = \\sin\\alpha$:\n$$\\cos^2\\alpha+\\sin^2\\alpha = 1$$",
+        "criteria": [
+          {
+            "id": "b-circle",
+            "text": "Yksikköympyrän yhtälö $x^2+y^2 = 1$ (tai Pythagoraan lause kolmiossa)",
+            "points": 1
+          },
+          {
+            "id": "b-substitute",
+            "text": "Sijoitus $x = \\cos\\alpha$, $y = \\sin\\alpha$ ja tulos $\\sin^2\\alpha+\\cos^2\\alpha = 1$",
+            "points": 1
+          }
+        ]
+      }
+    ]
+  },
+  "OSAI_T4": {
+    "status": "draft",
+    "maxPoints": 6,
+    "parts": [
+      {
+        "label": "a)",
+        "solution": "$\\sin\\frac{\\pi}{3} = \\frac{\\sqrt{3}}{2}$, joten\n$$2x = \\frac{\\pi}{3}+n\\cdot 2\\pi \\ \\text{tai} \\ 2x = \\pi-\\frac{\\pi}{3}+n\\cdot 2\\pi$$\n$$x = \\frac{\\pi}{6}+n\\pi \\ \\text{tai} \\ x = \\frac{\\pi}{3}+n\\pi, \\quad n \\in \\mathbb{Z}$$",
+        "criteria": [
+          {
+            "id": "a-cases",
+            "text": "Molemmat sinin ratkaisuhaarat: $2x = \\frac{\\pi}{3}+n\\cdot 2\\pi$ ja $2x = \\frac{2\\pi}{3}+n\\cdot 2\\pi$",
+            "points": 1,
+            "impliedBy": "a-result"
+          },
+          {
+            "id": "a-result",
+            "text": "$x = \\frac{\\pi}{6}+n\\pi$ tai $x = \\frac{\\pi}{3}+n\\pi$, $n \\in \\mathbb{Z}$",
+            "points": 2
+          }
+        ],
+        "notes": [
+          "Jos jakso on jaettu väärin ($x = \\frac{\\pi}{6}+n\\cdot 2\\pi$), kohdasta ”ratkaisu” 1 p."
+        ]
+      },
+      {
+        "label": "b)",
+        "solution": "Taulukosta $\\cos\\frac{3\\pi}{10} = \\cos 54^\\circ = \\frac{1}{4}\\sqrt{10-2\\sqrt{5}}$, joten\n$$x = \\pm\\frac{3\\pi}{10}+n\\cdot 2\\pi, \\quad n \\in \\mathbb{Z}$$",
+        "criteria": [
+          {
+            "id": "b-angle",
+            "text": "Perusratkaisu $\\frac{3\\pi}{10}$ ($54^\\circ$)",
+            "points": 1,
+            "impliedBy": "b-result"
+          },
+          {
+            "id": "b-result",
+            "text": "$x = \\pm\\frac{3\\pi}{10}+n\\cdot 2\\pi$, $n \\in \\mathbb{Z}$",
+            "points": 2
+          }
+        ],
+        "notes": [
+          "Jos vain $x = \\frac{3\\pi}{10}+n\\cdot 2\\pi$ (negatiivinen haara puuttuu), kohdasta ”ratkaisu” 1 p."
+        ]
+      }
+    ]
+  },
+  "OSAI_T5": {
+    "status": "draft",
+    "maxPoints": 7,
+    "parts": [
+      {
+        "label": "a)",
+        "solution": "$$81^{\\frac{1}{3}} = \\sqrt[3]{81} = \\sqrt[3]{27\\cdot 3}$$\n$$= 3\\sqrt[3]{3} \\ (\\approx 4{,}33)$$",
+        "criteria": [
+          {
+            "id": "a-result",
+            "text": "$\\sqrt[3]{81} = 3\\sqrt[3]{3}$",
+            "points": 1
+          }
+        ]
+      },
+      {
+        "label": "b)",
+        "solution": "$$125^{\\frac{1}{5}} = \\sqrt[5]{125} = \\sqrt[5]{5^3} \\ (\\approx 2{,}63)$$\nTätä ei voi sieventää kokonaisluvuksi.",
+        "criteria": [
+          {
+            "id": "b-result",
+            "text": "$\\sqrt[5]{125}$ (tai $\\sqrt[5]{5^3}$)",
+            "points": 1
+          }
+        ]
+      },
+      {
+        "label": "c)",
+        "solution": "$$x^{\\frac{5}{17}} = \\sqrt[17]{x^5}$$",
+        "criteria": [
+          {
+            "id": "c-result",
+            "text": "$\\sqrt[17]{x^5}$",
+            "points": 1
+          }
+        ]
+      },
+      {
+        "label": "d)",
+        "solution": "$$x^{\\frac{113}{792}} = \\sqrt[792]{x^{113}}$$\n(Murtoluku $\\frac{113}{792}$ on supistetussa muodossa.)",
+        "criteria": [
+          {
+            "id": "d-result",
+            "text": "$\\sqrt[792]{x^{113}}$",
+            "points": 1
+          }
+        ]
+      },
+      {
+        "label": "e)",
+        "solution": "Negatiivisella eksponentilla $a^{-\\frac{m}{n}} = \\frac{1}{a^{\\frac{m}{n}}}$, joten jos $a = 0$, jaettaisiin nollalla. Siksi $a = 0$ ei käy.\nNegatiivinen kantaluku ei myöskään käy: parillista juurta ei ole negatiivisesta luvusta (esim. $(-4)^{\\frac{1}{2}}$), ja sama luku saisi eri arvoja, esim. $(-8)^{\\frac{1}{3}} = -2$, mutta $(-8)^{\\frac{2}{6}} = \\sqrt[6]{64} = 2$. Siksi ehto on $a > 0$ eikä $a \\ne 0$.\nEksponenttifunktio $f(x) = a^x$ tarvitsee lisäksi ehdon $a \\ne 1$, koska $1^x = 1$ on vakiofunktio.",
+        "criteria": [
+          {
+            "id": "e-zero",
+            "text": "$a = 0$ johtaisi negatiivisella eksponentilla jakoon nollalla",
+            "points": 1
+          },
+          {
+            "id": "e-negative",
+            "text": "$a < 0$ ei käy: parillista juurta ei ole (tai arvo riippuisi murtoluvun esitysmuodosta)",
+            "points": 1
+          },
+          {
+            "id": "e-one",
+            "text": "Eksponenttifunktiolle lisäksi $a \\ne 1$ (muuten vakiofunktio)",
+            "points": 1
+          }
+        ]
+      }
+    ],
+    "reviewNote": "SOURCE ERROR: a) asks for the exact value where possible; ∛81 = 3∛3, but the source gives only ≈ 4,33. e) The source's reason for excluding a < 0 (”määrittelyehto riippuisi eksponentin etumerkistä”) is not the real one; the rubric uses even roots of negatives and (−8)^(1/3) ≠ (−8)^(2/6)."
+  },
+  "OSAI_T6": {
+    "status": "draft",
+    "maxPoints": 6,
+    "parts": [
+      {
+        "label": "a)",
+        "solution": "Kantaluku $11 > 1$. Jos $x_1 < x_2$, niin $11^{x_2} = 11^{x_1}\\cdot 11^{x_2-x_1} > 11^{x_1}$, koska $11^{x_2-x_1} > 1$. Funktio on aidosti kasvava.",
+        "criteria": [
+          {
+            "id": "a-why",
+            "text": "Perustelu: kantaluku $11 > 1$ (tai $x_1 < x_2 \\Rightarrow 11^{x_1} < 11^{x_2}$)",
+            "points": 1
+          },
+          {
+            "id": "a-result",
+            "text": "Aidosti kasvava",
+            "points": 1
+          }
+        ],
+        "notes": [
+          "Pelkkä vastaus ”kasvava”/”vähenevä” ilman perustelua: kustakin kohdasta 1 p."
+        ]
+      },
+      {
+        "label": "b)",
+        "solution": "$$17^{-x} = \\left(\\frac{1}{17}\\right)^x$$\nKantaluku on $0 < \\frac{1}{17} < 1$, joten funktio on aidosti vähenevä.",
+        "criteria": [
+          {
+            "id": "b-why",
+            "text": "Perustelu: $17^{-x} = \\left(\\frac{1}{17}\\right)^x$ ja $0 < \\frac{1}{17} < 1$",
+            "points": 1
+          },
+          {
+            "id": "b-result",
+            "text": "Aidosti vähenevä",
+            "points": 1
+          }
+        ]
+      },
+      {
+        "label": "c)",
+        "solution": "Kuvaajat kulkevat pisteen $(0, 1)$ kautta ja ovat $x$-akselin yläpuolella. $11^x$ kasvaa ja lähestyy $x$-akselia vasemmalla, $17^{-x}$ vähenee ja lähestyy $x$-akselia oikealla.",
+        "criteria": [
+          {
+            "id": "c-f",
+            "text": "Kuvaaja $y = 11^x$: kasvava, kulkee pisteen $(0, 1)$ kautta, aina positiivinen",
+            "points": 1
+          },
+          {
+            "id": "c-g",
+            "text": "Kuvaaja $y = 17^{-x}$: vähenevä, kulkee pisteen $(0, 1)$ kautta, aina positiivinen",
+            "points": 1
+          }
+        ]
+      }
+    ],
+    "reviewNote": "Judgment call: ”kasvava/vähenevä” is guessable, so each reason carries half of its part."
+  },
+  "OSAI_T7": {
+    "status": "draft",
+    "maxPoints": 5,
+    "parts": [
+      {
+        "label": "a)",
+        "solution": "Molempien kantaluku on $5 > 1$, joten sekä $5^x$ että $\\log_5 x$ ovat aidosti kasvavia.",
+        "criteria": [
+          {
+            "id": "a-result",
+            "text": "Molemmat aidosti kasvavia",
+            "points": 1
+          },
+          {
+            "id": "a-why",
+            "text": "Perustelu: kantaluku $5 > 1$",
+            "points": 1
+          }
+        ],
+        "notes": [
+          "Pelkkä vastaus ”kasvavia” ilman perustelua: a-kohdasta 1 p."
+        ]
+      },
+      {
+        "label": "b)",
+        "solution": "Kuvaajat ovat toistensa peilikuvia suoran $y = x$ suhteen: $5^x$ kulkee pisteen $(0, 1)$ ja $\\log_5 x$ pisteen $(1, 0)$ kautta. Funktiot ovat toistensa käänteisfunktioita.",
+        "criteria": [
+          {
+            "id": "b-graphs",
+            "text": "Kuvaajat $5^x$, $\\log_5 x$ ja $y = x$ samassa koordinaatistossa",
+            "points": 1
+          },
+          {
+            "id": "b-symmetry",
+            "text": "Kuvaajat ovat symmetrisiä suoran $y = x$ suhteen",
+            "points": 1
+          },
+          {
+            "id": "b-inverse",
+            "text": "Funktiot ovat toistensa käänteisfunktioita",
+            "points": 1
+          }
+        ]
+      }
+    ]
+  },
+  "OSAI_T8": {
+    "status": "draft",
+    "maxPoints": 4,
+    "parts": [
+      {
+        "solution": "$$\\log_7 70-3\\log_7 3+\\log_7 12 = \\log_7 70-\\log_7 27+\\log_7 12$$\n$$= \\log_7\\frac{70\\cdot 12}{27} = \\log_7\\frac{280}{9}$$",
+        "criteria": [
+          {
+            "id": "power",
+            "text": "$3\\log_7 3 = \\log_7 27$",
+            "points": 1,
+            "impliedBy": "result"
+          },
+          {
+            "id": "combine",
+            "text": "Summa ja erotus yhdeksi logaritmiksi: $\\log_7\\frac{70\\cdot 12}{27}$",
+            "points": 1,
+            "impliedBy": "result"
+          },
+          {
+            "id": "result",
+            "text": "$\\log_7\\frac{280}{9}$",
+            "points": 2
+          }
+        ],
+        "notes": [
+          "Pelkkä likiarvo ($\\approx 1{,}77$): 1 p."
+        ]
+      }
+    ],
+    "reviewNote": "Judgment call: log₇(280/9) is the exact value; the numbers do not simplify further. If a nicer answer was intended, the prompt's numbers may need changing."
+  },
+  "OSAI_T9": {
+    "status": "draft",
+    "maxPoints": 4,
+    "parts": [
+      {
+        "solution": "Määrittelyehto: $4x+5 > 0 \\iff x > -\\frac{5}{4}$.\n$$\\log_5(4x+5) = 7 \\iff 4x+5 = 5^7 = 78\\,125$$\n$$x = \\frac{78\\,125-5}{4} = 19\\,530$$\nRatkaisu toteuttaa määrittelyehdon.",
+        "criteria": [
+          {
+            "id": "domain",
+            "text": "Määrittelyehto $x > -\\frac{5}{4}$ ja ratkaisun tarkistus",
+            "points": 1
+          },
+          {
+            "id": "definition",
+            "text": "Logaritmin määritelmästä $4x+5 = 5^7$",
+            "points": 1,
+            "impliedBy": "result"
+          },
+          {
+            "id": "result",
+            "text": "$x = 19\\,530$ (tai $\\frac{5^7-5}{4}$)",
+            "points": 2
+          }
+        ]
+      }
+    ]
+  },
+  "OSAI_T10": {
+    "status": "draft",
+    "maxPoints": 6,
+    "parts": [
+      {
+        "label": "a)",
+        "solution": "Määrä kolminkertaistuu puolessa tunnissa, joten tunnissa se $3^2 = 9$-kertaistuu. Alussa viruksia on $3000$:\n$$f(t) = 3000\\cdot 9^t$$\nmissä $t$ on aika tunteina. (Yhtäpitävästi $f(t) = 3000\\cdot 3^{2t}$.)",
+        "criteria": [
+          {
+            "id": "a-factor",
+            "text": "Kasvukerroin tunnissa $9$ (tai $3^{2t}$)",
+            "points": 1,
+            "impliedBy": "a-result"
+          },
+          {
+            "id": "a-start",
+            "text": "Alkuarvo $3000$ kertoimena",
+            "points": 1,
+            "impliedBy": "a-result"
+          },
+          {
+            "id": "a-result",
+            "text": "$f(t) = 3000\\cdot 9^t$",
+            "points": 2
+          }
+        ],
+        "notes": [
+          "Kerroin $3^t$ (kolminkertaistuminen tunnissa): kohdasta ”funktio” 1 p."
+        ]
+      },
+      {
+        "label": "b)",
+        "solution": "Kuvaaja on kasvava eksponenttikäyrä, joka alkaa pisteestä $(0, 3000)$ ja kulkee esimerkiksi pisteiden $(0{,}5; 9000)$ ja $(1; 27\\,000)$ kautta. Akseleilla aika (h) ja virusten määrä.",
+        "criteria": [
+          {
+            "id": "b-shape",
+            "text": "Kasvava eksponenttikäyrä, alkuarvo $3000$ kohdassa $t = 0$",
+            "points": 1
+          },
+          {
+            "id": "b-axes",
+            "text": "Akselit nimetty ja skaalattu (esim. $f(1) = 27\\,000$ näkyy)",
+            "points": 1
+          }
+        ]
+      }
+    ],
+    "reviewNote": "SOURCE ERROR: the source says ”kolminkertaistuu tunnissa” (the prompt says half an hour; the factor 9 is right) and drops the initial amount: f(t) = 9^t instead of 3000·9^t. Its graph (virus_kuvaaja.png) also shows 9^x."
+  },
+  "OSAII_T1": {
+    "status": "draft",
+    "maxPoints": 5,
+    "parts": [
+      {
+        "solution": "Kehäpisteen koordinaatit ovat $(\\cos\\alpha, \\sin\\alpha)$:\n$$\\cos\\alpha = \\frac{1}{4}(\\sqrt{5}+1)$$\n$$\\sin\\alpha = \\frac{1}{4}\\sqrt{10-2\\sqrt{5}}$$\nTaulukosta $\\cos 36^\\circ = \\frac{1+\\sqrt{5}}{4}$ ja $\\sin 36^\\circ = \\frac{1}{4}\\sqrt{10-2\\sqrt{5}}$. Molemmat koordinaatit ovat positiivisia, joten kulma on ensimmäisessä neljänneksessä:\n$$\\alpha = 36^\\circ = \\frac{\\pi}{5}$$\n(tai yleisesti $36^\\circ+n\\cdot 360^\\circ$, $\\frac{\\pi}{5}+n\\cdot 2\\pi$).",
+        "criteria": [
+          {
+            "id": "coords",
+            "text": "$\\cos\\alpha = \\frac{1}{4}(\\sqrt{5}+1)$ ja $\\sin\\alpha = \\frac{1}{4}\\sqrt{10-2\\sqrt{5}}$",
+            "points": 1,
+            "impliedBy": "result"
+          },
+          {
+            "id": "quadrant",
+            "text": "Kulma tunnistettu molemmista koordinaateista (I neljännes)",
+            "points": 1,
+            "impliedBy": "result"
+          },
+          {
+            "id": "result",
+            "text": "$\\alpha = 36^\\circ = \\frac{\\pi}{5}$",
+            "points": 3
+          }
+        ],
+        "notes": [
+          "Vain toinen yksikkö (asteet tai radiaanit): kohdasta ”kulma” 2 p."
+        ]
+      }
+    ],
+    "reviewNote": "The answer is right, but the source writes cos(¼√5 + 1) = π/5, i.e. the cosine of the coordinate instead of cos α = coordinate."
+  },
+  "OSAII_T2": {
+    "status": "draft",
+    "maxPoints": 6,
+    "parts": [
+      {
+        "label": "a)",
+        "solution": "$$\\sin 5\\pi = \\sin(4\\pi+\\pi) = \\sin\\pi = 0$$\n$$\\cos\\left(-\\frac{13\\pi}{2}\\right) = \\cos\\frac{13\\pi}{2}$$\n$$= \\cos\\left(6\\pi+\\frac{\\pi}{2}\\right) = 0$$\nSumma on $0$.",
+        "criteria": [
+          {
+            "id": "a-sin",
+            "text": "$\\sin 5\\pi = 0$ (jakso $2\\pi$ poistettu)",
+            "points": 1
+          },
+          {
+            "id": "a-cos",
+            "text": "$\\cos\\left(-\\frac{13\\pi}{2}\\right) = 0$",
+            "points": 1
+          },
+          {
+            "id": "a-result",
+            "text": "Arvo $0$, välivaiheet esitetty",
+            "points": 1
+          }
+        ],
+        "notes": [
+          "Pelkkä vastaus $0$ ilman välivaiheita: a-kohdasta 1 p (tehtävä pyytää välivaiheet)."
+        ]
+      },
+      {
+        "label": "b)",
+        "solution": "$$\\cos 8\\pi = 1, \\quad \\sin\\frac{15\\pi}{2} = \\sin\\left(8\\pi-\\frac{\\pi}{2}\\right) = -1$$\n$$\\cos 17\\pi = \\cos(16\\pi+\\pi) = -1$$\n$$\\frac{1-(-1)}{-1} = -2$$",
+        "criteria": [
+          {
+            "id": "b-values",
+            "text": "$\\cos 8\\pi = 1$, $\\sin\\frac{15\\pi}{2} = -1$, $\\cos 17\\pi = -1$",
+            "points": 2,
+            "impliedBy": "b-result"
+          },
+          {
+            "id": "b-result",
+            "text": "$-2$",
+            "points": 1
+          }
+        ]
+      }
+    ],
+    "reviewNote": "Judgment call: a) explicitly asks for intermediate steps, so the two reductions are not implied by the answer."
+  },
+  "OSAII_T3": {
+    "status": "draft",
+    "maxPoints": 8,
+    "parts": [
+      {
+        "label": "a)",
+        "solution": "$\\cos 2x = 2\\cos^2 x-1$, joten\n$$2\\cos^2 x-1 = \\frac{1}{\\sqrt{2}} = \\frac{\\sqrt{2}}{2}$$\n$$\\cos^2 x = \\frac{2+\\sqrt{2}}{4}$$\n$$\\cos x = \\pm\\frac{\\sqrt{2+\\sqrt{2}}}{2}$$\nVälillä $\\frac{\\pi}{2} \\le x \\le \\pi$ on $\\cos x \\le 0$, joten\n$$\\cos x = -\\frac{\\sqrt{2+\\sqrt{2}}}{2}$$\n(Tarkistus: $x = \\frac{7\\pi}{8}$.)",
+        "criteria": [
+          {
+            "id": "a-double",
+            "text": "Kaava $\\cos 2x = 2\\cos^2 x-1$",
+            "points": 1,
+            "impliedBy": "a-result"
+          },
+          {
+            "id": "a-square",
+            "text": "$\\cos^2 x = \\frac{2+\\sqrt{2}}{4}$",
+            "points": 1,
+            "impliedBy": "a-result"
+          },
+          {
+            "id": "a-result",
+            "text": "$\\cos x = -\\frac{\\sqrt{2+\\sqrt{2}}}{2}$ (negatiivinen merkki välin perusteella)",
+            "points": 2
+          }
+        ],
+        "notes": [
+          "Positiivinen tai $\\pm$-merkkinen vastaus: kohdasta ”vastaus” 0 p."
+        ]
+      },
+      {
+        "label": "b)",
+        "solution": "Kulmat ovat teräviä, joten kosinit ovat positiivisia:\n$$\\cos x = \\sqrt{1-\\frac{3}{4}} = \\frac{1}{2}$$\n$$\\cos y = \\sqrt{1-\\frac{1}{4}} = \\frac{\\sqrt{3}}{2}$$\n$$\\sin(x-y) = \\sin x\\cos y-\\cos x\\sin y$$\n$$= \\frac{3}{4}-\\frac{1}{4} = \\frac{1}{2}$$\n$$\\cos(x-y) = \\cos x\\cos y+\\sin x\\sin y$$\n$$= \\frac{\\sqrt{3}}{4}+\\frac{\\sqrt{3}}{4} = \\frac{\\sqrt{3}}{2}$$",
+        "criteria": [
+          {
+            "id": "b-cos",
+            "text": "$\\cos x = \\frac{1}{2}$ ja $\\cos y = \\frac{\\sqrt{3}}{2}$ (positiiviset, koska kulmat teräviä)",
+            "points": 1,
+            "impliedBy": "b-sin"
+          },
+          {
+            "id": "b-formulas",
+            "text": "Erotuksen kaavat sinille ja kosinille",
+            "points": 1,
+            "impliedBy": "b-sin"
+          },
+          {
+            "id": "b-sin",
+            "text": "$\\sin(x-y) = \\frac{1}{2}$",
+            "points": 1
+          },
+          {
+            "id": "b-cosdiff",
+            "text": "$\\cos(x-y) = \\frac{\\sqrt{3}}{2}$",
+            "points": 1
+          }
+        ],
+        "notes": [
+          "Ratkaisu kulmien kautta ($x = 60^\\circ$, $y = 30^\\circ$, $x-y = 30^\\circ$) kelpaa."
+        ]
+      }
+    ]
+  },
+  "OSAII_T4": {
+    "status": "draft",
+    "maxPoints": 8,
+    "parts": [
+      {
+        "label": "a)",
+        "solution": "$$4x = 2x+n\\cdot 2\\pi \\ \\text{tai} \\ 4x = \\pi-2x+n\\cdot 2\\pi$$\n$$x = n\\pi \\ \\text{tai} \\ x = \\frac{\\pi}{6}+n\\cdot\\frac{\\pi}{3}, \\quad n \\in \\mathbb{Z}$$\nVälille $[0, \\pi]$ kuuluvat\n$$x = 0, \\ \\frac{\\pi}{6}, \\ \\frac{\\pi}{2}, \\ \\frac{5\\pi}{6}, \\ \\pi$$",
+        "criteria": [
+          {
+            "id": "a-general",
+            "text": "Yleinen ratkaisu $x = n\\pi$ tai $x = \\frac{\\pi}{6}+n\\cdot\\frac{\\pi}{3}$ (tai yhtäpitävä)",
+            "points": 2,
+            "impliedBy": "a-interval"
+          },
+          {
+            "id": "a-interval",
+            "text": "Välillä $[0, \\pi]$: $0$, $\\frac{\\pi}{6}$, $\\frac{\\pi}{2}$, $\\frac{5\\pi}{6}$, $\\pi$",
+            "points": 1
+          }
+        ],
+        "notes": [
+          "Jos välin juurista puuttuu yksi, kohdasta ”välin juuret” 0 p."
+        ]
+      },
+      {
+        "label": "b)",
+        "solution": "$$\\sin x(\\sin x-1) = 0 \\iff \\sin x = 0 \\ \\text{tai} \\ \\sin x = 1$$\n$$x = n\\pi \\ \\text{tai} \\ x = \\frac{\\pi}{2}+n\\cdot 2\\pi, \\quad n \\in \\mathbb{Z}$$",
+        "criteria": [
+          {
+            "id": "b-factor",
+            "text": "$\\sin x = 0$ tai $\\sin x = 1$",
+            "points": 1,
+            "impliedBy": "b-result"
+          },
+          {
+            "id": "b-result",
+            "text": "$x = n\\pi$ tai $x = \\frac{\\pi}{2}+n\\cdot 2\\pi$",
+            "points": 1
+          }
+        ]
+      },
+      {
+        "label": "c)",
+        "solution": "$$\\sin 4x = -\\frac{1}{2}$$\n$$4x = -\\frac{\\pi}{6}+n\\cdot 2\\pi \\ \\text{tai} \\ 4x = \\frac{7\\pi}{6}+n\\cdot 2\\pi$$\n$$x = -\\frac{\\pi}{24}+n\\cdot\\frac{\\pi}{2}$$\n$$\\text{tai} \\ x = \\frac{7\\pi}{24}+n\\cdot\\frac{\\pi}{2}$$",
+        "criteria": [
+          {
+            "id": "c-branches",
+            "text": "Sinin molemmat haarat: $4x = -\\frac{\\pi}{6}+n\\cdot 2\\pi$ ja $4x = \\frac{7\\pi}{6}+n\\cdot 2\\pi$",
+            "points": 1,
+            "impliedBy": "c-result"
+          },
+          {
+            "id": "c-result",
+            "text": "$x = -\\frac{\\pi}{24}+n\\cdot\\frac{\\pi}{2}$ tai $x = \\frac{7\\pi}{24}+n\\cdot\\frac{\\pi}{2}$",
+            "points": 1
+          }
+        ]
+      },
+      {
+        "label": "d)",
+        "solution": "Merkitään $t = \\sin x$. Yhtälö $\\sin t = 1$ vaatii $t = \\frac{\\pi}{2}+n\\cdot 2\\pi$, mutta $-1 \\le \\sin x \\le 1$ ja $\\frac{\\pi}{2} > 1$. Yhtälöllä ei ole ratkaisuja.",
+        "criteria": [
+          {
+            "id": "d-result",
+            "text": "Ei ratkaisuja, perusteltuna: $\\sin x$ pitäisi olla $\\frac{\\pi}{2}+n\\cdot 2\\pi$, mutta $|\\sin x| \\le 1 < \\frac{\\pi}{2}$",
+            "points": 1
+          }
+        ],
+        "notes": [
+          "Pelkkä vastaus ”ei ratkaisuja” ilman perustelua: d-kohdasta 0 p."
+        ]
+      }
+    ]
+  },
+  "OSAII_T5": {
+    "status": "draft",
+    "maxPoints": 8,
+    "parts": [
+      {
+        "label": "a)",
+        "solution": "$$2x+\\frac{\\pi}{2} = \\pm\\frac{\\pi}{3}+n\\cdot 2\\pi$$\n$$x = -\\frac{\\pi}{12}+n\\pi \\ \\text{tai} \\ x = -\\frac{5\\pi}{12}+n\\pi$$\nmissä $n \\in \\mathbb{Z}$.",
+        "criteria": [
+          {
+            "id": "a-branches",
+            "text": "$2x+\\frac{\\pi}{2} = \\pm\\frac{\\pi}{3}+n\\cdot 2\\pi$ (tai $\\sin 2x = -\\frac{1}{2}$)",
+            "points": 1,
+            "impliedBy": "a-result"
+          },
+          {
+            "id": "a-result",
+            "text": "$x = -\\frac{\\pi}{12}+n\\pi$ tai $x = -\\frac{5\\pi}{12}+n\\pi$ (tai yhtäpitävä)",
+            "points": 1
+          }
+        ]
+      },
+      {
+        "label": "b)",
+        "solution": "$2\\sin x\\cos x = \\sin 2x$ ja $\\sin\\frac{\\pi}{10} = \\frac{1}{4}(\\sqrt{5}-1)$:\n$$2x = \\frac{\\pi}{10}+n\\cdot 2\\pi \\ \\text{tai} \\ 2x = \\frac{9\\pi}{10}+n\\cdot 2\\pi$$\n$$x = \\frac{\\pi}{20}+n\\pi \\ \\text{tai} \\ x = \\frac{9\\pi}{20}+n\\pi$$",
+        "criteria": [
+          {
+            "id": "b-double",
+            "text": "$2\\sin x\\cos x = \\sin 2x$ ja $\\sin\\frac{\\pi}{10} = \\frac{1}{4}(\\sqrt{5}-1)$",
+            "points": 1,
+            "impliedBy": "b-result"
+          },
+          {
+            "id": "b-result",
+            "text": "$x = \\frac{\\pi}{20}+n\\pi$ tai $x = \\frac{9\\pi}{20}+n\\pi$",
+            "points": 1
+          }
+        ]
+      },
+      {
+        "label": "c)",
+        "solution": "$\\cos^2 x-\\sin^2 x = \\cos 2x$ ja $\\cos\\frac{\\pi}{12} = \\frac{1}{4}(\\sqrt{6}+\\sqrt{2})$:\n$$2x = \\pm\\frac{\\pi}{12}+n\\cdot 2\\pi \\iff x = \\pm\\frac{\\pi}{24}+n\\pi$$",
+        "criteria": [
+          {
+            "id": "c-double",
+            "text": "$\\cos^2 x-\\sin^2 x = \\cos 2x$ ja $\\cos\\frac{\\pi}{12} = \\frac{1}{4}(\\sqrt{6}+\\sqrt{2})$",
+            "points": 1,
+            "impliedBy": "c-result"
+          },
+          {
+            "id": "c-result",
+            "text": "$x = \\pm\\frac{\\pi}{24}+n\\pi$",
+            "points": 1
+          }
+        ]
+      },
+      {
+        "label": "d)",
+        "solution": "$\\sin^2 x = 1-\\cos^2 x$:\n$$1-\\cos^2 x-\\cos x-2 = 0 \\iff \\cos^2 x+\\cos x+1 = 0$$\nMerkitään $t = \\cos x$: $t^2+t+1 = 0$, jonka diskriminantti on $1-4 = -3 < 0$. Ratkaisuja ei ole.",
+        "criteria": [
+          {
+            "id": "d-quadratic",
+            "text": "Muunnos yhtälöksi $\\cos^2 x+\\cos x+1 = 0$",
+            "points": 1
+          },
+          {
+            "id": "d-result",
+            "text": "Diskriminantti $-3 < 0$ (tai muu perustelu), joten ei ratkaisuja",
+            "points": 1
+          }
+        ],
+        "notes": [
+          "Pelkkä vastaus ”ei ratkaisuja” d-kohdassa: 0 p."
+        ]
+      }
+    ]
+  },
+  "OSAII_T6": {
+    "status": "draft",
+    "maxPoints": 6,
+    "parts": [
+      {
+        "solution": "Funktio $f$ kulkee origon kautta kasvavana, sen suurin arvo on $3$ ja pienin $-3$, ja jakso on $\\pi$ (huiput kohdissa $\\frac{\\pi}{4}+n\\pi$). Siis $f(x) = 3\\sin bx$, missä $\\frac{2\\pi}{b} = \\pi$, eli $b = 2$:\n$$f(x) = 3\\sin 2x$$\nFunktio $g$ saa pienimmän arvonsa $-2$ kohdassa $x = 0$ ja suurimman arvonsa $2$ kohdassa $x = \\pi$; jakso on $2\\pi$:\n$$g(x) = -2\\cos x$$",
+        "criteria": [
+          {
+            "id": "f-amp",
+            "text": "$f$: amplitudi $3$, sinifunktio (kulkee origon kautta)",
+            "points": 1,
+            "impliedBy": "f-result"
+          },
+          {
+            "id": "f-period",
+            "text": "$f$: jakso $\\pi$, joten $b = 2$",
+            "points": 1,
+            "impliedBy": "f-result"
+          },
+          {
+            "id": "f-result",
+            "text": "$f(x) = 3\\sin 2x$",
+            "points": 1
+          },
+          {
+            "id": "g-amp",
+            "text": "$g$: minimi $-2$ kohdassa $0$, joten kerroin $-2$ kosinille",
+            "points": 1,
+            "impliedBy": "g-result"
+          },
+          {
+            "id": "g-period",
+            "text": "$g$: jakso $2\\pi$",
+            "points": 1,
+            "impliedBy": "g-result"
+          },
+          {
+            "id": "g-result",
+            "text": "$g(x) = -2\\cos x$ (tai yhtäpitävä, esim. $2\\sin\\left(x-\\frac{\\pi}{2}\\right)$)",
+            "points": 1
+          }
+        ]
+      }
+    ]
+  },
+  "OSAII_T7": {
+    "status": "draft",
+    "maxPoints": 5,
+    "parts": [
+      {
+        "solution": "$-1 \\le \\cos 5x \\le 1$, joten\n$$-2 \\le -2\\cos 5x \\le 2$$\n$$0 \\le 2-2\\cos 5x \\le 4$$\nArvojoukko on $[0, 4]$ (ääriarvot saavutetaan, kun $\\cos 5x = \\pm 1$).\nJakso: $\\cos 5\\left(x+\\frac{2\\pi}{5}\\right) = \\cos(5x+2\\pi) = \\cos 5x$, joten perusjakso on\n$$\\frac{2\\pi}{5}$$",
+        "criteria": [
+          {
+            "id": "range-steps",
+            "text": "Kaksoisepäyhtälö kosinin arvoista: $-2 \\le -2\\cos 5x \\le 2$",
+            "points": 1,
+            "impliedBy": "range"
+          },
+          {
+            "id": "range",
+            "text": "Arvojoukko $[0, 4]$",
+            "points": 2
+          },
+          {
+            "id": "period-steps",
+            "text": "Jakson perustelu: $\\cos 5x$ toistuu, kun $5x$ kasvaa $2\\pi$:llä",
+            "points": 1,
+            "impliedBy": "period"
+          },
+          {
+            "id": "period",
+            "text": "Perusjakso $\\frac{2\\pi}{5}$",
+            "points": 1
+          }
+        ]
+      }
+    ],
+    "reviewNote": "SOURCE ERROR: the source starts from −2 ≤ 2 − 2cos 5x ≤ 2 (the range of 2cos x, not of f) and gets the range [−4, 0]. The range is [0, 4]. The period 2π/5 is right."
+  },
+  "OSAII_T8": {
+    "status": "draft",
+    "maxPoints": 6,
+    "parts": [
+      {
+        "solution": "Määrittelyehdot $x+1 > 0$, $x+3 > 0$ ja $x > 0$, eli $x > 0$.\n$$\\log_9(x+1)^2 = \\log_9\\big(x(x+3)\\big)$$\nLogaritmifunktio on aidosti kasvava, joten logaritmoitavat ovat yhtä suuret:\n$$x^2+2x+1 = x^2+3x \\iff x = 1$$\nRatkaisu toteuttaa ehdon $x > 0$.",
+        "criteria": [
+          {
+            "id": "domain",
+            "text": "Määrittelyehto $x > 0$ ja ratkaisun tarkistus",
+            "points": 1
+          },
+          {
+            "id": "rules",
+            "text": "Laskusäännöt: $2\\log_9(x+1) = \\log_9(x+1)^2$ ja $\\log_9(x+3)+\\log_9 x = \\log_9 x(x+3)$",
+            "points": 2
+          },
+          {
+            "id": "equation",
+            "text": "$(x+1)^2 = x^2+3x$",
+            "points": 1
+          },
+          {
+            "id": "result",
+            "text": "$x = 1$",
+            "points": 2
+          }
+        ],
+        "notes": [
+          "Pelkkä vastaus $x = 1$ (esim. kokeilemalla) ilman välivaiheita: 2 p, koska tehtävä pyytää välivaiheet."
+        ]
+      }
+    ]
+  },
+  "OSAII_T9": {
+    "status": "draft",
+    "maxPoints": 6,
+    "parts": [
+      {
+        "label": "a)",
+        "solution": "$$8^{x+2} = \\frac{2664}{6} = 444$$\n$$x+2 = \\log_8 444$$\n$$x = \\log_8 444-2 \\approx 0{,}93$$",
+        "criteria": [
+          {
+            "id": "a-isolate",
+            "text": "$8^{x+2} = 444$",
+            "points": 1,
+            "impliedBy": "a-exact"
+          },
+          {
+            "id": "a-exact",
+            "text": "Tarkka arvo $x = \\log_8 444-2$ (tai $\\frac{\\ln 444}{\\ln 8}-2$)",
+            "points": 1
+          },
+          {
+            "id": "a-decimal",
+            "text": "$x \\approx 0{,}93$",
+            "points": 1
+          }
+        ]
+      },
+      {
+        "label": "b)",
+        "solution": "$$0{,}4^x > \\frac{8}{20} = 0{,}4 = 0{,}4^1$$\nFunktio $0{,}4^x$ on aidosti vähenevä (kantaluku $0 < 0{,}4 < 1$), joten epäyhtälön suunta vaihtuu:\n$$x < 1$$",
+        "criteria": [
+          {
+            "id": "b-isolate",
+            "text": "$0{,}4^x > 0{,}4$",
+            "points": 1,
+            "impliedBy": "b-result"
+          },
+          {
+            "id": "b-direction",
+            "text": "Suunnan vaihto perusteltu: $0{,}4^x$ vähenevä (tai $\\ln 0{,}4 < 0$)",
+            "points": 1
+          },
+          {
+            "id": "b-result",
+            "text": "$x < 1$",
+            "points": 1
+          }
+        ]
+      }
+    ]
+  },
+  "OSAII_T10": {
+    "status": "draft",
+    "maxPoints": 6,
+    "parts": [
+      {
+        "solution": "$$3^{2024} = 10^{2024\\lg 3} = 10^{965{,}6934\\ldots}$$\n$$= 10^{0{,}6934\\ldots}\\cdot 10^{965} \\approx 4{,}9365\\cdot 10^{965}$$\nLuku on muotoa $4{,}936\\ldots\\cdot 10^{965}$, joten siinä on $965+1 = 966$ numeroa ja sen neljä ensimmäistä numeroa ovat $4936$.",
+        "criteria": [
+          {
+            "id": "log",
+            "text": "$\\lg 3^{2024} = 2024\\lg 3 \\approx 965{,}693$",
+            "points": 2,
+            "impliedBy": "digits"
+          },
+          {
+            "id": "digits",
+            "text": "Numeroita $966$",
+            "points": 2
+          },
+          {
+            "id": "first",
+            "text": "Neljä ensimmäistä numeroa $4936$ (luvusta $10^{0{,}6934\\ldots} \\approx 4{,}9365$)",
+            "points": 2
+          }
+        ],
+        "notes": [
+          "Laskimen tarkkuus ei riitä suoraan $3^{2024}$:n laskemiseen; tulos ilman logaritmia tai kymmenpotenssimuotoa: 0 p, ellei käytetty ohjelma näytä koko lukua."
+        ]
+      }
+    ]
+  },
+  "OSAIII_T1": {
+    "status": "draft",
+    "maxPoints": 12,
+    "parts": [
+      {
+        "solution": "Jos $t = 0$, yhtälö on $-2 = 2$, eikä ratkaisuja ole. Olkoon $t \\ne 0$:\n$$3t\\sin^2 x = 4+7t \\iff \\sin^2 x = \\frac{4+7t}{3t}$$\nKoska $\\sin^2 x$ saa kaikki arvot väliltä $[0, 1]$ ja vain ne, ratkaisuja on täsmälleen silloin, kun\n$$0 \\le \\frac{4+7t}{3t} \\le 1$$\nVasen epäyhtälö: osoittajan nollakohta $t = -\\frac{4}{7}$, nimittäjän $t = 0$; merkkikaaviosta $t \\le -\\frac{4}{7}$ tai $t > 0$.\nOikea epäyhtälö:\n$$\\frac{4+7t}{3t}-1 \\le 0 \\iff \\frac{4+4t}{3t} \\le 0$$\nmerkkikaaviosta $-1 \\le t < 0$.\nMolemmat ehdot ovat voimassa, kun\n$$-1 \\le t \\le -\\frac{4}{7}$$",
+        "criteria": [
+          {
+            "id": "zero",
+            "text": "Tapaus $t = 0$ käsitelty (ei ratkaisuja)",
+            "points": 1
+          },
+          {
+            "id": "isolate",
+            "text": "$\\sin^2 x = \\frac{4+7t}{3t}$",
+            "points": 1
+          },
+          {
+            "id": "condition",
+            "text": "Ehto: ratkaisuja täsmälleen kun $0 \\le \\frac{4+7t}{3t} \\le 1$",
+            "points": 2
+          },
+          {
+            "id": "left",
+            "text": "$\\frac{4+7t}{3t} \\ge 0 \\iff t \\le -\\frac{4}{7}$ tai $t > 0$ (merkkikaavio tai tapaukset)",
+            "points": 3
+          },
+          {
+            "id": "right",
+            "text": "$\\frac{4+7t}{3t} \\le 1 \\iff -1 \\le t < 0$",
+            "points": 3
+          },
+          {
+            "id": "result",
+            "text": "$-1 \\le t \\le -\\frac{4}{7}$",
+            "points": 2
+          }
+        ],
+        "notes": [
+          "Laskuvirhe, jonka jälkeen jatko on johdonmukainen: −1 p.",
+          "Jos epäyhtälö on kerrottu luvulla $3t$ huomioimatta sen merkkiä, kohdista ”vasen” ja ”oikea” yhteensä enintään 2 p.",
+          "Ehto $-1 \\le \\sin^2 x \\le 1$ (alaraja väärin): kohdasta ”ehto” 1 p."
+        ]
+      }
+    ],
+    "reviewNote": "The source answer is right, but it skips the case t = 0 and the solving of the double inequality (”josta ratkaistuna”). The rubric scores both."
+  },
+  "OSAIII_T2": {
+    "status": "draft",
+    "maxPoints": 8,
+    "parts": [
+      {
+        "label": "a)",
+        "solution": "Huipun ja pohjan väli on $4$ m, joten $a = 2$ m.\n$$h(11) = 2\\sin(2\\pi\\cdot 0{,}4\\cdot 11) = 2\\sin(8{,}8\\pi)$$\n$$= 2\\sin(0{,}8\\pi) \\approx 1{,}18 \\ \\text{m}$$",
+        "criteria": [
+          {
+            "id": "a-amp",
+            "text": "$a = 2$ m",
+            "points": 1,
+            "impliedBy": "a-result"
+          },
+          {
+            "id": "a-sub",
+            "text": "Sijoitus $h(11) = 2\\sin(2\\pi\\cdot 0{,}4\\cdot 11)$",
+            "points": 1,
+            "impliedBy": "a-result"
+          },
+          {
+            "id": "a-result",
+            "text": "$h \\approx 1{,}18$ m",
+            "points": 2
+          }
+        ],
+        "notes": [
+          "Laskin astetilassa ($h \\approx 1{,}0$ m tai muu): kohdasta ”korkeus” 0 p."
+        ]
+      },
+      {
+        "label": "b)",
+        "solution": "$$2\\sin(2\\pi\\cdot 0{,}5\\,t) = 1 \\iff \\sin(\\pi t) = \\frac{1}{2}$$\nVälillä $0 \\le t \\le 0{,}5$ on $0 \\le \\pi t \\le \\frac{\\pi}{2}$, joten $\\pi t = \\frac{\\pi}{6}$:\n$$t = \\frac{1}{6} \\approx 0{,}17 \\ \\text{s}$$",
+        "criteria": [
+          {
+            "id": "b-eq",
+            "text": "$\\sin(\\pi t) = \\frac{1}{2}$",
+            "points": 1,
+            "impliedBy": "b-result"
+          },
+          {
+            "id": "b-branch",
+            "text": "Välin ratkaisu valittu ($\\pi t = \\frac{\\pi}{6}$; $\\frac{5\\pi}{6}$ ei kuulu välille)",
+            "points": 1,
+            "impliedBy": "b-result"
+          },
+          {
+            "id": "b-result",
+            "text": "$t = \\frac{1}{6} \\approx 0{,}17$ s",
+            "points": 2
+          }
+        ]
+      }
+    ],
+    "reviewNote": "The source's answers are right; it writes h(2) for h(11) in a). Judgment call: 8 p (two short parts), not 12."
+  },
+  "OSAIII_T3": {
+    "status": "draft",
+    "maxPoints": 12,
+    "parts": [
+      {
+        "label": "a)",
+        "solution": "Piirretään taulukon pisteet koordinaatistoon (vaaka-akselilla ikä vuosina, pystyakselilla hinta euroina) ja niiden kautta sovitettu käyrä, esimerkiksi laskimen eksponentiaalinen regressio $y \\approx 98\\,000\\cdot 0{,}801^x$ tai pisteitä yhdistävä murtoviiva. Kuvaajasta voi lukea arvon millä tahansa hetkellä välillä $0$–$15$ vuotta.",
+        "criteria": [
+          {
+            "id": "a-points",
+            "text": "Kaikki kahdeksan havaintopistettä kuvassa",
+            "points": 1
+          },
+          {
+            "id": "a-axes",
+            "text": "Akselit nimetty yksiköineen (vuotta, euroa)",
+            "points": 1
+          },
+          {
+            "id": "a-curve",
+            "text": "Jatkuva käyrä tai murtoviiva koko välillä $0$–$15$",
+            "points": 1
+          }
+        ]
+      },
+      {
+        "label": "b)",
+        "solution": "Hinta vähenee koko ajan, ja vähenemisen määrä euroina pienenee. Vuotuiset muutoskertoimet ovat likimain samaa suuruusluokkaa, esimerkiksi\n$$\\sqrt{\\frac{59\\,700}{77\\,000}} \\approx 0{,}88$$\n$$\\sqrt[5]{\\frac{10\\,800}{38\\,700}} \\approx 0{,}77$$\nja eksponentiaalinen malli $y \\approx 98\\,000\\cdot 0{,}801^x$ sopii pisteisiin hyvin. Muutos on (likimain) eksponentiaalista vähenemistä, eli hinta pienenee vuosittain likimain samalla prosenttimäärällä.",
+        "criteria": [
+          {
+            "id": "b-type",
+            "text": "Muutos on vähenevää ja (likimain) eksponentiaalista",
+            "points": 1
+          },
+          {
+            "id": "b-why",
+            "text": "Matemaattinen perustelu: likimain vakio muutoskerroin (laskettu) tai eksponentiaalisen regression hyvä sopivuus",
+            "points": 2
+          }
+        ],
+        "notes": [
+          "Pelkkä toteamus ”eksponentiaalista” ilman laskettua perustelua: b-kohdasta 1 p."
+        ]
+      },
+      {
+        "label": "c)",
+        "solution": "Olkoon $k$ vuotuinen muutoskerroin:\n$$38\\,700\\cdot k^5 = 10\\,800$$\n$$k = \\sqrt[5]{\\frac{10\\,800}{38\\,700}} \\approx 0{,}7747$$\nHinta aleni keskimäärin $1-0{,}7747 \\approx 22{,}5$ % vuodessa.",
+        "criteria": [
+          {
+            "id": "c-model",
+            "text": "Yhtälö $38\\,700\\cdot k^5 = 10\\,800$ (keskimääräinen kerroin, ei aritmeettinen keskiarvo)",
+            "points": 1
+          },
+          {
+            "id": "c-k",
+            "text": "$k \\approx 0{,}775$",
+            "points": 1
+          },
+          {
+            "id": "c-result",
+            "text": "Alenema $\\approx 22{,}5$ % vuodessa",
+            "points": 1
+          }
+        ],
+        "notes": [
+          "Lineaarinen keskiarvo ($\\frac{38\\,700-10\\,800}{5}$ euroa vuodessa tai $\\approx 14{,}4$ %): c-kohdasta 0 p."
+        ]
+      },
+      {
+        "label": "d)",
+        "solution": "15 vuoden iässä hinta on $2700$ euroa. Ratkaistaan $t$:\n$$2700\\cdot k^t < 1000$$\n$$t > \\frac{\\ln\\frac{1000}{2700}}{\\ln k} \\approx 3{,}89$$\nHinta putoaa alle $1000$ euron noin $15+3{,}9 \\approx 19$ vuoden iässä.",
+        "criteria": [
+          {
+            "id": "d-model",
+            "text": "Epäyhtälö $2700\\cdot k^t < 1000$ (tai yhtälö)",
+            "points": 1
+          },
+          {
+            "id": "d-t",
+            "text": "$t \\approx 3{,}9$ vuotta",
+            "points": 1
+          },
+          {
+            "id": "d-result",
+            "text": "Vastaus: noin $19$ vuoden iässä (ostohetkestä)",
+            "points": 1
+          }
+        ],
+        "notes": [
+          "Laskuvirhe, jonka jälkeen jatko on johdonmukainen: −1 p.",
+          "Myös lähtö 10 vuoden hinnasta ($10\\,800\\cdot k^t < 1000$, noin $19$–$20$ vuotta) kelpaa, jos valinta on perusteltu."
+        ]
+      }
+    ],
+    "reviewNote": "Judgment call: b) the data are not cleanly exponential (annual factors range from about 0,71 to 0,88), so the rubric accepts ”likimain eksponentiaalinen” with a computed reason. The source's justification (”koska voidaan sovittaa eksponenttifunktio”) is circular; it would earn 1 p."
+  },
+  "OSAIII_T4": {
+    "status": "draft",
+    "maxPoints": 8,
+    "parts": [
+      {
+        "label": "a)",
+        "solution": "Puoliintumisajasta $k^{32} = \\frac{1}{2}$, eli aineen määrä on $a\\cdot\\left(\\frac{1}{2}\\right)^{\\frac{t}{32}}$.\n$$\\left(\\frac{1}{2}\\right)^{\\frac{t}{32}} = \\frac{1}{5}$$\n$$t = \\frac{32\\ln 5}{\\ln 2} \\approx 74{,}3$$\nViidesosa on jäljellä noin $74$ vuoden kuluttua.",
+        "criteria": [
+          {
+            "id": "a-model",
+            "text": "Malli $a\\cdot\\left(\\frac{1}{2}\\right)^{\\frac{t}{32}}$ (tai $k = \\sqrt[32]{0{,}5}$)",
+            "points": 1,
+            "impliedBy": "a-result"
+          },
+          {
+            "id": "a-eq",
+            "text": "Yhtälö $\\left(\\frac{1}{2}\\right)^{\\frac{t}{32}} = \\frac{1}{5}$",
+            "points": 1,
+            "impliedBy": "a-result"
+          },
+          {
+            "id": "a-result",
+            "text": "$t \\approx 74$ vuotta ($74{,}3$)",
+            "points": 2
+          }
+        ]
+      },
+      {
+        "label": "b)",
+        "solution": "$$\\left(\\frac{1}{2}\\right)^{\\frac{t}{32}} < 0{,}01$$\n$$t > \\frac{32\\ln 100}{\\ln 2} \\approx 212{,}6$$\nAlueella voi liikkua turvallisesti noin $213$ vuoden kuluttua.",
+        "criteria": [
+          {
+            "id": "b-ineq",
+            "text": "Epäyhtälö $\\left(\\frac{1}{2}\\right)^{\\frac{t}{32}} < 0{,}01$",
+            "points": 1,
+            "impliedBy": "b-result"
+          },
+          {
+            "id": "b-solve",
+            "text": "$t > 212{,}6$",
+            "points": 1,
+            "impliedBy": "b-result"
+          },
+          {
+            "id": "b-result",
+            "text": "Noin $213$ vuoden kuluttua",
+            "points": 2
+          }
+        ]
+      }
+    ],
+    "reviewNote": "SOURCE ERROR: a) computes t = 74,3 correctly but ends with ”Alueella voi liikkua turvallisesti 75 vuoden kuluttua”, a sentence from b) with the wrong number. The answer to a) is ≈ 74 years (one fifth left). Judgment call: 8 p."
+  },
+  "OSAIII_T5": {
+    "status": "draft",
+    "maxPoints": 12,
+    "parts": [
+      {
+        "label": "a)",
+        "solution": "Amplitudi ja keskitaso:\n$$A = \\frac{10{,}4-2{,}5}{2} = 3{,}95, \\quad d = \\frac{10{,}4+2{,}5}{2} = 6{,}45$$\nJakso $11$ h: $\\frac{2\\pi}{b} = 11$, joten $b = \\frac{2\\pi}{11}$.\nMaksimi kello 8.05 eli $t = \\frac{97}{12}$. Sini saa suurimman arvonsa, kun $b(t-c) = \\frac{\\pi}{2}$, eli neljännesjakson päästä kohdasta $c$:\n$$c = \\frac{97}{12}-\\frac{11}{4} = \\frac{16}{3} \\approx 5{,}33$$\n$$H(t) = 3{,}95\\sin\\left(\\frac{2\\pi}{11}\\left(t-\\frac{16}{3}\\right)\\right)+6{,}45$$",
+        "criteria": [
+          {
+            "id": "a-amp",
+            "text": "$A = 3{,}95$",
+            "points": 1
+          },
+          {
+            "id": "a-mid",
+            "text": "$d = 6{,}45$",
+            "points": 1
+          },
+          {
+            "id": "a-b",
+            "text": "$b = \\frac{2\\pi}{11}$ (jakso $11$ h)",
+            "points": 1
+          },
+          {
+            "id": "a-c-idea",
+            "text": "Vaihesiirto maksimin ajankohdasta ($t = \\frac{97}{12}$): $b(t-c) = \\frac{\\pi}{2}$",
+            "points": 2
+          },
+          {
+            "id": "a-c",
+            "text": "$c = \\frac{16}{3} \\approx 5{,}33$ (tai $c+11n$)",
+            "points": 1
+          }
+        ]
+      },
+      {
+        "label": "b)",
+        "solution": "Seuraavana päivänä kello 11.50 on $t = 24+11+\\frac{50}{60} \\approx 35{,}83$ h:\n$$H(35{,}83) \\approx 2{,}54 \\ \\text{m}$$",
+        "criteria": [
+          {
+            "id": "b-time",
+            "text": "$t = 35\\frac{5}{6} \\approx 35{,}83$ h",
+            "points": 1
+          },
+          {
+            "id": "b-result",
+            "text": "Syvyys $\\approx 2{,}5$ m",
+            "points": 1
+          }
+        ]
+      },
+      {
+        "label": "c)",
+        "solution": "Piirretään $y = H(t)$, $t \\ge 0$, ja suora $y = 7$. Leikkauspisteet ovat $t \\approx 5{,}58$, $t \\approx 10{,}59$ ja $t \\approx 16{,}58$. Kolmas kerta on $t \\approx 16{,}58$ h $= 16$ h $35$ min, eli kello 16:35 (pyöristetyllä $c = 5{,}33$ saadaan 16:34).",
+        "criteria": [
+          {
+            "id": "c-graph",
+            "text": "Kuvaaja ja suora $y = 7$ samassa kuvassa",
+            "points": 1
+          },
+          {
+            "id": "c-count",
+            "text": "Leikkauskohdat laskettu keskiyöstä alkaen ($t \\approx 5{,}58$; $10{,}59$; $16{,}58$)",
+            "points": 1
+          },
+          {
+            "id": "c-t",
+            "text": "Kolmas leikkaus $t \\approx 16{,}58$ h",
+            "points": 1
+          },
+          {
+            "id": "c-time",
+            "text": "Kellonaika 16:34 tai 16:35",
+            "points": 1
+          }
+        ],
+        "notes": [
+          "Laskuvirhe, jonka jälkeen jatko on johdonmukainen: −1 p."
+        ]
+      }
+    ],
+    "reviewNote": "UNRESOLVED: the prompt is inconsistent. With an 11-hour period, the minimum comes 5,5 h after the maximum (13.35), but the prompt puts it at 15.50 (7 h 45 min later). The rubric, like the source, uses the maximum at 8.05 and the period; the 15.50 time is not used. Decide whether to change the prompt (e.g. minimum at 13.35, or a different period). Also: with the exact c = 16/3 the third crossing is 16.578 h = 16:35; the source's 16:34 comes from rounding c to 5,33. Both are accepted."
+  },
+  "OSAIII_T6": {
+    "status": "draft",
+    "maxPoints": 6,
+    "parts": [
+      {
+        "solution": "Väkiluvut (miljoonina) $t$ vuoden kuluttua:\n$$f(t) = 21{,}5\\cdot 0{,}985^t, \\quad g(t) = 14{,}7\\cdot 1{,}027^t$$\nKasvava maa ohittaa toisen, kun $g(t) > f(t)$:\n$$\\left(\\frac{1{,}027}{0{,}985}\\right)^t > \\frac{21{,}5}{14{,}7}$$\n$$t > \\frac{\\ln\\frac{21{,}5}{14{,}7}}{\\ln\\frac{1{,}027}{0{,}985}} \\approx 9{,}1$$\nKasvava maa ohittaa toisen noin $9$ vuoden kuluttua, eli kymmenennen vuoden aikana.",
+        "criteria": [
+          {
+            "id": "f",
+            "text": "$f(t) = 21{,}5\\cdot 0{,}985^t$ (miljoonaa)",
+            "points": 1,
+            "impliedBy": "t"
+          },
+          {
+            "id": "g",
+            "text": "$g(t) = 14{,}7\\cdot 1{,}027^t$ (miljoonaa)",
+            "points": 1,
+            "impliedBy": "t"
+          },
+          {
+            "id": "eq",
+            "text": "Epäyhtälö $g(t) > f(t)$ (tai yhtälö $g(t) = f(t)$)",
+            "points": 1,
+            "impliedBy": "t"
+          },
+          {
+            "id": "t",
+            "text": "$t \\approx 9{,}1$ vuotta",
+            "points": 2
+          },
+          {
+            "id": "answer",
+            "text": "Vastaus vuosina: noin $9$ vuoden kuluttua (10. vuoden aikana)",
+            "points": 1
+          }
+        ]
+      }
+    ],
+    "reviewNote": "SOURCE ERROR: the crossing is at t ≈ 9,1, not 9,49. The source's final answer (”10 vuoden päästä”) is still consistent with ”during the 10th year”. Judgment call: both ”9 vuoden kuluttua” and ”10. vuonna” are accepted."
+  },
+  "OSAIII_T7": {
+    "status": "draft",
+    "maxPoints": 12,
+    "parts": [
+      {
+        "label": "a)",
+        "solution": "$e^{2x} = (e^x)^2$. Merkitään $u = e^x > 0$:\n$$4u^2-3u-2 = 0$$\n$$u = \\frac{3\\pm\\sqrt{9+32}}{8} = \\frac{3\\pm\\sqrt{41}}{8}$$\nKoska $\\sqrt{41} > 3$, juuri $\\frac{3-\\sqrt{41}}{8}$ on negatiivinen eikä kelpaa ($e^x > 0$). Siis\n$$e^x = \\frac{3+\\sqrt{41}}{8} \\iff x = \\ln\\frac{3+\\sqrt{41}}{8} \\ (\\approx 0{,}162)$$",
+        "criteria": [
+          {
+            "id": "a-sub",
+            "text": "Sijoitus $u = e^x$ ja toisen asteen yhtälö $4u^2-3u-2 = 0$",
+            "points": 2
+          },
+          {
+            "id": "a-roots",
+            "text": "$u = \\frac{3\\pm\\sqrt{41}}{8}$",
+            "points": 1
+          },
+          {
+            "id": "a-reject",
+            "text": "Negatiivinen juuri hylätty perustellen ($e^x > 0$)",
+            "points": 2
+          },
+          {
+            "id": "a-result",
+            "text": "$x = \\ln\\frac{3+\\sqrt{41}}{8}$",
+            "points": 1
+          }
+        ]
+      },
+      {
+        "label": "b)",
+        "solution": "Laskimella esimerkiksi solve$(4e^{2x}-3e^x-2 = 0, x)$, tulos $x = \\ln\\frac{\\sqrt{41}+3}{8} \\approx 0{,}162$.",
+        "criteria": [
+          {
+            "id": "b-command",
+            "text": "Laskimen ratkaisukomento näkyvissä",
+            "points": 1
+          },
+          {
+            "id": "b-result",
+            "text": "Tulos sama kuin a-kohdassa ($\\approx 0{,}162$)",
+            "points": 1
+          }
+        ]
+      },
+      {
+        "label": "c)",
+        "solution": "$81 = 3^4$, joten\n$$81^{24} = (3^4)^{24} = 3^{96}$$\nFunktio $3^x$ on aidosti kasvava ja $100 > 96$, joten $3^{100} > 81^{24}$.",
+        "criteria": [
+          {
+            "id": "c-base",
+            "text": "$81 = 3^4$",
+            "points": 1
+          },
+          {
+            "id": "c-power",
+            "text": "$81^{24} = 3^{96}$",
+            "points": 2
+          },
+          {
+            "id": "c-result",
+            "text": "$3^{100}$ on suurempi (eksponenttien vertailu, kantaluku $3 > 1$)",
+            "points": 1
+          }
+        ],
+        "notes": [
+          "Laskuvirhe, jonka jälkeen jatko on johdonmukainen: −1 p.",
+          "Pelkkä vastaus ”$3^{100}$” ilman muunnosta samaan kantalukuun: c-kohdasta 0 p."
+        ]
+      }
+    ]
+  },
+  "OSAIII_T8": {
+    "status": "draft",
+    "maxPoints": 8,
+    "parts": [
+      {
+        "solution": "Merkitään $L = \\log_3 x$. Potenssin logaritmin säännöllä\n$$\\log_3 x^3 = 3L, \\quad \\log_3\\sqrt[3]{x} = \\frac{1}{3}L$$\n$$\\log_3\\sqrt{x} = \\frac{1}{2}L, \\quad \\log_3 x^2 = 2L$$\nOsoittaja on $L+3L-\\frac{1}{3}L = \\frac{11}{3}L$ ja nimittäjä $\\frac{1}{2}L-2L = -\\frac{3}{2}L$.\nLauseke on määritelty, kun nimittäjä ei ole nolla, eli $L \\ne 0$, $x \\ne 1$. Tällöin\n$$\\frac{\\frac{11}{3}L}{-\\frac{3}{2}L} = \\frac{11}{3}\\cdot\\left(-\\frac{2}{3}\\right)$$\n$$= -\\frac{22}{9}$$\nLausekkeen arvo on $-\\frac{22}{9}$ kaikilla $x > 0$, $x \\ne 1$, joten se ei riipu $x$:stä. (Kun $x = 1$, lauseke on $\\frac{0}{0}$ eikä määritelty.)",
+        "criteria": [
+          {
+            "id": "rules",
+            "text": "Potenssin logaritmi: $\\log_3 x^p = p\\log_3 x$ kaikille termeille ($p = 3, \\frac{1}{3}, \\frac{1}{2}, 2$)",
+            "points": 2
+          },
+          {
+            "id": "numerator",
+            "text": "Osoittaja $\\frac{11}{3}\\log_3 x$",
+            "points": 2
+          },
+          {
+            "id": "denominator",
+            "text": "Nimittäjä $-\\frac{3}{2}\\log_3 x$",
+            "points": 1
+          },
+          {
+            "id": "cancel",
+            "text": "$\\log_3 x$ supistettu, huomioiden $x \\ne 1$ ($\\log_3 x \\ne 0$)",
+            "points": 2
+          },
+          {
+            "id": "result",
+            "text": "Arvo $-\\frac{22}{9}$ ja johtopäätös",
+            "points": 1
+          }
+        ],
+        "notes": [
+          "Jos tapausta $x = 1$ ei ole huomioitu, kohdasta ”supistus” 1 p.",
+          "Arvon tarkistaminen muutamalla $x$:n arvolla ei ole todistus: enintään 1 p."
+        ]
+      }
+    ],
+    "reviewNote": "SOURCE ERROR: at x = 1 the denominator is 0 (and so is the numerator), so the expression is undefined there; the source claims the value −22/9 for all x > 0. Its step log₃x^(11/3) / log₃x^(−3/2) = (11/3)/(−3/2) also hides the division by log₃x."
+  },
+  "OSAIII_T9": {
+    "status": "draft",
+    "maxPoints": 6,
+    "parts": [
+      {
+        "solution": "Logaritmin laskusäännöillä\n$$\\ln(4x+2)-\\ln(4x) = \\ln\\frac{4x+2}{4x} = \\ln\\left(1+\\frac{1}{2x}\\right)$$\n$$\\ln(2x+2)-\\ln x = \\ln\\frac{2x+2}{x} = \\ln\\left(2+\\frac{2}{x}\\right)$$\nKun $x > 1$, on $1+\\frac{1}{2x} < 1+\\frac{1}{2} < 2 < 2+\\frac{2}{x}$. Logaritmifunktio on aidosti kasvava, joten\n$$\\ln(2x+2)-\\ln x > \\ln(4x+2)-\\ln(4x)$$\nJälkimmäinen lauseke $\\ln(2x+2)-\\ln x$ on suurempi.",
+        "criteria": [
+          {
+            "id": "first",
+            "text": "$\\ln(4x+2)-\\ln(4x) = \\ln\\left(1+\\frac{1}{2x}\\right)$ (tai $\\ln\\frac{4x+2}{4x}$)",
+            "points": 1
+          },
+          {
+            "id": "second",
+            "text": "$\\ln(2x+2)-\\ln x = \\ln\\left(2+\\frac{2}{x}\\right)$ (tai $\\ln\\frac{2x+2}{x}$)",
+            "points": 1
+          },
+          {
+            "id": "compare",
+            "text": "Logaritmoitavien vertailu: $1+\\frac{1}{2x} < 2+\\frac{2}{x}$",
+            "points": 2
+          },
+          {
+            "id": "monotone",
+            "text": "Perustelu: $\\ln$ on aidosti kasvava",
+            "points": 1
+          },
+          {
+            "id": "result",
+            "text": "$\\ln(2x+2)-\\ln x$ on suurempi",
+            "points": 1
+          }
+        ],
+        "notes": [
+          "Pelkkä vastaus tai numeerinen kokeilu yhdellä $x$:n arvolla: 1 p."
+        ]
+      }
+    ],
+    "reviewNote": "SOURCE ERROR: the prompt compares with ln(2x + 2) − ln(x), but the source solves it with ln(2x + 2) − ln(2x). The conclusion is the same, but the rubric uses the prompt's ln x."
+  },
+  "OSAIII_T10": {
+    "status": "draft",
+    "maxPoints": 6,
+    "parts": [
+      {
+        "solution": "Kehäpiste on muotoa $(x, 4x)$ ja yksikköympyrällä:\n$$x^2+(4x)^2 = 1 \\iff x = \\pm\\frac{1}{\\sqrt{17}}$$\nKun $0 \\le \\theta \\le \\pi$, kehäpisteen $y$-koordinaatti $\\sin\\theta \\ge 0$, joten $4x \\ge 0$ ja $x = \\frac{1}{\\sqrt{17}}$. Kehäpiste on $\\left(\\frac{1}{\\sqrt{17}}, \\frac{4}{\\sqrt{17}}\\right)$ ja\n$$\\tan\\theta = 4, \\quad \\theta \\approx 76{,}0^\\circ$$\n(Piste $\\left(-\\frac{1}{\\sqrt{17}}, -\\frac{4}{\\sqrt{17}}\\right)$ vastaa kulmaa $256{,}0^\\circ$, joka ei kuulu välille.)",
+        "criteria": [
+          {
+            "id": "circle",
+            "text": "$x^2+(4x)^2 = 1$, $x = \\pm\\frac{1}{\\sqrt{17}}$",
+            "points": 2,
+            "impliedBy": "result"
+          },
+          {
+            "id": "select",
+            "text": "Välillä $[0, \\pi]$ on $\\sin\\theta \\ge 0$, joten vain $x = \\frac{1}{\\sqrt{17}}$ kelpaa",
+            "points": 2
+          },
+          {
+            "id": "result",
+            "text": "$\\theta \\approx 76{,}0^\\circ$",
+            "points": 2
+          }
+        ],
+        "notes": [
+          "Jos vastauksena myös $104{,}0^\\circ$, kohdasta ”valinta” 0 p."
+        ]
+      }
+    ],
+    "reviewNote": "SOURCE ERROR: the source accepts both x = ±1/√17 and answers 76,0° or 104,0°. At 104,0° the point is (−1/√17, 4/√17), which lies on y = −4x, not y = 4x. The only angle in [0, π] is 76,0°."
+  },
+  "OSAIV_T1": {
+    "status": "draft",
+    "maxPoints": 8,
+    "parts": [
+      {
+        "label": "a)",
+        "solution": "$$P(40^\\circ) = 2000 \\ \\text{W}\\cdot\\sin 40^\\circ \\approx 1290 \\ \\text{W}$$",
+        "criteria": [
+          {
+            "id": "a-sub",
+            "text": "$P = 2000\\sin 40^\\circ$",
+            "points": 1,
+            "impliedBy": "a-result"
+          },
+          {
+            "id": "a-result",
+            "text": "$P \\approx 1290$ W (tai $1286$ W, $1300$ W)",
+            "points": 1
+          }
+        ]
+      },
+      {
+        "label": "b)",
+        "solution": "$$500 = 1000\\sin\\theta \\iff \\sin\\theta = \\frac{1}{2}$$\nAuringon korkeuskulma on välillä $0 \\le \\theta \\le \\frac{\\pi}{2}$, joten\n$$\\theta = \\frac{\\pi}{6}$$",
+        "criteria": [
+          {
+            "id": "b-eq",
+            "text": "$\\sin\\theta = \\frac{1}{2}$",
+            "points": 1,
+            "impliedBy": "b-result"
+          },
+          {
+            "id": "b-result",
+            "text": "$\\theta = \\frac{\\pi}{6}$ (radiaaneina)",
+            "points": 2
+          }
+        ],
+        "notes": [
+          "Vastaus asteina ($30^\\circ$): kohdasta ”kulma” 1 p."
+        ]
+      },
+      {
+        "label": "c)",
+        "solution": "$$\\Delta P = P_{\\max}-P(30^\\circ) = 2000-2000\\sin 30^\\circ = 1000 \\ \\text{W}$$",
+        "criteria": [
+          {
+            "id": "c-setup",
+            "text": "$\\Delta P = P_{\\max}-P(30^\\circ)$",
+            "points": 1,
+            "impliedBy": "c-result"
+          },
+          {
+            "id": "c-result",
+            "text": "$\\Delta P = 1000$ W",
+            "points": 2
+          }
+        ],
+        "notes": [
+          "Jos maksimituotoksi on tulkittu $P(60^\\circ) \\approx 1732$ W ja vastaus $\\approx 732$ W, täydet pisteet."
+        ]
+      }
+    ],
+    "reviewNote": "UNRESOLVED: the prompt says the panels reach their maximum when θ_max = 60°, but P = P_max·sin θ is largest at 90°. The 60° is never used. Decide whether to drop that sentence or change the model. Judgment call: 8 p (three one-step parts); c) also accepts 732 W for the 60° reading."
+  },
+  "OSAIV_T2": {
+    "status": "draft",
+    "maxPoints": 8,
+    "parts": [
+      {
+        "solution": "Kaksinkertaisen kulman kaavalla ja peruskaavalla $\\cos^2 x = 1-\\sin^2 x$:\n$$\\cos 2x = \\cos^2 x-\\sin^2 x = 1-2\\sin^2 x$$\nSijoitetaan oikealle puolelle:\n$$\\frac{1}{2}(1-\\cos 2x) = \\frac{1}{2}\\left(1-(1-2\\sin^2 x)\\right)$$\n$$= \\frac{1}{2}\\cdot 2\\sin^2 x = \\sin^2 x$$\nKaavat ovat voimassa kaikilla $x \\in \\mathbb{R}$, joten yhtälö on voimassa kaikilla $x \\in \\mathbb{R}$.",
+        "criteria": [
+          {
+            "id": "double",
+            "text": "$\\cos 2x = \\cos^2 x-\\sin^2 x$",
+            "points": 2
+          },
+          {
+            "id": "pythagoras",
+            "text": "Peruskaavalla $\\cos 2x = 1-2\\sin^2 x$ (tai $2\\cos^2 x-1$ ja myöhemmin $1-\\cos^2 x = \\sin^2 x$)",
+            "points": 2
+          },
+          {
+            "id": "simplify",
+            "text": "Oikea puoli sievennetty muotoon $\\sin^2 x$",
+            "points": 2
+          },
+          {
+            "id": "conclusion",
+            "text": "Johtopäätös: voimassa kaikilla $x$, koska käytetyt kaavat ovat voimassa kaikilla $x$",
+            "points": 2
+          }
+        ],
+        "notes": [
+          "Jos lähdetään väitteestä ja päädytään todeksi yhtälöksi ilman yhtäpitävyyksiä, enintään 5 p.",
+          "Tarkistus muutamalla $x$:n arvolla ei ole todistus: 0 p."
+        ]
+      }
+    ],
+    "reviewNote": "The source proof is right. Judgment call: 8 p (a two-formula identity), not 12."
+  },
+  "OSAIV_T3": {
+    "status": "draft",
+    "maxPoints": 8,
+    "parts": [
+      {
+        "solution": "Funktiot $2^{a-1}$ ja $3^{a+1}$ ovat aidosti kasvavia, koska kantaluvut $2$ ja $3$ ovat suurempia kuin $1$. Kun $0 \\le a \\le 1$, kumpikin saa suurimman arvonsa kohdassa $a = 1$:\n$$2^{a-1} \\le 2^0 = 1, \\quad 3^{a+1} \\le 3^2 = 9$$\nLaskemalla yhteen\n$$2^{a-1}+3^{a+1} \\le 1+9 = 10$$\nkaikilla $0 \\le a \\le 1$ (yhtäsuuruus vain, kun $a = 1$).",
+        "criteria": [
+          {
+            "id": "mono2",
+            "text": "$2^{a-1}$ aidosti kasvava (kantaluku $2 > 1$)",
+            "points": 2
+          },
+          {
+            "id": "mono3",
+            "text": "$3^{a+1}$ aidosti kasvava (kantaluku $3 > 1$)",
+            "points": 2
+          },
+          {
+            "id": "bounds",
+            "text": "Ylärajat välillä: $2^{a-1} \\le 1$ ja $3^{a+1} \\le 9$",
+            "points": 2
+          },
+          {
+            "id": "conclusion",
+            "text": "Summa $\\le 1+9 = 10$ kaikilla $0 \\le a \\le 1$",
+            "points": 2
+          }
+        ],
+        "notes": [
+          "Pelkkä päätepisteiden $a = 0$ ja $a = 1$ tarkistus ilman monotonisuutta: enintään 3 p.",
+          "Myös summafunktion kasvavuuden perustelu (esim. derivaatalla) kelpaa monotonisuuskohtiin."
+        ]
+      }
+    ],
+    "reviewNote": "The source's argument (substitution a = 1 − t and bounding each term at its maximum) is valid but roundabout and says ”epäyhtälö termien suurimmille arvoille … on aina tosi” without stating that each term is at most its maximum. Judgment call: 8 p."
+  },
+  "OSAIV_T4": {
+    "status": "draft",
+    "maxPoints": 12,
+    "parts": [
+      {
+        "label": "a)",
+        "solution": "Malli $f(x) = a\\sin\\big(b(x-c)\\big)+d$. Pisin päivä $22$ h $34$ min $\\approx 22{,}567$ h ja lyhin $3$ h $23$ min $\\approx 3{,}383$ h:\n$$a = \\frac{22{,}567-3{,}383}{2} \\approx 9{,}59$$\n$$d = \\frac{22{,}567+3{,}383}{2} \\approx 12{,}98$$\nJakso $365$ päivää: $b = \\frac{2\\pi}{365}$.\nMinimi päivänä $356$: $b(356-c) = \\frac{3\\pi}{2}$, joten\n$$c = 356-\\frac{3\\cdot 365}{4} = 82{,}25$$\n$$f(x) = 9{,}59\\sin\\left(\\frac{2\\pi}{365}(x-82{,}25)\\right)+12{,}98$$\n(Maksimista päivänä $172$ saadaan $c = 80{,}75$; kumpikin kelpaa.)",
+        "criteria": [
+          {
+            "id": "a-form",
+            "text": "Malli $a\\sin(b(x-c))+d$ ja tunnit desimaaleina ($3{,}38$ h, $22{,}57$ h)",
+            "points": 1
+          },
+          {
+            "id": "a-a",
+            "text": "$a \\approx 9{,}59$",
+            "points": 1
+          },
+          {
+            "id": "a-d",
+            "text": "$d \\approx 12{,}98$",
+            "points": 1
+          },
+          {
+            "id": "a-b",
+            "text": "$b = \\frac{2\\pi}{365}$",
+            "points": 1
+          },
+          {
+            "id": "a-c",
+            "text": "Vaihesiirto minimistä tai maksimista: $c \\approx 82{,}25$ (tai $80{,}75$)",
+            "points": 2
+          }
+        ],
+        "notes": [
+          "Lähteen pyöristykset $a = 9{,}61$, $d = 12{,}99$ hyväksytään."
+        ]
+      },
+      {
+        "label": "b)",
+        "solution": "Tammikuun 4. päivä on vuoden $4$. päivä (jaksollisuuden takia sama kuin päivä $369$):\n$$f(4) = 9{,}59\\sin\\left(\\frac{2\\pi}{365}(4-82{,}25)\\right)+12{,}98$$\n$$\\approx 3{,}6 \\ \\text{h}$$\nPäivän pituus on noin $3{,}6$ h eli noin $3$ h $37$ min.",
+        "criteria": [
+          {
+            "id": "b-day",
+            "text": "Päivä $x = 4$ (tai $369$)",
+            "points": 1
+          },
+          {
+            "id": "b-result",
+            "text": "Päivän pituus $\\approx 3{,}6$ h",
+            "points": 2
+          }
+        ]
+      },
+      {
+        "label": "c)",
+        "solution": "Piirretään $y = f(x)$ ja suora $y = 19$ ja määritetään leikkauspisteet: $x \\approx 122$ ja $x \\approx 225$. Päivän pituus on vähintään $19$ h noin päivien $122$ ja $225$ välillä (noin 2.5.–13.8.).",
+        "criteria": [
+          {
+            "id": "c-graph",
+            "text": "Kuvaaja ja suora $y = 19$ samassa kuvassa, leikkauspisteet ohjelmalla",
+            "points": 1
+          },
+          {
+            "id": "c-points",
+            "text": "Leikkauskohdat $x \\approx 122$ ja $x \\approx 225$",
+            "points": 1
+          },
+          {
+            "id": "c-result",
+            "text": "Vastaus välinä (päivät $122$–$225$ tai päivämäärinä)",
+            "points": 1
+          }
+        ],
+        "notes": [
+          "Laskuvirhe, jonka jälkeen jatko on johdonmukainen: −1 p.",
+          "Mallin valinnasta riippuvat $\\pm 2$ päivän erot hyväksytään."
+        ]
+      }
+    ],
+    "reviewNote": "Judgment call: the source rounds 22,567 to 22,6 before computing a and d (a = 9,61, d = 12,99); the rubric uses a ≈ 9,59, d ≈ 12,98 and accepts both. The data are slightly inconsistent with a 365-day sine (max to min is 184 days, not 182,5), so c = 82,25 (from the minimum) and c = 80,75 (from the maximum) are both accepted."
+  },
+  "OSAIV_T5": {
+    "status": "draft",
+    "maxPoints": 12,
+    "parts": [
+      {
+        "label": "a)",
+        "solution": "$$T(40) = 14{,}98+0{,}3\\,e^{0{,}05\\cdot 40} = 14{,}98+0{,}3\\,e^{2}$$\n$$\\approx 17{,}2 \\ ^\\circ\\text{C}$$",
+        "criteria": [
+          {
+            "id": "a-sub",
+            "text": "Sijoitus $T(40) = 14{,}98+0{,}3\\,e^{2}$",
+            "points": 2
+          },
+          {
+            "id": "a-result",
+            "text": "$T(40) \\approx 17{,}2$ °C",
+            "points": 1
+          }
+        ]
+      },
+      {
+        "label": "b)",
+        "solution": "Vuonna 2063 lämpötila on $17{,}2$ °C, joten tavoite on $20{,}2$ °C. Malli on sama, $t$ vuosina vuodesta 2023:\n$$14{,}98+0{,}3\\,e^{0{,}05t} = 20{,}2$$\n$$e^{0{,}05t} = 17{,}4$$\n$$t = \\frac{\\ln 17{,}4}{0{,}05} \\approx 57{,}1$$\nTämä on $57{,}1-40 \\approx 17{,}1$ vuotta vuoden 2063 jälkeen.",
+        "criteria": [
+          {
+            "id": "b-target",
+            "text": "Tavoitelämpötila $20{,}2$ °C",
+            "points": 1
+          },
+          {
+            "id": "b-model",
+            "text": "Yhtälö samassa mallissa: $14{,}98+0{,}3\\,e^{0{,}05t} = 20{,}2$ ($t$ vuodesta 2023)",
+            "points": 2
+          },
+          {
+            "id": "b-t",
+            "text": "$t \\approx 57{,}1$",
+            "points": 1
+          },
+          {
+            "id": "b-result",
+            "text": "Noin $17$ vuotta vuoden 2063 jälkeen",
+            "points": 1
+          }
+        ],
+        "notes": [
+          "Jos malli on aloitettu alusta vuonna 2063 ($20{,}2 = 17{,}2+0{,}3\\,e^{0{,}05t}$, $t \\approx 46$), b-kohdasta enintään 2 p."
+        ]
+      },
+      {
+        "label": "c)",
+        "solution": "Jos $r < 0$, niin $e^{rt}$ on aidosti vähenevä ja $e^{rt} \\to 0$, kun $t \\to \\infty$. Koska $v > 0$, termi $v\\,e^{rt}$ pienenee kohti nollaa, joten\n$$T(t) = T_0+v\\,e^{rt}$$\non aidosti vähenevä ja lähestyy arvoa $T_0$ ylhäältä. Mallin mukaan lämpötila siis laskisi, mutta ei koskaan alle arvon $T_0$.",
+        "criteria": [
+          {
+            "id": "c-exp",
+            "text": "$e^{rt}$ on aidosti vähenevä, kun $r < 0$",
+            "points": 1
+          },
+          {
+            "id": "c-limit",
+            "text": "$e^{rt} \\to 0$, kun $t \\to \\infty$",
+            "points": 1
+          },
+          {
+            "id": "c-decrease",
+            "text": "$T(t)$ vähenee ($v > 0$): lämpötila laskisi",
+            "points": 1
+          },
+          {
+            "id": "c-bound",
+            "text": "Lämpötila lähestyy arvoa $T_0$ eikä laske sen alle",
+            "points": 1
+          }
+        ],
+        "notes": [
+          "Laskuvirhe, jonka jälkeen jatko on johdonmukainen: −1 p."
+        ]
+      }
+    ],
+    "reviewNote": "SOURCE ERROR: b) the source restarts the model in 2063 with T₀ = 17,2 (20,2 = 17,2 + 0,3e^{0,05t}, t ≈ 46,1). In the model T(t) = 14,98 + 0,3e^{0,05t} from 2023, T = 20,2 at t ≈ 57,1, i.e. ≈ 17,1 years after 2063. c) The source says the temperature would not fall; with r < 0 the model T(t) = T₀ + v·e^{rt} decreases towards T₀. Note also that the model gives T(0) = T₀ + v, not T₀; the rubric follows the prompt's formula."
+  }
+}

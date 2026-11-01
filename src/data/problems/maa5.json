@@ -125,11 +125,11 @@
     "answerBlocks": [
       {
         "type": "text",
-        "content": "a)\n\n$\n\\sin 2x = \\frac{\\sqrt{3}}{2} \\ \\Leftrightarrow\\ 2x = \\frac{\\pi}{3} + n\\cdot2\\pi \\ \\vee\\ 2x = \\pi - \\frac{\\pi}{3} + n\\cdot2\\pi \\ \\Leftrightarrow\\ x = \\frac{\\pi}{6} + n\\cdot\\pi \\ \\vee\\ x = \\frac{\\pi}{3} + n\\cdot\\pi,\n$\nmissä $ n \\in \\mathbb{Z} $."
+        "content": "a)\n$$\n\\sin 2x = \\frac{\\sqrt{3}}{2} \\ \\Leftrightarrow\\ 2x = \\frac{\\pi}{3} + n\\cdot2\\pi \\ \\vee\\ 2x = \\pi - \\frac{\\pi}{3} + n\\cdot2\\pi \\ \\Leftrightarrow\\ x = \\frac{\\pi}{6} + n\\cdot\\pi \\ \\vee\\ x = \\frac{\\pi}{3} + n\\cdot\\pi,\n$$\nmissä $ n \\in \\mathbb{Z} $."
       },
       {
         "type": "text",
-        "content": "b)\n\n$\n\\cos x = \\frac{1}{4} \\sqrt{10 - 2\\sqrt{5}} \\Leftrightarrow x = \\frac{3\\pi}{10} + n\\cdot 2\\pi \\ \\vee\\ x = -\\frac{3\\pi}{10} + n\\cdot 2\\pi,\n$\nmissä $ n \\in \\mathbb{Z} $."
+        "content": "b)\n$$\n\\cos x = \\frac{1}{4} \\sqrt{10 - 2\\sqrt{5}} \\Leftrightarrow x = \\frac{3\\pi}{10} + n\\cdot 2\\pi \\ \\vee\\ x = -\\frac{3\\pi}{10} + n\\cdot 2\\pi,\n$$\nmissä $ n \\in \\mathbb{Z} $."
       }
     ]
   },
@@ -317,7 +317,7 @@
     "answerBlocks": [
       {
         "type": "text",
-        "content": "a) Koska viruksen määrä kolminkertaistuu tunnissa, tunnissa määrä on \n$$\n3^2 = 9\n$$-kertainen. Näin ollen funktio on \n$$\nf(t) = 9^t.\n$$"
+        "content": "a) Koska viruksen määrä kolminkertaistuu puolessa tunnissa, tunnissa määrä on \n$$\n3^2 = 9\n$$-kertainen. Näin ollen funktio on \n$$\nf(t) = 9^t.\n$$"
       },
       {
         "type": "text",
@@ -393,7 +393,7 @@
       },
       {
         "type": "text",
-        "content": "b) Ratkaistaan kosinien arvot trigonometrian peruskaavalla.\n$$\\begin{aligned}\n\\sin^2 x + \\cos^2 x &= 1 \\\\\n\\Leftrightarrow\\ \\cos^2 x &= 1 - \\sin^2 x \n= 1 - \\left(\\frac{\\sqrt{3}}{2}\\right)^2 \n= 1 - \\frac{3}{4} \n= \\frac{1}{4} \\\\\n\\Rightarrow\\ \\cos x &= \\pm\\frac{1}{2}\n\\end{aligned}$$\\begin{aligned}\n\\cos^2 y &= 1 - \\sin^2 y \n= 1 - \\left(\\frac{1}{2}\\right)^2 \n= \\frac{3}{4} \n\\Rightarrow\\ \\cos y = \\pm\\frac{\\sqrt{3}}{2}\n\\end{aligned}$$\n\nKulmat ovat teräviä, joten molemmat kosinit ovat positiivisia.\n\n$$\\begin{aligned}\n\\sin(x - y) &= \\sin x \\cos y - \\cos x \\sin y \n= \\frac{\\sqrt{3}}{2} \\cdot \\frac{\\sqrt{3}}{2} - \\frac{1}{2} \\cdot \\frac{1}{2} \n= \\frac{3}{4} - \\frac{1}{4} \n= \\frac{1}{2}\n\\end{aligned}$$\\begin{aligned}\n\\cos(x - y) &= \\cos x \\cos y + \\sin x \\sin y \n= \\frac{1}{2} \\cdot \\frac{\\sqrt{3}}{2} + \\frac{\\sqrt{3}}{2} \\cdot \\frac{1}{2} \n= \\frac{2\\sqrt{3}}{4} \n= \\frac{\\sqrt{3}}{2}\n\\end{aligned}$$"
+        "content": "b) Ratkaistaan kosinien arvot trigonometrian peruskaavalla.\n$$\n\\begin{aligned}\n\\sin^2 x + \\cos^2 x &= 1 \\\\\n\\Leftrightarrow\\ \\cos^2 x &= 1 - \\sin^2 x \n= 1 - \\left(\\frac{\\sqrt{3}}{2}\\right)^2 \n= 1 - \\frac{3}{4} \n= \\frac{1}{4} \\\\\n\\Rightarrow\\ \\cos x &= \\pm\\frac{1}{2}\n\\end{aligned}\n$$\n$$\n\\begin{aligned}\n\\cos^2 y &= 1 - \\sin^2 y \n= 1 - \\left(\\frac{1}{2}\\right)^2 \n= \\frac{3}{4} \n\\Rightarrow\\ \\cos y = \\pm\\frac{\\sqrt{3}}{2}\n\\end{aligned}\n$$\nKulmat ovat teräviä, joten molemmat kosinit ovat positiivisia.\n$$\n\\begin{aligned}\n\\sin(x - y) &= \\sin x \\cos y - \\cos x \\sin y \n= \\frac{\\sqrt{3}}{2} \\cdot \\frac{\\sqrt{3}}{2} - \\frac{1}{2} \\cdot \\frac{1}{2} \n= \\frac{3}{4} - \\frac{1}{4} \n= \\frac{1}{2}\n\\end{aligned}\n$$\n$$\n\\begin{aligned}\n\\cos(x - y) &= \\cos x \\cos y + \\sin x \\sin y \n= \\frac{1}{2} \\cdot \\frac{\\sqrt{3}}{2} + \\frac{\\sqrt{3}}{2} \\cdot \\frac{1}{2} \n= \\frac{2\\sqrt{3}}{4} \n= \\frac{\\sqrt{3}}{2}\n\\end{aligned}\n$$"
       }
     ]
   },
@@ -463,11 +463,11 @@
     "answerBlocks": [
       {
         "type": "text",
-        "content": "a)\n$$\\begin{aligned}\n\\cos\\left(2x + \\frac{\\pi}{2}\\right) &= \\frac{1}{2} \\\\\n2x + \\frac{\\pi}{2} &= \\frac{\\pi}{3} + n \\cdot 2\\pi \\ \\Leftrightarrow\\ x = -\\frac{\\pi}{12} + n \\cdot \\pi \\\\\ntai  2x + \\frac{\\pi}{2} &= -\\frac{\\pi}{3} + n \\cdot 2\\pi \\ \\Leftrightarrow\\ x = -\\frac{5\\pi}{12} + n \\cdot \\pi,\\quad n \\in \\mathbb{Z}\n\\end{aligned}$$"
+        "content": "a)\n$$\\begin{aligned}\n\\cos\\left(2x + \\frac{\\pi}{2}\\right) &= \\frac{1}{2} \\\\\n2x + \\frac{\\pi}{2} &= \\frac{\\pi}{3} + n \\cdot 2\\pi \\ \\Leftrightarrow\\ x = -\\frac{\\pi}{12} + n \\cdot \\pi \\\\\n\\text{tai } 2x + \\frac{\\pi}{2} &= -\\frac{\\pi}{3} + n \\cdot 2\\pi \\ \\Leftrightarrow\\ x = -\\frac{5\\pi}{12} + n \\cdot \\pi,\\quad n \\in \\mathbb{Z}\n\\end{aligned}$$"
       },
       {
         "type": "text",
-        "content": "b)\n$$\\begin{aligned}\n2\\sin x \\cos x &= \\frac{1}{4}(\\sqrt{5} - 1) \\\\\n\\sin 2x &= \\frac{1}{4}(\\sqrt{5} - 1) \\\\\n2x &= \\frac{\\pi}{10} + n \\cdot 2\\pi \\ \\Leftrightarrow\\ x = \\frac{\\pi}{20} + n \\cdot \\pi \\\\\ntai  2x &= \\pi - \\frac{\\pi}{10} + n \\cdot 2\\pi \\ \\Leftrightarrow\\ x = \\frac{9\\pi}{20} + n \\cdot \\pi,\\quad n \\in \\mathbb{Z}\n\\end{aligned}$$"
+        "content": "b)\n$$\\begin{aligned}\n2\\sin x \\cos x &= \\frac{1}{4}(\\sqrt{5} - 1) \\\\\n\\sin 2x &= \\frac{1}{4}(\\sqrt{5} - 1) \\\\\n2x &= \\frac{\\pi}{10} + n \\cdot 2\\pi \\ \\Leftrightarrow\\ x = \\frac{\\pi}{20} + n \\cdot \\pi \\\\\n\\text{tai } 2x &= \\pi - \\frac{\\pi}{10} + n \\cdot 2\\pi \\ \\Leftrightarrow\\ x = \\frac{9\\pi}{20} + n \\cdot \\pi,\\quad n \\in \\mathbb{Z}\n\\end{aligned}$$"
       },
       {
         "type": "text",
@@ -475,7 +475,7 @@
       },
       {
         "type": "text",
-        "content": "d)\n$$\\begin{aligned}\n\\sin^2 x - \\cos x - 2 &= 0 \\\\\n1 - \\cos^2 x - \\cos x - 2 &= 0 \\\\\n-\\cos^2 x - \\cos x - 1 &= 0 \\\\\n\\cos^2 x + \\cos x + 1 &= 0 \\\\\nOlkoon  \\cos x = t &\\Rightarrow t^2 + t + 1 = 0\n\\end{aligned}$$\n\nKyseessä on ylöspäin aukeava paraabeli, joka leikkaa y-akselin kohdassa $(0,\\ 1)$. Siten paraabeli ei saa arvoa nolla millään $t \\in \\mathbb{R}$. Yhtälöllä ei näin ollen ole ratkaisuja."
+        "content": "d)\n$$\\begin{aligned}\n\\sin^2 x - \\cos x - 2 &= 0 \\\\\n1 - \\cos^2 x - \\cos x - 2 &= 0 \\\\\n-\\cos^2 x - \\cos x - 1 &= 0 \\\\\n\\cos^2 x + \\cos x + 1 &= 0 \\\\\n\\text{Olkoon } \\cos x = t &\\Rightarrow t^2 + t + 1 = 0\n\\end{aligned}$$\n\nKyseessä on ylöspäin aukeava paraabeli, joka leikkaa y-akselin kohdassa $(0,\\ 1)$. Siten paraabeli ei saa arvoa nolla millään $t \\in \\mathbb{R}$. Yhtälöllä ei näin ollen ole ratkaisuja."
       }
     ]
   },
@@ -615,7 +615,7 @@
     "answerBlocks": [
       {
         "type": "text",
-        "content": "a) Amplitudi $ a $ on huipun ja pohjan välinen keskiarvo eli $ a = \\frac{4}{2} = 2 $. Aallon korkeus, kun $ f = 0{,}4\\ \\mathrm{Hz} $ ja $ t = 11\\ \\mathrm{s} $, on $ h(2) = 2 \\cdot \\sin(2\\pi \\cdot 0{,}4 \\cdot 11) \\approx 1{,}18\\ \\mathrm{(m)} $."
+        "content": "a) Amplitudi $ a $ on huipun ja pohjan välinen keskiarvo eli $ a = \\frac{4}{2} = 2 $. Aallon korkeus, kun $ f = 0{,}4\\ \\mathrm{Hz} $ ja $ t = 11\\ \\mathrm{s} $, on $ h(11) = 2 \\cdot \\sin(2\\pi \\cdot 0{,}4 \\cdot 11) \\approx 1{,}18\\ \\mathrm{(m)} $."
       },
       {
         "type": "text",
@@ -630,7 +630,7 @@
     "promptBlocks": [
       {
         "type": "text",
-        "content": "Erään veneen hinta on ostohetkellä on 77000 euroa. Veneen hinta laskee Taulukon 1 mukaisesti ajan myötä.\n\n$$\nTaulukko 1. \\quad\n\\begin{array}{l|l}\n\\mathrm{veneen\\ ikä\\ \\left(vuotta\\right)} & \\mathrm{hinta\\ \\left(euroina\\right)} \\\\ \\hline\n0 & 77000 \\\\\n2 & 59700 \\\\\n3 & 50400 \\\\\n5 & 38700 \\\\\n7 & 27000 \\\\\n10 & 10800 \\\\\n12 & 7500 \\\\\n15 & 2700 \\\\\n\\end{array}\n$$"
+        "content": "Erään veneen hinta on ostohetkellä 77000 euroa. Veneen hinta laskee Taulukon 1 mukaisesti ajan myötä.\n\n$$\nTaulukko 1. \\quad\n\\begin{array}{l|l}\n\\mathrm{veneen\\ ikä\\ \\left(vuotta\\right)} & \\mathrm{hinta\\ \\left(euroina\\right)} \\\\ \\hline\n0 & 77000 \\\\\n2 & 59700 \\\\\n3 & 50400 \\\\\n5 & 38700 \\\\\n7 & 27000 \\\\\n10 & 10800 \\\\\n12 & 7500 \\\\\n15 & 2700 \\\\\n\\end{array}\n$$"
       },
       {
         "type": "text",
@@ -836,11 +836,7 @@
       },
       {
         "type": "text",
-        "content": "a) $\\theta$ on välillä $[0{,}\\ \\pi]$"
-      },
-      {
-        "type": "text",
-        "content": "b) Kulman $\\theta$ kehäpiste on suoralla $y = 4x$"
+        "content": "- $\\theta$ on välillä $[0{,}\\ \\pi]$\n- Kulman $\\theta$ kehäpiste on suoralla $y = 4x$"
       },
       {
         "type": "text",
@@ -950,7 +946,7 @@
     "answerBlocks": [
       {
         "type": "text",
-        "content": "a) Funktion lauseke on muotoa $f(x) = a\\sin(b(x - c)) + d$, missä $a > 0$ ja $b \\ne 0$. Funktio kuvaa vuoden x:nnen päivän pituutta tunteina. Koska 22.12 on vuoden 356. päivä ja 21.6 172. päivä ja vastaavien päivien pituudet olivat 3 tuntia ja 23 minuuttia sekä 22 tuntia ja 34 minuuttia, saadaan $f(356) = 3 + \\frac{23}{60} \\approx 3{,}38\\ \\mathrm{h}$ ja $f(172) = 22 + \\frac{34}{60} \\approx 22{,}6\\ \\mathrm{h}$. Funktion lausekkeessa vakio $a$ muuttaa sinifunktion ampilitudia, ja se on puolet suurimman ja pienimmän arvon erotuksesta eli $a = \\frac{22{,}6 - 3{,}38}{2} = 9{,}61$. Vakio $b$ muuttaa sinifunktion perusjaksoa. Nyt tarkasteltava jakso on 365 päivää, joten $b$ saadaan yhtälöstä $\\frac{2\\pi}{b} = 365\\ \\Leftrightarrow\\ b = \\frac{2\\pi}{365}$. Vakio $d$ siirtää kuvaajaa pystysuunnassa. Koska $a = 9{,}61$, mutta funktion suurin arvo on kuitenkin 22,6, on $d = 22{,}6 - 9{,}61 = 12{,}99$. Koska lisäksi tiedetään, että $f(356) = 3{,}38$, saadaan yhtälö $3{,}38 = 9{,}61\\sin\\left(\\frac{2\\pi}{365}(356 - c)\\right) + 12{,}99$, missä $0 \\le c \\le 365$. Laskimella saadaan $c = 82{,}25$. \n\nFunktion lauseke on $f(x) = 9{,}61\\sin\\left(\\frac{2\\pi}{365}(x - 82{,}25)\\right) + 12{,}99$."
+        "content": "a) Funktion lauseke on muotoa $f(x) = a\\sin(b(x - c)) + d$, missä $a > 0$ ja $b \\ne 0$. Funktio kuvaa vuoden x:nnen päivän pituutta tunteina. Koska 22.12 on vuoden 356. päivä ja 21.6 172. päivä ja vastaavien päivien pituudet olivat 3 tuntia ja 23 minuuttia sekä 22 tuntia ja 34 minuuttia, saadaan $f(356) = 3 + \\frac{23}{60} \\approx 3{,}38\\ \\mathrm{h}$ ja $f(172) = 22 + \\frac{34}{60} \\approx 22{,}6\\ \\mathrm{h}$. Funktion lausekkeessa vakio $a$ muuttaa sinifunktion amplitudia, ja se on puolet suurimman ja pienimmän arvon erotuksesta eli $a = \\frac{22{,}6 - 3{,}38}{2} = 9{,}61$. Vakio $b$ muuttaa sinifunktion perusjaksoa. Nyt tarkasteltava jakso on 365 päivää, joten $b$ saadaan yhtälöstä $\\frac{2\\pi}{b} = 365\\ \\Leftrightarrow\\ b = \\frac{2\\pi}{365}$. Vakio $d$ siirtää kuvaajaa pystysuunnassa. Koska $a = 9{,}61$, mutta funktion suurin arvo on kuitenkin 22,6, on $d = 22{,}6 - 9{,}61 = 12{,}99$. Koska lisäksi tiedetään, että $f(356) = 3{,}38$, saadaan yhtälö $3{,}38 = 9{,}61\\sin\\left(\\frac{2\\pi}{365}(356 - c)\\right) + 12{,}99$, missä $0 \\le c \\le 365$. Laskimella saadaan $c = 82{,}25$. \n\nFunktion lauseke on $f(x) = 9{,}61\\sin\\left(\\frac{2\\pi}{365}(x - 82{,}25)\\right) + 12{,}99$."
       },
       {
         "type": "text",
