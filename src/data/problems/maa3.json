@@ -658,7 +658,7 @@
     "promptBlocks": [
       {
         "type": "text",
-        "content": "Tasakylkisen kolmion kanta on kylki on 5 ja kanta 8. Mikä on painopisteen etäisyys huippukulmasta?"
+        "content": "Tasakylkisen kolmion kylki on 5 ja kanta 8. Mikä on painopisteen etäisyys huippukulmasta?"
       }
     ],
     "answerBlocks": [

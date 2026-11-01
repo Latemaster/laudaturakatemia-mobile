@@ -1,0 +1,1304 @@
+{
+  "OSAI_T1": {
+    "status": "draft",
+    "maxPoints": 4,
+    "parts": [
+      {
+        "label": "a)",
+        "solution": "$1$ km $= 1000$ m ja $1$ m $= 1000$ mm, joten\n$$10 \\ \\text{km} = 10\\,000 \\ \\text{m} = 10\\,000\\,000 \\ \\text{mm} = 10^7 \\ \\text{mm}$$",
+        "criteria": [
+          {
+            "id": "a-steps",
+            "text": "Muunnoskertoimet oikein ($1$ km $= 10^6$ mm)",
+            "points": 1,
+            "impliedBy": "a-result"
+          },
+          {
+            "id": "a-result",
+            "text": "$10\\,000\\,000$ mm (tai $10^7$ mm)",
+            "points": 1
+          }
+        ]
+      },
+      {
+        "label": "b)",
+        "solution": "Koska $1 \\ \\text{l} = 1 \\ \\text{dm}^3$, on $450 \\ \\text{l} = 450 \\ \\text{dm}^3$.",
+        "criteria": [
+          {
+            "id": "b-relation",
+            "text": "Yhteys $1 \\ \\text{l} = 1 \\ \\text{dm}^3$",
+            "points": 1,
+            "impliedBy": "b-result"
+          },
+          {
+            "id": "b-result",
+            "text": "$450 \\ \\text{dm}^3$",
+            "points": 1
+          }
+        ]
+      }
+    ]
+  },
+  "OSAI_T2": {
+    "status": "draft",
+    "maxPoints": 4,
+    "parts": [
+      {
+        "label": "a)",
+        "solution": "Kulman $\\alpha$ vastainen kateetti on $a$ ja hypotenuusa $b$: $\\sin\\alpha = \\frac{a}{b}$.",
+        "criteria": [
+          {
+            "id": "a-sin",
+            "text": "$\\sin\\alpha = \\frac{a}{b}$",
+            "points": 1
+          }
+        ]
+      },
+      {
+        "label": "b)",
+        "solution": "Viereinen kateetti on $c$: $\\cos\\alpha = \\frac{c}{b}$.",
+        "criteria": [
+          {
+            "id": "b-cos",
+            "text": "$\\cos\\alpha = \\frac{c}{b}$",
+            "points": 1
+          }
+        ]
+      },
+      {
+        "label": "c)",
+        "solution": "$\\tan\\alpha = \\frac{a}{c}$ (vastainen kateetti per viereinen kateetti).",
+        "criteria": [
+          {
+            "id": "c-tan",
+            "text": "$\\tan\\alpha = \\frac{a}{c}$",
+            "points": 1
+          }
+        ]
+      },
+      {
+        "label": "d)",
+        "solution": "Kulma $C$ on suora ja kolmion kulmien summa on $180^\\circ$:\n$$\\sphericalangle ABC = 180^\\circ-90^\\circ-\\alpha = 90^\\circ-\\alpha$$",
+        "criteria": [
+          {
+            "id": "d-angle",
+            "text": "$\\sphericalangle ABC = 90^\\circ-\\alpha$",
+            "points": 1
+          }
+        ]
+      }
+    ]
+  },
+  "OSAI_T3": {
+    "status": "draft",
+    "maxPoints": 4,
+    "parts": [
+      {
+        "solution": "Pythagoraan lauseella:\n$$c^2 = 6^2+13^2 = 205$$\nPituus on positiivinen, joten $c = \\sqrt{205} \\approx 14{,}3$.",
+        "criteria": [
+          {
+            "id": "pythagoras",
+            "text": "Pythagoraan lause oikein päin: $c^2 = 6^2+13^2$",
+            "points": 1,
+            "impliedBy": "result"
+          },
+          {
+            "id": "square",
+            "text": "$c^2 = 205$",
+            "points": 1,
+            "impliedBy": "result"
+          },
+          {
+            "id": "result",
+            "text": "Hypotenuusa $\\sqrt{205}$ (tai $\\approx 14{,}3$)",
+            "points": 2
+          }
+        ],
+        "notes": [
+          "Jos hypotenuusa on sijoitettu kateetiksi (esim. $13^2-6^2$), 0 p."
+        ]
+      }
+    ]
+  },
+  "OSAI_T4": {
+    "status": "draft",
+    "maxPoints": 4,
+    "parts": [
+      {
+        "solution": "Mittakaava $1 : 25\\,000$ tarkoittaa, että luonnon matka on $25\\,000$-kertainen:\n$$x = 25\\,000 \\cdot 3 \\ \\text{cm} = 75\\,000 \\ \\text{cm}$$\n$$= 750 \\ \\text{m} = 0{,}75 \\ \\text{km}$$\nEtäisyys luonnossa on $750$ m.",
+        "criteria": [
+          {
+            "id": "scale",
+            "text": "Matka kerrottu mittakaavaluvulla: $25\\,000 \\cdot 3$ cm (tai verranto)",
+            "points": 1,
+            "impliedBy": "result"
+          },
+          {
+            "id": "convert",
+            "text": "Yksikkömuunnos $75\\,000$ cm $= 750$ m",
+            "points": 1,
+            "impliedBy": "result"
+          },
+          {
+            "id": "result",
+            "text": "Vastaus $750$ m (tai $0{,}75$ km)",
+            "points": 2
+          }
+        ],
+        "notes": [
+          "Vastaus ”noin 1 km” on liian karkea pyöristys: kohdasta ”vastaus” 1 p."
+        ]
+      }
+    ],
+    "reviewNote": "SOURCE ERROR: the source computes 0,75 km correctly but rounds the answer to ”1 km”. The rubric expects 750 m."
+  },
+  "OSAI_T5": {
+    "status": "draft",
+    "maxPoints": 6,
+    "parts": [
+      {
+        "solution": "Kuvassa sivu $5$ on kulman $\\theta$ viereinen kateetti ja $7$ hypotenuusa:\n$$\\cos\\theta = \\frac{5}{7}$$\n$$\\theta = \\cos^{-1}\\left(\\frac{5}{7}\\right) \\approx 44{,}4^\\circ$$\nKulmien summan avulla\n$$\\alpha = 90^\\circ-44{,}4^\\circ = 45{,}6^\\circ$$\nKulma $\\theta$ on pienempi kuin $\\alpha$.",
+        "criteria": [
+          {
+            "id": "ratio",
+            "text": "Oikea suhde: $\\cos\\theta = \\frac{5}{7}$ (viereinen kateetti per hypotenuusa)",
+            "points": 2,
+            "impliedBy": "theta"
+          },
+          {
+            "id": "theta",
+            "text": "$\\theta \\approx 44{,}4^\\circ$",
+            "points": 2
+          },
+          {
+            "id": "alpha",
+            "text": "$\\alpha \\approx 45{,}6^\\circ$",
+            "points": 1,
+            "impliedBy": "compare"
+          },
+          {
+            "id": "compare",
+            "text": "Johtopäätös: $\\theta$ on pienempi kuin $\\alpha$",
+            "points": 1
+          }
+        ],
+        "notes": [
+          "Jos on käytetty $\\sin\\theta = \\frac{5}{7}$ (vastaus $45{,}6^\\circ$), mutta vertailu on tehty johdonmukaisesti, 2 p."
+        ]
+      }
+    ],
+    "reviewNote": "SOURCE ERROR: in the figure the side 5 is adjacent to θ, so cos θ = 5/7 and θ ≈ 44,4°, which is smaller than α ≈ 45,6°. The source uses sin θ = 5/7 and concludes θ is larger. The figure was checked."
+  },
+  "OSAI_T6": {
+    "status": "draft",
+    "maxPoints": 4,
+    "parts": [
+      {
+        "solution": "Kolmioissa on suorat kulmat ja ristikulmat, joten ne ovat yhdenmuotoiset (kk). Vastinsivuja ovat $x$ ja $5$ sekä hypotenuusat $2$ ja $7$:\n$$\\frac{x}{5} = \\frac{2}{7} \\iff x = \\frac{10}{7}$$",
+        "criteria": [
+          {
+            "id": "similar",
+            "text": "Yhdenmuotoisuus perusteltu (suorat kulmat ja ristikulmat, kk)",
+            "points": 1
+          },
+          {
+            "id": "proportion",
+            "text": "Verranto oikeista vastinsivuista: $\\frac{x}{5} = \\frac{2}{7}$",
+            "points": 1,
+            "impliedBy": "result"
+          },
+          {
+            "id": "result",
+            "text": "$x = \\frac{10}{7}$",
+            "points": 2
+          }
+        ]
+      }
+    ]
+  },
+  "OSAI_T7": {
+    "status": "draft",
+    "maxPoints": 6,
+    "parts": [
+      {
+        "solution": "Olkoot yhdensuuntaiset sivut $a$ ja $b = a-5$. Puolisuunnikkaan ala:\n$$\\frac{a+(a-5)}{2} \\cdot 8 = 32$$\n$$\\iff 2a-5 = 8 \\iff a = \\frac{13}{2}$$\nSivut ovat $a = \\frac{13}{2} = 6{,}5$ ja $b = \\frac{3}{2} = 1{,}5$.",
+        "criteria": [
+          {
+            "id": "formula",
+            "text": "Puolisuunnikkaan alan kaava $A = \\frac{a+b}{2}h$",
+            "points": 1,
+            "impliedBy": "result"
+          },
+          {
+            "id": "equation",
+            "text": "Yhtälö $\\frac{a+(a-5)}{2} \\cdot 8 = 32$ (tai $a+b = 8$, $a-b = 5$)",
+            "points": 2,
+            "impliedBy": "result"
+          },
+          {
+            "id": "result",
+            "text": "Sivut $6{,}5$ ja $1{,}5$",
+            "points": 3
+          }
+        ],
+        "notes": [
+          "Jos vain toinen sivu on ratkaistu oikein, kohdasta ”sivut” 2 p."
+        ]
+      }
+    ]
+  },
+  "OSAI_T8": {
+    "status": "draft",
+    "maxPoints": 5,
+    "parts": [
+      {
+        "solution": "Kuvassa sivu $x$ on $32{,}9^\\circ$ kulman vastainen ja sivu $5$ on $27{,}3^\\circ$ kulman vastainen. Sinilauseella:\n$$\\frac{x}{\\sin 32{,}9^\\circ} = \\frac{5}{\\sin 27{,}3^\\circ}$$\n$$x = \\frac{5\\sin 32{,}9^\\circ}{\\sin 27{,}3^\\circ} \\approx 5{,}9$$",
+        "criteria": [
+          {
+            "id": "opposite",
+            "text": "Oikeat kulma–vastainen sivu -parit tunnistettu",
+            "points": 1,
+            "impliedBy": "result"
+          },
+          {
+            "id": "sine-rule",
+            "text": "Sinilause muodostettu: $\\frac{x}{\\sin 32{,}9^\\circ} = \\frac{5}{\\sin 27{,}3^\\circ}$",
+            "points": 2,
+            "impliedBy": "result"
+          },
+          {
+            "id": "result",
+            "text": "$x \\approx 5{,}9$",
+            "points": 2
+          }
+        ]
+      }
+    ]
+  },
+  "OSAI_T9": {
+    "status": "draft",
+    "maxPoints": 6,
+    "parts": [
+      {
+        "solution": "Ympyrän ala $A = \\pi r^2$:\n$$\\pi r^2 = 16 \\iff r^2 = \\frac{16}{\\pi}$$\nSäde on positiivinen, joten $r = \\frac{4}{\\sqrt{\\pi}} \\approx 2{,}26$.\nPiiri:\n$$p = 2\\pi r = \\frac{8\\pi}{\\sqrt{\\pi}} = 8\\sqrt{\\pi} \\approx 14{,}2$$",
+        "criteria": [
+          {
+            "id": "area-eq",
+            "text": "Yhtälö $\\pi r^2 = 16$",
+            "points": 1,
+            "impliedBy": "radius"
+          },
+          {
+            "id": "radius",
+            "text": "Säde $r = \\frac{4}{\\sqrt{\\pi}}$ (tai $\\approx 2{,}26$)",
+            "points": 2
+          },
+          {
+            "id": "circumference",
+            "text": "Piirin kaava $p = 2\\pi r$ käytetty",
+            "points": 1,
+            "impliedBy": "perimeter"
+          },
+          {
+            "id": "perimeter",
+            "text": "Piiri $8\\sqrt{\\pi}$ (tai $\\approx 14{,}2$)",
+            "points": 2
+          }
+        ]
+      }
+    ]
+  },
+  "OSAI_T10": {
+    "status": "draft",
+    "maxPoints": 6,
+    "parts": [
+      {
+        "solution": "Yhdenmuotoisten kappaleiden tilavuuksien suhde on mittakaavan kuutio. Olkoon suuremman tölkin korkeus $h$:\n$$\\left(\\frac{h}{22}\\right)^3 = \\frac{3}{1}$$\n$$h = 22\\sqrt[3]{3} \\approx 31{,}7 \\ \\text{cm}$$",
+        "criteria": [
+          {
+            "id": "cube",
+            "text": "Tilavuuksien suhde on mittakaavan kuutio",
+            "points": 2,
+            "impliedBy": "result"
+          },
+          {
+            "id": "equation",
+            "text": "Yhtälö $\\left(\\frac{h}{22}\\right)^3 = 3$ (tai yhtäpitävä)",
+            "points": 2,
+            "impliedBy": "result"
+          },
+          {
+            "id": "result",
+            "text": "$h \\approx 31{,}7$ cm (tai $\\approx 32$ cm)",
+            "points": 2
+          }
+        ],
+        "notes": [
+          "Jos on käytetty mittakaavaa sellaisenaan ($h = 3 \\cdot 22$) tai sen neliötä, 0 p."
+        ]
+      }
+    ]
+  },
+  "OSAII_T1": {
+    "status": "draft",
+    "maxPoints": 6,
+    "parts": [
+      {
+        "solution": "Kehäkulma $130^\\circ$ ja keskuskulma $\\beta$ eivät nojaa samaan kaareen: $130^\\circ$ kulmaa vastaava kaari kulkee ympyrän alaosan kautta, ja sitä vastaava keskuskulma on\n$$2 \\cdot 130^\\circ = 260^\\circ$$\nKulma $\\beta$ on loppuosa täydestä kulmasta:\n$$\\beta = 360^\\circ-260^\\circ = 100^\\circ$$\nKehäkulma $\\alpha$ nojaa samaan kaareen kuin keskuskulma $\\beta$, joten\n$$\\alpha = \\frac{\\beta}{2} = 50^\\circ$$\n(Myös: $\\alpha$ ja $130^\\circ$ ovat jännenelikulmion vastakkaiset kulmat, joten $\\alpha = 180^\\circ-130^\\circ$.)",
+        "criteria": [
+          {
+            "id": "inscribed",
+            "text": "Kehäkulman ja keskuskulman yhteys (keskuskulma on kaksinkertainen) käytetty perustellen",
+            "points": 2
+          },
+          {
+            "id": "beta",
+            "text": "$\\beta = 100^\\circ$",
+            "points": 2
+          },
+          {
+            "id": "alpha",
+            "text": "$\\alpha = 50^\\circ$ perusteltuna (kehäkulma kaarella $\\beta$, tai jännenelikulmion vastakkaiset kulmat)",
+            "points": 2
+          }
+        ],
+        "notes": [
+          "Pelkkä vastaus ilman perusteluja 2 p, vaikka kulmat olisivat oikein: tehtävä vaatii perustelut."
+        ]
+      }
+    ],
+    "reviewNote": "SOURCE ERROR: the source gets β = 100° but then α = 130°/2 = 65°, although it says α's central angle is β. α is the inscribed angle on β's arc, so α = 50° (equivalently 180° - 130° in the cyclic quadrilateral). Figure checked."
+  },
+  "OSAII_T2": {
+    "status": "draft",
+    "maxPoints": 6,
+    "parts": [
+      {
+        "solution": "Kolmas sivu $x$ voi olla hypotenuusa tai kateetti.\nTapaus 1, $x$ on hypotenuusa:\n$$x^2 = 7^2+12^2 = 193 \\iff x = \\sqrt{193}$$\nTapaus 2, $x$ on kateetti ja $12$ hypotenuusa:\n$$x^2 = 12^2-7^2 = 95 \\iff x = \\sqrt{95}$$\nKolmas sivu on $\\sqrt{193}$ tai $\\sqrt{95}$.",
+        "criteria": [
+          {
+            "id": "cases",
+            "text": "Huomattu, että kolmas sivu voi olla hypotenuusa tai kateetti",
+            "points": 2,
+            "impliedBy": "result"
+          },
+          {
+            "id": "hyp",
+            "text": "Hypotenuusana $\\sqrt{193}$",
+            "points": 1,
+            "impliedBy": "result"
+          },
+          {
+            "id": "leg",
+            "text": "Kateettina $\\sqrt{95}$",
+            "points": 1,
+            "impliedBy": "result"
+          },
+          {
+            "id": "result",
+            "text": "Vastaus: $\\sqrt{193}$ tai $\\sqrt{95}$",
+            "points": 2
+          }
+        ],
+        "notes": [
+          "Jos vain toinen tapaus on käsitelty, enintään 3 p."
+        ]
+      }
+    ]
+  },
+  "OSAII_T3": {
+    "status": "draft",
+    "maxPoints": 8,
+    "parts": [
+      {
+        "solution": "Tulkitaan, että $DE \\parallel AB$ (ilman sitä $BC$ ei ratkea). Tällöin kolmiot $DEC$ ja $ABC$ ovat yhdenmuotoiset. Merkitään $|EG| = g$, jolloin $|CE| = 4+g$ ja $|CB| = 6+g$:\n$$\\frac{7}{6+g} = \\frac{5}{4+g}$$\n$$\\iff 28+7g = 30+5g \\iff g = 1$$\nSiis $|BC| = 7$.\nKoska $|AB| = |BC| = 7$, kolmio on tasakylkinen ja kantakulmat ovat yhtä suuret: $\\sphericalangle BCA = \\sphericalangle CAB = 78^\\circ$. Kärkikulma on $\\sphericalangle ABC = 24^\\circ$. Kosinilauseella:\n$$|AC|^2 = 7^2+7^2-2 \\cdot 7 \\cdot 7\\cos 24^\\circ$$\n$$|AC| \\approx 2{,}9$$\n(Tai suoraan $|AC| = 2 \\cdot 7\\cos 78^\\circ \\approx 2{,}9$.)",
+        "criteria": [
+          {
+            "id": "similar",
+            "text": "Yhdenmuotoiset kolmiot $DEC$ ja $ABC$ (yhdensuuntaiset sivut)",
+            "points": 1,
+            "impliedBy": "bc"
+          },
+          {
+            "id": "proportion",
+            "text": "Verranto $\\frac{7}{6+g} = \\frac{5}{4+g}$ (tai yhtäpitävä)",
+            "points": 2,
+            "impliedBy": "bc"
+          },
+          {
+            "id": "bc",
+            "text": "$|BC| = 7$",
+            "points": 1
+          },
+          {
+            "id": "isosceles",
+            "text": "Tasakylkisyys huomattu: kantakulmat $78^\\circ$, kärkikulma $24^\\circ$",
+            "points": 2,
+            "impliedBy": "ac"
+          },
+          {
+            "id": "ac",
+            "text": "$|AC| \\approx 2{,}9$",
+            "points": 2
+          }
+        ],
+        "notes": [
+          "Jos kosinilauseessa on käytetty $78^\\circ$ kulmaa sivujen $7$ ja $7$ välisenä (vastaus $\\approx 8{,}8$), kohdista ”tasakylkisyys” ja ”$|AC|$” 0 p.",
+          "Laskuvirhe, jonka jälkeen jatko on johdonmukainen: −1 p."
+        ]
+      }
+    ],
+    "reviewNote": "SOURCE ERROR: the source uses 78° as the angle between the two sides of length 7 and gets |AC| ≈ 8,8 (rounded to 9). With |AB| = |BC| = 7 the 78° angle at A is a base angle, so the apex angle is 24° and |AC| ≈ 2,9. UNRESOLVED: the prompt only gives DE ∥ FG, but the solution needs DE ∥ AB; FG is never used. The prompt probably should say DE ∥ AB (or DE ∥ FG ∥ AB)."
+  },
+  "OSAII_T4": {
+    "status": "draft",
+    "maxPoints": 6,
+    "parts": [
+      {
+        "solution": "Ehdoista nähdään, että $31^\\circ$ kulman vastainen kateetti on $3$, viereinen kateetti $a$ ja hypotenuusa $c$.\n$$a = \\frac{3}{\\tan 31^\\circ} \\approx 5{,}0$$\n$$c = \\frac{3}{\\sin 31^\\circ} \\approx 5{,}8$$\nKolmas kulma on $90^\\circ-31^\\circ = 59^\\circ$.\nSivut ovat $3$, $5{,}0$ ja $5{,}8$, kulmat $31^\\circ$, $59^\\circ$ ja $90^\\circ$.",
+        "criteria": [
+          {
+            "id": "roles",
+            "text": "Sivujen roolit tunnistettu: $3$ on $31^\\circ$ kulman vastainen kateetti, $a$ viereinen kateetti ja $c$ hypotenuusa",
+            "points": 1,
+            "impliedBy": "a"
+          },
+          {
+            "id": "a",
+            "text": "$a = \\frac{3}{\\tan 31^\\circ} \\approx 5{,}0$",
+            "points": 2
+          },
+          {
+            "id": "c",
+            "text": "$c = \\frac{3}{\\sin 31^\\circ} \\approx 5{,}8$ (tai Pythagoraan lauseella)",
+            "points": 2
+          },
+          {
+            "id": "angles",
+            "text": "Kulmat $31^\\circ$, $59^\\circ$ ja $90^\\circ$",
+            "points": 1
+          }
+        ]
+      }
+    ]
+  },
+  "OSAII_T5": {
+    "status": "draft",
+    "maxPoints": 12,
+    "parts": [
+      {
+        "solution": "Piirretään kuva. Merkitään tornin korkeutta $h$ ja lähempää katseluetäisyyttä $x$ (km). Suorakulmaisista kolmioista:\n$$h = x\\tan 4{,}0^\\circ$$\n$$h = (x+1{,}5)\\tan 1{,}5^\\circ$$\nMerkitään yhtä suuriksi:\n$$x(\\tan 4{,}0^\\circ-\\tan 1{,}5^\\circ) = 1{,}5\\tan 1{,}5^\\circ$$\n$$x = \\frac{1{,}5\\tan 1{,}5^\\circ}{\\tan 4{,}0^\\circ-\\tan 1{,}5^\\circ}$$\neli $x \\approx 0{,}90$ km.\nKorkeus:\n$$h = x\\tan 4{,}0^\\circ \\approx 0{,}063 \\ \\text{km} = 63 \\ \\text{m}$$\nTornia katsottiin noin $0{,}90$ km:n ja $2{,}4$ km:n etäisyydeltä, ja torni on noin $63$ m korkea.",
+        "criteria": [
+          {
+            "id": "picture",
+            "text": "Kuva tai selitys: kaksi suorakulmaista kolmiota, joilla on yhteinen korkeus $h$",
+            "points": 2
+          },
+          {
+            "id": "eq1",
+            "text": "$h = x\\tan 4{,}0^\\circ$",
+            "points": 1
+          },
+          {
+            "id": "eq2",
+            "text": "$h = (x+1{,}5)\\tan 1{,}5^\\circ$",
+            "points": 1
+          },
+          {
+            "id": "combine",
+            "text": "Yhtälöt yhdistetty ja $x$ ratkaistu lausekkeena",
+            "points": 2
+          },
+          {
+            "id": "x",
+            "text": "$x \\approx 0{,}90$ km",
+            "points": 2
+          },
+          {
+            "id": "distances",
+            "text": "Katseluetäisyydet $0{,}90$ km ja $2{,}4$ km",
+            "points": 2
+          },
+          {
+            "id": "height",
+            "text": "Korkeus $h \\approx 63$ m",
+            "points": 2
+          }
+        ],
+        "notes": [
+          "Laskuvirhe, jonka jälkeen jatko on johdonmukainen: −1 p.",
+          "Yksikkövirhe korkeudessa (esim. $0{,}063$ km $= 630$ m): kohdasta ”korkeus” 1 p."
+        ]
+      }
+    ],
+    "reviewNote": "SOURCE ERROR: the source computes h = x tan 4,0° ≈ 0,063 km but writes 0,63 km = 630 m. The data give about 63 m (the real Eiffel tower is 330 m, so the angles in the prompt don't match it; worth noting if the reviewer wants a realistic answer)."
+  },
+  "OSAII_T6": {
+    "status": "draft",
+    "maxPoints": 6,
+    "parts": [
+      {
+        "solution": "Piirretään kuva: näkösäteet sivuavat maapalloa, joten ne ovat kohtisuorassa sivuamispisteeseen piirrettyä sädettä vastaan. Puolet näkökulmasta on $1{,}5^\\circ$, ja suorakulmaisessa kolmiossa hypotenuusa on $6370+d$:\n$$\\sin 1{,}5^\\circ = \\frac{6370}{6370+d}$$\n$$d = \\frac{6370}{\\sin 1{,}5^\\circ}-6370 \\approx 236\\,973{,}9 \\ \\text{km}$$",
+        "criteria": [
+          {
+            "id": "half-angle",
+            "text": "Suorakulmainen kolmio: puolet näkökulmasta $1{,}5^\\circ$ ja tangentti kohtisuorassa sädettä vastaan",
+            "points": 2,
+            "impliedBy": "result"
+          },
+          {
+            "id": "equation",
+            "text": "$\\sin 1{,}5^\\circ = \\frac{6370}{6370+d}$",
+            "points": 2,
+            "impliedBy": "result"
+          },
+          {
+            "id": "result",
+            "text": "$d \\approx 236\\,973{,}9$ km",
+            "points": 2
+          }
+        ],
+        "notes": [
+          "Jos on käytetty koko kulmaa $3^\\circ$ puolikkaan sijaan, mutta muuten oikein, 2 p."
+        ]
+      }
+    ]
+  },
+  "OSAII_T7": {
+    "status": "draft",
+    "maxPoints": 5,
+    "parts": [
+      {
+        "solution": "Pyramidin korkeus $h$, sivutahkon korkeusjana ($34$ cm) ja pohjan jana muodostavat suorakulmaisen kolmion, jossa sivutahkon korkeusjana on hypotenuusa ja pohjan ja sivutahkon välinen kulma on $47^\\circ$:\n$$\\sin 47^\\circ = \\frac{h}{34}$$\n$$h = 34\\sin 47^\\circ \\approx 25 \\ \\text{cm}$$",
+        "criteria": [
+          {
+            "id": "triangle",
+            "text": "Oikea suorakulmainen kolmio: hypotenuusa $34$ cm, korkeus kulman $47^\\circ$ vastainen kateetti",
+            "points": 2,
+            "impliedBy": "result"
+          },
+          {
+            "id": "equation",
+            "text": "$\\sin 47^\\circ = \\frac{h}{34}$",
+            "points": 1,
+            "impliedBy": "result"
+          },
+          {
+            "id": "result",
+            "text": "$h \\approx 25$ cm",
+            "points": 2
+          }
+        ]
+      }
+    ]
+  },
+  "OSAII_T8": {
+    "status": "draft",
+    "maxPoints": 6,
+    "parts": [
+      {
+        "solution": "Neliön sivu $x$ saadaan lävistäjästä Pythagoraan lauseella:\n$$2x^2 = (2\\sqrt{3})^2 = 12 \\iff x^2 = 6$$\nNeliön ala on siis $6$. Puoliympyrän ala on\n$$\\frac{\\pi \\cdot 1^2}{2} = \\frac{\\pi}{2}$$\nAlojen suhde:\n$$\\frac{\\frac{\\pi}{2}}{6} = \\frac{\\pi}{12}$$",
+        "criteria": [
+          {
+            "id": "side",
+            "text": "Neliön sivu lävistäjästä: $2x^2 = 12$",
+            "points": 1,
+            "impliedBy": "result"
+          },
+          {
+            "id": "square-area",
+            "text": "Neliön ala $6$",
+            "points": 1,
+            "impliedBy": "result"
+          },
+          {
+            "id": "semi-area",
+            "text": "Puoliympyrän ala $\\frac{\\pi}{2}$",
+            "points": 2,
+            "impliedBy": "result"
+          },
+          {
+            "id": "result",
+            "text": "Suhde $\\frac{\\pi}{12}$ (puoliympyrä : neliö)",
+            "points": 2
+          }
+        ],
+        "notes": [
+          "Myös käänteinen suhde $\\frac{12}{\\pi}$ hyväksytään, jos suunta on sanottu."
+        ]
+      }
+    ],
+    "reviewNote": "UNRESOLVED: in the figure the semicircle's diameter is the square's side, which would make r = √6/2, not 1. The rubric uses the stated r = 1 (answer π/12), as the source does. Either the figure or the radius in the prompt should change; with r = √6/2 the answer is π/8."
+  },
+  "OSAII_T9": {
+    "status": "draft",
+    "maxPoints": 6,
+    "parts": [
+      {
+        "label": "a)",
+        "solution": "Luonnon matka on $30\\,000$-kertainen:\n$$30\\,000 \\cdot 5 \\ \\text{cm} = 150\\,000 \\ \\text{cm} = 1{,}5 \\ \\text{km}$$",
+        "criteria": [
+          {
+            "id": "a-scale",
+            "text": "$30\\,000 \\cdot 5$ cm $= 150\\,000$ cm",
+            "points": 1,
+            "impliedBy": "a-result"
+          },
+          {
+            "id": "a-result",
+            "text": "$1{,}5$ km",
+            "points": 2
+          }
+        ]
+      },
+      {
+        "label": "b)",
+        "solution": "Pinta-alojen suhde on mittakaavan neliö. Muutetaan ala neliösenttimetreiksi:\n$$1{,}5 \\ \\text{ha} = 15\\,000 \\ \\text{m}^2 = 1{,}5 \\cdot 10^8 \\ \\text{cm}^2$$\n$$A = \\frac{1{,}5 \\cdot 10^8 \\ \\text{cm}^2}{30\\,000^2} \\approx 0{,}17 \\ \\text{cm}^2$$",
+        "criteria": [
+          {
+            "id": "b-square",
+            "text": "Alojen suhde on mittakaavan neliö",
+            "points": 1,
+            "impliedBy": "b-result"
+          },
+          {
+            "id": "b-convert",
+            "text": "$1{,}5$ ha $= 1{,}5 \\cdot 10^8$ cm²",
+            "points": 1,
+            "impliedBy": "b-result"
+          },
+          {
+            "id": "b-result",
+            "text": "$\\approx 0{,}17$ cm²",
+            "points": 1
+          }
+        ],
+        "notes": [
+          "Jos ala on jaettu mittakaavaluvulla eikä sen neliöllä, 0 p kohdista ”neliö” ja ”vastaus”."
+        ]
+      }
+    ]
+  },
+  "OSAII_T10": {
+    "status": "draft",
+    "maxPoints": 6,
+    "parts": [
+      {
+        "solution": "Kolmioissa on suora kulma ja $28^\\circ$ kulma, joten ne ovat yhdenmuotoiset (kk). Vastinsivut: $AB$ ja $DE$ ($28^\\circ$ kulman viereiset kateetit), $BC$ ja $EF$ (vastaiset kateetit):\n$$\\frac{|AB|}{6} = \\frac{7}{5} \\iff |AB| = \\frac{42}{5}$$\nSuorakulmaisen kolmion ala:\n$$A = \\frac{1}{2} \\cdot \\frac{42}{5} \\cdot 7 = \\frac{147}{5}$$",
+        "criteria": [
+          {
+            "id": "similar",
+            "text": "Yhdenmuotoisuus perusteltu (kk)",
+            "points": 1
+          },
+          {
+            "id": "proportion",
+            "text": "Verranto oikeista vastinsivuista: $\\frac{|AB|}{6} = \\frac{7}{5}$",
+            "points": 2,
+            "impliedBy": "result"
+          },
+          {
+            "id": "ab",
+            "text": "$|AB| = \\frac{42}{5}$",
+            "points": 1,
+            "impliedBy": "result"
+          },
+          {
+            "id": "result",
+            "text": "Ala $\\frac{147}{5}$ (tarkka arvo)",
+            "points": 2
+          }
+        ],
+        "notes": [
+          "Likiarvo tai trigonometrialla laskettu ala (esim. $|AB| = \\frac{7}{\\tan 28^\\circ}$) ei ole kysytty tarkka arvo: enintään 3 p."
+        ]
+      }
+    ],
+    "reviewNote": "UNRESOLVED: the figure's data are inconsistent: with legs 6 and 5, tan 28° would have to be 5/6 ≈ 0,83 but is ≈ 0,53. Similarity gives 147/5 (the intended answer); trigonometry with 28° gives a different area (≈ 46). Consider changing the angle label or the sides."
+  },
+  "OSAIII_T1": {
+    "status": "draft",
+    "maxPoints": 8,
+    "parts": [
+      {
+        "solution": "Jotta sivut muodostavat kolmion, kaikkien on oltava positiivisia ($a > 1$) ja kahden lyhyemmän summan on oltava pisintä suurempi:\n$$(a-1)+a > a+1 \\iff a > 2$$\nKolmio on suorakulmainen, kun pisin sivu $a+1$ on hypotenuusa:\n$$(a-1)^2+a^2 = (a+1)^2$$\n$$\\iff a^2-4a = 0 \\iff a = 0 \\ \\text{tai} \\ a = 4$$\nEhdon $a > 2$ täyttää vain $a = 4$ (sivut $3, 4, 5$).\nKolmio ei ole suorakulmainen, kun $2 < a < 4$ tai $a > 4$.",
+        "criteria": [
+          {
+            "id": "pythagoras",
+            "text": "Suorakulmaisuuden ehto: $(a-1)^2+a^2 = (a+1)^2$ (pisin sivu hypotenuusana)",
+            "points": 2,
+            "impliedBy": "result"
+          },
+          {
+            "id": "solve",
+            "text": "$a = 0$ tai $a = 4$",
+            "points": 1,
+            "impliedBy": "result"
+          },
+          {
+            "id": "triangle",
+            "text": "Kolmioepäyhtälö: $a > 2$",
+            "points": 2,
+            "impliedBy": "result"
+          },
+          {
+            "id": "result",
+            "text": "Vastaus $2 < a < 4$ tai $a > 4$",
+            "points": 3
+          }
+        ],
+        "notes": [
+          "Jos kolmioepäyhtälö puuttuu (vastaus $0 < a < 4$ tai $a > 4$), 4 p."
+        ]
+      }
+    ],
+    "reviewNote": "SOURCE ERROR: the source answers 0 < a < 4 or a > 4, but sides a-1, a, a+1 form a triangle only when a > 2 (a-1 > 0 and (a-1)+a > a+1). The rubric expects 2 < a < 4 or a > 4."
+  },
+  "OSAIII_T2": {
+    "status": "draft",
+    "maxPoints": 12,
+    "parts": [
+      {
+        "label": "a)",
+        "solution": "Maan säde ympärysmitasta:\n$$r = \\frac{40\\,000}{2\\pi} = \\frac{20\\,000}{\\pi} \\approx 6366 \\ \\text{km}$$\nPintaa pitkin matka päiväntasaajalta navalle on neljäsosa ympärysmitasta, $10\\,000$ km. Lyhin reitti on suora jana Maan läpi; se on suorakulmaisen kolmion hypotenuusa, jonka kateetit ovat säteitä:\n$$s = \\sqrt{r^2+r^2} = \\sqrt{2}\\,r \\approx 9003 \\ \\text{km}$$\n$$\\frac{s}{10\\,000} \\approx 0{,}900$$\nMatka lyhenisi noin $10$ %.",
+        "criteria": [
+          {
+            "id": "a-radius",
+            "text": "Säde $r = \\frac{40\\,000}{2\\pi} \\approx 6366$ km",
+            "points": 1
+          },
+          {
+            "id": "a-arc",
+            "text": "Pintamatka $10\\,000$ km (neljäsosa ympärysmitasta)",
+            "points": 1
+          },
+          {
+            "id": "a-chord",
+            "text": "Lyhin reitti suorana janana: $s = \\sqrt{2}\\,r \\approx 9003$ km",
+            "points": 2
+          },
+          {
+            "id": "a-percent",
+            "text": "Matka lyhenisi noin $10$ %",
+            "points": 2
+          }
+        ],
+        "notes": [
+          "Laskuvirhe, jonka jälkeen jatko on johdonmukainen: −1 p."
+        ]
+      },
+      {
+        "label": "b)",
+        "solution": "Majakan korkeus on $45{,}8$ m $= 0{,}0458$ km. Näkösäde horisonttiin sivuaa maapalloa, joten se on kohtisuorassa sädettä vastaan:\n$$x^2+6370^2 = (6370+0{,}0458)^2$$\n$$x \\approx 24{,}2 \\ \\text{km}$$\nUintimatka on ympyränkaari, jota vastaa keskuskulma $\\theta$:\n$$\\cos\\theta = \\frac{6370}{6370+0{,}0458}$$\n$$\\theta \\approx 0{,}2173^\\circ$$\n$$b = \\frac{\\theta}{360^\\circ} \\cdot 2\\pi \\cdot 6370 \\approx 24{,}2 \\ \\text{km}$$\nHorisontti on noin $24{,}2$ km:n päässä, ja uintimatka on käytännössä sama, noin $24{,}2$ km.",
+        "criteria": [
+          {
+            "id": "b-tangent",
+            "text": "Näkösäde sivuaa maapalloa: suorakulmainen kolmio, hypotenuusa $6370+0{,}0458$ (kuva tai selitys)",
+            "points": 2
+          },
+          {
+            "id": "b-horizon",
+            "text": "Horisontin etäisyys $\\approx 24{,}2$ km",
+            "points": 1
+          },
+          {
+            "id": "b-angle",
+            "text": "Keskuskulma: $\\cos\\theta = \\frac{6370}{6370{,}0458}$",
+            "points": 2
+          },
+          {
+            "id": "b-arc",
+            "text": "Uintimatka kaarena $\\approx 24{,}2$ km",
+            "points": 1
+          }
+        ],
+        "notes": [
+          "Laskuvirhe, jonka jälkeen jatko on johdonmukainen: −1 p.",
+          "Jos metrit ja kilometrit on sekoitettu samassa lausekkeessa, b-kohdasta enintään 3 p."
+        ]
+      }
+    ],
+    "reviewNote": "SOURCE ERROR: in b) the source takes the central angle as sin⁻¹(R/(R+h)) (about 89,8°) and gets a swim of 174 km; the angle is cos⁻¹(R/(R+h)) ≈ 0,217°, which gives ≈ 24,2 km, practically the horizon distance. Judgment call: a) reads ”lyhin mahdollinen reitti” as the straight chord through the Earth, as the source does."
+  },
+  "OSAIII_T3": {
+    "status": "draft",
+    "maxPoints": 8,
+    "parts": [
+      {
+        "solution": "Matka $3$ minuutissa:\n$$s = 50 \\cdot \\frac{3}{60} \\ \\text{km} = 2{,}5 \\ \\text{km}$$\nPiirretään kolmio: alkupiste $A$, toinen piste $B$ ja saari $S$. Kulma $A$:ssa on $45^\\circ$. Pisteessä $B$ saari näkyy $78^\\circ$ kulmassa ajosuuntaan, joten kolmion sisäkulma $B$:ssä on $180^\\circ-78^\\circ = 102^\\circ$ ja saaren kohdalla\n$$180^\\circ-45^\\circ-102^\\circ = 33^\\circ$$\nKysytty etäisyys $|AS|$ on $102^\\circ$ kulman vastainen. Sinilauseella:\n$$\\frac{|AS|}{\\sin 102^\\circ} = \\frac{2{,}5}{\\sin 33^\\circ}$$\n$$|AS| \\approx 4{,}5 \\ \\text{km}$$",
+        "criteria": [
+          {
+            "id": "distance",
+            "text": "Kuljettu matka $2{,}5$ km",
+            "points": 1,
+            "impliedBy": "result"
+          },
+          {
+            "id": "interior",
+            "text": "Sisäkulma toisessa pisteessä $180^\\circ-78^\\circ = 102^\\circ$",
+            "points": 2,
+            "impliedBy": "result"
+          },
+          {
+            "id": "third",
+            "text": "Saaren kohdalla $33^\\circ$",
+            "points": 1,
+            "impliedBy": "result"
+          },
+          {
+            "id": "sine-rule",
+            "text": "Sinilause oikein: $\\frac{|AS|}{\\sin 102^\\circ} = \\frac{2{,}5}{\\sin 33^\\circ}$",
+            "points": 2,
+            "impliedBy": "result"
+          },
+          {
+            "id": "result",
+            "text": "$|AS| \\approx 4{,}5$ km",
+            "points": 2
+          }
+        ],
+        "notes": [
+          "Jos sisäkulmana on käytetty $78^\\circ$ (vastaus $\\approx 2{,}9$ km), mutta muu on johdonmukaista, 5 p."
+        ]
+      }
+    ],
+    "reviewNote": "SOURCE ERROR: the source's figure uses 75° (the prompt says 78°) and treats it as the triangle's interior angle, giving 2,8 km. The angle to the driving direction is 78°, so the interior angle is 102°, the island's angle 33° and the distance ≈ 4,5 km. The source figure (Aitsaari.png) needs fixing too."
+  },
+  "OSAIII_T4": {
+    "status": "draft",
+    "maxPoints": 6,
+    "parts": [
+      {
+        "solution": "Molekyyli on tasakylkinen kolmio: kyljet $170$ pm ja kärkikulma $110^\\circ$. Kantakulmat ovat $\\frac{180^\\circ-110^\\circ}{2} = 35^\\circ$. Sinilauseella:\n$$\\frac{d}{\\sin 110^\\circ} = \\frac{170}{\\sin 35^\\circ}$$\n$$d \\approx 279 \\ \\text{pm}$$\n(Tai kosinilauseella $d^2 = 2 \\cdot 170^2-2 \\cdot 170^2\\cos 110^\\circ$.)",
+        "criteria": [
+          {
+            "id": "model",
+            "text": "Tasakylkinen kolmio: kyljet $170$ pm, kulma $110^\\circ$ niiden välissä",
+            "points": 2,
+            "impliedBy": "result"
+          },
+          {
+            "id": "law",
+            "text": "Sini- tai kosinilause muodostettu oikein",
+            "points": 2,
+            "impliedBy": "result"
+          },
+          {
+            "id": "result",
+            "text": "$d \\approx 279$ pm",
+            "points": 2
+          }
+        ]
+      }
+    ]
+  },
+  "OSAIII_T5": {
+    "status": "draft",
+    "maxPoints": 6,
+    "parts": [
+      {
+        "solution": "Suurin kulma on pisintä sivua $12$ vastaan, ja sen viereiset sivut ovat $6$ ja $8$. Kulmanpuolittajalauseen mukaan puolittaja jakaa vastaisen sivun viereisten sivujen suhteessa. Olkoon sivun $6$ puoleinen osa $x$:\n$$\\frac{x}{12-x} = \\frac{6}{8}$$\n$$\\iff 14x = 72 \\iff x = \\frac{36}{7}$$\nOsat ovat $\\frac{36}{7} \\approx 5{,}14$ ja $\\frac{48}{7} \\approx 6{,}86$.",
+        "criteria": [
+          {
+            "id": "largest",
+            "text": "Suurin kulma on sivua $12$ vastaan",
+            "points": 1,
+            "impliedBy": "result"
+          },
+          {
+            "id": "theorem",
+            "text": "Kulmanpuolittajalause: $\\frac{x}{12-x} = \\frac{6}{8}$",
+            "points": 2,
+            "impliedBy": "result"
+          },
+          {
+            "id": "result",
+            "text": "Osat $\\frac{36}{7}$ ja $\\frac{48}{7}$",
+            "points": 3
+          }
+        ]
+      }
+    ]
+  },
+  "OSAIII_T6": {
+    "status": "draft",
+    "maxPoints": 6,
+    "parts": [
+      {
+        "solution": "Kolmion ala kahden sivun ja niiden välisen kulman avulla:\n$$\\frac{1}{2} \\cdot 6 \\cdot 11 \\cdot \\sin\\beta = 29$$\n$$\\iff \\sin\\beta = \\frac{29}{33}$$\n$$\\beta \\approx 61{,}5^\\circ \\ \\text{tai} \\ \\beta \\approx 118{,}5^\\circ$$\nMolemmat käyvät, koska $\\sin\\beta = \\sin(180^\\circ-\\beta)$: annetuilla tiedoilla voidaan piirtää kaksi erilaista kolmiota.",
+        "criteria": [
+          {
+            "id": "area",
+            "text": "$\\frac{1}{2} \\cdot 6 \\cdot 11\\sin\\beta = 29$",
+            "points": 2,
+            "impliedBy": "result"
+          },
+          {
+            "id": "acute",
+            "text": "$\\beta \\approx 61{,}5^\\circ$",
+            "points": 1,
+            "impliedBy": "result"
+          },
+          {
+            "id": "result",
+            "text": "Molemmat ratkaisut $61{,}5^\\circ$ ja $118{,}5^\\circ$",
+            "points": 3
+          }
+        ],
+        "notes": [
+          "Jos vain $61{,}5^\\circ$ on annettu, kohdasta ”molemmat ratkaisut” 1 p."
+        ]
+      }
+    ]
+  },
+  "OSAIII_T7": {
+    "status": "draft",
+    "maxPoints": 12,
+    "parts": [
+      {
+        "solution": "Piirretään poikkileikkaus: kuopan reuna on pallon jänne, jonka pituus on $10$ cm, ja kuopan syvyys on $4$ cm. Olkoon pallon säde $r$ ja keskipisteen etäisyys jänteestä $x = r-4$. Suorakulmaisesta kolmiosta:\n$$x^2+5^2 = r^2$$\n$$(r-4)^2+25 = r^2$$\n$$\\iff -8r+41 = 0 \\iff r = \\frac{41}{8} = 5{,}125 \\ \\text{cm}$$\nTilavuus:\n$$V = \\frac{4}{3}\\pi r^3 \\approx 563{,}9 \\ \\text{cm}^3$$\nMassa:\n$$m = \\rho V = 7{,}87 \\cdot 563{,}9 \\ \\text{g} \\approx 4438 \\ \\text{g}$$\nKuulan massa on noin $4{,}44$ kg.",
+        "criteria": [
+          {
+            "id": "picture",
+            "text": "Poikkileikkaus: jänne $10$ cm, syvyys $4$ cm, säde keskipisteestä jänteen päähän",
+            "points": 2
+          },
+          {
+            "id": "pythagoras",
+            "text": "$x^2+5^2 = r^2$ ja $x = r-4$ (tai vastaava)",
+            "points": 2
+          },
+          {
+            "id": "radius",
+            "text": "$r = \\frac{41}{8} = 5{,}125$ cm",
+            "points": 2
+          },
+          {
+            "id": "volume",
+            "text": "Pallon tilavuus $V = \\frac{4}{3}\\pi r^3 \\approx 564$ cm³",
+            "points": 2
+          },
+          {
+            "id": "mass",
+            "text": "$m = \\rho V \\approx 4438$ g",
+            "points": 2
+          },
+          {
+            "id": "answer",
+            "text": "Vastaus $4{,}44$ kg (kahden desimaalin tarkkuus)",
+            "points": 2
+          }
+        ],
+        "notes": [
+          "Laskuvirhe, jonka jälkeen jatko on johdonmukainen: −1 p.",
+          "Jos kuopan halkaisija on tulkittu pallon halkaisijaksi ($r = 5$ cm), enintään 6 p.",
+          "Väärä tarkkuus tai yksikkö vastauksessa −1 p."
+        ]
+      }
+    ]
+  },
+  "OSAIII_T8": {
+    "status": "draft",
+    "maxPoints": 6,
+    "parts": [
+      {
+        "solution": "Olkoot kolmion sivut $a$ ja $b$ ja niiden välinen kulma $\\gamma$. Valitaan $a$ kannaksi; ala on $A = \\frac{1}{2}ah$, missä $h$ on kantaa vastaan piirretty korkeus. Korkeusjana, sivu $b$ ja kannan suora muodostavat suorakulmaisen kolmion, jonka hypotenuusa on $b$.\n- Jos $\\gamma$ on terävä, korkeus on kulman $\\gamma$ vastainen kateetti: $h = b\\sin\\gamma$.\n- Jos $\\gamma$ on tylppä, korkeus osuu kannan jatkeelle ja on kulman $180^\\circ-\\gamma$ vastainen kateetti: $h = b\\sin(180^\\circ-\\gamma) = b\\sin\\gamma$.\n- Jos $\\gamma = 90^\\circ$, $h = b = b\\sin\\gamma$.\nKaikissa tapauksissa\n$$A = \\frac{1}{2}ah = \\frac{1}{2}ab\\sin\\gamma$$",
+        "criteria": [
+          {
+            "id": "base",
+            "text": "Lähtökohta $A = \\frac{1}{2}ah$ (kanta $a$, korkeus $h$)",
+            "points": 1
+          },
+          {
+            "id": "height",
+            "text": "Korkeus suorakulmaisesta kolmiosta: $h = b\\sin\\gamma$",
+            "points": 2
+          },
+          {
+            "id": "obtuse",
+            "text": "Tylppä $\\gamma$ käsitelty ($\\sin(180^\\circ-\\gamma) = \\sin\\gamma$)",
+            "points": 2
+          },
+          {
+            "id": "conclusion",
+            "text": "Sijoitus ja johtopäätös $A = \\frac{1}{2}ab\\sin\\gamma$",
+            "points": 1
+          }
+        ],
+        "notes": [
+          "Pelkkä terävän kulman tapaus (kuten lähteen ratkaisussa) enintään 4 p.",
+          "Esimerkkikolmio ei ole todistus: 0 p."
+        ]
+      }
+    ],
+    "reviewNote": "Judgment call: the rubric gives 2 p for the obtuse case, which the source proof leaves out."
+  },
+  "OSAIII_T9": {
+    "status": "draft",
+    "maxPoints": 5,
+    "parts": [
+      {
+        "solution": "Tasakylkisessä kolmiossa huippukulmasta piirretty mediaani on myös korkeusjana ja jakaa kannan puoliksi ($4+4$). Pythagoraan lauseella mediaanin pituus on\n$$m = \\sqrt{5^2-4^2} = 3$$\nPainopiste on mediaanien leikkauspiste ja jakaa mediaanin suhteessa $2 : 1$ kärjestä lukien. Etäisyys huippukulmasta on\n$$\\frac{2}{3} \\cdot 3 = 2$$",
+        "criteria": [
+          {
+            "id": "median",
+            "text": "Huipusta piirretty mediaani on korkeusjana: $m = \\sqrt{25-16} = 3$",
+            "points": 2,
+            "impliedBy": "result"
+          },
+          {
+            "id": "ratio",
+            "text": "Painopiste jakaa mediaanin suhteessa $2 : 1$",
+            "points": 1,
+            "impliedBy": "result"
+          },
+          {
+            "id": "result",
+            "text": "Etäisyys $2$",
+            "points": 2
+          }
+        ],
+        "notes": [
+          "Jos etäisyydeksi on annettu $1$ (suhde väärin päin), 3 p."
+        ]
+      }
+    ]
+  },
+  "OSAIII_T10": {
+    "status": "draft",
+    "maxPoints": 4,
+    "parts": [
+      {
+        "solution": "$n$-kulmion kulmien summa on $(n-2) \\cdot 180^\\circ$:\n$$\\frac{(25-2) \\cdot 180^\\circ}{(28-2) \\cdot 180^\\circ} = \\frac{23}{26}$$",
+        "criteria": [
+          {
+            "id": "formula",
+            "text": "Kulmien summan kaava $(n-2) \\cdot 180^\\circ$",
+            "points": 2,
+            "impliedBy": "result"
+          },
+          {
+            "id": "result",
+            "text": "Suhde $\\frac{23}{26}$",
+            "points": 2
+          }
+        ],
+        "notes": [
+          "Myös käänteinen suhde $\\frac{26}{23}$ hyväksytään, jos järjestys on sanottu."
+        ]
+      }
+    ]
+  },
+  "OSAIV_T1": {
+    "status": "draft",
+    "maxPoints": 12,
+    "parts": [
+      {
+        "solution": "Sade kerää vettä kartion aukon kokoiselta alalta: $11$ mm sadetta tarkoittaa vesimäärää $V_{\\text{vesi}} = \\pi R^2 \\cdot 1{,}1$ cm, missä $R$ on aukon säde.\nKartion tilavuus on\n$$V_{\\text{kartio}} = \\frac{1}{3}\\pi R^2 \\cdot 22{,}8$$\n$$\\frac{V_{\\text{vesi}}}{V_{\\text{kartio}}} = \\frac{3 \\cdot 1{,}1}{22{,}8}$$\n$$= \\frac{11}{76}$$\nVesi täyttää kartion kärjestä alkaen yhdenmuotoisen pienemmän kartion, jonka korkeus on $h$. Tilavuuksien suhde on mittakaavan kuutio:\n$$\\left(\\frac{h}{22{,}8}\\right)^3 = \\frac{11}{76}$$\n$$h = 22{,}8\\sqrt[3]{\\frac{11}{76}} \\approx 12{,}0 \\ \\text{cm}$$",
+        "criteria": [
+          {
+            "id": "rain",
+            "text": "Sademäärä tulkittu: vettä kertyy aukon alalta $1{,}1$ cm:n korkeudelta, $V = \\pi R^2 \\cdot 1{,}1$",
+            "points": 2
+          },
+          {
+            "id": "cone",
+            "text": "Kartion tilavuus $\\frac{1}{3}\\pi R^2 \\cdot 22{,}8$",
+            "points": 1
+          },
+          {
+            "id": "ratio",
+            "text": "Tilavuuksien suhde $\\frac{11}{76}$ (säde supistuu)",
+            "points": 2
+          },
+          {
+            "id": "similar",
+            "text": "Vesi muodostaa yhdenmuotoisen kartion kärjen puolelle",
+            "points": 2
+          },
+          {
+            "id": "cube",
+            "text": "Tilavuuksien suhde on mittakaavan kuutio: $\\left(\\frac{h}{22{,}8}\\right)^3 = \\frac{11}{76}$",
+            "points": 2
+          },
+          {
+            "id": "result",
+            "text": "$h \\approx 12{,}0$ cm",
+            "points": 3
+          }
+        ],
+        "notes": [
+          "Laskuvirhe, jonka jälkeen jatko on johdonmukainen: −1 p.",
+          "Jos millimetrit ja senttimetrit on sekoitettu samassa suhteessa, enintään 6 p."
+        ]
+      }
+    ]
+  },
+  "OSAIV_T2": {
+    "status": "draft",
+    "maxPoints": 8,
+    "parts": [
+      {
+        "solution": "Kuvassa iso neliö, jonka sivu on $a+b$, ja sen sisällä neljä yhtenevää suorakulmaista kolmiota (kateetit $a$ ja $b$, hypotenuusa $c$) sekä nelikulmio, jonka sivut ovat $c$.\nSisempi nelikulmio on neliö: sen sivut ovat yhtä pitkiä ($c$), ja kunkin sen kulman vieressä ovat kolmion terävät kulmat $\\alpha$ ja $\\beta$, joten kulma on $180^\\circ-(\\alpha+\\beta) = 180^\\circ-90^\\circ = 90^\\circ$.\nIson neliön ala kahdella tavalla:\n$$(a+b)^2 = 4 \\cdot \\frac{1}{2}ab+c^2$$\n$$a^2+2ab+b^2 = 2ab+c^2$$\n$$a^2+b^2 = c^2$$",
+        "criteria": [
+          {
+            "id": "inner",
+            "text": "Perusteltu, että sisempi nelikulmio on neliö (sivut $c$ ja kulmat $90^\\circ$)",
+            "points": 2
+          },
+          {
+            "id": "area-outer",
+            "text": "Ison neliön ala $(a+b)^2 = a^2+2ab+b^2$",
+            "points": 2
+          },
+          {
+            "id": "area-parts",
+            "text": "Ala osista: $4 \\cdot \\frac{1}{2}ab+c^2$",
+            "points": 2
+          },
+          {
+            "id": "conclusion",
+            "text": "Yhtälöstä $a^2+b^2 = c^2$",
+            "points": 2
+          }
+        ],
+        "notes": [
+          "Ilman perustelua sisemmän nelikulmion kulmille enintään 6 p.",
+          "Kuvan mittaaminen tai esimerkit eivät ole todistus: 0 p."
+        ]
+      }
+    ],
+    "reviewNote": "SOURCE ERROR: the source concludes the inner quadrilateral is a square from its equal sides alone; a rhombus has equal sides too. The rubric requires the 90° angle argument (2 p)."
+  },
+  "OSAIV_T3": {
+    "status": "draft",
+    "maxPoints": 12,
+    "parts": [
+      {
+        "solution": "Olkoon kolmion suora kulma $C$, terävät kulmat $A$ ja $B$ ja $O$ sisään piirretyn ympyrän keskipiste. Keskipiste on kulmanpuolittajien leikkauspiste, joten $\\sphericalangle OAB = \\frac{A}{2}$ ja $\\sphericalangle OBA = \\frac{B}{2}$.\nKoska $A+B = 90^\\circ$, kolmiossa $ABO$\n$$\\sphericalangle AOB = 180^\\circ-\\frac{A+B}{2} = 135^\\circ$$\nHypotenuusa $c = |AB|$ kosinilauseella, kun $|OA| = 3\\sqrt{3}$ ja $|OB| = 7$:\n$$c^2 = 27+49-2 \\cdot 3\\sqrt{3} \\cdot 7\\cos 135^\\circ$$\n$$= 76+42\\sqrt{3} \\cdot \\frac{\\sqrt{2}}{2} = 76+21\\sqrt{6}$$\n$$c = \\sqrt{76+21\\sqrt{6}}$$",
+        "criteria": [
+          {
+            "id": "bisector",
+            "text": "Sisäympyrän keskipiste on kulmanpuolittajien leikkauspiste",
+            "points": 2
+          },
+          {
+            "id": "sum",
+            "text": "Terävien kulmien summa $90^\\circ$, joten puolikkaiden summa $45^\\circ$",
+            "points": 2
+          },
+          {
+            "id": "angle",
+            "text": "$\\sphericalangle AOB = 135^\\circ$",
+            "points": 2
+          },
+          {
+            "id": "cosine",
+            "text": "Kosinilause kolmioon $ABO$ oikein",
+            "points": 2
+          },
+          {
+            "id": "simplify",
+            "text": "$\\cos 135^\\circ = -\\frac{\\sqrt{2}}{2}$ ja sievennys $76+21\\sqrt{6}$",
+            "points": 2
+          },
+          {
+            "id": "result",
+            "text": "$c = \\sqrt{76+21\\sqrt{6}}$ (tarkka arvo)",
+            "points": 2
+          }
+        ],
+        "notes": [
+          "Laskuvirhe, jonka jälkeen jatko on johdonmukainen: −1 p.",
+          "Pelkkä likiarvo $c \\approx 11{,}3$ ilman tarkkaa arvoa: kohdasta ”tarkka arvo” 1 p."
+        ]
+      }
+    ]
+  },
+  "OSAIV_T4": {
+    "status": "draft",
+    "maxPoints": 12,
+    "parts": [
+      {
+        "solution": "Olkoon särmä $x$. Pohja on tasasivuinen kolmio, jonka korkeus on\n$$h = \\sqrt{x^2-\\left(\\frac{x}{2}\\right)^2} = \\frac{\\sqrt{3}}{2}x$$\nja ala\n$$A = \\frac{1}{2} \\cdot x \\cdot \\frac{\\sqrt{3}}{2}x = \\frac{\\sqrt{3}}{4}x^2$$\nTetraedrin huippu on symmetrian vuoksi pohjan painopisteen yläpuolella. Painopiste jakaa mediaanin (tasasivuisessa kolmiossa sama kuin korkeusjana) suhteessa $2 : 1$, joten pohjan kärjen etäisyys painopisteestä on\n$$z = \\frac{2}{3}h = \\frac{\\sqrt{3}}{3}x$$\nTetraedrin korkeus $y$ suorakulmaisesta kolmiosta, jonka hypotenuusa on sivusärmä $x$:\n$$y^2 = x^2-z^2 = \\frac{2}{3}x^2 \\iff y = \\frac{\\sqrt{6}}{3}x$$\nPyramidin tilavuus:\n$$V = \\frac{1}{3}Ay = \\frac{1}{3} \\cdot \\frac{\\sqrt{3}}{4}x^2 \\cdot \\frac{\\sqrt{6}}{3}x$$\n$$= \\frac{\\sqrt{18}}{36}x^3 = \\frac{\\sqrt{2}}{12}x^3$$",
+        "criteria": [
+          {
+            "id": "base-height",
+            "text": "Pohjakolmion korkeus $\\frac{\\sqrt{3}}{2}x$",
+            "points": 2
+          },
+          {
+            "id": "base-area",
+            "text": "Pohjan ala $\\frac{\\sqrt{3}}{4}x^2$",
+            "points": 2
+          },
+          {
+            "id": "centroid",
+            "text": "Huippu painopisteen yläpuolella ja $z = \\frac{2}{3}h = \\frac{\\sqrt{3}}{3}x$ perusteltuna",
+            "points": 2
+          },
+          {
+            "id": "height",
+            "text": "Tetraedrin korkeus $y = \\frac{\\sqrt{6}}{3}x$",
+            "points": 3
+          },
+          {
+            "id": "volume",
+            "text": "Pyramidin tilavuuskaava $V = \\frac{1}{3}Ay$",
+            "points": 2
+          },
+          {
+            "id": "conclusion",
+            "text": "Sievennys $\\frac{\\sqrt{2}}{12}x^3$",
+            "points": 1
+          }
+        ],
+        "notes": [
+          "Laskuvirhe, jonka jälkeen jatko on johdonmukainen: −1 p.",
+          "Jos huipun paikka (painopiste) on vain todettu perustelematta, kohdasta ”painopiste” 1 p."
+        ]
+      }
+    ]
+  },
+  "OSAIV_T5": {
+    "status": "draft",
+    "maxPoints": 12,
+    "parts": [
+      {
+        "solution": "Pertin silmät ovat korkeudella $9+1{,}10 = 10{,}1$ m. Aita on $23$ m:n päässä ja $1{,}5$ m korkea, lumiukko $2$ m aidan takana.\nNäkösäde, joka juuri sivuaa aidan yläreunaa, laskee metriä kohti\n$$\\frac{10{,}1-1{,}5}{23} = \\frac{8{,}6}{23} \\approx 0{,}374 \\ \\text{m}$$\nLumiukon kohdalla näkösäteen korkeus on\n$$1{,}5-2 \\cdot \\frac{8{,}6}{23} \\approx 0{,}75 \\ \\text{m}$$\nKaikki tätä korkeammat kohdat lumiukon kohdalla näkyvät. Lumiukko on $0{,}95$ m korkea, joten sen yläosa (noin $0{,}2$ m) näkyy: Pertti näkee lumiukon.",
+        "criteria": [
+          {
+            "id": "eye",
+            "text": "Silmien korkeus $10{,}1$ m",
+            "points": 2
+          },
+          {
+            "id": "model",
+            "text": "Näkösäde aidan yläreunan kautta (kuva, yhdenmuotoiset kolmiot tai kulmakerroin)",
+            "points": 2
+          },
+          {
+            "id": "slope",
+            "text": "Näkösäteen lasku $\\frac{8{,}6}{23}$ m metriä kohti (tai vastaava verranto)",
+            "points": 2
+          },
+          {
+            "id": "height",
+            "text": "Näkösäteen korkeus lumiukon kohdalla $\\approx 0{,}75$ m",
+            "points": 3
+          },
+          {
+            "id": "conclusion",
+            "text": "Vertailu $0{,}95 \\text{ m} > 0{,}75 \\text{ m}$: Pertti näkee lumiukon",
+            "points": 3
+          }
+        ],
+        "notes": [
+          "Laskuvirhe, jonka jälkeen jatko on johdonmukainen: −1 p.",
+          "Jos Pertin pituus on unohdettu (silmät $9$ m:ssä), mutta muu on johdonmukaista, enintään 9 p.",
+          "Pelkkä vastaus ”näkee” ilman laskua 0 p."
+        ]
+      }
+    ]
+  }
+}
