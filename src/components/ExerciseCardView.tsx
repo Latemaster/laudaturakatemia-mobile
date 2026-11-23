@@ -8,6 +8,7 @@ import { VISUALS } from './visuals'
 import type { VisualProps } from './visuals'
 import { CheckIcon, ListCheckIcon, PencilIcon, XIcon } from './icons'
 import { useLayout } from '../layout/LayoutContext'
+import PointsBadge, { CardGlow, QUICK_POINTS_HINT, useQuickPoints } from './course/PointsBadge'
 
 interface ExerciseCardViewProps {
   card: ExerciseCard
@@ -17,9 +18,9 @@ interface ExerciseCardViewProps {
 const LETTERS = ['A', 'B', 'C', 'D', 'E', 'F']
 
 // The feedback after checking a quick exercise. A right answer pops: the
-// panel springs in green with a check that bounces, and a "+1 p" rises
-// over it, like the points pouring into an open-answer task's tile. A
-// wrong one gives a short shake instead.
+// panel springs in green with a check that bounces, while the points tile
+// in the card's corner fills with a "+1 p" and the card lights up
+// (useQuickPoints, CardGlow). A wrong one gives a short shake instead.
 function ResultPanel({
   correct,
   heading,
@@ -58,17 +59,6 @@ function ResultPanel({
       </p>
       <p className="text-sm leading-relaxed text-ink-dim">{explanation}</p>
       {children}
-      {correct && (
-        <motion.span
-          aria-hidden
-          initial={{ opacity: 0, y: 8, scale: 0.8 }}
-          animate={{ opacity: [0, 1, 1, 0], y: [8, -6, -18, -30], scale: [0.8, 1.2, 1.1, 1] }}
-          transition={{ delay: 0.15, duration: 1.6, times: [0, 0.2, 0.7, 1], ease: 'easeOut' }}
-          className="pointer-events-none absolute right-4 top-2 text-lg font-bold text-good"
-        >
-          +1 p
-        </motion.span>
-      )}
     </motion.div>
   )
 }
@@ -372,6 +362,8 @@ export function ExerciseBody({ card, onAnswer, split = false }: ExerciseCardView
 export default function ExerciseCardView({ card, onAnswer }: ExerciseCardViewProps) {
   const [isExpanded, setIsExpanded] = useState(false)
   const { isDesktop } = useLayout()
+  // The exercise's one point, in a tile like the long tasks' (phones).
+  const { points, celebrate, answer } = useQuickPoints(onAnswer)
   const kind = (
     <KindLabel
       icon={card.kind === 'numeric' ? <PencilIcon /> : <ListCheckIcon />}
@@ -384,7 +376,16 @@ export default function ExerciseCardView({ card, onAnswer }: ExerciseCardViewPro
     // the content, so a long one fades out with the rest under "Vastaa
     // koko näytöllä" rather than pushing the answer off the card.
     return (
-      <CardShell topic={card.topic} header={<div className="-mb-2">{kind}</div>}>
+      <CardShell
+        topic={card.topic}
+        glow={<CardGlow trigger={celebrate} points={points} />}
+        header={
+          <div className="flex items-center justify-between gap-3">
+            <div className="-mb-2">{kind}</div>
+            <PointsBadge points={points} celebrate={celebrate} hint={QUICK_POINTS_HINT} compact />
+          </div>
+        }
+      >
         <ExpandableBox
           className="px-5 pb-5 pt-4"
           isExpanded={isExpanded}
@@ -394,7 +395,7 @@ export default function ExerciseCardView({ card, onAnswer }: ExerciseCardViewPro
           <h2 className={`mb-4 font-semibold leading-snug text-ink ${isExpanded ? 'mr-12 text-2xl' : 'text-xl'}`}>
             {card.question}
           </h2>
-          <ExerciseBody card={card} onAnswer={onAnswer} />
+          <ExerciseBody card={card} onAnswer={answer} />
         </ExpandableBox>
       </CardShell>
     )

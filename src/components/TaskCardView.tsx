@@ -15,7 +15,7 @@ import TaskAnswerView from './TaskAnswerView'
 import { toKatexAnswer } from './mathAnswerFormat'
 import { ExpandIcon, PencilIcon } from './icons'
 import { answerPartsFromPrompt, answerPartsFromRubric } from './answerParts'
-import PointsBadge, { pointsColor, useTaskPoints } from './course/PointsBadge'
+import PointsBadge, { CardGlow, pointsColor, useTaskPoints } from './course/PointsBadge'
 import { evaluationId } from './course/exerciseState'
 import { useLayout } from '../layout/LayoutContext'
 
@@ -106,6 +106,7 @@ export default function TaskCardView({
   return (
     <CardShell
       topic={card.topic}
+      glow={<CardGlow trigger={celebrate} points={points} />}
       header={
         <div className={`flex items-start justify-between gap-3 ${isDesktop ? 'mb-3' : ''}`}>
           <div className="min-w-0">
