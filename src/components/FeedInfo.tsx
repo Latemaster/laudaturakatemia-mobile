@@ -1,12 +1,21 @@
 import { useState } from 'react'
-import { COURSE_MAP } from '../data/courses'
-import { STUDY_PLANS, getCourseTargets, type TargetGrade } from '../data/studyPlans'
+import { COURSES, COURSE_MAP } from '../data/courses'
+import type { TargetGrade } from '../data/studyPlans'
 import type { Difficulty } from '../data/progress'
-import { InfoIcon, XIcon } from './icons'
+import {
+  FEED_DIFFICULTIES,
+  getFeedCourses,
+  getFeedDifficulties,
+  type FeedPrefs,
+} from '../data/feed'
+import { ChevronDownIcon, PlusIcon, SlidersIcon, XIcon } from './icons'
 import { useLayout } from '../layout/LayoutContext'
+import type { TopicCode } from '../types'
 
 interface FeedInfoProps {
   targetGrade: TargetGrade
+  prefs: FeedPrefs
+  onPrefsChange: (prefs: FeedPrefs) => void
   cardCount: number
 }
 
@@ -21,26 +30,42 @@ function describe(difficulties: Difficulty[]): string {
   return difficulties.map((d) => DIFFICULTY_LABEL[d]).join(' ja ')
 }
 
-// Floating "i" button on the Suositellut feed. Opens a card explaining how
-// the recommended cards are picked and ordered for the current target.
-export default function FeedInfo({ targetGrade, cardCount }: FeedInfoProps) {
+const sectionTitle = 'mb-2 text-xs font-semibold uppercase tracking-widest text-ink-dim/70'
+const iconButton =
+  'flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-surface-2 text-ink ring-1 ring-ink/10 disabled:opacity-30'
+
+// Floating button on the Suositellut feed. Opens the feed's settings: how
+// hard the tasks should be and which courses it rotates through, in what
+// order, with a short explanation of how cards are picked.
+export default function FeedInfo({ targetGrade, prefs, onPrefsChange, cardCount }: FeedInfoProps) {
   const [open, setOpen] = useState(false)
   const { isDesktop } = useLayout()
-  const plan = STUDY_PLANS[targetGrade]
-  const courseTargets = getCourseTargets(targetGrade)
+  const courses = getFeedCourses(targetGrade, prefs)
+  const addable = COURSES.filter((course) => !courses.includes(course.code))
+
+  function setCourses(next: TopicCode[]) {
+    onPrefsChange({ ...prefs, courses: next })
+  }
+
+  function move(index: number, by: -1 | 1) {
+    const next = [...courses]
+    const [code] = next.splice(index, 1)
+    next.splice(index + by, 0, code)
+    setCourses(next)
+  }
 
   return (
     <>
       <button
         type="button"
         onClick={() => setOpen(true)}
-        aria-label="Miten suositellut valitaan"
+        aria-label="Syötteen asetukset"
         aria-haspopup="dialog"
         className={`${
           isDesktop ? 'absolute right-6 top-3' : 'fixed right-4 top-[calc(env(safe-area-inset-top)+3.5rem)]'
         } z-20 flex h-9 w-9 items-center justify-center rounded-full bg-surface/90 text-ink shadow-md ring-1 ring-ink/5 backdrop-blur`}
       >
-        <InfoIcon className="h-5 w-5" />
+        <SlidersIcon className="h-5 w-5" />
       </button>
 
       {open && (
@@ -57,61 +82,126 @@ export default function FeedInfo({ targetGrade, cardCount }: FeedInfoProps) {
           >
             <div className="flex items-center justify-between gap-3 border-b border-ink/10 px-5 py-4">
               <h2 id="feed-info-title" className="text-base font-bold text-ink">
-                Miten suositellut valitaan
+                Syötteen asetukset
               </h2>
-              <button
-                type="button"
-                onClick={() => setOpen(false)}
-                aria-label="Sulje"
-                className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-surface-2 text-ink ring-1 ring-ink/10"
-              >
+              <button type="button" onClick={() => setOpen(false)} aria-label="Sulje" className={iconButton}>
                 <XIcon className="h-3.5 w-3.5" />
               </button>
             </div>
 
             <div className="overflow-y-auto px-5 py-4 text-sm leading-relaxed text-ink-dim">
-              <p className="mb-3">
-                Syöte perustuu tavoitearvosanaasi <span className="font-semibold text-ink">{targetGrade}</span> ja
-                sen lukusuunnitelmaan. Suunnitelma kertoo, mitkä kurssit ja minkä vaikeustason tehtävät kannattaa
-                kerrata, kun tähtää tähän arvosanaan.
+              <p className="mb-4">
+                Syöte lähtee tavoitearvosanasi <span className="font-semibold text-ink">{targetGrade}</span>{' '}
+                lukusuunnitelmasta. Voit painottaa vaikeustasoa ja muokata kurssilistaa.
               </p>
 
-              <h3 className="mb-1 text-xs font-semibold uppercase tracking-widest text-ink-dim/70">Järjestys</h3>
-              <ol className="mb-3 list-decimal space-y-1 pl-5">
-                {plan.tiers.map((tier) => (
-                  <li key={tier.title}>{tier.title}</li>
-                ))}
-              </ol>
-              <p className="mb-3">
-                Kortit tulevat tässä järjestyksessä. Jokaisesta kurssista näytetään ensin oppitunti ja sitten
-                suunnitelman pyytämät tehtävät. Jos kurssi toistuu myöhemmässä vaiheessa vaikeammilla tehtävillä,
-                ne tulevat vasta silloin – perusteet ensin, vaikeimmat viimeisenä.
-              </p>
+              <h3 className={sectionTitle}>Vaikeustaso</h3>
+              <div role="radiogroup" aria-label="Vaikeustaso" className="mb-5 flex flex-col gap-2">
+                {FEED_DIFFICULTIES.map((option) => {
+                  const selected = prefs.difficulty === option.value
+                  return (
+                    <button
+                      key={option.value}
+                      type="button"
+                      role="radio"
+                      aria-checked={selected}
+                      onClick={() => onPrefsChange({ ...prefs, difficulty: option.value })}
+                      className={`rounded-2xl px-4 py-2.5 text-left ring-1 transition-colors ${
+                        selected ? 'bg-accent/10 ring-accent/50' : 'bg-surface-2 ring-ink/10 hover:ring-ink/20'
+                      }`}
+                    >
+                      <span className={`block text-sm font-semibold ${selected ? 'text-accent' : 'text-ink'}`}>
+                        {option.label}
+                      </span>
+                      <span className="block text-xs">{option.hint}</span>
+                    </button>
+                  )
+                })}
+              </div>
 
-              <h3 className="mb-1 text-xs font-semibold uppercase tracking-widest text-ink-dim/70">
-                Mukana olevat kurssit
-              </h3>
-              <ul className="mb-3 flex flex-col gap-1.5">
-                {courseTargets.map(({ code, difficulties }) => (
-                  <li key={code} className="flex items-center gap-2">
+              <div className="mb-2 flex items-baseline justify-between gap-3">
+                <h3 className={sectionTitle.replace('mb-2 ', '')}>Kurssit</h3>
+                {prefs.courses !== null && (
+                  <button
+                    type="button"
+                    onClick={() => onPrefsChange({ ...prefs, courses: null })}
+                    className="text-xs font-semibold text-accent hover:underline"
+                  >
+                    Palauta suunnitelman mukaiseksi
+                  </button>
+                )}
+              </div>
+              <p className="mb-3 text-xs">
+                Syöte kiertää kursseja tässä järjestyksessä: kolme kurssia kerrallaan, muutama tehtävä kustakin.
+                Kun kurssi tulee uudelleen vuoroon, tehtävät ovat astetta vaikeampia.
+              </p>
+              <ol className="mb-4 flex flex-col gap-1.5">
+                {courses.map((code, index) => (
+                  <li key={code} className="flex items-center gap-2 rounded-2xl bg-surface-2 py-1.5 pl-3 pr-1.5">
+                    <span className="w-4 shrink-0 text-xs font-semibold text-ink-dim/70">{index + 1}</span>
                     <span
                       className={`inline-flex shrink-0 items-center rounded-full px-2 py-0.5 text-[11px] font-semibold ring-1 ${COURSE_MAP[code].badgeClass}`}
                     >
                       {code}
                     </span>
-                    <span className="text-xs">{describe(difficulties)}</span>
+                    <span className="min-w-0 flex-1 truncate text-xs">
+                      {describe(getFeedDifficulties(targetGrade, prefs, code))}
+                    </span>
+                    <button
+                      type="button"
+                      onClick={() => move(index, -1)}
+                      disabled={index === 0}
+                      aria-label={`Siirrä ${code} ylemmäs`}
+                      className={iconButton}
+                    >
+                      <ChevronDownIcon className="h-4 w-4 rotate-180" />
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => move(index, 1)}
+                      disabled={index === courses.length - 1}
+                      aria-label={`Siirrä ${code} alemmas`}
+                      className={iconButton}
+                    >
+                      <ChevronDownIcon className="h-4 w-4" />
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setCourses(courses.filter((c) => c !== code))}
+                      disabled={courses.length === 1}
+                      aria-label={`Poista ${code} syötteestä`}
+                      className={iconButton}
+                    >
+                      <XIcon className="h-3 w-3" />
+                    </button>
                   </li>
                 ))}
-              </ul>
+              </ol>
 
-              <p className="mb-3">
-                Vaikeustasot: helpot = Osa I, keskivaikeat = Osa II, vaikeat = Osat III–IV. Kurssit, joita
-                suunnitelma ei mainitse, eivät ole syötteessä – löydät ne Kurssit-välilehdeltä.
-              </p>
+              {addable.length > 0 && (
+                <>
+                  <h3 className={sectionTitle}>Lisää kurssi</h3>
+                  <div className="mb-4 flex flex-wrap gap-1.5">
+                    {addable.map((course) => (
+                      <button
+                        key={course.code}
+                        type="button"
+                        onClick={() => setCourses([...courses, course.code])}
+                        aria-label={`Lisää ${course.code} syötteeseen`}
+                        className={`inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-semibold ring-1 ${course.badgeClass}`}
+                      >
+                        <PlusIcon className="h-3 w-3" />
+                        {course.code}
+                      </button>
+                    ))}
+                  </div>
+                </>
+              )}
 
               <p className="rounded-xl bg-surface-2 p-3 text-xs">
-                Yhteensä <span className="font-semibold text-ink">{cardCount} korttia</span>. Tavoitteen voit
-                vaihtaa Osaaminen-sivulta.
+                Yhteensä <span className="font-semibold text-ink">{cardCount} korttia</span>. Jo tekemäsi tehtävät
+                siirtyvät syötteen loppuun. Vaikeustasot: helpot = Osa I, keskivaikeat = Osa II, vaikeat = Osat
+                III–IV. Tavoitteen voit vaihtaa Osaaminen-sivulta.
               </p>
             </div>
           </div>

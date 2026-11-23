@@ -75,6 +75,24 @@ export function InfoIcon({ className }: IconProps) {
   )
 }
 
+export function SlidersIcon({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} className={className}>
+      <path d="M4 7h9M17 7h3M4 17h3M11 17h9" strokeLinecap="round" />
+      <circle cx={15} cy={7} r={2} />
+      <circle cx={9} cy={17} r={2} />
+    </svg>
+  )
+}
+
+export function PlusIcon({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5} className={className}>
+      <path d="M12 5v14M5 12h14" strokeLinecap="round" />
+    </svg>
+  )
+}
+
 export function MathSymbolIcon({ className }: IconProps) {
   return (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} className={className}>

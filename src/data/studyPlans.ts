@@ -1,8 +1,7 @@
-import { cards } from './cards'
 import { COURSE_MAP } from './courses'
 import { FINNISH_GRADES, GRADE_POINTS, type FinnishGrade, type GradePoints } from './grade'
-import { classifyDifficulty, type Difficulty } from './progress'
-import type { Card, TopicCode } from '../types'
+import type { Difficulty } from './progress'
+import type { TopicCode } from '../types'
 
 // Grades a student can set as their target. A and I have no study plan on
 // the LaudaturAkatemia site, so they aren't offered here either.
@@ -315,41 +314,6 @@ export function gradeRank(letter: string): number {
 
 export function isAppCourse(code: PlanCourseCode): code is TopicCode {
   return code in COURSE_MAP
-}
-
-// The Suositellut feed for a target grade: the plan's tiers in order, each
-// course's lesson card on its first appearance followed by that tier's task
-// cards for the course. A course that reappears in a later tier with wider
-// difficulties only contributes the tasks not shown yet, so the feed climbs
-// from fundamentals to the hard problems the plan says to end on.
-export function getRecommendedCards(grade: TargetGrade): Card[] {
-  const plan = STUDY_PLANS[grade]
-  const result: Card[] = []
-  const shownLessons = new Set<TopicCode>()
-  const shownIds = new Set<string>()
-
-  for (const tier of plan.tiers) {
-    for (const course of tier.courses) {
-      if (!isAppCourse(course.code)) continue
-      const code = course.code
-      const wanted = new Set(course.difficulties)
-
-      if (!shownLessons.has(code)) {
-        shownLessons.add(code)
-        const lesson = cards.find((card) => card.topic.code === code && card.type === 'lesson')
-        if (lesson) result.push(lesson)
-      }
-
-      for (const card of cards) {
-        if (card.topic.code !== code || card.type !== 'task' || shownIds.has(card.id)) continue
-        if (!wanted.has(classifyDifficulty(card.problem.section))) continue
-        shownIds.add(card.id)
-        result.push(card)
-      }
-    }
-  }
-
-  return result
 }
 
 export interface CourseTarget {

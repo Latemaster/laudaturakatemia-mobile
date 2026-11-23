@@ -1,4 +1,4 @@
-import { useMemo, useState, type CSSProperties } from 'react'
+import { useMemo, useRef, useState, type CSSProperties } from 'react'
 import Feed from './components/Feed'
 import TopMenu from './components/TopMenu'
 import CourseList from './components/CourseList'
@@ -7,7 +7,8 @@ import FeedInfo from './components/FeedInfo'
 import FeedIntroCard from './components/FeedIntroCard'
 import EvaluationList from './components/EvaluationList'
 import { cards, getConceptCards, getExerciseCards, groupExercisesByConcept } from './data/cards'
-import { getRecommendedCards, loadTargetGrade, type TargetGrade } from './data/studyPlans'
+import { loadTargetGrade, type TargetGrade } from './data/studyPlans'
+import { getRecommendedCards, loadFeedPrefs, saveFeedPrefs, type FeedPrefs } from './data/feed'
 import { loadCourseGrades, saveCourseGrades, type CourseGrade, type CourseGrades } from './data/courseGrades'
 import {
   loadKnowledge,
@@ -52,6 +53,19 @@ function App() {
   // Per-theme knowledge evidence (data/knowledge.ts): first attempts at
   // cards. Drives the theme scores on the Osaaminen page.
   const [knowledge, setKnowledge] = useState<KnowledgeState>(loadKnowledge)
+  // Suositellut's own settings (difficulty, course list), edited from the
+  // feed's settings sheet.
+  const [feedPrefs, setFeedPrefs] = useState<FeedPrefs>(loadFeedPrefs)
+  // Read when the feed is built, but not a dependency of it: answering a
+  // card must not reshuffle the feed under the student's thumb. Answered
+  // cards move to the back the next time the feed is opened or re-tuned.
+  const knowledgeRef = useRef(knowledge)
+  knowledgeRef.current = knowledge
+
+  function handleFeedPrefsChange(next: FeedPrefs) {
+    setFeedPrefs(next)
+    saveFeedPrefs(next)
+  }
 
   function handleAnswer(cardId: string, correct: boolean) {
     setKnowledge((prev) => {
@@ -85,7 +99,11 @@ function App() {
     setEngagedIds((prev) => (prev[cardId] ? prev : { ...prev, [cardId]: true }))
   }
 
-  const recommendedCards = useMemo(() => getRecommendedCards(targetGrade), [targetGrade])
+  const onSuositellut = section === 'suositellut'
+  const recommendedCards = useMemo(
+    () => (onSuositellut ? getRecommendedCards(targetGrade, feedPrefs, knowledgeRef.current.attempts) : []),
+    [targetGrade, feedPrefs, onSuositellut],
+  )
 
   const feedCards = useMemo(() => {
     if (section === 'kurssit' && selectedCourse) {
@@ -137,10 +155,17 @@ function App() {
         />
       )}
       {section === 'arviointi' && <EvaluationList />}
-      {section === 'suositellut' && <FeedInfo targetGrade={targetGrade} cardCount={recommendedCards.length} />}
+      {section === 'suositellut' && (
+        <FeedInfo
+          targetGrade={targetGrade}
+          prefs={feedPrefs}
+          onPrefsChange={handleFeedPrefsChange}
+          cardCount={recommendedCards.length}
+        />
+      )}
       {showFeed && (
         <Feed
-          key={section === 'kurssit' && selectedCourse ? selectedCourse : `suositellut-${targetGrade}`}
+          key={section === 'kurssit' && selectedCourse ? selectedCourse : `suositellut-${targetGrade}-${JSON.stringify(feedPrefs)}`}
           cards={feedCards}
           onEngage={handleEngage}
           onAnswer={handleAnswer}
