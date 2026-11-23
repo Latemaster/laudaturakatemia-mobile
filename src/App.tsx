@@ -13,11 +13,8 @@ import {
   loadKnowledge,
   recordAttempt,
   saveKnowledge,
-  setPoll,
   type KnowledgeState,
-  type PollLevel,
 } from './data/knowledge'
-import type { ThemeId } from './data/themes'
 import type { Card, TopicCode } from './types'
 import { LayoutContext, useIsDesktopViewport } from './layout/LayoutContext'
 import DesktopTopBar from './layout/DesktopTopBar'
@@ -52,22 +49,14 @@ function App() {
   // as an early indication of their level. Kept here rather than in the
   // page so a later knowledge check elsewhere can reflect against them.
   const [courseGrades, setCourseGrades] = useState<CourseGrades>(loadCourseGrades)
-  // Per-theme knowledge evidence (data/knowledge.ts): pre-poll answers and
-  // first attempts at cards. Drives the theme scores on the Osaaminen page.
+  // Per-theme knowledge evidence (data/knowledge.ts): first attempts at
+  // cards. Drives the theme scores on the Osaaminen page.
   const [knowledge, setKnowledge] = useState<KnowledgeState>(loadKnowledge)
 
   function handleAnswer(cardId: string, correct: boolean) {
     setKnowledge((prev) => {
       const next = recordAttempt(prev, cardId, correct ? 1 : 0)
       if (next !== prev) saveKnowledge(next)
-      return next
-    })
-  }
-
-  function handlePollChange(themeId: ThemeId, level: PollLevel | undefined) {
-    setKnowledge((prev) => {
-      const next = setPoll(prev, themeId, level)
-      saveKnowledge(next)
       return next
     })
   }
@@ -145,7 +134,6 @@ function App() {
           courseGrades={courseGrades}
           onCourseGradeChange={handleCourseGradeChange}
           knowledge={knowledge}
-          onPollChange={handlePollChange}
         />
       )}
       {section === 'arviointi' && <EvaluationList />}
@@ -164,8 +152,6 @@ function App() {
                 targetGrade={targetGrade}
                 courseGrades={courseGrades}
                 onCourseGradeChange={handleCourseGradeChange}
-                polls={knowledge.polls}
-                onPollChange={handlePollChange}
               />
             ) : undefined
           }

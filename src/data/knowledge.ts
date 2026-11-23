@@ -471,10 +471,6 @@ interface StoredKnowledge extends KnowledgeState {
   version: number
 }
 
-function isPollLevel(value: unknown): value is PollLevel {
-  return value === 0 || value === 1 || value === 2 || value === 3
-}
-
 function isAttemptResult(value: unknown): value is AttemptResult {
   return value === 0 || value === 0.5 || value === 1
 }
@@ -488,10 +484,9 @@ export function loadKnowledge(): KnowledgeState {
     const raw = parsed as Partial<StoredKnowledge>
     if (raw.version !== STORAGE_VERSION) return EMPTY_KNOWLEDGE
 
+    // The esikysely was removed from the UI, so answers stored by older
+    // versions are dropped rather than left as invisible, uneditable priors.
     const polls: KnowledgeState['polls'] = {}
-    for (const [themeId, level] of Object.entries(raw.polls ?? {})) {
-      if (THEME_MAP[themeId] && isPollLevel(level)) polls[themeId] = level
-    }
     const attempts: KnowledgeState['attempts'] = {}
     for (const [cardId, attempt] of Object.entries(raw.attempts ?? {})) {
       if (typeof attempt !== 'object' || attempt === null) continue

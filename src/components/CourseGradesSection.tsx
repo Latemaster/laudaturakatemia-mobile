@@ -8,8 +8,6 @@ import {
   type CourseGrades,
 } from '../data/courseGrades'
 import type { FinnishGrade } from '../data/grade'
-import { POLL_OPTIONS, type KnowledgeState, type PollLevel } from '../data/knowledge'
-import { THEMES, type ThemeId } from '../data/themes'
 import EsitiedotView from './EsitiedotView'
 import InfoToggle, { InfoPanel } from './InfoToggle'
 import { useLayout } from '../layout/LayoutContext'
@@ -18,8 +16,6 @@ import type { TopicCode } from '../types'
 interface CourseGradesSectionProps {
   courseGrades: CourseGrades
   onCourseGradeChange: (code: TopicCode, grade: CourseGrade | undefined) => void
-  polls: KnowledgeState['polls']
-  onPollChange: (themeId: ThemeId, level: PollLevel | undefined) => void
   // The explanation's open state, held by the page: on laptops it replaces
   // the section's contents and grows into the chart's room.
   infoOpen?: boolean
@@ -32,14 +28,12 @@ const TIER_BADGE: Record<FinnishGrade['tier'], string> = {
   low: 'bg-bad/15 text-bad ring-bad/30',
 }
 
-// "Osaaminen esitiedot": the student's lukio grades and pre-poll answers.
+// "Osaaminen esitiedot": the student's lukio course grades.
 // Shows a summary; the whole row opens EsitiedotView with the course list,
 // the same pattern as the tavoitearvosana row.
 export default function CourseGradesSection({
   courseGrades,
   onCourseGradeChange,
-  polls,
-  onPollChange,
   infoOpen = false,
   onInfoOpenChange,
 }: CourseGradesSectionProps) {
@@ -48,15 +42,13 @@ export default function CourseGradesSection({
   const indication = getEarlyIndication(courseGrades)
   const { average } = indication
   const hasGrades = average !== null
-  const answeredThemes = THEMES.filter((theme) => polls[theme.id] !== undefined).length
   const infoInPlace = isDesktop && infoOpen
 
   const info = (
     <>
       <p className="mb-2">
-        Esitiedot antavat arvion osaamisesta jo ennen kuin tehtäviä on tehty. Valitse Muuta, avaa kurssi ja
-        täytä lukion kurssiarvosanasi (4–10) sekä esikysely, jossa kerrot jokaisesta kurssin teemasta, kuinka
-        hyvin osaat sen.
+        Esitiedot antavat arvion osaamisesta jo ennen kuin tehtäviä on tehty. Napauta korttia ja täytä lukion
+        kurssiarvosanasi (4–10).
       </p>
       <p className="mb-2">Arvosanojen keskiarvo muunnetaan yo-arvosanaksi samalle pisteasteikolle kuin ennuste:</p>
       <ul className="mb-2 flex flex-wrap gap-x-3 gap-y-1">
@@ -66,21 +58,8 @@ export default function CourseGradesSection({
           </li>
         ))}
       </ul>
-      <p className="mb-2">
-        Esikyselyn vastaus on teeman osaamisarvion lähtökohta ja painaa yhtä paljon kuin kaksi pikatehtävää.
-        Tehtävien vastaukset tarkentavat sitä.
-      </p>
-      <ul className="mb-2 flex flex-col gap-1">
-        {POLL_OPTIONS.map((option) => (
-          <li key={option.level}>
-            <span className="font-semibold text-ink">{option.label}</span> = {Math.round(option.prior * 100)} %
-            {' · '}
-            {option.description}
-          </li>
-        ))}
-      </ul>
       <p>
-        Jos teemaan ei ole vastattu, lähtökohtana käytetään kurssiarvosanaa. Tyhjäksi jätetyt kurssit eivät
+        Kurssiarvosana on kurssin teemojen lähtöarvio, ja tehtävien vastaukset tarkentavat sitä. Tyhjäksi jätetyt kurssit eivät
         vaikuta keskiarvoon.
       </p>
     </>
@@ -129,7 +108,7 @@ export default function CourseGradesSection({
               {average !== null ? `Keskiarvo ${formatAverage(average)} · ${indication.pct} %` : 'Ei vielä arvosanoja'}
             </span>
             <span className="text-xs text-ink-dim">
-              {indication.filled}/{indication.total} arvosanaa · esikysely {answeredThemes}/{THEMES.length} teemaa
+              {indication.filled}/{indication.total} arvosanaa
             </span>
           </div>
         </button>
@@ -139,8 +118,6 @@ export default function CourseGradesSection({
         <EsitiedotView
           courseGrades={courseGrades}
           onCourseGradeChange={onCourseGradeChange}
-          polls={polls}
-          onPollChange={onPollChange}
           onClose={() => setOpen(false)}
         />
       )}

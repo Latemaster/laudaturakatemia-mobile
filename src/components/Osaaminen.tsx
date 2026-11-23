@@ -11,15 +11,12 @@ import {
   computeKnowledge,
   EXERCISE_WEIGHT,
   FALLBACK_PRIOR_WEIGHT,
-  POLL_PRIOR_WEIGHT,
   RELIABILITY_LEVELS,
   TASK_WEIGHT,
   type EstimateReliability,
   type OverallEstimate,
   type KnowledgeState,
-  type PollLevel,
 } from '../data/knowledge'
-import type { ThemeId } from '../data/themes'
 import CourseGradesSection from './CourseGradesSection'
 import InfoToggle, { InfoPanel } from './InfoToggle'
 import ProgressChart from './ProgressChart'
@@ -34,7 +31,6 @@ interface OsaaminenProps {
   courseGrades: CourseGrades
   onCourseGradeChange: (code: TopicCode, grade: CourseGrade | undefined) => void
   knowledge: KnowledgeState
-  onPollChange: (themeId: ThemeId, level: PollLevel | undefined) => void
 }
 
 const TIER_CLASSES: Record<FinnishGrade['tier'], { badge: string; text: string; stroke: string; bar: string }> = {
@@ -147,7 +143,6 @@ export default function Osaaminen({
   courseGrades,
   onCourseGradeChange,
   knowledge,
-  onPollChange,
 }: OsaaminenProps) {
   const { isDesktop } = useLayout()
   const [targetOpen, setTargetOpen] = useState(false)
@@ -175,9 +170,8 @@ export default function Osaaminen({
       </p>
       <ul className="mb-2 flex list-disc flex-col gap-1 pl-4">
         <li>
-          <span className="font-semibold text-ink">Lähtötaso</span> tulee esitiedoista: esikyselyn
-          vastaus (paino {POLL_PRIOR_WEIGHT}) tai, jos teemaan ei ole vastattu, kurssiarvosana (paino{' '}
-          {FALLBACK_PRIOR_WEIGHT}).
+          <span className="font-semibold text-ink">Lähtötaso</span> tulee esitiedoista: kurssin
+          lukioarvosana (paino {FALLBACK_PRIOR_WEIGHT}).
         </li>
         <li>
           <span className="font-semibold text-ink">Tehtävät</span>: vain ensimmäinen vastaus kuhunkin
@@ -309,8 +303,6 @@ export default function Osaaminen({
           <CourseGradesSection
             courseGrades={courseGrades}
             onCourseGradeChange={onCourseGradeChange}
-            polls={knowledge.polls}
-            onPollChange={onPollChange}
             infoOpen={esitiedotInfoOpen}
             onInfoOpenChange={setEsitiedotInfoOpen}
           />

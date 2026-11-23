@@ -2,9 +2,7 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { COURSES } from '../data/courses'
 import type { CourseGrade, CourseGrades } from '../data/courseGrades'
-import type { KnowledgeState, PollLevel } from '../data/knowledge'
 import type { TargetGrade } from '../data/studyPlans'
-import { THEMES, type ThemeId } from '../data/themes'
 import type { TopicCode } from '../types'
 import EsitiedotView from './EsitiedotView'
 import KindLabel from './KindLabel'
@@ -15,8 +13,6 @@ interface FeedIntroCardProps {
   targetGrade: TargetGrade
   courseGrades: CourseGrades
   onCourseGradeChange: (code: TopicCode, grade: CourseGrade | undefined) => void
-  polls: KnowledgeState['polls']
-  onPollChange: (themeId: ThemeId, level: PollLevel | undefined) => void
 }
 
 // The Suositellut feed's first card, always: what the feed is, and the
@@ -26,16 +22,13 @@ export default function FeedIntroCard({
   targetGrade,
   courseGrades,
   onCourseGradeChange,
-  polls,
-  onPollChange,
 }: FeedIntroCardProps) {
   const { isDesktop } = useLayout()
   const [esitiedotOpen, setEsitiedotOpen] = useState(false)
 
   const gradesFilled = COURSES.filter((course) => courseGrades[course.code] !== undefined).length
-  const themesAnswered = THEMES.filter((theme) => polls[theme.id] !== undefined).length
-  const started = gradesFilled > 0 || themesAnswered > 0
-  const complete = gradesFilled === COURSES.length && themesAnswered === THEMES.length
+  const started = gradesFilled > 0
+  const complete = gradesFilled === COURSES.length
 
   const header = (
     <>
@@ -71,10 +64,10 @@ export default function FeedIntroCard({
       <p className="mt-2 text-sm leading-relaxed text-ink-dim">
         {complete
           ? 'Ennusteesi lähtee liikkeelle esitiedoistasi, ja tehtävien vastaukset tarkentavat sitä.'
-          : 'Täytä kurssikohtaiset esitiedot osaamisestasi. Laskemme Sinulle alustavan arvosana ennusteen, jota tarkennamme kun teet tehtäviä.'}
+          : 'Täytä lukion kurssiarvosanasi. Laskemme Sinulle alustavan arvosana ennusteen, jota tarkennamme kun teet tehtäviä.'}
       </p>
       <p className="mt-3 text-xs font-semibold text-ink-dim">
-        {gradesFilled}/{COURSES.length} kurssiarvosanaa · esikysely {themesAnswered}/{THEMES.length} teemaa
+        {gradesFilled}/{COURSES.length} kurssiarvosanaa
       </p>
       <button
         type="button"
@@ -106,8 +99,6 @@ export default function FeedIntroCard({
     <EsitiedotView
       courseGrades={courseGrades}
       onCourseGradeChange={onCourseGradeChange}
-      polls={polls}
-      onPollChange={onPollChange}
       onClose={() => setEsitiedotOpen(false)}
     />
   )
