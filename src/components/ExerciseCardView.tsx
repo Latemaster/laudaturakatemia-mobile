@@ -372,37 +372,54 @@ export function ExerciseBody({ card, onAnswer, split = false }: ExerciseCardView
 export default function ExerciseCardView({ card, onAnswer }: ExerciseCardViewProps) {
   const [isExpanded, setIsExpanded] = useState(false)
   const { isDesktop } = useLayout()
+  const kind = (
+    <KindLabel
+      icon={card.kind === 'numeric' ? <PencilIcon /> : <ListCheckIcon />}
+      label={card.kind === 'numeric' ? 'Laske ja vastaa' : 'Monivalinta'}
+    />
+  )
+
+  if (!isDesktop) {
+    // Phones: the card's header only names the kind; the question opens
+    // the content, so a long one fades out with the rest under "Vastaa
+    // koko näytöllä" rather than pushing the answer off the card.
+    return (
+      <CardShell topic={card.topic} header={<div className="-mb-2">{kind}</div>}>
+        <ExpandableBox
+          className="px-5 pb-5 pt-4"
+          isExpanded={isExpanded}
+          onExpandedChange={setIsExpanded}
+          overflowAction={{ label: 'Vastaa koko näytöllä' }}
+        >
+          <h2 className={`mb-4 font-semibold leading-snug text-ink ${isExpanded ? 'mr-12 text-2xl' : 'text-xl'}`}>
+            {card.question}
+          </h2>
+          <ExerciseBody card={card} onAnswer={onAnswer} />
+        </ExpandableBox>
+      </CardShell>
+    )
+  }
 
   return (
     <CardShell
       topic={card.topic}
       header={
         <>
-          <KindLabel
-            icon={card.kind === 'numeric' ? <PencilIcon /> : <ListCheckIcon />}
-            label={card.kind === 'numeric' ? 'Laske ja vastaa' : 'Monivalinta'}
-          />
+          {kind}
           <motion.h2
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: false, amount: 0.6 }}
             transition={{ duration: 0.4 }}
-            className={`mb-6 font-semibold leading-snug text-ink ${isDesktop ? 'text-3xl' : 'text-2xl'}`}
+            className="mb-6 text-3xl font-semibold leading-snug text-ink"
           >
             {card.question}
           </motion.h2>
         </>
       }
     >
-      <ExpandableBox
-        className={isDesktop ? 'card-box-max' : ''}
-        sizing={isDesktop ? 'natural' : 'fill'}
-        isExpanded={isExpanded}
-        onExpandedChange={setIsExpanded}
-      >
-        {isExpanded && (
-          <h2 className="mb-4 text-2xl font-semibold leading-snug text-ink">{card.question}</h2>
-        )}
+      <ExpandableBox className="card-box-max" sizing="natural" isExpanded={isExpanded} onExpandedChange={setIsExpanded}>
+        {isExpanded && <h2 className="mb-4 text-2xl font-semibold leading-snug text-ink">{card.question}</h2>}
         <ExerciseBody card={card} onAnswer={onAnswer} />
       </ExpandableBox>
     </CardShell>

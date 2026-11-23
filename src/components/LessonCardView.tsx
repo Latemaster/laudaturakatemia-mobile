@@ -24,7 +24,7 @@ export default function LessonCardView({ card, showSwipeHint }: LessonCardViewPr
       initial={{ opacity: 0 }}
       animate={{ opacity: 1, y: [0, -8, 0] }}
       transition={{ delay: 0.8, duration: 1.6, repeat: Infinity }}
-      className={`flex flex-col gap-1 text-sm text-ink-dim ${isDesktop ? 'mt-4 items-start' : 'mt-10 items-center'}`}
+      className={`flex flex-col gap-1 text-sm text-ink-dim ${isDesktop ? 'mt-4 items-start' : 'mt-3 items-center'}`}
     >
       <span>{isDesktop ? 'Vieritä alas jatkaaksesi' : 'Pyyhkäise ylös jatkaaksesi'}</span>
       <span aria-hidden>{isDesktop ? '↓' : '↑'}</span>
@@ -34,6 +34,7 @@ export default function LessonCardView({ card, showSwipeHint }: LessonCardViewPr
   return (
     <CardShell
       topic={card.topic}
+      below={!isDesktop && swipeHint}
       header={
         <>
           <KindLabel icon={<BookIcon />} label="Oppitunti" />
@@ -42,7 +43,7 @@ export default function LessonCardView({ card, showSwipeHint }: LessonCardViewPr
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: false, amount: 0.6 }}
             transition={{ duration: 0.4 }}
-            className="mb-4 text-3xl font-bold leading-tight text-ink"
+            className={`font-bold leading-tight text-ink ${isDesktop ? 'mb-4 text-3xl' : 'text-2xl'}`}
           >
             {card.title}
           </motion.h1>
@@ -51,11 +52,15 @@ export default function LessonCardView({ card, showSwipeHint }: LessonCardViewPr
       }
     >
       <ExpandableBox
-        className={`rounded-2xl border border-ink/10 bg-surface p-4 shadow-sm ${isDesktop ? 'card-box-max p-6' : ''}`}
+        className={
+          isDesktop ? 'card-box-max rounded-2xl border border-ink/10 bg-surface p-6 shadow-sm' : 'px-5 pb-5 pt-4'
+        }
         sizing={isDesktop ? 'natural' : 'fill'}
         isExpanded={isExpanded}
         onExpandedChange={setIsExpanded}
+        overflowAction={isDesktop ? undefined : { label: 'Lue koko näytöllä' }}
       >
+        {isExpanded && <h1 className="mb-4 mr-12 text-2xl font-bold leading-tight text-ink">{card.title}</h1>}
         {Visual && (
           <div className="mb-4">
             <Visual />
@@ -65,8 +70,6 @@ export default function LessonCardView({ card, showSwipeHint }: LessonCardViewPr
           <MathText content={card.body} />
         </div>
       </ExpandableBox>
-
-      {!isDesktop && swipeHint}
     </CardShell>
   )
 }

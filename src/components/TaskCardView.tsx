@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useCallback, useMemo, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { motion } from 'framer-motion'
 import type { TaskCard } from '../types'
@@ -13,7 +13,7 @@ import RubricPanel from './RubricPanel'
 import SolutionToggle from './SolutionToggle'
 import TaskAnswerView from './TaskAnswerView'
 import { toKatexAnswer } from './mathAnswerFormat'
-import { PencilIcon } from './icons'
+import { ExpandIcon, PencilIcon } from './icons'
 import { answerPartsFromPrompt, answerPartsFromRubric } from './answerParts'
 import PointsBadge, { pointsColor, useTaskPoints } from './course/PointsBadge'
 import { evaluationId } from './course/exerciseState'
@@ -49,6 +49,8 @@ export default function TaskCardView({
   const [showSolution, setShowSolution] = useState(false)
   const [checkOpen, setCheckOpen] = useState(false)
   const [celebrate, setCelebrate] = useState(0)
+  const [isOverflowing, setIsOverflowing] = useState(false)
+  const handleOverflowChange = useCallback((overflowing: boolean) => setIsOverflowing(overflowing), [])
   const { problem } = card
   const { isDesktop } = useLayout()
   const rubricExercise = useMemo(() => RUBRIC_EXERCISES.find((e) => e.id === evaluationId(card)), [card])
@@ -105,7 +107,7 @@ export default function TaskCardView({
     <CardShell
       topic={card.topic}
       header={
-        <div className="mb-3 flex items-start justify-between gap-3">
+        <div className={`flex items-start justify-between gap-3 ${isDesktop ? 'mb-3' : ''}`}>
           <div className="min-w-0">
             <KindLabel icon={<PencilIcon />} label="Tehtävä" />
             <h2 className={`font-semibold text-ink ${isDesktop ? 'text-2xl' : 'text-lg leading-snug'}`}>
@@ -121,10 +123,16 @@ export default function TaskCardView({
       }
     >
       <ExpandableBox
-        className={`rounded-2xl border border-ink/10 bg-surface p-4 shadow-sm ${isDesktop ? 'card-box-max p-6' : ''}`}
+        className={
+          isDesktop ? 'card-box-max rounded-2xl border border-ink/10 bg-surface p-6 shadow-sm' : 'px-5 pb-5 pt-4'
+        }
         sizing={isDesktop ? 'natural' : 'fill'}
         isExpanded={isExpanded}
         onExpandedChange={handleExpandedChange}
+        onOverflowChange={handleOverflowChange}
+        // Unanswered, the footer button takes over (see below). Once
+        // answered, a button over the fade opens the whole problem.
+        overflowAction={isDesktop ? undefined : hasAnswered ? { label: 'Näytä koko tehtävä' } : 'fade'}
       >
         {isExpanded && hasAnswered && (
           // Sits left of ExpandableBox's close button, which is fixed at the
@@ -136,19 +144,19 @@ export default function TaskCardView({
         <ProblemBlocks blocks={showSolution ? problem.answerBlocks : problem.promptBlocks} />
       </ExpandableBox>
 
+      {/* Phones: the card's footer, always the same height so it can't
+          change whether the problem overflows. A problem too long for the
+          card is answered "koko näytöllä": the answer view shows all of it
+          above the editor. */}
       {!isExpanded && (
-        <div
-          className={
-            isDesktop ? 'mt-4' : 'sticky bottom-0 z-20 mt-4 bg-gradient-to-t from-page from-60% to-transparent pb-4 pt-6'
-          }
-        >
+        <div className={isDesktop ? 'mt-4' : 'shrink-0 border-t border-ink/10 px-4 py-3'}>
           {hasAnswered ? (
             <button
               type="button"
               onClick={openAnswer}
-              className="w-full rounded-2xl bg-surface p-3 text-left shadow-md"
+              className="w-full rounded-2xl bg-surface p-3 text-left"
               // Outlined in the points' colour, as the laptop box is.
-              style={{ boxShadow: `0 0 0 2px ${pointsColor(points)}, 0 4px 6px rgba(0, 0, 0, 0.08)` }}
+              style={{ boxShadow: `0 0 0 2px ${pointsColor(points)}` }}
             >
               <span className="mb-1 block text-sm font-semibold" style={{ color: pointsColor(points) }}>
                 Vastaus lähetetty
@@ -162,9 +170,10 @@ export default function TaskCardView({
             <button
               type="button"
               onClick={openAnswer}
-              className="w-full rounded-2xl bg-accent px-4 py-3 text-center font-semibold text-white shadow-md"
+              className="flex w-full items-center justify-center gap-2 rounded-2xl bg-accent px-4 py-3 text-center font-semibold text-white shadow-md"
             >
-              Vastaa tehtävään
+              {isOverflowing && !isDesktop && <ExpandIcon className="h-4 w-4" />}
+              {isOverflowing && !isDesktop ? 'Vastaa koko näytöllä' : 'Vastaa tehtävään'}
             </button>
           )}
         </div>

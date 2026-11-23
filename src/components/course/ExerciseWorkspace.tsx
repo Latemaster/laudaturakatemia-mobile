@@ -21,7 +21,14 @@ import KindLabel from '../KindLabel'
 import { ExerciseBody } from '../ExerciseCardView'
 import { ExpandIcon, ListCheckIcon, PencilIcon } from '../icons'
 import TaskFullView, { type FullViewMode, type FullViewNav } from './TaskFullView'
-import PointsBadge, { pointsColor, useTaskPoints, type Points } from './PointsBadge'
+import PointsBadge, {
+  CardGlow,
+  QUICK_POINTS_HINT,
+  pointsColor,
+  useQuickPoints,
+  useTaskPoints,
+  type Points,
+} from './PointsBadge'
 
 // Laptop Kurssit › Tehtävät: every exercise in the same frame, a box of
 // fixed size that fills the panel and never scrolls, so stepping through
@@ -60,6 +67,8 @@ interface FrameProps {
   onOpenPoints?: () => void
   // Bumped when the points are saved, to fill the points up again.
   celebrate?: number
+  // The points tile's tooltip before there is anything to score.
+  pointsHint?: string
   // Buttons after the title's tags; the top-right corner is the points'.
   actions?: ReactNode
   // Outlines the box in the points' colour, so an answered exercise stands
@@ -77,6 +86,7 @@ export function ExerciseFrame({
   points,
   onOpenPoints,
   celebrate,
+  pointsHint,
   actions,
   answered,
   course,
@@ -84,9 +94,11 @@ export function ExerciseFrame({
 }: FrameProps) {
   return (
     <section
-      className="flex min-h-0 min-w-0 flex-1 flex-col overflow-hidden rounded-3xl bg-surface shadow-sm ring-1 ring-ink/5 transition-shadow"
+      className="relative flex min-h-0 min-w-0 flex-1 flex-col overflow-hidden rounded-3xl bg-surface shadow-sm ring-1 ring-ink/5 transition-shadow"
       style={answered ? { boxShadow: `0 0 0 2px ${pointsColor(points)}, 0 1px 2px rgba(0, 0, 0, 0.05)` } : undefined}
     >
+      {/* The whole box lights up as the points come in. */}
+      <CardGlow trigger={celebrate ?? 0} points={points} />
       <header className="flex shrink-0 items-center justify-between gap-4 border-b border-ink/10 px-7 pb-4 pt-5">
         <div className="min-w-0">
           {kind}
@@ -99,7 +111,7 @@ export function ExerciseFrame({
         </div>
         {points && (
           <div className="shrink-0">
-            <PointsBadge points={points} onOpen={onOpenPoints} celebrate={celebrate} />
+            <PointsBadge points={points} onOpen={onOpenPoints} celebrate={celebrate} hint={pointsHint} />
           </div>
         )}
       </header>
@@ -496,6 +508,7 @@ function QuickExerciseWorkspace({
   course?: Topic
   onAnswer: (correct: boolean) => void
 }) {
+  const { points, celebrate, answer } = useQuickPoints(onAnswer)
   return (
     <ExerciseFrame
       course={course}
@@ -507,8 +520,12 @@ function QuickExerciseWorkspace({
       }
       title={title}
       badge={badge}
+      points={points}
+      pointsHint={QUICK_POINTS_HINT}
+      celebrate={celebrate}
+      answered={points.done}
     >
-      <ExerciseBody card={card} onAnswer={onAnswer} split />
+      <ExerciseBody card={card} onAnswer={answer} split />
     </ExerciseFrame>
   )
 }

@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import { exerciseMaxPoints, markedCount, scoredPoints, type EvaluationAttempt } from '../../data/evaluation'
 import type { RubricExercise } from '../../data/rubrics'
@@ -106,11 +106,14 @@ export default function PointsBadge({
   onOpen,
   celebrate = 0,
   compact = false,
+  hint = 'Lähetä vastaus, niin voit pisteyttää sen',
 }: {
   points: Points
   onOpen?: () => void
   celebrate?: number
   compact?: boolean
+  // The tooltip while the tile can't be opened.
+  hint?: string
 }) {
   const { scored, max, done } = points
   const counting = useCountUp(scored, celebrate)
@@ -203,7 +206,7 @@ export default function PointsBadge({
       {...pulse}
       className={className}
       style={style}
-      title="Lähetä vastaus, niin voit pisteyttää sen"
+      title={hint}
     >
       {content}
     </motion.div>
@@ -226,4 +229,55 @@ export function useTaskPoints(
       done: marked.marked === marked.total,
     }
   }, [rubricExercise, scores])
+}
+
+// The whole card lighting up as points come in: a glow in the points'
+// colour that swells in from the card's edges and fades, timed with the tile
+// filling up. Each change of `trigger` plays it once; 0 shows nothing.
+// Sits inside a positioned card, under its content's pointer events.
+export function CardGlow({
+  trigger,
+  points,
+  className = 'rounded-3xl',
+}: {
+  trigger: number
+  points: Points | undefined
+  className?: string
+}) {
+  if (trigger === 0) return null
+  return (
+    <motion.span
+      key={trigger}
+      aria-hidden
+      initial={{ opacity: 0 }}
+      animate={{ opacity: [0, 1, 1, 0] }}
+      transition={{ delay: 0.2, duration: 1.8, times: [0, 0.2, 0.55, 1], ease: 'easeOut' }}
+      className={`pointer-events-none absolute inset-0 z-10 ${className}`}
+      style={{
+        boxShadow: `inset 0 0 0 3px ${pointsColor(points)}, inset 0 0 48px ${pointsColor(points, 0.35)}`,
+        background: `radial-gradient(ellipse at top right, ${pointsColor(points, 0.12)}, transparent 70%)`,
+      }}
+    />
+  )
+}
+
+export const QUICK_POINTS_HINT = 'Vastaa, niin saat pisteen'
+
+// A quick exercise's single point: "– / 1 p" until it's checked, then 1 or
+// 0 by the latest check. A right answer bumps `celebrate`, so the tile
+// fills with a "+1 p" and the card lights up. `answer` wraps the
+// exercise's own onAnswer.
+export function useQuickPoints(onAnswer?: (correct: boolean) => void) {
+  const [correct, setCorrect] = useState<boolean | null>(null)
+  const [celebrate, setCelebrate] = useState(0)
+  const answer = useCallback(
+    (isCorrect: boolean) => {
+      setCorrect(isCorrect)
+      if (isCorrect) setCelebrate((c) => c + 1)
+      onAnswer?.(isCorrect)
+    },
+    [onAnswer],
+  )
+  const points: Points = { scored: correct === null ? null : correct ? 1 : 0, max: 1, done: correct !== null }
+  return { points, celebrate, answer }
 }

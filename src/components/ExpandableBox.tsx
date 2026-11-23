@@ -14,6 +14,13 @@ interface ExpandableBoxProps {
   sizing?: 'fill' | 'natural'
   isExpanded: boolean
   onExpandedChange: (expanded: boolean) => void
+  // When set, overflowing content fades out under a labelled button
+  // ("Vastaa koko näytöllä") instead of the small corner icon. onClick
+  // defaults to opening the box full screen. 'fade' fades the content out
+  // with no button, for a card whose own button takes over.
+  overflowAction?: { label: string; onClick?: () => void } | 'fade'
+  // Tells the card whether the content currently overflows.
+  onOverflowChange?: (overflowing: boolean) => void
   children: ReactNode
 }
 
@@ -27,6 +34,8 @@ export default function ExpandableBox({
   sizing = 'fill',
   isExpanded,
   onExpandedChange,
+  overflowAction,
+  onOverflowChange,
   children,
 }: ExpandableBoxProps) {
   const placeholderRef = useRef<HTMLDivElement>(null)
@@ -73,9 +82,33 @@ export default function ExpandableBox({
     return () => observer.disconnect()
   }, [isExpanded, portalHost])
 
+  useEffect(() => {
+    onOverflowChange?.(isOverflowing)
+  }, [isOverflowing, onOverflowChange])
+
+  const showOverflow = isOverflowing && !isExpanded
+
   return (
     <div ref={placeholderRef} className={sizing === 'fill' ? 'relative min-h-0 flex-1' : 'relative'}>
-      {isOverflowing && !isExpanded && (
+      {showOverflow && overflowAction && (
+        <div
+          className={`pointer-events-none absolute inset-x-0 bottom-0 z-10 flex items-end justify-center bg-gradient-to-t ${fadeClassName} via-surface/90 to-transparent ${
+            overflowAction === 'fade' ? 'h-20' : 'h-32 pb-5'
+          }`}
+        >
+          {overflowAction !== 'fade' && (
+            <button
+              type="button"
+              onClick={overflowAction.onClick ?? (() => onExpandedChange(true))}
+              className="pointer-events-auto flex items-center gap-1.5 rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-white shadow-md active:opacity-90"
+            >
+              <ExpandIcon className="h-4 w-4" />
+              {overflowAction.label}
+            </button>
+          )}
+        </div>
+      )}
+      {showOverflow && !overflowAction && (
         <button
           type="button"
           onClick={() => onExpandedChange(true)}
@@ -91,7 +124,7 @@ export default function ExpandableBox({
           <div ref={innerRef} className="flex flex-col">
             {children}
           </div>
-          {isOverflowing && !isExpanded && (
+          {showOverflow && !overflowAction && (
             <div
               aria-hidden
               className={`pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t ${fadeClassName} to-transparent`}

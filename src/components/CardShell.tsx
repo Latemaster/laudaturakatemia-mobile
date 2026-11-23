@@ -9,9 +9,11 @@ interface CardShellProps {
   // of being a tall, narrow strip in the middle.
   header?: ReactNode
   children: ReactNode
+  // Phones: shown under the card, on the page (the swipe hint).
+  below?: ReactNode
 }
 
-export default function CardShell({ topic, header, children }: CardShellProps) {
+export default function CardShell({ topic, header, children, below }: CardShellProps) {
   const { isDesktop } = useLayout()
   // The course in plain text, as the laptop Kurssit sidebar names it.
   const badge = (
@@ -34,13 +36,20 @@ export default function CardShell({ topic, header, children }: CardShellProps) {
     )
   }
 
+  // Phones: everything sits in one white card, like the laptop exercise
+  // box: the header (course, kind, title) above a line, the content in the
+  // room left below it. The content never pushes the card past the screen;
+  // what doesn't fit fades out under a "koko näytöllä" button.
   return (
-    <section className="grid-bg snap-card relative flex w-full flex-col bg-page px-6 pb-6 pt-[env(safe-area-inset-top)]">
-      <div className="mb-4 mt-24 flex">{badge}</div>
-      <div className="mx-auto flex w-full max-w-md flex-1 flex-col overflow-hidden">
-        {header}
-        {children}
+    <section className="grid-bg snap-card relative flex w-full flex-col bg-page px-4 pb-4 pt-[calc(env(safe-area-inset-top)+6rem)]">
+      <div className="mx-auto flex min-h-0 w-full max-w-md flex-1 flex-col overflow-hidden rounded-3xl bg-surface shadow-sm ring-1 ring-ink/5">
+        <header className="shrink-0 border-b border-ink/10 px-5 pb-3 pt-4">
+          <div className="mb-2">{badge}</div>
+          {header}
+        </header>
+        <div className="flex min-h-0 flex-1 flex-col">{children}</div>
       </div>
+      {below}
     </section>
   )
 }

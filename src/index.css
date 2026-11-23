@@ -116,3 +116,11 @@ body {
 .math-answer math-field::part(container) {
   min-height: 0;
 }
+
+/* A display formula wider than the card scrolls sideways instead of being
+   cut off at the card's edge. */
+.katex-display {
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 2px;
+}
