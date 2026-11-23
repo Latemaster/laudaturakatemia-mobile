@@ -1,16 +1,10 @@
 import { useState } from 'react'
 import { createPortal } from 'react-dom'
 import { motion } from 'framer-motion'
-import { COURSES, COURSE_TAG_CLASS } from '../data/courses'
+import { COURSES, COURSE_MAP, COURSE_TAG_CLASS } from '../data/courses'
 import type { CourseGrade, CourseGrades } from '../data/courseGrades'
 import type { TargetGrade } from '../data/studyPlans'
-import type { Difficulty } from '../data/progress'
-import {
-  FEED_DIFFICULTIES,
-  getFeedCourses,
-  getFeedDifficulties,
-  type FeedPrefs,
-} from '../data/feed'
+import { FEED_DIFFICULTIES, getFeedCourses, type FeedPrefs } from '../data/feed'
 import EsitiedotView from './EsitiedotView'
 import InfoToggle from './InfoToggle'
 import { ChevronDownIcon, ChevronRightIcon, PlusIcon, SlidersIcon, XIcon } from './icons'
@@ -28,17 +22,6 @@ interface FeedInfoProps {
   cardCount: number
   courseGrades: CourseGrades
   onCourseGradeChange: (code: TopicCode, grade: CourseGrade | undefined) => void
-}
-
-const DIFFICULTY_LABEL: Record<Difficulty, string> = {
-  easy: 'helpot',
-  mid: 'keskivaikeat',
-  hard: 'vaikeat',
-}
-
-function describe(difficulties: Difficulty[]): string {
-  if (difficulties.length === 3) return 'kaikki tehtävät'
-  return difficulties.map((d) => DIFFICULTY_LABEL[d]).join(' ja ')
 }
 
 const sectionTitle = 'mb-2 text-xs font-semibold uppercase tracking-widest text-ink-dim/70'
@@ -169,35 +152,44 @@ export default function FeedInfo({
         )}
       </div>
 
-      <h3 className={sectionTitle}>Pitkien tehtävien vaikeustaso</h3>
-      <div
-        role="radiogroup"
-        aria-label="Pitkien tehtävien vaikeustaso"
-        aria-disabled={!longTasks}
-        className={`mb-5 flex flex-col gap-2 ${longTasks ? '' : 'opacity-40'}`}
-      >
-        {FEED_DIFFICULTIES.map((option) => {
-          const selected = prefs.difficulty === option.value
-          return (
-            <button
-              key={option.value}
-              type="button"
-              role="radio"
-              aria-checked={selected}
-              disabled={!longTasks}
-              onClick={() => onPrefsChange({ ...prefs, difficulty: option.value })}
-              className={`rounded-2xl px-4 py-2.5 text-left ring-1 transition-colors ${
-                selected ? 'bg-accent/10 ring-accent/50' : 'bg-surface-2 ring-ink/10 enabled:hover:ring-ink/20'
-              }`}
-            >
-              <span className={`block text-sm font-semibold ${selected ? 'text-accent' : 'text-ink'}`}>
-                {option.label}
-              </span>
-              <span className="block text-xs">{option.hint}</span>
-            </button>
-          )
-        })}
-      </div>
+      {longTasks && (
+        <>
+          <h3 className={sectionTitle}>Pitkien tehtävien vaikeustaso</h3>
+          <div className="mb-2 flex flex-col gap-2">
+            {FEED_DIFFICULTIES.map((option) => {
+              const on = prefs.difficulties.includes(option.value)
+              return (
+                <label
+                  key={option.value}
+                  className="flex items-center gap-3 rounded-2xl bg-surface-2 px-4 py-3 ring-1 ring-ink/10"
+                >
+                  <span className="min-w-0 flex-1">
+                    <span className="block text-sm font-semibold text-ink">{option.label}</span>
+                    <span className="block text-xs">{option.hint}</span>
+                  </span>
+                  <Switch
+                    checked={on}
+                    // At least one tier stays on.
+                    disabled={on && prefs.difficulties.length === 1}
+                    onChange={(checked) =>
+                      onPrefsChange({
+                        ...prefs,
+                        difficulties: checked
+                          ? [...prefs.difficulties, option.value]
+                          : prefs.difficulties.filter((d) => d !== option.value),
+                      })
+                    }
+                    label={option.label}
+                  />
+                </label>
+              )
+            })}
+          </div>
+          <p className="mb-5 px-1 text-xs">
+            Kultakin kurssilta tulee ne valituista tasoista, joita lukusuunnitelma sille pyytää.
+          </p>
+        </>
+      )}
 
       <div className="mb-2 flex flex-wrap items-center gap-x-2">
         <h3 className={sectionTitle.replace('mb-2 ', '')}>Kurssien järjestys</h3>
@@ -217,17 +209,17 @@ export default function FeedInfo({
       <p className="mb-3 text-xs">Järjestä kurssit tärkeysjärjestykseen. Ylimmät tulevat syötteessä ensin.</p>
       <ol className="mb-4 flex flex-col gap-1.5">
         {courses.map((code, index) => (
-          <li key={code} className="flex items-center gap-2 rounded-2xl bg-surface-2 py-1.5 pl-3 pr-1.5">
+          <li key={code} className="flex items-center gap-2 rounded-2xl bg-surface-2 py-2 pl-3 pr-1.5">
             <span className="w-4 shrink-0 text-xs font-semibold text-ink-dim/70">{index + 1}</span>
-            <span
-              className={`inline-flex shrink-0 items-center rounded-full px-2 py-0.5 text-[11px] font-semibold ring-1 ${COURSE_TAG_CLASS}`}
-            >
-              {code}
-            </span>
-            <span className="min-w-0 flex-1 truncate text-xs">
-              {[quickTasks && 'pikatehtävät', longTasks && describe(getFeedDifficulties(targetGrade, prefs, code))]
-                .filter(Boolean)
-                .join(', ')}
+            <span className="min-w-0 flex-1">
+              <span
+                className={`inline-flex items-center rounded-full px-2 py-0.5 text-[11px] font-semibold ring-1 ${COURSE_TAG_CLASS}`}
+              >
+                {code}
+              </span>
+              <span lang="fi" className="mt-0.5 block hyphens-auto break-words text-xs leading-snug">
+                {COURSE_MAP[code]?.name}
+              </span>
             </span>
             <button
               type="button"
@@ -290,9 +282,8 @@ export default function FeedInfo({
       )}
 
       <p className="rounded-xl bg-surface-2 p-3 text-xs">
-        Yhteensä <span className="font-semibold text-ink">{cardCount} korttia</span>.
-        {longTasks && ' Vaikeustasot: helpot = Osa I, keskivaikeat = Osa II, vaikeat = Osat III–IV.'} Tavoitteen voit
-        vaihtaa Osaaminen-sivulta.
+        Yhteensä <span className="font-semibold text-ink">{cardCount} korttia</span>. Tavoitteen voit vaihtaa
+        Osaaminen-sivulta.
       </p>
     </div>
   )

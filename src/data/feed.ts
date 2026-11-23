@@ -8,20 +8,16 @@ import type { Card, TaskCard, TopicCode } from '../types'
 // Feed settings (Suositellut › Syötteen asetukset)
 // ---------------------------------------------------------------------------
 
-// How the student wants the difficulty of the feed tuned on top of the plan.
-//   all       – what the study plan asks for, per course
-//   skipEasy  – the plan's tiers minus Osa I (mid when that leaves nothing)
-//   hardOnly  – only Osa III–IV, whatever the plan says
-export type FeedDifficulty = 'all' | 'skipEasy' | 'hardOnly'
-
-export const FEED_DIFFICULTIES: { value: FeedDifficulty; label: string; hint: string }[] = [
-  { value: 'all', label: 'Suunnitelman mukaan', hint: 'Helpot, keskivaikeat ja vaikeat sen mukaan, mitä lukusuunnitelma pyytää.' },
-  { value: 'skipEasy', label: 'Ohita helpot', hint: 'Ei Osa I -tehtäviä. Hyvä, kun perusasiat ovat jo hallussa.' },
-  { value: 'hardOnly', label: 'Vain vaikeat', hint: 'Vain Osat III–IV, kaikilta listan kursseilta.' },
+// The long tasks' difficulty tiers, as the settings list them.
+export const FEED_DIFFICULTIES: { value: Difficulty; label: string; hint: string }[] = [
+  { value: 'easy', label: 'Helpot', hint: 'Osa I: perustehtävät.' },
+  { value: 'mid', label: 'Keskivaikeat', hint: 'Osa II: soveltavat tehtävät.' },
+  { value: 'hard', label: 'Vaikeat', hint: 'Osat III–IV: kokeen vaativimmat.' },
 ]
 
 export interface FeedPrefs {
-  difficulty: FeedDifficulty
+  // The long tasks' tiers the student has on. Never empty.
+  difficulties: Difficulty[]
   // The feed's courses in priority order. null follows the target grade's
   // study plan, so changing the target still changes the feed until the
   // student edits the list themselves.
@@ -34,7 +30,7 @@ export interface FeedPrefs {
   longTasks: boolean | null
 }
 
-export const DEFAULT_FEED_PREFS: FeedPrefs = { difficulty: 'all', courses: null, quickTasks: null, longTasks: null }
+export const DEFAULT_FEED_PREFS: FeedPrefs = { difficulties: ['easy', 'mid', 'hard'], courses: null, quickTasks: null, longTasks: null }
 
 export interface FeedKinds {
   quick: boolean
@@ -61,15 +57,13 @@ export function getFeedCourses(grade: TargetGrade, prefs: FeedPrefs): TopicCode[
 }
 
 // Which tiers the feed pulls from one course: the plan's (or all three for
-// a course the student added themselves), then the difficulty setting.
+// a course the student added themselves) among the ones switched on. When
+// the plan asks for none of those, the easiest tier switched on.
 export function getFeedDifficulties(grade: TargetGrade, prefs: FeedPrefs, code: TopicCode): Difficulty[] {
   const fromPlan = planDifficulties(grade).get(code) ?? ALL
-  if (prefs.difficulty === 'hardOnly') return ['hard']
-  if (prefs.difficulty === 'skipEasy') {
-    const harder = fromPlan.filter((d) => d !== 'easy')
-    return harder.length > 0 ? harder : ['mid']
-  }
-  return fromPlan
+  const selected = ALL.filter((d) => prefs.difficulties.includes(d))
+  const both = fromPlan.filter((d) => selected.includes(d))
+  return both.length > 0 ? both : selected.slice(0, 1)
 }
 
 // ---------------------------------------------------------------------------
@@ -176,20 +170,27 @@ export function getRecommendedCards(
 
 const STORAGE_KEY = 'laudatur.feedPrefs'
 
-function isFeedDifficulty(value: unknown): value is FeedDifficulty {
-  return value === 'all' || value === 'skipEasy' || value === 'hardOnly'
+// The tiers stored, or the ones an older single choice stood for.
+function parseDifficulties(parsed: Record<string, unknown>): Difficulty[] {
+  if (Array.isArray(parsed.difficulties)) {
+    const valid = ALL.filter((d) => (parsed.difficulties as unknown[]).includes(d))
+    if (valid.length > 0) return valid
+  }
+  if (parsed.difficulty === 'skipEasy') return ['mid', 'hard']
+  if (parsed.difficulty === 'hardOnly') return ['hard']
+  return ALL
 }
 
 export function loadFeedPrefs(): FeedPrefs {
   try {
     const raw = window.localStorage.getItem(STORAGE_KEY)
     if (!raw) return DEFAULT_FEED_PREFS
-    const parsed = JSON.parse(raw) as Partial<FeedPrefs>
+    const parsed = JSON.parse(raw) as Partial<FeedPrefs> & Record<string, unknown>
     const courses = Array.isArray(parsed.courses)
       ? parsed.courses.filter((code): code is TopicCode => typeof code === 'string' && code in COURSE_MAP)
       : null
     return {
-      difficulty: isFeedDifficulty(parsed.difficulty) ? parsed.difficulty : 'all',
+      difficulties: parseDifficulties(parsed),
       courses,
       quickTasks: typeof parsed.quickTasks === 'boolean' ? parsed.quickTasks : null,
       longTasks: typeof parsed.longTasks === 'boolean' ? parsed.longTasks : null,
