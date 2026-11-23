@@ -1,4 +1,5 @@
 import { useState, type ComponentType, type ReactNode } from 'react'
+import { createPortal } from 'react-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 import type { ExerciseCard } from '../types'
 import CardShell from './CardShell'
@@ -17,46 +18,21 @@ interface ExerciseCardViewProps {
 
 const LETTERS = ['A', 'B', 'C', 'D', 'E', 'F']
 
-// The feedback after checking a quick exercise. A right answer pops: the
-// panel springs in green with a check that bounces, while the points tile
-// in the card's corner fills with a "+1 p" and the card lights up
-// (useQuickPoints, CardGlow). A wrong one gives a short shake instead.
-function ResultPanel({
-  correct,
-  heading,
-  explanation,
-  children,
-}: {
-  correct: boolean
-  heading: string
-  explanation: string
-  children?: ReactNode
-}) {
+// The feedback after a wrong answer: a short shake, the right answer and
+// why. A right answer has no panel: the points tile in the card's corner
+// fills with "+1 p" and the card lights up (useQuickPoints, CardGlow), and
+// a panel arriving under the answer would only push the card past the
+// screen.
+function MissPanel({ heading, explanation, children }: { heading: string; explanation: string; children?: ReactNode }) {
   return (
     <motion.div
-      initial={{ opacity: 0, scale: correct ? 0.85 : 1, y: correct ? 0 : 10 }}
-      animate={
-        correct
-          ? { opacity: 1, scale: [0.85, 1.06, 1], y: 0 }
-          : { opacity: 1, scale: 1, y: 0, x: [0, -8, 8, -5, 5, 0] }
-      }
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0, x: [0, -8, 8, -5, 5, 0] }}
       exit={{ opacity: 0 }}
-      transition={correct ? { duration: 0.5, ease: 'easeOut' } : { duration: 0.45 }}
-      className={`relative mt-4 rounded-2xl p-4 ring-1 ${correct ? 'bg-good/10 ring-good/30' : 'bg-surface-2 ring-ink/5'}`}
+      transition={{ duration: 0.45 }}
+      className="mt-4 rounded-2xl bg-surface-2 p-4 ring-1 ring-ink/5"
     >
-      <p className={`mb-1 flex items-center gap-2 text-sm font-semibold ${correct ? 'text-good' : 'text-bad'}`}>
-        {correct && (
-          <motion.span
-            initial={{ scale: 0, rotate: -30 }}
-            animate={{ scale: [0, 1.4, 1], rotate: 0 }}
-            transition={{ delay: 0.1, duration: 0.45, ease: 'easeOut' }}
-            className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-good text-white"
-          >
-            <CheckIcon className="h-3.5 w-3.5" />
-          </motion.span>
-        )}
-        {heading}
-      </p>
+      <p className="mb-1 text-sm font-semibold text-bad">{heading}</p>
       <p className="text-sm leading-relaxed text-ink-dim">{explanation}</p>
       {children}
     </motion.div>
@@ -67,6 +43,12 @@ function ChoiceExercise({ card, onAnswer }: { card: Extract<ExerciseCard, { kind
   const [selectedId, setSelectedId] = useState<string | null>(null)
   const isAnswered = selectedId !== null
   const selectedOption = card.options.find((o) => o.id === selectedId)
+  const { isDesktop } = useLayout()
+  // Phones: after a wrong answer only the right option and the one picked
+  // stay; the rest fold away so the "Ei aivan" panel fits on the card.
+  const missed = isAnswered && !selectedOption?.correct
+  const shown = (option: { id: string; correct: boolean }) =>
+    isDesktop || !missed || option.correct || option.id === selectedId
 
   function rowClasses(optionId: string, correct: boolean) {
     if (!isAnswered) return 'border-ink/15 bg-surface active:bg-surface-2'
@@ -91,10 +73,12 @@ function ChoiceExercise({ card, onAnswer }: { card: Extract<ExerciseCard, { kind
 
   return (
     <>
-      <div className="flex flex-col gap-3">
-        {card.options.map((option, index) => (
+      <div className="flex flex-col">
+        <AnimatePresence initial={false}>
+        {card.options.map((option, index) => shown(option) && (
           <motion.button
             key={option.id}
+            exit={{ opacity: 0, height: 0, marginBottom: 0, paddingTop: 0, paddingBottom: 0, borderWidth: 0 }}
             type="button"
             disabled={isAnswered}
             onClick={() => {
@@ -103,12 +87,12 @@ function ChoiceExercise({ card, onAnswer }: { card: Extract<ExerciseCard, { kind
             }}
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
-            // The right choice, when it is the one picked, bumps up with
-            // the result panel's pop.
+            // The right choice, when it is the one picked, bumps up as the
+            // points come in.
             animate={isAnswered && option.correct && option.id === selectedId ? { scale: [1, 1.05, 1] } : undefined}
             viewport={{ once: false, amount: 0.6 }}
             transition={{ duration: 0.3, delay: isAnswered ? 0 : index * 0.06 }}
-            className={`flex items-center gap-3 rounded-2xl border px-4 py-3 text-left shadow-sm transition-colors ${rowClasses(
+            className={`mb-3 flex items-center gap-3 overflow-hidden rounded-2xl border px-4 py-3 text-left shadow-sm transition-colors last:mb-0 ${rowClasses(
               option.id,
               option.correct,
             )}`}
@@ -130,16 +114,11 @@ function ChoiceExercise({ card, onAnswer }: { card: Extract<ExerciseCard, { kind
             <span className={`font-mono text-base ${textClasses(option.id, option.correct)}`}>{option.text}</span>
           </motion.button>
         ))}
+        </AnimatePresence>
       </div>
 
       <AnimatePresence>
-        {isAnswered && (
-          <ResultPanel
-            correct={!!selectedOption?.correct}
-            heading={selectedOption?.correct ? 'Oikein!' : 'Ei aivan.'}
-            explanation={card.explanation}
-          />
-        )}
+        {isAnswered && !selectedOption?.correct && <MissPanel heading="Ei aivan." explanation={card.explanation} />}
       </AnimatePresence>
     </>
   )
@@ -181,20 +160,15 @@ function SliderAnswerExercise({
       )}
 
       <AnimatePresence>
-        {checked && (
-          <ResultPanel
-            correct={isCorrect}
-            heading={
-              isCorrect
-                ? 'Oikein!'
-                : `Ei aivan - liukusäädin on nyt kohdassa ${value}${card.unit ? ` ${card.unit}` : ''}. Oikea vastaus: ${card.answer}${card.unit ? ` ${card.unit}` : ''}.`
-            }
+        {checked && !isCorrect && (
+          <MissPanel
+            heading={`Ei aivan - liukusäädin on nyt kohdassa ${value}${card.unit ? ` ${card.unit}` : ''}. Oikea vastaus: ${card.answer}${card.unit ? ` ${card.unit}` : ''}.`}
             explanation={card.explanation}
           >
             <button type="button" onClick={() => setChecked(false)} className="mt-2 text-sm font-semibold text-accent">
               Säädä uudelleen
             </button>
-          </ResultPanel>
+          </MissPanel>
         )}
       </AnimatePresence>
     </>
@@ -264,7 +238,9 @@ function NumericExercise({ card, onAnswer }: { card: Extract<ExerciseCard, { kin
           disabled={submitted}
           onChange={(e) => setValue(e.target.value)}
           placeholder={card.min !== undefined && card.max !== undefined ? `${card.min} … ${card.max}` : 'Vastaus'}
-          className="w-full rounded-2xl border border-ink/15 bg-surface px-4 py-3 text-lg font-mono text-ink outline-none focus:border-accent disabled:opacity-60"
+          className={`w-full rounded-2xl border bg-surface px-4 py-3 text-lg font-mono outline-none focus:border-accent ${
+            submitted && isCorrect ? 'border-good bg-good/10 text-good' : 'border-ink/15 text-ink disabled:opacity-60'
+          }`}
         />
         {card.unit && <span className="shrink-0 font-mono text-base text-ink-dim">{card.unit}</span>}
       </div>
@@ -281,10 +257,9 @@ function NumericExercise({ card, onAnswer }: { card: Extract<ExerciseCard, { kin
       )}
 
       <AnimatePresence>
-        {submitted && (
-          <ResultPanel
-            correct={isCorrect}
-            heading={isCorrect ? 'Oikein!' : `Ei aivan. Oikea vastaus: ${card.answer}${card.unit ? ` ${card.unit}` : ''}`}
+        {submitted && !isCorrect && (
+          <MissPanel
+            heading={`Ei aivan. Oikea vastaus: ${card.answer}${card.unit ? ` ${card.unit}` : ''}`}
             explanation={card.explanation}
           >
             <button
@@ -294,7 +269,7 @@ function NumericExercise({ card, onAnswer }: { card: Extract<ExerciseCard, { kin
             >
               Yritä uudelleen
             </button>
-          </ResultPanel>
+          </MissPanel>
         )}
       </AnimatePresence>
     </>
@@ -362,8 +337,10 @@ export function ExerciseBody({ card, onAnswer, split = false }: ExerciseCardView
 export default function ExerciseCardView({ card, onAnswer }: ExerciseCardViewProps) {
   const [isExpanded, setIsExpanded] = useState(false)
   const { isDesktop } = useLayout()
-  // The exercise's one point, in a tile like the long tasks' (phones).
-  const { points, celebrate, answer } = useQuickPoints(onAnswer)
+  // The exercise's one point, in a tile like the long tasks' (phones). An
+  // answer in the full-screen view lights that view's edges, and the
+  // card's tile and glow wait until it closes.
+  const { points, celebrate, heldCelebrate, answer } = useQuickPoints(onAnswer, isExpanded)
   const kind = (
     <KindLabel
       icon={card.kind === 'numeric' ? <PencilIcon /> : <ListCheckIcon />}
@@ -397,6 +374,8 @@ export default function ExerciseCardView({ card, onAnswer }: ExerciseCardViewPro
           </h2>
           <ExerciseBody card={card} onAnswer={answer} />
         </ExpandableBox>
+        {isExpanded &&
+          createPortal(<CardGlow trigger={heldCelebrate} points={points} className="" fullScreen />, document.body)}
       </CardShell>
     )
   }

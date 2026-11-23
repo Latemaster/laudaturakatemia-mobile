@@ -239,10 +239,13 @@ export function CardGlow({
   trigger,
   points,
   className = 'rounded-3xl',
+  fullScreen = false,
 }: {
   trigger: number
   points: Points | undefined
   className?: string
+  // Over the whole screen (the full-screen view) instead of inside a card.
+  fullScreen?: boolean
 }) {
   if (trigger === 0) return null
   return (
@@ -252,7 +255,7 @@ export function CardGlow({
       initial={{ opacity: 0 }}
       animate={{ opacity: [0, 1, 1, 0] }}
       transition={{ delay: 0.2, duration: 1.8, times: [0, 0.2, 0.55, 1], ease: 'easeOut' }}
-      className={`pointer-events-none absolute inset-0 z-10 ${className}`}
+      className={`pointer-events-none inset-0 ${fullScreen ? 'fixed z-[60]' : 'absolute z-10'} ${className}`}
       style={{
         boxShadow: `inset 0 0 0 3px ${pointsColor(points)}, inset 0 0 48px ${pointsColor(points, 0.35)}`,
         background: `radial-gradient(ellipse at top right, ${pointsColor(points, 0.12)}, transparent 70%)`,
@@ -267,17 +270,38 @@ export const QUICK_POINTS_HINT = 'Vastaa, niin saat pisteen'
 // 0 by the latest check. A right answer bumps `celebrate`, so the tile
 // fills with a "+1 p" and the card lights up. `answer` wraps the
 // exercise's own onAnswer.
-export function useQuickPoints(onAnswer?: (correct: boolean) => void) {
+//
+// While `hold` is on (the exercise is answered in the full-screen view,
+// over the card), a right answer bumps `heldCelebrate` instead, for that
+// view's own glow, and the card's tile and glow wait until `hold` goes off,
+// so they play when the student is back on the card.
+export function useQuickPoints(onAnswer?: (correct: boolean) => void, hold = false) {
   const [correct, setCorrect] = useState<boolean | null>(null)
   const [celebrate, setCelebrate] = useState(0)
+  const [heldCelebrate, setHeldCelebrate] = useState(0)
+  const [pending, setPending] = useState(false)
   const answer = useCallback(
     (isCorrect: boolean) => {
       setCorrect(isCorrect)
-      if (isCorrect) setCelebrate((c) => c + 1)
+      if (isCorrect && hold) {
+        setHeldCelebrate((c) => c + 1)
+        setPending(true)
+      } else if (isCorrect) {
+        setCelebrate((c) => c + 1)
+      }
       onAnswer?.(isCorrect)
     },
-    [onAnswer],
+    [onAnswer, hold],
   )
+  // Back on the card: play what was held (adjusting state during render,
+  // so the card never paints a frame without it).
+  if (!hold && pending) {
+    setPending(false)
+    setCelebrate((c) => c + 1)
+  }
+  // The full-screen view's glow is done once it closes; reopening it
+  // shouldn't replay it.
+  if (!hold && heldCelebrate !== 0) setHeldCelebrate(0)
   const points: Points = { scored: correct === null ? null : correct ? 1 : 0, max: 1, done: correct !== null }
-  return { points, celebrate, answer }
+  return { points, celebrate, heldCelebrate, answer }
 }
