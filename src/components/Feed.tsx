@@ -5,6 +5,7 @@ import ExerciseCardView from './ExerciseCardView'
 import TaskCardView from './TaskCardView'
 import { useLayout } from '../layout/LayoutContext'
 import ExerciseWorkspace from './course/ExerciseWorkspace'
+import LessonWorkspace from './course/LessonWorkspace'
 import type { FullViewMode } from './course/TaskFullView'
 import { levelOf, useEvaluation } from './course/exerciseState'
 
@@ -36,11 +37,13 @@ interface FeedExerciseProps {
 
 // Laptop feed: an exercise in the same box as Kurssit › Tehtävät, with its
 // course tag, but no level tabs or Edellinen / Seuraava; the feed scrolls.
-// The right gutter leaves room for the feed's info button.
+// The top gutter leaves room for the feed's settings button.
+const LAPTOP_CARD = 'snap-card relative flex w-full flex-col px-8 pb-6 pt-16'
+
 function FeedExercise({ card, exercise, onEngage, onAnswer }: FeedExerciseProps) {
   const [fullView, setFullView] = useState<FullViewMode | null>(null)
   return (
-    <section className="snap-card relative flex w-full flex-col py-6 pl-8 pr-14">
+    <section className={LAPTOP_CARD}>
       <ExerciseWorkspace
         card={card}
         title={card.type === 'task' ? card.problem.title : 'Pikatehtävä'}
@@ -96,7 +99,11 @@ export default function Feed({ cards, onEngage, onAnswer, onBack, backLabel = 'T
         {intro}
         {cards.slice(0, renderedCount).map((card, index) => (
           <div key={card.id}>
-            {card.type === 'lesson' ? (
+            {card.type === 'lesson' && isDesktop ? (
+              <section className={LAPTOP_CARD}>
+                <LessonWorkspace card={card} />
+              </section>
+            ) : card.type === 'lesson' ? (
               // The intro has its own hint to scroll on.
               <LessonCardView card={card} showSwipeHint={!intro && index === 0} />
             ) : isDesktop ? (

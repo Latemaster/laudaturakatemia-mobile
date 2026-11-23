@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { COURSE_MAP, COURSES } from '../data/courses'
+import { COURSE_MAP, COURSES, COURSE_TAG_CLASS } from '../data/courses'
 import {
   EVALUATION_EXERCISES,
   exerciseMaxPoints,
@@ -48,7 +48,7 @@ function ExerciseButton({ exercise, attempt, draft, onOpen }: ExerciseButtonProp
       <div className="flex items-center justify-between gap-2">
         <span className="flex items-center gap-2">
           <span
-            className={`inline-flex w-fit items-center rounded-full px-3 py-1 text-xs font-semibold ring-1 ${COURSE_MAP[exercise.topic.code].badgeClass}`}
+            className={`inline-flex w-fit items-center rounded-full px-3 py-1 text-xs font-semibold ring-1 ${COURSE_TAG_CLASS}`}
           >
             {exercise.topic.code}
           </span>

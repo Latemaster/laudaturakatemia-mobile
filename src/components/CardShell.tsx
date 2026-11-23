@@ -1,5 +1,4 @@
 import type { ReactNode } from 'react'
-import { COURSE_MAP } from '../data/courses'
 import { useLayout } from '../layout/LayoutContext'
 import type { Topic } from '../types'
 
@@ -14,11 +13,10 @@ interface CardShellProps {
 
 export default function CardShell({ topic, header, children }: CardShellProps) {
   const { isDesktop } = useLayout()
+  // The course in plain text, as the laptop Kurssit sidebar names it.
   const badge = (
-    <span
-      className={`inline-flex w-fit items-center rounded-full px-3 py-1 text-xs font-semibold ring-1 ${COURSE_MAP[topic.code].badgeClass}`}
-    >
-      {topic.code} · {topic.name}
+    <span className="text-xs font-semibold text-ink-dim">
+      {topic.code} · <span className="font-medium">{topic.name}</span>
     </span>
   )
 

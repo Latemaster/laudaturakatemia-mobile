@@ -8,7 +8,7 @@ import FeedIntroCard from './components/FeedIntroCard'
 import EvaluationList from './components/EvaluationList'
 import { cards, getConceptCards, getExerciseCards, groupExercisesByConcept } from './data/cards'
 import { loadTargetGrade, type TargetGrade } from './data/studyPlans'
-import { getRecommendedCards, loadFeedPrefs, longTasksOn, saveFeedPrefs, type FeedPrefs } from './data/feed'
+import { getRecommendedCards, loadFeedPrefs, getFeedKinds, saveFeedPrefs, type FeedPrefs } from './data/feed'
 import { loadCourseGrades, saveCourseGrades, type CourseGrade, type CourseGrades } from './data/courseGrades'
 import {
   loadKnowledge,
@@ -100,10 +100,16 @@ function App() {
   }
 
   const onSuositellut = section === 'suositellut'
-  const longTasks = longTasksOn(feedPrefs, isDesktop)
+  const { quick: quickTasks, long: longTasks } = getFeedKinds(feedPrefs, isDesktop)
   const recommendedCards = useMemo(
-    () => (onSuositellut ? getRecommendedCards(targetGrade, feedPrefs, knowledgeRef.current.attempts, longTasks) : []),
-    [targetGrade, feedPrefs, onSuositellut, longTasks],
+    () =>
+      onSuositellut
+        ? getRecommendedCards(targetGrade, feedPrefs, knowledgeRef.current.attempts, {
+            quick: quickTasks,
+            long: longTasks,
+          })
+        : [],
+    [targetGrade, feedPrefs, onSuositellut, quickTasks, longTasks],
   )
 
   const feedCards = useMemo(() => {
@@ -161,6 +167,7 @@ function App() {
           targetGrade={targetGrade}
           prefs={feedPrefs}
           onPrefsChange={handleFeedPrefsChange}
+          quickTasks={quickTasks}
           longTasks={longTasks}
           cardCount={recommendedCards.length}
           courseGrades={courseGrades}
@@ -169,7 +176,7 @@ function App() {
       )}
       {showFeed && (
         <Feed
-          key={section === 'kurssit' && selectedCourse ? selectedCourse : `suositellut-${targetGrade}-${longTasks}-${JSON.stringify(feedPrefs)}`}
+          key={section === 'kurssit' && selectedCourse ? selectedCourse : `suositellut-${targetGrade}-${quickTasks}-${longTasks}-${JSON.stringify(feedPrefs)}`}
           cards={feedCards}
           onEngage={handleEngage}
           onAnswer={handleAnswer}

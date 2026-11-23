@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { createPortal } from 'react-dom'
-import { COURSES, COURSE_MAP } from '../data/courses'
+import { motion } from 'framer-motion'
+import { COURSES, COURSE_TAG_CLASS } from '../data/courses'
 import type { CourseGrade, CourseGrades } from '../data/courseGrades'
 import type { TargetGrade } from '../data/studyPlans'
 import type { Difficulty } from '../data/progress'
@@ -11,6 +12,7 @@ import {
   type FeedPrefs,
 } from '../data/feed'
 import EsitiedotView from './EsitiedotView'
+import InfoToggle from './InfoToggle'
 import { ChevronDownIcon, ChevronRightIcon, PlusIcon, SlidersIcon, XIcon } from './icons'
 import { useLayout } from '../layout/LayoutContext'
 import type { TopicCode } from '../types'
@@ -19,7 +21,9 @@ interface FeedInfoProps {
   targetGrade: TargetGrade
   prefs: FeedPrefs
   onPrefsChange: (prefs: FeedPrefs) => void
-  // Whether long tasks are in the feed: the setting, or the device default.
+  // Which kinds of exercise are in the feed: the settings, or the device's
+  // defaults.
+  quickTasks: boolean
   longTasks: boolean
   cardCount: number
   courseGrades: CourseGrades
@@ -41,15 +45,28 @@ const sectionTitle = 'mb-2 text-xs font-semibold uppercase tracking-widest text-
 const iconButton =
   'flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-surface-2 text-ink ring-1 ring-ink/10 disabled:opacity-30'
 
-function Switch({ checked, onChange, label }: { checked: boolean; onChange: (checked: boolean) => void; label: string }) {
+function Switch({
+  checked,
+  onChange,
+  label,
+  disabled = false,
+}: {
+  checked: boolean
+  onChange: (checked: boolean) => void
+  label: string
+  disabled?: boolean
+}) {
   return (
     <button
       type="button"
       role="switch"
       aria-checked={checked}
       aria-label={label}
+      disabled={disabled}
       onClick={() => onChange(!checked)}
-      className={`relative h-7 w-12 shrink-0 rounded-full transition-colors ${checked ? 'bg-accent' : 'bg-ink/20'}`}
+      className={`relative h-7 w-12 shrink-0 rounded-full transition-colors disabled:opacity-50 ${
+        checked ? 'bg-accent' : 'bg-ink/20'
+      }`}
     >
       <span
         className={`absolute top-0.5 h-6 w-6 rounded-full bg-white shadow transition-[left] ${
@@ -68,6 +85,7 @@ export default function FeedInfo({
   targetGrade,
   prefs,
   onPrefsChange,
+  quickTasks,
   longTasks,
   cardCount,
   courseGrades,
@@ -118,13 +136,19 @@ export default function FeedInfo({
 
       <h3 className={sectionTitle}>Tehtävät</h3>
       <div className="mb-5 flex flex-col gap-2">
-        <div className="flex items-center gap-3 rounded-2xl bg-surface-2 px-4 py-3 ring-1 ring-ink/10">
+        <label className="flex items-center gap-3 rounded-2xl bg-surface-2 px-4 py-3 ring-1 ring-ink/10">
           <span className="min-w-0 flex-1">
             <span className="block text-sm font-semibold text-ink">Pikatehtävät</span>
             <span className="block text-xs">Monivalinnat ja lyhyet laskut, jotka tarkistetaan heti.</span>
           </span>
-          <span className="shrink-0 text-xs font-semibold text-good">Aina mukana</span>
-        </div>
+          <Switch
+            checked={quickTasks}
+            // The feed always has one kind on: the last one can't be turned off.
+            disabled={quickTasks && !longTasks}
+            onChange={(checked) => onPrefsChange({ ...prefs, quickTasks: checked })}
+            label="Pikatehtävät"
+          />
+        </label>
         <label className="flex items-center gap-3 rounded-2xl bg-surface-2 px-4 py-3 ring-1 ring-ink/10">
           <span className="min-w-0 flex-1">
             <span className="block text-sm font-semibold text-ink">Pitkät tehtävät</span>
@@ -135,10 +159,14 @@ export default function FeedInfo({
           </span>
           <Switch
             checked={longTasks}
+            disabled={longTasks && !quickTasks}
             onChange={(checked) => onPrefsChange({ ...prefs, longTasks: checked })}
             label="Pitkät tehtävät"
           />
         </label>
+        {quickTasks !== longTasks && (
+          <p className="px-1 text-xs">Ainakin toisen tehtävätyypin on oltava päällä.</p>
+        )}
       </div>
 
       <h3 className={sectionTitle}>Pitkien tehtävien vaikeustaso</h3>
@@ -171,35 +199,35 @@ export default function FeedInfo({
         })}
       </div>
 
-      <div className="mb-2 flex items-baseline justify-between gap-3">
-        <h3 className={sectionTitle.replace('mb-2 ', '')}>Kurssit</h3>
-        {prefs.courses !== null && (
-          <button
-            type="button"
-            onClick={() => onPrefsChange({ ...prefs, courses: null })}
-            className="text-xs font-semibold text-accent hover:underline"
-          >
-            Palauta suunnitelman mukaiseksi
-          </button>
-        )}
+      <div className="mb-2 flex flex-wrap items-center gap-x-2">
+        <h3 className={sectionTitle.replace('mb-2 ', '')}>Kurssien järjestys</h3>
+        <InfoToggle label="Miten kurssijärjestys toimii">
+          <p className="mb-2">
+            Syöte ei käy kursseja läpi yksi kerrallaan, vaan sekoittaa kolmea kurssia kerrallaan, listan
+            järjestyksessä:
+          </p>
+          <ol className="mb-2 list-decimal space-y-1 pl-4">
+            <li>Aluksi vuorottelevat listan kolme ylintä kurssia, tehtävä kustakin vuorotellen.</li>
+            <li>Kun kurssilta on tullut neljä tehtävää, se väistyy ja seuraava kurssi listalta tulee tilalle.</li>
+            <li>Kurssi palaa myöhemmin vuoroon siitä mihin jäi{longTasks && ', ja tehtävät ovat silloin vaikeampia'}.</li>
+          </ol>
+          <p>Ylimmät kurssit tulevat siis syötteessä ensin ja useimmin. Jo tekemäsi tehtävät siirtyvät loppuun.</p>
+        </InfoToggle>
       </div>
-      <p className="mb-3 text-xs">
-        Syöte kiertää kursseja tässä järjestyksessä: kolme kurssia kerrallaan, muutama tehtävä kustakin.
-        {longTasks && ' Kun kurssi tulee uudelleen vuoroon, tehtävät ovat astetta vaikeampia.'}
-      </p>
+      <p className="mb-3 text-xs">Järjestä kurssit tärkeysjärjestykseen. Ylimmät tulevat syötteessä ensin.</p>
       <ol className="mb-4 flex flex-col gap-1.5">
         {courses.map((code, index) => (
           <li key={code} className="flex items-center gap-2 rounded-2xl bg-surface-2 py-1.5 pl-3 pr-1.5">
             <span className="w-4 shrink-0 text-xs font-semibold text-ink-dim/70">{index + 1}</span>
             <span
-              className={`inline-flex shrink-0 items-center rounded-full px-2 py-0.5 text-[11px] font-semibold ring-1 ${COURSE_MAP[code].badgeClass}`}
+              className={`inline-flex shrink-0 items-center rounded-full px-2 py-0.5 text-[11px] font-semibold ring-1 ${COURSE_TAG_CLASS}`}
             >
               {code}
             </span>
             <span className="min-w-0 flex-1 truncate text-xs">
-              {longTasks
-                ? `pikatehtävät, ${describe(getFeedDifficulties(targetGrade, prefs, code))}`
-                : 'pikatehtävät'}
+              {[quickTasks && 'pikatehtävät', longTasks && describe(getFeedDifficulties(targetGrade, prefs, code))]
+                .filter(Boolean)
+                .join(', ')}
             </span>
             <button
               type="button"
@@ -231,6 +259,15 @@ export default function FeedInfo({
           </li>
         ))}
       </ol>
+      {prefs.courses !== null && (
+        <button
+          type="button"
+          onClick={() => onPrefsChange({ ...prefs, courses: null })}
+          className="-mt-2 mb-4 text-xs font-semibold text-accent hover:underline"
+        >
+          Palauta suunnitelman mukaiseksi
+        </button>
+      )}
 
       {addable.length > 0 && (
         <>
@@ -242,7 +279,7 @@ export default function FeedInfo({
                 type="button"
                 onClick={() => setCourses([...courses, course.code])}
                 aria-label={`Lisää ${course.code} syötteeseen`}
-                className={`inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-semibold ring-1 ${course.badgeClass}`}
+                className={`inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-semibold ring-1 ${COURSE_TAG_CLASS}`}
               >
                 <PlusIcon className="h-3 w-3" />
                 {course.code}
@@ -253,8 +290,7 @@ export default function FeedInfo({
       )}
 
       <p className="rounded-xl bg-surface-2 p-3 text-xs">
-        Yhteensä <span className="font-semibold text-ink">{cardCount} korttia</span>. Jo tekemäsi tehtävät
-        siirtyvät syötteen loppuun.
+        Yhteensä <span className="font-semibold text-ink">{cardCount} korttia</span>.
         {longTasks && ' Vaikeustasot: helpot = Osa I, keskivaikeat = Osa II, vaikeat = Osat III–IV.'} Tavoitteen voit
         vaihtaa Osaaminen-sivulta.
       </p>
@@ -268,26 +304,42 @@ export default function FeedInfo({
   )
 
   const sheet = isDesktop ? (
-    <div
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="feed-info-title"
-      className="fixed inset-0 z-40 flex items-center justify-center bg-ink/30 px-4 py-8 backdrop-blur-sm"
-      onClick={close}
-    >
+    // Laptops: a drawer from the panel's right edge, over a dimmed feed.
+    createPortal(
       <div
-        onClick={(event) => event.stopPropagation()}
-        className="flex max-h-full w-full max-w-md flex-col overflow-hidden rounded-3xl border border-ink/10 bg-surface shadow-xl"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="feed-info-title"
+        className="fixed inset-0 z-50 bg-ink/25 backdrop-blur-[2px]"
+        onClick={close}
       >
-        <div className="flex items-center justify-between gap-3 border-b border-ink/10 px-5 py-4">
-          <h2 id="feed-info-title" className="text-base font-bold text-ink">
-            Syötteen asetukset
-          </h2>
-          {closeButton}
-        </div>
-        <div className="overflow-y-auto px-5 py-4">{body}</div>
-      </div>
-    </div>
+        <motion.div
+          initial={{ x: '100%' }}
+          animate={{ x: 0 }}
+          transition={{ type: 'tween', duration: 0.25, ease: 'easeOut' }}
+          onClick={(event) => event.stopPropagation()}
+          className="absolute inset-y-0 right-0 flex w-[30rem] max-w-full flex-col bg-surface shadow-2xl"
+        >
+          <div className="flex items-center justify-between gap-3 border-b border-ink/10 px-7 py-5">
+            <h2 id="feed-info-title" className="text-xl font-bold text-ink">
+              Syötteen asetukset
+            </h2>
+            {closeButton}
+          </div>
+          <div className="min-h-0 flex-1 overflow-y-auto px-7 py-6">{body}</div>
+          <div className="flex justify-end border-t border-ink/10 px-7 py-4">
+            <button
+              type="button"
+              onClick={close}
+              className="rounded-full bg-accent px-6 py-2.5 text-sm font-semibold text-white shadow-md transition-opacity hover:opacity-90"
+            >
+              Valmis
+            </button>
+          </div>
+        </motion.div>
+      </div>,
+      document.body,
+    )
   ) : (
     // Phones: full screen over the feed and the top menu, as Esitiedot.
     createPortal(
@@ -322,17 +374,29 @@ export default function FeedInfo({
 
   return (
     <>
-      <button
-        type="button"
-        onClick={() => setOpen(true)}
-        aria-label="Syötteen asetukset"
-        aria-haspopup="dialog"
-        className={`${
-          isDesktop ? 'absolute right-6 top-3' : 'fixed right-4 top-[calc(env(safe-area-inset-top)+3.5rem)]'
-        } z-20 flex h-9 w-9 items-center justify-center rounded-full bg-surface/90 text-ink shadow-md ring-1 ring-ink/5 backdrop-blur`}
-      >
-        <SlidersIcon className="h-5 w-5" />
-      </button>
+      {isDesktop ? (
+        // Laptops: a labelled button in the panel's top-right corner, over
+        // the gutter the feed's boxes leave above them.
+        <button
+          type="button"
+          onClick={() => setOpen(true)}
+          aria-haspopup="dialog"
+          className="absolute right-8 top-3.5 z-20 flex items-center gap-2 rounded-full bg-surface px-4 py-2 text-sm font-semibold text-ink shadow-sm ring-1 ring-ink/10 transition-colors hover:bg-surface-2"
+        >
+          <SlidersIcon className="h-4 w-4" />
+          Syötteen asetukset
+        </button>
+      ) : (
+        <button
+          type="button"
+          onClick={() => setOpen(true)}
+          aria-label="Syötteen asetukset"
+          aria-haspopup="dialog"
+          className="fixed right-4 top-[calc(env(safe-area-inset-top)+3.5rem)] z-20 flex h-9 w-9 items-center justify-center rounded-full bg-surface/90 text-ink shadow-md ring-1 ring-ink/5 backdrop-blur"
+        >
+          <SlidersIcon className="h-5 w-5" />
+        </button>
+      )}
 
       {open && sheet}
       {esitiedotOpen && (

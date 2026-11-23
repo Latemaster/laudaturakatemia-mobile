@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { COURSE_MAP } from '../data/courses'
+import { COURSE_TAG_CLASS } from '../data/courses'
 import { exerciseMaxPoints, partMaxPoints } from '../data/evaluation'
 import type { RubricExercise } from '../data/rubrics'
 import {
@@ -178,7 +178,7 @@ function ReviewCard({ exercise, verdict, onVerdict }: ReviewCardProps) {
     <article className={`rounded-2xl bg-surface p-4 shadow-sm ${ring}`}>
       <div className="mb-3 flex items-center justify-between gap-2">
         <span
-          className={`inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold ring-1 ${COURSE_MAP[exercise.topic.code].badgeClass}`}
+          className={`inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold ring-1 ${COURSE_TAG_CLASS}`}
         >
           {exercise.topic.code}
         </span>

@@ -129,7 +129,7 @@ export default function DesktopSidebar({
                       <span className="shrink-0 text-xs text-ink-dim">{pct} %</span>
                     </span>
                     <span className="mt-1.5 block h-1 w-full overflow-hidden rounded-full bg-ink/10">
-                      <span className={`block h-full rounded-full ${course.barClass}`} style={{ width: `${pct}%` }} />
+                      <span className="block h-full rounded-full bg-accent" style={{ width: `${pct}%` }} />
                     </span>
                   </button>
                   {open && (

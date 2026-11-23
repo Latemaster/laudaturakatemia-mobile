@@ -26,16 +26,27 @@ export interface FeedPrefs {
   // study plan, so changing the target still changes the feed until the
   // student edits the list themselves.
   courses: TopicCode[] | null
-  // Whether the open-answer YO problems (pitkät tehtävät) come up among the
-  // quick exercises. null follows the device: off on phones, where writing a
-  // long answer is the harder sell, on for laptops.
+  // Which kinds of exercise the feed has: the quick exercises
+  // (pikatehtävät) and the open-answer YO problems (pitkät tehtävät).
+  // null follows the device: quick on everywhere, long off on phones, where
+  // writing a long answer is the harder sell, and on for laptops.
+  quickTasks: boolean | null
   longTasks: boolean | null
 }
 
-export const DEFAULT_FEED_PREFS: FeedPrefs = { difficulty: 'all', courses: null, longTasks: null }
+export const DEFAULT_FEED_PREFS: FeedPrefs = { difficulty: 'all', courses: null, quickTasks: null, longTasks: null }
 
-export function longTasksOn(prefs: FeedPrefs, isDesktop: boolean): boolean {
-  return prefs.longTasks ?? isDesktop
+export interface FeedKinds {
+  quick: boolean
+  long: boolean
+}
+
+// The kinds in the feed: the settings, or the device's defaults. The
+// settings never turn both off; if stored prefs somehow do, quick wins.
+export function getFeedKinds(prefs: FeedPrefs, isDesktop: boolean): FeedKinds {
+  const long = prefs.longTasks ?? isDesktop
+  const quick = (prefs.quickTasks ?? true) || !long
+  return { quick, long }
 }
 
 const ALL: Difficulty[] = ['easy', 'mid', 'hard']
@@ -122,15 +133,15 @@ function rotate(queues: CourseQueue[], lessons: Map<TopicCode, Card>): Card[] {
   return result
 }
 
-// The Suositellut feed: each course's quick exercises (pikatehtävät), with
-// its long tasks woven in when `longTasks` is on. Cards the student has
+// The Suositellut feed: each course's quick exercises (pikatehtävät) and
+// long tasks, whichever `kinds` has on, woven together. Cards the student has
 // already answered are left out of the rotation and come at the very end,
 // so the feed leads with new material but nothing disappears for good.
 export function getRecommendedCards(
   grade: TargetGrade,
   prefs: FeedPrefs,
   answered: Record<string, unknown> = {},
-  longTasks = true,
+  kinds: FeedKinds = { quick: true, long: true },
 ): Card[] {
   const fresh: CourseQueue[] = []
   const done: CourseQueue[] = []
@@ -139,7 +150,7 @@ export function getRecommendedCards(
   for (const code of getFeedCourses(grade, prefs)) {
     if (!(code in COURSE_MAP)) continue
     const wanted = new Set(getFeedDifficulties(grade, prefs, code))
-    const long = longTasks
+    const long = kinds.long
       ? cards
           .filter((card): card is TaskCard => card.topic.code === code && card.type === 'task')
           .map((card) => ({ card, difficulty: classifyDifficulty(card.problem.section) }))
@@ -147,7 +158,7 @@ export function getRecommendedCards(
           .sort((a, b) => DIFFICULTY_RANK[a.difficulty] - DIFFICULTY_RANK[b.difficulty])
           .map(({ card }) => card)
       : []
-    const tasks = interleave(getExerciseCards(code), long)
+    const tasks = interleave(kinds.quick ? getExerciseCards(code) : [], long)
     if (tasks.length === 0) continue
 
     const lesson = cards.find((card) => card.topic.code === code && card.type === 'lesson')
@@ -180,6 +191,7 @@ export function loadFeedPrefs(): FeedPrefs {
     return {
       difficulty: isFeedDifficulty(parsed.difficulty) ? parsed.difficulty : 'all',
       courses,
+      quickTasks: typeof parsed.quickTasks === 'boolean' ? parsed.quickTasks : null,
       longTasks: typeof parsed.longTasks === 'boolean' ? parsed.longTasks : null,
     }
   } catch {

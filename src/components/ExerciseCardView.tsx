@@ -1,4 +1,4 @@
-import { useState, type ComponentType } from 'react'
+import { useState, type ComponentType, type ReactNode } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import type { ExerciseCard } from '../types'
 import CardShell from './CardShell'
@@ -15,6 +15,63 @@ interface ExerciseCardViewProps {
 }
 
 const LETTERS = ['A', 'B', 'C', 'D', 'E', 'F']
+
+// The feedback after checking a quick exercise. A right answer pops: the
+// panel springs in green with a check that bounces, and a "+1 p" rises
+// over it, like the points pouring into an open-answer task's tile. A
+// wrong one gives a short shake instead.
+function ResultPanel({
+  correct,
+  heading,
+  explanation,
+  children,
+}: {
+  correct: boolean
+  heading: string
+  explanation: string
+  children?: ReactNode
+}) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, scale: correct ? 0.85 : 1, y: correct ? 0 : 10 }}
+      animate={
+        correct
+          ? { opacity: 1, scale: [0.85, 1.06, 1], y: 0 }
+          : { opacity: 1, scale: 1, y: 0, x: [0, -8, 8, -5, 5, 0] }
+      }
+      exit={{ opacity: 0 }}
+      transition={correct ? { duration: 0.5, ease: 'easeOut' } : { duration: 0.45 }}
+      className={`relative mt-4 rounded-2xl p-4 ring-1 ${correct ? 'bg-good/10 ring-good/30' : 'bg-surface-2 ring-ink/5'}`}
+    >
+      <p className={`mb-1 flex items-center gap-2 text-sm font-semibold ${correct ? 'text-good' : 'text-bad'}`}>
+        {correct && (
+          <motion.span
+            initial={{ scale: 0, rotate: -30 }}
+            animate={{ scale: [0, 1.4, 1], rotate: 0 }}
+            transition={{ delay: 0.1, duration: 0.45, ease: 'easeOut' }}
+            className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-good text-white"
+          >
+            <CheckIcon className="h-3.5 w-3.5" />
+          </motion.span>
+        )}
+        {heading}
+      </p>
+      <p className="text-sm leading-relaxed text-ink-dim">{explanation}</p>
+      {children}
+      {correct && (
+        <motion.span
+          aria-hidden
+          initial={{ opacity: 0, y: 8, scale: 0.8 }}
+          animate={{ opacity: [0, 1, 1, 0], y: [8, -6, -18, -30], scale: [0.8, 1.2, 1.1, 1] }}
+          transition={{ delay: 0.15, duration: 1.6, times: [0, 0.2, 0.7, 1], ease: 'easeOut' }}
+          className="pointer-events-none absolute right-4 top-2 text-lg font-bold text-good"
+        >
+          +1 p
+        </motion.span>
+      )}
+    </motion.div>
+  )
+}
 
 function ChoiceExercise({ card, onAnswer }: { card: Extract<ExerciseCard, { kind: 'choice' }>; onAnswer?: (correct: boolean) => void }) {
   const [selectedId, setSelectedId] = useState<string | null>(null)
@@ -56,8 +113,11 @@ function ChoiceExercise({ card, onAnswer }: { card: Extract<ExerciseCard, { kind
             }}
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
+            // The right choice, when it is the one picked, bumps up with
+            // the result panel's pop.
+            animate={isAnswered && option.correct && option.id === selectedId ? { scale: [1, 1.05, 1] } : undefined}
             viewport={{ once: false, amount: 0.6 }}
-            transition={{ duration: 0.3, delay: index * 0.06 }}
+            transition={{ duration: 0.3, delay: isAnswered ? 0 : index * 0.06 }}
             className={`flex items-center gap-3 rounded-2xl border px-4 py-3 text-left shadow-sm transition-colors ${rowClasses(
               option.id,
               option.correct,
@@ -84,18 +144,11 @@ function ChoiceExercise({ card, onAnswer }: { card: Extract<ExerciseCard, { kind
 
       <AnimatePresence>
         {isAnswered && (
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="mt-6 rounded-2xl bg-surface-2 p-4"
-          >
-            <p className={`mb-1 text-sm font-semibold ${selectedOption?.correct ? 'text-good' : 'text-bad'}`}>
-              {selectedOption?.correct ? 'Oikein!' : 'Ei aivan.'}
-            </p>
-            <p className="text-sm leading-relaxed text-ink-dim">{card.explanation}</p>
-          </motion.div>
+          <ResultPanel
+            correct={!!selectedOption?.correct}
+            heading={selectedOption?.correct ? 'Oikein!' : 'Ei aivan.'}
+            explanation={card.explanation}
+          />
         )}
       </AnimatePresence>
     </>
@@ -106,10 +159,14 @@ function SliderAnswerExercise({
   card,
   Visual,
   onAnswer,
+  split,
 }: {
   card: Extract<ExerciseCard, { kind: 'numeric' }>
   Visual: ComponentType<VisualProps>
   onAnswer?: (correct: boolean) => void
+  // The laptop box's two columns: the question (given here), the check and
+  // the feedback on the left, the slider visual on the right.
+  split?: { question: ReactNode }
 }) {
   const [value, setValue] = useState(card.sliderStart ?? card.min ?? 0)
   const [checked, setChecked] = useState(false)
@@ -120,12 +177,9 @@ function SliderAnswerExercise({
     onAnswer?.(isCorrect)
   }
 
-  return (
+  const visual = <Visual value={value} onChange={setValue} hideReadout />
+  const controls = (
     <>
-      <div className="mb-4">
-        <Visual value={value} onChange={setValue} hideReadout />
-      </div>
-
       {!checked && (
         <button
           type="button"
@@ -138,24 +192,58 @@ function SliderAnswerExercise({
 
       <AnimatePresence>
         {checked && (
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="mt-4 rounded-2xl bg-surface-2 p-4"
+          <ResultPanel
+            correct={isCorrect}
+            heading={
+              isCorrect
+                ? 'Oikein!'
+                : `Ei aivan - liukusäädin on nyt kohdassa ${value}${card.unit ? ` ${card.unit}` : ''}. Oikea vastaus: ${card.answer}${card.unit ? ` ${card.unit}` : ''}.`
+            }
+            explanation={card.explanation}
           >
-            <p className={`mb-1 text-sm font-semibold ${isCorrect ? 'text-good' : 'text-bad'}`}>
-              {isCorrect ? 'Oikein!' : `Ei aivan - liukusäädin on nyt kohdassa ${value}${card.unit ? ` ${card.unit}` : ''}. Oikea vastaus: ${card.answer}${card.unit ? ` ${card.unit}` : ''}.`}
-            </p>
-            <p className="text-sm leading-relaxed text-ink-dim">{card.explanation}</p>
             <button type="button" onClick={() => setChecked(false)} className="mt-2 text-sm font-semibold text-accent">
               Säädä uudelleen
             </button>
-          </motion.div>
+          </ResultPanel>
         )}
       </AnimatePresence>
     </>
+  )
+
+  if (split) {
+    return (
+      <SplitColumns
+        left={
+          <>
+            {split.question}
+            <p className="mb-5 text-sm text-ink-dim">Säädä oikealla olevaa liukusäädintä ja tarkista vastauksesi.</p>
+            {controls}
+          </>
+        }
+        right={visual}
+      />
+    )
+  }
+
+  return (
+    <>
+      <div className="mb-4">{visual}</div>
+      {controls}
+    </>
+  )
+}
+
+// The laptop exercise box's body, split like the open-answer problems: the
+// question (and, for most exercises, the answer) on the left, the visual or
+// the choices filling the tinted right side.
+export function SplitColumns({ left, right }: { left: ReactNode; right: ReactNode }) {
+  return (
+    <div className="grid min-h-0 min-w-0 flex-1 grid-cols-2">
+      <div className="min-h-0 overflow-y-auto px-8 pb-8 pt-7">{left}</div>
+      <div className="flex min-h-0 flex-col overflow-y-auto border-l border-ink/10 bg-surface-2/50 px-8 py-7">
+        <div className="my-auto w-full">{right}</div>
+      </div>
+    </div>
   )
 }
 
@@ -204,17 +292,11 @@ function NumericExercise({ card, onAnswer }: { card: Extract<ExerciseCard, { kin
 
       <AnimatePresence>
         {submitted && (
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="mt-4 rounded-2xl bg-surface-2 p-4"
+          <ResultPanel
+            correct={isCorrect}
+            heading={isCorrect ? 'Oikein!' : `Ei aivan. Oikea vastaus: ${card.answer}${card.unit ? ` ${card.unit}` : ''}`}
+            explanation={card.explanation}
           >
-            <p className={`mb-1 text-sm font-semibold ${isCorrect ? 'text-good' : 'text-bad'}`}>
-              {isCorrect ? 'Oikein!' : `Ei aivan. Oikea vastaus: ${card.answer}${card.unit ? ` ${card.unit}` : ''}`}
-            </p>
-            <p className="text-sm leading-relaxed text-ink-dim">{card.explanation}</p>
             <button
               type="button"
               onClick={() => setSubmitted(false)}
@@ -222,7 +304,7 @@ function NumericExercise({ card, onAnswer }: { card: Extract<ExerciseCard, { kin
             >
               Yritä uudelleen
             </button>
-          </motion.div>
+          </ResultPanel>
         )}
       </AnimatePresence>
     </>
@@ -230,10 +312,40 @@ function NumericExercise({ card, onAnswer }: { card: Extract<ExerciseCard, { kin
 }
 
 // The exercise itself: its visual and the choices, number input or slider.
-// Shared by the feed card and the laptop Kurssit › Tehtävät workspace.
-export function ExerciseBody({ card, onAnswer }: ExerciseCardViewProps) {
+// Shared by the phone feed card and the laptop exercise box, which passes
+// `split` to lay the question and the exercise out in two columns.
+export function ExerciseBody({ card, onAnswer, split = false }: ExerciseCardViewProps & { split?: boolean }) {
   const Visual = card.visual ? VISUALS[card.visual] : null
   const isSliderAnswer = card.kind === 'numeric' && card.answerVia === 'slider'
+
+  if (split) {
+    const question = <h3 className="mb-6 text-2xl font-semibold leading-snug text-ink">{card.question}</h3>
+    const controls =
+      card.kind === 'numeric' ? (
+        <NumericExercise card={card} onAnswer={onAnswer} />
+      ) : (
+        <ChoiceExercise card={card} onAnswer={onAnswer} />
+      )
+    if (isSliderAnswer && Visual && card.kind === 'numeric') {
+      return <SliderAnswerExercise card={card} Visual={Visual} onAnswer={onAnswer} split={{ question }} />
+    }
+    // With a visual, it gets the right side and the answer goes under the
+    // question; without one, the answer itself fills the right.
+    return Visual ? (
+      <SplitColumns
+        left={
+          <>
+            {question}
+            {controls}
+          </>
+        }
+        right={<Visual />}
+      />
+    ) : (
+      <SplitColumns left={question} right={controls} />
+    )
+  }
+
   return (
     <>
       {/* Slider-answer exercises own the Visual themselves, so they can

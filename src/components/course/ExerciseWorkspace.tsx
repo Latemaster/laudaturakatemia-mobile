@@ -10,7 +10,7 @@ import {
   type RefObject,
 } from 'react'
 import type { EvaluationAttempt } from '../../data/evaluation'
-import { COURSE_MAP } from '../../data/courses'
+import { COURSE_TAG_CLASS } from '../../data/courses'
 import { RUBRIC_EXERCISES } from '../../data/rubrics'
 import type { Card, ExerciseCard, TaskCard, Topic } from '../../types'
 import AnswerEditor, { type AnswerEditorHandle } from '../AnswerEditor'
@@ -32,20 +32,11 @@ import PointsBadge, { pointsColor, useTaskPoints, type Points } from './PointsBa
 // either is answered in the full-screen view (TaskFullView), which is also
 // where Pisteytys always opens.
 
-// Each difficulty level has its own colour, borrowed from the course
-// palette so it sits well with the rest of the app.
-const LEVEL_BADGE: Record<string, string> = {
-  Pikatehtävät: 'bg-topic-maa5/15 text-topic-maa5 ring-topic-maa5/30',
-  Perus: 'bg-topic-maa2/15 text-topic-maa2 ring-topic-maa2/30',
-  Keskivaikeat: 'bg-topic-maa4/15 text-topic-maa4 ring-topic-maa4/30',
-  Vaikeat: 'bg-topic-maa7/15 text-topic-maa7 ring-topic-maa7/30',
-  Soveltavat: 'bg-topic-maa6/15 text-topic-maa6 ring-topic-maa6/30',
-}
-const FALLBACK_BADGE = 'bg-accent/15 text-accent ring-accent/30'
 
 function LevelTag({ level }: { level: string }) {
   return (
-    <span className={`rounded-full px-3 py-1 text-xs font-semibold ring-1 ${LEVEL_BADGE[level] ?? FALLBACK_BADGE}`}>
+    // Neutral, like the course tag: levels have no colours of their own.
+    <span className={`rounded-full px-3 py-1 text-xs font-semibold ring-1 ${COURSE_TAG_CLASS}`}>
       {level}
     </span>
   )
@@ -53,7 +44,7 @@ function LevelTag({ level }: { level: string }) {
 
 function CourseTag({ course }: { course: Topic }) {
   return (
-    <span className={`rounded-full px-3 py-1 text-xs font-semibold ring-1 ${COURSE_MAP[course.code].badgeClass}`}>
+    <span className={`rounded-full px-3 py-1 text-xs font-semibold ring-1 ${COURSE_TAG_CLASS}`}>
       {course.code} · {course.name}
     </span>
   )
@@ -63,7 +54,7 @@ interface FrameProps {
   kind: ReactNode
   title: string
   // The difficulty level, shown as a coloured tag.
-  badge: string
+  badge?: string
   points?: Points
   // Opens Pisteytys from the points; left out until there is an answer.
   onOpenPoints?: () => void
@@ -79,7 +70,7 @@ interface FrameProps {
   children: ReactNode
 }
 
-function ExerciseFrame({
+export function ExerciseFrame({
   kind,
   title,
   badge,
@@ -101,7 +92,7 @@ function ExerciseFrame({
           {kind}
           <div className="flex flex-wrap items-center gap-2.5">
             <h2 className="text-xl font-bold leading-snug text-ink">{title}</h2>
-            <LevelTag level={badge} />
+            {badge && <LevelTag level={badge} />}
             {course && <CourseTag course={course} />}
             {actions}
           </div>
@@ -517,12 +508,7 @@ function QuickExerciseWorkspace({
       title={title}
       badge={badge}
     >
-      <PromptColumn>
-        <h3 className="mb-5 text-lg font-semibold leading-snug text-ink">{card.question}</h3>
-        <div className="max-w-2xl">
-          <ExerciseBody card={card} onAnswer={onAnswer} />
-        </div>
-      </PromptColumn>
+      <ExerciseBody card={card} onAnswer={onAnswer} split />
     </ExerciseFrame>
   )
 }
