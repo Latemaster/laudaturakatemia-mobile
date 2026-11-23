@@ -1,4 +1,4 @@
-import { cards } from './cards'
+import { cards, getExerciseCards } from './cards'
 import { COURSE_MAP } from './courses'
 import { classifyDifficulty, type Difficulty } from './progress'
 import { getCourseTargets, type TargetGrade } from './studyPlans'
@@ -26,9 +26,17 @@ export interface FeedPrefs {
   // study plan, so changing the target still changes the feed until the
   // student edits the list themselves.
   courses: TopicCode[] | null
+  // Whether the open-answer YO problems (pitkät tehtävät) come up among the
+  // quick exercises. null follows the device: off on phones, where writing a
+  // long answer is the harder sell, on for laptops.
+  longTasks: boolean | null
 }
 
-export const DEFAULT_FEED_PREFS: FeedPrefs = { difficulty: 'all', courses: null }
+export const DEFAULT_FEED_PREFS: FeedPrefs = { difficulty: 'all', courses: null, longTasks: null }
+
+export function longTasksOn(prefs: FeedPrefs, isDesktop: boolean): boolean {
+  return prefs.longTasks ?? isDesktop
+}
 
 const ALL: Difficulty[] = ['easy', 'mid', 'hard']
 
@@ -66,8 +74,18 @@ const DIFFICULTY_RANK: Record<Difficulty, number> = { easy: 0, mid: 1, hard: 2 }
 
 interface CourseQueue {
   code: TopicCode
-  tasks: TaskCard[]
+  tasks: Card[]
   taken: number
+}
+
+// One quick exercise, one long task, and so on while both last.
+function interleave(quick: Card[], long: Card[]): Card[] {
+  const result: Card[] = []
+  for (let i = 0; i < Math.max(quick.length, long.length); i++) {
+    if (i < quick.length) result.push(quick[i])
+    if (i < long.length) result.push(long[i])
+  }
+  return result
 }
 
 // Rotates through the courses in list order: ACTIVE_COURSES at a time, one
@@ -104,13 +122,15 @@ function rotate(queues: CourseQueue[], lessons: Map<TopicCode, Card>): Card[] {
   return result
 }
 
-// The Suositellut feed. Tasks the student has already answered are left
-// out of the rotation and come at the very end, so the feed leads with
-// new material but nothing disappears for good.
+// The Suositellut feed: each course's quick exercises (pikatehtävät), with
+// its long tasks woven in when `longTasks` is on. Cards the student has
+// already answered are left out of the rotation and come at the very end,
+// so the feed leads with new material but nothing disappears for good.
 export function getRecommendedCards(
   grade: TargetGrade,
   prefs: FeedPrefs,
   answered: Record<string, unknown> = {},
+  longTasks = true,
 ): Card[] {
   const fresh: CourseQueue[] = []
   const done: CourseQueue[] = []
@@ -119,12 +139,15 @@ export function getRecommendedCards(
   for (const code of getFeedCourses(grade, prefs)) {
     if (!(code in COURSE_MAP)) continue
     const wanted = new Set(getFeedDifficulties(grade, prefs, code))
-    const tasks = cards
-      .filter((card): card is TaskCard => card.topic.code === code && card.type === 'task')
-      .map((card) => ({ card, difficulty: classifyDifficulty(card.problem.section) }))
-      .filter(({ difficulty }) => wanted.has(difficulty))
-      .sort((a, b) => DIFFICULTY_RANK[a.difficulty] - DIFFICULTY_RANK[b.difficulty])
-      .map(({ card }) => card)
+    const long = longTasks
+      ? cards
+          .filter((card): card is TaskCard => card.topic.code === code && card.type === 'task')
+          .map((card) => ({ card, difficulty: classifyDifficulty(card.problem.section) }))
+          .filter(({ difficulty }) => wanted.has(difficulty))
+          .sort((a, b) => DIFFICULTY_RANK[a.difficulty] - DIFFICULTY_RANK[b.difficulty])
+          .map(({ card }) => card)
+      : []
+    const tasks = interleave(getExerciseCards(code), long)
     if (tasks.length === 0) continue
 
     const lesson = cards.find((card) => card.topic.code === code && card.type === 'lesson')
@@ -157,6 +180,7 @@ export function loadFeedPrefs(): FeedPrefs {
     return {
       difficulty: isFeedDifficulty(parsed.difficulty) ? parsed.difficulty : 'all',
       courses,
+      longTasks: typeof parsed.longTasks === 'boolean' ? parsed.longTasks : null,
     }
   } catch {
     return DEFAULT_FEED_PREFS

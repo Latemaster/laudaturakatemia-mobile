@@ -1,37 +1,62 @@
 import { useMemo, useState } from 'react'
+import { createPortal } from 'react-dom'
+import { motion } from 'framer-motion'
 import type { TaskCard } from '../types'
+import type { EvaluationAttempt } from '../data/evaluation'
+import { RUBRIC_EXERCISES } from '../data/rubrics'
 import CardShell from './CardShell'
 import ExpandableBox from './ExpandableBox'
 import KindLabel from './KindLabel'
 import MathText from './MathText'
 import ProblemBlocks from './ProblemBlocks'
+import RubricPanel from './RubricPanel'
 import SolutionToggle from './SolutionToggle'
 import TaskAnswerView from './TaskAnswerView'
 import { toKatexAnswer } from './mathAnswerFormat'
 import { PencilIcon } from './icons'
-import { answerPartsFromRubric } from './answerParts'
-import { getProblemRubricParts } from '../data/rubrics'
+import { answerPartsFromPrompt, answerPartsFromRubric } from './answerParts'
+import PointsBadge, { pointsColor, useTaskPoints } from './course/PointsBadge'
+import { evaluationId } from './course/exerciseState'
 import { useLayout } from '../layout/LayoutContext'
 
 interface TaskCardViewProps {
   card: TaskCard
+  // The saved answer and self-scores, shared with Kurssit and Arviointi.
+  attempt?: EvaluationAttempt
+  onTaskAnswer?: (answer: string) => void
+  onScore?: (criterionId: string, points: number | undefined) => void
+  onResetScores?: () => void
   onViewSolution?: () => void
 }
 
-export default function TaskCardView({ card, onViewSolution }: TaskCardViewProps) {
+// Phone feed task card. Like the laptop exercise box, the header's top
+// right is the points tile: "– / N p" until the answer is self-scored,
+// then the tally on a filling scale. Sending an answer goes straight to
+// Pisteytys, whose "Tallenna pisteet" returns here and fills the tile.
+export default function TaskCardView({
+  card,
+  attempt,
+  onTaskAnswer,
+  onScore,
+  onResetScores,
+  onViewSolution,
+}: TaskCardViewProps) {
   const [isExpanded, setIsExpanded] = useState(false)
   const [answerOpen, setAnswerOpen] = useState(false)
   const [isEditing, setIsEditing] = useState(false)
-  const [draft, setDraft] = useState('')
-  // Kept for the session only; nothing is persisted or checked yet.
-  const [submittedAnswer, setSubmittedAnswer] = useState<string | null>(null)
+  const submittedAnswer = attempt?.answer ? attempt.answer : null
+  const [draft, setDraft] = useState(submittedAnswer ?? '')
   const [showSolution, setShowSolution] = useState(false)
+  const [checkOpen, setCheckOpen] = useState(false)
+  const [celebrate, setCelebrate] = useState(0)
   const { problem } = card
   const { isDesktop } = useLayout()
+  const rubricExercise = useMemo(() => RUBRIC_EXERCISES.find((e) => e.id === evaluationId(card)), [card])
   const parts = useMemo(
-    () => answerPartsFromRubric(getProblemRubricParts(card.topic.code, problem.id)),
-    [card.topic.code, problem.id],
+    () => answerPartsFromRubric(rubricExercise?.parts) ?? answerPartsFromPrompt(problem.promptBlocks),
+    [rubricExercise, problem.promptBlocks],
   )
+  const points = useTaskPoints(rubricExercise, attempt?.scores)
   const hasAnswered = submittedAnswer !== null
 
   function toggleSolution() {
@@ -59,21 +84,40 @@ export default function TaskCardView({ card, onViewSolution }: TaskCardViewProps
   }
 
   function submit(answer: string) {
-    setSubmittedAnswer(answer)
+    onTaskAnswer?.(answer)
     setDraft(answer)
     setIsEditing(false)
+    // Scoring follows the answer, as on the laptop. Problems without a
+    // rubric stay in the answer view, where the solution can be opened.
+    if (rubricExercise) setCheckOpen(true)
   }
+
+  // "Tallenna pisteet": back to the card, where the tile fills up.
+  function saveScores() {
+    setCheckOpen(false)
+    closeAnswer()
+    setCelebrate((c) => c + 1)
+  }
+
+  const openCheck = hasAnswered && rubricExercise ? () => setCheckOpen(true) : undefined
 
   return (
     <CardShell
       topic={card.topic}
       header={
-        <>
-          <KindLabel icon={<PencilIcon />} label="Tehtävä" />
-          <h2 className={`mb-3 font-semibold text-ink ${isDesktop ? 'text-2xl' : 'text-lg'}`}>
-            {problem.section} · {problem.title}
-          </h2>
-        </>
+        <div className="mb-3 flex items-start justify-between gap-3">
+          <div className="min-w-0">
+            <KindLabel icon={<PencilIcon />} label="Tehtävä" />
+            <h2 className={`font-semibold text-ink ${isDesktop ? 'text-2xl' : 'text-lg leading-snug'}`}>
+              {problem.section} · {problem.title}
+            </h2>
+          </div>
+          {points && (
+            <div className="shrink-0">
+              <PointsBadge points={points} onOpen={openCheck} celebrate={celebrate} compact />
+            </div>
+          )}
+        </div>
       }
     >
       <ExpandableBox
@@ -102,9 +146,13 @@ export default function TaskCardView({ card, onViewSolution }: TaskCardViewProps
             <button
               type="button"
               onClick={openAnswer}
-              className="w-full rounded-2xl border border-good/30 bg-good-tint p-3 text-left shadow-md"
+              className="w-full rounded-2xl bg-surface p-3 text-left shadow-md"
+              // Outlined in the points' colour, as the laptop box is.
+              style={{ boxShadow: `0 0 0 2px ${pointsColor(points)}, 0 4px 6px rgba(0, 0, 0, 0.08)` }}
             >
-              <span className="mb-1 block text-sm font-semibold text-good">Vastaus lähetetty</span>
+              <span className="mb-1 block text-sm font-semibold" style={{ color: pointsColor(points) }}>
+                Vastaus lähetetty
+              </span>
               <span className="line-clamp-2 block text-sm leading-relaxed text-ink">
                 <MathText content={toKatexAnswer(submittedAnswer)} />
               </span>
@@ -135,8 +183,37 @@ export default function TaskCardView({ card, onViewSolution }: TaskCardViewProps
           showSolution={showSolution}
           onToggleSolution={toggleSolution}
           onClose={closeAnswer}
+          onOpenCheck={openCheck}
         />
       )}
+
+      {checkOpen &&
+        rubricExercise &&
+        submittedAnswer !== null &&
+        createPortal(
+          // Over the answer view when opened from it, so closing returns
+          // there; "Tallenna pisteet" closes both.
+          <motion.div
+            role="dialog"
+            aria-modal="true"
+            aria-label="Pisteytys"
+            initial={{ x: '100%' }}
+            animate={{ x: 0 }}
+            transition={{ type: 'tween', duration: 0.25, ease: 'easeOut' }}
+            className="fixed inset-0 z-[60] h-dvh"
+          >
+            <RubricPanel
+              exercise={rubricExercise}
+              answer={submittedAnswer}
+              scores={attempt?.scores ?? {}}
+              onScore={(id, value) => onScore?.(id, value)}
+              onReset={() => onResetScores?.()}
+              onClose={() => setCheckOpen(false)}
+              onSave={saveScores}
+            />
+          </motion.div>,
+          document.body,
+        )}
     </CardShell>
   )
 }

@@ -22,6 +22,8 @@ interface TaskAnswerViewProps {
   showSolution: boolean
   onToggleSolution: () => void
   onClose: () => void
+  // Opens Pisteytys for the sent answer, where the problem has a rubric.
+  onOpenCheck?: () => void
 }
 
 // Full-screen white view opened by "Vastaa tehtävään": the problem (or, once
@@ -41,6 +43,7 @@ export default function TaskAnswerView({
   showSolution,
   onToggleSolution,
   onClose,
+  onOpenCheck,
 }: TaskAnswerViewProps) {
   const { problem } = card
   const scrollRef = useRef<HTMLDivElement>(null)
@@ -122,13 +125,20 @@ export default function TaskAnswerView({
             <div className="rounded-2xl border border-good/30 bg-good/10 p-3">
               <p className="mb-1 text-sm font-semibold text-good">Vastaus lähetetty</p>
               <AnswerDisplay answer={submittedAnswer} parts={parts} />
-              <button
-                type="button"
-                onClick={() => onEditingChange(true)}
-                className="mt-2 text-sm font-semibold text-accent"
-              >
-                Muokkaa vastausta
-              </button>
+              <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1">
+                <button
+                  type="button"
+                  onClick={() => onEditingChange(true)}
+                  className="text-sm font-semibold text-accent"
+                >
+                  Muokkaa vastausta
+                </button>
+                {onOpenCheck && (
+                  <button type="button" onClick={onOpenCheck} className="text-sm font-semibold text-accent">
+                    Näytä pisteytys
+                  </button>
+                )}
+              </div>
             </div>
           )}
         </div>

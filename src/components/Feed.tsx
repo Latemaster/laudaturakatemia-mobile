@@ -110,7 +110,15 @@ export default function Feed({ cards, onEngage, onAnswer, onBack, backLabel = 'T
                 }}
               />
             ) : (
-              <TaskCardView card={card} onViewSolution={() => onEngage?.(card.id)} />
+              <TaskCardView
+                card={card}
+                {...forExercise(card)}
+                onTaskAnswer={(answer) => {
+                  onEngage?.(card.id)
+                  forExercise(card).onTaskAnswer(answer)
+                }}
+                onViewSolution={() => onEngage?.(card.id)}
+              />
             )}
           </div>
         ))}
