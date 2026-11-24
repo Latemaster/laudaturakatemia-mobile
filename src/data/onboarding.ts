@@ -61,6 +61,11 @@ export function getTourSteps(section: OnboardingSection, isDesktop: boolean): To
           action: 'click',
           text: `${tap} tästä ja täytä lukion kurssiarvosanasi. Niistä lasketaan ensimmäinen arvosanaennusteesi.`,
         },
+        {
+          target: 'feed-settings',
+          action: 'click',
+          text: `${tap} Syötteen asetuksia: valitse tehtävätyypit, vaikeustaso ja kurssien järjestys.`,
+        },
         { ...swipe, text: isDesktop ? 'Vieritä alas ensimmäiseen tehtävään.' : 'Pyyhkäise ylös ensimmäiseen tehtävään.' },
       ]
     case 'kurssit':

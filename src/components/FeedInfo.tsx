@@ -370,6 +370,7 @@ export default function FeedInfo({
           type="button"
           onClick={() => setOpen(true)}
           aria-haspopup="dialog"
+          data-onboarding="feed-settings"
           className="absolute right-8 top-3.5 z-20 flex items-center gap-2 rounded-full bg-surface px-4 py-2 text-sm font-semibold text-ink shadow-sm ring-1 ring-ink/10 transition-colors hover:bg-surface-2"
         >
           <SlidersIcon className="h-4 w-4" />
@@ -381,6 +382,7 @@ export default function FeedInfo({
           onClick={() => setOpen(true)}
           aria-label="Syötteen asetukset"
           aria-haspopup="dialog"
+          data-onboarding="feed-settings"
           className="fixed right-4 top-[calc(env(safe-area-inset-top)+3.5rem)] z-20 flex h-9 w-9 items-center justify-center rounded-full bg-surface/90 text-ink shadow-md ring-1 ring-ink/5 backdrop-blur"
         >
           <SlidersIcon className="h-5 w-5" />
