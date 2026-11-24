@@ -112,7 +112,7 @@ export default function TargetGradeView({ targetGrade, onTargetGradeChange, onCl
   ))
 
   // Laptops: the grade picker on the left, the plan's tiers in two columns
-  // on the right, and Valmis in the header instead of a floating bar.
+  // on the right, and Tallenna in the header.
   if (isDesktop) {
     return (
       <div
@@ -134,9 +134,9 @@ export default function TargetGradeView({ targetGrade, onTargetGradeChange, onCl
             <button
               type="button"
               onClick={onClose}
-              className="rounded-full bg-accent px-6 py-2.5 text-sm font-semibold text-white shadow-md transition-opacity hover:opacity-90"
+              className="rounded-xl bg-accent px-4 py-2 text-sm font-semibold text-white transition-opacity hover:opacity-90"
             >
-              Valmis
+              Tallenna
             </button>
             <button
               type="button"
@@ -165,21 +165,26 @@ export default function TargetGradeView({ targetGrade, onTargetGradeChange, onCl
       role="dialog"
       aria-modal="true"
       aria-labelledby="target-grade-title"
-      className="grid-bg fixed inset-0 z-40 overflow-y-auto bg-page px-6 pb-32 pt-[calc(env(safe-area-inset-top)+1.25rem)]"
+      className="grid-bg fixed inset-0 z-40 overflow-y-auto bg-page px-6 pb-10 pt-[calc(env(safe-area-inset-top)+1.25rem)]"
     >
       <div className="mx-auto w-full max-w-md">
         <div className="mb-1 flex items-start justify-between gap-3">
           <h1 id="target-grade-title" className="text-2xl font-bold text-ink">
             Aseta tavoite
           </h1>
-          <button
-            type="button"
-            onClick={onClose}
-            aria-label="Sulje"
-            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-surface/90 text-ink shadow-md ring-1 ring-ink/5"
-          >
-            <XIcon className="h-4 w-4" />
-          </button>
+          <div className="flex shrink-0 items-center gap-3">
+            <button type="button" onClick={onClose} className="rounded-xl bg-accent px-4 py-2 text-sm font-semibold text-white transition-opacity hover:opacity-90">
+              Tallenna
+            </button>
+            <button
+              type="button"
+              onClick={onClose}
+              aria-label="Sulje"
+              className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-surface/90 text-ink shadow-md ring-1 ring-ink/5"
+            >
+              <XIcon className="h-4 w-4" />
+            </button>
+          </div>
         </div>
         <p className="mb-6 text-sm text-ink-dim">
           Tavoitearvosana ohjaa Suositellut-syötettä ja sitä, mitä Osaaminen-sivu seuraa.
@@ -189,16 +194,6 @@ export default function TargetGradeView({ targetGrade, onTargetGradeChange, onCl
 
         {planIntro}
         <div className="flex flex-col gap-3">{tiers}</div>
-      </div>
-
-      <div className="pointer-events-none fixed inset-x-0 bottom-0 z-20 flex justify-center bg-gradient-to-t from-page via-page/90 to-transparent px-6 pb-[calc(env(safe-area-inset-bottom)+1.25rem)] pt-8">
-        <button
-          type="button"
-          onClick={onClose}
-          className="pointer-events-auto flex w-full max-w-md items-center justify-center rounded-full bg-accent px-6 py-3.5 text-base font-semibold text-white shadow-lg transition-transform active:scale-[0.98]"
-        >
-          Valmis
-        </button>
       </div>
     </div>
   )

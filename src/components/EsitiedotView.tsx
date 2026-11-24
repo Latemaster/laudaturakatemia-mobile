@@ -27,7 +27,7 @@ export default function EsitiedotView({ courseGrades, onCourseGradeChange, onClo
       aria-modal="true"
       aria-labelledby="esitiedot-title"
       className={`grid-bg fixed inset-0 z-50 overflow-y-auto overscroll-contain bg-page px-6 ${
-        isDesktop ? 'py-10' : 'pb-32 pt-[calc(env(safe-area-inset-top)+1.25rem)]'
+        isDesktop ? 'py-10' : 'pb-10 pt-[calc(env(safe-area-inset-top)+1.25rem)]'
       }`}
     >
       <div className={`mx-auto w-full ${isDesktop ? 'max-w-2xl' : 'max-w-md'}`}>
@@ -36,15 +36,13 @@ export default function EsitiedotView({ courseGrades, onCourseGradeChange, onClo
             Esitiedot
           </h1>
           <div className="flex shrink-0 items-center gap-3">
-            {isDesktop && (
-              <button
-                type="button"
-                onClick={onClose}
-                className="rounded-full bg-accent px-6 py-2.5 text-sm font-semibold text-white shadow-md transition-opacity hover:opacity-90"
-              >
-                Valmis
-              </button>
-            )}
+            <button
+              type="button"
+              onClick={onClose}
+              className="rounded-xl bg-accent px-4 py-2 text-sm font-semibold text-white transition-opacity hover:opacity-90"
+            >
+              Tallenna
+            </button>
             <button
               type="button"
               onClick={onClose}
@@ -102,18 +100,6 @@ export default function EsitiedotView({ courseGrades, onCourseGradeChange, onClo
           })}
         </ul>
       </div>
-
-      {!isDesktop && (
-        <div className="pointer-events-none fixed inset-x-0 bottom-0 z-20 flex justify-center bg-gradient-to-t from-page via-page/90 to-transparent px-6 pb-[calc(env(safe-area-inset-bottom)+1.25rem)] pt-8">
-          <button
-            type="button"
-            onClick={onClose}
-            className="pointer-events-auto flex w-full max-w-md items-center justify-center rounded-full bg-accent px-6 py-3.5 text-base font-semibold text-white shadow-lg transition-transform active:scale-[0.98]"
-          >
-            Valmis
-          </button>
-        </div>
-      )}
     </div>,
     document.body,
   )
