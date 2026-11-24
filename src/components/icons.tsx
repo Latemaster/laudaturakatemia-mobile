@@ -122,3 +122,23 @@ export function CopyIcon({ className }: IconProps) {
     </svg>
   )
 }
+
+export function SparkIcon({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} className={className}>
+      <path
+        d="M12 3.5 13.9 9a1.5 1.5 0 0 0 .9.9l5.7 2.1-5.7 2.1a1.5 1.5 0 0 0-.9.9L12 20.5 10.1 15a1.5 1.5 0 0 0-.9-.9L3.5 12l5.7-2.1a1.5 1.5 0 0 0 .9-.9L12 3.5Z"
+        strokeLinejoin="round"
+      />
+    </svg>
+  )
+}
+
+export function ChartIcon({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} className={className}>
+      <path d="M4 4v16h16" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="m8 15 3.5-4 3 2.5L20 7" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  )
+}

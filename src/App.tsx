@@ -28,6 +28,14 @@ import CourseTasksView from './components/course/CourseTasksView'
 import EsittelyPage from './pages/EsittelyPage'
 import TuePage from './pages/TuePage'
 import MahdollistajatPage from './pages/MahdollistajatPage'
+import SectionOnboarding from './components/SectionOnboarding'
+import {
+  isOnboardingSection,
+  loadOnboardingSeen,
+  saveOnboardingSeen,
+  type OnboardingSection,
+  type OnboardingSeen,
+} from './data/onboarding'
 
 function App() {
   const isDesktop = useIsDesktopViewport()
@@ -61,6 +69,19 @@ function App() {
   // cards move to the back the next time the feed is opened or re-tuned.
   const knowledgeRef = useRef(knowledge)
   knowledgeRef.current = knowledge
+  // Which main sections have had their first-visit introduction.
+  const [onboardingSeen, setOnboardingSeen] = useState<OnboardingSeen>(loadOnboardingSeen)
+  const onboarding: OnboardingSection | null =
+    isOnboardingSection(section) && !onboardingSeen[section] ? section : null
+
+  function markOnboardingSeen(done: OnboardingSection) {
+    setOnboardingSeen((prev) => {
+      if (prev[done]) return prev
+      const next = { ...prev, [done]: true as const }
+      saveOnboardingSeen(next)
+      return next
+    })
+  }
 
   function handleFeedPrefsChange(next: FeedPrefs) {
     setFeedPrefs(next)
@@ -134,6 +155,17 @@ function App() {
 
   const content = (
     <>
+      {onboarding && (
+        <SectionOnboarding
+          section={onboarding}
+          seen={onboardingSeen}
+          onDone={() => markOnboardingSeen(onboarding)}
+          onGoTo={(next) => {
+            markOnboardingSeen(onboarding)
+            handleSelectSection(next)
+          }}
+        />
+      )}
       {section === 'etusivu' && (etusivuPage === 'esittely' ? <EsittelyPage /> : <TuePage />)}
       {section === 'mahdollistajat' && <MahdollistajatPage />}
       {section === 'kurssit' && isDesktop && (
