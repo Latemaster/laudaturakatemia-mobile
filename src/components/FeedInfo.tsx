@@ -288,12 +288,6 @@ export default function FeedInfo({
     </div>
   )
 
-  const saveButton = (
-    <button type="button" onClick={close} className="rounded-xl bg-accent px-4 py-2 text-sm font-semibold text-white transition-opacity hover:opacity-90">
-      Tallenna
-    </button>
-  )
-
   const closeButton = (
     <button type="button" onClick={close} aria-label="Sulje" className={iconButton}>
       <XIcon className="h-3.5 w-3.5" />
@@ -351,12 +345,16 @@ export default function FeedInfo({
             <h1 id="feed-info-title" className="text-2xl font-bold text-ink">
               Syötteen asetukset
             </h1>
-            <div className="flex shrink-0 items-center gap-3">
-              {saveButton}
-              {closeButton}
+            {closeButton}
+          </div>
+          <div className="rounded-3xl border border-ink/10 bg-surface px-5 py-5 shadow-sm">
+            {body}
+            <div className="mt-5 flex justify-end">
+              <button type="button" onClick={close} className="rounded-xl bg-accent px-4 py-2 text-sm font-semibold text-white transition-opacity hover:opacity-90">
+                Tallenna
+              </button>
             </div>
           </div>
-          <div className="rounded-3xl border border-ink/10 bg-surface px-5 py-5 shadow-sm">{body}</div>
         </div>
       </div>,
       document.body,

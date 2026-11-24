@@ -80,6 +80,11 @@ export default function TargetGradeView({ targetGrade, onTargetGradeChange, onCl
       <span className="text-sm font-semibold text-ink-dim">
         Pisteraja n. {points.min}–{points.max} · tavoite {points.avg} p.
       </span>
+      <div className="mt-4 flex justify-end border-t border-ink/10 pt-4">
+        <button type="button" onClick={onClose} className="rounded-xl bg-accent px-4 py-2 text-sm font-semibold text-white transition-opacity hover:opacity-90">
+          Tallenna
+        </button>
+      </div>
     </section>
   )
 
@@ -112,7 +117,7 @@ export default function TargetGradeView({ targetGrade, onTargetGradeChange, onCl
   ))
 
   // Laptops: the grade picker on the left, the plan's tiers in two columns
-  // on the right, and Tallenna in the header.
+  // on the right, and Tallenna at the bottom of the grade box.
   if (isDesktop) {
     return (
       <div
@@ -130,23 +135,14 @@ export default function TargetGradeView({ targetGrade, onTargetGradeChange, onCl
               Tavoitearvosana ohjaa Suositellut-syötettä ja sitä, mitä Osaaminen-sivu seuraa.
             </p>
           </div>
-          <div className="flex shrink-0 items-center gap-3">
-            <button
-              type="button"
-              onClick={onClose}
-              className="rounded-xl bg-accent px-4 py-2 text-sm font-semibold text-white transition-opacity hover:opacity-90"
-            >
-              Tallenna
-            </button>
-            <button
-              type="button"
-              onClick={onClose}
-              aria-label="Sulje"
-              className="flex h-9 w-9 items-center justify-center rounded-full bg-surface/90 text-ink shadow-md ring-1 ring-ink/5"
-            >
-              <XIcon className="h-4 w-4" />
-            </button>
-          </div>
+          <button
+            type="button"
+            onClick={onClose}
+            aria-label="Sulje"
+            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-surface/90 text-ink shadow-md ring-1 ring-ink/5"
+          >
+            <XIcon className="h-4 w-4" />
+          </button>
         </div>
         <div className="flex min-h-0 flex-1 gap-6 px-10 pb-8">
           <div className="w-80 shrink-0 [&>section]:mb-0">{picker}</div>
@@ -172,19 +168,14 @@ export default function TargetGradeView({ targetGrade, onTargetGradeChange, onCl
           <h1 id="target-grade-title" className="text-2xl font-bold text-ink">
             Aseta tavoite
           </h1>
-          <div className="flex shrink-0 items-center gap-3">
-            <button type="button" onClick={onClose} className="rounded-xl bg-accent px-4 py-2 text-sm font-semibold text-white transition-opacity hover:opacity-90">
-              Tallenna
-            </button>
-            <button
-              type="button"
-              onClick={onClose}
-              aria-label="Sulje"
-              className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-surface/90 text-ink shadow-md ring-1 ring-ink/5"
-            >
-              <XIcon className="h-4 w-4" />
-            </button>
-          </div>
+          <button
+            type="button"
+            onClick={onClose}
+            aria-label="Sulje"
+            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-surface/90 text-ink shadow-md ring-1 ring-ink/5"
+          >
+            <XIcon className="h-4 w-4" />
+          </button>
         </div>
         <p className="mb-6 text-sm text-ink-dim">
           Tavoitearvosana ohjaa Suositellut-syötettä ja sitä, mitä Osaaminen-sivu seuraa.
