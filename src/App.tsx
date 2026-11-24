@@ -29,7 +29,9 @@ import EsittelyPage from './pages/EsittelyPage'
 import TuePage from './pages/TuePage'
 import MahdollistajatPage from './pages/MahdollistajatPage'
 import SectionOnboarding from './components/SectionOnboarding'
+import CoachMark from './components/CoachMark'
 import {
+  getTourSteps,
   isOnboardingSection,
   loadOnboardingSeen,
   saveOnboardingSeen,
@@ -74,6 +76,11 @@ function App() {
   const onboarding: OnboardingSection | null =
     isOnboardingSection(section) && !onboardingSeen[section] ? section : null
 
+  // The guided tour that follows a section's intro: which step is on.
+  const [tour, setTour] = useState<{ section: OnboardingSection; step: number } | null>(null)
+  const tourSteps = tour && tour.section === section ? getTourSteps(tour.section, isDesktop) : []
+  const tourStep = tour ? tourSteps[tour.step] : undefined
+
   function markOnboardingSeen(done: OnboardingSection) {
     setOnboardingSeen((prev) => {
       if (prev[done]) return prev
@@ -107,6 +114,8 @@ function App() {
   }
 
   function handleSelectSection(next: AppSection) {
+    // Leaving a section ends its tour.
+    if (next !== section) setTour(null)
     if (next === 'kurssit' && section === 'kurssit') {
       if (isDesktop) return
       setSelectedCourse(null)
@@ -160,10 +169,24 @@ function App() {
           section={onboarding}
           seen={onboardingSeen}
           onDone={() => markOnboardingSeen(onboarding)}
+          onStart={() => {
+            markOnboardingSeen(onboarding)
+            setTour({ section: onboarding, step: 0 })
+          }}
           onGoTo={(next) => {
             markOnboardingSeen(onboarding)
             handleSelectSection(next)
           }}
+        />
+      )}
+      {tour && tourStep && (
+        <CoachMark
+          key={`${tour.section}-${tour.step}`}
+          step={tourStep}
+          index={tour.step}
+          count={tourSteps.length}
+          onComplete={() => setTour((t) => (t && t.step + 1 < tourSteps.length ? { ...t, step: t.step + 1 } : null))}
+          onSkip={() => setTour(null)}
         />
       )}
       {section === 'etusivu' && (etusivuPage === 'esittely' ? <EsittelyPage /> : <TuePage />)}

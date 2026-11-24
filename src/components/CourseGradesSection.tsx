@@ -93,6 +93,7 @@ export default function CourseGradesSection({
           onClick={() => setOpen(true)}
           aria-haspopup="dialog"
           aria-label="Muuta esitietoja"
+          data-onboarding="osaaminen-esitiedot"
           className="mt-3 flex w-full items-center gap-3 rounded-2xl bg-surface-2 p-3 text-left ring-1 ring-transparent transition-colors hover:bg-accent/10 hover:ring-accent/30 active:ring-accent/40"
         >
           <span

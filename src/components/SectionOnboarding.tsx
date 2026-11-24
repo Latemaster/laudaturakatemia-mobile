@@ -8,7 +8,10 @@ import { ONBOARDING_SECTIONS, type OnboardingSection, type OnboardingSeen } from
 interface SectionOnboardingProps {
   section: OnboardingSection
   seen: OnboardingSeen
+  // Closes the step without the guided tour.
   onDone: () => void
+  // Closes the step and starts the section's guided tour.
+  onStart: () => void
   // Closes this step and opens the given section, whose own step follows.
   onGoTo: (section: OnboardingSection) => void
 }
@@ -82,7 +85,7 @@ function getStep(section: OnboardingSection, isDesktop: boolean): Step {
 
 // One onboarding step per main section, shown the first time the section
 // is opened: a bottom sheet on phones, a centred dialog on laptops.
-export default function SectionOnboarding({ section, seen, onDone, onGoTo }: SectionOnboardingProps) {
+export default function SectionOnboarding({ section, seen, onDone, onStart, onGoTo }: SectionOnboardingProps) {
   const { isDesktop } = useLayout()
   const step = getStep(section, isDesktop)
   const dialogRef = useRef<HTMLDivElement>(null)
@@ -186,7 +189,7 @@ export default function SectionOnboarding({ section, seen, onDone, onGoTo }: Sec
         )}
         <button
           type="button"
-          onClick={onDone}
+          onClick={onStart}
           className="rounded-full bg-accent px-6 py-3 text-sm font-semibold text-white shadow-md outline-none transition-opacity hover:opacity-90 focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
         >
           Selvä, aloitetaan

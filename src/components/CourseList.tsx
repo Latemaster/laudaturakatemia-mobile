@@ -14,13 +14,14 @@ export default function CourseList({ onSelect, engagedIds }: CourseListProps) {
       <h1 className="mb-1 text-2xl font-bold text-ink">Kurssit</h1>
       <p className="mb-6 text-sm text-ink-dim">Valitse kurssi, jonka tehtäviä ja oppitunteja haluat harjoitella.</p>
       <div className="grid grid-cols-1 gap-3 lg:grid-cols-2 lg:gap-4">
-        {COURSES.map((course) => {
+        {COURSES.map((course, index) => {
           const { pct } = getCourseProgress(course.code, engagedIds)
           return (
             <button
               key={course.code}
               type="button"
               onClick={() => onSelect(course.code)}
+              data-onboarding={index === 0 ? 'course-first' : undefined}
               className="flex flex-col gap-2 rounded-2xl border border-ink/10 bg-surface p-4 text-left shadow-sm transition-colors active:bg-surface-2"
             >
               <div className="flex items-baseline justify-between gap-2">

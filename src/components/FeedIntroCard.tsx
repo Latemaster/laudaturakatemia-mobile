@@ -73,6 +73,7 @@ export default function FeedIntroCard({
         type="button"
         onClick={() => setEsitiedotOpen(true)}
         aria-haspopup="dialog"
+        data-onboarding="esitiedot"
         className={`mt-4 flex items-center justify-center gap-1 rounded-full px-6 py-3 text-sm font-semibold transition-opacity hover:opacity-90 ${
           complete ? 'bg-surface-2 text-accent ring-1 ring-accent/30' : 'bg-accent text-white shadow-md'
         } ${isDesktop ? 'w-fit' : 'w-full'}`}

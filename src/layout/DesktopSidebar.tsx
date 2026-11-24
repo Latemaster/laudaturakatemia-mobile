@@ -141,6 +141,9 @@ export default function DesktopSidebar({
                             <button
                               type="button"
                               onClick={() => onSelectCourseView(course.code, view.id)}
+                              data-onboarding={
+                                selectedCourse === course.code && view.id === 'tehtavat' ? 'course-tasks' : undefined
+                              }
                               className={`w-full rounded-lg px-3 py-1.5 text-left text-sm transition-colors ${
                                 active ? 'font-semibold text-accent' : 'font-medium text-ink-dim hover:bg-surface/60 hover:text-ink'
                               }`}

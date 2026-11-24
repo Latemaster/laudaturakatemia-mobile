@@ -95,7 +95,7 @@ export default function Feed({ cards, onEngage, onAnswer, onBack, backLabel = 'T
           ←
         </button>
       )}
-      <div ref={containerRef} className="snap-feed" onScroll={handleScroll}>
+      <div ref={containerRef} className="snap-feed" onScroll={handleScroll} data-onboarding="feed">
         {intro}
         {cards.slice(0, renderedCount).map((card, index) => (
           <div key={card.id}>
