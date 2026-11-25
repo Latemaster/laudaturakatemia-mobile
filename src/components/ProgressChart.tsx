@@ -4,32 +4,26 @@ import type { TargetGrade } from '../data/studyPlans'
 import InfoToggle, { InfoPanel } from './InfoToggle'
 
 // Edistyminen ajan mittaan: the student's points week by week (running
-// total), against the pace that keeps them on track for their target
-// grade (WEEKLY_POINTS_GOAL a week, the dashed line).
+// total), against the target: a solid line across at the points for the
+// target grade over the eight-week plan, and a staircase climbing to it,
+// one step (WEEKLY_POINTS_GOAL) a week, showing where to be each week to
+// stay on track.
 
+// The plan's length; the chart always shows this many weeks.
 const MIN_WEEKS = 8
 const WEEK_MS = 7 * 24 * 60 * 60 * 1000
 
 const WIDTH = 300
 const HEIGHT = 170
-const PAD_LEFT = 30
+const PAD_LEFT = 12
 const PAD_RIGHT = 10
-const PAD_TOP = 16
+const PAD_TOP = 20
 const PAD_BOTTOM = 22
 const PLOT_WIDTH = WIDTH - PAD_LEFT - PAD_RIGHT
 const PLOT_HEIGHT = HEIGHT - PAD_TOP - PAD_BOTTOM
 
 const ACTUAL = '#2f9e6e'
 const PACE = '#5681bd'
-
-// A round axis maximum and step: 1, 2 or 5 times a power of ten, in four
-// steps or fewer.
-function niceScale(max: number): { top: number; step: number } {
-  const raw = Math.max(4, max) / 4
-  const pow = 10 ** Math.floor(Math.log10(raw))
-  const step = [1, 2, 5, 10].map((m) => m * pow).find((s) => s >= raw) ?? 10 * pow
-  return { top: Math.ceil(max / step) * step || step * 4, step }
-}
 
 interface ProgressChartProps {
   targetGrade: TargetGrade
@@ -50,17 +44,17 @@ export default function ProgressChart({ targetGrade, fill = false }: ProgressCha
     // Eight weeks from the first points; once past that, the last eight.
     const firstShown = Math.max(1, current - MIN_WEEKS + 1)
     const slots = Array.from({ length: MIN_WEEKS }, (_, i) => firstShown + i)
-    const lastSlot = slots[slots.length - 1]
     const actualMax = weeks[weeks.length - 1]?.cumulative ?? 0
-    const { top, step } = niceScale(Math.max(goal * lastSlot, actualMax) * 1.05)
+    const target = goal * MIN_WEEKS
+    const top = Math.max(target * 1.14, actualMax * 1.12)
     // Where the pace says the student should be by now, the current week
     // counted by how much of it has gone.
     const weekFraction = Math.min(1, (now - weekStart(now)) / WEEK_MS)
-    const expectedNow = Math.round(goal * (current - 1 + weekFraction))
-    return { weeks, current, slots, top, step, total: actualMax, expectedNow }
+    const expectedNow = Math.min(target, Math.round(goal * (current - 1 + weekFraction)))
+    return { weeks, current, slots, top, target, total: actualMax, expectedNow }
   }, [log, goal])
 
-  const { weeks, current, slots, top, step, total, expectedNow } = chart
+  const { weeks, current, slots, top, target, total, expectedNow } = chart
   const x = (week: number) => PAD_LEFT + ((week - slots[0]) / (slots.length - 1)) * PLOT_WIDTH
   const y = (points: number) => PAD_TOP + PLOT_HEIGHT * (1 - points / top)
 
@@ -70,9 +64,17 @@ export default function ProgressChart({ targetGrade, fill = false }: ProgressCha
     shownWeeks.length > 1
       ? `M${x(shownWeeks[0].week)},${y(0)} L${actualPoints.replace(/ /g, ' L')} L${x(shownWeeks[shownWeeks.length - 1].week)},${y(0)} Z`
       : ''
-  // The pace line: `goal` points a week, both lines read at each week's end.
-  const paceFrom = { x: x(slots[0]), y: y(goal * slots[0]) }
-  const paceTo = { x: x(slots[slots.length - 1]), y: y(goal * slots[slots.length - 1]) }
+  // The staircase: by the end of week w, `goal` * w points (capped at the
+  // target). The step rises at week w's dot to that level and runs on to
+  // the next week, so each dot sits against the top of its riser.
+  const level = (week: number) => Math.min(target, goal * week)
+  const stairs = slots
+    .map((week, i) => {
+      const rise = `${i === 0 ? 'M' : 'L'}${x(week)},${y(level(week - 1))} L${x(week)},${y(level(week))}`
+      const next = slots[i + 1]
+      return next ? `${rise} L${x(next)},${y(level(week))}` : rise
+    })
+    .join(' ')
 
   const diff = total - expectedNow
   const status =
@@ -89,8 +91,12 @@ export default function ProgressChart({ targetGrade, fill = false }: ProgressCha
         Viiva = pisteesi yhteensä viikon lopussa; +luku = sillä viikolla saadut pisteet
       </li>
       <li className="flex items-center gap-2">
-        <span aria-hidden className="inline-block h-0.5 w-5 border-t-2 border-dashed" style={{ borderColor: PACE }} />
-        Katkoviiva = tavoitetahti {targetGrade}: {goal} p viikossa, jotta pysyt tavoitteessa
+        <span aria-hidden className="inline-block h-0.5 w-5 rounded-full" style={{ backgroundColor: PACE }} />
+        Vaakaviiva = tavoite {targetGrade}: {target} p {MIN_WEEKS} viikossa
+      </li>
+      <li className="flex items-center gap-2">
+        <span aria-hidden className="inline-block h-2 w-5 border-l border-t" style={{ borderColor: PACE }} />
+        Portaat = tavoitetahti, {goal} p viikossa: missä pitäisi olla kunkin viikon lopussa
       </li>
       <li>Pisteitä saa oikeista pikatehtävistä (1 p) ja avointen tehtävien pisteytyksestä.</li>
     </ul>
@@ -124,54 +130,30 @@ export default function ProgressChart({ targetGrade, fill = false }: ProgressCha
               </linearGradient>
             </defs>
 
-            {/* Points axis. */}
-            {Array.from({ length: Math.round(top / step) + 1 }, (_, i) => i * step).map((value) => (
-              <g key={value}>
-                <line
-                  x1={PAD_LEFT}
-                  x2={WIDTH - PAD_RIGHT}
-                  y1={y(value)}
-                  y2={y(value)}
-                  strokeWidth={1}
-                  strokeDasharray={value === 0 ? undefined : '3 3'}
-                  className={value === 0 ? 'stroke-ink/20' : 'stroke-ink/10'}
-                />
-                <text
-                  x={PAD_LEFT - 5}
-                  y={y(value)}
-                  textAnchor="end"
-                  dominantBaseline="middle"
-                  className="fill-ink-dim/70 text-[8px]"
-                >
-                  {value} p
-                </text>
-              </g>
-            ))}
+            <line
+              x1={PAD_LEFT}
+              x2={WIDTH - PAD_RIGHT}
+              y1={y(0)}
+              y2={y(0)}
+              strokeWidth={1}
+              className="stroke-ink/20"
+            />
 
-            {/* Tavoitetahti. */}
-            <g>
-              <line
-                x1={paceFrom.x}
-                y1={paceFrom.y}
-                x2={paceTo.x}
-                y2={paceTo.y}
-                stroke={PACE}
-                strokeWidth={1.5}
-                strokeDasharray="5 3"
-              />
-            </g>
-            <g>
-              <rect x={paceTo.x - 62} y={paceTo.y - 16} width={62} height={12} rx={6} fill={PACE} />
-              <text
-                x={paceTo.x - 31}
-                y={paceTo.y - 10}
-                textAnchor="middle"
-                dominantBaseline="central"
-                className="fill-white text-[7.5px] font-semibold"
-              >
-                Tavoitetahti {targetGrade}
-              </text>
-            </g>
+            {/* Weekly steps towards the target. */}
+            <path d={stairs} fill="none" stroke={PACE} strokeWidth={1.5} strokeOpacity={0.55} strokeLinejoin="round" />
+
+            {/* The target, straight across. */}
+            <line x1={PAD_LEFT} x2={WIDTH - PAD_RIGHT} y1={y(target)} y2={y(target)} stroke={PACE} strokeWidth={1.75} />
+            <rect x={PAD_LEFT} y={y(target) - 15} width={76} height={12} rx={6} fill={PACE} />
+            <text
+              x={PAD_LEFT + 38}
+              y={y(target) - 9}
+              textAnchor="middle"
+              dominantBaseline="central"
+              className="fill-white text-[7.5px] font-semibold"
+            >
+              Tavoite {targetGrade} · {target} p
+            </text>
 
             {/* The student's points. */}
             {area && <path d={area} fill="url(#progress-area)" />}
