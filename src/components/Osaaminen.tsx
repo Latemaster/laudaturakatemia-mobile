@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react'
-import { EXAM_MAX_POINTS, GRADE_BANDS, pointsToPct, predictGrade, type FinnishGrade } from '../data/grade'
+import { EXAM_MAX_POINTS, pointsToPct, predictGrade, type FinnishGrade } from '../data/grade'
 import {
   getFinnishGrade,
   getTargetPoints,
@@ -18,7 +18,7 @@ import {
   type KnowledgeState,
 } from '../data/knowledge'
 import { getCheckpointProgress, usePointsTotal } from '../data/points'
-import { PointsStar } from './PointsMeter'
+import ActivityRings, { RING_COLORS, useRingsState } from './ActivityRings'
 import CourseGradesSection from './CourseGradesSection'
 import InfoToggle, { InfoPanel } from './InfoToggle'
 import ProgressChart from './ProgressChart'
@@ -35,121 +35,10 @@ interface OsaaminenProps {
   knowledge: KnowledgeState
 }
 
-const TIER_CLASSES: Record<FinnishGrade['tier'], { badge: string; text: string; tint: string; bar: string }> = {
-  high: { badge: 'bg-good/15 text-good ring-good/30', text: 'text-good', tint: 'bg-good/15', bar: 'bg-good' },
-  mid: { badge: 'bg-accent/15 text-accent ring-accent/30', text: 'text-accent', tint: 'bg-accent/15', bar: 'bg-accent' },
-  low: { badge: 'bg-bad/15 text-bad ring-bad/30', text: 'text-bad', tint: 'bg-bad/15', bar: 'bg-bad' },
-}
-
-// Ennustettu arvosana as a grade scale: the exam's grade bands from I to L
-// side by side, each as wide as its share of the points, filled up to the
-// student's kokonaisosaaminen. A "Sinä" pin marks where they are and a
-// flag where the target grade starts, so the gap to it reads at a glance.
-const BANDS_LOW_TO_HIGH = GRADE_BANDS.map((band, i) => ({
-  ...band,
-  max: i === 0 ? 100 : GRADE_BANDS[i - 1].min,
-})).reverse()
-
-// Keeps a label centred on `pct` without letting it leave the scale.
-function clampedLeft(pct: number, margin: string): string {
-  return `min(max(${pct}%, ${margin}), calc(100% - ${margin}))`
-}
-
-function GradeScale({
-  pct,
-  grade,
-  target,
-  targetPct,
-  large,
-}: {
-  pct: number
-  grade: FinnishGrade
-  target: FinnishGrade
-  targetPct: number
-  large: boolean
-}) {
-  const classes = TIER_CLASSES[grade.tier]
-  return (
-    <div className="w-full select-none">
-      {/* "Sinä" pin over the scale. */}
-      <div className={`relative ${large ? 'h-9' : 'h-8'}`}>
-        <span
-          className="absolute bottom-1 flex -translate-x-1/2 flex-col items-center transition-[left] duration-700"
-          style={{ left: clampedLeft(pct, '1.75rem') }}
-        >
-          <span className={`rounded-full px-2 py-0.5 text-[11px] font-bold text-white ${classes.bar}`}>
-            Sinä {pct} %
-          </span>
-        </span>
-        <span
-          aria-hidden
-          className={`absolute bottom-0 h-1.5 w-0.5 -translate-x-1/2 rounded-full transition-[left] duration-700 ${classes.bar}`}
-          style={{ left: `${pct}%` }}
-        />
-      </div>
-
-      <div className={`relative ${large ? 'h-5' : 'h-4'}`}>
-        {/* The bands, tinted by tier. */}
-        <div className="absolute inset-0 flex gap-0.5 overflow-hidden rounded-full">
-          {BANDS_LOW_TO_HIGH.map((band) => (
-            <span
-              key={band.grade.letter}
-              className={TIER_CLASSES[band.grade.tier].tint}
-              style={{ width: `${band.max - band.min}%` }}
-            />
-          ))}
-        </div>
-        {/* Filled up to the student's level. */}
-        <div
-          className={`absolute inset-y-0 left-0 rounded-full transition-[width] duration-700 ${classes.bar}`}
-          style={{ width: `${pct}%`, minWidth: pct > 0 ? '0.5rem' : 0 }}
-        />
-        {/* Band edges stay visible over the fill. */}
-        {BANDS_LOW_TO_HIGH.slice(1).map((band) => (
-          <span
-            key={band.grade.letter}
-            aria-hidden
-            className="absolute inset-y-0 w-0.5 -translate-x-1/2 bg-surface"
-            style={{ left: `${band.min}%` }}
-          />
-        ))}
-        {/* Where the target grade starts. */}
-        <span
-          aria-hidden
-          className="absolute -bottom-1 -top-1 w-[3px] -translate-x-1/2 rounded-full bg-ink ring-2 ring-surface"
-          style={{ left: `${targetPct}%` }}
-        />
-      </div>
-
-      {/* Band letters, the predicted one highlighted. */}
-      <div className="relative mt-1.5 h-5">
-        {BANDS_LOW_TO_HIGH.map((band) => {
-          const current = band.grade.letter === grade.letter
-          return (
-            <span
-              key={band.grade.letter}
-              className={`absolute -translate-x-1/2 text-xs ${
-                current ? `font-bold ${TIER_CLASSES[band.grade.tier].text}` : 'font-semibold text-ink-dim/60'
-              }`}
-              style={{ left: `${(band.min + band.max) / 2}%` }}
-            >
-              {band.grade.letter}
-            </span>
-          )
-        })}
-      </div>
-
-      {/* The target flag under the letters. */}
-      <div className="relative h-6">
-        <span
-          className="absolute top-0.5 -translate-x-1/2 whitespace-nowrap rounded-full bg-ink px-2 py-0.5 text-[11px] font-semibold text-white"
-          style={{ left: clampedLeft(targetPct, '2.75rem') }}
-        >
-          Tavoite {target.letter}
-        </span>
-      </div>
-    </div>
-  )
+const TIER_CLASSES: Record<FinnishGrade['tier'], { badge: string; text: string; bar: string }> = {
+  high: { badge: 'bg-good/15 text-good ring-good/30', text: 'text-good', bar: 'bg-good' },
+  mid: { badge: 'bg-accent/15 text-accent ring-accent/30', text: 'text-accent', bar: 'bg-accent' },
+  low: { badge: 'bg-bad/15 text-bad ring-bad/30', text: 'text-bad', bar: 'bg-bad' },
 }
 
 const RELIABILITY_CLASSES: Record<EstimateReliability, { text: string; bar: string; filled: number }> = {
@@ -176,34 +65,16 @@ function ReliabilityFlag({ overall }: { overall: OverallEstimate }) {
   )
 }
 
-// Points earned from exercises and the way to the next välietappi.
-function CheckpointProgressRow() {
-  const total = usePointsTotal()
-  const cp = getCheckpointProgress(total)
+// One ring's line in the legend beside the rings.
+function RingLegend({ color, title, value, note }: { color: string; title: string; value: string; note?: string }) {
   return (
-    <div className="mt-5 w-full rounded-2xl bg-surface-2 p-3 text-left ring-1 ring-ink/5" data-onboarding="checkpoints">
-      <div className="flex items-baseline justify-between gap-2">
-        <span className="flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-widest text-ink-dim/70">
-          <span className="flex h-5 w-5 items-center justify-center rounded-full bg-good text-white">
-            <PointsStar className="h-3.5 w-3.5" />
-          </span>
-          Pisteet ja välietapit
-        </span>
-        <span className="text-xs font-semibold text-ink">
-          {total} p · {cp.reachedCount} {cp.reachedCount === 1 ? 'etappi' : 'etappia'}
-        </span>
+    <div className="flex items-start gap-2.5">
+      <span className="mt-1 h-3 w-3 shrink-0 rounded-full" style={{ backgroundColor: color }} />
+      <div className="flex min-w-0 flex-col">
+        <span className="text-[11px] font-semibold uppercase tracking-widest text-ink-dim/70">{title}</span>
+        <span className="text-base font-bold leading-tight text-ink">{value}</span>
+        {note && <span className="text-xs text-ink-dim">{note}</span>}
       </div>
-      <div className="mt-2 h-2.5 w-full overflow-hidden rounded-full bg-ink/10">
-        <div
-          className="h-full rounded-full bg-good transition-[width] duration-700"
-          style={{ width: `${Math.round(cp.progress * 100)}%` }}
-        />
-      </div>
-      <span className="mt-1.5 block text-xs text-ink-dim">
-        {cp.next
-          ? `${cp.toNext} p seuraavaan välietappiin (${cp.next.points} p). Pisteitä saa oikeista vastauksista.`
-          : 'Kaikki välietapit saavutettu!'}
-      </span>
     </div>
   )
 }
@@ -227,6 +98,10 @@ export default function Osaaminen({
   const targetTierClasses = TIER_CLASSES[target.tier]
   const targetPoints = getTargetPoints(targetGrade)
   const targetPct = pointsToPct(targetPoints.avg)
+  const outerRing = targetPct > 0 ? overallPct / targetPct : 0
+  const pointsTotal = usePointsTotal()
+  const checkpoint = getCheckpointProgress(pointsTotal)
+  const rings = useRingsState()
 
   // On laptops an open explanation takes its card's place (scrolling
   // inside it), so the page still fits without scrolling.
@@ -320,38 +195,61 @@ export default function Osaaminen({
             <InfoPanel className="mt-3 min-h-0 flex-1 overflow-y-auto">{forecastInfo}</InfoPanel>
           ) : (
             <>
-              {/* On laptops the grade centres in the card's height, leaving
-                  Välietapit and Tavoitearvosana at the bottom. */}
-              <div className={`mt-4 flex flex-col ${isDesktop ? 'flex-1 justify-center' : ''}`}>
-                <div className="flex items-center gap-4">
-                  <span
-                    className={`flex shrink-0 items-center justify-center rounded-2xl font-bold ring-2 ${tierClasses.badge} ${
-                      isDesktop ? 'h-24 w-24 text-5xl' : 'h-16 w-16 text-4xl'
-                    }`}
-                  >
-                    {grade.letter}
-                  </span>
-                  <div className="flex min-w-0 flex-col">
-                    <span className={`font-bold leading-tight ${tierClasses.text} ${isDesktop ? 'text-2xl' : 'text-lg'}`}>
+              {/* The activity rings, as in the top bar: outer = the way to
+                  the target grade, inner = the way to the next välietappi,
+                  the predicted grade in the middle. On laptops they centre
+                  in the card's height, leaving Tavoitearvosana at the
+                  bottom. */}
+              <div
+                className={`mt-4 flex ${
+                  isDesktop ? 'flex-1 flex-row items-center justify-center gap-10' : 'flex-col items-center gap-5'
+                }`}
+              >
+                <ActivityRings
+                  size={isDesktop ? 200 : 168}
+                  stroke={isDesktop ? 22 : 19}
+                  outer={outerRing}
+                  state={rings}
+                  popOnPoints={false}
+                  center={
+                    <span className="flex flex-col items-center leading-none">
+                      <span className={`font-bold ${tierClasses.text} ${isDesktop ? 'text-5xl' : 'text-4xl'}`}>
+                        {grade.letter}
+                      </span>
+                      <span className="mt-1 text-[10px] font-semibold uppercase tracking-widest text-ink-dim/70">
+                        ennuste
+                      </span>
+                    </span>
+                  }
+                />
+                <div className={`flex min-w-0 flex-col gap-4 ${isDesktop ? '' : 'w-full'}`}>
+                  <div className="flex flex-col">
+                    <span className={`font-bold leading-tight ${tierClasses.text} ${isDesktop ? 'text-xl' : 'text-lg'}`}>
                       {grade.name}
                     </span>
                     <span className="mt-0.5 text-sm font-semibold text-ink-dim">{overallPct} % kokonaisosaaminen</span>
-                    {!overall.hasData && (
+                    {overall.hasData ? (
+                      <ReliabilityFlag overall={overall} />
+                    ) : (
                       <span className="mt-1 text-xs text-ink-dim">Täytä esitiedot tai vastaa tehtäviin</span>
                     )}
                   </div>
-                </div>
-                {overall.hasData && (
-                  <div className="mt-1">
-                    <ReliabilityFlag overall={overall} />
+                  <div className={isDesktop ? 'flex flex-col gap-3' : 'grid grid-cols-2 gap-3'}>
+                    <RingLegend
+                      color={RING_COLORS.outer.stroke}
+                      title={`Tavoite ${target.letter}`}
+                      value={`${Math.round(Math.min(1, outerRing) * 100)} %`}
+                      note={outerRing >= 1 ? 'Tavoite saavutettu!' : `${overallPct} / ${targetPct} %`}
+                    />
+                    <RingLegend
+                      color={RING_COLORS.inner.stroke}
+                      title={checkpoint.next ? `Välietappi ${checkpoint.next.number}` : 'Välietapit'}
+                      value={checkpoint.next ? `${checkpoint.toNext} p jäljellä` : 'Kaikki saavutettu'}
+                      note={`${pointsTotal} p kerätty oikeista vastauksista`}
+                    />
                   </div>
-                )}
-                <div className={isDesktop ? 'mt-8' : 'mt-5'}>
-                  <GradeScale pct={overallPct} grade={grade} target={target} targetPct={targetPct} large={isDesktop} />
                 </div>
               </div>
-
-              <CheckpointProgressRow />
 
               <button
                 type="button"
@@ -359,7 +257,7 @@ export default function Osaaminen({
                 aria-haspopup="dialog"
                 aria-label="Muuta tavoitearvosanaa"
                 data-onboarding="target-grade"
-                className="mt-3 flex w-full items-center gap-3 rounded-2xl bg-surface-2 p-3 text-left ring-1 ring-transparent transition-colors hover:bg-accent/10 hover:ring-accent/30 active:ring-accent/40"
+                className="mt-5 flex w-full items-center gap-3 rounded-2xl bg-surface-2 p-3 text-left ring-1 ring-transparent transition-colors hover:bg-accent/10 hover:ring-accent/30 active:ring-accent/40"
               >
                 <span
                   className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-lg font-bold ring-2 ${targetTierClasses.badge}`}
