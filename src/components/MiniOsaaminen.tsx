@@ -83,14 +83,7 @@ export default function MiniOsaaminen({ knowledge, courseGrades, targetGrade, on
             />
           )}
           <GradeDonut pct={overall.pct} grade={grade} targetPct={targetPct} size={size} gap={2.5} />
-          <ConfettiBurst
-            trigger={burst}
-            origin="center"
-            delay={0}
-            count={reached ? 34 : 16}
-            spread={reached ? 1.8 : 1}
-            className="overflow-visible"
-          />
+          <ConfettiBurst trigger={burst} delay={0} count={reached ? 30 : 16} spread={reached ? 0.9 : 0.5} />
         </motion.span>
         {laptop && (
           <span className="flex min-w-0 flex-col items-start leading-tight">

@@ -103,7 +103,7 @@ export function ExerciseFrame({
       style={answered ? { boxShadow: `0 0 0 2px ${pointsColor(points)}, 0 1px 2px rgba(0, 0, 0, 0.05)` } : undefined}
     >
       {/* Confetti bursts from the box's sides as the points come in. */}
-      <CardGlow trigger={celebrate ?? 0} points={points} />
+      <CardGlow trigger={celebrate ?? 0} />
       <WrongShake trigger={wrong ?? 0} />
       <header className="flex shrink-0 items-center justify-between gap-4 border-b border-ink/10 px-7 pb-4 pt-5">
         <div className="min-w-0">

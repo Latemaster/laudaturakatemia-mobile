@@ -116,7 +116,7 @@ export default function TaskCardView({
       topic={card.topic}
       glow={
         <>
-          <CardGlow trigger={celebrate} points={points} />
+          <CardGlow trigger={celebrate} />
           <WrongShake trigger={wrong} />
         </>
       }

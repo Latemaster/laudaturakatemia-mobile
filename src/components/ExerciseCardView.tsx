@@ -358,7 +358,7 @@ export default function ExerciseCardView({ card, onAnswer }: ExerciseCardViewPro
         topic={card.topic}
         glow={
           <>
-            <CardGlow trigger={celebrate} points={points} />
+            <CardGlow trigger={celebrate} />
             <WrongShake trigger={wrong} />
           </>
         }
@@ -383,7 +383,7 @@ export default function ExerciseCardView({ card, onAnswer }: ExerciseCardViewPro
         {isExpanded &&
           createPortal(
             <>
-              <CardGlow trigger={heldCelebrate} points={points} className="" fullScreen />
+              <CardGlow trigger={heldCelebrate} fullScreen />
               <WrongShake trigger={heldWrong} className="" fullScreen />
             </>,
             document.body,

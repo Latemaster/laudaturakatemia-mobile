@@ -233,31 +233,19 @@ export function useTaskPoints(
   }, [rubricExercise, scores])
 }
 
-// Confetti bursting in from the card's sides as points come in, timed with
-// the tile filling up, with the points' colour mixed in. Each change of
-// `trigger` plays it once; 0 shows nothing. Sits inside a positioned card,
-// under its content's pointer events.
+// Green confetti bursting out all around the card as points come in,
+// timed with the tile filling up. Each change of `trigger` plays it once;
+// 0 shows nothing. Sits inside the card it bursts around.
 export function CardGlow({
   trigger,
-  points,
-  className = 'rounded-3xl',
   fullScreen = false,
 }: {
   trigger: number
-  points: Points | undefined
-  className?: string
-  // Over the whole screen (the full-screen view) instead of inside a card.
+  // Bursts in from the screen's edges (the full-screen view) instead.
   fullScreen?: boolean
 }) {
   return (
-    <ConfettiBurst
-      trigger={trigger}
-      color={pointsColor(points)}
-      className={className}
-      fullScreen={fullScreen}
-      count={fullScreen ? 56 : 40}
-      spread={fullScreen ? 1.5 : 1}
-    />
+    <ConfettiBurst trigger={trigger} fullScreen={fullScreen} count={fullScreen ? 72 : 60} spread={fullScreen ? 1.5 : 1} />
   )
 }
 
