@@ -4,7 +4,7 @@ Three things that used to share one number are separate:
 
 | | What it answers | Where it shows | Comes from |
 | --- | --- | --- | --- |
-| Points | What have I done? | plus animation, checkpoints, course progress bars | best points per exercise |
+| Points | What have I done? | plus animation, levels (Taso), course progress bars | best points per exercise |
 | Target grade | How far is my goal? | the rings on Osaaminen and in the top bar | points, capped per course |
 | Predicted grade | What would I get now? | its own card on Osaaminen | course knowledge |
 
@@ -31,7 +31,7 @@ The same formula runs per theme, with the course's grade as the prior.
 | Vahva | 65-85 |
 | Erinomainen | 85 and over |
 
-A level from the grade alone is outlined instead of filled and stops at Vahva. Only the label is capped; the percentage (90 for a 10) is used as it is.
+The level colours the edge of the course's box, red to dark green, and is named on a blob in its corner. A level from the grade alone has a paler edge and an outlined blob, and stops at Vahva. Only the label is capped; the percentage (90 for a 10) is used as it is.
 
 **Certainty** = attempted / (2 + attempted): the share of the estimate that rests on answers. It is the certainty bar and the feed's uncertainty boost.
 
@@ -45,7 +45,7 @@ Points earned out of the points the course offers (quick exercises plus rubric m
 - Each plan course has a **quota** of that, in proportion to its **relevance**: 1 in the plan's first tier, then evenly less (M: 1, 2/3, 1/3).
 - A quota never exceeds what the course offers; the rest is shared among the other courses the same way.
 - Points from a course count up to **1.5 x its quota**. Courses outside the plan don't count.
-- Course grades don't count. Every point still counts in the raw total and the checkpoints.
+- Course grades don't count. Every point still counts in the raw total and the checkpoints. Reaching a checkpoint raises the student's level (Taso 1 at the start).
 
 While all rubrics are drafts, the published app offers 150 points, so M, E and L need 150. The limit lifts as rubrics are reviewed. With the draft rubrics the quotas add up to the full goal.
 
@@ -53,7 +53,7 @@ While all rubrics are drafts, the published app offers 150 points, so M, E and L
 
 Mean of the ten courses' percentages, equally weighted, through `predictGrade`. A course with nothing known counts as 0, so four strong courses predict C, not L. With nothing known at all the prediction is "–".
 
-The certainty bar is the mean of the courses' certainties, from epävarma to varma.
+The certainty bar is the mean of the courses' certainties, from epävarma to varma. In words it is Epävarma, Kohtalainen or Varma arvio, a third of the bar each. The card also opens the esitiedot.
 
 **Found gap.** When an answer lowers the shown percentage and its course is below Vahva, Osaaminen says "Löytyi aukko: MAA6 Derivaatta" and the course leads the feed. It ends when the course is back at its earlier percentage. Stored in `laudatur.foundGap`.
 

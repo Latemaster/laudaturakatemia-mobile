@@ -6,7 +6,7 @@ import { ConfettiBurst } from './Celebrations'
 // Two rings after a fitness watch's activity rings, shared by the top
 // bar's corner and the Osaaminen page:
 // - outer, dark green: points towards the target grade (coursePoints.ts);
-// - inner, light green: the way to the next välietappi.
+// - inner, light green: the way to the next level (taso).
 // Points move both; when the inner ring closes it lights up, bursts, starts
 // over, and the outer ring gets its push.
 

@@ -10,7 +10,9 @@ import type { Knowledge } from '../data/knowledge'
 import { usePointsEarned } from '../data/points'
 import EsitiedotView from './EsitiedotView'
 import InfoToggle from './InfoToggle'
-import KnowledgeChip from './KnowledgeChip'
+import CourseProgressBar from './CourseProgressBar'
+import KnowledgeBlob from './KnowledgeBlob'
+import { knowledgeBorder } from './knowledgeColors'
 import { ChevronDownIcon, ChevronRightIcon, PlusIcon, SlidersIcon, XIcon } from './icons'
 import { useLayout } from '../layout/LayoutContext'
 import type { TopicCode } from '../types'
@@ -242,56 +244,58 @@ export default function FeedInfo({
       <p className="mb-3 text-xs">
         {ownOrder
           ? 'Oma järjestyksesi. Ylimmät tulevat syötteessä ensin.'
-          : 'Järjestys seuraa osaamistasi. Jos muutat sitä, oma järjestyksesi jää voimaan.'}
+          : 'Järjestys seuraa osaamistasi, jonka reunan väri kertoo. Jos muutat järjestystä, omasi jää voimaan.'}
       </p>
-      <ol className="mb-4 flex flex-col gap-1.5">
+      <ol className="mb-4 mt-5 flex flex-col gap-4">
         {courses.map((code, index) => (
-          <li key={code} className="flex items-center gap-2 rounded-2xl bg-surface-2 py-2 pl-3 pr-1.5">
-            <span className="w-4 shrink-0 text-xs font-semibold text-ink-dim/70">{index + 1}</span>
-            <span className="min-w-0 flex-1">
-              <span className="flex flex-wrap items-center gap-x-2 gap-y-1">
+          <li
+            key={code}
+            className={`relative rounded-2xl bg-surface-2 pb-2.5 pl-2.5 pr-1.5 pt-3.5 ${knowledgeBorder(knowledge.courses[code])}`}
+          >
+            <KnowledgeBlob course={knowledge.courses[code]} />
+            <div className="flex items-center gap-1.5">
+              <span className="w-4 shrink-0 text-xs font-semibold text-ink-dim/70">{index + 1}</span>
+              <span className="min-w-0 flex-1">
                 <span
                   className={`inline-flex items-center rounded-full px-2 py-0.5 text-[11px] font-semibold ring-1 ${COURSE_TAG_CLASS}`}
                 >
                   {code}
                 </span>
-                {/* Wraps as one: under the code on phones, beside it on laptops. */}
-                <span className="flex items-center gap-2 whitespace-nowrap">
-                  <KnowledgeChip course={knowledge.courses[code]} />
-                  <span className="text-[11px] font-semibold">{getCourseProgressPct(code, points)} %</span>
+                <span lang="fi" className="mt-0.5 block hyphens-auto break-words text-xs leading-snug">
+                  {COURSE_MAP[code]?.name}
                 </span>
               </span>
-              <span lang="fi" className="mt-0.5 block hyphens-auto break-words text-xs leading-snug">
-                {COURSE_MAP[code]?.name}
-              </span>
-            </span>
-            <button
-              type="button"
-              onClick={() => move(index, -1)}
-              disabled={index === 0}
-              aria-label={`Siirrä ${code} ylemmäs`}
-              className={iconButton}
-            >
-              <ChevronDownIcon className="h-4 w-4 rotate-180" />
-            </button>
-            <button
-              type="button"
-              onClick={() => move(index, 1)}
-              disabled={index === courses.length - 1}
-              aria-label={`Siirrä ${code} alemmas`}
-              className={iconButton}
-            >
-              <ChevronDownIcon className="h-4 w-4" />
-            </button>
-            <button
-              type="button"
-              onClick={() => setCourses(courses.filter((c) => c !== code))}
-              disabled={courses.length === 1}
-              aria-label={`Poista ${code} syötteestä`}
-              className={iconButton}
-            >
-              <XIcon className="h-3 w-3" />
-            </button>
+              <button
+                type="button"
+                onClick={() => move(index, -1)}
+                disabled={index === 0}
+                aria-label={`Siirrä ${code} ylemmäs`}
+                className={iconButton}
+              >
+                <ChevronDownIcon className="h-4 w-4 rotate-180" />
+              </button>
+              <button
+                type="button"
+                onClick={() => move(index, 1)}
+                disabled={index === courses.length - 1}
+                aria-label={`Siirrä ${code} alemmas`}
+                className={iconButton}
+              >
+                <ChevronDownIcon className="h-4 w-4" />
+              </button>
+              <button
+                type="button"
+                onClick={() => setCourses(courses.filter((c) => c !== code))}
+                disabled={courses.length === 1}
+                aria-label={`Poista ${code} syötteestä`}
+                className={iconButton}
+              >
+                <XIcon className="h-3 w-3" />
+              </button>
+            </div>
+            <div className="mt-1.5 flex pl-[1.375rem] pr-2">
+              <CourseProgressBar pct={getCourseProgressPct(code, points)} />
+            </div>
           </li>
         ))}
       </ol>

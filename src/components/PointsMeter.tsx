@@ -1,35 +1,8 @@
-import { useEffect, useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { getCoursePoints, getTargetProgress } from '../data/coursePoints'
 import { getCheckpointProgress, usePointsEarned, usePointsTotal } from '../data/points'
 import ActivityRings, { RING_COLORS, useRingsState } from './ActivityRings'
 import type { TargetGrade } from '../data/studyPlans'
-
-// Counts the shown number up to `value` when it grows.
-function useCountUp(value: number): number {
-  const [shown, setShown] = useState(value)
-  const from = useRef(value)
-  useEffect(() => {
-    const start = from.current
-    if (value <= start || window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) {
-      from.current = value
-      setShown(value)
-      return
-    }
-    const began = performance.now() + 200
-    let frame = 0
-    const tick = (now: number) => {
-      const t = Math.min(1, Math.max(0, (now - began) / 700))
-      const v = start + (value - start) * (1 - (1 - t) ** 3)
-      setShown(Math.round(v))
-      from.current = v
-      if (t < 1) frame = requestAnimationFrame(tick)
-    }
-    frame = requestAnimationFrame(tick)
-    return () => cancelAnimationFrame(frame)
-  }, [value])
-  return shown
-}
 
 interface ProgressRingsProps {
   targetGrade: TargetGrade
@@ -44,7 +17,6 @@ interface ProgressRingsProps {
 export default function PointsMeter({ targetGrade, onOpen, laptop = false }: ProgressRingsProps) {
   const outer = getTargetProgress(targetGrade, getCoursePoints(usePointsEarned())).progress
   const total = usePointsTotal()
-  const shown = useCountUp(total)
   const checkpoint = getCheckpointProgress(total)
   const state = useRingsState()
   const { bubble, burst } = state
@@ -52,7 +24,7 @@ export default function PointsMeter({ targetGrade, onOpen, laptop = false }: Pro
   const reached = bubble?.reached ?? null
   const outerPct = Math.floor(outer * 100)
   const label = `Matka tavoitearvosanaan ${outerPct} %. ${
-    checkpoint.next ? `${checkpoint.toNext} p seuraavaan välietappiin.` : 'Kaikki välietapit saavutettu.'
+    checkpoint.next ? `Taso ${checkpoint.level}, ${checkpoint.toNext} p seuraavaan.` : 'Ylin taso saavutettu.'
   } Avaa Osaaminen.`
 
   return (
@@ -61,7 +33,7 @@ export default function PointsMeter({ targetGrade, onOpen, laptop = false }: Pro
         type="button"
         onClick={onOpen}
         aria-label={label}
-        title="Tavoite ja välietapit"
+        title="Tavoite ja taso"
         className={`relative flex items-center rounded-full ${
           laptop ? 'gap-3 py-1 pl-1 pr-4 text-white transition-colors hover:bg-white/15' : ''
         }`}
@@ -81,7 +53,7 @@ export default function PointsMeter({ targetGrade, onOpen, laptop = false }: Pro
             </span>
             <span className="flex items-center gap-1.5">
               <span className="h-2 w-2 rounded-full" style={{ backgroundColor: RING_COLORS.inner.stroke }} />
-              {checkpoint.next ? `${shown} p · ${checkpoint.toNext} p etappiin ${checkpoint.next.number}` : `${shown} p`}
+              {checkpoint.next ? `Taso ${checkpoint.level} · ${checkpoint.toNext} p seuraavaan` : `Taso ${checkpoint.level}`}
             </span>
           </span>
         )}
@@ -100,15 +72,15 @@ export default function PointsMeter({ targetGrade, onOpen, laptop = false }: Pro
           >
             <span className="block text-sm font-bold text-good">+{bubble.delta} p</span>
             {reached && (
-              <span className="block text-xs font-semibold text-ink">Välietappi {reached.number} saavutettu!</span>
+              <span className="block text-xs font-semibold text-ink">Taso {reached.number + 1} saavutettu!</span>
             )}
             {(() => {
               const cp = getCheckpointProgress(bubble.total)
               return (
                 <span className="block text-xs text-ink-dim">
                   {cp.next
-                    ? `${cp.toNext} p seuraavaan välietappiin (${cp.next.points} p)`
-                    : 'Kaikki välietapit saavutettu'}
+                    ? `${cp.toNext} p tasoon ${cp.level + 1}`
+                    : 'Ylin taso saavutettu'}
                 </span>
               )
             })()}

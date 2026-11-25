@@ -3,7 +3,10 @@ import { COURSES } from '../data/courses'
 import { getCoursePoints, getCourseProgressPct } from '../data/coursePoints'
 import type { Knowledge } from '../data/knowledge'
 import { usePointsEarned } from '../data/points'
-import KnowledgeChip from '../components/KnowledgeChip'
+import CourseProgressBar from '../components/CourseProgressBar'
+import InfoToggle from '../components/InfoToggle'
+import KnowledgeBlob, { KnowledgeLegend } from '../components/KnowledgeBlob'
+import { knowledgeBorder } from '../components/knowledgeColors'
 import type { TopicCode } from '../types'
 import { COURSE_VIEWS, ETUSIVU_PAGES, type AppSection, type CourseView, type EtusivuPage } from './sections'
 
@@ -114,7 +117,13 @@ export default function DesktopSidebar({
 
       {section === 'kurssit' && (
         <>
-          <ul className="flex flex-col gap-1">
+          <div className="mb-5 flex flex-wrap items-center gap-2 pl-3 text-xs text-ink-dim">
+            Reunan väri kertoo osaamisesi.
+            <InfoToggle label="Mitä osaamisesi tarkoittaa">
+              <KnowledgeLegend />
+            </InfoToggle>
+          </div>
+          <ul className="flex flex-col gap-4">
             {COURSES.map((course) => {
               const pct = getCourseProgressPct(course.code, points)
               const open = openCourse === course.code
@@ -124,17 +133,16 @@ export default function DesktopSidebar({
                     type="button"
                     onClick={() => setOpenCourse(open ? null : course.code)}
                     aria-expanded={open}
-                    className={itemClass(open)}
+                    className={`relative w-full rounded-xl px-3 pb-2 pt-3.5 text-left text-sm font-semibold transition-colors ${
+                      open ? 'bg-surface text-accent shadow-sm' : 'bg-surface/60 text-ink hover:bg-surface'
+                    } ${knowledgeBorder(knowledge.courses[course.code])}`}
                   >
+                    <KnowledgeBlob course={knowledge.courses[course.code]} />
                     <span className="block truncate">
                       {course.code} · <span className="font-medium">{course.name}</span>
                     </span>
-                    <span className="mt-1 flex items-center justify-between gap-2">
-                      <KnowledgeChip course={knowledge.courses[course.code]} />
-                      <span className="shrink-0 text-xs text-ink-dim">{pct} %</span>
-                    </span>
-                    <span className="mt-1.5 block h-1 w-full overflow-hidden rounded-full bg-ink/10">
-                      <span className="block h-full rounded-full bg-accent" style={{ width: `${pct}%` }} />
+                    <span className="mt-1.5 flex">
+                      <CourseProgressBar pct={pct} thin />
                     </span>
                   </button>
                   {open && (

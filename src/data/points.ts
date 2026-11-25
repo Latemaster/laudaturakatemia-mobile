@@ -167,6 +167,8 @@ export const CHECKPOINTS: Checkpoint[] = Array.from({ length: MAX_LISTED }, (_, 
 export interface CheckpointProgress {
   total: number
   reachedCount: number
+  // The student's level (taso): 1 at the start, one up per checkpoint.
+  level: number
   // The checkpoint just passed (0 points before the first) and the next.
   prevPoints: number
   next: Checkpoint | null
@@ -180,10 +182,11 @@ export function getCheckpointProgress(points: number): CheckpointProgress {
   const reachedCount = CHECKPOINTS.filter((cp) => points >= cp.points).length
   const next = CHECKPOINTS[reachedCount] ?? null
   const prevPoints = reachedCount > 0 ? CHECKPOINTS[reachedCount - 1].points : 0
-  if (!next) return { total: points, reachedCount, prevPoints, next: null, toNext: 0, progress: 1 }
+  if (!next) return { total: points, reachedCount, level: reachedCount + 1, prevPoints, next: null, toNext: 0, progress: 1 }
   return {
     total: points,
     reachedCount,
+    level: reachedCount + 1,
     prevPoints,
     next,
     toNext: next.points - points,
