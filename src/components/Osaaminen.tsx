@@ -282,7 +282,7 @@ export default function Osaaminen({
               the chart's room too while open. */}
           {!(isDesktop && esitiedotInfoOpen) && (
             <div className={isDesktop ? 'min-h-0 flex-1' : ''}>
-              <ProgressChart targetLetter={target.letter} targetPct={targetPct} fill={isDesktop} />
+              <ProgressChart targetGrade={targetGrade} fill={isDesktop} />
             </div>
           )}
           <CourseGradesSection

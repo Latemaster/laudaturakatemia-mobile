@@ -7,6 +7,13 @@ import { useSyncExternalStore } from 'react'
 
 interface PointsState {
   earned: Record<string, number>
+  // Every award, dated, for the weekly chart.
+  log: PointsLogEntry[]
+}
+
+export interface PointsLogEntry {
+  at: number
+  points: number
 }
 
 export interface PointsEvent {
@@ -24,18 +31,29 @@ const EVENT = 'laudatur:points'
 function load(): PointsState {
   try {
     const stored = window.localStorage.getItem(STORAGE_KEY)
-    if (!stored) return { earned: {} }
-    const parsed = JSON.parse(stored) as { version?: number; earned?: Record<string, unknown> }
+    if (!stored) return { earned: {}, log: [] }
+    const parsed = JSON.parse(stored) as { version?: number; earned?: Record<string, unknown>; log?: unknown }
     if (parsed.version !== STORAGE_VERSION || typeof parsed.earned !== 'object' || parsed.earned === null) {
-      return { earned: {} }
+      return { earned: {}, log: [] }
     }
     const earned: Record<string, number> = {}
     for (const [id, value] of Object.entries(parsed.earned)) {
       if (typeof value === 'number' && value > 0) earned[id] = value
     }
-    return { earned }
+    const log: PointsLogEntry[] = []
+    if (Array.isArray(parsed.log)) {
+      for (const entry of parsed.log) {
+        const { at, points } = (entry ?? {}) as Partial<PointsLogEntry>
+        if (typeof at === 'number' && typeof points === 'number' && points > 0) log.push({ at, points })
+      }
+    }
+    // Points saved before the log existed count from now.
+    const logged = log.reduce((sum, e) => sum + e.points, 0)
+    const unlogged = Object.values(earned).reduce((sum, n) => sum + n, 0) - logged
+    if (unlogged > 0) log.push({ at: Date.now(), points: unlogged })
+    return { earned, log }
   } catch {
-    return { earned: {} }
+    return { earned: {}, log: [] }
   }
 }
 
@@ -61,7 +79,8 @@ export function awardPoints(id: string, points: number): number {
   const before = state.earned[id] ?? 0
   if (!(points > before)) return 0
   const prevTotal = total
-  state = { earned: { ...state.earned, [id]: points } }
+  const earned = { ...state.earned, [id]: points }
+  state = { earned, log: [...state.log, { at: Date.now(), points: points - before }] }
   total = sumOf(state)
   save()
   listeners.forEach((l) => l())
@@ -79,6 +98,21 @@ export function awardPoints(id: string, points: number): number {
 
 export function getPointsTotal(): number {
   return total
+}
+
+export function getPointsLog(): PointsLogEntry[] {
+  return state.log
+}
+
+// The award log, re-rendering on every award.
+export function usePointsLog(): PointsLogEntry[] {
+  return useSyncExternalStore(
+    (listener) => {
+      listeners.add(listener)
+      return () => listeners.delete(listener)
+    },
+    () => state.log,
+  )
 }
 
 export function usePointsTotal(): number {
@@ -144,6 +178,64 @@ export function getCheckpointProgress(points: number): CheckpointProgress {
     toNext: next.points - points,
     progress: (points - prevPoints) / (next.points - prevPoints),
   }
+}
+
+// ---------------------------------------------------------------------------
+// Weekly pace
+// ---------------------------------------------------------------------------
+
+// Points per week that keep a student on track for each target grade: the
+// dashed "tavoitetahti" line in Edistyminen ajan mittaan. Roughly a few
+// quick exercises a day for B up to a steady daily session for L.
+export const WEEKLY_POINTS_GOAL: Record<'L' | 'E' | 'M' | 'C' | 'B', number> = {
+  L: 35,
+  E: 28,
+  M: 20,
+  C: 14,
+  B: 10,
+}
+
+const WEEK_MS = 7 * 24 * 60 * 60 * 1000
+
+// Monday 00:00 (local time) of the week `at` falls in.
+export function weekStart(at: number): number {
+  const d = new Date(at)
+  d.setHours(0, 0, 0, 0)
+  d.setDate(d.getDate() - ((d.getDay() + 6) % 7))
+  return d.getTime()
+}
+
+export interface WeekPoints {
+  // 1-based, counted from the week of the first points.
+  week: number
+  start: number
+  // Earned that week, and in all up to its end.
+  points: number
+  cumulative: number
+}
+
+// Points per week from the week of the first points up to this week.
+export function getWeeklyPoints(log: PointsLogEntry[], now = Date.now()): WeekPoints[] {
+  const first = log.length > 0 ? Math.min(...log.map((e) => e.at)) : now
+  const firstWeek = weekStart(first)
+  const count = Math.max(1, Math.round((weekStart(now) - firstWeek) / WEEK_MS) + 1)
+  const weeks: WeekPoints[] = Array.from({ length: count }, (_, i) => ({
+    week: i + 1,
+    // Rounded via Date so a daylight-saving change can't shift a week.
+    start: weekStart(firstWeek + i * WEEK_MS + 12 * 60 * 60 * 1000),
+    points: 0,
+    cumulative: 0,
+  }))
+  for (const entry of log) {
+    const index = Math.round((weekStart(entry.at) - firstWeek) / WEEK_MS)
+    if (weeks[index]) weeks[index].points += entry.points
+  }
+  let running = 0
+  for (const w of weeks) {
+    running += w.points
+    w.cumulative = running
+  }
+  return weeks
 }
 
 // "1 piste" / "4 pistettä".

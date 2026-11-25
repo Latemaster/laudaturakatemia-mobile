@@ -1,130 +1,98 @@
-import { useState } from 'react'
-import { GRADE_BANDS, predictGrade, type FinnishGrade } from '../data/grade'
-import { COURSES } from '../data/courses'
-import { DIFFICULTY_POINTS, DIFFICULTY_TOTALS, type Difficulty } from '../data/progress'
+import { useMemo, useState } from 'react'
+import { getWeeklyPoints, usePointsLog, WEEKLY_POINTS_GOAL, weekStart } from '../data/points'
+import type { TargetGrade } from '../data/studyPlans'
 import InfoToggle, { InfoPanel } from './InfoToggle'
 
-const WEEKS = 8
-const DIFFICULTIES: Difficulty[] = ['easy', 'mid', 'hard']
-// Rough weekly odds of engaging one more problem of each difficulty, per
-// course — tuned so hard problems visibly lag behind easy/mid, like a real
-// study pattern would.
-const WEEKLY_ODDS: Record<Difficulty, number> = { easy: 0.7, mid: 0.55, hard: 0.35 }
+// Edistyminen ajan mittaan: the student's points week by week (running
+// total), against the pace that keeps them on track for their target
+// grade (WEEKLY_POINTS_GOAL a week, the dashed line).
 
-const MAX_POINTS_PER_COURSE = DIFFICULTIES.reduce(
-  (sum, d) => sum + DIFFICULTY_TOTALS[d] * DIFFICULTY_POINTS[d],
-  0,
-)
-const MAX_TOTAL_POINTS = MAX_POINTS_PER_COURSE * COURSES.length
-
-// Placeholder trend until real per-session history exists (no time-series
-// tracking yet — engagement only knows "now"). Simulates a random but
-// plausible weighted-points history across all courses (hard=5, mid=2,
-// easy=1 points per solved problem) so the visual can be reviewed before
-// it's wired to real data later. Generated once per page load, not per
-// render, so it doesn't jitter every time something else re-renders.
-function generateExampleSeries(): number[] {
-  const engaged: Record<Difficulty, number>[] = COURSES.map(() => ({ easy: 0, mid: 0, hard: 0 }))
-  const series: number[] = []
-
-  for (let week = 0; week < WEEKS; week++) {
-    for (let c = 0; c < COURSES.length; c++) {
-      for (const d of DIFFICULTIES) {
-        if (Math.random() < WEEKLY_ODDS[d]) {
-          engaged[c][d] = Math.min(DIFFICULTY_TOTALS[d], engaged[c][d] + 1)
-        }
-      }
-    }
-    const totalPoints = engaged.reduce(
-      (sum, course) => sum + DIFFICULTIES.reduce((s, d) => s + course[d] * DIFFICULTY_POINTS[d], 0),
-      0,
-    )
-    series.push(Math.round((totalPoints / MAX_TOTAL_POINTS) * 100))
-  }
-
-  return series
-}
-
-const EXAMPLE_SERIES = generateExampleSeries()
-
-const TIER_STROKE: Record<FinnishGrade['tier'], string> = {
-  high: 'stroke-good',
-  mid: 'stroke-accent',
-  low: 'stroke-bad',
-}
-const TIER_FILL: Record<FinnishGrade['tier'], string> = {
-  high: 'fill-good',
-  mid: 'fill-accent',
-  low: 'fill-bad',
-}
-const TIER_BG: Record<FinnishGrade['tier'], string> = {
-  high: 'bg-good',
-  mid: 'bg-accent',
-  low: 'bg-bad',
-}
-const TIER_BAND_FILL: Record<FinnishGrade['tier'], string> = {
-  high: 'fill-good/10',
-  mid: 'fill-accent/10',
-  low: 'fill-bad/10',
-}
+const MIN_WEEKS = 8
+const WEEK_MS = 7 * 24 * 60 * 60 * 1000
 
 const WIDTH = 300
 const HEIGHT = 170
-const PAD_LEFT = 24
-const PAD_RIGHT = 8
-const PAD_TOP = 12
-const PAD_BOTTOM = 24
+const PAD_LEFT = 30
+const PAD_RIGHT = 10
+const PAD_TOP = 16
+const PAD_BOTTOM = 22
 const PLOT_WIDTH = WIDTH - PAD_LEFT - PAD_RIGHT
 const PLOT_HEIGHT = HEIGHT - PAD_TOP - PAD_BOTTOM
 
-function yFor(pct: number) {
-  return PAD_TOP + PLOT_HEIGHT * (1 - pct / 100)
-}
+const ACTUAL = '#2f9e6e'
+const PACE = '#5681bd'
 
-function xFor(index: number, count: number) {
-  return PAD_LEFT + (index / (count - 1)) * PLOT_WIDTH
+// A round axis maximum and step: 1, 2 or 5 times a power of ten, in four
+// steps or fewer.
+function niceScale(max: number): { top: number; step: number } {
+  const raw = Math.max(4, max) / 4
+  const pow = 10 ** Math.floor(Math.log10(raw))
+  const step = [1, 2, 5, 10].map((m) => m * pow).find((s) => s >= raw) ?? 10 * pow
+  return { top: Math.ceil(max / step) * step || step * 4, step }
 }
 
 interface ProgressChartProps {
-  targetLetter: string
-  targetPct: number
+  targetGrade: TargetGrade
   // Fills its container's height (beside the grade on laptops), the chart
   // growing into the room.
   fill?: boolean
 }
 
-export default function ProgressChart({ targetLetter, targetPct, fill = false }: ProgressChartProps) {
-  const series = EXAMPLE_SERIES
-  const lastPct = series[series.length - 1]
-  const currentGrade = predictGrade(lastPct)
-  const targetY = yFor(targetPct)
-
-  const bandIndex = GRADE_BANDS.findIndex((b) => b.grade.letter === currentGrade.letter)
-  const bandTop = bandIndex > 0 ? GRADE_BANDS[bandIndex - 1].min : 100
-  const bandBottom = GRADE_BANDS[bandIndex].min
-
-  const points = series.map((pct, i) => `${xFor(i, series.length)},${yFor(pct)}`).join(' ')
-  // Filling a fixed space, the open legend takes the chart's place.
+export default function ProgressChart({ targetGrade, fill = false }: ProgressChartProps) {
+  const log = usePointsLog()
+  const goal = WEEKLY_POINTS_GOAL[targetGrade]
   const [infoOpen, setInfoOpen] = useState(false)
+
+  const chart = useMemo(() => {
+    const now = Date.now()
+    const weeks = getWeeklyPoints(log, now)
+    const current = weeks.length
+    // Eight weeks from the first points; once past that, the last eight.
+    const firstShown = Math.max(1, current - MIN_WEEKS + 1)
+    const slots = Array.from({ length: MIN_WEEKS }, (_, i) => firstShown + i)
+    const lastSlot = slots[slots.length - 1]
+    const actualMax = weeks[weeks.length - 1]?.cumulative ?? 0
+    const { top, step } = niceScale(Math.max(goal * lastSlot, actualMax) * 1.05)
+    // Where the pace says the student should be by now, the current week
+    // counted by how much of it has gone.
+    const weekFraction = Math.min(1, (now - weekStart(now)) / WEEK_MS)
+    const expectedNow = Math.round(goal * (current - 1 + weekFraction))
+    return { weeks, current, slots, top, step, total: actualMax, expectedNow }
+  }, [log, goal])
+
+  const { weeks, current, slots, top, step, total, expectedNow } = chart
+  const x = (week: number) => PAD_LEFT + ((week - slots[0]) / (slots.length - 1)) * PLOT_WIDTH
+  const y = (points: number) => PAD_TOP + PLOT_HEIGHT * (1 - points / top)
+
+  const shownWeeks = weeks.filter((w) => w.week >= slots[0])
+  const actualPoints = shownWeeks.map((w) => `${x(w.week)},${y(w.cumulative)}`).join(' ')
+  const area =
+    shownWeeks.length > 1
+      ? `M${x(shownWeeks[0].week)},${y(0)} L${actualPoints.replace(/ /g, ' L')} L${x(shownWeeks[shownWeeks.length - 1].week)},${y(0)} Z`
+      : ''
+  // The pace line: `goal` points a week, both lines read at each week's end.
+  const paceFrom = { x: x(slots[0]), y: y(goal * slots[0]) }
+  const paceTo = { x: x(slots[slots.length - 1]), y: y(goal * slots[slots.length - 1]) }
+
+  const diff = total - expectedNow
+  const status =
+    total === 0
+      ? 'Vastaa tehtäviin, niin pisteesi alkavat näkyä tässä.'
+      : diff >= 0
+        ? `Olet tahdissa: ${diff} p edellä tavoitetahtia.`
+        : `${-diff} p jäljessä tavoitetahdista.`
 
   const legend = (
     <ul className="flex flex-col gap-1.5">
       <li className="flex items-center gap-2">
-        <span aria-hidden className={`inline-block h-0.5 w-5 rounded-full ${TIER_BG[currentGrade.tier]}`} />
-        Viiva = kokonaisosaaminen viikoittain (toistaiseksi esimerkkidataa)
+        <span aria-hidden className="inline-block h-0.5 w-5 rounded-full" style={{ backgroundColor: ACTUAL }} />
+        Viiva = pisteesi yhteensä viikon lopussa; +luku = sillä viikolla saadut pisteet
       </li>
       <li className="flex items-center gap-2">
-        <span aria-hidden className={`inline-block h-3 w-5 rounded-sm ${TIER_BG[currentGrade.tier]} opacity-20`} />
-        Väritetty kaista = nykyinen arvosanataso {currentGrade.letter}
+        <span aria-hidden className="inline-block h-0.5 w-5 border-t-2 border-dashed" style={{ borderColor: PACE }} />
+        Katkoviiva = tavoitetahti {targetGrade}: {goal} p viikossa, jotta pysyt tavoitteessa
       </li>
-      <li className="flex items-center gap-2">
-        <span aria-hidden className="inline-block h-0.5 w-5 border-t-2 border-dashed border-accent" />
-        Katkoviiva = tavoite {targetLetter}, {targetPct} % pisteistä
-      </li>
-      <li className="flex items-center gap-2">
-        <span aria-hidden className="inline-block h-0.5 w-5 border-t border-dashed border-ink/30" />
-        Vaaleat viivat = arvosanarajat L–A pisterajojen mukaan
-      </li>
+      <li>Pisteitä saa oikeista pikatehtävistä (1 p) ja avointen tehtävien pisteytyksestä.</li>
     </ul>
   )
 
@@ -145,98 +113,108 @@ export default function ProgressChart({ targetLetter, targetPct, fill = false }:
       ) : (
         <>
           <p className="mb-2 text-xs text-ink-dim">
-            Suunta kohti tasoa {currentGrade.letter}.{' '}
-            <span className="text-ink-dim/70">Esimerkkidata.</span>
+            <span className="font-semibold text-ink">{total} p</span> · tavoitetahti {expectedNow} p tähän mennessä.{' '}
+            <span className={total > 0 && diff >= 0 ? 'font-semibold text-good' : ''}>{status}</span>
           </p>
           <svg viewBox={`0 0 ${WIDTH} ${HEIGHT}`} className={fill ? 'min-h-0 w-full flex-1' : 'w-full'}>
-            <rect
-              x={PAD_LEFT}
-              y={yFor(bandTop)}
-              width={PLOT_WIDTH}
-              height={yFor(bandBottom) - yFor(bandTop)}
-              className={TIER_BAND_FILL[currentGrade.tier]}
-            />
+            <defs>
+              <linearGradient id="progress-area" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stopColor={ACTUAL} stopOpacity={0.22} />
+                <stop offset="100%" stopColor={ACTUAL} stopOpacity={0} />
+              </linearGradient>
+            </defs>
 
-            {GRADE_BANDS.filter((b) => b.min > 0).map((b) => (
-              <g key={b.grade.letter}>
+            {/* Points axis. */}
+            {Array.from({ length: Math.round(top / step) + 1 }, (_, i) => i * step).map((value) => (
+              <g key={value}>
                 <line
                   x1={PAD_LEFT}
                   x2={WIDTH - PAD_RIGHT}
-                  y1={yFor(b.min)}
-                  y2={yFor(b.min)}
+                  y1={y(value)}
+                  y2={y(value)}
                   strokeWidth={1}
-                  strokeDasharray="3 3"
-                  className="stroke-ink/10"
+                  strokeDasharray={value === 0 ? undefined : '3 3'}
+                  className={value === 0 ? 'stroke-ink/20' : 'stroke-ink/10'}
                 />
                 <text
-                  x={PAD_LEFT - 6}
-                  y={yFor(b.min)}
+                  x={PAD_LEFT - 5}
+                  y={y(value)}
                   textAnchor="end"
                   dominantBaseline="middle"
-                  className="fill-ink-dim/60 text-[8px]"
+                  className="fill-ink-dim/70 text-[8px]"
                 >
-                  {b.grade.letter}
+                  {value} p
                 </text>
               </g>
             ))}
 
+            {/* Tavoitetahti. */}
             <g>
               <line
-                x1={PAD_LEFT}
-                x2={WIDTH - PAD_RIGHT}
-                y1={targetY}
-                y2={targetY}
+                x1={paceFrom.x}
+                y1={paceFrom.y}
+                x2={paceTo.x}
+                y2={paceTo.y}
+                stroke={PACE}
                 strokeWidth={1.5}
                 strokeDasharray="5 3"
-                className="stroke-accent"
               />
-              <rect
-                x={WIDTH - PAD_RIGHT - 52}
-                y={targetY - 7}
-                width={52}
-                height={13}
-                rx={6.5}
-                className="fill-accent"
-              />
+            </g>
+            <g>
+              <rect x={paceTo.x - 62} y={paceTo.y - 16} width={62} height={12} rx={6} fill={PACE} />
               <text
-                x={WIDTH - PAD_RIGHT - 26}
-                y={targetY}
+                x={paceTo.x - 31}
+                y={paceTo.y - 10}
                 textAnchor="middle"
                 dominantBaseline="central"
-                className="fill-white text-[8px] font-semibold"
+                className="fill-white text-[7.5px] font-semibold"
               >
-                Tavoite {targetLetter}
+                Tavoitetahti {targetGrade}
               </text>
             </g>
 
-            <polyline
-              points={points}
-              fill="none"
-              strokeWidth={2.5}
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className={TIER_STROKE[currentGrade.tier]}
-            />
-
-            {series.map((pct, i) => (
-              <circle
-                key={i}
-                cx={xFor(i, series.length)}
-                cy={yFor(pct)}
-                r={i === series.length - 1 ? 4 : 2.5}
-                className={TIER_FILL[currentGrade.tier]}
+            {/* The student's points. */}
+            {area && <path d={area} fill="url(#progress-area)" />}
+            {shownWeeks.length > 1 && (
+              <polyline
+                points={actualPoints}
+                fill="none"
+                stroke={ACTUAL}
+                strokeWidth={2.5}
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
+            )}
+            {shownWeeks.map((w) => (
+              <g key={w.week}>
+                <circle cx={x(w.week)} cy={y(w.cumulative)} r={w.week === current ? 4 : 2.75} fill={ACTUAL} />
+                {w.points > 0 && (
+                  <text
+                    x={x(w.week)}
+                    y={y(w.cumulative) - 7}
+                    textAnchor="middle"
+                    className="text-[7.5px] font-semibold"
+                    fill={ACTUAL}
+                    stroke="#ffffff"
+                    strokeWidth={3}
+                    strokeLinejoin="round"
+                    style={{ paintOrder: 'stroke' }}
+                  >
+                    +{w.points}
+                  </text>
+                )}
+              </g>
             ))}
 
-            {series.map((_, i) => (
+            {slots.map((week) => (
               <text
-                key={i}
-                x={xFor(i, series.length)}
+                key={week}
+                x={x(week)}
                 y={HEIGHT - 6}
                 textAnchor="middle"
-                className="fill-ink-dim/60 text-[8px]"
+                className={week === current ? 'fill-ink text-[8px] font-semibold' : 'fill-ink-dim/60 text-[8px]'}
               >
-                vk {i + 1}
+                {week === current ? 'tämä vk' : `vk ${week}`}
               </text>
             ))}
           </svg>
