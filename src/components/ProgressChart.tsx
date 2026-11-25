@@ -4,18 +4,21 @@ import type { TargetGrade } from '../data/studyPlans'
 import InfoToggle, { InfoPanel } from './InfoToggle'
 
 // Edistyminen ajan mittaan: the student's points week by week (running
-// total), against the target: a solid line across at the points for the
-// target grade over the eight-week plan, and a staircase climbing to it,
+// total), against lines across for each grade (B..L) at its points over
+// the eight-week plan, the target grade's line solid, and a staircase
+// climbing to the target,
 // one step (WEEKLY_POINTS_GOAL) a week, showing where to be each week to
 // stay on track.
 
 // The plan's length; the chart always shows this many weeks.
 const MIN_WEEKS = 8
+// Grades with a weekly pace, low to high.
+const GRADE_LINES = ['B', 'C', 'M', 'E', 'L'] as const
 const WEEK_MS = 7 * 24 * 60 * 60 * 1000
 
 const WIDTH = 300
 const HEIGHT = 170
-const PAD_LEFT = 12
+const PAD_LEFT = 34
 const PAD_RIGHT = 10
 const PAD_TOP = 20
 const PAD_BOTTOM = 22
@@ -46,7 +49,8 @@ export default function ProgressChart({ targetGrade, fill = false }: ProgressCha
     const slots = Array.from({ length: MIN_WEEKS }, (_, i) => firstShown + i)
     const actualMax = weeks[weeks.length - 1]?.cumulative ?? 0
     const target = goal * MIN_WEEKS
-    const top = Math.max(target * 1.14, actualMax * 1.12)
+    // Room for every grade's line, the highest (L) included.
+    const top = Math.max(WEEKLY_POINTS_GOAL.L * MIN_WEEKS * 1.08, actualMax * 1.12)
     // Where the pace says the student should be by now, the current week
     // counted by how much of it has gone.
     const weekFraction = Math.min(1, (now - weekStart(now)) / WEEK_MS)
@@ -92,7 +96,7 @@ export default function ProgressChart({ targetGrade, fill = false }: ProgressCha
       </li>
       <li className="flex items-center gap-2">
         <span aria-hidden className="inline-block h-0.5 w-5 rounded-full" style={{ backgroundColor: PACE }} />
-        Vaakaviiva = tavoite {targetGrade}: {target} p {MIN_WEEKS} viikossa
+        Vaakaviivat = arvosanojen B–L pisteet {MIN_WEEKS} viikossa; yhtenäinen = tavoitteesi {targetGrade}, {target} p
       </li>
       <li className="flex items-center gap-2">
         <span aria-hidden className="inline-block h-2 w-5 border-l border-t" style={{ borderColor: PACE }} />
@@ -142,17 +146,49 @@ export default function ProgressChart({ targetGrade, fill = false }: ProgressCha
             {/* Weekly steps towards the target. */}
             <path d={stairs} fill="none" stroke={PACE} strokeWidth={1.5} strokeOpacity={0.55} strokeLinejoin="round" />
 
-            {/* The target, straight across. */}
-            <line x1={PAD_LEFT} x2={WIDTH - PAD_RIGHT} y1={y(target)} y2={y(target)} stroke={PACE} strokeWidth={1.75} />
-            <rect x={PAD_LEFT} y={y(target) - 15} width={76} height={12} rx={6} fill={PACE} />
+            {/* Each grade's points over the plan, straight across; the
+                target's solid and labelled. */}
+            {GRADE_LINES.map((letter) => {
+              const points = WEEKLY_POINTS_GOAL[letter] * MIN_WEEKS
+              const isTarget = letter === targetGrade
+              return (
+                <g key={letter}>
+                  <line
+                    x1={PAD_LEFT}
+                    x2={WIDTH - PAD_RIGHT}
+                    y1={y(points)}
+                    y2={y(points)}
+                    stroke={isTarget ? PACE : undefined}
+                    strokeWidth={isTarget ? 1.75 : 1}
+                    strokeDasharray={isTarget ? undefined : '3 3'}
+                    className={isTarget ? undefined : 'stroke-ink/15'}
+                  />
+                  <text
+                    x={PAD_LEFT - 5}
+                    y={y(points)}
+                    textAnchor="end"
+                    dominantBaseline="middle"
+                    className={`text-[8px] ${isTarget ? 'font-bold' : 'fill-ink-dim/70 font-semibold'}`}
+                    fill={isTarget ? PACE : undefined}
+                  >
+                    {letter}
+                    <tspan className={isTarget ? '' : 'fill-ink-dim/50'} fontWeight={500} fontSize={6.5}>
+                      {' '}
+                      {points} p
+                    </tspan>
+                  </text>
+                </g>
+              )
+            })}
+            <rect x={WIDTH - PAD_RIGHT - 44} y={y(target) - 15} width={44} height={12} rx={6} fill={PACE} />
             <text
-              x={PAD_LEFT + 38}
+              x={WIDTH - PAD_RIGHT - 22}
               y={y(target) - 9}
               textAnchor="middle"
               dominantBaseline="central"
               className="fill-white text-[7.5px] font-semibold"
             >
-              Tavoite {targetGrade} · {target} p
+              Tavoite {targetGrade}
             </text>
 
             {/* The student's points. */}
