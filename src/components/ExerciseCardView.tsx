@@ -383,7 +383,7 @@ export default function ExerciseCardView({ card, onAnswer }: ExerciseCardViewPro
         {isExpanded &&
           createPortal(
             <>
-              <CardGlow trigger={heldCelebrate} fullScreen />
+              <CardGlow trigger={heldCelebrate} className="" fullScreen />
               <WrongShake trigger={heldWrong} className="" fullScreen />
             </>,
             document.body,

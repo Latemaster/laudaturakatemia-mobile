@@ -4,7 +4,7 @@ import TopMenu from './components/TopMenu'
 import CourseList from './components/CourseList'
 import Osaaminen from './components/Osaaminen'
 import FeedInfo from './components/FeedInfo'
-import MiniOsaaminen from './components/MiniOsaaminen'
+import PointsMeter from './components/PointsMeter'
 import FeedIntroCard from './components/FeedIntroCard'
 import EvaluationList from './components/EvaluationList'
 import { cards, getConceptCards, getExerciseCards, groupExercisesByConcept } from './data/cards'
@@ -252,15 +252,7 @@ function App() {
     </>
   )
 
-  const miniOsaaminen = (
-    <MiniOsaaminen
-      knowledge={knowledge}
-      courseGrades={courseGrades}
-      targetGrade={targetGrade}
-      onOpen={() => handleSelectSection('osaaminen')}
-      laptop={isDesktop}
-    />
-  )
+  const pointsMeter = <PointsMeter onOpen={() => handleSelectSection('osaaminen')} laptop={isDesktop} />
 
   if (!isDesktop) {
     return (
@@ -268,7 +260,7 @@ function App() {
         <TopMenu
           active={isMenuSection(section) ? section : 'suositellut'}
           onSelect={handleSelectSection}
-          extra={miniOsaaminen}
+          extra={pointsMeter}
         />
         {content}
       </LayoutContext.Provider>
@@ -278,7 +270,7 @@ function App() {
   return (
     <LayoutContext.Provider value={{ isDesktop: true }}>
       <div className="flex h-dvh flex-col overflow-hidden bg-page">
-        <DesktopTopBar active={section} onSelect={handleSelectSection} extra={miniOsaaminen} />
+        <DesktopTopBar active={section} onSelect={handleSelectSection} extra={pointsMeter} />
         <div className="flex min-h-0 flex-1">
           {hasSidebar(section) && (
             <DesktopSidebar

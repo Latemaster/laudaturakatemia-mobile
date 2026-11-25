@@ -3,7 +3,7 @@ import { motion } from 'framer-motion'
 import { exerciseMaxPoints, markedCount, scoredPoints, type EvaluationAttempt } from '../../data/evaluation'
 import type { RubricExercise } from '../../data/rubrics'
 import { awardPoints } from '../../data/points'
-import { ConfettiBurst } from '../Celebrations'
+import { ConfettiBurst, GreenGlow } from '../Celebrations'
 
 // The exercise's points tile and its colours, shared by the laptop exercise
 // box (ExerciseWorkspace) and the phone feed's task card (TaskCardView).
@@ -233,19 +233,31 @@ export function useTaskPoints(
   }, [rubricExercise, scores])
 }
 
-// Green confetti bursting out all around the card as points come in,
-// timed with the tile filling up. Each change of `trigger` plays it once;
-// 0 shows nothing. Sits inside the card it bursts around.
+// Points coming in: the whole card lights up green while green confetti
+// bursts in from its sides, timed with the tile filling up. Each change of
+// `trigger` plays it once; 0 shows nothing. Sits inside a positioned card,
+// under its content's pointer events.
 export function CardGlow({
   trigger,
+  className = 'rounded-3xl',
   fullScreen = false,
 }: {
   trigger: number
-  // Bursts in from the screen's edges (the full-screen view) instead.
+  className?: string
+  // Over the whole screen (the full-screen view) instead of inside a card.
   fullScreen?: boolean
 }) {
   return (
-    <ConfettiBurst trigger={trigger} fullScreen={fullScreen} count={fullScreen ? 72 : 60} spread={fullScreen ? 1.5 : 1} />
+    <>
+      <GreenGlow trigger={trigger} className={className} fullScreen={fullScreen} />
+      <ConfettiBurst
+        trigger={trigger}
+        className={className}
+        fullScreen={fullScreen}
+        count={fullScreen ? 56 : 40}
+        spread={fullScreen ? 1.5 : 1}
+      />
+    </>
   )
 }
 
