@@ -18,7 +18,7 @@ const WEEK_MS = 7 * 24 * 60 * 60 * 1000
 
 const WIDTH = 300
 const HEIGHT = 170
-const PAD_LEFT = 34
+const PAD_LEFT = 18
 const PAD_RIGHT = 10
 const PAD_TOP = 20
 const PAD_BOTTOM = 22
@@ -96,7 +96,7 @@ export default function ProgressChart({ targetGrade, fill = false }: ProgressCha
       </li>
       <li className="flex items-center gap-2">
         <span aria-hidden className="inline-block h-0.5 w-5 rounded-full" style={{ backgroundColor: PACE }} />
-        Vaakaviivat = arvosanojen B–L pisteet {MIN_WEEKS} viikossa; yhtenäinen = tavoitteesi {targetGrade}, {target} p
+        Vaakaviivat = arvosanat B–L pisteinä {MIN_WEEKS} viikon aikana; yhtenäinen = tavoitteesi {targetGrade}
       </li>
       <li className="flex items-center gap-2">
         <span aria-hidden className="inline-block h-2 w-5 border-l border-t" style={{ borderColor: PACE }} />
@@ -172,10 +172,6 @@ export default function ProgressChart({ targetGrade, fill = false }: ProgressCha
                     fill={isTarget ? PACE : undefined}
                   >
                     {letter}
-                    <tspan className={isTarget ? '' : 'fill-ink-dim/50'} fontWeight={500} fontSize={6.5}>
-                      {' '}
-                      {points} p
-                    </tspan>
                   </text>
                 </g>
               )
