@@ -2,6 +2,8 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import { exerciseMaxPoints, markedCount, scoredPoints, type EvaluationAttempt } from '../../data/evaluation'
 import type { RubricExercise } from '../../data/rubrics'
+import { awardPoints } from '../../data/points'
+import { ConfettiBurst } from '../Celebrations'
 
 // The exercise's points tile and its colours, shared by the laptop exercise
 // box (ExerciseWorkspace) and the phone feed's task card (TaskCardView).
@@ -231,10 +233,10 @@ export function useTaskPoints(
   }, [rubricExercise, scores])
 }
 
-// The whole card lighting up as points come in: a glow in the points'
-// colour that swells in from the card's edges and fades, timed with the tile
-// filling up. Each change of `trigger` plays it once; 0 shows nothing.
-// Sits inside a positioned card, under its content's pointer events.
+// Confetti bursting in from the card's sides as points come in, timed with
+// the tile filling up, with the points' colour mixed in. Each change of
+// `trigger` plays it once; 0 shows nothing. Sits inside a positioned card,
+// under its content's pointer events.
 export function CardGlow({
   trigger,
   points,
@@ -247,19 +249,14 @@ export function CardGlow({
   // Over the whole screen (the full-screen view) instead of inside a card.
   fullScreen?: boolean
 }) {
-  if (trigger === 0) return null
   return (
-    <motion.span
-      key={trigger}
-      aria-hidden
-      initial={{ opacity: 0 }}
-      animate={{ opacity: [0, 1, 1, 0] }}
-      transition={{ delay: 0.2, duration: 1.8, times: [0, 0.2, 0.55, 1], ease: 'easeOut' }}
-      className={`pointer-events-none inset-0 ${fullScreen ? 'fixed z-[60]' : 'absolute z-10'} ${className}`}
-      style={{
-        boxShadow: `inset 0 0 0 3px ${pointsColor(points)}, inset 0 0 48px ${pointsColor(points, 0.35)}`,
-        background: `radial-gradient(ellipse at top right, ${pointsColor(points, 0.12)}, transparent 70%)`,
-      }}
+    <ConfettiBurst
+      trigger={trigger}
+      color={pointsColor(points)}
+      className={className}
+      fullScreen={fullScreen}
+      count={fullScreen ? 56 : 40}
+      spread={fullScreen ? 1.5 : 1}
     />
   )
 }
@@ -268,17 +265,21 @@ export const QUICK_POINTS_HINT = 'Vastaa, niin saat pisteen'
 
 // A quick exercise's single point: "– / 1 p" until it's checked, then 1 or
 // 0 by the latest check. A right answer bumps `celebrate`, so the tile
-// fills with a "+1 p" and the card lights up. `answer` wraps the
-// exercise's own onAnswer.
+// fills with a "+1 p" and confetti bursts over the card; a wrong one bumps
+// `wrong`, which shakes the card red. `answer` wraps the exercise's own
+// onAnswer. `id` records the point in the app's points total.
 //
 // While `hold` is on (the exercise is answered in the full-screen view,
-// over the card), a right answer bumps `heldCelebrate` instead, for that
-// view's own glow, and the card's tile and glow wait until `hold` goes off,
-// so they play when the student is back on the card.
-export function useQuickPoints(onAnswer?: (correct: boolean) => void, hold = false) {
+// over the card), a right answer bumps `heldCelebrate` and a wrong one
+// `heldWrong` instead, for that view's own feedback, and the card's tile
+// and confetti wait until `hold` goes off, so they play when the student
+// is back on the card.
+export function useQuickPoints(id: string, onAnswer?: (correct: boolean) => void, hold = false) {
   const [correct, setCorrect] = useState<boolean | null>(null)
   const [celebrate, setCelebrate] = useState(0)
   const [heldCelebrate, setHeldCelebrate] = useState(0)
+  const [wrong, setWrong] = useState(0)
+  const [heldWrong, setHeldWrong] = useState(0)
   const [pending, setPending] = useState(false)
   const answer = useCallback(
     (isCorrect: boolean) => {
@@ -288,10 +289,15 @@ export function useQuickPoints(onAnswer?: (correct: boolean) => void, hold = fal
         setPending(true)
       } else if (isCorrect) {
         setCelebrate((c) => c + 1)
+      } else if (hold) {
+        setHeldWrong((c) => c + 1)
+      } else {
+        setWrong((c) => c + 1)
       }
+      if (isCorrect) awardPoints(id, 1)
       onAnswer?.(isCorrect)
     },
-    [onAnswer, hold],
+    [id, onAnswer, hold],
   )
   // Back on the card: play what was held (adjusting state during render,
   // so the card never paints a frame without it).
@@ -299,9 +305,10 @@ export function useQuickPoints(onAnswer?: (correct: boolean) => void, hold = fal
     setPending(false)
     setCelebrate((c) => c + 1)
   }
-  // The full-screen view's glow is done once it closes; reopening it
+  // The full-screen view's feedback is done once it closes; reopening it
   // shouldn't replay it.
   if (!hold && heldCelebrate !== 0) setHeldCelebrate(0)
+  if (!hold && heldWrong !== 0) setHeldWrong(0)
   const points: Points = { scored: correct === null ? null : correct ? 1 : 0, max: 1, done: correct !== null }
-  return { points, celebrate, heldCelebrate, answer }
+  return { points, celebrate, heldCelebrate, wrong, heldWrong, answer }
 }

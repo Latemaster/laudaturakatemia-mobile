@@ -29,6 +29,8 @@ import PointsBadge, {
   useTaskPoints,
   type Points,
 } from './PointsBadge'
+import { WrongShake } from '../Celebrations'
+import { awardPoints } from '../../data/points'
 
 // Laptop Kurssit › Tehtävät: every exercise in the same frame, a box of
 // fixed size that fills the panel and never scrolls, so stepping through
@@ -67,6 +69,8 @@ interface FrameProps {
   onOpenPoints?: () => void
   // Bumped when the points are saved, to fill the points up again.
   celebrate?: number
+  // Bumped by a wrong answer (or a zero score), to shake the box red.
+  wrong?: number
   // The points tile's tooltip before there is anything to score.
   pointsHint?: string
   // Buttons after the title's tags; the top-right corner is the points'.
@@ -86,6 +90,7 @@ export function ExerciseFrame({
   points,
   onOpenPoints,
   celebrate,
+  wrong,
   pointsHint,
   actions,
   answered,
@@ -97,8 +102,9 @@ export function ExerciseFrame({
       className="relative flex min-h-0 min-w-0 flex-1 flex-col overflow-hidden rounded-3xl bg-surface shadow-sm ring-1 ring-ink/5 transition-shadow"
       style={answered ? { boxShadow: `0 0 0 2px ${pointsColor(points)}, 0 1px 2px rgba(0, 0, 0, 0.05)` } : undefined}
     >
-      {/* The whole box lights up as the points come in. */}
+      {/* Confetti bursts from the box's sides as the points come in. */}
       <CardGlow trigger={celebrate ?? 0} points={points} />
+      <WrongShake trigger={wrong ?? 0} />
       <header className="flex shrink-0 items-center justify-between gap-4 border-b border-ink/10 px-7 pb-4 pt-5">
         <div className="min-w-0">
           {kind}
@@ -352,8 +358,14 @@ function TaskWorkspace({
 
   // "Tallenna pisteet": back to the exercise box, where the points fill up.
   const [celebrate, setCelebrate] = useState(0)
+  const [wrong, setWrong] = useState(0)
   function saveScores() {
     closeFullView()
+    if (points?.done && points.scored === 0) {
+      setWrong((c) => c + 1)
+      return
+    }
+    if (points?.scored) awardPoints(card.id, points.scored)
     setCelebrate((c) => c + 1)
   }
 
@@ -419,6 +431,7 @@ function TaskWorkspace({
       points={points}
       onOpenPoints={openCheck}
       celebrate={celebrate}
+      wrong={wrong}
       actions={actions}
       answered={answer !== null}
       course={course}
@@ -508,7 +521,7 @@ function QuickExerciseWorkspace({
   course?: Topic
   onAnswer: (correct: boolean) => void
 }) {
-  const { points, celebrate, answer } = useQuickPoints(onAnswer)
+  const { points, celebrate, wrong, answer } = useQuickPoints(card.id, onAnswer)
   return (
     <ExerciseFrame
       course={course}
@@ -523,6 +536,7 @@ function QuickExerciseWorkspace({
       points={points}
       pointsHint={QUICK_POINTS_HINT}
       celebrate={celebrate}
+      wrong={wrong}
       answered={points.done}
     >
       <ExerciseBody card={card} onAnswer={answer} split />

@@ -17,6 +17,8 @@ import { ExpandIcon, PencilIcon } from './icons'
 import { answerPartsFromPrompt, answerPartsFromRubric } from './answerParts'
 import PointsBadge, { CardGlow, pointsColor, useTaskPoints } from './course/PointsBadge'
 import { evaluationId } from './course/exerciseState'
+import { WrongShake } from './Celebrations'
+import { awardPoints } from '../data/points'
 import { useLayout } from '../layout/LayoutContext'
 
 interface TaskCardViewProps {
@@ -49,6 +51,7 @@ export default function TaskCardView({
   const [showSolution, setShowSolution] = useState(false)
   const [checkOpen, setCheckOpen] = useState(false)
   const [celebrate, setCelebrate] = useState(0)
+  const [wrong, setWrong] = useState(0)
   const [isOverflowing, setIsOverflowing] = useState(false)
   const handleOverflowChange = useCallback((overflowing: boolean) => setIsOverflowing(overflowing), [])
   const { problem } = card
@@ -98,6 +101,11 @@ export default function TaskCardView({
   function saveScores() {
     setCheckOpen(false)
     closeAnswer()
+    if (points?.done && points.scored === 0) {
+      setWrong((c) => c + 1)
+      return
+    }
+    if (points?.scored) awardPoints(card.id, points.scored)
     setCelebrate((c) => c + 1)
   }
 
@@ -106,7 +114,12 @@ export default function TaskCardView({
   return (
     <CardShell
       topic={card.topic}
-      glow={<CardGlow trigger={celebrate} points={points} />}
+      glow={
+        <>
+          <CardGlow trigger={celebrate} points={points} />
+          <WrongShake trigger={wrong} />
+        </>
+      }
       header={
         <div className={`flex items-start justify-between gap-3 ${isDesktop ? 'mb-3' : ''}`}>
           <div className="min-w-0">

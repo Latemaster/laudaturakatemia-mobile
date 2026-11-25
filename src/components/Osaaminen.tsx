@@ -17,6 +17,7 @@ import {
   type OverallEstimate,
   type KnowledgeState,
 } from '../data/knowledge'
+import { getCheckpointProgress, usePointsTotal } from '../data/points'
 import CourseGradesSection from './CourseGradesSection'
 import InfoToggle, { InfoPanel } from './InfoToggle'
 import ProgressChart from './ProgressChart'
@@ -43,29 +44,33 @@ const TIER_CLASSES: Record<FinnishGrade['tier'], { badge: string; text: string; 
 const DONUT_SIZE_PHONE = 136
 const DONUT_SIZE_LAPTOP = 184
 
-function GradeDonut({
+export function GradeDonut({
   pct,
   grade,
   targetPct,
   size,
+  gap = 6,
 }: {
   pct: number
   grade: FinnishGrade
   targetPct: number
   size: number
+  // Room between the ring and the grade letter's disc.
+  gap?: number
 }) {
-  const stroke = Math.round(size / 12)
+  const stroke = Math.max(3, Math.round(size / 12))
   const radius = (size - stroke) / 2
   const circumference = 2 * Math.PI * radius
   // The grade letter's disc fills the ring's inside, less a small gap.
-  const disc = Math.round((radius - stroke / 2 - 6) * 2)
+  const disc = Math.round((radius - stroke / 2 - gap) * 2)
   const tierClasses = TIER_CLASSES[grade.tier]
   const offset = circumference * (1 - pct / 100)
   // The svg is rotated -90deg so the arc starts at 12 o'clock; the tick is
   // placed in the unrotated frame and rotates along with it.
   const targetAngle = (targetPct / 100) * 2 * Math.PI
-  const tickInner = radius - stroke / 2 - 3
-  const tickOuter = radius + stroke / 2 + 3
+  const tickReach = size < 80 ? 1.5 : 3
+  const tickInner = radius - stroke / 2 - tickReach
+  const tickOuter = radius + stroke / 2 + tickReach
   const tick = {
     x1: size / 2 + tickInner * Math.cos(targetAngle),
     y1: size / 2 + tickInner * Math.sin(targetAngle),
@@ -98,7 +103,7 @@ function GradeDonut({
           y1={tick.y1}
           x2={tick.x2}
           y2={tick.y2}
-          strokeWidth={3}
+          strokeWidth={size < 80 ? 2 : 3}
           strokeLinecap="round"
           className="stroke-accent"
         />
@@ -134,6 +139,33 @@ function ReliabilityFlag({ overall }: { overall: OverallEstimate }) {
       <span className={`font-semibold ${classes.text}`}>{reliability.label}</span>
       <span className="text-ink-dim">· {Math.round(exerciseShare * 100)} % tehtävistä</span>
     </span>
+  )
+}
+
+// Points earned from exercises and the way to the next välietappi.
+function CheckpointProgressRow() {
+  const total = usePointsTotal()
+  const cp = getCheckpointProgress(total)
+  return (
+    <div className="mt-5 w-full rounded-2xl bg-surface-2 p-3 text-left ring-1 ring-ink/5" data-onboarding="checkpoints">
+      <div className="flex items-baseline justify-between gap-2">
+        <span className="text-[11px] font-semibold uppercase tracking-widest text-ink-dim/70">Välietapit</span>
+        <span className="text-xs font-semibold text-ink">
+          {total} p · {cp.reachedCount} {cp.reachedCount === 1 ? 'etappi' : 'etappia'}
+        </span>
+      </div>
+      <div className="mt-2 h-2.5 w-full overflow-hidden rounded-full bg-ink/10">
+        <div
+          className="h-full rounded-full bg-good transition-[width] duration-700"
+          style={{ width: `${Math.round(cp.progress * 100)}%` }}
+        />
+      </div>
+      <span className="mt-1.5 block text-xs text-ink-dim">
+        {cp.next
+          ? `${cp.toNext} p seuraavaan välietappiin (${cp.next.points} p). Pisteitä saa oikeista vastauksista.`
+          : 'Kaikki välietapit saavutettu!'}
+      </span>
+    </div>
   )
 }
 
@@ -267,13 +299,15 @@ export default function Osaaminen({
                 )}
               </div>
 
+              <CheckpointProgressRow />
+
               <button
                 type="button"
                 onClick={() => setTargetOpen(true)}
                 aria-haspopup="dialog"
                 aria-label="Muuta tavoitearvosanaa"
                 data-onboarding="target-grade"
-                className="mt-5 flex w-full items-center gap-3 rounded-2xl bg-surface-2 p-3 text-left ring-1 ring-transparent transition-colors hover:bg-accent/10 hover:ring-accent/30 active:ring-accent/40"
+                className="mt-3 flex w-full items-center gap-3 rounded-2xl bg-surface-2 p-3 text-left ring-1 ring-transparent transition-colors hover:bg-accent/10 hover:ring-accent/30 active:ring-accent/40"
               >
                 <span
                   className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-lg font-bold ring-2 ${targetTierClasses.badge}`}

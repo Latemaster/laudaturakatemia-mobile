@@ -1,8 +1,11 @@
+import type { ReactNode } from 'react'
 import type { AppSection } from './sections'
 
 interface DesktopTopBarProps {
   active: AppSection
   onSelect: (section: AppSection) => void
+  // At the bar's right end (the mini Osaaminen donut).
+  extra?: ReactNode
 }
 
 // Laptop navigation: the site's Etusivu and Mahdollistajat pages from the
@@ -15,7 +18,7 @@ const ITEMS: { id: AppSection; label: string }[] = [
   { id: 'osaaminen', label: 'Osaaminen' },
 ]
 
-export default function DesktopTopBar({ active, onSelect }: DesktopTopBarProps) {
+export default function DesktopTopBar({ active, onSelect, extra }: DesktopTopBarProps) {
   return (
     <header className="relative z-30 flex h-16 shrink-0 items-center gap-6 bg-[#6188bb] px-6 text-white shadow-md">
       <button
@@ -44,6 +47,7 @@ export default function DesktopTopBar({ active, onSelect }: DesktopTopBarProps) 
           </div>
         ))}
       </nav>
+      {extra}
     </header>
   )
 }

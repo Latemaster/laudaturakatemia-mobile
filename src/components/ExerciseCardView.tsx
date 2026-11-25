@@ -10,6 +10,7 @@ import type { VisualProps } from './visuals'
 import { CheckIcon, ListCheckIcon, PencilIcon, XIcon } from './icons'
 import { useLayout } from '../layout/LayoutContext'
 import PointsBadge, { CardGlow, QUICK_POINTS_HINT, useQuickPoints } from './course/PointsBadge'
+import { WrongShake } from './Celebrations'
 
 interface ExerciseCardViewProps {
   card: ExerciseCard
@@ -340,7 +341,7 @@ export default function ExerciseCardView({ card, onAnswer }: ExerciseCardViewPro
   // The exercise's one point, in a tile like the long tasks' (phones). An
   // answer in the full-screen view lights that view's edges, and the
   // card's tile and glow wait until it closes.
-  const { points, celebrate, heldCelebrate, answer } = useQuickPoints(onAnswer, isExpanded)
+  const { points, celebrate, heldCelebrate, wrong, heldWrong, answer } = useQuickPoints(card.id, onAnswer, isExpanded)
   const kind = (
     <KindLabel
       icon={card.kind === 'numeric' ? <PencilIcon /> : <ListCheckIcon />}
@@ -355,7 +356,12 @@ export default function ExerciseCardView({ card, onAnswer }: ExerciseCardViewPro
     return (
       <CardShell
         topic={card.topic}
-        glow={<CardGlow trigger={celebrate} points={points} />}
+        glow={
+          <>
+            <CardGlow trigger={celebrate} points={points} />
+            <WrongShake trigger={wrong} />
+          </>
+        }
         header={
           <div className="flex items-center justify-between gap-3">
             <div className="-mb-2">{kind}</div>
@@ -375,7 +381,13 @@ export default function ExerciseCardView({ card, onAnswer }: ExerciseCardViewPro
           <ExerciseBody card={card} onAnswer={answer} />
         </ExpandableBox>
         {isExpanded &&
-          createPortal(<CardGlow trigger={heldCelebrate} points={points} className="" fullScreen />, document.body)}
+          createPortal(
+            <>
+              <CardGlow trigger={heldCelebrate} points={points} className="" fullScreen />
+              <WrongShake trigger={heldWrong} className="" fullScreen />
+            </>,
+            document.body,
+          )}
       </CardShell>
     )
   }
