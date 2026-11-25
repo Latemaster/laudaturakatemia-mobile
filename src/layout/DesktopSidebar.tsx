@@ -1,6 +1,9 @@
 import { useState } from 'react'
 import { COURSES } from '../data/courses'
-import { getCourseProgress } from '../data/progress'
+import { getCoursePoints, getCourseProgressPct } from '../data/coursePoints'
+import type { Knowledge } from '../data/knowledge'
+import { usePointsEarned } from '../data/points'
+import KnowledgeChip from '../components/KnowledgeChip'
 import type { TopicCode } from '../types'
 import { COURSE_VIEWS, ETUSIVU_PAGES, type AppSection, type CourseView, type EtusivuPage } from './sections'
 
@@ -11,7 +14,7 @@ interface DesktopSidebarProps {
   selectedCourse: TopicCode
   courseView: CourseView
   onSelectCourseView: (code: TopicCode, view: CourseView) => void
-  engagedIds: Record<string, true>
+  knowledge: Knowledge
 }
 
 const COLLAPSED_KEY = 'laudatur.sidebarCollapsed'
@@ -48,8 +51,9 @@ export default function DesktopSidebar({
   selectedCourse,
   courseView,
   onSelectCourseView,
-  engagedIds,
+  knowledge,
 }: DesktopSidebarProps) {
+  const points = getCoursePoints(usePointsEarned())
   const [openCourse, setOpenCourse] = useState<TopicCode | null>(selectedCourse)
   // Folds down to a thin strip to give the content panel the room.
   const [collapsed, setCollapsed] = useState(loadCollapsed)
@@ -112,7 +116,7 @@ export default function DesktopSidebar({
         <>
           <ul className="flex flex-col gap-1">
             {COURSES.map((course) => {
-              const { pct } = getCourseProgress(course.code, engagedIds)
+              const pct = getCourseProgressPct(course.code, points)
               const open = openCourse === course.code
               return (
                 <li key={course.code}>
@@ -122,10 +126,11 @@ export default function DesktopSidebar({
                     aria-expanded={open}
                     className={itemClass(open)}
                   >
-                    <span className="flex items-baseline justify-between gap-2">
-                      <span className="truncate">
-                        {course.code} · <span className="font-medium">{course.name}</span>
-                      </span>
+                    <span className="block truncate">
+                      {course.code} · <span className="font-medium">{course.name}</span>
+                    </span>
+                    <span className="mt-1 flex items-center justify-between gap-2">
+                      <KnowledgeChip course={knowledge.courses[course.code]} />
                       <span className="shrink-0 text-xs text-ink-dim">{pct} %</span>
                     </span>
                     <span className="mt-1.5 block h-1 w-full overflow-hidden rounded-full bg-ink/10">

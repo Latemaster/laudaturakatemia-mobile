@@ -28,7 +28,8 @@ interface TaskCardViewProps {
   onTaskAnswer?: (answer: string) => void
   onScore?: (criterionId: string, points: number | undefined) => void
   onResetScores?: () => void
-  onViewSolution?: () => void
+  // The answer has been scored in full and saved.
+  onScored?: (scored: number, max: number) => void
 }
 
 // Phone feed task card. Like the laptop exercise box, the header's top
@@ -41,7 +42,7 @@ export default function TaskCardView({
   onTaskAnswer,
   onScore,
   onResetScores,
-  onViewSolution,
+  onScored,
 }: TaskCardViewProps) {
   const [isExpanded, setIsExpanded] = useState(false)
   const [answerOpen, setAnswerOpen] = useState(false)
@@ -65,10 +66,7 @@ export default function TaskCardView({
   const hasAnswered = submittedAnswer !== null
 
   function toggleSolution() {
-    setShowSolution((v) => {
-      if (!v) onViewSolution?.()
-      return !v
-    })
+    setShowSolution((v) => !v)
   }
 
   // The card itself always shows the problem; the solution is only offered
@@ -101,6 +99,7 @@ export default function TaskCardView({
   function saveScores() {
     setCheckOpen(false)
     closeAnswer()
+    if (points?.done) onScored?.(points.scored ?? 0, points.max)
     if (points?.done && points.scored === 0) {
       setWrong((c) => c + 1)
       return

@@ -1,11 +1,9 @@
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
-import { getCheckpointProgress, usePointsTotal } from '../data/points'
-import { pointsToPct, predictGrade } from '../data/grade'
+import { getCoursePoints, getTargetProgress } from '../data/coursePoints'
+import { getCheckpointProgress, usePointsEarned, usePointsTotal } from '../data/points'
 import ActivityRings, { RING_COLORS, useRingsState } from './ActivityRings'
-import { getTargetPoints, type TargetGrade } from '../data/studyPlans'
-import { computeKnowledge, type KnowledgeState } from '../data/knowledge'
-import type { CourseGrades } from '../data/courseGrades'
+import type { TargetGrade } from '../data/studyPlans'
 
 // Counts the shown number up to `value` when it grows.
 function useCountUp(value: number): number {
@@ -34,8 +32,6 @@ function useCountUp(value: number): number {
 }
 
 interface ProgressRingsProps {
-  knowledge: KnowledgeState
-  courseGrades: CourseGrades
   targetGrade: TargetGrade
   onOpen: () => void
   // Laptops: on the blue top bar, with the two rings' numbers beside them.
@@ -43,13 +39,10 @@ interface ProgressRingsProps {
 }
 
 // Top bar's right corner: the activity rings (ActivityRings) with the
-// predicted grade in the middle, and a bubble when points come in. Opens
+// target grade in the middle, and a bubble when points come in. Opens
 // Osaaminen.
-export default function PointsMeter({ knowledge, courseGrades, targetGrade, onOpen, laptop = false }: ProgressRingsProps) {
-  const overall = useMemo(() => computeKnowledge(knowledge, courseGrades).overall, [knowledge, courseGrades])
-  const grade = predictGrade(overall.pct)
-  const targetPct = pointsToPct(getTargetPoints(targetGrade).avg)
-  const outer = targetPct > 0 ? overall.pct / targetPct : 0
+export default function PointsMeter({ targetGrade, onOpen, laptop = false }: ProgressRingsProps) {
+  const outer = getTargetProgress(targetGrade, getCoursePoints(usePointsEarned())).progress
   const total = usePointsTotal()
   const shown = useCountUp(total)
   const checkpoint = getCheckpointProgress(total)
@@ -57,7 +50,7 @@ export default function PointsMeter({ knowledge, courseGrades, targetGrade, onOp
   const { bubble, burst } = state
 
   const reached = bubble?.reached ?? null
-  const outerPct = Math.round(Math.min(1, outer) * 100)
+  const outerPct = Math.floor(outer * 100)
   const label = `Matka tavoitearvosanaan ${outerPct} %. ${
     checkpoint.next ? `${checkpoint.toNext} p seuraavaan välietappiin.` : 'Kaikki välietapit saavutettu.'
   } Avaa Osaaminen.`
@@ -78,7 +71,7 @@ export default function PointsMeter({ knowledge, courseGrades, targetGrade, onOp
           stroke={laptop ? 6 : 5.5}
           outer={outer}
           state={state}
-          center={<span className="text-[11px] font-bold leading-none text-ink">{grade.letter}</span>}
+          center={<span className="text-[11px] font-bold leading-none text-ink">{targetGrade}</span>}
         />
         {laptop && (
           <span className="flex flex-col items-start gap-0.5 text-[11px] font-semibold leading-tight">

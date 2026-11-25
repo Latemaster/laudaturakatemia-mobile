@@ -115,6 +115,17 @@ export function usePointsLog(): PointsLogEntry[] {
   )
 }
 
+// Best points per exercise, re-rendering on every award.
+export function usePointsEarned(): Record<string, number> {
+  return useSyncExternalStore(
+    (listener) => {
+      listeners.add(listener)
+      return () => listeners.delete(listener)
+    },
+    () => state.earned,
+  )
+}
+
 export function usePointsTotal(): number {
   return useSyncExternalStore(
     (listener) => {
@@ -194,6 +205,9 @@ export const WEEKLY_POINTS_GOAL: Record<'L' | 'E' | 'M' | 'C' | 'B', number> = {
   C: 14,
   B: 10,
 }
+
+// The plan's length: the chart's weeks, and the target ring's points.
+export const PLAN_WEEKS = 8
 
 const WEEK_MS = 7 * 24 * 60 * 60 * 1000
 

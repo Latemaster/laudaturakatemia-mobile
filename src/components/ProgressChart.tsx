@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react'
-import { getWeeklyPoints, usePointsLog, WEEKLY_POINTS_GOAL, weekStart } from '../data/points'
+import { getWeeklyPoints, PLAN_WEEKS, usePointsLog, WEEKLY_POINTS_GOAL, weekStart } from '../data/points'
 import type { TargetGrade } from '../data/studyPlans'
 import InfoToggle, { InfoPanel } from './InfoToggle'
 
@@ -10,8 +10,6 @@ import InfoToggle, { InfoPanel } from './InfoToggle'
 // one step (WEEKLY_POINTS_GOAL) a week, showing where to be each week to
 // stay on track.
 
-// The plan's length; the chart always shows this many weeks.
-const MIN_WEEKS = 8
 // Grades with a weekly pace, low to high.
 const GRADE_LINES = ['B', 'C', 'M', 'E', 'L'] as const
 const WEEK_MS = 7 * 24 * 60 * 60 * 1000
@@ -45,12 +43,12 @@ export default function ProgressChart({ targetGrade, fill = false }: ProgressCha
     const weeks = getWeeklyPoints(log, now)
     const current = weeks.length
     // Eight weeks from the first points; once past that, the last eight.
-    const firstShown = Math.max(1, current - MIN_WEEKS + 1)
-    const slots = Array.from({ length: MIN_WEEKS }, (_, i) => firstShown + i)
+    const firstShown = Math.max(1, current - PLAN_WEEKS + 1)
+    const slots = Array.from({ length: PLAN_WEEKS }, (_, i) => firstShown + i)
     const actualMax = weeks[weeks.length - 1]?.cumulative ?? 0
-    const target = goal * MIN_WEEKS
+    const target = goal * PLAN_WEEKS
     // Room for every grade's line, the highest (L) included.
-    const top = Math.max(WEEKLY_POINTS_GOAL.L * MIN_WEEKS * 1.08, actualMax * 1.12)
+    const top = Math.max(WEEKLY_POINTS_GOAL.L * PLAN_WEEKS * 1.08, actualMax * 1.12)
     // Where the pace says the student should be by now, the current week
     // counted by how much of it has gone.
     const weekFraction = Math.min(1, (now - weekStart(now)) / WEEK_MS)
@@ -96,7 +94,7 @@ export default function ProgressChart({ targetGrade, fill = false }: ProgressCha
       </li>
       <li className="flex items-center gap-2">
         <span aria-hidden className="inline-block h-0.5 w-5 rounded-full" style={{ backgroundColor: PACE }} />
-        Vaakaviivat = arvosanat B–L pisteinä {MIN_WEEKS} viikon aikana; yhtenäinen = tavoitteesi {targetGrade}
+        Vaakaviivat = arvosanat B–L pisteinä {PLAN_WEEKS} viikon aikana; yhtenäinen = tavoitteesi {targetGrade}
       </li>
       <li className="flex items-center gap-2">
         <span aria-hidden className="inline-block h-2 w-5 border-l border-t" style={{ borderColor: PACE }} />
@@ -149,7 +147,7 @@ export default function ProgressChart({ targetGrade, fill = false }: ProgressCha
             {/* Each grade's points over the plan, straight across; the
                 target's solid and labelled. */}
             {GRADE_LINES.map((letter) => {
-              const points = WEEKLY_POINTS_GOAL[letter] * MIN_WEEKS
+              const points = WEEKLY_POINTS_GOAL[letter] * PLAN_WEEKS
               const isTarget = letter === targetGrade
               return (
                 <g key={letter}>

@@ -342,6 +342,20 @@ export function getCourseTargets(grade: TargetGrade): CourseTarget[] {
   }))
 }
 
+// How central each of the app's courses is to the plan: 1 for the first
+// tier, then evenly less for each later one. A course belongs to the first
+// tier it appears in; courses outside the plan are absent.
+export function getCourseRelevance(grade: TargetGrade): Map<TopicCode, number> {
+  const { tiers } = STUDY_PLANS[grade]
+  const relevance = new Map<TopicCode, number>()
+  tiers.forEach((tier, index) => {
+    for (const { code } of tier.courses) {
+      if (isAppCourse(code) && !relevance.has(code)) relevance.set(code, 1 - index / tiers.length)
+    }
+  })
+  return relevance
+}
+
 const STORAGE_KEY = 'laudatur.targetGrade'
 const DEFAULT_TARGET_GRADE: TargetGrade = 'M'
 

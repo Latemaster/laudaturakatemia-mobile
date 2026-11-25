@@ -283,6 +283,7 @@ interface TaskWorkspaceProps {
   attempt: EvaluationAttempt | undefined
   onAnswer: (answer: string) => void
   onScore: (criterionId: string, points: number | undefined) => void
+  onScored: (scored: number, max: number) => void
   onReset: () => void
   // Held by CourseTasksView so the full view stays open from one exercise
   // to the next.
@@ -299,6 +300,7 @@ function TaskWorkspace({
   attempt,
   onAnswer,
   onScore,
+  onScored,
   onReset,
   fullView,
   onFullViewChange: setFullView,
@@ -361,6 +363,7 @@ function TaskWorkspace({
   const [wrong, setWrong] = useState(0)
   function saveScores() {
     closeFullView()
+    if (points?.done) onScored(points.scored ?? 0, points.max)
     if (points?.done && points.scored === 0) {
       setWrong((c) => c + 1)
       return
@@ -550,8 +553,9 @@ interface ExerciseWorkspaceProps {
   title: string
   badge: string
   attempt: EvaluationAttempt | undefined
-  onEngage: () => void
-  onQuickAnswer: (correct: boolean) => void
+  // Points got out of the maximum: a checked quick exercise, or an open
+  // task scored in full and saved.
+  onScored: (scored: number, max: number) => void
   onTaskAnswer: (answer: string) => void
   onScore: (criterionId: string, points: number | undefined) => void
   onResetScores: () => void
@@ -574,10 +578,7 @@ export default function ExerciseWorkspace(props: ExerciseWorkspaceProps) {
         title={title}
         badge={badge}
         course={course}
-        onAnswer={(correct) => {
-          props.onEngage()
-          props.onQuickAnswer(correct)
-        }}
+        onAnswer={(correct) => props.onScored(correct ? 1 : 0, 1)}
       />
     )
   }
@@ -588,11 +589,9 @@ export default function ExerciseWorkspace(props: ExerciseWorkspaceProps) {
       title={title}
       badge={badge}
       attempt={props.attempt}
-      onAnswer={(answer) => {
-        props.onEngage()
-        props.onTaskAnswer(answer)
-      }}
+      onAnswer={props.onTaskAnswer}
       onScore={props.onScore}
+      onScored={props.onScored}
       onReset={props.onResetScores}
       fullView={props.fullView}
       onFullViewChange={props.onFullViewChange}

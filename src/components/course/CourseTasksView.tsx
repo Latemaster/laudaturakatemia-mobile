@@ -8,8 +8,7 @@ import { LEVEL_LABELS, QUICK_LABEL, useEvaluation } from './exerciseState'
 
 interface CourseTasksViewProps {
   code: TopicCode
-  onEngage: (cardId: string) => void
-  onAnswer: (cardId: string, correct: boolean) => void
+  onScored: (cardId: string, scored: number, max: number) => void
 }
 
 interface TaskGroup {
@@ -37,7 +36,7 @@ function groupCourseCards(code: TopicCode): TaskGroup[] {
 // Kurssit › Tehtävät in the laptop layout: one exercise at a time with
 // level tabs and Edellinen / Seuraava, like the laptop site, instead of
 // the phone's scrolling feed.
-export default function CourseTasksView({ code, onEngage, onAnswer }: CourseTasksViewProps) {
+export default function CourseTasksView({ code, onScored }: CourseTasksViewProps) {
   const groups = useMemo(() => groupCourseCards(code), [code])
   const [groupIndex, setGroupIndex] = useState(0)
   const [cardIndex, setCardIndex] = useState(0)
@@ -129,8 +128,7 @@ export default function CourseTasksView({ code, onEngage, onAnswer }: CourseTask
         title={title}
         badge={group.label}
         {...forExercise(card)}
-        onEngage={() => onEngage(card.id)}
-        onQuickAnswer={(correct) => onAnswer(card.id, correct)}
+        onScored={(scored, max) => onScored(card.id, scored, max)}
         fullView={fullView}
         onFullViewChange={setFullView}
         nav={{

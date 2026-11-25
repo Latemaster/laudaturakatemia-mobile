@@ -4,9 +4,13 @@ import { motion } from 'framer-motion'
 import { COURSES, COURSE_MAP, COURSE_TAG_CLASS } from '../data/courses'
 import type { CourseGrade, CourseGrades } from '../data/courseGrades'
 import type { TargetGrade } from '../data/studyPlans'
+import { getCoursePoints, getCourseProgressPct } from '../data/coursePoints'
 import { FEED_DIFFICULTIES, getFeedCourses, type FeedPrefs } from '../data/feed'
+import type { Knowledge } from '../data/knowledge'
+import { usePointsEarned } from '../data/points'
 import EsitiedotView from './EsitiedotView'
 import InfoToggle from './InfoToggle'
+import KnowledgeChip from './KnowledgeChip'
 import { ChevronDownIcon, ChevronRightIcon, PlusIcon, SlidersIcon, XIcon } from './icons'
 import { useLayout } from '../layout/LayoutContext'
 import type { TopicCode } from '../types'
@@ -22,6 +26,9 @@ interface FeedInfoProps {
   cardCount: number
   courseGrades: CourseGrades
   onCourseGradeChange: (code: TopicCode, grade: CourseGrade | undefined) => void
+  knowledge: Knowledge
+  // The course where the prediction last found a gap.
+  gapCode: TopicCode | null
 }
 
 const sectionTitle = 'mb-2 text-xs font-semibold uppercase tracking-widest text-ink-dim/70'
@@ -73,11 +80,15 @@ export default function FeedInfo({
   cardCount,
   courseGrades,
   onCourseGradeChange,
+  knowledge,
+  gapCode,
 }: FeedInfoProps) {
   const [open, setOpen] = useState(false)
   const [esitiedotOpen, setEsitiedotOpen] = useState(false)
   const { isDesktop } = useLayout()
-  const courses = getFeedCourses(targetGrade, prefs)
+  const courses = getFeedCourses(targetGrade, prefs, knowledge, gapCode)
+  const ownOrder = prefs.courses !== null
+  const points = getCoursePoints(usePointsEarned())
   const addable = COURSES.filter((course) => !courses.includes(course.code))
   const gradesFilled = COURSES.filter((course) => courseGrades[course.code] !== undefined).length
 
@@ -98,7 +109,8 @@ export default function FeedInfo({
     <div className="text-sm leading-relaxed text-ink-dim">
       <p className="mb-5">
         Syöte lähtee tavoitearvosanasi <span className="font-semibold text-ink">{targetGrade}</span>{' '}
-        lukusuunnitelmasta ja esitiedoistasi. Täällä voit muokata, millaisia tehtäviä se tarjoaa.
+        lukusuunnitelmasta ja siitä, miten osaat sen kurssit. Täällä voit muokata, millaisia tehtäviä se
+        tarjoaa.
       </p>
 
       <h3 className={sectionTitle}>Esitiedot</h3>
@@ -194,28 +206,60 @@ export default function FeedInfo({
       <div className="mb-2 flex flex-wrap items-center gap-x-2">
         <h3 className={sectionTitle.replace('mb-2 ', '')}>Kurssien järjestys</h3>
         <InfoToggle label="Miten kurssijärjestys toimii">
-          <p className="mb-2">
-            Syöte ei käy kursseja läpi yksi kerrallaan, vaan sekoittaa kolmea kurssia kerrallaan, listan
-            järjestyksessä:
-          </p>
-          <ol className="mb-2 list-decimal space-y-1 pl-4">
-            <li>Aluksi vuorottelevat listan kolme ylintä kurssia, tehtävä kustakin vuorotellen.</li>
-            <li>Kun kurssilta on tullut neljä tehtävää, se väistyy ja seuraava kurssi listalta tulee tilalle.</li>
-            <li>Kurssi palaa myöhemmin vuoroon siitä mihin jäi{longTasks && ', ja tehtävät ovat silloin vaikeampia'}.</li>
-          </ol>
-          <p>Ylimmät kurssit tulevat siis syötteessä ensin ja useimmin. Jo tekemäsi tehtävät siirtyvät loppuun.</p>
+          {ownOrder ? (
+            <>
+              <p className="mb-2">
+                Olet järjestänyt kurssit itse. Syöte sekoittaa kolmea kurssia kerrallaan, listan järjestyksessä:
+              </p>
+              <ol className="mb-2 list-decimal space-y-1 pl-4">
+                <li>Aluksi vuorottelevat listan kolme ylintä kurssia, tehtävä kustakin vuorotellen.</li>
+                <li>Kun kurssilta on tullut neljä tehtävää, se väistyy ja seuraava kurssi listalta tulee tilalle.</li>
+                <li>
+                  Kurssi palaa myöhemmin vuoroon siitä mihin jäi
+                  {longTasks && ', ja tehtävät ovat silloin vaikeampia'}.
+                </li>
+              </ol>
+            </>
+          ) : (
+            <>
+              <p className="mb-2">
+                Ylimpänä ovat kurssit, joita sinun kannattaa harjoitella eniten: osaamisesi on niissä heikkoa tai vielä
+                epävarmaa, ja ne ovat tavoitteesi suunnitelmassa keskeisiä. Sitten tulevat kurssit, joista ei ole
+                tietoa, ja viimeisenä vahvat kurssit.
+              </p>
+              <p className="mb-1">Kymmenestä tehtävästä</p>
+              <ul className="mb-2 list-disc space-y-1 pl-4">
+                <li>noin seitsemän tulee kolmelta ylimmältä heikommalta kurssilta</li>
+                <li>noin kaksi kertaa vahvoja kursseja</li>
+                <li>noin yksi tulee kurssilta, josta ei ole vielä tietoa</li>
+                <li>enintään kolme tulee samalta kurssilta.</li>
+              </ul>
+            </>
+          )}
+          <p>Jo tekemäsi tehtävät siirtyvät loppuun.</p>
         </InfoToggle>
       </div>
-      <p className="mb-3 text-xs">Järjestä kurssit tärkeysjärjestykseen. Ylimmät tulevat syötteessä ensin.</p>
+      <p className="mb-3 text-xs">
+        {ownOrder
+          ? 'Oma järjestyksesi. Ylimmät tulevat syötteessä ensin.'
+          : 'Järjestys seuraa osaamistasi. Jos muutat sitä, oma järjestyksesi jää voimaan.'}
+      </p>
       <ol className="mb-4 flex flex-col gap-1.5">
         {courses.map((code, index) => (
           <li key={code} className="flex items-center gap-2 rounded-2xl bg-surface-2 py-2 pl-3 pr-1.5">
             <span className="w-4 shrink-0 text-xs font-semibold text-ink-dim/70">{index + 1}</span>
             <span className="min-w-0 flex-1">
-              <span
-                className={`inline-flex items-center rounded-full px-2 py-0.5 text-[11px] font-semibold ring-1 ${COURSE_TAG_CLASS}`}
-              >
-                {code}
+              <span className="flex flex-wrap items-center gap-x-2 gap-y-1">
+                <span
+                  className={`inline-flex items-center rounded-full px-2 py-0.5 text-[11px] font-semibold ring-1 ${COURSE_TAG_CLASS}`}
+                >
+                  {code}
+                </span>
+                {/* Wraps as one: under the code on phones, beside it on laptops. */}
+                <span className="flex items-center gap-2 whitespace-nowrap">
+                  <KnowledgeChip course={knowledge.courses[code]} />
+                  <span className="text-[11px] font-semibold">{getCourseProgressPct(code, points)} %</span>
+                </span>
               </span>
               <span lang="fi" className="mt-0.5 block hyphens-auto break-words text-xs leading-snug">
                 {COURSE_MAP[code]?.name}
@@ -251,13 +295,13 @@ export default function FeedInfo({
           </li>
         ))}
       </ol>
-      {prefs.courses !== null && (
+      {ownOrder && (
         <button
           type="button"
           onClick={() => onPrefsChange({ ...prefs, courses: null })}
           className="-mt-2 mb-4 text-xs font-semibold text-accent hover:underline"
         >
-          Palauta suunnitelman mukaiseksi
+          Palauta osaamisen mukaiseksi
         </button>
       )}
 

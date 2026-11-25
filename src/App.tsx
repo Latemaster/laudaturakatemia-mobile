@@ -9,14 +9,11 @@ import FeedIntroCard from './components/FeedIntroCard'
 import EvaluationList from './components/EvaluationList'
 import { cards, getConceptCards, getExerciseCards, groupExercisesByConcept } from './data/cards'
 import { loadTargetGrade, type TargetGrade } from './data/studyPlans'
-import { getRecommendedCards, loadFeedPrefs, getFeedKinds, saveFeedPrefs, type FeedPrefs } from './data/feed'
+import { getCardCourse } from './data/coursePoints'
+import { getFeedCourses, getRecommendedCards, loadFeedPrefs, getFeedKinds, saveFeedPrefs, type FeedPrefs } from './data/feed'
 import { loadCourseGrades, saveCourseGrades, type CourseGrade, type CourseGrades } from './data/courseGrades'
-import {
-  loadKnowledge,
-  recordAttempt,
-  saveKnowledge,
-  type KnowledgeState,
-} from './data/knowledge'
+import { loadFoundGap, saveFoundGap, updateFoundGap, type FoundGap } from './data/foundGap'
+import { computeKnowledge, loadKnowledge, recordAttempt, saveKnowledge, type KnowledgeState } from './data/knowledge'
 import type { Card, TopicCode } from './types'
 import { LayoutContext, useIsDesktopViewport } from './layout/LayoutContext'
 import DesktopTopBar from './layout/DesktopTopBar'
@@ -53,7 +50,6 @@ function App() {
   // always has a course open, the first one until the student picks one.
   const [courseView, setCourseView] = useState<CourseView>('tavoitteet')
   const desktopCourse = selectedCourse ?? COURSES[0].code
-  const [engagedIds, setEngagedIds] = useState<Record<string, true>>({})
   // Set from the Osaaminen page; drives the Suositellut feed and what
   // Osaaminen tracks. Persisted by the component that changes it.
   const [targetGrade, setTargetGrade] = useState<TargetGrade>(loadTargetGrade)
@@ -61,17 +57,21 @@ function App() {
   // as an early indication of their level. Kept here rather than in the
   // page so a later knowledge check elsewhere can reflect against them.
   const [courseGrades, setCourseGrades] = useState<CourseGrades>(loadCourseGrades)
-  // Per-theme knowledge evidence (data/knowledge.ts): first attempts at
-  // cards. Drives the theme scores on the Osaaminen page.
-  const [knowledge, setKnowledge] = useState<KnowledgeState>(loadKnowledge)
+  // Knowledge evidence (data/knowledge.ts): first attempts at cards. With
+  // the course grades it gives the knowledge levels, the predicted grade
+  // and the feed's order.
+  const [knowledgeState, setKnowledgeState] = useState<KnowledgeState>(loadKnowledge)
+  const knowledge = useMemo(() => computeKnowledge(knowledgeState, courseGrades), [knowledgeState, courseGrades])
+  // Where the prediction last found a gap; that course leads the feed.
+  const [foundGap, setFoundGap] = useState<FoundGap | null>(loadFoundGap)
   // Suositellut's own settings (difficulty, course list), edited from the
   // feed's settings sheet.
   const [feedPrefs, setFeedPrefs] = useState<FeedPrefs>(loadFeedPrefs)
   // Read when the feed is built, but not a dependency of it: answering a
   // card must not reshuffle the feed under the student's thumb. Answered
   // cards move to the back the next time the feed is opened or re-tuned.
-  const knowledgeRef = useRef(knowledge)
-  knowledgeRef.current = knowledge
+  const feedInputs = useRef({ knowledgeState, foundGap })
+  feedInputs.current = { knowledgeState, foundGap }
   // Which main sections have had their first-visit introduction.
   const [onboardingSeen, setOnboardingSeen] = useState<OnboardingSeen>(loadOnboardingSeen)
   const onboarding: OnboardingSection | null =
@@ -96,12 +96,17 @@ function App() {
     saveFeedPrefs(next)
   }
 
-  function handleAnswer(cardId: string, correct: boolean) {
-    setKnowledge((prev) => {
-      const next = recordAttempt(prev, cardId, correct ? 1 : 0)
-      if (next !== prev) saveKnowledge(next)
-      return next
-    })
+  function handleScored(cardId: string, scored: number, max: number) {
+    const next = recordAttempt(knowledgeState, cardId, scored, max)
+    if (next === knowledgeState) return
+    setKnowledgeState(next)
+    saveKnowledge(next)
+    const course = getCardCourse(cardId)
+    if (!course) return
+    const gap = updateFoundGap(foundGap, course, knowledge, computeKnowledge(next, courseGrades))
+    if (gap === foundGap) return
+    setFoundGap(gap)
+    saveFoundGap(gap)
   }
 
   function handleCourseGradeChange(code: TopicCode, grade: CourseGrade | undefined) {
@@ -126,21 +131,22 @@ function App() {
     if (next !== 'kurssit' && !isDesktop) setSelectedCourse(null)
   }
 
-  function handleEngage(cardId: string) {
-    setEngagedIds((prev) => (prev[cardId] ? prev : { ...prev, [cardId]: true }))
-  }
-
   const onSuositellut = section === 'suositellut'
   const { quick: quickTasks, long: longTasks } = getFeedKinds(feedPrefs, isDesktop)
   const recommendedCards = useMemo(
     () =>
       onSuositellut
-        ? getRecommendedCards(targetGrade, feedPrefs, knowledgeRef.current.attempts, {
-            quick: quickTasks,
-            long: longTasks,
-          })
+        ? getRecommendedCards(
+            targetGrade,
+            feedPrefs,
+            // New course grades re-tune the feed; new answers don't.
+            computeKnowledge(feedInputs.current.knowledgeState, courseGrades),
+            feedInputs.current.knowledgeState.attempts,
+            { quick: quickTasks, long: longTasks },
+            feedInputs.current.foundGap?.code ?? null,
+          )
         : [],
-    [targetGrade, feedPrefs, onSuositellut, quickTasks, longTasks],
+    [targetGrade, feedPrefs, onSuositellut, quickTasks, longTasks, courseGrades],
   )
 
   const feedCards = useMemo(() => {
@@ -201,12 +207,12 @@ function App() {
           ) : courseView === 'tiivistelma' ? (
             <CourseSummaryView code={desktopCourse} />
           ) : (
-            <CourseTasksView code={desktopCourse} onEngage={handleEngage} onAnswer={handleAnswer} />
+            <CourseTasksView code={desktopCourse} onScored={handleScored} />
           )}
         </div>
       )}
       {section === 'kurssit' && !isDesktop && !selectedCourse && (
-        <CourseList onSelect={setSelectedCourse} engagedIds={engagedIds} />
+        <CourseList onSelect={setSelectedCourse} knowledge={knowledge} />
       )}
       {section === 'osaaminen' && (
         <Osaaminen
@@ -215,6 +221,13 @@ function App() {
           courseGrades={courseGrades}
           onCourseGradeChange={handleCourseGradeChange}
           knowledge={knowledge}
+          foundGap={foundGap}
+          // The student's own order wins over the gap.
+          gapLeadsFeed={
+            foundGap !== null &&
+            feedPrefs.courses === null &&
+            getFeedCourses(targetGrade, feedPrefs, knowledge).includes(foundGap.code)
+          }
         />
       )}
       {section === 'arviointi' && <EvaluationList />}
@@ -228,14 +241,15 @@ function App() {
           cardCount={recommendedCards.length}
           courseGrades={courseGrades}
           onCourseGradeChange={handleCourseGradeChange}
+          knowledge={knowledge}
+          gapCode={foundGap?.code ?? null}
         />
       )}
       {showFeed && (
         <Feed
           key={section === 'kurssit' && selectedCourse ? selectedCourse : `suositellut-${targetGrade}-${quickTasks}-${longTasks}-${JSON.stringify(feedPrefs)}`}
           cards={feedCards}
-          onEngage={handleEngage}
-          onAnswer={handleAnswer}
+          onScored={handleScored}
           onBack={section === 'kurssit' && selectedCourse ? () => setSelectedCourse(null) : undefined}
           backLabel="Takaisin kursseihin"
           intro={
@@ -254,8 +268,6 @@ function App() {
 
   const pointsMeter = (
     <PointsMeter
-      knowledge={knowledge}
-      courseGrades={courseGrades}
       targetGrade={targetGrade}
       onOpen={() => handleSelectSection('osaaminen')}
       laptop={isDesktop}
@@ -291,7 +303,7 @@ function App() {
                 setSelectedCourse(code)
                 setCourseView(view)
               }}
-              engagedIds={engagedIds}
+              knowledge={knowledge}
             />
           )}
           {/* The feed's cards are sized to this panel (index.css). */}

@@ -49,9 +49,7 @@ export interface GradeBand {
 // Each grade band starts at its typical point cutoff, expressed as a share
 // of the exam's maximum, so the predicted grade, the chart bands and the
 // target markers all sit on the same scale. Bands are listed high to low
-// and cover 0-100 with no gaps. Scoring itself is still a placeholder:
-// the percentage is driven by how much of each course has been engaged
-// with, not by how well.
+// and cover 0-100 with no gaps.
 export const GRADE_BANDS: GradeBand[] = FINNISH_GRADES.map((grade) => ({
   grade,
   min: pointsToPct(GRADE_POINTS[grade.letter].avg),

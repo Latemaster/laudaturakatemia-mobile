@@ -8,7 +8,8 @@
     "build": "tsc -b && vite build",
     "preview": "vite preview",
     "lint": "eslint .",
-    "check:rubrics": "node scripts/check-rubrics.mjs"
+    "check:rubrics": "node scripts/check-rubrics.mjs",
+    "check:knowledge": "node scripts/check-knowledge.mjs"
   },
   "dependencies": {
     "framer-motion": "^11.11.17",

@@ -1,5 +1,6 @@
-import { useMemo, useState } from 'react'
-import { EXAM_MAX_POINTS, pointsToPct, predictGrade, type FinnishGrade } from '../data/grade'
+import { useState, type ReactNode } from 'react'
+import { COURSE_MAP } from '../data/courses'
+import { EXAM_MAX_POINTS, predictGrade, type FinnishGrade } from '../data/grade'
 import {
   getFinnishGrade,
   getTargetPoints,
@@ -7,17 +8,10 @@ import {
   type TargetGrade,
 } from '../data/studyPlans'
 import type { CourseGrade, CourseGrades } from '../data/courseGrades'
-import {
-  computeKnowledge,
-  EXERCISE_WEIGHT,
-  FALLBACK_PRIOR_WEIGHT,
-  RELIABILITY_LEVELS,
-  TASK_WEIGHT,
-  type EstimateReliability,
-  type OverallEstimate,
-  type KnowledgeState,
-} from '../data/knowledge'
-import { getCheckpointProgress, usePointsTotal } from '../data/points'
+import { getCoursePoints, getTargetProgress } from '../data/coursePoints'
+import type { FoundGap } from '../data/foundGap'
+import type { Knowledge } from '../data/knowledge'
+import { getCheckpointProgress, usePointsEarned, usePointsTotal } from '../data/points'
 import ActivityRings, { RING_COLORS, useRingsState } from './ActivityRings'
 import CourseGradesSection from './CourseGradesSection'
 import InfoToggle, { InfoPanel } from './InfoToggle'
@@ -32,36 +26,42 @@ interface OsaaminenProps {
   onTargetGradeChange: (grade: TargetGrade) => void
   courseGrades: CourseGrades
   onCourseGradeChange: (code: TopicCode, grade: CourseGrade | undefined) => void
-  knowledge: KnowledgeState
+  knowledge: Knowledge
+  foundGap: FoundGap | null
+  // The gap's course is at the top of the Suositellut feed.
+  gapLeadsFeed: boolean
 }
 
-const TIER_CLASSES: Record<FinnishGrade['tier'], { badge: string; text: string; bar: string }> = {
-  high: { badge: 'bg-good/15 text-good ring-good/30', text: 'text-good', bar: 'bg-good' },
-  mid: { badge: 'bg-accent/15 text-accent ring-accent/30', text: 'text-accent', bar: 'bg-accent' },
-  low: { badge: 'bg-bad/15 text-bad ring-bad/30', text: 'text-bad', bar: 'bg-bad' },
+const TIER_CLASSES: Record<FinnishGrade['tier'], { badge: string; text: string }> = {
+  high: { badge: 'bg-good/15 text-good ring-good/30', text: 'text-good' },
+  mid: { badge: 'bg-accent/15 text-accent ring-accent/30', text: 'text-accent' },
+  low: { badge: 'bg-bad/15 text-bad ring-bad/30', text: 'text-bad' },
 }
 
-const RELIABILITY_CLASSES: Record<EstimateReliability, { text: string; bar: string; filled: number }> = {
-  epävarma: { text: 'text-bad', bar: 'bg-bad', filled: 1 },
-  kohtuullinen: { text: 'text-accent', bar: 'bg-accent', filled: 2 },
-  hyvä: { text: 'text-good', bar: 'bg-good', filled: 3 },
-}
-
-// Three-step flag under the donut: how much of kokonaisosaaminen rests on
-// exercise answers rather than esitiedot.
-function ReliabilityFlag({ overall }: { overall: OverallEstimate }) {
-  const { reliability, exerciseShare } = overall
-  const classes = RELIABILITY_CLASSES[reliability.reliability]
+// How much of the prediction rests on the student's own answers rather
+// than on course grades: fills from epävarma to varma.
+function CertaintyBar({ certainty }: { certainty: number }) {
+  const pct = Math.round(certainty * 100)
   return (
-    <span className="mt-2 inline-flex w-fit items-center gap-2 whitespace-nowrap rounded-full bg-surface-2 px-3 py-1 text-xs ring-1 ring-ink/10">
-      <span aria-hidden className="flex gap-0.5">
-        {[1, 2, 3].map((step) => (
-          <span key={step} className={`h-2.5 w-1.5 rounded-full ${step <= classes.filled ? classes.bar : 'bg-ink/15'}`} />
-        ))}
-      </span>
-      <span className={`font-semibold ${classes.text}`}>{reliability.label}</span>
-      <span className="text-ink-dim">· {Math.round(exerciseShare * 100)} % tehtävistä</span>
-    </span>
+    <div>
+      <div
+        role="meter"
+        aria-label="Ennusteen varmuus"
+        aria-valuemin={0}
+        aria-valuemax={100}
+        aria-valuenow={pct}
+        className="h-2 w-full overflow-hidden rounded-full bg-ink/10"
+      >
+        <div
+          className="h-full rounded-full bg-accent transition-[width] duration-700"
+          style={{ width: `${pct}%` }}
+        />
+      </div>
+      <div className="mt-1 flex justify-between text-[11px] font-medium text-ink-dim">
+        <span>epävarma</span>
+        <span>varma</span>
+      </div>
+    </div>
   )
 }
 
@@ -79,81 +79,101 @@ function RingLegend({ color, title, value, note }: { color: string; title: strin
   )
 }
 
+// A card's title with its explanation button. On laptops the open
+// explanation takes the card's place, scrolling inside it.
+function CardTitle({
+  title,
+  infoLabel,
+  info,
+  open,
+  onOpenChange,
+  inline,
+}: {
+  title: string
+  infoLabel: string
+  info: ReactNode
+  open: boolean
+  onOpenChange: (open: boolean) => void
+  inline: boolean
+}) {
+  return (
+    <div className="flex flex-wrap items-center justify-between gap-2">
+      <span className="text-[11px] font-semibold uppercase tracking-widest text-ink-dim/70">{title}</span>
+      <InfoToggle label={infoLabel} open={open} onOpenChange={onOpenChange} inline={inline}>
+        {info}
+      </InfoToggle>
+    </div>
+  )
+}
+
 export default function Osaaminen({
   targetGrade,
   onTargetGradeChange,
   courseGrades,
   onCourseGradeChange,
   knowledge,
+  foundGap,
+  gapLeadsFeed,
 }: OsaaminenProps) {
   const { isDesktop } = useLayout()
   const [targetOpen, setTargetOpen] = useState(false)
-  const scores = useMemo(() => computeKnowledge(knowledge, courseGrades), [knowledge, courseGrades])
 
-  const { overall } = scores
-  const overallPct = overall.pct
-  const grade = predictGrade(overallPct)
-  const tierClasses = TIER_CLASSES[grade.tier]
+  const { overall } = knowledge
+  const grade = predictGrade(overall.pct)
+  const gradeClasses = TIER_CLASSES[grade.tier]
   const target = getFinnishGrade(targetGrade)
-  const targetTierClasses = TIER_CLASSES[target.tier]
   const targetPoints = getTargetPoints(targetGrade)
-  const targetPct = pointsToPct(targetPoints.avg)
-  const outerRing = targetPct > 0 ? overallPct / targetPct : 0
   const pointsTotal = usePointsTotal()
+  const ring = getTargetProgress(targetGrade, getCoursePoints(usePointsEarned()))
   const checkpoint = getCheckpointProgress(pointsTotal)
   const rings = useRingsState()
 
   // On laptops an open explanation takes its card's place (scrolling
   // inside it), so the page still fits without scrolling.
+  const [targetInfoOpen, setTargetInfoOpen] = useState(false)
   const [forecastInfoOpen, setForecastInfoOpen] = useState(false)
   const [esitiedotInfoOpen, setEsitiedotInfoOpen] = useState(false)
+
+  const targetInfo = (
+    <>
+      <p className="mb-2">
+        Rengas täyttyy pisteistä, joita keräät tavoitteesi lukusuunnitelman kursseilta. Esitiedot eivät täytä sitä.
+      </p>
+      <ul className="flex list-disc flex-col gap-1 pl-4">
+        <li>Jokaisella suunnitelman kurssilla on oma osuutensa tarvittavista pisteistä, keskeisillä suurempi.</li>
+        <li>
+          Yhdeltä kurssilta lasketaan renkaaseen enintään puolitoista kertaa sen osuus. Vahva kurssi paikkaa siis
+          heikkoa osittain, mutta yksi kurssi ei riitä.
+        </li>
+        <li>Jokainen piste kasvattaa silti kokonaispisteitäsi ja vie kohti seuraavaa välietappia.</li>
+      </ul>
+    </>
+  )
 
   const forecastInfo = (
     <>
       <p className="mb-2">
-        Kokonaisosaaminen lasketaan teemoittain. Jokaisen teeman arvio on painotettu keskiarvo
-        lähtötasosta ja tehtävien vastauksista:
+        Ennuste on kurssien osaamisprosenttien keskiarvo, ja kaikki kurssit painavat yhtä paljon. Keskiarvoa verrataan
+        yo-kokeen tyypillisiin pisterajoihin ({EXAM_MAX_POINTS} pisteen koe).
       </p>
       <ul className="mb-2 flex list-disc flex-col gap-1 pl-4">
         <li>
-          <span className="font-semibold text-ink">Lähtötaso</span> tulee esitiedoista: kurssin
-          lukioarvosana (paino {FALLBACK_PRIOR_WEIGHT}).
+          <span className="font-semibold text-ink">Kurssin osaaminen</span> on saamasi pisteet jaettuna yrittämiesi
+          tehtävien pisteillä. Vain ensimmäinen vastaus kuhunkin tehtävään lasketaan.
         </li>
         <li>
-          <span className="font-semibold text-ink">Tehtävät</span>: vain ensimmäinen vastaus kuhunkin
-          tehtävään lasketaan. Pikatehtävä painaa {EXERCISE_WEIGHT}, avoin tehtävä {TASK_WEIGHT.easy}–
-          {TASK_WEIGHT.hard} vaikeuden mukaan. Täyden painon saa vain oikea vastaus, joten yksi
-          epäonnistunut vaikea tehtävä ei kumoa perusteiden osaamista.
+          <span className="font-semibold text-ink">Kurssiarvosana</span> antaa lähtötason: 4 on 10 %, 7 on 50 % ja 10
+          on 90 %. Se painaa kahden pikatehtävän verran, joten omat vastauksesi ohittavat sen nopeasti.
         </li>
-        <li>
-          Kurssin arvio on sen teemojen keskiarvo ja kokonaisosaaminen kurssien keskiarvo. Teema, josta ei
-          ole esitietoja eikä vastauksia, lasketaan nollaksi.
-        </li>
+        <li>Kurssi, josta ei ole arvosanaa eikä vastauksia, lasketaan nollaksi.</li>
       </ul>
       <p className="mb-2">
-        Ennustettu arvosana saadaan vertaamalla kokonaisosaamista yo-kokeen tyypillisiin pisterajoihin
-        jaettuna kokeen {EXAM_MAX_POINTS} pisteellä.
+        Varmuus kasvaa, kun ennuste perustuu yhä enemmän vastauksiisi eikä pelkkiin arvosanoihin.
       </p>
-      <p className="mb-2">
-        Esitiedot ovat heikkoa näyttöä, joten arviolle näytetään luotettavuus sen mukaan, kuinka suuri osa
-        siitä perustuu tehtävien vastauksiin:
+      <p>
+        Osaamisen tasot: Heikko alle 25 %, Kehittyvä 25–45 %, Kohtalainen 45–65 %, Vahva 65–85 % ja Erinomainen
+        vähintään 85 %. Ääriviivalla merkitty taso tulee vain kurssiarvosanasta.
       </p>
-      <ul className="flex flex-col gap-1">
-        {[...RELIABILITY_LEVELS].reverse().map((band, index, bands) => {
-          const next = bands[index + 1]
-          const range = next
-            ? `${index === 0 ? 'alle ' : `${Math.round(band.min * 100)}–`}${Math.round(next.min * 100)} %`
-            : `vähintään ${Math.round(band.min * 100)} %`
-          return (
-            <li key={band.reliability}>
-              <span className={`font-semibold ${RELIABILITY_CLASSES[band.reliability].text}`}>
-                {band.label}
-              </span>{' '}
-              = {range} tehtävistä
-            </li>
-          )
-        })}
-      </ul>
     </>
   )
 
@@ -162,119 +182,152 @@ export default function Osaaminen({
     saveTargetGrade(next)
   }
 
+  const card = `mb-6 rounded-3xl border border-ink/10 bg-surface p-6 shadow-sm ${isDesktop ? 'flex min-h-0 flex-col' : ''}`
+
   return (
     <PageContainer full>
       <h1 className="mb-1 text-2xl font-bold text-ink">Osaaminen</h1>
-      <p className="mb-6 text-sm text-ink-dim">Ennuste ja edistyminen tällä istunnolla.</p>
+      <p className="mb-6 text-sm text-ink-dim">Tavoitteesi, ennusteesi ja edistymisesi.</p>
 
-      {/* Laptops: Ennustettu arvosana on the left; Edistyminen ajan mittaan
-          and Osaaminen esitiedot share the right column, the chart taking
-          what esitiedot leaves, so the page fits without scrolling. Phones
-          stack all three. */}
-      <div className={isDesktop ? 'grid min-h-[30rem] flex-1 grid-cols-2 items-stretch gap-6 [&>*]:mb-0' : ''}>
-        <div
-          className={`mb-6 rounded-3xl border border-ink/10 bg-surface p-6 shadow-sm ${
-            isDesktop ? 'flex min-h-0 flex-col' : ''
-          }`}
-        >
-          <div className="flex flex-wrap items-center justify-between gap-2">
-            <span className="text-[11px] font-semibold uppercase tracking-widest text-ink-dim/70">
-              Ennustettu arvosana
-            </span>
-            <InfoToggle
-              label="Miten ennuste lasketaan"
+      {/* Laptops: the target and the predicted grade on the left;
+          Edistyminen ajan mittaan and Osaaminen esitiedot on the right, the
+          target and the chart taking what the other leaves, so the page
+          fits without scrolling. Phones stack all four. */}
+      <div className={isDesktop ? 'grid min-h-[36rem] flex-1 grid-cols-2 items-stretch gap-6 [&>*]:mb-0' : ''}>
+        <div className={isDesktop ? 'flex min-h-0 flex-col gap-6 [&>*]:mb-0' : ''}>
+          {/* The prediction's explanation is longer than its card, so it
+              takes the target's room too while open. */}
+          {!(isDesktop && forecastInfoOpen) && (
+            <div className={`${card} ${isDesktop ? 'flex-1' : ''}`}>
+              <CardTitle
+                title="Tavoite"
+                infoLabel="Miten tavoiterengas täyttyy"
+                info={targetInfo}
+                open={targetInfoOpen}
+                onOpenChange={setTargetInfoOpen}
+                inline={!isDesktop}
+              />
+              {isDesktop && targetInfoOpen ? (
+                <InfoPanel className="mt-3 min-h-0 flex-1 overflow-y-auto">{targetInfo}</InfoPanel>
+              ) : (
+                <>
+                  {/* The activity rings, as in the top bar: outer = points
+                      towards the target grade, inner = the way to the next
+                      välietappi, the target in the middle. */}
+                  <div
+                    className={`mt-4 flex ${
+                      isDesktop ? 'flex-1 flex-row items-center justify-center gap-8' : 'flex-col items-center gap-5'
+                    }`}
+                  >
+                    <ActivityRings
+                      size={isDesktop ? 140 : 168}
+                      stroke={isDesktop ? 16 : 19}
+                      outer={ring.progress}
+                      state={rings}
+                      popOnPoints={false}
+                      center={
+                        <span className="flex flex-col items-center leading-none">
+                          <span className="text-4xl font-bold text-ink">{target.letter}</span>
+                          {/* The laptop's smaller rings only have room for the letter. */}
+                          {!isDesktop && (
+                            <span className="mt-1 text-[10px] font-semibold uppercase tracking-widest text-ink-dim/70">
+                              tavoite
+                            </span>
+                          )}
+                        </span>
+                      }
+                    />
+                    <div className={isDesktop ? 'flex min-w-0 flex-col gap-4' : 'grid w-full grid-cols-2 gap-3'}>
+                      <RingLegend
+                        color={RING_COLORS.outer.stroke}
+                        title={`Tavoite ${target.letter}`}
+                        value={`${ring.counted} / ${ring.needed} p`}
+                        note={ring.progress >= 1 ? 'Tavoite saavutettu!' : `${Math.floor(ring.progress * 100)} % matkasta`}
+                      />
+                      <RingLegend
+                        color={RING_COLORS.inner.stroke}
+                        title={checkpoint.next ? `Välietappi ${checkpoint.next.number}` : 'Välietapit'}
+                        value={checkpoint.next ? `${checkpoint.toNext} p jäljellä` : 'Kaikki saavutettu'}
+                        note={`${pointsTotal} p kerätty yhteensä`}
+                      />
+                    </div>
+                  </div>
+
+                  <button
+                    type="button"
+                    onClick={() => setTargetOpen(true)}
+                    aria-haspopup="dialog"
+                    aria-label="Muuta tavoitearvosanaa"
+                    data-onboarding="target-grade"
+                    className="mt-4 flex w-full items-center gap-3 rounded-2xl bg-surface-2 p-3 text-left ring-1 ring-transparent transition-colors hover:bg-accent/10 hover:ring-accent/30 active:ring-accent/40"
+                  >
+                    <span
+                      className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-lg font-bold ring-2 ${TIER_CLASSES[target.tier].badge}`}
+                    >
+                      {target.letter}
+                    </span>
+                    <div className="flex min-w-0 flex-1 flex-col">
+                      <span className="text-[11px] font-semibold uppercase tracking-widest text-ink-dim/70">
+                        Tavoitearvosana
+                      </span>
+                      <span className="text-sm font-semibold text-ink">
+                        Kokeessa aiemmin tarvittu: {targetPoints.avg} / {EXAM_MAX_POINTS} p.
+                      </span>
+                    </div>
+                  </button>
+                </>
+              )}
+            </div>
+          )}
+
+          <section className={`${card} ${isDesktop && forecastInfoOpen ? 'flex-1' : ''}`}>
+            <CardTitle
+              title="Ennustettu arvosana"
+              infoLabel="Miten ennuste lasketaan"
+              info={forecastInfo}
               open={forecastInfoOpen}
               onOpenChange={setForecastInfoOpen}
               inline={!isDesktop}
-            >
-              {forecastInfo}
-            </InfoToggle>
-          </div>
-
-          {isDesktop && forecastInfoOpen ? (
-            <InfoPanel className="mt-3 min-h-0 flex-1 overflow-y-auto">{forecastInfo}</InfoPanel>
-          ) : (
-            <>
-              {/* The activity rings, as in the top bar: outer = the way to
-                  the target grade, inner = the way to the next välietappi,
-                  the predicted grade in the middle. On laptops they centre
-                  in the card's height, leaving Tavoitearvosana at the
-                  bottom. */}
-              <div
-                className={`mt-4 flex ${
-                  isDesktop ? 'flex-1 flex-row items-center justify-center gap-10' : 'flex-col items-center gap-5'
-                }`}
-              >
-                <ActivityRings
-                  size={isDesktop ? 200 : 168}
-                  stroke={isDesktop ? 22 : 19}
-                  outer={outerRing}
-                  state={rings}
-                  popOnPoints={false}
-                  center={
-                    <span className="flex flex-col items-center leading-none">
-                      <span className={`font-bold ${tierClasses.text} ${isDesktop ? 'text-5xl' : 'text-4xl'}`}>
-                        {grade.letter}
-                      </span>
-                      <span className="mt-1 text-[10px] font-semibold uppercase tracking-widest text-ink-dim/70">
-                        ennuste
-                      </span>
-                    </span>
-                  }
-                />
-                <div className={`flex min-w-0 flex-col gap-4 ${isDesktop ? '' : 'w-full'}`}>
-                  <div className="flex flex-col">
-                    <span className={`font-bold leading-tight ${tierClasses.text} ${isDesktop ? 'text-xl' : 'text-lg'}`}>
-                      {grade.name}
-                    </span>
-                    <span className="mt-0.5 text-sm font-semibold text-ink-dim">{overallPct} % kokonaisosaaminen</span>
-                    {overall.hasData ? (
-                      <ReliabilityFlag overall={overall} />
+            />
+            {isDesktop && forecastInfoOpen ? (
+              <InfoPanel className="mt-3 min-h-0 flex-1 overflow-y-auto">{forecastInfo}</InfoPanel>
+            ) : (
+              <>
+                <div className="mt-3 flex items-start gap-4">
+                  <span
+                    className={`flex h-14 w-14 shrink-0 items-center justify-center rounded-full text-3xl font-bold ring-2 ${
+                      overall.known ? gradeClasses.badge : 'bg-ink/5 text-ink-dim/60 ring-ink/10'
+                    }`}
+                  >
+                    {overall.known ? grade.letter : '–'}
+                  </span>
+                  <div className="flex min-w-0 flex-1 flex-col">
+                    {overall.known ? (
+                      <>
+                        <span className={`text-lg font-bold leading-tight ${gradeClasses.text}`}>{grade.name}</span>
+                        <span className="text-sm font-semibold text-ink-dim">Osaaminen keskimäärin {overall.pct}&nbsp;%</span>
+                      </>
                     ) : (
-                      <span className="mt-1 text-xs text-ink-dim">Täytä esitiedot tai vastaa tehtäviin</span>
+                      <span className="text-sm text-ink-dim">
+                        Täytä esitiedot tai vastaa tehtäviin, niin saat ennusteen.
+                      </span>
                     )}
-                  </div>
-                  <div className={isDesktop ? 'flex flex-col gap-3' : 'grid grid-cols-2 gap-3'}>
-                    <RingLegend
-                      color={RING_COLORS.outer.stroke}
-                      title={`Tavoite ${target.letter}`}
-                      value={`${Math.round(Math.min(1, outerRing) * 100)} %`}
-                      note={outerRing >= 1 ? 'Tavoite saavutettu!' : `${overallPct} / ${targetPct} %`}
-                    />
-                    <RingLegend
-                      color={RING_COLORS.inner.stroke}
-                      title={checkpoint.next ? `Välietappi ${checkpoint.next.number}` : 'Välietapit'}
-                      value={checkpoint.next ? `${checkpoint.toNext} p jäljellä` : 'Kaikki saavutettu'}
-                      note={`${pointsTotal} p kerätty oikeista vastauksista`}
-                    />
+                    <div className="mt-2">
+                      <CertaintyBar certainty={overall.certainty} />
+                    </div>
                   </div>
                 </div>
-              </div>
-
-              <button
-                type="button"
-                onClick={() => setTargetOpen(true)}
-                aria-haspopup="dialog"
-                aria-label="Muuta tavoitearvosanaa"
-                data-onboarding="target-grade"
-                className="mt-5 flex w-full items-center gap-3 rounded-2xl bg-surface-2 p-3 text-left ring-1 ring-transparent transition-colors hover:bg-accent/10 hover:ring-accent/30 active:ring-accent/40"
-              >
-                <span
-                  className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-lg font-bold ring-2 ${targetTierClasses.badge}`}
-                >
-                  {target.letter}
-                </span>
-                <div className="flex min-w-0 flex-1 flex-col">
-                  <span className="text-[11px] font-semibold uppercase tracking-widest text-ink-dim/70">
-                    Tavoitearvosana
-                  </span>
-                  <span className="text-sm font-semibold text-ink">
-                    Aiemmin tarvitut pisteet: {targetPoints.avg} / {EXAM_MAX_POINTS} p.
-                  </span>
-                </div>
-              </button>
-            </>
-          )}
+                {foundGap && (
+                  <p className="mt-3 rounded-2xl bg-surface-2 px-4 py-3 text-sm leading-snug text-ink-dim">
+                    <span className="font-semibold text-ink">
+                      Löytyi aukko: {foundGap.code} {COURSE_MAP[foundGap.code].name}.
+                    </span>{' '}
+                    {gapLeadsFeed ? 'Nostimme sen syötteesi kärkeen.' : 'Sitä kannattaa harjoitella seuraavaksi.'}
+                  </p>
+                )}
+              </>
+            )}
+          </section>
         </div>
 
         <div className={isDesktop ? 'flex min-h-0 flex-col gap-6 [&>*]:mb-0' : ''}>

@@ -5,10 +5,9 @@ import { ConfettiBurst } from './Celebrations'
 
 // Two rings after a fitness watch's activity rings, shared by the top
 // bar's corner and the Osaaminen page:
-// - outer, dark green: the way to the target grade, full when
-//   kokonaisosaaminen reaches the target's points;
+// - outer, dark green: points towards the target grade (coursePoints.ts);
 // - inner, light green: the way to the next välietappi.
-// Points move the inner ring; when it closes it lights up, bursts, starts
+// Points move both; when the inner ring closes it lights up, bursts, starts
 // over, and the outer ring gets its push.
 
 export const RING_COLORS = {
@@ -136,7 +135,7 @@ function Ring({
   )
 }
 
-// The rings on a white disc, `center` (the grade letter) in the middle.
+// The rings on a white disc, `center` (the target grade) in the middle.
 export default function ActivityRings({
   size,
   stroke,

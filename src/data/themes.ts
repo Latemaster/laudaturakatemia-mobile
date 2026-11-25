@@ -29,9 +29,6 @@ export interface Theme {
   formula?: string
   // Indices into the course's theory file (getConceptCards order).
   concepts: number[]
-  // Relative weight of the theme inside the course score; defaults to 1.
-  // Raise it for themes the exam asks about more often.
-  weight?: number
 }
 
 type ThemeDef = Omit<Theme, 'code'>

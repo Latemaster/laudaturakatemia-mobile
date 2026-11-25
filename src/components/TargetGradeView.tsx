@@ -92,7 +92,7 @@ export default function TargetGradeView({ targetGrade, onTargetGradeChange, onCl
     <>
       <h2 className="mb-1 mt-2 text-lg font-bold text-ink">Tavoite perustuu näihin kursseihin</h2>
       <p className="mb-3 text-xs text-ink-dim">
-        Suositellut näyttää kortit tässä järjestyksessä: perusteet ensin, vaikeimmat tehtävät viimeisenä.
+        Suositellut painottaa näitä kursseja: ensin ne, joita sinun kannattaa harjoitella eniten.
       </p>
     </>
   )

@@ -11,10 +11,10 @@ import { levelOf, useEvaluation } from './course/exerciseState'
 
 interface FeedProps {
   cards: Card[]
-  onEngage?: (cardId: string) => void
-  // A checked quick-exercise answer; fires on every attempt, the knowledge
-  // model keeps only the first one per card.
-  onAnswer?: (cardId: string, correct: boolean) => void
+  // Points got from a card out of its maximum: a checked quick exercise, a
+  // fully scored open task. Fires on every attempt, the knowledge model
+  // keeps only the first one per card.
+  onScored?: (cardId: string, scored: number, max: number) => void
   onBack?: () => void
   backLabel?: string
   // A card shown before all the others (Suositellut's FeedIntroCard).
@@ -31,8 +31,7 @@ const LOAD_AHEAD = 5
 interface FeedExerciseProps {
   card: Card
   exercise: ReturnType<ReturnType<typeof useEvaluation>>
-  onEngage?: (cardId: string) => void
-  onAnswer?: (cardId: string, correct: boolean) => void
+  onScored?: (cardId: string, scored: number, max: number) => void
 }
 
 // Laptop feed: an exercise in the same box as Kurssit › Tehtävät, with its
@@ -40,7 +39,7 @@ interface FeedExerciseProps {
 // The top gutter leaves room for the feed's settings button.
 const LAPTOP_CARD = 'snap-card relative flex w-full flex-col px-8 pb-6 pt-16'
 
-function FeedExercise({ card, exercise, onEngage, onAnswer }: FeedExerciseProps) {
+function FeedExercise({ card, exercise, onScored }: FeedExerciseProps) {
   const [fullView, setFullView] = useState<FullViewMode | null>(null)
   return (
     <section className={LAPTOP_CARD}>
@@ -49,8 +48,7 @@ function FeedExercise({ card, exercise, onEngage, onAnswer }: FeedExerciseProps)
         title={card.type === 'task' ? card.problem.title : 'Pikatehtävä'}
         badge={levelOf(card)}
         {...exercise}
-        onEngage={() => onEngage?.(card.id)}
-        onQuickAnswer={(correct) => onAnswer?.(card.id, correct)}
+        onScored={(scored, max) => onScored?.(card.id, scored, max)}
         fullView={fullView}
         onFullViewChange={setFullView}
         showCourse
@@ -59,7 +57,7 @@ function FeedExercise({ card, exercise, onEngage, onAnswer }: FeedExerciseProps)
   )
 }
 
-export default function Feed({ cards, onEngage, onAnswer, onBack, backLabel = 'Takaisin', intro }: FeedProps) {
+export default function Feed({ cards, onScored, onBack, backLabel = 'Takaisin', intro }: FeedProps) {
   const containerRef = useRef<HTMLDivElement>(null)
   const [currentIndex, setCurrentIndex] = useState(0)
   const [renderedCount, setRenderedCount] = useState(FIRST_BATCH)
@@ -107,24 +105,14 @@ export default function Feed({ cards, onEngage, onAnswer, onBack, backLabel = 'T
               // The intro has its own hint to scroll on.
               <LessonCardView card={card} showSwipeHint={!intro && index === 0} />
             ) : isDesktop ? (
-              <FeedExercise card={card} exercise={forExercise(card)} onEngage={onEngage} onAnswer={onAnswer} />
+              <FeedExercise card={card} exercise={forExercise(card)} onScored={onScored} />
             ) : card.type === 'exercise' ? (
-              <ExerciseCardView
-                card={card}
-                onAnswer={(correct) => {
-                  onEngage?.(card.id)
-                  onAnswer?.(card.id, correct)
-                }}
-              />
+              <ExerciseCardView card={card} onAnswer={(correct) => onScored?.(card.id, correct ? 1 : 0, 1)} />
             ) : (
               <TaskCardView
                 card={card}
                 {...forExercise(card)}
-                onTaskAnswer={(answer) => {
-                  onEngage?.(card.id)
-                  forExercise(card).onTaskAnswer(answer)
-                }}
-                onViewSolution={() => onEngage?.(card.id)}
+                onScored={(scored, max) => onScored?.(card.id, scored, max)}
               />
             )}
           </div>

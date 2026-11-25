@@ -1,7 +1,8 @@
 import { cards, getExerciseCards } from './cards'
 import { COURSE_MAP } from './courses'
+import { STRONG_PCT, getCardThemes, getThemePriority, type Knowledge } from './knowledge'
 import { classifyDifficulty, type Difficulty } from './progress'
-import { getCourseTargets, type TargetGrade } from './studyPlans'
+import { getCourseRelevance, getCourseTargets, type TargetGrade } from './studyPlans'
 import type { Card, TaskCard, TopicCode } from '../types'
 
 // ---------------------------------------------------------------------------
@@ -18,9 +19,8 @@ export const FEED_DIFFICULTIES: { value: Difficulty; label: string; hint: string
 export interface FeedPrefs {
   // The long tasks' tiers the student has on. Never empty.
   difficulties: Difficulty[]
-  // The feed's courses in priority order. null follows the target grade's
-  // study plan, so changing the target still changes the feed until the
-  // student edits the list themselves.
+  // The feed's courses in the student's own order, which always wins. null
+  // ranks the target grade's plan courses by what the student knows of them.
   courses: TopicCode[] | null
   // Which kinds of exercise the feed has: the quick exercises
   // (pikatehtävät) and the open-answer YO problems (pitkät tehtävät).
@@ -52,8 +52,39 @@ function planDifficulties(grade: TargetGrade): Map<TopicCode, Difficulty[]> {
   return new Map(getCourseTargets(grade).map((target) => [target.code, target.difficulties]))
 }
 
-export function getFeedCourses(grade: TargetGrade, prefs: FeedPrefs): TopicCode[] {
-  return prefs.courses ?? [...planDifficulties(grade).keys()]
+// What the feed does with a course: practise it, find out about it when
+// nothing is known yet, or review it lightly when it is strong.
+type Pool = 'practice' | 'unknown' | 'review'
+
+const POOL_RANK: Record<Pool, number> = { practice: 0, unknown: 1, review: 2 }
+
+function poolOf(code: TopicCode, knowledge: Knowledge): Pool {
+  const { known, pct } = knowledge.courses[code]
+  if (!known) return 'unknown'
+  return pct >= STRONG_PCT ? 'review' : 'practice'
+}
+
+// The plan's courses, the ones the feed gives most of first: pool by pool,
+// in each the weak, unsettled and central to the plan (getThemePriority).
+// `gapCode`, a course where the prediction just found a gap, leads. Ties
+// stay in plan order.
+export function rankPlanCourses(grade: TargetGrade, knowledge: Knowledge, gapCode: TopicCode | null = null): TopicCode[] {
+  const relevance = getCourseRelevance(grade)
+  const priority = (code: TopicCode) => getThemePriority(knowledge.courses[code], relevance.get(code) ?? 0)
+  const pool = (code: TopicCode) => POOL_RANK[poolOf(code, knowledge)]
+  return [...planDifficulties(grade).keys()].sort(
+    (a, b) =>
+      Number(b === gapCode) - Number(a === gapCode) || pool(a) - pool(b) || priority(b) - priority(a),
+  )
+}
+
+export function getFeedCourses(
+  grade: TargetGrade,
+  prefs: FeedPrefs,
+  knowledge: Knowledge,
+  gapCode: TopicCode | null = null,
+): TopicCode[] {
+  return prefs.courses ?? rankPlanCourses(grade, knowledge, gapCode)
 }
 
 // Which tiers the feed pulls from one course: the plan's (or all three for
@@ -70,8 +101,9 @@ export function getFeedDifficulties(grade: TargetGrade, prefs: FeedPrefs, code: 
 // Surfacing
 // ---------------------------------------------------------------------------
 
-// How many courses are mixed at a time, and how many tasks a course gives
-// per turn before it steps aside for the next one in line.
+// How many courses are mixed at a time, and, in the student's own order,
+// how many tasks a course gives per turn before it steps aside for the next
+// one in line.
 const ACTIVE_COURSES = 3
 const TASKS_PER_TURN = 4
 
@@ -93,7 +125,7 @@ function interleave(quick: Card[], long: Card[]): Card[] {
   return result
 }
 
-// Rotates through the courses in list order: ACTIVE_COURSES at a time, one
+// Student's own order: rotates through the courses in list order: ACTIVE_COURSES at a time, one
 // task from each in turn. A course that has given TASKS_PER_TURN tasks
 // goes to the back of the line with what it has left, and the next course
 // takes its place. Each course's tasks run from easy to hard, so when a
@@ -127,21 +159,87 @@ function rotate(queues: CourseQueue[], lessons: Map<TopicCode, Card>): Card[] {
   return result
 }
 
+// Recommended order: every ten tasks are seven from the courses most worth
+// practising, two as light review of strong courses and one from a course
+// nothing is known of yet, with at most three of the ten from one course.
+export const FEED_MIX: Pool[] = [
+  'practice', 'practice', 'review', 'practice', 'practice', 'unknown', 'practice', 'practice', 'review', 'practice',
+]
+export const COURSE_CAP = 3
+
+// Where a slot goes when its own pool has nothing to give.
+const FALLBACK: Record<Pool, Pool[]> = {
+  practice: ['practice', 'unknown', 'review'],
+  review: ['review', 'practice', 'unknown'],
+  unknown: ['unknown', 'practice', 'review'],
+}
+
+// The next course of a pool: its ACTIVE_COURSES highest-ranked ones with
+// tasks left take turns, and the rest step in when those reach the cap.
+function nextInPool(queues: CourseQueue[]): CourseQueue | undefined {
+  const open = queues.filter((queue) => queue.tasks.length > 0)
+  const active = open.slice(0, ACTIVE_COURSES).filter((queue) => queue.taken < COURSE_CAP)
+  if (active.length === 0) return open.find((queue) => queue.taken < COURSE_CAP)
+  return active.reduce((least, queue) => (queue.taken < least.taken ? queue : least))
+}
+
+function mixPools(queues: CourseQueue[], lessons: Map<TopicCode, Card>, knowledge: Knowledge): Card[] {
+  const result: Card[] = []
+  const pools: Record<Pool, CourseQueue[]> = { practice: [], review: [], unknown: [] }
+  for (const queue of queues) pools[poolOf(queue.code, knowledge)].push(queue)
+
+  for (let slot = 0; queues.some((queue) => queue.tasks.length > 0); slot++) {
+    const position = slot % FEED_MIX.length
+    if (position === 0) for (const queue of queues) queue.taken = 0
+    let next: CourseQueue | undefined
+    for (const pool of FALLBACK[FEED_MIX[position]]) {
+      next = nextInPool(pools[pool])
+      if (next) break
+    }
+    // Too few courses with tasks left to keep to the cap.
+    next ??= queues
+      .filter((queue) => queue.tasks.length > 0)
+      .reduce((least, queue) => (queue.taken < least.taken ? queue : least))
+
+    const lesson = lessons.get(next.code)
+    if (lesson) {
+      result.push(lesson)
+      lessons.delete(next.code)
+    }
+    result.push(next.tasks.shift()!)
+    next.taken += 1
+  }
+  return result
+}
+
+// Quick exercises with the weakest theme's first; file order within a theme.
+function weakestThemeFirst(exercises: Card[], knowledge: Knowledge): Card[] {
+  const priority = (card: Card) =>
+    Math.max(0, ...getCardThemes(card.id).map((theme) => getThemePriority(knowledge.themes[theme.id])))
+  return exercises
+    .map((card) => ({ card, p: priority(card) }))
+    .sort((a, b) => b.p - a.p)
+    .map(({ card }) => card)
+}
+
 // The Suositellut feed: each course's quick exercises (pikatehtävät) and
 // long tasks, whichever `kinds` has on, woven together. Cards the student has
-// already answered are left out of the rotation and come at the very end,
-// so the feed leads with new material but nothing disappears for good.
+// already answered are left out of the mix and come at the very end, so the
+// feed leads with new material but nothing disappears for good.
 export function getRecommendedCards(
   grade: TargetGrade,
   prefs: FeedPrefs,
+  knowledge: Knowledge,
   answered: Record<string, unknown> = {},
   kinds: FeedKinds = { quick: true, long: true },
+  gapCode: TopicCode | null = null,
 ): Card[] {
   const fresh: CourseQueue[] = []
   const done: CourseQueue[] = []
   const lessons = new Map<TopicCode, Card>()
+  const ownOrder = prefs.courses !== null
 
-  for (const code of getFeedCourses(grade, prefs)) {
+  for (const code of getFeedCourses(grade, prefs, knowledge, gapCode)) {
     if (!(code in COURSE_MAP)) continue
     const wanted = new Set(getFeedDifficulties(grade, prefs, code))
     const long = kinds.long
@@ -152,7 +250,8 @@ export function getRecommendedCards(
           .sort((a, b) => DIFFICULTY_RANK[a.difficulty] - DIFFICULTY_RANK[b.difficulty])
           .map(({ card }) => card)
       : []
-    const tasks = interleave(kinds.quick ? getExerciseCards(code) : [], long)
+    const quick = kinds.quick ? getExerciseCards(code) : []
+    const tasks = interleave(ownOrder ? quick : weakestThemeFirst(quick, knowledge), long)
     if (tasks.length === 0) continue
 
     const lesson = cards.find((card) => card.topic.code === code && card.type === 'lesson')
@@ -161,7 +260,8 @@ export function getRecommendedCards(
     done.push({ code, tasks: tasks.filter((card) => answered[card.id]), taken: 0 })
   }
 
-  return [...rotate(fresh, lessons), ...rotate(done, lessons)]
+  const lead = ownOrder ? rotate(fresh, lessons) : mixPools(fresh, lessons, knowledge)
+  return [...lead, ...rotate(done, lessons)]
 }
 
 // ---------------------------------------------------------------------------

@@ -1,21 +1,25 @@
 import { COURSES } from '../data/courses'
-import { getCourseProgress } from '../data/progress'
+import { getCoursePoints, getCourseProgressPct } from '../data/coursePoints'
+import type { Knowledge } from '../data/knowledge'
+import { usePointsEarned } from '../data/points'
 import type { TopicCode } from '../types'
+import KnowledgeChip from './KnowledgeChip'
 import PageContainer from './PageContainer'
 
 interface CourseListProps {
   onSelect: (code: TopicCode) => void
-  engagedIds: Record<string, true>
+  knowledge: Knowledge
 }
 
-export default function CourseList({ onSelect, engagedIds }: CourseListProps) {
+export default function CourseList({ onSelect, knowledge }: CourseListProps) {
+  const points = getCoursePoints(usePointsEarned())
   return (
     <PageContainer wide>
       <h1 className="mb-1 text-2xl font-bold text-ink">Kurssit</h1>
       <p className="mb-6 text-sm text-ink-dim">Valitse kurssi, jonka tehtäviä ja oppitunteja haluat harjoitella.</p>
       <div className="grid grid-cols-1 gap-3 lg:grid-cols-2 lg:gap-4">
         {COURSES.map((course, index) => {
-          const { pct } = getCourseProgress(course.code, engagedIds)
+          const pct = getCourseProgressPct(course.code, points)
           return (
             <button
               key={course.code}
@@ -28,7 +32,10 @@ export default function CourseList({ onSelect, engagedIds }: CourseListProps) {
                 <span className="text-base font-semibold text-ink">
                   {course.code} · <span className="font-medium">{course.name}</span>
                 </span>
-                <span className="shrink-0 text-xs font-semibold text-ink-dim">{pct} %</span>
+                <span className="flex shrink-0 items-center gap-2">
+                  <KnowledgeChip course={knowledge.courses[course.code]} />
+                  <span className="text-xs font-semibold text-ink-dim">{pct} %</span>
+                </span>
               </div>
               <p className="text-sm leading-relaxed text-ink-dim">{course.description}</p>
               <div className="h-1.5 w-full overflow-hidden rounded-full bg-ink/10">
