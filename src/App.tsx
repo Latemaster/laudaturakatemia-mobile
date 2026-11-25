@@ -252,7 +252,15 @@ function App() {
     </>
   )
 
-  const pointsMeter = <PointsMeter onOpen={() => handleSelectSection('osaaminen')} laptop={isDesktop} />
+  const pointsMeter = (
+    <PointsMeter
+      knowledge={knowledge}
+      courseGrades={courseGrades}
+      targetGrade={targetGrade}
+      onOpen={() => handleSelectSection('osaaminen')}
+      laptop={isDesktop}
+    />
+  )
 
   if (!isDesktop) {
     return (
